@@ -4,6 +4,9 @@ Everything runs on CPU in seconds to minutes. Data: the released H1 set, generat
 repo (`python -m data.reversed_n_squaring_mod ...`, the H1 command in `scripts/generate_datasets.sh`). Point
 `H1_DATA` at that folder if it moves. Python: torch + numpy.
 
+The competition repo sits next to this folder, in `../one-layer-deeper`: a clean clone at `87e5c26` ("Releasing H1")
+with the H1 data under `data/generated/`. Its virtualenv was left out of the copy; run `uv sync` there to recreate it.
+
 | file | what it shows |
 |---|---|
 | `REPORT.md` | the write-up |

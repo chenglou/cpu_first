@@ -1,0 +1,804 @@
+{
+ "exp": "loop_csub",
+ "where": "modal cpu=32",
+ "tag": "L5_scan32",
+ "workers": 31,
+ "chunk": 1024,
+ "brute": false,
+ "serial_depth": 3,
+ "grow_chunk": 1024,
+ "scan": 32,
+ "probe_seed": 1,
+ "label_seed": 0,
+ "K_lab": 8,
+ "job_slice": null,
+ "first_labels": [
+  [
+   54253,
+   39215,
+   14940
+  ],
+  [
+   5969,
+   2023,
+   3764
+  ],
+  [
+   6313,
+   3163,
+   4777
+  ],
+  [
+   7493,
+   1629,
+   1119
+  ],
+  [
+   723253,
+   643486,
+   317648
+  ],
+  [
+   888673,
+   622684,
+   224572
+  ],
+  [
+   55973,
+   53733,
+   36003
+  ],
+  [
+   721453,
+   368727,
+   339773
+  ]
+ ],
+ "wall": 102.83430790901184,
+ "L": 5,
+ "K": 32,
+ "merge": true,
+ "space": 168608563200,
+ "levels": [
+  {
+   "depth": 1,
+   "partial": 70,
+   "states": 64,
+   "raw": 70.0
+  },
+  {
+   "depth": 2,
+   "partial": 5977,
+   "states": 3503,
+   "raw": 6532.0
+  },
+  {
+   "depth": 3,
+   "partial": 422618,
+   "states": 194261,
+   "raw": 787055.0
+  }
+ ],
+ "states_last": 12950057,
+ "bodies": 112444771,
+ "raw": 272637962.0,
+ "functions_chunk_local": 35895041,
+ "loop_runs": 35895041,
+ "functions_exact": 3365584,
+ "functions_hll": 3375169.4595193937,
+ "curve_raw": [
+  272637962.0,
+  20.0,
+  20.0,
+  20.0,
+  12.0,
+  12.0,
+  12.0,
+  12.0,
+  12.0
+ ],
+ "curve_fn": [
+  3365584,
+  2,
+  2,
+  2,
+  1,
+  1,
+  1,
+  1,
+  1
+ ],
+ "seconds": 98.87366366386414,
+ "t_materialise": 0.9125289916992188,
+ "t_enum_cpu": 113.30445337295532,
+ "t_loop_cpu": 2553.672262907028,
+ "jobs": 190,
+ "jobs_total": 190,
+ "survivor_table": [
+  {
+   "k": 1,
+   "functions": 2,
+   "raw": 20.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 2,
+   "functions": 2,
+   "raw": 20.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 3,
+   "functions": 2,
+   "raw": 20.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 4,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 5,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 6,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 7,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 8,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 1000,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  }
+ ],
+ "checked": [
+  {
+   "body": "mul,1,3;add,0,0;add,7,8;csub,9,9;csub,10,10",
+   "show": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)",
+   "mult": 12.0,
+   "passed": 8,
+   "rows_passed": 1000,
+   "train_all": true,
+   "fresh": {
+    "13": 1.0,
+    "16": 1.0,
+    "20": 1.0,
+    "24": 1.0
+   },
+   "correct": true
+  },
+  {
+   "body": "csub,0,0;mul,1,3;add,7,8;add,7,9;csub,10,10",
+   "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=add(t0,t2); t4=csub(t3)",
+   "mult": 8.0,
+   "passed": 3,
+   "rows_passed": 3,
+   "train_all": false,
+   "fresh": {
+    "13": 0.925,
+    "16": 0.91,
+    "20": 0.85,
+    "24": 0.885
+   },
+   "correct": false
+  }
+ ],
+ "n_checked": 2,
+ "order_stats": {
+  "R": 32,
+  "functions_hit": 921,
+  "functions_correct": 1,
+  "orders": 2000,
+  "table": [
+   {
+    "k": 1,
+    "median": 7.0,
+    "p90": 46.0,
+    "max": 671,
+    "only_correct": 0.0905,
+    "expected_iid": 9.456999999999999
+   },
+   {
+    "k": 2,
+    "median": 3.0,
+    "p90": 6.0,
+    "max": 52,
+    "only_correct": 0.2645,
+    "expected_iid": 3.6245870000000004
+   },
+   {
+    "k": 3,
+    "median": 2.0,
+    "p90": 5.0,
+    "max": 9,
+    "only_correct": 0.399,
+    "expected_iid": 2.7378939790000008
+   },
+   {
+    "k": 4,
+    "median": 2.0,
+    "p90": 3.0,
+    "max": 8,
+    "only_correct": 0.498,
+    "expected_iid": 2.2546976220950006
+   },
+   {
+    "k": 6,
+    "median": 1.0,
+    "p90": 3.0,
+    "max": 6,
+    "only_correct": 0.6535,
+    "expected_iid": 1.7309292634129774
+   },
+   {
+    "k": 8,
+    "median": 1.0,
+    "p90": 2.0,
+    "max": 5,
+    "only_correct": 0.773,
+    "expected_iid": 1.4621984036614497
+   },
+   {
+    "k": 12,
+    "median": 1.0,
+    "p90": 1.0,
+    "max": 3,
+    "only_correct": 0.9225,
+    "expected_iid": 1.2118181060030435
+   },
+   {
+    "k": 16,
+    "median": 1.0,
+    "p90": 1.0,
+    "max": 2,
+    "only_correct": 0.9735,
+    "expected_iid": 1.1070982021889373
+   },
+   {
+    "k": 24,
+    "median": 1.0,
+    "p90": 1.0,
+    "max": 2,
+    "only_correct": 0.9995,
+    "expected_iid": 1.030842524800852
+   },
+   {
+    "k": 32,
+    "median": 1.0,
+    "p90": 1.0,
+    "max": 1,
+    "only_correct": 1.0,
+    "expected_iid": 1.009379516008914
+   }
+  ],
+  "labels_needed": {
+   "median": 5.0,
+   "p90": 12.0,
+   "p99": 19.0,
+   "max": 25,
+   "over_R": 0.0
+  },
+  "expected_iid_more": {
+   "48": 1.000897414937301,
+   "64": 1.0000864788416535,
+   "100": 1.0000004480994256,
+   "200": 1.0000000000002007
+  },
+  "functions": [
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)",
+    "body": "mul,1,3;add,0,0;add,7,8;csub,9,9;csub,10,10",
+    "mult": 12.0,
+    "rate": 1.0,
+    "correct": true,
+    "scan_hits": 32
+   },
+   {
+    "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=add(t0,t2); t4=csub(t3)",
+    "body": "csub,0,0;mul,1,3;add,7,8;add,7,9;csub,10,10",
+    "mult": 8.0,
+    "rate": 0.864,
+    "correct": false,
+    "scan_hits": 27
+   },
+   {
+    "show": "t0=csub(s); t1=add(t0,t0); t2=csub(t1); t3=mul(x,d); t4=add(t2,t3)",
+    "body": "csub,0,0;add,7,7;csub,8,8;mul,1,3;add,9,10",
+    "mult": 8.0,
+    "rate": 0.744,
+    "correct": false,
+    "scan_hits": 21
+   },
+   {
+    "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=add(s,t2); t4=csub(t3)",
+    "body": "csub,0,0;mul,1,3;add,7,8;add,0,9;csub,10,10",
+    "mult": 8.0,
+    "rate": 0.67,
+    "correct": false,
+    "scan_hits": 20
+   },
+   {
+    "show": "t0=add(s,s); t1=csub(t0); t2=csub(t1); t3=mul(x,d); t4=add(t2,t3)",
+    "body": "add,0,0;csub,7,7;csub,8,8;mul,1,3;add,9,10",
+    "mult": 12.0,
+    "rate": 0.586,
+    "correct": false,
+    "scan_hits": 16
+   },
+   {
+    "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=csub(t2); t4=add(t0,t3)",
+    "body": "csub,0,0;mul,1,3;add,7,8;csub,9,9;add,7,10",
+    "mult": 2.0,
+    "rate": 0.488,
+    "correct": false,
+    "scan_hits": 16
+   },
+   {
+    "show": "t0=mul(x,d); t1=sub(0,s); t2=sub(t0,t1); t3=add(s,t2); t4=csub(t3)",
+    "body": "mul,1,3;sub,4,0;sub,7,8;add,0,9;csub,10,10",
+    "mult": 58.0,
+    "rate": 0.262,
+    "correct": false,
+    "scan_hits": 8
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=csub(t1); t3=sub(t2,t0); t4=add(t2,t3)",
+    "body": "mul,1,3;add,0,7;csub,8,8;sub,9,7;add,9,10",
+    "mult": 4.0,
+    "rate": 0.241,
+    "correct": false,
+    "scan_hits": 7
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=csub(t1); t3=csub(s); t4=add(t2,t3)",
+    "body": "mul,1,3;add,0,7;csub,8,8;csub,0,0;add,9,10",
+    "mult": 4.0,
+    "rate": 0.24,
+    "correct": false,
+    "scan_hits": 7
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=add(t1,t1); t3=csub(t2); t4=sub(t3,t0)",
+    "body": "mul,1,3;add,0,7;add,8,8;csub,9,9;sub,10,7",
+    "mult": 2.0,
+    "rate": 0.232,
+    "correct": false,
+    "scan_hits": 8
+   },
+   {
+    "show": "t0=sub(0,s); t1=sub(s,t0); t2=mul(x,d); t3=csub(t1); t4=add(t2,t3)",
+    "body": "sub,4,0;sub,0,7;mul,1,3;csub,8,8;add,9,10",
+    "mult": 48.0,
+    "rate": 0.144,
+    "correct": false,
+    "scan_hits": 4
+   },
+   {
+    "show": "t0=csub(s); t1=sub(0,2); t2=mul(t0,t1); t3=mul(x,d); t4=sub(t3,t2)",
+    "body": "csub,0,0;sub,4,6;mul,7,8;mul,1,3;sub,10,9",
+    "mult": 108.0,
+    "rate": 0.113,
+    "correct": false,
+    "scan_hits": 3
+   },
+   {
+    "show": "t0=add(s,d); t1=csub(t0); t2=sub(t0,t1); t3=sub(x,t2); t4=mul(t3,t3)",
+    "body": "add,0,3;csub,7,7;sub,7,8;sub,1,9;mul,10,10",
+    "mult": 133.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=csub(s); t1=sub(s,t0); t2=sub(N,t1); t3=sub(t2,x); t4=mul(t3,t3)",
+    "body": "csub,0,0;sub,0,7;sub,2,8;sub,9,1;mul,10,10",
+    "mult": 133.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(1,x); t1=sub(x,t0); t2=csub(t1); t3=add(t0,t2); t4=mul(t3,t3)",
+    "body": "sub,5,1;sub,1,7;csub,8,8;add,7,9;mul,10,10",
+    "mult": 48.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(0,x); t1=sub(s,t0); t2=csub(t1); t3=sub(s,t2); t4=mul(t3,t3)",
+    "body": "sub,4,1;sub,0,7;csub,8,8;sub,0,9;mul,10,10",
+    "mult": 33.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(s,x); t1=csub(t0); t2=add(N,t1); t3=sub(t2,s); t4=mul(t3,t3)",
+    "body": "sub,0,1;csub,7,7;add,2,8;sub,9,0;mul,10,10",
+    "mult": 14.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(x,s); t1=sub(N,t0); t2=csub(t1); t3=sub(t2,s); t4=mul(t3,t3)",
+    "body": "sub,1,0;sub,2,7;csub,8,8;sub,9,0;mul,10,10",
+    "mult": 13.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(s,x); t1=csub(t0); t2=sub(t0,t1); t3=sub(x,t2); t4=mul(t3,t3)",
+    "body": "sub,0,1;csub,7,7;sub,7,8;sub,1,9;mul,10,10",
+    "mult": 11.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=add(x,x); t1=add(x,t0); t2=csub(t1); t3=sub(t0,t2); t4=mul(t3,t3)",
+    "body": "add,1,1;add,1,7;csub,8,8;sub,7,9;mul,10,10",
+    "mult": 4.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(N,s); t1=sub(x,t0); t2=csub(t1); t3=add(t0,t2); t4=mul(t3,t3)",
+    "body": "sub,2,0;sub,1,7;csub,8,8;add,7,9;mul,10,10",
+    "mult": 3.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(s,x); t1=sub(x,t0); t2=csub(t1); t3=add(t0,t2); t4=mul(t3,t3)",
+    "body": "sub,0,1;sub,1,7;csub,8,8;add,7,9;mul,10,10",
+    "mult": 3.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=csub(s); t1=add(x,t0); t2=csub(t1); t3=sub(t2,t0); t4=mul(t3,t3)",
+    "body": "csub,0,0;add,1,7;csub,8,8;sub,9,7;mul,10,10",
+    "mult": 2.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=add(s,x); t1=add(x,t0); t2=csub(t1); t3=sub(t2,t0); t4=mul(t3,t3)",
+    "body": "add,0,1;add,1,7;csub,8,8;sub,9,7;mul,10,10",
+    "mult": 2.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=csub(s); t1=sub(s,t0); t2=sub(N,x); t3=mul(t2,t2); t4=sub(t3,t1)",
+    "body": "csub,0,0;sub,0,7;sub,2,1;mul,9,9;sub,10,8",
+    "mult": 46.0,
+    "rate": 0.014,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=add(s,s); t1=csub(t0); t2=sub(t0,x); t3=sub(t2,t1); t4=mul(t3,t3)",
+    "body": "add,0,0;csub,7,7;sub,7,1;sub,9,8;mul,10,10",
+    "mult": 22.0,
+    "rate": 0.014,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=add(s,s); t1=add(x,t0); t2=csub(t1); t3=sub(t0,t2); t4=mul(t3,t3)",
+    "body": "add,0,0;add,1,7;csub,8,8;sub,7,9;mul,10,10",
+    "mult": 4.0,
+    "rate": 0.014,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(N,1); t1=add(x,1); t2=sub(t1,t0); t3=sub(t2,2); t4=mul(t3,t3)",
+    "body": "sub,2,5;add,1,5;sub,8,7;sub,9,6;mul,10,10",
+    "mult": 6106.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=csub(s); t1=sub(s,x); t2=sub(N,t0); t3=add(t1,t2); t4=mul(t3,t3)",
+    "body": "csub,0,0;sub,0,1;sub,2,7;add,8,9;mul,10,10",
+    "mult": 133.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=mul(s,N); t1=csub(t0); t2=add(x,t1); t3=sub(t2,t0); t4=mul(t3,t3)",
+    "body": "mul,0,2;csub,7,7;add,1,8;sub,9,7;mul,10,10",
+    "mult": 53.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=csub(s); t1=sub(s,t0); t2=sub(N,x); t3=mul(t2,t2); t4=add(t1,t3)",
+    "body": "csub,0,0;sub,0,7;sub,2,1;mul,9,9;add,8,10",
+    "mult": 44.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=csub(s); t1=sub(s,t0); t2=sub(N,x); t3=sub(t2,t1); t4=mul(t2,t3)",
+    "body": "csub,0,0;sub,0,7;sub,2,1;sub,9,8;mul,9,10",
+    "mult": 27.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=csub(s); t1=sub(N,x); t2=sub(t0,t1); t3=sub(s,t2); t4=mul(t1,t3)",
+    "body": "csub,0,0;sub,2,1;sub,7,8;sub,0,9;mul,8,10",
+    "mult": 27.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=add(x,x); t1=csub(t0); t2=sub(N,x); t3=sub(x,t1); t4=mul(t2,t3)",
+    "body": "add,1,1;csub,7,7;sub,2,1;sub,1,8;mul,9,10",
+    "mult": 18.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=add(x,x); t1=mul(d,t0); t2=csub(t1); t3=sub(t2,x); t4=mul(t3,t3)",
+    "body": "add,1,1;mul,3,7;csub,8,8;sub,9,1;mul,10,10",
+    "mult": 18.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=add(s,x); t1=sub(t0,N); t2=csub(t1); t3=sub(s,t2); t4=mul(t3,t3)",
+    "body": "add,0,1;sub,7,2;csub,8,8;sub,0,9;mul,10,10",
+    "mult": 10.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=add(x,x); t1=csub(t0); t2=mul(x,x); t3=mul(N,t1); t4=sub(t2,t3)",
+    "body": "add,1,1;csub,7,7;mul,1,1;mul,2,8;sub,9,10",
+    "mult": 8.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(x,N); t1=mul(t0,t0); t2=sub(t1,s); t3=mul(d,t2); t4=add(t1,t3)",
+    "body": "sub,1,2;mul,7,7;sub,8,0;mul,3,9;add,8,10",
+    "mult": 4.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(x,N); t1=mul(t0,t0); t2=sub(t1,s); t3=mul(d,t2); t4=sub(t1,t3)",
+    "body": "sub,1,2;mul,7,7;sub,8,0;mul,3,9;sub,8,10",
+    "mult": 4.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(x,N); t1=mul(t0,t0); t2=sub(t1,s); t3=mul(s,t2); t4=add(t1,t3)",
+    "body": "sub,1,2;mul,7,7;sub,8,0;mul,0,9;add,8,10",
+    "mult": 4.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(x,N); t1=mul(t0,t0); t2=sub(t1,s); t3=mul(s,t2); t4=sub(t1,t3)",
+    "body": "sub,1,2;mul,7,7;sub,8,0;mul,0,9;sub,8,10",
+    "mult": 4.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(x,N); t1=mul(t0,t0); t2=sub(t1,s); t3=mul(s,t2); t4=add(1,t3)",
+    "body": "sub,1,2;mul,7,7;sub,8,0;mul,0,9;add,5,10",
+    "mult": 4.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(x,N); t1=mul(t0,t0); t2=sub(t1,s); t3=mul(d,t2); t4=add(s,t3)",
+    "body": "sub,1,2;mul,7,7;sub,8,0;mul,3,9;add,0,10",
+    "mult": 4.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=mul(s,d); t1=add(x,t0); t2=csub(t1); t3=sub(t2,t0); t4=mul(t3,t3)",
+    "body": "mul,0,3;add,1,7;csub,8,8;sub,9,7;mul,10,10",
+    "mult": 2.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=sub(N,x); t1=sub(s,t0); t2=csub(t1); t3=sub(s,t2); t4=mul(t0,t3)",
+    "body": "sub,2,1;sub,0,7;csub,8,8;sub,0,9;mul,7,10",
+    "mult": 2.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(N,x); t1=mul(t0,t0); t2=sub(s,t1); t3=mul(s,t2); t4=sub(t3,1)",
+    "body": "sub,2,1;mul,7,7;sub,0,8;mul,0,9;sub,10,5",
+    "mult": 2.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(N,x); t1=add(s,t0); t2=csub(t1); t3=sub(t2,s); t4=mul(t0,t3)",
+    "body": "sub,2,1;add,0,7;csub,8,8;sub,9,0;mul,7,10",
+    "mult": 2.0,
+    "rate": 0.01,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(d,N); t1=mul(d,t0); t2=sub(x,t1); t3=add(t0,t2); t4=mul(t3,t3)",
+    "body": "sub,3,2;mul,3,7;sub,1,8;add,7,9;mul,10,10",
+    "mult": 231.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=sub(N,x); t1=mul(t0,t0); t2=add(d,t1); t3=mul(s,d); t4=sub(t2,t3)",
+    "body": "sub,2,1;mul,7,7;add,3,8;mul,0,3;sub,9,10",
+    "mult": 92.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(d,1); t1=sub(x,N); t2=mul(N,t0); t3=mul(t1,t1); t4=add(t2,t3)",
+    "body": "sub,3,5;sub,1,2;mul,2,7;mul,8,8;add,9,10",
+    "mult": 84.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=sub(0,s); t1=mul(d,t0); t2=sub(x,N); t3=mul(t2,t2); t4=add(t1,t3)",
+    "body": "sub,4,0;mul,3,7;sub,1,2;mul,9,9;add,8,10",
+    "mult": 58.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=add(s,d); t1=mul(d,t0); t2=sub(x,N); t3=mul(t2,t2); t4=sub(t3,t1)",
+    "body": "add,0,3;mul,3,7;sub,1,2;mul,9,9;sub,10,8",
+    "mult": 50.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(x,d); t1=sub(t0,N); t2=mul(t1,t1); t3=mul(s,d); t4=sub(t2,t3)",
+    "body": "sub,1,3;sub,7,2;mul,8,8;mul,0,3;sub,9,10",
+    "mult": 32.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=mul(s,d); t1=add(x,d); t2=sub(N,t1); t3=mul(t2,t2); t4=sub(t3,t0)",
+    "body": "mul,0,3;add,1,3;sub,2,8;mul,9,9;sub,10,7",
+    "mult": 32.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(s,2); t1=sub(N,x); t2=mul(t1,t1); t3=mul(d,t0); t4=sub(t2,t3)",
+    "body": "sub,0,6;sub,2,1;mul,8,8;mul,3,7;sub,9,10",
+    "mult": 24.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=csub(s); t1=sub(x,N); t2=mul(d,t0); t3=mul(t1,t1); t4=sub(t3,t2)",
+    "body": "csub,0,0;sub,1,2;mul,3,7;mul,8,8;sub,10,9",
+    "mult": 24.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(N,x); t1=mul(t0,t0); t2=sub(s,N); t3=mul(d,t2); t4=sub(t1,t3)",
+    "body": "sub,2,1;mul,7,7;sub,0,2;mul,3,9;sub,8,10",
+    "mult": 24.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(x,s); t1=sub(N,x); t2=mul(t1,t1); t3=mul(d,t0); t4=add(t2,t3)",
+    "body": "sub,1,0;sub,2,1;mul,8,8;mul,3,7;add,9,10",
+    "mult": 24.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(x,t0); t2=csub(t1); t3=sub(t2,x); t4=mul(t3,t3)",
+    "body": "mul,1,3;add,1,7;csub,8,8;sub,9,1;mul,10,10",
+    "mult": 20.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=sub(1,d); t1=sub(x,N); t2=mul(t0,t1); t3=mul(t1,t2); t4=csub(t3)",
+    "body": "sub,5,3;sub,1,2;mul,7,8;mul,8,9;csub,10,10",
+    "mult": 20.0,
+    "rate": 0.008,
+    "correct": false,
+    "scan_hits": 1
+   }
+  ]
+ },
+ "certified": {
+  "body": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)",
+  "depth_t": 64,
+  "depth_ood_n_t": 64
+ },
+ "t_check": 1.8361835479736328
+}

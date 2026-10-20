@@ -1,0 +1,26 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '24', '--fmt', 'v4', '--data', 'h1', '--resume', '/runs/t2_v4_h1.pt', '--lr', '3e-4', '--warmup', '100', '--batch', '128', '--steps', '8000', '--eval_every', '2000', '--eval_n', '1024', '--final_n', '50000', '--device', 'cuda']
+resumed from /runs/t2_v4_h1.pt
+W=8 L=1366 trace lines=122 params=4754966 data=h1 curriculum=none fmt=v4
+h1 real: 936324 step traces from 101999 rows, 430 moduli (13/16/20-bit), W=8
+step 2000 loss 0.0000 tf_seq 1.000 pool: ans=0.9922 trace=0.9922 firsterr={'P': 7, 'A': 1} t=619s
+step 4000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=1237s
+step 6000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=1855s
+step 8000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=2473s
+final single-step (H1 pool moduli): (0.99998, 0.99998, {'P': 1})
+  depth_t T=1   exact=1.0000
+  depth_t T=2   exact=1.0000
+  depth_t T=4   exact=1.0000
+  depth_t T=8   exact=0.9987
+  depth_t T=16  exact=0.9987
+  depth_t T=32  exact=0.9987
+  depth_t T=64  exact=0.9987
+  depth_ood_n_t T=1   exact=0.3164
+  depth_ood_n_t T=2   exact=0.2617
+  depth_ood_n_t T=4   exact=0.2474
+  depth_ood_n_t T=8   exact=0.2422
+  depth_ood_n_t T=16  exact=0.2331
+  depth_ood_n_t T=32  exact=0.2266
+  depth_ood_n_t T=64  exact=0.2135
+done {"params": 4754966, "L": 1366, "train_time": 2473.2855796813965, "single_step_pool": [0.99998, 0.99998, {"P": 1}], "depth_t": {"max_t": 4, "accs": {"1": 1.0, "2": 1.0, "4": 1.0, "8": 0.9986979166666666, "16": 0.9986979166666666, "32": 0.9986979166666666, "64": 0.9986979166666666}}, "depth_ood_n_t": {"max_t": 0, "accs": {"1": 0.31640625, "2": 0.26171875, "4": 0.24739583333333334, "8": 0.2421875, "16": 0.23307291666666666, "32": 0.2265625, "64": 0.21354166666666666}}, "total_time": 8021.378208637238}
+
+exit code 0, wall 8038s

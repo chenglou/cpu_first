@@ -1,0 +1,6 @@
+W=3 L=123 trace lines=25 params=4750867 data=h1like curriculum=none
+h1like: 936324 step traces, 64 pool moduli, 0 unseen
+step 1000 loss 0.0195 tf_seq 0.578 pool: ans=0.1953 trace=0.1875 firsterr={'R': 166, 'Q': 16, 'A': 4, 'M': 3, 'P': 11} t=462s
+step 2000 loss 0.0123 tf_seq 0.734 pool: ans=0.3477 trace=0.3359 firsterr={'R': 156, 'A': 8, 'Q': 26, 'M': 4, 'P': 5, 'E': 1} t=879s
+step 3000 loss 0.0049 tf_seq 0.875 pool: ans=0.4688 trace=0.4668 firsterr={'R': 163, 'Q': 22, 'M': 1, 'A': 1, 'P': 13} t=1366s
+stopped at step ~3000 to free the GPU for the v2 format (v1 subtraction lines were the bottleneck)

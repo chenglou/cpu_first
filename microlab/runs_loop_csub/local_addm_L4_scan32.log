@@ -1,0 +1,74 @@
+[addm loop, L=4] 1,309,422,240 raw bodies (2^30.3), K=32 probes, 2 workers
+    depth 1: 84 partial bodies -> 70 distinct states (0.0s)
+    depth 2: 7,929 partial bodies -> 4,285 distinct states (0.0s)
+    jobs 1/17: 272,703 candidates, 80,103 loop runs, label-1 survivors 0, 1.7s (eta 28s)
+    jobs 2/17: 517,392 candidates, 152,794 loop runs, label-1 survivors 8, 1.7s (eta 13s)
+    jobs 3/17: 774,715 candidates, 229,819 loop runs, label-1 survivors 8, 3.2s (eta 15s)
+    jobs 4/17: 1,021,493 candidates, 306,163 loop runs, label-1 survivors 14, 3.2s (eta 11s)
+    jobs 5/17: 1,294,749 candidates, 386,167 loop runs, label-1 survivors 15, 4.8s (eta 11s)
+    jobs 6/17: 1,552,395 candidates, 463,184 loop runs, label-1 survivors 31, 4.8s (eta 9s)
+    jobs 7/17: 1,818,303 candidates, 540,206 loop runs, label-1 survivors 32, 6.3s (eta 9s)
+    jobs 8/17: 2,067,335 candidates, 615,228 loop runs, label-1 survivors 32, 6.3s (eta 7s)
+    jobs 9/17: 2,317,264 candidates, 689,789 loop runs, label-1 survivors 32, 7.7s (eta 7s)
+    jobs 10/17: 2,562,999 candidates, 761,609 loop runs, label-1 survivors 32, 7.8s (eta 5s)
+    jobs 11/17: 2,789,517 candidates, 827,956 loop runs, label-1 survivors 34, 9.1s (eta 5s)
+    jobs 12/17: 3,069,547 candidates, 911,778 loop runs, label-1 survivors 40, 9.5s (eta 4s)
+    jobs 13/17: 3,318,752 candidates, 990,221 loop runs, label-1 survivors 40, 10.6s (eta 3s)
+    jobs 14/17: 3,560,998 candidates, 1,063,935 loop runs, label-1 survivors 40, 11.0s (eta 2s)
+    jobs 15/17: 3,808,285 candidates, 1,136,887 loop runs, label-1 survivors 40, 12.0s (eta 2s)
+    jobs 16/17: 4,089,984 candidates, 1,220,705 loop runs, label-1 survivors 43, 12.7s (eta 1s)
+    jobs 17/17: 4,283,132 candidates, 1,280,927 loop runs, label-1 survivors 43, 13.2s (eta 0s)
+  scan of 32 rows: 201 functions reproduce at least one, 4 correct; over 2000 random orders:
+    after  1 labels: left median 10, p90 21, max 133; only correct ones left in 9.0% of orders; E[left] for iid labels 11.18
+    after  2 labels: left median 6, p90 10, max 28; only correct ones left in 23.7% of orders; E[left] for iid labels 7.29
+    after  3 labels: left median 5, p90 8, max 15; only correct ones left in 37.1% of orders; E[left] for iid labels 6.04
+    after  4 labels: left median 5, p90 6, max 14; only correct ones left in 48.0% of orders; E[left] for iid labels 5.40
+    after  6 labels: left median 4, p90 6, max 10; only correct ones left in 64.6% of orders; E[left] for iid labels 4.77
+    after  8 labels: left median 4, p90 5, max 8; only correct ones left in 77.2% of orders; E[left] for iid labels 4.47
+    after 12 labels: left median 4, p90 4, max 6; only correct ones left in 92.2% of orders; E[left] for iid labels 4.21
+    after 16 labels: left median 4, p90 4, max 5; only correct ones left in 97.4% of orders; E[left] for iid labels 4.11
+    after 24 labels: left median 4, p90 4, max 5; only correct ones left in 100.0% of orders; E[left] for iid labels 4.03
+    after 32 labels: left median 4, p90 4, max 4; only correct ones left in 100.0% of orders; E[left] for iid labels 4.01
+    labels until only correct ones are left: {'median': 5.0, 'p90': 12.0, 'p99': 19.0, 'max': 25, 'over_R': 0.0}
+      rate 1.000 x15    CORRECT t0=mul(x,d); t1=add(s,s); t2=addm(t0,t1); t3=addm(0,t2)
+      rate 1.000 x12    CORRECT t0=addm(s,s); t1=mul(x,d); t2=addm(t0,t1); t3=addm(0,t2)
+      rate 1.000 x5     CORRECT t0=addm(s,0); t1=mul(x,d); t2=addm(t0,t0); t3=addm(t1,t2)
+      rate 1.000 x3     CORRECT t0=addm(s,0); t1=mul(x,d); t2=addm(t0,t1); t3=addm(s,t2)
+      rate 0.864 x8             t0=addm(s,0); t1=mul(x,d); t2=add(t0,t1); t3=addm(t0,t2)
+      rate 0.744 x3             t0=addm(s,0); t1=mul(x,d); t2=addm(t0,t0); t3=add(t1,t2)
+      rate 0.670 x8             t0=addm(s,0); t1=add(s,t0); t2=mul(x,d); t3=addm(t1,t2)
+      rate 0.586 x6             t0=addm(s,s); t1=mul(x,d); t2=addm(0,t0); t3=add(t1,t2)
+      rate 0.531 x1             t0=mul(x,d); t1=addm(s,t0); t2=sub(t1,t0); t3=addm(t1,t2)
+      rate 0.488 x2             t0=addm(s,0); t1=mul(x,d); t2=addm(t0,t1); t3=add(t0,t2)
+  L=4: 1,309,422,240 raw bodies (2^30.3); 8,544,536 non-redundant; distinct functions on 32 probes: 373,358 (exact); 4,283,132 (state, last instruction) candidates, 1,280,927 loop runs; 13.2s wall (cpu: enumerate 1.6s, loop 24.2s)
+  consistent with the first k labels (raw bodies): k=0:8,544,536, k=1:43, k=2:43, k=3:43, k=4:35, k=5:35, k=6:35, k=7:35, k=8:35
+  distinct functions: k=0:373,358, k=1:5, k=2:5, k=3:5, k=4:4, k=5:4, k=6:4, k=7:4, k=8:4
+    after 1 labels: 5 functions (43 bodies), 4 correct on fresh 13/16/20/24-bit rows (35 bodies)
+    after 2 labels: 5 functions (43 bodies), 4 correct on fresh 13/16/20/24-bit rows (35 bodies)
+    after 3 labels: 5 functions (43 bodies), 4 correct on fresh 13/16/20/24-bit rows (35 bodies)
+    after 4 labels: 4 functions (35 bodies), 4 correct on fresh 13/16/20/24-bit rows (35 bodies)
+    after 5 labels: 4 functions (35 bodies), 4 correct on fresh 13/16/20/24-bit rows (35 bodies)
+    after 6 labels: 4 functions (35 bodies), 4 correct on fresh 13/16/20/24-bit rows (35 bodies)
+    after 7 labels: 4 functions (35 bodies), 4 correct on fresh 13/16/20/24-bit rows (35 bodies)
+    after 8 labels: 4 functions (35 bodies), 4 correct on fresh 13/16/20/24-bit rows (35 bodies)
+    after 1000 labels: 4 functions (35 bodies), 4 correct on fresh 13/16/20/24-bit rows (35 bodies)
+    CORRECT    x15     t0=mul(x,d); t1=add(s,s); t2=addm(t0,t1); t3=addm(0,t2)  fresh24=1.000
+    CORRECT    x12     t0=addm(s,s); t1=mul(x,d); t2=addm(t0,t1); t3=addm(0,t2)  fresh24=1.000
+    CORRECT    x5      t0=addm(s,0); t1=mul(x,d); t2=addm(t0,t0); t3=addm(t1,t2)  fresh24=1.000
+    CORRECT    x3      t0=addm(s,0); t1=mul(x,d); t2=addm(t0,t1); t3=addm(s,t2)  fresh24=1.000
+    rows 3     x8      t0=addm(s,0); t1=mul(x,d); t2=add(t0,t1); t3=addm(t0,t2)  fresh24=0.885
+  depth_t T=1   exact=1.0000
+  depth_t T=2   exact=1.0000
+  depth_t T=4   exact=1.0000
+  depth_t T=8   exact=1.0000
+  depth_t T=16  exact=1.0000
+  depth_t T=32  exact=1.0000
+  depth_t T=64  exact=1.0000
+  depth_ood_n_t T=1   exact=1.0000
+  depth_ood_n_t T=2   exact=1.0000
+  depth_ood_n_t T=4   exact=1.0000
+  depth_ood_n_t T=8   exact=1.0000
+  depth_ood_n_t T=16  exact=1.0000
+  depth_ood_n_t T=32  exact=1.0000
+  depth_ood_n_t T=64  exact=1.0000
+  certified t0=mul(x,d); t1=add(s,s); t2=addm(t0,t1); t3=addm(0,t2): {'depth_t': 64, 'depth_ood_n_t': 64}

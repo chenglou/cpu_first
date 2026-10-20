@@ -1,0 +1,28 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '12', '--fmt', 'v2', '--steps', '40000', '--batch', '128', '--data', 'h1like', '--eval_every', '2000', '--eval_n', '1024', '--final_n', '50000', '--ladder_only_if_exact', '--device', 'cuda']
+W=4 L=210 trace lines=34 params=4751892 data=h1like curriculum=none fmt=v2
+h1like: 936324 step traces, 430 pool moduli, 594 unseen
+step 2000 loss 0.0014 tf_seq 0.922 pool: ans=0.8711 trace=0.8701 firsterr={'E': 16, 'Q': 92, 'R': 7, 'P': 10, 'A': 5, 'C': 2, 'M': 1} unseen: ans=0.8496 trace=0.8145 firsterr={'Q': 100, 'M': 51, 'P': 20, 'E': 6, 'C': 6, 'A': 6, 'R': 1} t=74s
+step 4000 loss 0.0009 tf_seq 0.938 pool: ans=0.9268 trace=0.9268 firsterr={'Q': 73, 'C': 2} unseen: ans=0.9053 trace=0.9053 firsterr={'Q': 93, 'C': 2, 'P': 2} t=148s
+step 6000 loss 0.0007 tf_seq 0.953 pool: ans=0.9395 trace=0.9395 firsterr={'P': 5, 'Q': 57} unseen: ans=0.9375 trace=0.9375 firsterr={'Q': 60, 'P': 2, 'C': 2} t=222s
+step 8000 loss 0.0007 tf_seq 0.938 pool: ans=0.9492 trace=0.9492 firsterr={'Q': 45, 'R': 2, 'A': 2, 'E': 2, 'P': 1} unseen: ans=0.9521 trace=0.9521 firsterr={'C': 1, 'R': 1, 'Q': 44, 'P': 1, 'A': 2} t=296s
+step 10000 loss 0.0004 tf_seq 0.969 pool: ans=0.9521 trace=0.9521 firsterr={'Q': 46, 'P': 3} unseen: ans=0.9541 trace=0.9541 firsterr={'P': 5, 'Q': 42} t=370s
+step 12000 loss 0.0004 tf_seq 0.977 pool: ans=0.9639 trace=0.9639 firsterr={'Q': 35, 'P': 2} unseen: ans=0.9541 trace=0.9473 firsterr={'Q': 42, 'M': 7, 'P': 4, 'C': 1} t=444s
+step 14000 loss 0.0003 tf_seq 0.977 pool: ans=0.9668 trace=0.9668 firsterr={'Q': 34} unseen: ans=0.9678 trace=0.9678 firsterr={'Q': 33} t=517s
+step 16000 loss 0.0006 tf_seq 0.977 pool: ans=0.9727 trace=0.9717 firsterr={'Q': 25, 'P': 4} unseen: ans=0.9668 trace=0.9668 firsterr={'Q': 32, 'P': 2} t=591s
+step 18000 loss 0.0002 tf_seq 0.984 pool: ans=0.9727 trace=0.9727 firsterr={'Q': 28} unseen: ans=0.9736 trace=0.9736 firsterr={'Q': 25, 'R': 1, 'C': 1} t=665s
+step 20000 loss 0.0000 tf_seq 1.000 pool: ans=0.9795 trace=0.9785 firsterr={'Q': 22} unseen: ans=0.9766 trace=0.9766 firsterr={'Q': 24} t=740s
+step 22000 loss 0.0001 tf_seq 0.992 pool: ans=0.9746 trace=0.9746 firsterr={'Q': 26} unseen: ans=0.9795 trace=0.9785 firsterr={'Q': 21, 'M': 1} t=814s
+step 24000 loss 0.0001 tf_seq 0.992 pool: ans=0.9805 trace=0.9805 firsterr={'Q': 20} unseen: ans=0.9785 trace=0.9785 firsterr={'Q': 21, 'P': 1} t=888s
+step 26000 loss 0.0001 tf_seq 0.992 pool: ans=0.9844 trace=0.9844 firsterr={'Q': 16} unseen: ans=0.9824 trace=0.9824 firsterr={'Q': 18} t=961s
+step 28000 loss 0.0001 tf_seq 0.992 pool: ans=0.9854 trace=0.9854 firsterr={'Q': 15} unseen: ans=0.9824 trace=0.9824 firsterr={'Q': 18} t=1035s
+step 30000 loss 0.0000 tf_seq 1.000 pool: ans=0.9873 trace=0.9873 firsterr={'Q': 13} unseen: ans=0.9854 trace=0.9854 firsterr={'Q': 15} t=1109s
+step 32000 loss 0.0000 tf_seq 1.000 pool: ans=0.9922 trace=0.9922 firsterr={'Q': 8} unseen: ans=0.9824 trace=0.9824 firsterr={'Q': 18} t=1183s
+step 34000 loss 0.0000 tf_seq 1.000 pool: ans=0.9883 trace=0.9883 firsterr={'Q': 12} unseen: ans=0.9844 trace=0.9844 firsterr={'Q': 16} t=1257s
+step 36000 loss 0.0000 tf_seq 1.000 pool: ans=0.9854 trace=0.9854 firsterr={'Q': 15} unseen: ans=0.9814 trace=0.9814 firsterr={'Q': 19} t=1331s
+step 38000 loss 0.0001 tf_seq 0.992 pool: ans=0.9912 trace=0.9912 firsterr={'Q': 9} unseen: ans=0.9863 trace=0.9863 firsterr={'Q': 14} t=1405s
+step 40000 loss 0.0000 tf_seq 1.000 pool: ans=0.9922 trace=0.9922 firsterr={'Q': 8} unseen: ans=0.9834 trace=0.9834 firsterr={'Q': 17} t=1479s
+final single-step (pool moduli): (0.99164, 0.99164, {'Q': 200})
+final single-step (unseen moduli): (0.98588, 0.98588, {'Q': 200})
+done {"params": 4751892, "L": 210, "train_time": 1478.8336811065674, "single_step_pool": [0.99164, 0.99164, {"Q": 200}], "single_step_unseen": [0.98588, 0.98588, {"Q": 200}], "total_time": 1551.815720319748}
+
+exit code 0, wall 1558s

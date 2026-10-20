@@ -1,0 +1,25 @@
+model params=796426 W=3 K=12 layers=1 d=256 device=mps
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/relax_step.py:181: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:839.)
+  log.append({"step": step, "loss": float(loss), "time": el, **accs})
+step 1000 loss 1.4105 fresh=0.1199 t=324s
+step 2000 loss 0.8512 fresh=0.4410 t=638s
+step 3000 loss 0.2490 fresh=0.7922 t=962s
+step 4000 loss 0.0769 fresh=0.9196 t=1304s
+step 5000 loss 0.0497 fresh=0.9590 t=1632s
+step 6000 loss 0.0433 fresh=0.9705 t=2005s
+step 7000 loss 0.0096 fresh=0.9894 t=2464s
+step 8000 loss 0.0005 fresh=0.9996 t=3063s
+step 9000 loss 0.0015 fresh=0.9985 t=3755s
+step 10000 loss 0.0014 fresh=0.9993 t=4823s
+step 11000 loss 0.0000 fresh=1.0000 t=5883s
+step 12000 loss 0.0000 fresh=1.0000 t=6838s
+single-step exact (fresh moduli, 100k): 1.0
+    ladder b=8 T=1   exact=1.0000
+    ladder b=8 T=2   exact=1.0000
+    ladder b=8 T=4   exact=1.0000
+    ladder b=8 T=8   exact=1.0000
+    ladder b=8 T=16  exact=1.0000
+    ladder b=8 T=32  exact=1.0000
+    ladder b=8 T=64  exact=1.0000
+done {"params": 796426, "train_time": 6837.757723093033, "single_step_fresh_100k": 1.0, "ladder_fresh": {"max_t": 64, "accs": {"1": 1.0, "2": 1.0, "4": 1.0, "8": 1.0, "16": 1.0, "32": 1.0, "64": 1.0}}, "total_time": 6948.356056213379}

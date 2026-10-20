@@ -1,0 +1,606 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-VL2ypvIyV6ukP12Btdf1uJ
+Building image im-MtpSytOAonYj4JS8enFQIv
+
+=> Step 0: FROM nvidia/cuda:12.9.1-devel-ubuntu24.04
+Getting image source signatures
+Copying blob sha256:6cb9b761b8771e76ec5ff0e90e9165ee60d170c20a9e153b52cef78de6ca15d4
+Copying blob sha256:2cd52cbb1ebefad9b697ee1c60a7ba7ce8293404a1ad596fd257efdf0e9ec8d6
+Copying blob sha256:02cb0e091e334f5f0b222d9bc044d174ed386f1b30d3959d0e79ed725eb9cb15
+Copying blob sha256:9c3d619183d2383e5d618638762511e6711c112a9e8f7e50031f94b839b2c25e
+Copying blob sha256:7f7602a82106bfe07dabfc1cd3799c2b0ee0f1314f4cb28535f7f1b7c00fbec4
+Copying blob sha256:5a2aba542b08b08acc6ca580eb15aec763e088eed8c62eb5528e0490078951c6
+Copying blob sha256:6e8af4fd0a071982e528b634ba99dec2474c21147f99748be708f36e10e3f4c2
+Copying blob sha256:15a17189b2df6f2a5b84716dd422741e91bec18d40f6cd72f7dea007a02d45aa
+Copying blob sha256:644e9b20358325501941bab7efe2465969b1101fd546be263fc7c2d12d2d8c6c
+Copying blob sha256:32f112e3802cadcab3543160f4d2aa607b3cc1c62140d57b4f5441384f40e927
+Copying blob sha256:02559cd4bc8db240554ff3a4e38df5909d4745846b3e3a4df865d102f0a6d0d9
+Copying config sha256:e4da9b67b356de8d6408cd975f78a786bace523eb8528ad96c5df9402a6e3c1b
+Writing manifest to image destination
+Unpacking OCI image
+   • unpacking rootfs ...     
+   • ... done                 
+   • unpacked image rootfs: /tmp/task-data/ta-01M5AYGK6SZ15CWEZ32HECY1TB/registry-unpackTwO8Fn
+Copied image in 1.56s
+
+=> Step 1: COPY /python/. /usr/local
+
+=> Step 2: ENV TERMINFO_DIRS=/etc/terminfo:/lib/terminfo:/usr/share/terminfo:/usr/lib/terminfo
+Saving image...
+Image saved, took 5.28s
+
+Built image im-MtpSytOAonYj4JS8enFQIv in 141.59s
+
+
+Building image im-FUQI62IQHWAavb7AtZW5ct
+
+=> Step 0: FROM base
+
+=> Step 1: RUN apt-get update
+Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:2 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64  InRelease [1578 B]
+Get:3 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:6 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64  Packages [1934 kB]
+Get:7 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:10 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1549 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2231 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1729 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [61.7 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2168 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [669 B]
+Get:19 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1410 kB]
+Get:20 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [55.6 kB]
+Get:21 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2122 kB]
+Fetched 35.6 MB in 2s (22.3 MB/s)
+Reading package lists...
+W: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+=> Step 2: RUN apt-get install -y git build-essential
+Reading package lists...
+Building dependency tree...
+Reading state information...
+build-essential is already the newest version (12.10ubuntu1).
+build-essential set to manually installed.
+The following additional packages will be installed:
+  git-man krb5-locales less libbrotli1 libbsd0 libcbor0.10 libcurl3t64-gnutls
+  libedit2 liberror-perl libexpat1 libfido2-1 libgssapi-krb5-2 libk5crypto3
+  libkeyutils1 libkrb5-3 libkrb5support0 libnghttp2-14 libpsl5t64 librtmp1
+  libssh-4 libx11-6 libx11-data libxau6 libxcb1 libxdmcp6 libxext6 libxmuu1
+  openssh-client publicsuffix xauth
+Suggested packages:
+  gettext-base git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui
+  gitk gitweb git-cvs git-mediawiki git-svn krb5-doc krb5-user keychain
+  libpam-ssh monkeysphere ssh-askpass
+The following NEW packages will be installed:
+  git git-man krb5-locales less libbrotli1 libbsd0 libcbor0.10
+  libcurl3t64-gnutls libedit2 liberror-perl libexpat1 libfido2-1
+  libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0
+  libnghttp2-14 libpsl5t64 librtmp1 libssh-4 libx11-6 libx11-data libxau6
+  libxcb1 libxdmcp6 libxext6 libxmuu1 openssh-client publicsuffix xauth
+0 upgraded, 31 newly installed, 0 to remove and 106 not upgraded.
+Need to get 8911 kB of archives.
+After this operation, 38.0 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 krb5-locales all 1.20.1-6ubuntu2.10 [15.3 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 less amd64 590-2ubuntu2.1 [142 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libbsd0 amd64 0.12.1-1build1.1 [41.2 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libexpat1 amd64 2.6.1-2ubuntu0.6 [98.9 kB]
+Get:5 http://security.ubuntu.com/ubuntu noble-security/main amd64 libx11-data all 2:1.8.7-1ubuntu0.1 [116 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5support0 amd64 1.20.1-6ubuntu2.10 [34.9 kB]
+Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libk5crypto3 amd64 1.20.1-6ubuntu2.10 [81.9 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble/main amd64 libkeyutils1 amd64 1.6.3-3build1 [9490 B]
+Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5-3 amd64 1.20.1-6ubuntu2.10 [348 kB]
+Get:10 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgssapi-krb5-2 amd64 1.20.1-6ubuntu2.10 [143 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble/main amd64 libcbor0.10 amd64 0.10.2-1.2ubuntu2 [25.8 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/main amd64 libedit2 amd64 3.1-20230828-1build1 [97.6 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble/main amd64 libfido2-1 amd64 1.14.0-1build3 [83.5 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libnghttp2-14 amd64 1.59.0-1ubuntu0.4 [74.6 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble/main amd64 libpsl5t64 amd64 0.21.2-1.1build1 [57.1 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble/main amd64 libxau6 amd64 1:1.0.9-1build6 [7160 B]
+Get:17 http://archive.ubuntu.com/ubuntu noble/main amd64 libxdmcp6 amd64 1:1.1.3-0ubuntu6 [10.3 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble/main amd64 libxcb1 amd64 1.15-1ubuntu2 [47.7 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble/main amd64 libxext6 amd64 2:1.3.4-1build2 [30.4 kB]
+Get:20 http://archive.ubuntu.com/ubuntu noble/main amd64 libxmuu1 amd64 2:1.1.3-3build2 [8958 B]
+Get:21 http://archive.ubuntu.com/ubuntu noble/main amd64 publicsuffix all 20231001.0357-0.1 [129 kB]
+Get:22 http://archive.ubuntu.com/ubuntu noble/main amd64 xauth amd64 1:1.1.2-1build1 [25.6 kB]
+Get:23 http://archive.ubuntu.com/ubuntu noble/main amd64 libbrotli1 amd64 1.1.0-2build2 [331 kB]
+Get:24 http://archive.ubuntu.com/ubuntu noble/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2build7 [56.3 kB]
+Get:25 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssh-4 amd64 0.10.6-2ubuntu0.5 [191 kB]
+Get:26 http://archive.ubuntu.com/ubuntu noble/main amd64 liberror-perl all 0.17029-2 [25.6 kB]
+Get:27 http://security.ubuntu.com/ubuntu noble-security/main amd64 libx11-6 amd64 2:1.8.7-1ubuntu0.1 [653 kB]
+Get:28 http://security.ubuntu.com/ubuntu noble-security/main amd64 openssh-client amd64 1:9.6p1-3ubuntu13.20 [909 kB]
+Get:29 http://security.ubuntu.com/ubuntu noble-security/main amd64 libcurl3t64-gnutls amd64 8.5.0-2ubuntu10.16 [337 kB]
+Get:30 http://security.ubuntu.com/ubuntu noble-security/main amd64 git-man all 1:2.43.0-1ubuntu7.4 [1101 kB]
+Get:31 http://security.ubuntu.com/ubuntu noble-security/main amd64 git amd64 1:2.43.0-1ubuntu7.4 [3681 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 8911 kB in 1s (7503 kB/s)
+Selecting previously unselected package krb5-locales.
+(Reading database ... 
+[1A(Reading database ... 5%
+[1A(Reading database ... 10%
+[1A(Reading database ... 15%
+[1A(Reading database ... 20%
+[1A(Reading database ... 25%
+[1A(Reading database ... 30%
+[1A(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%
+[1A(Reading database ... 85%(Reading database ... 90%
+[1A(Reading database ... 95%
+[1A(Reading database ... 100%(Reading database ... 15326 files and directories currently installed.)
+Preparing to unpack .../00-krb5-locales_1.20.1-6ubuntu2.10_all.deb ...
+Unpacking krb5-locales (1.20.1-6ubuntu2.10) ...
+Selecting previously unselected package less.
+Preparing to unpack .../01-less_590-2ubuntu2.1_amd64.deb ...
+Unpacking less (590-2ubuntu2.1) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../02-libbsd0_0.12.1-1build1.1_amd64.deb ...
+Unpacking libbsd0:amd64 (0.12.1-1build1.1) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../03-libexpat1_2.6.1-2ubuntu0.6_amd64.deb ...
+Unpacking libexpat1:amd64 (2.6.1-2ubuntu0.6) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../04-libkrb5support0_1.20.1-6ubuntu2.10_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.20.1-6ubuntu2.10) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../05-libk5crypto3_1.20.1-6ubuntu2.10_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.20.1-6ubuntu2.10) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../06-libkeyutils1_1.6.3-3build1_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.6.3-3build1) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../07-libkrb5-3_1.20.1-6ubuntu2.10_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.20.1-6ubuntu2.10) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../08-libgssapi-krb5-2_1.20.1-6ubuntu2.10_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.10) ...
+Selecting previously unselected package libcbor0.10:amd64.
+Preparing to unpack .../09-libcbor0.10_0.10.2-1.2ubuntu2_amd64.deb ...
+Unpacking libcbor0.10:amd64 (0.10.2-1.2ubuntu2) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../10-libedit2_3.1-20230828-1build1_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20230828-1build1) ...
+Selecting previously unselected package libfido2-1:amd64.
+Preparing to unpack .../11-libfido2-1_1.14.0-1build3_amd64.deb ...
+Unpacking libfido2-1:amd64 (1.14.0-1build3) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../12-libnghttp2-14_1.59.0-1ubuntu0.4_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.59.0-1ubuntu0.4) ...
+Selecting previously unselected package libpsl5t64:amd64.
+Preparing to unpack .../13-libpsl5t64_0.21.2-1.1build1_amd64.deb ...
+Unpacking libpsl5t64:amd64 (0.21.2-1.1build1) ...
+Selecting previously unselected package libxau6:amd64.
+Preparing to unpack .../14-libxau6_1%3a1.0.9-1build6_amd64.deb ...
+Unpacking libxau6:amd64 (1:1.0.9-1build6) ...
+Selecting previously unselected package libxdmcp6:amd64.
+Preparing to unpack .../15-libxdmcp6_1%3a1.1.3-0ubuntu6_amd64.deb ...
+Unpacking libxdmcp6:amd64 (1:1.1.3-0ubuntu6) ...
+Selecting previously unselected package libxcb1:amd64.
+Preparing to unpack .../16-libxcb1_1.15-1ubuntu2_amd64.deb ...
+Unpacking libxcb1:amd64 (1.15-1ubuntu2) ...
+Selecting previously unselected package libx11-data.
+Preparing to unpack .../17-libx11-data_2%3a1.8.7-1ubuntu0.1_all.deb ...
+Unpacking libx11-data (2:1.8.7-1ubuntu0.1) ...
+Selecting previously unselected package libx11-6:amd64.
+Preparing to unpack .../18-libx11-6_2%3a1.8.7-1ubuntu0.1_amd64.deb ...
+Unpacking libx11-6:amd64 (2:1.8.7-1ubuntu0.1) ...
+Selecting previously unselected package libxext6:amd64.
+Preparing to unpack .../19-libxext6_2%3a1.3.4-1build2_amd64.deb ...
+Unpacking libxext6:amd64 (2:1.3.4-1build2) ...
+Selecting previously unselected package libxmuu1:amd64.
+Preparing to unpack .../20-libxmuu1_2%3a1.1.3-3build2_amd64.deb ...
+Unpacking libxmuu1:amd64 (2:1.1.3-3build2) ...
+Selecting previously unselected package openssh-client.
+Preparing to unpack .../21-openssh-client_1%3a9.6p1-3ubuntu13.20_amd64.deb ...
+Unpacking openssh-client (1:9.6p1-3ubuntu13.20) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../22-publicsuffix_20231001.0357-0.1_all.deb ...
+Unpacking publicsuffix (20231001.0357-0.1) ...
+Selecting previously unselected package xauth.
+Preparing to unpack .../23-xauth_1%3a1.1.2-1build1_amd64.deb ...
+Unpacking xauth (1:1.1.2-1build1) ...
+Selecting previously unselected package libbrotli1:amd64.
+Preparing to unpack .../24-libbrotli1_1.1.0-2build2_amd64.deb ...
+Unpacking libbrotli1:amd64 (1.1.0-2build2) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../25-librtmp1_2.4+20151223.gitfa8646d.1-2build7_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2build7) ...
+Selecting previously unselected package libssh-4:amd64.
+Preparing to unpack .../26-libssh-4_0.10.6-2ubuntu0.5_amd64.deb ...
+Unpacking libssh-4:amd64 (0.10.6-2ubuntu0.5) ...
+Selecting previously unselected package libcurl3t64-gnutls:amd64.
+Preparing to unpack .../27-libcurl3t64-gnutls_8.5.0-2ubuntu10.16_amd64.deb ...
+Unpacking libcurl3t64-gnutls:amd64 (8.5.0-2ubuntu10.16) ...
+Selecting previously unselected package liberror-perl.
+Preparing to unpack .../28-liberror-perl_0.17029-2_all.deb ...
+Unpacking liberror-perl (0.17029-2) ...
+Selecting previously unselected package git-man.
+Preparing to unpack .../29-git-man_1%3a2.43.0-1ubuntu7.4_all.deb ...
+Unpacking git-man (1:2.43.0-1ubuntu7.4) ...
+Selecting previously unselected package git.
+Preparing to unpack .../30-git_1%3a2.43.0-1ubuntu7.4_amd64.deb ...
+Unpacking git (1:2.43.0-1ubuntu7.4) ...
+Setting up libexpat1:amd64 (2.6.1-2ubuntu0.6) ...
+Setting up libxau6:amd64 (1:1.0.9-1build6) ...
+Setting up libkeyutils1:amd64 (1.6.3-3build1) ...
+Setting up libcbor0.10:amd64 (0.10.2-1.2ubuntu2) ...
+Setting up libbrotli1:amd64 (1.1.0-2build2) ...
+Setting up libpsl5t64:amd64 (0.21.2-1.1build1) ...
+Setting up libnghttp2-14:amd64 (1.59.0-1ubuntu0.4) ...
+Setting up less (590-2ubuntu2.1) ...
+Setting up krb5-locales (1.20.1-6ubuntu2.10) ...
+Setting up libkrb5support0:amd64 (1.20.1-6ubuntu2.10) ...
+Setting up liberror-perl (0.17029-2) ...
+Setting up libx11-data (2:1.8.7-1ubuntu0.1) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2build7) ...
+Setting up libk5crypto3:amd64 (1.20.1-6ubuntu2.10) ...
+Setting up git-man (1:2.43.0-1ubuntu7.4) ...
+Setting up libkrb5-3:amd64 (1.20.1-6ubuntu2.10) ...
+Setting up libfido2-1:amd64 (1.14.0-1build3) ...
+Setting up libbsd0:amd64 (0.12.1-1build1.1) ...
+Setting up publicsuffix (20231001.0357-0.1) ...
+Setting up libxdmcp6:amd64 (1:1.1.3-0ubuntu6) ...
+Setting up libxcb1:amd64 (1.15-1ubuntu2) ...
+Setting up libedit2:amd64 (3.1-20230828-1build1) ...
+Setting up libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.10) ...
+Setting up libssh-4:amd64 (0.10.6-2ubuntu0.5) ...
+Setting up libx11-6:amd64 (2:1.8.7-1ubuntu0.1) ...
+Setting up libxmuu1:amd64 (2:1.1.3-3build2) ...
+Setting up openssh-client (1:9.6p1-3ubuntu13.20) ...
+Setting up libcurl3t64-gnutls:amd64 (8.5.0-2ubuntu10.16) ...
+Setting up libxext6:amd64 (2:1.3.4-1build2) ...
+Setting up git (1:2.43.0-1ubuntu7.4) ...
+Setting up xauth (1:1.1.2-1build1) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+Saving image...
+Image saved, took 713.61ms
+
+Built image im-FUQI62IQHWAavb7AtZW5ct in 10.96s
+
+
+Building image im-9yi21rneyWfr0dMLBQd0NW
+
+=> Step 0: FROM base
+
+=> Step 1: RUN python -m pip install uv==0.11.3
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting uv==0.11.3
+  Downloading http://pypi-mirror.modal.local:5555/simple/uv/uv-0.11.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/uv/uv-0.11.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (24.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.6/24.6 MB 36.2 MB/s eta 0:00:00
+Installing collected packages: uv
+Successfully installed uv-0.11.3
+
+[notice] A new release of pip is available: 24.1.2 -> 26.2.1
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 1.24s
+
+Built image im-9yi21rneyWfr0dMLBQd0NW in 7.79s
+
+
+Building image im-6LGyIJtHInFnIC4Gx7nHSb
+
+=> Step 0: FROM base
+
+=> Step 1: ENV PYTHONPATH=/workspace/one-layer-benchmark
+Saving image...
+Image saved, took 576.19ms
+
+Built image im-6LGyIJtHInFnIC4Gx7nHSb in 1.89s
+
+
+Building image im-ZDWHY135aGZD2d6UncWtAU
+
+=> Step 0: FROM base
+
+=> Step 1: RUN mkdir -p /workspace/one-layer-benchmark
+Saving image...
+Image saved, took 1.19s
+
+Built image im-ZDWHY135aGZD2d6UncWtAU in 2.84s
+
+
+Building image im-ZoyHxdVQpSlStwB2cVkUCa
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 389.54ms
+
+Built image im-ZoyHxdVQpSlStwB2cVkUCa in 1.37s
+
+
+Building image im-HrZy93Q5xHdC19FyN695Pf
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.36s
+
+Built image im-HrZy93Q5xHdC19FyN695Pf in 3.05s
+
+
+Building image im-tVWqxd6EfHzIFN6oun5k22
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 702.01ms
+
+Built image im-tVWqxd6EfHzIFN6oun5k22 in 2.26s
+
+
+Building image im-v56RC6TJfdUFlC5qir5ogm
+
+=> Step 0: FROM base
+
+=> Step 1: RUN cd /workspace/one-layer-benchmark && uv sync --frozen --no-install-project
+Downloading cpython-3.13.5-linux-x86_64-gnu (download) (33.8MiB)
+ Downloaded cpython-3.13.5-linux-x86_64-gnu (download)
+Using CPython 3.13.5
+Creating virtual environment at: .venv
+Downloading nvidia-curand (56.8MiB)
+Downloading nvidia-cuda-cupti (10.2MiB)
+Downloading sympy (6.0MiB)
+Downloading nvidia-cusolver (191.6MiB)
+Downloading networkx (2.0MiB)
+Downloading setuptools (1.0MiB)
+Downloading psycopg-binary (4.9MiB)
+Downloading numpy (15.9MiB)
+Downloading pygments (1.2MiB)
+Downloading nvidia-cuda-runtime (2.1MiB)
+Downloading nvidia-cuda-nvrtc (86.0MiB)
+Downloading pydantic-core (2.0MiB)
+Downloading uvloop (4.2MiB)
+Downloading nvidia-cufft (204.2MiB)
+Downloading nvidia-cublas (403.5MiB)
+Downloading nvidia-cufile (1.2MiB)
+Downloading nvidia-cusparselt-cu13 (162.3MiB)
+Downloading cuda-bindings (6.2MiB)
+Downloading triton (188.6MiB)
+Downloading nvidia-cudnn-cu13 (349.2MiB)
+Downloading nvidia-cusparse (139.2MiB)
+Downloading aiohttp (1.7MiB)
+Downloading nvidia-nvshmem-cu13 (57.6MiB)
+Downloading nvidia-nccl-cu13 (196.4MiB)
+Downloading torch (507.6MiB)
+Downloading nvidia-nvjitlink (38.8MiB)
+ Downloaded nvidia-cufile
+ Downloaded aiohttp
+ Downloaded pydantic-core
+ Downloaded nvidia-cuda-runtime
+ Downloaded pygments
+ Downloaded setuptools
+ Downloaded uvloop
+ Downloaded psycopg-binary
+ Downloaded networkx
+ Downloaded cuda-bindings
+ Downloaded nvidia-cuda-cupti
+ Downloaded numpy
+ Downloaded sympy
+ Downloaded nvidia-nvjitlink
+ Downloaded nvidia-curand
+ Downloaded nvidia-nvshmem-cu13
+ Downloaded nvidia-cuda-nvrtc
+ Downloaded nvidia-cusparse
+ Downloaded nvidia-cusparselt-cu13
+ Downloaded nvidia-cusolver
+ Downloaded triton
+ Downloaded nvidia-nccl-cu13
+ Downloaded nvidia-cufft
+ Downloaded nvidia-cudnn-cu13
+ Downloaded nvidia-cublas
+ Downloaded torch
+Prepared 78 packages in 30.58s
+Installed 78 packages in 1.75s
+Bytecode compiled 6969 files in 3.23s
+ + aiohappyeyeballs==2.7.1
+ + aiohttp==3.14.1
+ + aiosignal==1.4.0
+ + annotated-doc==0.0.4
+ + annotated-types==0.7.0
+ + anyio==4.14.1
+ + attrs==26.1.0
+ + cbor2==6.1.2
+ + certifi==2026.6.17
+ + click==8.4.2
+ + cuda-bindings==13.3.1
+ + cuda-pathfinder==1.5.5
+ + cuda-toolkit==13.0.2
+ + fastapi==0.139.0
+ + filelock==3.29.4
+ + frozenlist==1.8.0
+ + fsspec==2026.6.0
+ + grpclib==0.4.9
+ + h11==0.16.0
+ + h2==4.3.0
+ + hpack==4.2.0
+ + httpcore==1.0.9
+ + httptools==0.8.0
+ + httpx==0.28.1
+ + hyperframe==6.1.0
+ + idna==3.18
+ + jinja2==3.1.6
+ + jsonargparse==4.49.0
+ + markdown-it-py==4.2.0
+ + markupsafe==3.0.3
+ + mdurl==0.1.2
+ + modal==1.5.1
+ + mpmath==1.3.0
+ + multidict==6.7.1
+ + networkx==3.6.1
+ + numpy==2.5.0
+ + nvidia-cublas==13.1.1.3
+ + nvidia-cuda-cupti==13.0.85
+ + nvidia-cuda-nvrtc==13.0.88
+ + nvidia-cuda-runtime==13.0.96
+ + nvidia-cudnn-cu13==9.20.0.48
+ + nvidia-cufft==12.0.0.61
+ + nvidia-cufile==1.15.1.6
+ + nvidia-curand==10.4.0.35
+ + nvidia-cusolver==12.0.4.66
+ + nvidia-cusparse==12.6.3.3
+ + nvidia-cusparselt-cu13==0.8.1
+ + nvidia-nccl-cu13==2.29.7
+ + nvidia-nvjitlink==13.0.88
+ + nvidia-nvshmem-cu13==3.4.5
+ + nvidia-nvtx==13.0.85
+ + propcache==0.5.2
+ + protobuf==6.33.6
+ + psycopg==3.3.4
+ + psycopg-binary==3.3.4
+ + pydantic==2.13.4
+ + pydantic-core==2.46.4
+ + pygments==2.20.0
+ + python-dotenv==1.2.2
+ + python-multipart==0.0.32
+ + pyyaml==6.0.3
+ + rich==15.0.0
+ + setuptools==81.0.0
+ + starlette==1.3.1
+ + sympy==1.14.0
+ + synchronicity==0.12.5
+ + toml==0.10.2
+ + torch==2.12.1
+ + triton==3.7.1
+ + types-certifi==2021.10.8.3
+ + types-toml==0.10.8.20260518
+ + typing-extensions==4.15.0
+ + typing-inspection==0.4.2
+ + uvicorn==0.51.0
+ + uvloop==0.22.1
+ + watchfiles==1.2.0
+ + websockets==16.1
+ + yarl==1.24.2
+Saving image...
+Image saved, took 6.89s
+
+Built image im-v56RC6TJfdUFlC5qir5ogm in 46.62s
+
+
+Building image im-uSAI1zUjRsYWCXwngx68Sx
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.80s
+
+Built image im-uSAI1zUjRsYWCXwngx68Sx in 4.01s
+
+
+Building image im-JFYuUMJ3TH6YaG2hS7qmT8
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.65s
+
+Built image im-JFYuUMJ3TH6YaG2hS7qmT8 in 3.71s
+
+
+Building image im-nYxePhzIsAv86IH89oPhha
+
+=> Step 0: FROM base
+
+=> Step 1: RUN cd /workspace/one-layer-benchmark && .venv/bin/python -m data.reversed_n_squaring_mod --output_dir data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2 --modulus_bits '[13,16,20]' --time_steps '[4,8,16]' --ood_time_steps '[32]' --ood_examples_per_setting 3334 --examples_per_setting 12222 --extra_train_examples_by_time_step '{"1":1000,"2":1000}' --depth_evaluation_time_steps '[1,2,4,8,16,32,64]' --depth_evaluation_examples_per_setting 256 --ood_n_depth_evaluation_modulus_bits '[14,18,22,24]' --ood_n_depth_evaluation_examples_per_setting 192 --train_fraction 0.9090909090909091 --test_fraction 0.09090909090909091 --split_group modulus --factor_modulus 4 --factor_remainder 3 --separate_ood_splits true --seed 45 --separate_input_output true
+wrote 142754 examples to data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
+Saving image...
+Image saved, took 1.17s
+
+Built image im-nYxePhzIsAv86IH89oPhha in 10.01s
+
+
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/modal_h1
+│   00.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/spec_gra
+│   mmar.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/submissi
+│   on.py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/f90ac968-2b9c-4f1c-a51e-c2cf058204
+│   2a/scratchpad/one-layer-deeper/benchmark
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/f90ac968-2b9c-4f1c-a51e-c2cf058204
+│   2a/scratchpad/one-layer-deeper/data
+├── 🔨 Created function h1.
+└── 🔨 Created function grammar.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+{
+  "manifest": "squaring-mod-hard-h1",
+  "model_spec": {
+    "vocab_size": 17,
+    "max_seq_len": 21,
+    "maximum_model_state_elements": 500000000
+  },
+  "training_batch_size": 512,
+  "evaluation_batch_size": 1024,
+  "max_training_steps": 20,
+  "total_training_time_seconds": 3600.0,
+  "training_time_seconds_per_seed": 3600.0,
+  "evaluation_time_seconds_per_seed": 1800.0,
+  "seeds": [
+    74
+  ]
+}
+step=1 loss=11.097733 accuracy=0.000000 elapsed=5.2s budget=3600.0s
+seed=74 split=test loss=0.000000 exact_accuracy=1.000000
+seed=74 split=ood_t loss=0.000000 exact_accuracy=1.000000
+seed=74 split=ood_n_t loss=0.000000 exact_accuracy=1.000000
+seed=74 profile=seen_n depth_t=1 exact_accuracy=1.000000 certified=True
+seed=74 profile=seen_n depth_t=2 exact_accuracy=1.000000 certified=True
+seed=74 profile=seen_n depth_t=4 exact_accuracy=1.000000 certified=True
+seed=74 profile=seen_n depth_t=8 exact_accuracy=1.000000 certified=True
+seed=74 profile=seen_n depth_t=16 exact_accuracy=1.000000 certified=True
+seed=74 profile=seen_n depth_t=32 exact_accuracy=1.000000 certified=True
+seed=74 profile=seen_n depth_t=64 exact_accuracy=1.000000 certified=True
+seed=74 profile=ood_n depth_t=1 exact_accuracy=1.000000 certified=True
+seed=74 profile=ood_n depth_t=2 exact_accuracy=1.000000 certified=True
+seed=74 profile=ood_n depth_t=4 exact_accuracy=1.000000 certified=True
+seed=74 profile=ood_n depth_t=8 exact_accuracy=1.000000 certified=True
+seed=74 profile=ood_n depth_t=16 exact_accuracy=1.000000 certified=True
+seed=74 profile=ood_n depth_t=32 exact_accuracy=1.000000 certified=True
+seed=74 profile=ood_n depth_t=64 exact_accuracy=1.000000 certified=True
+RESULT_JSON={"depth_profile": {"depth_factor": 64, "ladder": [1, 2, 4, 8, 16, 32, 64], "max_certified_time_steps": 64, "ood_n_ladder": [1, 2, 4, 8, 16, 32, 64], "ood_n_max_certified_time_steps": 64, "ood_n_profile_available": true}, "manifest": "squaring-mod-hard-h1", "score": {"mean_exact_accuracy": 1.0, "mean_loss": 0.0, "num_measurements": 3, "primary_metric": "mean_exact_accuracy"}, "seeds": [{"completed_training_steps": 20, "depth_profile": {"depth_factor": 64, "ladder": [1, 2, 4, 8, 16, 32, 64], "max_certified_time_steps": 64, "ood_n_ladder": [1, 2, 4, 8, 16, 32, 64], "ood_n_max_certified_time_steps": 64, "ood_n_rungs": [{"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 1}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 2}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 4}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 8}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 16}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 32}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 64}], "rungs": [{"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 1}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 2}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 4}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 8}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 16}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 32}, {"correct_examples": 768, "exact_accuracy": 1.0, "example_count": 768, "status": "certified", "time_steps": 64}]}, "evaluation": {"ood_n_t": {"correct_examples": 10002, "exact_accuracy": 1.0, "example_count": 10002, "loss": 0.0}, "ood_t": {"correct_examples": 10002, "exact_accuracy": 1.0, "example_count": 10002, "loss": 0.0}, "test": {"correct_examples": 9999, "exact_accuracy": 1.0, "example_count": 9999, "loss": 0.0}}, "evaluation_batch_size": 1024, "evaluation_budget_seconds": 1800.0, "evaluation_seconds": 26.861815556000003, "final_train_loss": -0.0, "max_training_steps": 20, "model_state_elements": 65536, "optimizer_state_elements_after_first_step": 131073, "seed": 74, "training_batch_size": 512, "training_seconds": 16.459095893}], "structured_metrics": [{"elapsed_seconds": 5.2, "exact_accuracy": 0.0, "loss": 11.098, "seed": 74, "step": 1, "type": "train"}, {"elapsed_seconds": 16.5, "exact_accuracy": 1.0, "loss": -0.0, "seed": 74, "step": 20, "type": "train"}, {"exact_accuracy": 1.0, "loss": 0.0, "seed": 74, "split": "test", "type": "evaluation"}, {"exact_accuracy": 1.0, "loss": 0.0, "seed": 74, "split": "ood_t", "type": "evaluation"}, {"exact_accuracy": 1.0, "loss": 0.0, "seed": 74, "split": "ood_n_t", "type": "evaluation"}, {"completed_steps": 20, "mean_exact_accuracy": 1.0, "training_seconds": 16.5, "type": "summary"}]}
+ 
+h1: returncode=0 wall=50.8s gpu=NVIDIA H100 80GB HBM3, 610.57.04 -> /Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/runs/h100_h1.json
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-VL2ypvIyV6ukP12Btdf1uJ

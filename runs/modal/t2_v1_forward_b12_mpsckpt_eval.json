@@ -1,0 +1,42 @@
+{
+ "args": {
+  "bits": 12,
+  "data": "h1like",
+  "curriculum": "none",
+  "fmt": "v1",
+  "steps": 0,
+  "batch": 64,
+  "lr": 0.001,
+  "d": 256,
+  "layers": 6,
+  "device": "cuda",
+  "seed": 0,
+  "eval_every": 1000,
+  "eval_n": 512,
+  "final_n": 20000,
+  "resume": "/root/ckpt/relax2_trace_h1like_forward_b12.pt",
+  "warmup": 300,
+  "ladder_only_if_exact": true,
+  "out": "/runs/t2_v1_forward_b12_mpsckpt_eval.json"
+ },
+ "params": 4751892,
+ "L": 177,
+ "train_time": 4.291534423828125e-06,
+ "log": [],
+ "single_step_pool": [
+  0.96385,
+  0.96385,
+  {
+   "Q": 200
+  }
+ ],
+ "single_step_unseen": [
+  0.9573,
+  0.95455,
+  {
+   "Q": 177,
+   "M": 23
+  }
+ ],
+ "total_time": 22.521141052246094
+}

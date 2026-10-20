@@ -1,0 +1,301 @@
+{
+ "name": "p1_base_s3",
+ "gpu": "",
+ "returncode": 0,
+ "wall_seconds": 232.25471258163452,
+ "manifest": {
+  "name": "squaring-mod-hard-h1",
+  "data": {
+   "kind": "squaring_mod",
+   "data_root": "data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2",
+   "batch_size": 512,
+   "eval_batch_size": 512,
+   "shuffle_train": true,
+   "shuffle_eval": false,
+   "num_workers": 2,
+   "pin_memory": true,
+   "drop_last": true,
+   "seed": 45
+  },
+  "runtime": {
+   "device": "cpu",
+   "dtype": "bfloat16",
+   "amp": true,
+   "compile": false,
+   "total_training_time_seconds": 3600,
+   "max_steps": 1000000,
+   "seeds": [
+    3
+   ],
+   "grad_clip": 1,
+   "log_every": 100
+  },
+  "model_state": {
+   "maximum_elements": 500000000
+  }
+ },
+ "log": "{\n  \"manifest\": \"squaring-mod-hard-h1\",\n  \"model_spec\": {\n    \"vocab_size\": 17,\n    \"max_seq_len\": 21,\n    \"maximum_model_state_elements\": 500000000\n  },\n  \"training_batch_size\": 100000,\n  \"evaluation_batch_size\": 4096,\n  \"max_training_steps\": 400,\n  \"total_training_time_seconds\": 3600.0,\n  \"training_time_seconds_per_seed\": 3600.0,\n  \"evaluation_time_seconds_per_seed\": 1800.0,\n  \"seeds\": [\n    3\n  ]\n}\nlm update=1 B=2.734218202209 w=[-16.787508048615372, 3.292114597253012, -0.061403876114753224] rows=5/982 fit=0 max|e|=5.977e-01 move=5.876e-01\nstep=1 loss=0.562013 accuracy=0.000340 elapsed=6.9s budget=3600.0s\nlm update=2 B=2.418438732741 w=[-46.9241815954679, 8.357136756977301, -0.19850789341555405] rows=5/982 fit=0 max|e|=5.176e-01 move=5.276e-01\nlm update=3 B=1.376053769365 w=[-280.93578749078904, 53.33430989263522, -2.356586575168693] rows=5/982 fit=0 max|e|=6.205e-01 move=5.702e-01\nlm update=4 B=1.371996566712 w=[-266.35939579271866, 51.468527036325895, -2.313575710489213] rows=5/982 fit=0 max|e|=4.731e+00 move=4.761e+00\nlm update=5 B=1.367504522642 w=[-251.8881650470538, 49.62568586777984, -2.2725469368220677] rows=5/982 fit=0 max|e|=4.507e+00 move=4.537e+00\nlm update=6 B=1.362509387369 w=[-237.53444605554034, 47.809115963030195, -2.2338490247861] rows=5/982 fit=0 max|e|=4.285e+00 move=4.314e+00\nlm update=7 B=1.356928807493 w=[-223.31288741221272, 46.02291716696486, -2.197920718871975] rows=5/982 fit=0 max|e|=4.065e+00 move=4.093e+00\nlm update=8 B=1.350662855851 w=[-209.24105273029218, 44.272204886002, -2.1653210824886524] rows=5/982 fit=0 max|e|=3.846e+00 move=3.873e+00\nlm update=9 B=1.351814865211 w=[-189.7290003572612, 39.87362190952678, -1.896711768529241] rows=5/975 fit=0 max|e|=3.629e+00 move=3.670e+00\nlm update=10 B=1.349218539523 w=[-173.19028373695997, 36.90728985053428, -1.7635090486707208] rows=6/975 fit=0 max|e|=3.373e+00 move=3.381e+00\nlm update=11 B=1.345108506329 w=[-154.61194620625508, 33.155397613762155, -1.5635285186346195] rows=7/975 fit=0 max|e|=3.135e+00 move=3.202e+00\nlm update=12 B=1.339785877627 w=[-136.18383989496064, 29.44149702813404, -1.3657858370122884] rows=7/975 fit=0 max|e|=2.901e+00 move=2.969e+00\nlm update=13 B=1.332810209083 w=[-117.94990854810811, 25.771699923856115, -1.170377317170499] rows=7/975 fit=0 max|e|=2.671e+00 move=2.740e+00\nlm update=14 B=1.323551773262 w=[-99.96889785270415, 22.152032505701953, -0.9771789919517321] rows=7/975 fit=0 max|e|=2.444e+00 move=2.514e+00\nlm update=15 B=1.311098154616 w=[-82.31966765929295, 18.58716700302155, -0.7856041754936395] rows=7/975 fit=0 max|e|=2.222e+00 move=2.293e+00\nlm update=16 B=1.294107417058 w=[-65.10840730932902, 15.077778209397911, -0.5941287737317911] rows=7/975 fit=0 max|e|=2.005e+00 move=2.077e+00\nlm update=17 B=1.275430915451 w=[-50.02656804332457, 12.200464961752076, -0.4479053311857937] rows=8/982 fit=0 max|e|=1.795e+00 move=1.825e+00\nlm update=18 B=1.242050607051 w=[-35.612127937306866, 9.500833564047108, -0.32123627925300485] rows=9/982 fit=0 max|e|=1.585e+00 move=1.635e+00\nlm update=19 B=1.202310192403 w=[-22.669062883842237, 6.963179523382745, -0.18795662829275722] rows=9/982 fit=0 max|e|=1.395e+00 move=1.417e+00\nlm update=20 B=1.146352971023 w=[-11.155296608458862, 4.544194923308074, -0.049603693711090496] rows=9/982 fit=0 max|e|=1.207e+00 move=1.220e+00\nlm update=30 B=0.318143586901 w=[5.842147378005793, -6.5903357876787325, 14.79829693661742] rows=9/981 fit=0 max|e|=3.885e-01 move=6.613e-02\nlm update=40 B=0.361856221193 w=[8.85117256248294, -8.728495886275923, 9.201173658081618] rows=13/979 fit=0 max|e|=3.699e-01 move=2.497e-04\nlm update=50 B=0.361825798022 w=[8.849805967023157, -8.724353836577913, 9.199847818485821] rows=13/976 fit=0 max|e|=3.700e-01 move=6.943e-08\nlm update=60 B=0.362082177669 w=[8.2732310378404, -5.155546855352101, 7.2306493630026765] rows=14/982 fit=0 max|e|=3.492e-01 move=7.929e-05\nlm update=70 B=0.241772709972 w=[3.9976687798902284, 9.799893316853579, -0.496852510565862] rows=14/978 fit=0 max|e|=3.641e-01 move=3.503e-02\nlm update=80 B=0.218914450630 w=[3.809500267584437, 13.283794401204762, -4.430588507883162] rows=17/983 fit=0 max|e|=3.844e-01 move=2.335e-02\nlm update=90 B=0.194790309482 w=[3.86650027961588, 16.20411322856841, -8.76783042411044] rows=20/982 fit=0 max|e|=4.311e-01 move=2.284e-02\nlm update=100 B=0.188398030545 w=[4.471447372302245, 8.081675144133914, 3.6647512302630876] rows=22/985 fit=0 max|e|=4.131e-01 move=1.153e-01\nstep=100 loss=0.622951 accuracy=0.000100 elapsed=61.2s budget=3600.0s\nlm update=110 B=0.163587633176 w=[4.212616495957941, 15.711665117757942, -7.797317482739093] rows=22/980 fit=0 max|e|=4.178e-01 move=1.116e-01\nlm update=120 B=0.223356930547 w=[3.7849673077454487, 10.97546491856558, -2.3581771460914185] rows=30/981 fit=0 max|e|=3.942e-01 move=4.632e-02\nlm update=130 B=0.232803199732 w=[6.0909572772921265, 4.653484747374734, 1.3035838176230976] rows=34/976 fit=0 max|e|=4.040e-01 move=4.188e-02\nlm update=140 B=0.204894909338 w=[6.047519139181918, 5.68716995529672, 1.3219768340839186] rows=36/980 fit=0 max|e|=4.504e-01 move=2.236e-01\nlm update=150 B=0.216824114427 w=[5.904860773613961, 5.907492547792425, 0.9026348738960205] rows=37/975 fit=0 max|e|=4.500e-01 move=5.324e-02\nlm update=160 B=0.227191469600 w=[6.292352188377327, 4.182586017719796, 2.235746751312827] rows=41/986 fit=0 max|e|=4.352e-01 move=3.212e-04\nlm update=170 B=0.228341815120 w=[6.263576959221415, 4.404063407435432, 1.904180385266635] rows=42/981 fit=0 max|e|=4.762e-01 move=5.238e-03\nlm update=180 B=0.222664548411 w=[6.028261403237384, 4.565041262369198, 2.086905660101527] rows=42/978 fit=0 max|e|=4.694e-01 move=1.362e-04\nlm update=190 B=0.225289226747 w=[6.397031481713793, 4.126377422916633, 2.158362411439022] rows=42/978 fit=0 max|e|=4.650e-01 move=5.292e-08\nlm update=200 B=0.230432993430 w=[6.0439456584657405, 4.6453966521899694, 1.9365981295714338] rows=42/978 fit=0 max|e|=4.429e-01 move=6.217e-08\nstep=200 loss=1.081485 accuracy=0.000200 elapsed=113.7s budget=3600.0s\nlm update=210 B=0.224441805769 w=[6.229263511018254, 4.537345516468225, 1.9679080544172003] rows=43/980 fit=0 max|e|=4.719e-01 move=3.490e-03\nlm update=220 B=0.233087619525 w=[6.314842470349711, 3.9801919625601063, 2.221826116451166] rows=44/975 fit=0 max|e|=4.456e-01 move=5.608e-06\nlm update=230 B=0.232256459005 w=[6.288298279702924, 4.1283862822358435, 2.1398007238081513] rows=44/975 fit=0 max|e|=4.451e-01 move=1.073e-07\nlm update=240 B=0.230650681635 w=[6.341651912104149, 4.00548654538273, 2.195491939347686] rows=47/980 fit=0 max|e|=4.870e-01 move=8.841e-02\nlm update=250 B=0.228481243704 w=[6.825780249381058, 3.668472553218556, 2.1252180460274377] rows=48/980 fit=0 max|e|=6.982e-01 move=3.361e-01\nlm update=260 B=0.222595852851 w=[6.874746963439824, 3.6220093943088316, 2.3087291815620916] rows=49/975 fit=0 max|e|=6.448e-01 move=3.404e-01\nlm update=270 B=0.224961287040 w=[6.775227385364328, 3.2678085384142155, 2.6057614369402553] rows=52/986 fit=0 max|e|=4.565e-01 move=9.606e-04\nlm update=280 B=0.238033131110 w=[7.2828748777312695, 2.3445304688296225, 2.7967681318596815] rows=53/975 fit=0 max|e|=4.802e-01 move=1.141e-07\nlm update=290 B=0.231919475680 w=[7.283732061185498, 2.5025098886368635, 2.7331775152299924] rows=56/983 fit=0 max|e|=4.890e-01 move=5.732e-04\nlm update=300 B=0.227332455767 w=[7.223388071155254, 2.7776102671120904, 2.606107492505777] rows=58/980 fit=0 max|e|=4.902e-01 move=7.133e-06\nstep=300 loss=1.635711 accuracy=0.000270 elapsed=169.2s budget=3600.0s\nlm update=310 B=0.226076297375 w=[7.269338858306422, 2.461737352027016, 2.7597461831547383] rows=61/983 fit=0 max|e|=4.914e-01 move=3.399e-02\nlm update=320 B=0.225948886957 w=[7.282718059942309, 2.460273150992259, 2.7950071920541646] rows=65/982 fit=0 max|e|=4.968e-01 move=4.895e-07\nlm update=330 B=0.227247838249 w=[7.7676022962496925, 0.984755677648733, 3.519610227288437] rows=68/986 fit=0 max|e|=4.776e-01 move=8.699e-03\nlm update=340 B=0.227059621056 w=[7.718254170341792, 1.212791345720856, 3.4021709844252905] rows=68/975 fit=0 max|e|=4.740e-01 move=9.710e-03\nlm update=350 B=0.227609588686 w=[7.735383129209507, 1.1510532556215356, 3.431329881091267] rows=69/977 fit=0 max|e|=4.744e-01 move=3.366e-08\nlm update=360 B=0.227369134988 w=[7.006148412445151, 2.6256277157179113, 2.9263201784264163] rows=70/979 fit=0 max|e|=4.735e-01 move=8.400e-02\nlm update=370 B=0.225822884650 w=[7.5865948390015365, 1.6920817775454897, 3.2931515342848963] rows=74/983 fit=0 max|e|=4.695e-01 move=3.273e-02\nlm update=380 B=0.227034308126 w=[7.632969867998338, 1.6651871795848272, 3.2572441629810465] rows=78/980 fit=0 max|e|=4.741e-01 move=4.733e-05\nlm update=390 B=0.228488151665 w=[7.780554957053592, 1.1771791875540896, 3.412209543289161] rows=80/982 fit=0 max|e|=4.637e-01 move=1.969e-07\nlm update=400 B=0.230841623106 w=[7.9357080676919916, 0.6495879801124023, 3.6696107319630764] rows=80/974 fit=0 max|e|=4.691e-01 move=1.698e-07\nstep=400 loss=2.273843 accuracy=0.000100 elapsed=221.5s budget=3600.0s\nseed=3 split=test loss=10.191013 exact_accuracy=0.000100\nseed=3 split=ood_t loss=10.317983 exact_accuracy=0.000000\nseed=3 split=ood_n_t loss=10.253613 exact_accuracy=0.000200\nseed=3 profile=seen_n depth_t=1 exact_accuracy=0.000000 certified=False\nseed=3 profile=seen_n depth_t=2 exact_accuracy=0.000000 certified=False\nseed=3 profile=seen_n depth_t=4 exact_accuracy=0.000000 certified=False\nseed=3 profile=seen_n depth_t=8 exact_accuracy=0.001302 certified=False\nseed=3 profile=seen_n depth_t=16 exact_accuracy=0.000000 certified=False\nseed=3 profile=seen_n depth_t=32 exact_accuracy=0.000000 certified=False\nseed=3 profile=seen_n depth_t=64 exact_accuracy=0.000000 certified=False\nseed=3 profile=ood_n depth_t=1 exact_accuracy=0.000000 certified=False\nseed=3 profile=ood_n depth_t=2 exact_accuracy=0.000000 certified=False\nseed=3 profile=ood_n depth_t=4 exact_accuracy=0.000000 certified=False\nseed=3 profile=ood_n depth_t=8 exact_accuracy=0.000000 certified=False\nseed=3 profile=ood_n depth_t=16 exact_accuracy=0.000000 certified=False\nseed=3 profile=ood_n depth_t=32 exact_accuracy=0.000000 certified=False\nseed=3 profile=ood_n depth_t=64 exact_accuracy=0.000000 certified=False\nRESULT_JSON={\"depth_profile\": {\"depth_factor\": 0, \"ladder\": [1, 2, 4, 8, 16, 32, 64], \"max_certified_time_steps\": null, \"ood_n_ladder\": [1, 2, 4, 8, 16, 32, 64], \"ood_n_max_certified_time_steps\": null, \"ood_n_profile_available\": true}, \"manifest\": \"squaring-mod-hard-h1\", \"score\": {\"mean_exact_accuracy\": 9.999000299950011e-05, \"mean_loss\": 10.254203166135703, \"num_measurements\": 3, \"primary_metric\": \"mean_exact_accuracy\"}, \"seeds\": [{\"completed_training_steps\": 400, \"depth_profile\": {\"depth_factor\": 0, \"ladder\": [1, 2, 4, 8, 16, 32, 64], \"max_certified_time_steps\": null, \"ood_n_ladder\": [1, 2, 4, 8, 16, 32, 64], \"ood_n_max_certified_time_steps\": null, \"ood_n_rungs\": [{\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 1}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 2}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 4}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 8}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 16}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 32}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 64}], \"rungs\": [{\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 1}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 2}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 4}, {\"correct_examples\": 1, \"exact_accuracy\": 0.0013020833721384406, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 8}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 16}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 32}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 64}]}, \"evaluation\": {\"ood_n_t\": {\"correct_examples\": 2, \"exact_accuracy\": 0.0001999600079984003, \"example_count\": 10002, \"loss\": 10.25361315102622}, \"ood_t\": {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 10002, \"loss\": 10.31798288268399}, \"test\": {\"correct_examples\": 1, \"exact_accuracy\": 0.00010001000100010001, \"example_count\": 9999, \"loss\": 10.191013464696898}}, \"evaluation_batch_size\": 4096, \"evaluation_budget_seconds\": 1800.0, \"evaluation_seconds\": 3.2843938510000044, \"final_train_loss\": 2.273842998329201, \"max_training_steps\": 400, \"model_state_elements\": 4, \"optimizer_state_elements_after_first_step\": 4, \"seed\": 3, \"training_batch_size\": 100000, \"training_seconds\": 221.452685592}], \"structured_metrics\": [{\"elapsed_seconds\": 6.9, \"exact_accuracy\": 0.0, \"loss\": 0.562, \"seed\": 3, \"step\": 1, \"type\": \"train\"}, {\"elapsed_seconds\": 61.2, \"exact_accuracy\": 0.0, \"loss\": 0.623, \"seed\": 3, \"step\": 100, \"type\": \"train\"}, {\"elapsed_seconds\": 113.7, \"exact_accuracy\": 0.0, \"loss\": 1.081, \"seed\": 3, \"step\": 200, \"type\": \"train\"}, {\"elapsed_seconds\": 169.2, \"exact_accuracy\": 0.0, \"loss\": 1.636, \"seed\": 3, \"step\": 300, \"type\": \"train\"}, {\"elapsed_seconds\": 221.5, \"exact_accuracy\": 0.0, \"loss\": 2.274, \"seed\": 3, \"step\": 400, \"type\": \"train\"}, {\"exact_accuracy\": 0.0, \"loss\": 10.191, \"seed\": 3, \"split\": \"test\", \"type\": \"evaluation\"}, {\"exact_accuracy\": 0.0, \"loss\": 10.318, \"seed\": 3, \"split\": \"ood_t\", \"type\": \"evaluation\"}, {\"exact_accuracy\": 0.0, \"loss\": 10.254, \"seed\": 3, \"split\": \"ood_n_t\", \"type\": \"evaluation\"}, {\"completed_steps\": 400, \"mean_exact_accuracy\": 0.0, \"training_seconds\": 221.5, \"type\": \"summary\"}]}\n",
+ "result": {
+  "depth_profile": {
+   "depth_factor": 0,
+   "ladder": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+   ],
+   "max_certified_time_steps": null,
+   "ood_n_ladder": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+   ],
+   "ood_n_max_certified_time_steps": null,
+   "ood_n_profile_available": true
+  },
+  "manifest": "squaring-mod-hard-h1",
+  "score": {
+   "mean_exact_accuracy": 9.999000299950011e-05,
+   "mean_loss": 10.254203166135703,
+   "num_measurements": 3,
+   "primary_metric": "mean_exact_accuracy"
+  },
+  "seeds": [
+   {
+    "completed_training_steps": 400,
+    "depth_profile": {
+     "depth_factor": 0,
+     "ladder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+     ],
+     "max_certified_time_steps": null,
+     "ood_n_ladder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+     ],
+     "ood_n_max_certified_time_steps": null,
+     "ood_n_rungs": [
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 1
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 2
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 4
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 8
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 16
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 32
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 64
+      }
+     ],
+     "rungs": [
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 1
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 2
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 4
+      },
+      {
+       "correct_examples": 1,
+       "exact_accuracy": 0.0013020833721384406,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 8
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 16
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 32
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 64
+      }
+     ]
+    },
+    "evaluation": {
+     "ood_n_t": {
+      "correct_examples": 2,
+      "exact_accuracy": 0.0001999600079984003,
+      "example_count": 10002,
+      "loss": 10.25361315102622
+     },
+     "ood_t": {
+      "correct_examples": 0,
+      "exact_accuracy": 0.0,
+      "example_count": 10002,
+      "loss": 10.31798288268399
+     },
+     "test": {
+      "correct_examples": 1,
+      "exact_accuracy": 0.00010001000100010001,
+      "example_count": 9999,
+      "loss": 10.191013464696898
+     }
+    },
+    "evaluation_batch_size": 4096,
+    "evaluation_budget_seconds": 1800.0,
+    "evaluation_seconds": 3.2843938510000044,
+    "final_train_loss": 2.273842998329201,
+    "max_training_steps": 400,
+    "model_state_elements": 4,
+    "optimizer_state_elements_after_first_step": 4,
+    "seed": 3,
+    "training_batch_size": 100000,
+    "training_seconds": 221.452685592
+   }
+  ],
+  "structured_metrics": [
+   {
+    "elapsed_seconds": 6.9,
+    "exact_accuracy": 0.0,
+    "loss": 0.562,
+    "seed": 3,
+    "step": 1,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 61.2,
+    "exact_accuracy": 0.0,
+    "loss": 0.623,
+    "seed": 3,
+    "step": 100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 113.7,
+    "exact_accuracy": 0.0,
+    "loss": 1.081,
+    "seed": 3,
+    "step": 200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 169.2,
+    "exact_accuracy": 0.0,
+    "loss": 1.636,
+    "seed": 3,
+    "step": 300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 221.5,
+    "exact_accuracy": 0.0,
+    "loss": 2.274,
+    "seed": 3,
+    "step": 400,
+    "type": "train"
+   },
+   {
+    "exact_accuracy": 0.0,
+    "loss": 10.191,
+    "seed": 3,
+    "split": "test",
+    "type": "evaluation"
+   },
+   {
+    "exact_accuracy": 0.0,
+    "loss": 10.318,
+    "seed": 3,
+    "split": "ood_t",
+    "type": "evaluation"
+   },
+   {
+    "exact_accuracy": 0.0,
+    "loss": 10.254,
+    "seed": 3,
+    "split": "ood_n_t",
+    "type": "evaluation"
+   },
+   {
+    "completed_steps": 400,
+    "mean_exact_accuracy": 0.0,
+    "training_seconds": 221.5,
+    "type": "summary"
+   }
+  ]
+ },
+ "submission": "\"\"\"UnfoldB: x^(2^T) mod N from one learned base and a learned quadratic, trained on answers only.\n\nPort of cpu_first/UNFOLD.md section 4 (the self-unfolding clock loss) to a One Layer Deeper submission.\n\nModel (fp64 inside, autocast off):\n  * every digit string (N, x, T, and the label inside the loss) is worth sum_i B^i d_i, one learned base B;\n  * one squaring step maps a state value s to V = w0 + w1 s + w2 s^2 (learned) and snaps it to the integer\n    r = round(V) mod round(n), n the modulus string's value;\n  * the step loops round(t) times (t the T string's value), the state an integer after every step;\n  * the final state is written in base round(B) and read out as a phase over the 10 digit tokens (a clock with\n    10 hours per digit); the digit is exact and a straight-through term carries the gradient of V.\nTraining (answer-only labels):\n  * single-step rows (the model reads t = 1): clock residual e = (V - y - k n) / n in turns, against the model's own\n    nearest unfolding k = max(0, round((V - y) / n));\n  * easiest first by the model's own difficulty, the phase sensitivity |d phase / d w| ~ s^2 / n under its own base B;\n    a frontier holds the P + 1 easiest rows at first and doubles the fitted prefix whenever every row in it is fit;\n  * Levenberg-Marquardt inside the OptimizerBundle: the gradient is the evaluator's backward (the loss is divided by\n    a detached nu so the evaluator's clipping never bites; the optimizer multiplies nu back), the Gauss-Newton\n    curvature comes from the loss's closed-form residual Jacobian, and a trust region keeps every included row's\n    phase move under TRUST turns per update.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport math\n\nimport torch\nfrom torch import Tensor, nn\n\nfrom benchmark import (\n    ModelSpec,\n    OptimizerBundle,\n    OptimizerSpec,\n    Submission,\n    TokenLossBatch,\n    assert_model_state,\n)\n\nDIGIT, MARK_N, MARK_X, MARK_T = 7, 2, 3, 4  # token ids: digit d is DIGIT + d\nD = 9                                       # digit slots (24-bit values have at most 8 decimal digits)\nP = 4                                       # parameters, in model.parameters() order: B, w0, w1, w2\n\nB_INIT = (3.0, 16.0)   # base B ~ U(B_INIT)\nW_INIT = 1e-3          # w ~ W_INIT * N(0, 1): V starts near 0, so every unfolding starts at k = 0 (plain regression)\nKAPPA = 10.0           # logit scale of the phase readout\nFRONT0 = P + 1         # the frontier starts with the P + 1 easiest single-step rows of the batch\nGROW = 2.0             # a mastered frontier grows to GROW x the fitted prefix\nMASTER = 1e-2          # fitted: within MASTER turns of the model's own unfolding\nDAMP = 1e-9            # LM damping on the column-normalized Gauss-Newton matrix\nTRUST = 0.25           # trust region: no included row's phase moves more than TRUST turns per update\nBATCH = 100_000        # one batch per epoch: about every training row\nEVAL_BATCH = 4096\nMAX_STEPS = 400\nLOG_EVERY = 10\n\n\ndef parse(input_ids: Tensor, attention_mask: Tensor):\n    \"\"\"Prompt `N <N digits, LSB first> X <x, MSB first> T <T, MSB first>` -> LSB-first digit arrays [rows, D].\"\"\"\n    pos = lambda tok: (input_ids == tok).int().argmax(1)\n    i_n, i_x, i_t = pos(MARK_N), pos(MARK_X), pos(MARK_T)\n    end = attention_mask.long().sum(1)\n    k = torch.arange(D, device=input_ids.device)[None]\n\n    def field(start, step, count):\n        idx = (start[:, None] + step * k).clamp(0, input_ids.shape[1] - 1)\n        d = (input_ids.gather(1, idx) - DIGIT).clamp(0, 9)\n        return torch.where(k < count[:, None], d, 0)\n\n    Nd = field(i_n + 1, 1, i_x - i_n - 1)\n    Xd = field(i_t - 1, -1, i_t - i_x - 1)\n    Td = field(end - 1, -1, end - i_t - 1)\n    return Nd, Xd, Td, end\n\n\nclass Config:\n    def __init__(self, vocab_size: int, max_seq_len: int) -> None:\n        self.vocab_size = vocab_size\n        self.max_seq_len = max_seq_len\n\n\nclass UnfoldB(nn.Module):\n    def __init__(self, spec: ModelSpec) -> None:\n        super().__init__()\n        self.config = Config(spec.vocab_size, spec.max_seq_len)\n        self.base = nn.Parameter(torch.empty(1).uniform_(*B_INIT))\n        self.w = nn.Parameter(W_INIT * torch.randn(3))\n        # curriculum: the frontier as a share of the batch's single-step rows (training only, not model state)\n        self.register_buffer(\"frontier\", torch.zeros(1), persistent=False)\n        self.stats: dict = {}  # the last loss's Gauss-Newton pieces, read by the optimizer\n\n    def forward(self, input_ids: Tensor, attention_mask: Tensor | None = None):\n        if attention_mask is None:\n            attention_mask = input_ids != 0\n        with torch.autocast(input_ids.device.type, enabled=False):\n            return self._forward(input_ids, attention_mask)\n\n    def _forward(self, input_ids: Tensor, attention_mask: Tensor):\n        f64, dev = torch.float64, input_ids.device\n        Nd, Xd, Td, end = parse(input_ids, attention_mask)\n        B, w = self.base.to(f64)[0], self.w.to(f64)\n        i = torch.arange(D, device=dev, dtype=f64)\n        pw = B ** i                                  # place values B^i\n        dpw = i * B ** (i - 1).clamp_min(0)          # d(B^i)/dB, closed form\n        n, t, s = Nd.to(f64) @ pw, Td.to(f64) @ pw, Xd.to(f64) @ pw\n        nr = torch.round(n.detach()).clamp_min(1)    # snapped modulus\n        steps = torch.round(t.detach()).clamp_min(0)\n\n        state = torch.remainder(torch.round(s.detach()), nr)  # snapped state (an integer)\n        cont = s                                     # the last step's continuous V, for the straight-through readout\n        v1 = None\n        for it in range(int(steps.max().item()) if steps.numel() else 0):\n            live = steps > it\n            src = s if it == 0 else state            # step 1 reads x through B; later steps read the snapped state\n            v = w[0] + w[1] * src + w[2] * src * src\n            if it == 0:\n                v1 = v\n            cont = torch.where(live, v, cont)\n            state = torch.where(live, torch.remainder(torch.round(v.detach()), nr), state)\n\n        # write the state in base round(B); digit k carries the gradient of the continuous remainder / b^k\n        b = torch.round(B.detach()).clamp(2, 36)\n        place = b.long() ** torch.arange(D, device=dev)\n        digs = (state.long()[:, None] // place[None]) % b.long()\n        rho = cont - nr * torch.floor(torch.round(cont.detach()) / nr)\n        dig = digs.to(f64) + (rho - rho.detach())[:, None] / b ** i\n        k = (end[:, None] - 1 - torch.arange(input_ids.shape[1], device=dev)[None]).clamp(0, D - 1)\n        dk = dig.gather(1, k)                                         # answers are right-aligned on the prompt\n        c = torch.arange(10, device=dev, dtype=f64)\n        phase = KAPPA * torch.cos(2 * math.pi * (dk[..., None] - c) / 10)\n        rows, L, V = input_ids.shape[0], input_ids.shape[1], self.config.vocab_size\n        low = lambda width: torch.full((rows, L, width), -2 * KAPPA, device=dev, dtype=f64)\n        logits = torch.cat([low(DIGIT), phase, low(V - DIGIT - 10)], -1).float()\n\n        aux = None\n        if self.training:\n            aux = {\"v1\": v1, \"s\": s, \"ds\": Xd.to(f64) @ dpw, \"n\": n, \"dn\": Nd.to(f64) @ dpw, \"pw\": pw,\n                   \"dpw\": dpw, \"w\": w, \"single\": steps == 1, \"frontier\": self.frontier, \"stats\": self.stats}\n        return logits, aux\n\n\ndef token_training_loss(batch: TokenLossBatch) -> Tensor:\n    with torch.autocast(batch.labels.device.type, enabled=False):\n        return _clock_loss(batch, batch.auxiliary)\n\n\ndef _clock_loss(batch: TokenLossBatch, aux: dict) -> Tensor:\n    f64 = torch.float64\n    stats = aux[\"stats\"]\n    stats.clear()\n    sel = torch.nonzero(aux[\"single\"]).flatten()\n    if aux[\"v1\"] is None or sel.numel() == 0:\n        return aux[\"w\"].sum() * 0.0\n    labels, valid = batch.labels[sel], batch.valid_mask[sel]\n    cnt = valid.long().sum(1)\n    k = torch.arange(D, device=labels.device)[None]\n    yd = (labels.gather(1, (cnt[:, None] - 1 - k).clamp_min(0)) - DIGIT).clamp(0, 9)\n    yd = torch.where(k < cnt[:, None], yd, 0).to(f64)\n    y, dy = yd @ aux[\"pw\"], yd @ aux[\"dpw\"]                      # the label's value through the same base\n    V, s, ds, n, dn, w = (aux[\"v1\"][sel], aux[\"s\"][sel], aux[\"ds\"][sel], aux[\"n\"][sel], aux[\"dn\"][sel],\n                          aux[\"w\"])\n    nb = n.detach().clamp_min(1.0)\n    kstar = torch.clamp(torch.round((V - y).detach() / nb), min=0)   # the model's own nearest unfolding, k >= 0\n    e = (V - y - kstar * n) / nb                                       # clock residual in turns\n    sd = s.detach()\n    J = torch.stack([((w[1] + 2 * w[2] * sd) * ds - dy - kstar * dn).detach(), torch.ones_like(sd), sd, sd * sd],\n                    1) / nb[:, None]                                   # d e / d (B, w0, w1, w2), closed form\n\n    # easiest first by the model's own difficulty: how fast the row's phase moves with w\n    count = sel.numel()\n    order = torch.argsort(J[:, 1:].norm(dim=1))\n    ae = torch.nan_to_num(e.detach().abs(), nan=1e30)[order]\n    m = min(count, max(FRONT0, math.ceil(float(aux[\"frontier\"]) * count)))\n    fit = int((torch.cummax(ae, 0).values < MASTER).sum())             # longest prefix already fit\n    if fit >= m:\n        m = min(count, max(m, math.ceil(GROW * fit)))\n    aux[\"frontier\"].fill_(m / count)\n    inc = order[:m]\n\n    ei, Ji = e[inc], J[inc]\n    loss = 0.5 * (ei * ei).sum()\n    g = Ji.T @ ei.detach()\n    nu = max(2.0 * float(g.norm()), 1e-30)\n    stats.update(J=Ji, e=ei.detach(), nu=nu, m=m, count=count, fit=fit,\n                 emax=float(ei.detach().abs().max()))\n    return loss / nu + (loss - loss / nu).detach()   # value: the clock cost; gradient: scaled by 1 / nu\n\n\nclass LevenbergMarquardt(torch.optim.Optimizer):\n    \"\"\"Gauss-Newton with Marquardt column scaling and a phase trust region, fp64 master parameters.\n\n    Gradient: the evaluator's backward of the scaled loss, times nu. Curvature: J^T J from the loss's closed-form\n    residual Jacobian of the included rows. The step is shrunk so that no included row's predicted phase moves more\n    than TRUST turns.\"\"\"\n\n    def __init__(self, params, stats: dict) -> None:\n        super().__init__(params, {})\n        self.stats = stats\n        self.updates = 0\n\n    @torch.no_grad()\n    def step(self, closure=None):\n        ps = [p for group in self.param_groups for p in group[\"params\"]]\n        for p in ps:\n            if \"master\" not in self.state[p]:\n                self.state[p][\"master\"] = p.detach().to(torch.float64).clone()\n        st = self.stats\n        self.updates += 1\n        if \"J\" not in st:\n            return None\n        theta = torch.cat([self.state[p][\"master\"].flatten() for p in ps])\n        grad = torch.cat([(p.grad if p.grad is not None else torch.zeros_like(p)).flatten().to(torch.float64)\n                          for p in ps]) * st[\"nu\"]\n        J = st[\"J\"]\n        H = J.T @ J\n        col = H.diagonal().clamp_min(0).sqrt()\n        col = col.clamp_min(float(col.max()) * 1e-12 + 1e-300)\n        A = H / col[:, None] / col[None, :] + DAMP * torch.eye(len(col), dtype=H.dtype, device=H.device)\n        delta = torch.linalg.solve(A, grad / col) / col\n        move = float((J @ delta).abs().max())\n        if move > TRUST:\n            delta = delta * (TRUST / move)\n        theta = theta - delta\n        at = 0\n        for p in ps:\n            k = p.numel()\n            self.state[p][\"master\"].copy_(theta[at:at + k].view_as(p))\n            p.copy_(theta[at:at + k].view_as(p).to(p.dtype))\n            at += k\n        if LOG_EVERY and (self.updates <= 20 or self.updates % LOG_EVERY == 0):\n            print(f\"lm update={self.updates} B={float(theta[0]):.12f} w={[float(v) for v in theta[1:]]} \"\n                  f\"rows={st['m']}/{st['count']} fit={st['fit']} max|e|={st['emax']:.3e} move={move:.3e}\",\n                  flush=True)\n        return None\n\n\ndef build_model(spec: ModelSpec) -> UnfoldB:\n    model = UnfoldB(spec)\n    assert_model_state(model, spec)\n    return model\n\n\ndef build_optimizer(model: nn.Module, spec: OptimizerSpec) -> OptimizerBundle:\n    return OptimizerBundle(LevenbergMarquardt(model.parameters(), model.stats),\n                           should_reuse_batch=lambda context: True)\n\n\nSUBMISSION = Submission(\n    build_model=build_model,\n    build_optimizer=build_optimizer,\n    token_training_loss=token_training_loss,\n    batch_size=BATCH,\n    eval_batch_size=EVAL_BATCH,\n    max_steps=MAX_STEPS,\n)\n"
+}

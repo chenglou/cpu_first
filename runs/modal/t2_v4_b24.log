@@ -1,0 +1,30 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '24', '--fmt', 'v4', '--steps', '8000', '--data', 'h1like', '--eval_every', '1000', '--eval_n', '512', '--final_n', '20000', '--ladder_only_if_exact', '--device', 'cuda']
+W=8 L=1366 trace lines=122 params=4754966 data=h1like curriculum=none fmt=v4
+h1like: 936324 step traces, 430 pool moduli, 4193874 unseen
+step 1000 loss 0.0685 tf_seq 0.000 pool: ans=0.0020 trace=0.0000 firsterr={'D': 124, 'P': 67, 'M': 5, 'A': 4} unseen: ans=0.0000 trace=0.0000 firsterr={'M': 8, 'D': 115, 'P': 72, 'A': 5} t=181s
+step 2000 loss 0.0001 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=0.9883 firsterr={'M': 6} t=361s
+step 3000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=0.9844 firsterr={'M': 8} t=542s
+step 4000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=0.9980 firsterr={'M': 1} t=722s
+step 5000 loss 0.0001 tf_seq 0.984 pool: ans=0.9980 trace=0.9961 firsterr={'D': 1, 'P': 1} unseen: ans=0.9941 trace=0.9883 firsterr={'M': 3, 'P': 2, 'R': 1} t=902s
+step 6000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=1082s
+step 7000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=1263s
+step 8000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=1443s
+final single-step (pool moduli): (1.0, 1.0, {})
+    ladder b=24 T=1   exact=1.0000
+    ladder b=24 T=2   exact=1.0000
+    ladder b=24 T=4   exact=1.0000
+    ladder b=24 T=8   exact=1.0000
+    ladder b=24 T=16  exact=1.0000
+    ladder b=24 T=32  exact=1.0000
+    ladder b=24 T=64  exact=1.0000
+final single-step (unseen moduli): (1.0, 1.0, {})
+    ladder b=24 T=1   exact=1.0000
+    ladder b=24 T=2   exact=1.0000
+    ladder b=24 T=4   exact=1.0000
+    ladder b=24 T=8   exact=1.0000
+    ladder b=24 T=16  exact=1.0000
+    ladder b=24 T=32  exact=1.0000
+    ladder b=24 T=64  exact=1.0000
+done {"params": 4754966, "L": 1366, "train_time": 1442.8978698253632, "single_step_pool": [1.0, 1.0, {}], "ladder_pool": {"max_t": 64, "accs": {"1": 1.0, "2": 1.0, "4": 1.0, "8": 1.0, "16": 1.0, "32": 1.0, "64": 1.0}}, "single_step_unseen": [1.0, 1.0, {}], "ladder_unseen": {"max_t": 64, "accs": {"1": 1.0, "2": 1.0, "4": 1.0, "8": 1.0, "16": 1.0, "32": 1.0, "64": 1.0}}, "total_time": 6690.076820135117}
+
+exit code 0, wall 6697s

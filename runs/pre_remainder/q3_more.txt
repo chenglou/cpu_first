@@ -1,0 +1,5 @@
+q3_ht_best_b8 sqmod --size 8 --model ht --est best --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_prehi_st_b8 sqmod --size 8 --model ht --est st --aux pre_hi --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_prehi_best_b8 sqmod --size 8 --model ht --est best --aux pre_hi --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_basin_best_b8 sqmod --size 8 --model ht --aux pre --aux_sched down:0.5 --final_sched up:0.5 --est best --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_prelo_best_b8 sqmod --size 8 --model ht --est best --aux pre_lo --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3

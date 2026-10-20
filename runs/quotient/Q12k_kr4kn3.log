@@ -1,0 +1,48 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-f3LloseFzL7zinlzL6hNlz
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_modal.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_matched.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_ladder.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /run.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /tasks.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /models.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /__init__.py
+└── 🔨 Created function run_cell.
+8 cells
+mod@7 longdiv_est fresh seed0: exact 0.047  ood@8 0.011  seen 1.00 unseen 0.000  digits(lo->hi) [0.20 0.17 0.96]  curve [0.03 0.05 0.07 0.05]  2101.2s  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.19)  est raw 0.00 mapped 0.01  ho0 12000
+mod@7 longdiv_estc fresh seed1: exact 0.046  ood@8 0.013  seen 1.00  digits(lo->hi) [0.21 0.15 0.96]  curve [0.03 0.04 0.06 0.05]  2216.6s  wide @10:0.00/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.27)  est raw 0.00 mapped 0.01  ho0 12000
+mod@7 longdiv_est fresh seed1: exact 0.048  ood@8 0.013  seen 1.00  digits(lo->hi) [0.21 0.17 0.96]  curve [0.03 0.04 0.07 0.05]  2333.9s  wide @10:0.00/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.19)  est raw 0.00 mapped 0.01  ho0 12000
+mod@7 longdiv_est fresh seed1: exact 0.057  ood@8 0.014  seen 0.74 unseen 0.025  held-out moduli 0.025  digits(lo->hi) [0.21 0.17 0.94]  curve [0.04 0.04 0.07 0.06]  2366.0s  matched seen/unseen 0.05/0.02  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.16)  est raw 0.00 mapped 0.01  ho4 12000
+mod@7 longdiv_estc fresh seed1: exact 0.047  ood@8 0.015  seen 0.74 unseen 0.021  held-out moduli 0.021  digits(lo->hi) [0.20 0.18 0.96]  curve [0.04 0.05 0.07 0.05]  2386.3s  matched seen/unseen 0.06/0.02  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.26)  est raw 0.00 mapped 0.01  ho4 12000
+mod@7 longdiv_est fresh seed0: exact 0.074  ood@8 0.014  seen 0.74 unseen 0.021  held-out moduli 0.021  digits(lo->hi) [0.22 0.18 0.95]  curve [0.03 0.09 0.10 0.07]  2560.5s  matched seen/unseen 0.09/0.02  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.22)  est raw 0.00 mapped 0.01  ho4 12000
+mod@7 longdiv_estc fresh seed0: exact 0.060  ood@8 0.011  seen 1.00 unseen 0.000  digits(lo->hi) [0.22 0.17 0.96]  curve [0.03 0.04 0.08 0.06]  4755.7s  wide @10:0.00/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.16)  est raw 0.00 mapped 0.01  ho0 12000
+mod@7 longdiv_estc fresh seed0: exact 0.051  ood@8 0.011  seen 0.74 unseen 0.025  held-out moduli 0.025  digits(lo->hi) [0.21 0.17 0.96]  curve [0.02 0.05 0.06 0.05]  5221.9s  matched seen/unseen 0.05/0.02  wide @10:0.00/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.25)  est raw 0.00 mapped 0.01  ho4 12000
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-f3LloseFzL7zinlzL6hNlz

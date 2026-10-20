@@ -1,0 +1,29 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '24', '--fmt', 'v4', '--steps', '8000', '--data', 'h1', '--eval_every', '1000', '--eval_n', '512', '--final_n', '20000', '--device', 'cuda']
+W=8 L=1366 trace lines=122 params=4754966 data=h1 curriculum=none fmt=v4
+h1 real: 936324 step traces from 101999 rows, 430 moduli (13/16/20-bit), W=8
+step 1000 loss 0.0205 tf_seq 0.016 pool: ans=0.0156 trace=0.0137 firsterr={'P': 193, 'A': 7} t=169s
+step 2000 loss 0.0000 tf_seq 1.000 pool: ans=0.9668 trace=0.9668 firsterr={'P': 14, 'R': 2, 'A': 1} t=337s
+step 3000 loss 0.0010 tf_seq 0.938 pool: ans=0.8555 trace=0.7461 firsterr={'M': 46, 'P': 27, 'D': 15, 'R': 10, 'E': 11, 'A': 21} t=505s
+step 4000 loss 0.0000 tf_seq 0.984 pool: ans=0.9629 trace=0.9512 firsterr={'P': 10, 'M': 4, 'R': 2, 'D': 5, 'A': 3, 'E': 1} t=673s
+step 5000 loss 0.0000 tf_seq 0.969 pool: ans=0.9922 trace=0.9922 firsterr={'P': 3, 'D': 1} t=842s
+step 6000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=1010s
+step 7000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=1178s
+step 8000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=1347s
+final single-step (H1 pool moduli): (0.99985, 0.99985, {'P': 2, 'R': 1})
+  depth_t T=1   exact=1.0000
+  depth_t T=2   exact=1.0000
+  depth_t T=4   exact=1.0000
+  depth_t T=8   exact=0.9987
+  depth_t T=16  exact=0.9987
+  depth_t T=32  exact=0.9987
+  depth_t T=64  exact=0.9987
+  depth_ood_n_t T=1   exact=0.3346
+  depth_ood_n_t T=2   exact=0.2708
+  depth_ood_n_t T=4   exact=0.2227
+  depth_ood_n_t T=8   exact=0.1966
+  depth_ood_n_t T=16  exact=0.1745
+  depth_ood_n_t T=32  exact=0.1628
+  depth_ood_n_t T=64  exact=0.1562
+done {"params": 4754966, "L": 1366, "train_time": 1346.7097036838531, "single_step_pool": [0.99985, 0.99985, {"P": 2, "R": 1}], "depth_t": {"max_t": 4, "accs": {"1": 1.0, "2": 1.0, "4": 1.0, "8": 0.9986979166666666, "16": 0.9986979166666666, "32": 0.9986979166666666, "64": 0.9986979166666666}}, "depth_ood_n_t": {"max_t": 0, "accs": {"1": 0.3346354166666667, "2": 0.2708333333333333, "4": 0.22265625, "8": 0.19661458333333334, "16": 0.17447916666666666, "32": 0.16276041666666666, "64": 0.15625}}, "total_time": 6132.170640230179}
+
+exit code 0, wall 6142s

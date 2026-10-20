@@ -1,0 +1,26 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '8', '--fmt', 'v4', '--steps', '24000', '--batch', '128', '--data', 'h1like', '--eval_every', '2000', '--eval_n', '1024', '--final_n', '50000', '--ladder_only_if_exact', '--device', 'cuda']
+W=3 L=321 trace lines=52 params=4752406 data=h1like curriculum=none fmt=v4
+h1like: 936324 step traces, 64 pool moduli, 0 unseen
+step 2000 loss 0.0001 tf_seq 1.000 pool: ans=0.9707 trace=0.9609 firsterr={'D': 24, 'R': 2, 'P': 10, 'A': 3, 'Q': 1} t=109s
+step 4000 loss 0.0002 tf_seq 0.977 pool: ans=0.9863 trace=0.9775 firsterr={'D': 8, 'P': 6, 'M': 3, 'A': 5, 'R': 1} t=218s
+step 6000 loss 0.0002 tf_seq 0.984 pool: ans=0.9746 trace=0.9551 firsterr={'R': 14, 'M': 3, 'D': 7, 'A': 18, 'P': 4} t=326s
+step 8000 loss 0.0000 tf_seq 1.000 pool: ans=0.9971 trace=0.9971 firsterr={'P': 1, 'A': 2} t=435s
+step 10000 loss 0.0000 tf_seq 1.000 pool: ans=0.9980 trace=0.9980 firsterr={'P': 2} t=543s
+step 12000 loss 0.0000 tf_seq 1.000 pool: ans=0.9980 trace=0.9971 firsterr={'P': 3} t=651s
+step 14000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=759s
+step 16000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=868s
+step 18000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=976s
+step 20000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=1084s
+step 22000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=1193s
+step 24000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} t=1301s
+final single-step (pool moduli): (1.0, 1.0, {})
+    ladder b=8 T=1   exact=1.0000
+    ladder b=8 T=2   exact=1.0000
+    ladder b=8 T=4   exact=1.0000
+    ladder b=8 T=8   exact=1.0000
+    ladder b=8 T=16  exact=1.0000
+    ladder b=8 T=32  exact=1.0000
+    ladder b=8 T=64  exact=1.0000
+done {"params": 4752406, "L": 321, "train_time": 1301.026999950409, "single_step_pool": [1.0, 1.0, {}], "ladder_pool": {"max_t": 64, "accs": {"1": 1.0, "2": 1.0, "4": 1.0, "8": 1.0, "16": 1.0, "32": 1.0, "64": 1.0}}, "total_time": 1542.1185195446014}
+
+exit code 0, wall 1556s

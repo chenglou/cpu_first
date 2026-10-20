@@ -1,0 +1,10 @@
+model params=796426 W=2 K=12 layers=1 d=256 device=mps
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/relax_step.py:181: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:839.)
+  log.append({"step": step, "loss": float(loss), "time": el, **accs})
+step 1000 loss 0.0309 fresh=0.9884 t=259s
+step 2000 loss 0.0000 fresh=1.0000 t=507s
+step 3000 loss 0.0000 fresh=1.0000 t=749s
+step 4000 loss 0.0000 fresh=1.0000 t=1008s
+step 5000 loss 0.0000 fresh=1.0000 t=1294s
+step 6000 loss 0.0000 fresh=1.0000 t=1562s

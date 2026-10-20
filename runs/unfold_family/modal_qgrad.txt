@@ -1,0 +1,6 @@
+qgrad_square qgrad --tasks square --orders oracle free --bits_list 12 16 20 24 --seeds 5
+qgrad_cube qgrad --tasks cube --orders oracle free --bits_list 12 16 20 24 --seeds 5
+qgrad_squarep1 qgrad --tasks square+1 --orders oracle free --bits_list 12 16 20 24 --seeds 5
+qgrad_squarexx0 qgrad --tasks square*x0 --orders oracle free --bits_list 12 16 20 24 --seeds 5
+qgrad_squarepx0 qgrad --tasks square+x0 --orders oracle free --bits_list 12 16 20 24 --seeds 5
+qgrad_cubep2 qgrad --tasks cube+2 --orders oracle free --bits_list 12 16 20 24 --seeds 5

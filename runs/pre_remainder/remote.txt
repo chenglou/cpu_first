@@ -1,0 +1,44 @@
+q2_sqb_b24 sqb --size 24 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q2_modsq_b8 modsq --size 8 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q2_modsq_b8_q modsq --size 8 --model xf --aux q --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q2_quot_b8 quot --size 8 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q2_subq_b8 subq --size 8 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q1_xf_b10_none_s0 sqmod --size 10 --model xf  --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b10_pre_s0 sqmod --size 10 --model xf --aux pre --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b10_q_s0 sqmod --size 10 --model xf --aux q --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b10_pre,q_s0 sqmod --size 10 --model xf --aux pre,q --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q2_sq_k3 sq --size 3 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q2_sq_k4 sq --size 4 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q2_sq_k5 sq --size 5 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q2_modsq_b10 modsq --size 10 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q2_modsq_b10_q modsq --size 10 --model xf --aux q --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q2_quot_b10 quot --size 10 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q2_subq_b10 subq --size 10 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q2
+q1_xf_b8_none_pool_s0 sqmod --size 8 --model xf  --pool 1000 --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b8_pre_pool_s0 sqmod --size 8 --model xf --aux pre --pool 1000 --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b8_q_pool_s0 sqmod --size 8 --model xf --aux q --pool 1000 --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b8_pre,q_pool_s0 sqmod --size 8 --model xf --aux pre,q --pool 1000 --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b6_none_s0 sqmod --size 6 --model xf  --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b6_pre_s0 sqmod --size 6 --model xf --aux pre --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b6_q_s0 sqmod --size 6 --model xf --aux q --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b6_pre,q_s0 sqmod --size 6 --model xf --aux pre,q --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b10_none_pool_s0 sqmod --size 10 --model xf  --pool 1000 --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q1_xf_b10_pre_pool_s0 sqmod --size 10 --model xf --aux pre --pool 1000 --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q1
+q3_ht_best_b8 sqmod --size 8 --model ht --est best --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_prehi_st_b8 sqmod --size 8 --model ht --est st --aux pre_hi --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_prehi_best_b8 sqmod --size 8 --model ht --est best --aux pre_hi --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_basin_best_b8 sqmod --size 8 --model ht --aux pre --aux_sched down:0.5 --final_sched up:0.5 --est best --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_prelo_best_b8 sqmod --size 8 --model ht --est best --aux pre_lo --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_pre_b10 sqmod --size 10 --model ht --aux pre --final_weight 0 --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_st_b10 sqmod --size 10 --model ht --est st --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_best_b10 sqmod --size 10 --model ht --est best --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_basin_st_b10 sqmod --size 10 --model ht --aux pre --aux_sched down:0.5 --final_sched up:0.5 --est st --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_basin_best_b10 sqmod --size 10 --model ht --aux pre --aux_sched down:0.5 --final_sched up:0.5 --est best --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q4_divstep_b12 divstep --size 12 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q4
+q4_xf_b8_pre_lin sqmod --size 8 --model xf --aux pre --aux_sched lin:0.6 --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q4
+q4_divstep_b16 divstep --size 16 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q4
+q4_divstep_b10 divstep --size 10 --model xf --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q4
+q4_xf_b8_pre_down sqmod --size 8 --model xf --aux pre --aux_sched down:0.5 --holdout 8 --threads 2 --steps 2000 --eval_every 500 --tag q4
+q2_loop_sqb_b16 sqb --size 16 --model loop --holdout 8 --threads 2 --steps 2000 --eval_every 500 --device mps --tag q2
+q2_loop_sqb_b24 sqb --size 24 --model loop --holdout 8 --threads 2 --steps 2000 --eval_every 500 --device mps --tag q2
+q2_loop_modsq_b8 modsq --size 8 --model loop --holdout 8 --threads 2 --steps 2000 --eval_every 500 --device mps --tag q2

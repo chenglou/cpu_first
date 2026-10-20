@@ -1,0 +1,174 @@
+{
+ "gpu": "NVIDIA H100 80GB HBM3",
+ "returncode": 0,
+ "wall_seconds": 17.584457635879517,
+ "log": "  gate: 65,536 per-lane cells, reference wiring, full T=1 machine | rows=1 lanes=65,536: 0.120s -> 5.46e+05 machine-rows/s (first call 0.2s)\n  gate: 65,536 per-lane cells, reference wiring, full T=1 machine | rows=4 lanes=65,536: 0.126s -> 2.08e+06 machine-rows/s (first call 0.2s)\n  gate: 65,536 per-lane cells, reference wiring, full T=1 machine | rows=16 lanes=65,536: 0.123s -> 8.54e+06 machine-rows/s (first call 0.1s)\n  gate: 65,536 per-lane cells, reference wiring, full T=1 machine | rows=64 lanes=65,536: 0.186s -> 2.25e+07 machine-rows/s (first call 0.2s)\n  wiring: 979,776 core combos, full adder, full T=1 machine | rows=1 lanes=979,776: 0.059s -> 1.66e+07 machine-rows/s (first call 0.1s)\n  wiring: 979,776 core combos, full adder, full T=1 machine | rows=4 lanes=979,776: 0.079s -> 4.99e+07 machine-rows/s (first call 0.1s)\n  wiring: 979,776 core combos, full adder, full T=1 machine | rows=16 lanes=979,776: 0.301s -> 5.2e+07 machine-rows/s (first call 0.3s)\n  wiring: 979,776 core combos, full adder, full T=1 machine | rows=64 lanes=262,144: 0.315s -> 5.32e+07 machine-rows/s (first call 0.3s)\n  joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine | rows=1 lanes=12,386,304: 0.601s -> 2.06e+07 machine-rows/s (first call 0.6s)\n  joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine | rows=4 lanes=4,194,304: 0.770s -> 2.18e+07 machine-rows/s (first call 0.8s)\n  joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine | rows=16 lanes=1,048,576: 0.765s -> 2.19e+07 machine-rows/s (first call 0.8s)\n  joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine | rows=64 lanes=262,144: 0.608s -> 2.76e+07 machine-rows/s (first call 0.6s)\n  round trip: per-lane cell x io (188.7M), d2b + b2d | rows=1 lanes=16,777,216: 0.384s -> 4.36e+07 machine-rows/s (first call 0.4s)\n  round trip: per-lane cell x io (188.7M), d2b + b2d | rows=4 lanes=4,194,304: 0.362s -> 4.64e+07 machine-rows/s (first call 0.4s)\n  round trip: per-lane cell x io (188.7M), d2b + b2d | rows=16 lanes=1,048,576: 0.357s -> 4.7e+07 machine-rows/s (first call 0.4s)\n  round trip: per-lane cell x io (188.7M), d2b + b2d | rows=64 lanes=262,144: 0.356s -> 4.72e+07 machine-rows/s (first call 0.4s)\n",
+ "out": {
+  "device": "cuda",
+  "torch": "2.12.1+cu130",
+  "chunk": 16777216,
+  "compiled": false,
+  "bench": [
+   {
+    "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+    "rows": 1,
+    "lanes": 65536,
+    "seconds": 0.11998845799999991,
+    "machine_rows_per_s": 546185.8673106713,
+    "survivors": 2,
+    "compiled": false,
+    "first_call_seconds": 0.18370276700000066
+   },
+   {
+    "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+    "rows": 4,
+    "lanes": 65536,
+    "seconds": 0.12627182800000014,
+    "machine_rows_per_s": 2076029.183643399,
+    "survivors": 1,
+    "compiled": false,
+    "first_call_seconds": 0.19276392600000047
+   },
+   {
+    "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+    "rows": 16,
+    "lanes": 65536,
+    "seconds": 0.122825572,
+    "machine_rows_per_s": 8537114.730473228,
+    "survivors": 1,
+    "compiled": false,
+    "first_call_seconds": 0.14104397499999966
+   },
+   {
+    "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+    "rows": 64,
+    "lanes": 65536,
+    "seconds": 0.18643244400000025,
+    "machine_rows_per_s": 22497715.04363261,
+    "survivors": 1,
+    "compiled": false,
+    "first_call_seconds": 0.18643244400000025
+   },
+   {
+    "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+    "rows": 1,
+    "lanes": 979776,
+    "seconds": 0.05911576300000032,
+    "machine_rows_per_s": 16573853.57607572,
+    "survivors": 81,
+    "compiled": false,
+    "first_call_seconds": 0.08189278600000005
+   },
+   {
+    "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+    "rows": 4,
+    "lanes": 979776,
+    "seconds": 0.07852312999999977,
+    "machine_rows_per_s": 49910185.69942399,
+    "survivors": 18,
+    "compiled": false,
+    "first_call_seconds": 0.07852605099999987
+   },
+   {
+    "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+    "rows": 16,
+    "lanes": 979776,
+    "seconds": 0.3012684970000006,
+    "machine_rows_per_s": 52034700.461893864,
+    "survivors": 18,
+    "compiled": false,
+    "first_call_seconds": 0.30223022499999885
+   },
+   {
+    "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+    "rows": 64,
+    "lanes": 262144,
+    "seconds": 0.3151053380000004,
+    "machine_rows_per_s": 53243198.31103584,
+    "survivors": 18,
+    "compiled": false,
+    "first_call_seconds": 0.3215517220000006
+   },
+   {
+    "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+    "rows": 1,
+    "lanes": 12386304,
+    "seconds": 0.6007767879999992,
+    "machine_rows_per_s": 20617148.077964716,
+    "survivors": 308,
+    "compiled": false,
+    "first_call_seconds": 0.6007767879999992
+   },
+   {
+    "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+    "rows": 4,
+    "lanes": 4194304,
+    "seconds": 0.770127947999999,
+    "machine_rows_per_s": 21784972.280995604,
+    "survivors": 0,
+    "compiled": false,
+    "first_call_seconds": 0.770127947999999
+   },
+   {
+    "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+    "rows": 16,
+    "lanes": 1048576,
+    "seconds": 0.7646608290000003,
+    "machine_rows_per_s": 21940728.96599231,
+    "survivors": 0,
+    "compiled": false,
+    "first_call_seconds": 0.764845524
+   },
+   {
+    "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+    "rows": 64,
+    "lanes": 262144,
+    "seconds": 0.6079148799999992,
+    "machine_rows_per_s": 27597968.978814967,
+    "survivors": 0,
+    "compiled": false,
+    "first_call_seconds": 0.6080016809999993
+   },
+   {
+    "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+    "rows": 1,
+    "lanes": 16777216,
+    "seconds": 0.3844053279999997,
+    "machine_rows_per_s": 43644597.97497919,
+    "survivors": 2794,
+    "compiled": false,
+    "first_call_seconds": 0.3844053279999997
+   },
+   {
+    "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+    "rows": 4,
+    "lanes": 4194304,
+    "seconds": 0.36186162999999993,
+    "machine_rows_per_s": 46363622.470832296,
+    "survivors": 1358,
+    "compiled": false,
+    "first_call_seconds": 0.36212112100000127
+   },
+   {
+    "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+    "rows": 16,
+    "lanes": 1048576,
+    "seconds": 0.35660877000000113,
+    "machine_rows_per_s": 47046560.29631562,
+    "survivors": 696,
+    "compiled": false,
+    "first_call_seconds": 0.35693781299999827
+   },
+   {
+    "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+    "rows": 64,
+    "lanes": 262144,
+    "seconds": 0.35560103899999973,
+    "machine_rows_per_s": 47179884.64595013,
+    "survivors": 177,
+    "compiled": false,
+    "first_call_seconds": 0.35583752899999865
+   }
+  ]
+ }
+}

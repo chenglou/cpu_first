@@ -1,0 +1,106 @@
+{
+ "args": {
+  "mode": "precision",
+  "kind": "mono",
+  "K": 4,
+  "init": 0.001,
+  "lr": 0.01,
+  "steps": 3000,
+  "batch": 1024,
+  "seeds": 5,
+  "bits_list": [
+   6,
+   8,
+   12,
+   16,
+   20,
+   24
+  ],
+  "curricula": [
+   "none",
+   "smax",
+   "bits"
+  ],
+  "h1_rows": [
+   "t1",
+   "t1t2"
+  ],
+  "order": "easy_first",
+  "out": "runs/relax3_precision.json"
+ },
+ "results": {
+  "6": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 1.0,
+   "max_rel_err_w_ss": 0.0001220703125,
+   "gd_basin_rel_w_ss": 0.0625
+  },
+  "8": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 1.0,
+   "max_rel_err_w_ss": 7.62939453125e-06,
+   "gd_basin_rel_w_ss": 0.011048543456039806
+  },
+  "10": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 1.0,
+   "max_rel_err_w_ss": 4.76837158203125e-07,
+   "gd_basin_rel_w_ss": 0.0027621358640099515
+  },
+  "12": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 1.0,
+   "max_rel_err_w_ss": 2.9802322387695312e-08,
+   "gd_basin_rel_w_ss": 0.0013810679320049757
+  },
+  "14": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 0.6014,
+   "max_rel_err_w_ss": 1.862645149230957e-09,
+   "gd_basin_rel_w_ss": 0.0001220703125
+  },
+  "16": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 0.23815,
+   "max_rel_err_w_ss": 1.1641532182693481e-10,
+   "gd_basin_rel_w_ss": 4.315837287515549e-05
+  },
+  "18": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 0.081,
+   "max_rel_err_w_ss": 7.275957614183426e-12,
+   "gd_basin_rel_w_ss": 2.6973983046972182e-06
+  },
+  "20": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 0.0254,
+   "max_rel_err_w_ss": 4.547473508864641e-13,
+   "gd_basin_rel_w_ss": 4.76837158203125e-07
+  },
+  "22": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 0.0078,
+   "max_rel_err_w_ss": 2.842170943040401e-14,
+   "gd_basin_rel_w_ss": 8.429369702178807e-08
+  },
+  "24": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 0.0017,
+   "max_rel_err_w_ss": 1.7763568394002505e-15,
+   "gd_basin_rel_w_ss": 4.2146848510894035e-08
+  },
+  "26": {
+   "exact_solution_fp64": 1.0,
+   "exact_solution_fp32": 0.00015,
+   "max_rel_err_w_ss": 1.1102230246251565e-16,
+   "gd_basin_rel_w_ss": 5.268356063861754e-09
+  },
+  "28": {
+   "exact_solution_fp64": 0.71905,
+   "exact_solution_fp32": 5e-05,
+   "max_rel_err_w_ss": null,
+   "gd_basin_rel_w_ss": null
+  }
+ },
+ "wall": 33.71379375457764
+}

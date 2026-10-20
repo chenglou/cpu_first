@@ -1,0 +1,23 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '20', '--fmt', 'v4', '--steps', '8000', '--data', 'h1like', '--eval_every', '1000', '--eval_n', '512', '--final_n', '20000', '--ladder_only_if_exact', '--device', 'cuda']
+W=7 L=1101 trace lines=108 params=4754454 data=h1like curriculum=none fmt=v4
+h1like: 936324 step traces, 430 pool moduli, 261714 unseen
+step 1000 loss 0.0024 tf_seq 0.547 pool: ans=0.5215 trace=0.5195 firsterr={'P': 198, 'A': 2} unseen: ans=0.5391 trace=0.5273 firsterr={'P': 195, 'A': 2, 'M': 3} t=136s
+step 2000 loss 0.0042 tf_seq 0.422 pool: ans=0.6406 trace=0.3691 firsterr={'D': 66, 'M': 68, 'A': 10, 'P': 53, 'E': 1, 'R': 2} unseen: ans=0.6523 trace=0.4160 firsterr={'D': 63, 'M': 70, 'P': 50, 'A': 17} t=272s
+step 3000 loss 0.0001 tf_seq 1.000 pool: ans=0.9961 trace=0.9941 firsterr={'P': 1, 'D': 2} unseen: ans=0.9980 trace=0.9883 firsterr={'M': 4, 'D': 1, 'A': 1} t=408s
+step 4000 loss 0.0000 tf_seq 1.000 pool: ans=0.9980 trace=0.9980 firsterr={'P': 1} unseen: ans=0.9980 trace=0.9961 firsterr={'M': 1, 'D': 1} t=543s
+step 5000 loss 0.0000 tf_seq 1.000 pool: ans=0.9805 trace=0.9805 firsterr={'M': 1, 'P': 6, 'E': 1, 'A': 2} unseen: ans=0.9941 trace=0.9922 firsterr={'M': 1, 'P': 2, 'E': 1} t=679s
+step 6000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=0.9980 firsterr={'M': 1} t=814s
+step 7000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=0.9980 firsterr={'M': 1} t=950s
+step 8000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=0.9980 firsterr={'M': 1} t=1086s
+final single-step (pool moduli): (0.99995, 0.99995, {'A': 1})
+final single-step (unseen moduli): (1.0, 0.9985, {'M': 30})
+    ladder b=20 T=1   exact=1.0000
+    ladder b=20 T=2   exact=1.0000
+    ladder b=20 T=4   exact=1.0000
+    ladder b=20 T=8   exact=1.0000
+    ladder b=20 T=16  exact=1.0000
+    ladder b=20 T=32  exact=1.0000
+    ladder b=20 T=64  exact=0.9987
+done {"params": 4754454, "L": 1101, "train_time": 1085.5457458496094, "single_step_pool": [0.99995, 0.99995, {"A": 1}], "single_step_unseen": [1.0, 0.9985, {"M": 30}], "ladder_unseen": {"max_t": 32, "accs": {"1": 1.0, "2": 1.0, "4": 1.0, "8": 1.0, "16": 1.0, "32": 1.0, "64": 0.9986979166666666}}, "total_time": 3153.9501264095306}
+
+exit code 0, wall 3162s

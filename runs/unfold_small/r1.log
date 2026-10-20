@@ -1,0 +1,67 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-3SLjyd4xxChSjGc456AzjR
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/unfold_s
+│   mall/modal_unfold_small.py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/f90ac968-2b9c-4f1c-a51e-c2cf058204
+│   2a/scratchpad/one-layer-deeper/benchmark
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/f90ac968-2b9c-4f1c-a51e-c2cf058204
+│   2a/scratchpad/one-layer-deeper/data
+├── 🔨 Created function run_cpu.
+├── 🔨 Created function run_h100.
+├── 🔨 Created function check.
+└── 🔨 Created function mini.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+done r1_hl50k_s74 rc=0 wall=231s  maxT=64 oodN_maxT=64 train_s=224 steps=64000 eval={'ood_n_t': 1.0, 'ood_t': 1.0, 'test': 1.0}
+done r1_def_s74 rc=0 wall=264s  maxT=64 oodN_maxT=64 train_s=257 steps=64000 eval={'ood_n_t': 1.0, 'ood_t': 1.0, 'test': 1.0}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-3SLjyd4xxChSjGc456AzjR

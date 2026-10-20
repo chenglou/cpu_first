@@ -1,0 +1,89 @@
+A, B from /runs/ab_cache_full.json: 7,782 and 64 survivors (30.7s + 0.5s when computed)
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 22, 'exq': 's^c', 'Kx': 22}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 24, 'exq': 's^c', 'Kx': 24}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 26, 'exq': 's^c', 'Kx': 26}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 28, 'exq': 's^c', 'Kx': 28}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 22, 'exq': 's^c', 'Kx': 22}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 24, 'exq': 's^c', 'Kx': 24}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 26, 'exq': 's^c', 'Kx': 26}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 28, 'exq': 's^c', 'Kx': 28}
+core grammar: 75,209,472 = 2^26.2 machines incl. cw ({'r2': 1306368, 'r2m': 124416, 'r4': 3732480, 'r4m': 19906560} x 3); joint space 1,817,000,002,065,530,880 = 2^60.7
+--- law suite id
+C0 r2: 10,450,944 (2^23.3) machines vs law id: 74,940 survivors, 1.4s, 1.02e+07 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law id: 2,562 survivors, 0.4s, 2.45e+06 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law id: 5,376 survivors, 2.2s, 1.42e+07 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law id: 1,152 survivors, 7.5s, 2.23e+07 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['id'] (no labels): 84,030 survivors {'r2': 74940, 'r2m': 2562, 'r4': 5376, 'r4m': 1152}, 12.1s
+C: 2,016,720 (2^20.9) machines vs 64 T=1 labels: 20160 survivors {'r2': 288, 'r2m': 288, 'r4': 16128, 'r4m': 3456}, 3.2s, 1.11e+06 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [22, 24, 26, 28], 'Kx': [22, 24, 26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [22, 24, 26, 28], 'W': [24, 26, 28], 'cw': [5, 6, 7]}
+--- law suite comm
+C0 r2: 10,450,944 (2^23.3) machines vs law comm: 1,122,196 survivors, 2.0s, 1.45e+07 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law comm: 34,944 survivors, 0.5s, 2.67e+06 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law comm: 364,080 survivors, 3.2s, 1.26e+07 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law comm: 392,688 survivors, 11.3s, 1.64e+07 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['comm'] (no labels): 1,913,908 survivors {'r2': 1122196, 'r2m': 34944, 'r4': 364080, 'r4m': 392688}, 33.2s
+C: 45,933,792 (2^25.5) machines vs 64 T=1 labels: 20160 survivors {'r2': 288, 'r2m': 288, 'r4': 16128, 'r4m': 3456}, 7.4s, 1.15e+07 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [22, 24, 26, 28], 'Kx': [22, 24, 26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [22, 24, 26, 28], 'W': [24, 26, 28], 'cw': [5, 6, 7]}
+--- law suite comm_sq
+C0 r2: 10,450,944 (2^23.3) machines vs law comm_sq: 1,382,912 survivors, 1.9s, 1.72e+07 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law comm_sq: 54,048 survivors, 0.4s, 3.56e+06 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law comm_sq: 364,836 survivors, 3.2s, 1.33e+07 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law comm_sq: 493,368 survivors, 12.6s, 1.53e+07 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['comm_sq'] (no labels): 2,295,164 survivors {'r2': 1382912, 'r2m': 54048, 'r4': 364836, 'r4m': 493368}, 36.2s
+C: 55,083,936 (2^25.7) machines vs 64 T=1 labels: 20160 survivors {'r2': 288, 'r2m': 288, 'r4': 16128, 'r4m': 3456}, 7.7s, 1.47e+07 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [22, 24, 26, 28], 'Kx': [22, 24, 26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [22, 24, 26, 28], 'W': [24, 26, 28], 'cw': [5, 6, 7]}
+--- law suite assoc
+C0 r2: 10,450,944 (2^23.3) machines vs law assoc: 1,514,774 survivors, 2.4s, 1.42e+07 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law assoc: 71,772 survivors, 0.6s, 3.01e+06 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law assoc: 242,400 survivors, 4.3s, 9.34e+06 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law assoc: 721,740 survivors, 18.3s, 1.07e+07 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['assoc'] (no labels): 2,550,686 survivors {'r2': 1514774, 'r2m': 71772, 'r4': 242400, 'r4m': 721740}, 50.3s
+C: 61,216,464 (2^25.9) machines vs 64 T=1 labels: 20160 survivors {'r2': 288, 'r2m': 288, 'r4': 16128, 'r4m': 3456}, 8.4s, 1.5e+07 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [22, 24, 26, 28], 'Kx': [22, 24, 26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [22, 24, 26, 28], 'W': [24, 26, 28], 'cw': [5, 6, 7]}
+--- law suite mirror
+C0 r2: 10,450,944 (2^23.3) machines vs law mirror: 1,005,296 survivors, 1.9s, 1.29e+07 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law mirror: 34,752 survivors, 0.6s, 2.33e+06 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law mirror: 141,984 survivors, 3.2s, 1.15e+07 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law mirror: 227,232 survivors, 12.0s, 1.51e+07 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['mirror'] (no labels): 1,409,264 survivors {'r2': 1005296, 'r2m': 34752, 'r4': 141984, 'r4m': 227232}, 30.7s
+C: 33,822,336 (2^25.0) machines vs 64 T=1 labels: 40320 survivors {'r2': 576, 'r2m': 576, 'r4': 32256, 'r4m': 6912}, 4.9s, 1.1e+07 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [22, 24, 26, 28], 'Kx': [22, 24, 26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a', 'a.a', 'b.b'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [22, 24, 26, 28], 'W': [24, 26, 28], 'cw': [5, 6, 7]}
+--- law suite unit
+C0 r2: 10,450,944 (2^23.3) machines vs law unit: 147,744 survivors, 0.8s, 1.7e+07 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law unit: 5,064 survivors, 0.3s, 4.22e+06 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law unit: 10,752 survivors, 1.4s, 2.27e+07 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law unit: 2,880 survivors, 5.5s, 3.13e+07 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['unit'] (no labels): 166,440 survivors {'r2': 147744, 'r2m': 5064, 'r4': 10752, 'r4m': 2880}, 8.9s
+C: 3,994,560 (2^21.9) machines vs 64 T=1 labels: 40320 survivors {'r2': 576, 'r2m': 576, 'r4': 32256, 'r4m': 6912}, 3.1s, 2.44e+06 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [22, 24, 26, 28], 'Kx': [22, 24, 26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a', 'a.a', 'b.b'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [22, 24, 26, 28], 'W': [24, 26, 28], 'cw': [5, 6, 7]}
+--- law suite id,comm
+C0 r2: 10,450,944 (2^23.3) machines vs law id: 74,940 survivors, 1.1s, 1.08e+07 machine-rows/s
+C0 r2: 74,940 (2^16.2) machines vs law comm: 96 survivors, 0.4s, 1.76e+05 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law id: 2,562 survivors, 0.4s, 2.51e+06 machine-rows/s
+C0 r2m: 2,562 (2^11.3) machines vs law comm: 96 survivors, 0.4s, 7.77e+03 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law id: 5,376 survivors, 2.1s, 1.5e+07 machine-rows/s
+C0 r4: 5,376 (2^12.4) machines vs law comm: 5,376 survivors, 0.4s, 1e+05 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law id: 1,152 survivors, 7.2s, 2.34e+07 machine-rows/s
+C0 r4m: 1,152 (2^10.2) machines vs law comm: 1,152 survivors, 0.4s, 2.11e+04 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['id', 'comm'] (no labels): 6,720 survivors {'r2': 96, 'r2m': 96, 'r4': 5376, 'r4m': 1152}, 12.6s
+C: 161,280 (2^17.3) machines vs 64 T=1 labels: 20160 survivors {'r2': 288, 'r2m': 288, 'r4': 16128, 'r4m': 3456}, 2.7s, 5.8e+05 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [22, 24, 26, 28], 'Kx': [22, 24, 26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [22, 24, 26, 28], 'W': [24, 26, 28], 'cw': [5, 6, 7]}
+--- law suite unit,mirror
+C0 r2: 10,450,944 (2^23.3) machines vs law unit: 147,744 survivors, 0.8s, 1.7e+07 machine-rows/s
+C0 r2: 147,744 (2^17.2) machines vs law mirror: 192 survivors, 0.5s, 3.21e+05 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law unit: 5,064 survivors, 0.3s, 4.27e+06 machine-rows/s
+C0 r2m: 5,064 (2^12.3) machines vs law mirror: 192 survivors, 0.5s, 1.44e+04 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law unit: 10,752 survivors, 1.4s, 2.28e+07 machine-rows/s
+C0 r4: 10,752 (2^13.4) machines vs law mirror: 10,752 survivors, 0.5s, 1.89e+05 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law unit: 2,880 survivors, 5.5s, 3.14e+07 machine-rows/s
+C0 r4m: 2,880 (2^11.5) machines vs law mirror: 2,304 survivors, 0.5s, 4.05e+04 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['unit', 'mirror'] (no labels): 13,440 survivors {'r2': 192, 'r2m': 192, 'r4': 10752, 'r4m': 2304}, 9.9s
+C: 322,560 (2^18.3) machines vs 64 T=1 labels: 40320 survivors {'r2': 576, 'r2m': 576, 'r4': 32256, 'r4m': 6912}, 2.8s, 1.15e+06 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [22, 24, 26, 28], 'Kx': [22, 24, 26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a', 'a.a', 'b.b'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [22, 24, 26, 28], 'W': [24, 26, 28], 'cw': [5, 6, 7]}
+--- law suite id,comm,assoc
+C0 r2: 10,450,944 (2^23.3) machines vs law id: 74,940 survivors, 1.1s, 1.08e+07 machine-rows/s
+C0 r2: 74,940 (2^16.2) machines vs law comm: 96 survivors, 0.5s, 1.73e+05 machine-rows/s
+C0 r2: 96 (2^6.6) machines vs law assoc: 96 survivors, 0.4s, 2.18e+03 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law id: 2,562 survivors, 0.4s, 2.48e+06 machine-rows/s
+C0 r2m: 2,562 (2^11.3) machines vs law comm: 96 survivors, 0.4s, 7.7e+03 machine-rows/s
+C0 r2m: 96 (2^6.6) machines vs law assoc: 96 survivors, 0.3s, 2.26e+03 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law id: 5,376 survivors, 2.1s, 1.5e+07 machine-rows/s
+C0 r4: 5,376 (2^12.4) machines vs law comm: 5,376 survivors, 0.4s, 1.01e+05 machine-rows/s
+C0 r4: 5,376 (2^12.4) machines vs law assoc: 5,376 survivors, 0.4s, 1.15e+05 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law id: 1,152 survivors, 7.2s, 2.34e+07 machine-rows/s
+C0 r4m: 1,152 (2^10.2) machines vs law comm: 1,152 survivors, 0.4s, 2.11e+04 machine-rows/s
+C0 r4m: 1,152 (2^10.2) machines vs law assoc: 1,152 survivors, 0.4s, 2.36e+04 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['id', 'comm', 'assoc'] (no labels): 6,720 survivors {'r2': 96, 'r2m': 96, 'r4': 5376, 'r4m': 1152}, 14.1s
+C: 161,280 (2^17.3) machines vs 64 T=1 labels: 20160 survivors {'r2': 288, 'r2m': 288, 'r4': 16128, 'r4m': 3456}, 2.7s, 5.77e+05 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [22, 24, 26, 28], 'Kx': [22, 24, 26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [22, 24, 26, 28], 'W': [24, 26, 28], 'cw': [5, 6, 7]}

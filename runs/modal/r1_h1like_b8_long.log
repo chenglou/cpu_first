@@ -1,0 +1,37 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_step.py args=['--bits', '8', '--data', 'h1like', '--steps', '24000', '--eval_every', '2000', '--K', '12', '--device', 'cuda']
+h1like b=8: 936324 step pairs, 64 pool moduli, 0 unseen
+model params=798996 W=3 K=12 layers=1 d=256 device=cuda
+/root/cpu_first/relax_step.py:203: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  log.append({"step": step, "loss": float(loss), "time": el, **accs})
+step 2000 loss 0.1759 fresh=0.3708 pool=0.3811 t=46s
+step 4000 loss 0.0695 fresh=0.5233 pool=0.5303 t=93s
+step 6000 loss 0.0237 fresh=0.6421 pool=0.6356 t=138s
+step 8000 loss 0.0388 fresh=0.6870 pool=0.6907 t=182s
+step 10000 loss 0.0252 fresh=0.7404 pool=0.7463 t=227s
+step 12000 loss 0.0057 fresh=0.7705 pool=0.7654 t=272s
+step 14000 loss 0.0027 fresh=0.7986 pool=0.8008 t=316s
+step 16000 loss 0.0003 fresh=0.8137 pool=0.8135 t=360s
+step 18000 loss 0.0004 fresh=0.8217 pool=0.8212 t=405s
+step 20000 loss 0.0016 fresh=0.8246 pool=0.8223 t=449s
+step 22000 loss 0.0000 fresh=0.8263 pool=0.8253 t=494s
+step 24000 loss 0.0000 fresh=0.8268 pool=0.8260 t=538s
+single-step exact (fresh moduli, 100k): 0.82509
+    ladder b=8 T=1   exact=1.0000
+    ladder b=8 T=2   exact=0.9987
+    ladder b=8 T=4   exact=1.0000
+    ladder b=8 T=8   exact=1.0000
+    ladder b=8 T=16  exact=1.0000
+    ladder b=8 T=32  exact=1.0000
+    ladder b=8 T=64  exact=1.0000
+single-step exact (pool moduli, 100k): 0.82423
+    ladder b=8 T=1   exact=1.0000
+    ladder b=8 T=2   exact=0.9987
+    ladder b=8 T=4   exact=1.0000
+    ladder b=8 T=8   exact=1.0000
+    ladder b=8 T=16  exact=1.0000
+    ladder b=8 T=32  exact=1.0000
+    ladder b=8 T=64  exact=1.0000
+done {"params": 798996, "train_time": 538.2893970012665, "single_step_fresh_100k": 0.82509, "ladder_fresh": {"max_t": 1, "accs": {"1": 1.0, "2": 0.9986979166666666, "4": 1.0, "8": 1.0, "16": 1.0, "32": 1.0, "64": 1.0}}, "single_step_pool_100k": 0.82423, "ladder_pool": {"max_t": 1, "accs": {"1": 1.0, "2": 0.9986979166666666, "4": 1.0, "8": 1.0, "16": 1.0, "32": 1.0, "64": 1.0}}, "total_time": 543.2750060558319}
+
+exit code 0, wall 553s

@@ -1,0 +1,36 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_step.py args=['--bits', '10', '--data', 'fresh', '--steps', '40000', '--eval_every', '2000', '--K', '12', '--device', 'cuda']
+model params=798996 W=4 K=12 layers=1 d=256 device=cuda
+/root/cpu_first/relax_step.py:203: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  log.append({"step": step, "loss": float(loss), "time": el, **accs})
+step 2000 loss 1.5518 fresh=0.0426 t=51s
+step 4000 loss 1.4740 fresh=0.0548 t=102s
+step 6000 loss 1.4341 fresh=0.0857 t=153s
+step 8000 loss 1.3645 fresh=0.0930 t=203s
+step 10000 loss 1.3538 fresh=0.1176 t=254s
+step 12000 loss 1.3153 fresh=0.1276 t=306s
+step 14000 loss 1.2572 fresh=0.1440 t=357s
+step 16000 loss 1.2801 fresh=0.1531 t=409s
+step 18000 loss 1.2283 fresh=0.1580 t=460s
+step 20000 loss 1.1689 fresh=0.1720 t=512s
+step 22000 loss 1.1876 fresh=0.1821 t=564s
+step 24000 loss 1.1744 fresh=0.1897 t=616s
+step 26000 loss 1.1245 fresh=0.1964 t=668s
+step 28000 loss 1.0822 fresh=0.2068 t=720s
+step 30000 loss 1.0766 fresh=0.2175 t=771s
+step 32000 loss 1.1069 fresh=0.2268 t=822s
+step 34000 loss 1.0766 fresh=0.2338 t=873s
+step 36000 loss 1.0344 fresh=0.2404 t=925s
+step 38000 loss 1.0050 fresh=0.2449 t=977s
+step 40000 loss 1.0537 fresh=0.2496 t=1029s
+single-step exact (fresh moduli, 100k): 0.24311
+    ladder b=10 T=1   exact=0.2383
+    ladder b=10 T=2   exact=0.0768
+    ladder b=10 T=4   exact=0.0130
+    ladder b=10 T=8   exact=0.0169
+    ladder b=10 T=16  exact=0.0078
+    ladder b=10 T=32  exact=0.0169
+    ladder b=10 T=64  exact=0.0117
+done {"params": 798996, "train_time": 1028.8087587356567, "single_step_fresh_100k": 0.24311, "ladder_fresh": {"max_t": 0, "accs": {"1": 0.23828125, "2": 0.07682291666666667, "4": 0.013020833333333334, "8": 0.016927083333333332, "16": 0.0078125, "32": 0.016927083333333332, "64": 0.01171875}}, "total_time": 1031.780516386032}
+
+exit code 0, wall 1040s

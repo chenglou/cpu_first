@@ -1,0 +1,30 @@
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:106: RuntimeWarning: divide by zero encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:106: RuntimeWarning: overflow encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:106: RuntimeWarning: invalid value encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:106: RuntimeWarning: divide by zero encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:106: RuntimeWarning: overflow encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:106: RuntimeWarning: invalid value encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+  bits 16 snap 0 sigma 1e-06 (rms error of v_x 8.94e-06, relative 1.4e-10): exact at init 0/6, after training 6/6
+  bits 16 snap 0 sigma 1e-04 (rms error of v_x 8.94e-04, relative 1.4e-08): exact at init 0/6, after training 6/6
+  bits 16 snap 0 sigma 1e-03 (rms error of v_x 8.94e-03, relative 1.4e-07): exact at init 0/6, after training 6/6
+  bits 16 snap 0 sigma 3e-03 (rms error of v_x 2.68e-02, relative 4.1e-07): exact at init 0/6, after training 4/6
+  bits 16 snap 0 sigma 1e-02 (rms error of v_x 8.94e-02, relative 1.4e-06): exact at init 0/6, after training 6/6
+  bits 16 snap 0 sigma 3e-02 (rms error of v_x 2.68e-01, relative 4.1e-06): exact at init 0/6, after training 4/6
+  bits 16 snap 0 sigma 1e-01 (rms error of v_x 8.94e-01, relative 1.4e-05): exact at init 0/6, after training 3/6
+  bits 16 snap 0 sigma 3e-01 (rms error of v_x 2.68e+00, relative 4.1e-05): exact at init 0/6, after training 0/6
+  bits 16 snap 0 sigma 1e+00 (rms error of v_x 8.94e+00, relative 1.4e-04): exact at init 0/6, after training 0/6
+  bits 16 snap 1 sigma 1e-06 (rms error of v_x 8.94e-06, relative 1.4e-10): exact at init 6/6, after training 6/6
+  bits 16 snap 1 sigma 1e-04 (rms error of v_x 8.94e-04, relative 1.4e-08): exact at init 6/6, after training 6/6
+  bits 16 snap 1 sigma 1e-03 (rms error of v_x 8.94e-03, relative 1.4e-07): exact at init 6/6, after training 6/6
+  bits 16 snap 1 sigma 3e-03 (rms error of v_x 2.68e-02, relative 4.1e-07): exact at init 6/6, after training 6/6
+  bits 16 snap 1 sigma 1e-02 (rms error of v_x 8.94e-02, relative 1.4e-06): exact at init 6/6, after training 6/6
+  bits 16 snap 1 sigma 3e-02 (rms error of v_x 2.68e-01, relative 4.1e-06): exact at init 0/6, after training 0/6
+  bits 16 snap 1 sigma 1e-01 (rms error of v_x 8.94e-01, relative 1.4e-05): exact at init 0/6, after training 0/6
+  bits 16 snap 1 sigma 3e-01 (rms error of v_x 2.68e+00, relative 4.1e-05): exact at init 0/6, after training 0/6
+  bits 16 snap 1 sigma 1e+00 (rms error of v_x 8.94e+00, relative 1.4e-04): exact at init 0/6, after training 0/6

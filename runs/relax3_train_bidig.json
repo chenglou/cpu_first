@@ -1,0 +1,225 @@
+{
+ "args": {
+  "mode": "train",
+  "kind": "bidig",
+  "K": 4,
+  "init": 0.001,
+  "lr": 0.01,
+  "steps": 3000,
+  "batch": 1024,
+  "seeds": 3,
+  "bits_list": [
+   6,
+   12,
+   16,
+   20,
+   24
+  ],
+  "curricula": [
+   "none",
+   "smax"
+  ],
+  "h1_rows": [
+   "t1",
+   "t1t2"
+  ],
+  "order": "easy_first",
+  "opt": "gn",
+  "init_mode": "phase_small",
+  "stages": 48,
+  "out": "runs/relax3_train_bidig.json"
+ },
+ "results": {
+  "bidig_gn_phase_small_b6_none": {
+   "success": 0,
+   "seeds": 3,
+   "exact_per_seed": [
+    [
+     0.0225,
+     0.0176
+    ],
+    [
+     0.02935,
+     0.01785
+    ],
+    [
+     0.0257,
+     0.02385
+    ]
+   ],
+   "time_per_seed": 4.837567647298177
+  },
+  "bidig_gn_phase_small_b6_smax": {
+   "success": 0,
+   "seeds": 3,
+   "exact_per_seed": [
+    [
+     0.0808,
+     0.05165
+    ],
+    [
+     0.09825,
+     0.09895
+    ],
+    [
+     0.06485,
+     0.0786
+    ]
+   ],
+   "time_per_seed": 4.522363344828288
+  },
+  "bidig_gn_phase_small_b12_none": {
+   "success": 0,
+   "seeds": 3,
+   "exact_per_seed": [
+    [
+     0.00025,
+     0.00065
+    ],
+    [
+     0.00035,
+     0.00045
+    ],
+    [
+     0.0004,
+     0.0004
+    ]
+   ],
+   "time_per_seed": 5.498140335083008
+  },
+  "bidig_gn_phase_small_b12_smax": {
+   "success": 0,
+   "seeds": 3,
+   "exact_per_seed": [
+    [
+     0.00035,
+     0.00045
+    ],
+    [
+     0.00055,
+     0.00055
+    ],
+    [
+     0.0003,
+     0.0005
+    ]
+   ],
+   "time_per_seed": 4.10288127263387
+  },
+  "bidig_gn_phase_small_b16_none": {
+   "success": 0,
+   "seeds": 3,
+   "exact_per_seed": [
+    [
+     0.0,
+     5e-05
+    ],
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "time_per_seed": 4.947213649749756
+  },
+  "bidig_gn_phase_small_b16_smax": {
+   "success": 0,
+   "seeds": 3,
+   "exact_per_seed": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     5e-05
+    ]
+   ],
+   "time_per_seed": 4.939311742782593
+  },
+  "bidig_gn_phase_small_b20_none": {
+   "success": 0,
+   "seeds": 3,
+   "exact_per_seed": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "time_per_seed": 5.413474400838216
+  },
+  "bidig_gn_phase_small_b20_smax": {
+   "success": 0,
+   "seeds": 3,
+   "exact_per_seed": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "time_per_seed": 4.7124786376953125
+  },
+  "bidig_gn_phase_small_b24_none": {
+   "success": 0,
+   "seeds": 3,
+   "exact_per_seed": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "time_per_seed": 7.828581015268962
+  },
+  "bidig_gn_phase_small_b24_smax": {
+   "success": 0,
+   "seeds": 3,
+   "exact_per_seed": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "time_per_seed": 5.5228525797526045
+  }
+ },
+ "wall": 156.97611713409424
+}

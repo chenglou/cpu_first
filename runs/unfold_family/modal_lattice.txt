@@ -1,0 +1,17 @@
+lattice_square lattice --tasks square --m1 1 2 3 4 6 --m2 0 1 2 3 4 6 --trials 20
+lattice_cube lattice --tasks cube --m1 1 2 3 4 6 --m2 0 1 2 3 4 6 --trials 20
+lattice_squarep1 lattice --tasks square+1 --m1 1 2 3 4 6 --m2 0 1 2 3 4 6 --trials 20
+lattice_squarexx0 lattice --tasks square*x0 --m1 1 2 3 4 6 --m2 0 1 2 3 4 6 --trials 20
+lattice_squarepx0 lattice --tasks square+x0 --m1 1 2 3 4 6 --m2 0 1 2 3 4 6 --trials 20
+lattice_cubep2 lattice --tasks cube+2 --m1 1 2 3 4 6 --m2 0 1 2 3 4 6 --trials 20
+digits_square digits --tasks square --m1 1 2 3 4 --m2 0 1 2 3 --trials 10
+digits_cube digits --tasks cube --m1 1 2 3 4 --m2 0 1 2 3 --trials 10
+digits_squarep1 digits --tasks square+1 --m1 1 2 3 4 --m2 0 1 2 3 --trials 10
+digits_squarexx0 digits --tasks square*x0 --m1 1 2 3 4 --m2 0 1 2 3 --trials 10
+digits_squarepx0 digits --tasks square+x0 --m1 1 2 3 4 --m2 0 1 2 3 --trials 10
+digits_cubep2 digits --tasks cube+2 --m1 1 2 3 4 --m2 0 1 2 3 --trials 10
+random_C1 random --coef_max 1 --polys 10 --m1 1 2 3 4 6 8 12 16 24 --trials 5
+random_C3 random --coef_max 3 --polys 10 --m1 1 2 3 4 6 8 12 16 24 --trials 5
+random_C10 random --coef_max 10 --polys 10 --m1 1 2 3 4 6 8 12 16 24 --trials 5
+random_C100 random --coef_max 100 --polys 10 --m1 1 2 3 4 6 8 12 16 24 --trials 5
+random_C1000 random --coef_max 1000 --polys 10 --m1 1 2 3 4 6 8 12 16 24 --trials 5

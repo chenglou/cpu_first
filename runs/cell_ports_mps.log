@@ -1,0 +1,18 @@
+A, B from /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/48046994-6b8d-497e-9781-fbeb8499b780/scratchpad/ab_cache_full.json: 7,782 and 64 survivors (30.7s + 0.5s when computed)
+core grammar: 49,123,729,152 = 2^35.5 machines incl. cw ({'r2': 952342272, 'r2m': 3359232, 'r4': 906992640, 'r4m': 14511882240} x 3); joint space 1,186,789,557,180,385,198,080 = 2^70.0
+cell laws r2: r2.cell1 216 -> 12, r2.quot 84 -> 6, r2.cell2 729 -> 12, r2.handoff 108 -> 12; wiring 72
+cell laws r2m: r2m.cell 3,888 -> 6, r2m.handoff 54 -> 4; wiring 4
+cell laws r4: r4.cell1 108 -> 12, r4.cell2 108 -> 12, r4.quot 288 -> 8, r4.qtree 9 -> 3, r4.handoff 135 -> 14; wiring 112
+cell laws r4m: r4m.cell1 648 -> 3, r4m.cell2 27 -> 3, r4m.quot 576 -> 6, r4m.handoff 135 -> 4; wiring 24
+cell laws: core 16,374,576,384 -> 20,352 machines to screen in C0 (7,113 sub-block machines, 0.5s)
+C0 r2: 55,296 (2^15.8) machines vs law id: 3,456 survivors, 0.5s, 1.86e+05 machine-rows/s
+C0 r2: 3,456 (2^11.8) machines vs law comm: 3,456 survivors, 0.4s, 7.27e+04 machine-rows/s
+C0 r2m: 3,072 (2^11.6) machines vs law id: 192 survivors, 0.4s, 1.2e+04 machine-rows/s
+C0 r2m: 192 (2^7.6) machines vs law comm: 192 survivors, 0.4s, 4.65e+03 machine-rows/s
+C0 r4: 86,016 (2^16.4) machines vs law id: 5,376 survivors, 0.4s, 3.21e+05 machine-rows/s
+C0 r4: 5,376 (2^12.4) machines vs law comm: 5,376 survivors, 0.3s, 1.34e+05 machine-rows/s
+C0 r4m: 18,432 (2^14.2) machines vs law id: 1,152 survivors, 0.4s, 7.3e+04 machine-rows/s
+C0 r4m: 1,152 (2^10.2) machines vs law comm: 1,152 survivors, 0.3s, 2.95e+04 machine-rows/s
+C0: 162,816 (2^17.3) core machines x 8 entry/exit contexts vs laws ['id', 'comm'] (no labels): 10,176 survivors {'r2': 3456, 'r2m': 192, 'r4': 5376, 'r4m': 1152}, 3.2s
+C: 244,224 (2^17.9) machines vs 64 T=1 labels: 30528 survivors {'r2': 10368, 'r2m': 576, 'r4': 16128, 'r4m': 3456}, 2.9s, 8.68e+05 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [22, 24, 26, 28], 'Kx': [22, 24, 26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a'], 'l1src': [(0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0)], 'l2src': [(0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0)], 'l2sh': [(0, 0, 1), (0, 1, 0), (1, 0, 0), (1, 1, 2), (1, 2, 1), (2, 1, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'r2msh': [(0, 0, 0), (1, 1, 1)], 'Km': [22, 24, 26, 28], 'W': [24, 26, 28], 'cw': [5, 6, 7]}
+machines evaluated 190,164,105 = 2^27.5 (stage C alone without C0: 3,143,918,665,728 = 2^41.5)

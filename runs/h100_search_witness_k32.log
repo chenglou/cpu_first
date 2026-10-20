@@ -1,0 +1,24 @@
+--- all
+   before: {'machines': 53440, 'certify': 37232, 'not_certify': 16208}
+   value laws: {'machines': 53440, 'certify': 37232, 'not_certify': 16208}
+   width law: {'machines': 34560, 'certify': 34560, 'not_certify': 0}
+   value + width: {'machines': 34560, 'certify': 34560, 'not_certify': 0}
+   value laws by digit scale: {'0': {'machines': 29760, 'certify': 23808, 'not_certify': 5952}, '1': {'machines': 0, 'certify': 0, 'not_certify': 0}, '2': {'machines': 23680, 'certify': 13424, 'not_certify': 10256}}
+   value law failures: {}
+   width law failures: {'MonPro outputs can leave [0, 2N)': 15424, 'hand-off sum row into W = 26': 2352, 'hand-off carry row into W = 26': 912, 'precomputed 3b beyond W = 26': 192}
+cell laws 2.2s, width law 22.1s for 53,440 machines
+witness rows: 8192 random near 2^24, chains {26: {'threshold': 25161728, 16687189: {'past_threshold': 237, 'max_s_over_N': 1.5325, 'top_kept_down_to': 1.5325}, 16572641: {'past_threshold': 471, 'max_s_over_N': 1.5362, 'top_kept_down_to': 1.5362}, 16524029: {'past_threshold': 0, 'max_s_over_N': 1.5108, 'top_kept_down_to': 1.5108}, 16474457: {'past_threshold': 0, 'max_s_over_N': 1.5209, 'top_kept_down_to': 1.5173}}, 28: {'threshold': 17379490, 16687189: {'past_threshold': 2232488, 'max_s_over_N': 1.0697, 'top_kept_down_to': 1.069}, 16572641: {'past_threshold': 1042720, 'max_s_over_N': 1.069, 'top_kept_down_to': 1.069}, 16524029: {'past_threshold': 670516, 'max_s_over_N': 1.0693, 'top_kept_down_to': 1.0683}, 16474457: {'past_threshold': 384241, 'max_s_over_N': 1.0685, 'top_kept_down_to': 1.068}}, 30: {'threshold': 16912551, 16687189: {'past_threshold': 82484, 'max_s_over_N': 1.0158, 'top_kept_down_to': 1.0158}, 16572641: {'past_threshold': 0, 'max_s_over_N': 1.0158, 'top_kept_down_to': 1.0158}, 16524029: {'past_threshold': 0, 'max_s_over_N': 1.0158, 'top_kept_down_to': 1.0158}, 16474457: {'past_threshold': 0, 'max_s_over_N': 1.0156, 'top_kept_down_to': 1.0155}}, 32: {'threshold': 16810242, 16687189: {'past_threshold': 0, 'max_s_over_N': 1.0039, 'top_kept_down_to': 1.0039}, 16572641: {'past_threshold': 0, 'max_s_over_N': 1.0038, 'top_kept_down_to': 1.0038}, 16524029: {'past_threshold': 0, 'max_s_over_N': 1.0038, 'top_kept_down_to': 1.0038}, 16474457: {'past_threshold': 0, 'max_s_over_N': 1.0038, 'top_kept_down_to': 1.0038}}}
+   witness rows random (8192): machines with a wrong row 17,488 (544s)
+   witness rows chain R=2^26 (1768): machines with a wrong row 16,704 (587s)
+   witness rows chain R=2^28 (3139): machines with a wrong row 17,968 (661s)
+   witness rows chain R=2^30 (1969): machines with a wrong row 18,000 (709s)
+   witness rows chain R=2^32 (1576): machines with a wrong row 16,944 (747s)
+--- witness rows {'random': 8192, 'chain R=2^26': 1768, 'chain R=2^28': 3139, 'chain R=2^30': 1969, 'chain R=2^32': 1576} (747s)
+   certify | value ok e=0 | width FAIL | WITNESS: 96
+   certify | value ok e=0 | width ok | no witness: 23712
+   certify | value ok e=2 | width FAIL | WITNESS: 1968
+   certify | value ok e=2 | width FAIL | no witness: 608
+   certify | value ok e=2 | width ok | no witness: 10848
+   not certify | value ok e=0 | width FAIL | WITNESS: 5952
+   not certify | value ok e=2 | width FAIL | WITNESS: 10256
+   width law = witness/no witness on 52,832 of 53,440

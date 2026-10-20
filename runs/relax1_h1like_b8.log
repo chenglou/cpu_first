@@ -1,0 +1,10 @@
+h1like b=8: 936324 step pairs, 64 pool moduli, 0 unseen
+model params=798996 W=3 K=12 layers=1 d=256 device=mps
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/relax_step.py:203: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:839.)
+  log.append({"step": step, "loss": float(loss), "time": el, **accs})
+step 1000 loss 0.3710 fresh=0.2283 pool=0.2360 t=966s
+step 2000 loss 0.1497 fresh=0.3724 pool=0.3743 t=1858s
+step 3000 loss 0.0478 fresh=0.4934 pool=0.4989 t=2741s
+step 4000 loss 0.0538 fresh=0.6127 pool=0.6095 t=3626s
+step 5000 loss 0.0080 fresh=0.7030 pool=0.7109 t=4549s

@@ -1,0 +1,36 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_step.py args=['--data', 'h1', '--steps', '12000', '--eval_every', '1000', '--K', '12', '--device', 'cuda']
+h1 real: 936324 step pairs from 101999 rows, 430 moduli
+model params=798996 W=8 K=12 layers=1 d=256 device=cuda
+/root/cpu_first/relax_step.py:203: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  log.append({"step": step, "loss": float(loss), "time": el, **accs})
+step 1000 loss 1.3856 pool=0.0000 t=42s
+step 2000 loss 1.3575 pool=0.0000 t=83s
+step 3000 loss 1.3783 pool=0.0000 t=124s
+step 4000 loss 1.3680 pool=0.0000 t=165s
+step 5000 loss 1.3693 pool=0.0000 t=206s
+step 6000 loss 1.3506 pool=0.0001 t=247s
+step 7000 loss 1.3587 pool=0.0005 t=289s
+step 8000 loss 1.3565 pool=0.0004 t=330s
+step 9000 loss 1.3546 pool=0.0005 t=372s
+step 10000 loss 1.3459 pool=0.0004 t=414s
+step 11000 loss 1.3424 pool=0.0004 t=456s
+step 12000 loss 1.3318 pool=0.0004 t=497s
+single-step exact (pool, 100k): 0.00054
+  depth_t T=1   exact=0.0039
+  depth_t T=2   exact=0.0000
+  depth_t T=4   exact=0.0013
+  depth_t T=8   exact=0.0000
+  depth_t T=16  exact=0.0000
+  depth_t T=32  exact=0.0013
+  depth_t T=64  exact=0.0000
+  depth_ood_n_t T=1   exact=0.0013
+  depth_ood_n_t T=2   exact=0.0000
+  depth_ood_n_t T=4   exact=0.0000
+  depth_ood_n_t T=8   exact=0.0000
+  depth_ood_n_t T=16  exact=0.0000
+  depth_ood_n_t T=32  exact=0.0000
+  depth_ood_n_t T=64  exact=0.0013
+done {"params": 798996, "train_time": 497.28800773620605, "single_step_pool_100k": 0.00054, "depth_t": {"max_t": 0, "accs": {"1": 0.00390625, "2": 0.0, "4": 0.0013020833333333333, "8": 0.0, "16": 0.0, "32": 0.0013020833333333333, "64": 0.0}}, "depth_ood_n_t": {"max_t": 0, "accs": {"1": 0.0013020833333333333, "2": 0.0, "4": 0.0, "8": 0.0, "16": 0.0, "32": 0.0, "64": 0.0013020833333333333}}, "total_time": 505.14284086227417}
+
+exit code 0, wall 516s

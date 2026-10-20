@@ -1,0 +1,14 @@
+q3_ht_st_b8 sqmod --size 8 --model ht --est st --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_pre_b8 sqmod --size 8 --model ht --aux pre --final_weight 0 --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_local_b8 sqmod --size 8 --model ht --est local --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_rf_b8 sqmod --size 8 --model ht --est rf --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_pre+st_b8 sqmod --size 8 --model ht --aux pre --est st --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_basin_st_b8 sqmod --size 8 --model ht --aux pre --aux_sched down:0.5 --final_sched up:0.5 --est st --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_basin_local_b8 sqmod --size 8 --model ht --aux pre --aux_sched down:0.5 --final_sched up:0.5 --est local --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_st_b10 sqmod --size 10 --model ht --est st --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_pre_b10 sqmod --size 10 --model ht --aux pre --final_weight 0 --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_local_b10 sqmod --size 10 --model ht --est local --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_rf_b10 sqmod --size 10 --model ht --est rf --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_pre+st_b10 sqmod --size 10 --model ht --aux pre --est st --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_basin_st_b10 sqmod --size 10 --model ht --aux pre --aux_sched down:0.5 --final_sched up:0.5 --est st --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3
+q3_ht_basin_local_b10 sqmod --size 10 --model ht --aux pre --aux_sched down:0.5 --final_sched up:0.5 --est local --holdout 8 --threads 2 --steps 2000 --eval_every 250 --tag q3

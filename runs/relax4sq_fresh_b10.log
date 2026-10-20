@@ -1,0 +1,10 @@
+model params=798996 W=4 K=12 layers=1 d=256 device=mps
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/relax_step.py:203: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:839.)
+  log.append({"step": step, "loss": float(loss), "time": el, **accs})
+step 1000 loss 1.5349 fresh=0.0430 square=0.9861 t=1327s
+step 2000 loss 1.5446 fresh=0.0453 square=0.9967 t=2479s
+step 3000 loss 1.5051 fresh=0.0554 square=0.9977 t=3596s
+step 4000 loss 1.4478 fresh=0.0692 square=0.9958 t=4625s
+step 5000 loss 1.4277 fresh=0.0795 square=0.9990 t=5646s
+stopped at step 5000 on purpose: y-exact tracks the answer-only run (8.0% vs 8.1% at step 5000) while s^2 is 99.9% exact

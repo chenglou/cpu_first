@@ -1,0 +1,12 @@
+rung_low_value_none unfold.py rung --rung_init low --rung_kinds value --schedules none --bits_list 8 12 16 20 --seeds 5
+rung_low_value_oracle unfold.py rung --rung_init low --rung_kinds value --schedules oracle --bits_list 8 12 16 20 --seeds 5
+rung_low_value_self unfold.py rung --rung_init low --rung_kinds value --schedules self --bits_list 8 12 16 20 --seeds 5
+rung_low_tied_none unfold.py rung --rung_init low --rung_kinds tied --schedules none --bits_list 8 12 16 20 --seeds 5
+rung_low_tied_oracle unfold.py rung --rung_init low --rung_kinds tied --schedules oracle --bits_list 8 12 16 20 --seeds 5
+rung_low_tied_self unfold.py rung --rung_init low --rung_kinds tied --schedules self --bits_list 8 12 16 20 --seeds 5
+rung_low_untied_none unfold.py rung --rung_init low --rung_kinds untied --schedules none --bits_list 8 12 16 20 --seeds 5
+rung_low_untied_oracle unfold.py rung --rung_init low --rung_kinds untied --schedules oracle --bits_list 8 12 16 20 --seeds 5
+rung_low_untied_self unfold.py rung --rung_init low --rung_kinds untied --schedules self --bits_list 8 12 16 20 --seeds 5
+rung_low_h1_value unfold.py rung --rung_init low --data h1 --rung_kinds value --seeds 5
+rung_low_h1_tied unfold.py rung --rung_init low --data h1 --rung_kinds tied --seeds 5
+rung_low_h1_untied unfold.py rung --rung_init low --data h1 --rung_kinds untied --seeds 5

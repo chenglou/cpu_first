@@ -1,0 +1,9 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '6', '--data', 'h1like', '--fmt', 'v2', '--steps', '60', '--eval_every', '30', '--eval_n', '64', '--final_n', '256', '--ladder_only_if_exact', '--device', 'cuda']
+W=2 L=96 trace lines=22 params=4750868 data=h1like curriculum=none fmt=v2
+h1like: 936324 step traces, 16 pool moduli, 0 unseen
+step 30 loss 2.0738 tf_seq 0.000 pool: ans=0.0312 trace=0.0000 firsterr={'P': 64} t=1s
+step 60 loss 1.8736 tf_seq 0.000 pool: ans=0.0156 trace=0.0000 firsterr={'P': 64} t=1s
+final single-step (pool moduli): (0.03125, 0.0, {'P': 200})
+done {"params": 4750868, "L": 96, "train_time": 1.4982478618621826, "single_step_pool": [0.03125, 0.0, {"P": 200}], "total_time": 1.7813501358032227}
+
+exit code 0, wall 10s

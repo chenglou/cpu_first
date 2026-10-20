@@ -1,0 +1,48 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-flcdYVxY8JwEMlgKVk75JF
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_preremainder_modal.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_preremainder.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /run.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /tasks.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /models.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /__init__.py
+└── 🔨 Created function cell.
+Runner terminated (SIGTERM), exit code: 143.
+sqmod@8 xf pool1000 seed0: exact 0.133  ho 0.048  train 1.000  ood@9 0.015  digits(lo->hi) [0.29 0.22 0.57]  by_q 0:0.43 1:0.09 2-3:0.13 4+:0.11  ho by_q 0:0.42 1:0.00 2-3:0.00 4+:0.02  curve 0.13 0.12 0.15  274.9s
+done q3_xf_b8_pool_cmp: sqmod@8 xf pool1000 seed0: exact 0.133  ho 0.048  train 1.000  ood@9 0.015  digits(lo->hi) [0.29 0.22 0.57]  by_q 0:0.43 1:0.09 2-3:0.13 4+:0.11  ho by_q 0:0.42 1:0.00 2-3:0.00 4+:0.02  curve 0.13 0.1
+sqmod@6 ht[best] seed0: exact 0.925  ho 0.019  digits(lo->hi) [0.95 0.97]  by_q 0:0.94 1:0.90 2-3:0.87 4+:0.93  ho by_q 0:0.00 1:0.00 2-3:0.08 4+:0.02  pre 0.000 [0.23 0.12 0.06 0.05] cong 0.925 <N 0.005  curve 0.26/0.00 0.94/0.00 0.93/0.00  247.2s
+done q3_ht_best_b6: sqmod@6 ht[best] seed0: exact 0.925  ho 0.019  digits(lo->hi) [0.95 0.97]  by_q 0:0.94 1:0.90 2-3:0.87 4+:0.93  ho by_q 0:0.00 1:0.00 2-3:0.08 4+:0.02  pre 0.000 [0.23 0.12 0.06 0.05] cong 0.925 <N 0.
+sqmod@8 ht[best] seed1: exact 0.190  ho 0.195  ood@9 0.088  digits(lo->hi) [0.37 0.28 0.56]  by_q 0:1.00 1:1.00 2-3:1.00 4+:0.05  ho by_q 0:1.00 1:1.00 2-3:1.00 4+:0.06  pre 0.168 [0.24 0.28 0.24 0.22 0.35 0.59] cong 0.190 <N 0.339  curve 0.12/0.10 0.21/0.19 0.16/0.13  369.7s
+done q3_ht_best_b8_s1: sqmod@8 ht[best] seed1: exact 0.190  ho 0.195  ood@9 0.088  digits(lo->hi) [0.37 0.28 0.56]  by_q 0:1.00 1:1.00 2-3:1.00 4+:0.05  ho by_q 0:1.00 1:1.00 2-3:1.00 4+:0.06  pre 0.168 [0.24 0.28 0.24 0.22
+sqmod@8 ht[best] pool1000 seed0: exact 0.189  ho 0.110  train 0.887  ood@9 0.055  digits(lo->hi) [0.34 0.28 0.59]  by_q 0:0.92 1:0.47 2-3:0.46 4+:0.10  ho by_q 0:0.88 1:0.54 2-3:0.26 4+:0.01  pre 0.105 [0.30 0.21 0.19 0.22 0.46 0.76] cong 0.189 <N 0.510  curve 0.12/0.11 0.17/0.12 0.17/0.08  394.9s
+done q3_ht_best_b8_pool: sqmod@8 ht[best] pool1000 seed0: exact 0.189  ho 0.110  train 0.887  ood@9 0.055  digits(lo->hi) [0.34 0.28 0.59]  by_q 0:0.92 1:0.47 2-3:0.46 4+:0.10  ho by_q 0:0.88 1:0.54 2-3:0.26 4+:0.01  pre 0.10
+sqmod@8 ht[best] seed0: exact 0.418  ho 0.386  ood@9 0.118  digits(lo->hi) [0.61 0.48 0.72]  by_q 0:1.00 1:1.00 2-3:1.00 4+:0.32  ho by_q 0:1.00 1:1.00 2-3:1.00 4+:0.28  pre 0.210 [0.33 0.34 0.30 0.29 0.43 0.73] cong 0.418 <N 0.137  curve 0.16/0.15 0.20/0.19 0.17/0.13 0.29/0.18 0.29/0.17 0.30/0.17 0.35/0.24 0.40/0.23 0.41/0.21 0.36/0.19 0.42/0.21  929.8s
+done q3_ht_best_b8_6k: sqmod@8 ht[best] seed0: exact 0.418  ho 0.386  ood@9 0.118  digits(lo->hi) [0.61 0.48 0.72]  by_q 0:1.00 1:1.00 2-3:1.00 4+:0.32  ho by_q 0:1.00 1:1.00 2-3:1.00 4+:0.28  pre 0.210 [0.33 0.34 0.30 0.29
+sqmod@8 xf seed0: exact 1.000  ho 0.138  ood@9 0.039  digits(lo->hi) [1.00 1.00 1.00]  by_q 0:1.00 1:1.00 2-3:1.00 4+:1.00  ho by_q 0:0.98 1:0.42 2-3:0.00 4+:0.05  curve 0.08 0.11 0.17 0.31 0.51 0.68 0.80 0.94 0.98 1.00 1.00  934.3s
+done q3_xf_b8_6k: sqmod@8 xf seed0: exact 1.000  ho 0.138  ood@9 0.039  digits(lo->hi) [1.00 1.00 1.00]  by_q 0:1.00 1:1.00 2-3:1.00 4+:1.00  ho by_q 0:0.98 1:0.42 2-3:0.00 4+:0.05  curve 0.08 0.11 0.17 0.31 0.51 0.68 
+sqmod@10 ht[best] seed0: exact 0.041  ho 0.046  ood@11 0.021  digits(lo->hi) [0.21 0.14 0.16 1.00]  by_q 0:1.00 1:0.17 2-3:0.00 4+:0.00  ho by_q 0:0.97 1:0.30 2-3:0.00 4+:0.00  pre 0.036 [0.30 0.24 0.14 0.14 0.15 0.25 0.38 0.41] cong 0.041 <N 0.170  curve 0.00/0.00 0.00/0.00 0.00/0.00 0.00/0.00 0.00/0.00 0.01/0.00 0.05/0.05 0.04/0.04 0.04/0.04 0.05/0.05 0.05/0.05  1223.3s
+done q3_ht_best_b10_6k: sqmod@10 ht[best] seed0: exact 0.041  ho 0.046  ood@11 0.021  digits(lo->hi) [0.21 0.14 0.16 1.00]  by_q 0:1.00 1:0.17 2-3:0.00 4+:0.00  ho by_q 0:0.97 1:0.30 2-3:0.00 4+:0.00  pre 0.036 [0.30 0.24 0.
+sqmod@8 ht[st] seed0: exact 0.030  ho 0.029  ood@9 0.016  digits(lo->hi) [0.20 0.14 0.52]  by_q 0:0.26 1:0.00 2-3:0.01 4+:0.01  ho by_q 0:0.22 1:0.00 2-3:0.00 4+:0.01  pre 0.018 [0.31 0.28 0.14 0.19 0.25 0.32] cong 0.030 <N 0.241  curve 0.03/0.01 0.02/0.01 0.02/0.01 0.03/0.02 0.02/0.01 0.02/0.01 0.02/0.01 0.02/0.01 0.03/0.01 0.03/0.02 0.03/0.02  1228.5s
+done q3_ht_st_b8_6k: sqmod@8 ht[st] seed0: exact 0.030  ho 0.029  ood@9 0.016  digits(lo->hi) [0.20 0.14 0.52]  by_q 0:0.26 1:0.00 2-3:0.01 4+:0.01  ho by_q 0:0.22 1:0.00 2-3:0.00 4+:0.01  pre 0.018 [0.31 0.28 0.14 0.19 0
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-flcdYVxY8JwEMlgKVk75JF

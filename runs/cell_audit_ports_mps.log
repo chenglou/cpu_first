@@ -1,0 +1,15 @@
+--- all
+   before: {'machines': 45216, 'certify': 4016, 'not_certify': 41200}
+   value laws: {'machines': 30528, 'certify': 3392, 'not_certify': 27136}
+   width law: {'machines': 9888, 'certify': 3296, 'not_certify': 6592}
+   value + width: {'machines': 9888, 'certify': 3296, 'not_certify': 6592}
+   value law failures: {'r4.cell1': 12096, 'r4m.cell1': 2592}
+   width law failures: {'MonPro outputs can leave [0, 2N)': 25056, 'hand-off carry row into W = 24': 2592, 'precomputed b + N beyond W = 24': 96, 'hand-off sum row into W = 24': 2256, 'cell 2 carry row << 1': 2448, 'cell 3 carry row << 1': 720, 'hand-off carry row into W = 26': 432, 'precomputed 2b beyond W = 24': 864, 'precomputed 3b beyond W = 26': 576, 'cell 1 port 2 << 2': 288}
+--- after semigroup 32+32 (edge)
+   before: {'machines': 4480, 'certify': 4016, 'not_certify': 464}
+   value laws: {'machines': 3392, 'certify': 3392, 'not_certify': 0}
+   width law: {'machines': 3296, 'certify': 3296, 'not_certify': 0}
+   value + width: {'machines': 3296, 'certify': 3296, 'not_certify': 0}
+   value law failures: {'r4.cell1': 896, 'r4m.cell1': 192}
+   width law failures: {'cell 2 carry row << 1': 592, 'cell 3 carry row << 1': 160, 'hand-off carry row into W = 26': 144, 'precomputed 3b beyond W = 26': 192, 'cell 1 port 2 << 2': 96}
+cell laws 0.6s, width law 2.3s for 45,216 machines

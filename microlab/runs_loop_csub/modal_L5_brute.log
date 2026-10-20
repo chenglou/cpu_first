@@ -1,0 +1,290 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-NQob1AXQzgyzjNjmnFbRaf
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_loop_csub_modal.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/h1.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f
+│   53/scratchpad/data/h1
+└── 🔨 Created function spec.
+[modal cpu=32] L=5 raw bodies 168,608,563,200 (2^37.3), K=32, workers=31, chunk=1024, job slice None; first label N=54253 x=39215
+    depth 1: 70 partial bodies -> 70 bodies (no merging) (0.0s)
+    depth 2: 6,532 partial bodies -> 6,532 bodies (no merging) (0.0s)
+    depth 3: 787,055 partial bodies -> 787,055 bodies (no merging) (1.4s)
+    jobs 38/769: 13,245,986 candidates, 13,245,986 loop runs, label-1 survivors 0, 4.2s (eta 55s)
+    jobs 76/769: 25,998,448 candidates, 25,998,448 loop runs, label-1 survivors 0, 5.4s (eta 36s)
+    jobs 114/769: 39,890,410 candidates, 39,890,410 loop runs, label-1 survivors 0, 6.4s (eta 29s)
+    jobs 152/769: 52,893,701 candidates, 52,893,701 loop runs, label-1 survivors 2, 7.2s (eta 23s)
+    jobs 190/769: 65,317,550 candidates, 65,317,550 loop runs, label-1 survivors 2, 8.2s (eta 21s)
+    jobs 228/769: 78,717,123 candidates, 78,717,123 loop runs, label-1 survivors 2, 9.3s (eta 19s)
+    jobs 266/769: 91,744,507 candidates, 91,744,507 loop runs, label-1 survivors 5, 10.4s (eta 17s)
+    jobs 304/769: 104,443,103 candidates, 104,443,103 loop runs, label-1 survivors 5, 11.3s (eta 15s)
+    jobs 342/769: 117,734,502 candidates, 117,734,502 loop runs, label-1 survivors 5, 12.3s (eta 14s)
+    jobs 380/769: 130,970,011 candidates, 130,970,011 loop runs, label-1 survivors 5, 13.1s (eta 12s)
+    jobs 418/769: 143,698,092 candidates, 143,698,092 loop runs, label-1 survivors 5, 14.3s (eta 11s)
+    jobs 456/769: 156,676,688 candidates, 156,676,688 loop runs, label-1 survivors 5, 15.2s (eta 9s)
+    jobs 494/769: 170,184,170 candidates, 170,184,170 loop runs, label-1 survivors 5, 16.2s (eta 8s)
+    jobs 532/769: 183,167,392 candidates, 183,167,392 loop runs, label-1 survivors 6, 17.5s (eta 7s)
+    jobs 570/769: 196,459,387 candidates, 196,459,387 loop runs, label-1 survivors 6, 18.2s (eta 6s)
+    jobs 608/769: 211,267,299 candidates, 211,267,299 loop runs, label-1 survivors 7, 19.3s (eta 5s)
+    jobs 646/769: 225,257,588 candidates, 225,257,588 loop runs, label-1 survivors 7, 20.4s (eta 4s)
+    jobs 684/769: 239,476,389 candidates, 239,476,389 loop runs, label-1 survivors 7, 21.3s (eta 2s)
+    jobs 722/769: 254,721,701 candidates, 254,721,701 loop runs, label-1 survivors 7, 22.5s (eta 1s)
+    jobs 760/769: 268,975,788 candidates, 268,975,788 loop runs, label-1 survivors 13, 23.7s (eta 0s)
+    jobs 769/769: 272,637,962 candidates, 272,637,962 loop runs, label-1 survivors 20, 23.9s (eta 0s)
+  L=5 (brute force, nothing merged): 168,608,563,200 raw bodies (2^37.3); 272,637,962 non-redundant; distinct functions on 32 probes: 3,365,584 (exact); 272,637,962 (state, last instruction) candidates, 272,637,962 loop runs; 24.0s wall (cpu: enumerate 287.0s, loop 347.2s)
+  consistent with the first k labels (raw bodies): k=0:272,637,962, k=1:20, k=2:20, k=3:20, k=4:12, k=5:12, k=6:12, k=7:12, k=8:12
+  distinct functions: k=0:3,365,584, k=1:2, k=2:2, k=3:2, k=4:1, k=5:1, k=6:1, k=7:1, k=8:1
+    after 1 labels: 2 functions (20 bodies), 1 correct on fresh 13/16/20/24-bit rows (12 bodies)
+    after 2 labels: 2 functions (20 bodies), 1 correct on fresh 13/16/20/24-bit rows (12 bodies)
+    after 3 labels: 2 functions (20 bodies), 1 correct on fresh 13/16/20/24-bit rows (12 bodies)
+    after 4 labels: 1 functions (12 bodies), 1 correct on fresh 13/16/20/24-bit rows (12 bodies)
+    after 5 labels: 1 functions (12 bodies), 1 correct on fresh 13/16/20/24-bit rows (12 bodies)
+    after 6 labels: 1 functions (12 bodies), 1 correct on fresh 13/16/20/24-bit rows (12 bodies)
+    after 7 labels: 1 functions (12 bodies), 1 correct on fresh 13/16/20/24-bit rows (12 bodies)
+    after 8 labels: 1 functions (12 bodies), 1 correct on fresh 13/16/20/24-bit rows (12 bodies)
+    after 1000 labels: 1 functions (12 bodies), 1 correct on fresh 13/16/20/24-bit rows (12 bodies)
+    CORRECT    x12     t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)  fresh24=1.000
+    rows 3     x8      t0=csub(s); t1=add(t0,t0); t2=mul(x,d); t3=add(t1,t2); t4=csub(t3)  fresh24=0.885
+    raw body CORRECT    t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=mul(x,d); t1=add(s,t0); t2=add(s,t1); t3=csub(t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=mul(x,d); t1=add(s,s); t2=csub(t1); t3=add(t0,t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=mul(x,d); t1=add(s,t0); t2=csub(t1); t3=add(s,t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=add(s,s); t1=mul(x,d); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=add(s,s); t1=mul(x,d); t2=csub(t0); t3=add(t1,t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=mul(s,2); t1=mul(x,d); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=mul(x,d); t1=mul(s,2); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=add(s,s); t1=csub(t0); t2=mul(x,d); t3=add(t1,t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=mul(s,2); t1=csub(t0); t2=mul(x,d); t3=add(t1,t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=mul(s,2); t1=mul(x,d); t2=csub(t0); t3=add(t1,t2); t4=csub(t3)  fresh24=1.000
+    raw body CORRECT    t0=mul(x,d); t1=mul(s,2); t2=csub(t1); t3=add(t0,t2); t4=csub(t3)  fresh24=1.000
+    raw body rows 3     t0=csub(s); t1=add(t0,t0); t2=mul(x,d); t3=add(t1,t2); t4=csub(t3)  fresh24=0.885
+    raw body rows 3     t0=csub(s); t1=mul(x,d); t2=add(t0,t0); t3=add(t1,t2); t4=csub(t3)  fresh24=0.885
+    raw body rows 3     t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=add(t0,t2); t4=csub(t3)  fresh24=0.885
+    raw body rows 3     t0=mul(x,d); t1=csub(s); t2=add(t0,t1); t3=add(t1,t2); t4=csub(t3)  fresh24=0.885
+    raw body rows 3     t0=mul(x,d); t1=csub(s); t2=add(t1,t1); t3=add(t0,t2); t4=csub(t3)  fresh24=0.885
+    raw body rows 3     t0=csub(s); t1=mul(x,d); t2=mul(2,t0); t3=add(t1,t2); t4=csub(t3)  fresh24=0.885
+    raw body rows 3     t0=csub(s); t1=mul(2,t0); t2=mul(x,d); t3=add(t1,t2); t4=csub(t3)  fresh24=0.885
+    raw body rows 3     t0=mul(x,d); t1=csub(s); t2=mul(2,t1); t3=add(t0,t2); t4=csub(t3)  fresh24=0.885
+  depth_t T=1   exact=1.0000
+  depth_t T=2   exact=1.0000
+  depth_t T=4   exact=1.0000
+  depth_t T=8   exact=1.0000
+  depth_t T=16  exact=1.0000
+  depth_t T=32  exact=1.0000
+  depth_t T=64  exact=1.0000
+  depth_ood_n_t T=1   exact=1.0000
+  depth_ood_n_t T=2   exact=1.0000
+  depth_ood_n_t T=4   exact=1.0000
+  depth_ood_n_t T=8   exact=1.0000
+  depth_ood_n_t T=16  exact=1.0000
+  depth_ood_n_t T=32  exact=1.0000
+  depth_ood_n_t T=64  exact=1.0000
+  certified t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=csub(t2); t4=csub(t3): {'depth_t': 64, 'depth_ood_n_t': 64}
+{
+ "L": 5,
+ "merge": false,
+ "space": 168608563200,
+ "levels": [
+  {
+   "depth": 1,
+   "partial": 70,
+   "states": 70,
+   "raw": 70.0
+  },
+  {
+   "depth": 2,
+   "partial": 6532,
+   "states": 6532,
+   "raw": 6532.0
+  },
+  {
+   "depth": 3,
+   "partial": 787055,
+   "states": 787055,
+   "raw": 787055.0
+  }
+ ],
+ "raw": 272637962.0,
+ "bodies": 272637962,
+ "loop_runs": 272637962,
+ "functions_exact": 3365584,
+ "functions_hll": 3375169.4595193937,
+ "functions_chunk_local": 41471268,
+ "curve_raw": [
+  272637962.0,
+  20.0,
+  20.0,
+  20.0,
+  12.0,
+  12.0,
+  12.0,
+  12.0,
+  12.0
+ ],
+ "curve_fn": [
+  3365584,
+  2,
+  2,
+  2,
+  1,
+  1,
+  1,
+  1,
+  1
+ ],
+ "seconds": 23.970255851745605,
+ "wall": 29.263638496398926,
+ "t_enum_cpu": 286.9536657333374,
+ "t_loop_cpu": 347.2263491153717,
+ "jobs": 769,
+ "jobs_total": 769,
+ "survivor_table": [
+  {
+   "k": 1,
+   "functions": 2,
+   "raw": 20.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 2,
+   "functions": 2,
+   "raw": 20.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 3,
+   "functions": 2,
+   "raw": 20.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 4,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 5,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 6,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 7,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 8,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 1000,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  }
+ ],
+ "raw_table": [
+  {
+   "k": 1,
+   "functions": 20,
+   "raw": 20.0,
+   "correct_functions": 12,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 2,
+   "functions": 20,
+   "raw": 20.0,
+   "correct_functions": 12,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 3,
+   "functions": 20,
+   "raw": 20.0,
+   "correct_functions": 12,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 4,
+   "functions": 12,
+   "raw": 12.0,
+   "correct_functions": 12,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 5,
+   "functions": 12,
+   "raw": 12.0,
+   "correct_functions": 12,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 6,
+   "functions": 12,
+   "raw": 12.0,
+   "correct_functions": 12,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 7,
+   "functions": 12,
+   "raw": 12.0,
+   "correct_functions": 12,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 8,
+   "functions": 12,
+   "raw": 12.0,
+   "correct_functions": 12,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 1000,
+   "functions": 12,
+   "raw": 12.0,
+   "correct_functions": 12,
+   "correct_raw": 12.0
+  }
+ ],
+ "certified": {
+  "body": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)",
+  "depth_t": 64,
+  "depth_ood_n_t": 64
+ }
+}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-NQob1AXQzgyzjNjmnFbRaf

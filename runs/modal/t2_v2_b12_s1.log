@@ -1,0 +1,16 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '12', '--fmt', 'v2', '--steps', '8000', '--seed', '1', '--data', 'h1like', '--eval_every', '1000', '--eval_n', '512', '--final_n', '20000', '--ladder_only_if_exact', '--device', 'cuda']
+W=4 L=210 trace lines=34 params=4752405 data=h1like curriculum=none fmt=v2
+h1like: 936324 step traces, 430 pool moduli, 594 unseen
+step 1000 loss 0.0056 tf_seq 0.688 pool: ans=0.5586 trace=0.5430 firsterr={'Q': 82, 'P': 83, 'A': 15, 'M': 14, 'C': 4, 'R': 2} unseen: ans=0.5156 trace=0.4219 firsterr={'P': 58, 'Q': 52, 'M': 66, 'A': 21, 'R': 2, 'C': 1} t=21s
+step 2000 loss 0.0032 tf_seq 0.734 pool: ans=0.7637 trace=0.7559 firsterr={'Q': 89, 'A': 13, 'P': 12, 'C': 5, 'M': 6} unseen: ans=0.7422 trace=0.7148 firsterr={'Q': 93, 'M': 27, 'P': 9, 'E': 1, 'A': 9, 'R': 4, 'C': 3} t=41s
+step 3000 loss 0.0028 tf_seq 0.797 pool: ans=0.8242 trace=0.8223 firsterr={'Q': 80, 'P': 7, 'M': 2, 'A': 1, 'R': 1} unseen: ans=0.8438 trace=0.8418 firsterr={'Q': 68, 'E': 1, 'M': 4, 'P': 3, 'R': 5} t=62s
+step 4000 loss 0.0010 tf_seq 0.891 pool: ans=0.9043 trace=0.9043 firsterr={'Q': 48, 'A': 1} unseen: ans=0.8984 trace=0.8984 firsterr={'Q': 52} t=82s
+step 5000 loss 0.0009 tf_seq 0.891 pool: ans=0.9297 trace=0.9297 firsterr={'Q': 36} unseen: ans=0.9004 trace=0.8984 firsterr={'Q': 51, 'M': 1} t=102s
+step 6000 loss 0.0004 tf_seq 0.984 pool: ans=0.9609 trace=0.9609 firsterr={'Q': 20} unseen: ans=0.9414 trace=0.9414 firsterr={'Q': 30} t=122s
+step 7000 loss 0.0001 tf_seq 1.000 pool: ans=0.9785 trace=0.9785 firsterr={'Q': 11} unseen: ans=0.9648 trace=0.9648 firsterr={'Q': 18} t=143s
+step 8000 loss 0.0002 tf_seq 0.984 pool: ans=0.9883 trace=0.9883 firsterr={'Q': 6} unseen: ans=0.9746 trace=0.9727 firsterr={'Q': 13, 'M': 1} t=163s
+final single-step (pool moduli): (0.97705, 0.97705, {'Q': 200})
+final single-step (unseen moduli): (0.97385, 0.97285, {'Q': 195, 'M': 5})
+done {"params": 4752405, "L": 210, "train_time": 163.03420782089233, "single_step_pool": [0.97705, 0.97705, {"Q": 200}], "single_step_unseen": [0.97385, 0.97285, {"Q": 195, "M": 5}], "total_time": 192.25269222259521}
+
+exit code 0, wall 203s

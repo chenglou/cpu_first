@@ -1,0 +1,49 @@
+{
+ "args": {
+  "bits": 6,
+  "data": "h1like",
+  "curriculum": "none",
+  "fmt": "v2",
+  "steps": 60,
+  "batch": 64,
+  "lr": 0.001,
+  "d": 256,
+  "layers": 6,
+  "device": "cuda",
+  "seed": 0,
+  "eval_every": 30,
+  "eval_n": 64,
+  "final_n": 256,
+  "resume": "",
+  "warmup": 300,
+  "ladder_only_if_exact": true,
+  "out": "/runs/smoke_trace_b6.json"
+ },
+ "params": 4750868,
+ "L": 96,
+ "train_time": 1.4982478618621826,
+ "log": [
+  {
+   "step": 30,
+   "loss": 2.0737764835357666,
+   "tf_seq_acc": 0.0,
+   "time": 1.0802533626556396,
+   "pool": 0.03125
+  },
+  {
+   "step": 60,
+   "loss": 1.8736212253570557,
+   "tf_seq_acc": 0.0,
+   "time": 1.4964072704315186,
+   "pool": 0.015625
+  }
+ ],
+ "single_step_pool": [
+  0.03125,
+  0.0,
+  {
+   "P": 200
+  }
+ ],
+ "total_time": 1.7813501358032227
+}

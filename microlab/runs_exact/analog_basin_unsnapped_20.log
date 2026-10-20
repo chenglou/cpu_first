@@ -1,0 +1,21 @@
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:108: RuntimeWarning: divide by zero encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:108: RuntimeWarning: overflow encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:108: RuntimeWarning: invalid value encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:108: RuntimeWarning: divide by zero encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:108: RuntimeWarning: overflow encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab/ext_exact_analog.py:108: RuntimeWarning: invalid value encountered in matmul
+  dv.append(np.sqrt(np.mean((train_rows["xd"] @ (w0x - true)) ** 2)))
+  bits 20 snap 0 sigma 1e-06 (rms error of v_x 1.04e-05, relative 9.9e-12): exact at init 0/6, after training 0/6 (exact on the 1000 training rows: 1/6)
+  bits 20 snap 0 sigma 1e-04 (rms error of v_x 1.04e-03, relative 9.9e-10): exact at init 0/6, after training 0/6 (exact on the 1000 training rows: 0/6)
+  bits 20 snap 0 sigma 1e-03 (rms error of v_x 1.04e-02, relative 9.9e-09): exact at init 0/6, after training 0/6 (exact on the 1000 training rows: 0/6)
+  bits 20 snap 0 sigma 3e-03 (rms error of v_x 3.13e-02, relative 3.0e-08): exact at init 0/6, after training 0/6 (exact on the 1000 training rows: 0/6)
+  bits 20 snap 0 sigma 1e-02 (rms error of v_x 1.04e-01, relative 9.9e-08): exact at init 0/6, after training 0/6 (exact on the 1000 training rows: 0/6)
+  bits 20 snap 0 sigma 3e-02 (rms error of v_x 3.13e-01, relative 3.0e-07): exact at init 0/6, after training 0/6 (exact on the 1000 training rows: 0/6)
+  bits 20 snap 0 sigma 1e-01 (rms error of v_x 1.04e+00, relative 9.9e-07): exact at init 0/6, after training 0/6 (exact on the 1000 training rows: 0/6)
+  bits 20 snap 0 sigma 3e-01 (rms error of v_x 3.13e+00, relative 3.0e-06): exact at init 0/6, after training 0/6 (exact on the 1000 training rows: 0/6)
+  bits 20 snap 0 sigma 1e+00 (rms error of v_x 1.04e+01, relative 9.9e-06): exact at init 0/6, after training 0/6 (exact on the 1000 training rows: 0/6)

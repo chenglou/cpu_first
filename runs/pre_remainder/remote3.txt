@@ -1,0 +1,4 @@
+q1_xf_b8_none_s2 sqmod --size 8 --model xf --holdout 8 --threads 4 --steps 2000 --eval_every 500 --seed0 2 --tag q1
+q1_xf_b8_pre_s2 sqmod --size 8 --model xf --aux pre --holdout 8 --threads 4 --steps 2000 --eval_every 500 --seed0 2 --tag q1
+q1_loop_b8_none_s2 sqmod --size 8 --model loop --holdout 8 --threads 4 --steps 2000 --eval_every 500 --seed0 2 --tag q1
+q1_loop_b8_pre_s2 sqmod --size 8 --model loop --aux pre --holdout 8 --threads 4 --steps 2000 --eval_every 500 --seed0 2 --tag q1

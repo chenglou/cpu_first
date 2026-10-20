@@ -1,0 +1,15 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '8', '--fmt', 'v2', '--steps', '8000', '--data', 'h1like', '--eval_every', '1000', '--eval_n', '512', '--final_n', '20000', '--ladder_only_if_exact', '--device', 'cuda']
+W=3 L=147 trace lines=28 params=4751380 data=h1like curriculum=none fmt=v2
+h1like: 936324 step traces, 64 pool moduli, 0 unseen
+step 1000 loss 0.0042 tf_seq 0.844 pool: ans=0.6504 trace=0.6348 firsterr={'P': 13, 'Q': 89, 'C': 27, 'R': 40, 'M': 11, 'A': 7} t=16s
+step 2000 loss 0.0050 tf_seq 0.859 pool: ans=0.8027 trace=0.8008 firsterr={'Q': 78, 'A': 9, 'C': 5, 'R': 8, 'P': 2} t=30s
+step 3000 loss 0.0006 tf_seq 0.984 pool: ans=0.9062 trace=0.9062 firsterr={'Q': 40, 'C': 3, 'A': 2, 'P': 2, 'R': 1} t=45s
+step 4000 loss 0.0010 tf_seq 0.922 pool: ans=0.8770 trace=0.8770 firsterr={'Q': 48, 'R': 10, 'C': 3, 'M': 2} t=60s
+step 5000 loss 0.0005 tf_seq 0.984 pool: ans=0.9492 trace=0.9473 firsterr={'Q': 26, 'A': 1} t=75s
+step 6000 loss 0.0001 tf_seq 0.984 pool: ans=0.9668 trace=0.9668 firsterr={'Q': 16, 'C': 1} t=89s
+step 7000 loss 0.0000 tf_seq 1.000 pool: ans=0.9688 trace=0.9688 firsterr={'Q': 15, 'C': 1} t=104s
+step 8000 loss 0.0000 tf_seq 1.000 pool: ans=0.9785 trace=0.9785 firsterr={'Q': 11} t=119s
+final single-step (pool moduli): (0.96945, 0.96945, {'Q': 199, 'P': 1})
+done {"params": 4751380, "L": 147, "train_time": 119.11453008651733, "single_step_pool": [0.96945, 0.96945, {"Q": 199, "P": 1}], "total_time": 127.57211256027222}
+
+exit code 0, wall 141s

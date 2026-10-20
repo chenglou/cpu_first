@@ -1,0 +1,5 @@
+grad square+1   poly10 oracle none: certified 5/5; fp64 model exact on T=1 after phase A 5/5, at the end T=1 5/5 T=2 5/5; rounded [('s^2 + 1', 5)]  (0.6s/seed)
+grad square+1   poly10 oracle sens: certified 5/5; fp64 model exact on T=1 after phase A 5/5, at the end T=1 5/5 T=2 5/5; rounded [('s^2 + 1', 5)]  (0.6s/seed)
+grad square+1   poly10 free   none: certified 0/5; fp64 model exact on T=1 after phase A 0/5, at the end T=1 0/5 T=2 0/5; rounded [('48*s + 91*x0 - 3696', 1), ('60*s + 80*x0 - 3757', 1), ('95*s + 46*x0 - 3132', 1)]  (0.6s/seed)
+grad square+1   poly10 free   sens: certified 0/5; fp64 model exact on T=1 after phase A 0/5, at the end T=1 0/5 T=2 0/5; rounded [('-2*s^2 - 2*s*x0 - x0^2 + 253*s - 551*x0 - 228201', 1), ('-2*s^2 - 2*s*x0 - x0^2 + 289*s - 599*x0 - 170946', 1), ('-s^2 - 3*s*x0 - x0^2 - 261*s - 39*x0 - 223304', 1)]  (0.7s/seed)
+wall 13.5s

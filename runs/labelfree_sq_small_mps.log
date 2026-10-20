@@ -1,0 +1,39 @@
+A, B from /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b8ceb336-96f9-482a-a905-4a3487c4085d/scratchpad/vol/ab_cache_full.json: 7,782 and 64 survivors (30.7s + 0.5s when computed)
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 22, 'exq': 's^c', 'Kx': 22}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 24, 'exq': 's^c', 'Kx': 24}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 26, 'exq': 's^c', 'Kx': 26}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 28, 'exq': 's^c', 'Kx': 28}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 22, 'exq': 's^c', 'Kx': 22}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 24, 'exq': 's^c', 'Kx': 24}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 26, 'exq': 's^c', 'Kx': 26}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 28, 'exq': 's^c', 'Kx': 28}
+core grammar: 75,209,472 = 2^26.2 machines incl. cw ({'r2': 1306368, 'r2m': 124416, 'r4': 3732480, 'r4m': 19906560} x 3); joint space 1,817,000,002,065,530,880 = 2^60.7
+C0 r2: 10,450,944 (2^23.3) machines vs law unit: 147,744 survivors, 35.2s, 4.98e+05 machine-rows/s
+C0 r2: 147,744 (2^17.2) machines vs law mirror: 192 survivors, 3.1s, 6.1e+04 machine-rows/s
+C0 r2: 192 (2^7.6) machines vs law mirror2: 192 survivors, 1.9s, 993 machine-rows/s
+C0 r2: 192 (2^7.6) machines vs law unit@24bit: 96 survivors, 1.0s, 2.44e+03 machine-rows/s
+C0 r2: 96 (2^6.6) machines vs law mirror@24bit: 96 survivors, 1.2s, 1.56e+03 machine-rows/s
+C0 r2: 96 (2^6.6) machines vs law mirror2@24bit: 64 survivors, 1.7s, 822 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law unit: 5,064 survivors, 4.2s, 4.44e+05 machine-rows/s
+C0 r2m: 5,064 (2^12.3) machines vs law mirror: 192 survivors, 2.5s, 3.24e+03 machine-rows/s
+C0 r2m: 192 (2^7.6) machines vs law mirror2: 192 survivors, 2.9s, 614 machine-rows/s
+C0 r2m: 192 (2^7.6) machines vs law unit@24bit: 96 survivors, 1.5s, 1.36e+03 machine-rows/s
+C0 r2m: 96 (2^6.6) machines vs law mirror@24bit: 96 survivors, 1.8s, 996 machine-rows/s
+C0 r2m: 96 (2^6.6) machines vs law mirror2@24bit: 64 survivors, 3.0s, 427 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law unit: 10,752 survivors, 68.8s, 6.07e+05 machine-rows/s
+C0 r4: 10,752 (2^13.4) machines vs law mirror: 10,752 survivors, 2.7s, 4.05e+04 machine-rows/s
+C0 r4: 10,752 (2^13.4) machines vs law mirror2: 10,752 survivors, 2.6s, 3.83e+04 machine-rows/s
+C0 r4: 10,752 (2^13.4) machines vs law unit@24bit: 5,376 survivors, 2.2s, 5.15e+04 machine-rows/s
+C0 r4: 5,376 (2^12.4) machines vs law mirror@24bit: 5,376 survivors, 1.8s, 5.78e+04 machine-rows/s
+C0 r4: 5,376 (2^12.4) machines vs law mirror2@24bit: 3,584 survivors, 2.2s, 3.65e+04 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law unit: 2,880 survivors, 232.5s, 1e+06 machine-rows/s
+C0 r4m: 2,880 (2^11.5) machines vs law mirror: 2,304 survivors, 2.6s, 8.84e+03 machine-rows/s
+C0 r4m: 2,304 (2^11.2) machines vs law mirror2: 2,304 survivors, 2.6s, 8.48e+03 machine-rows/s
+C0 r4m: 2,304 (2^11.2) machines vs law unit@24bit: 1,152 survivors, 1.4s, 1.85e+04 machine-rows/s
+C0 r4m: 1,152 (2^10.2) machines vs law mirror@24bit: 1,152 survivors, 1.8s, 1.24e+04 machine-rows/s
+C0 r4m: 1,152 (2^10.2) machines vs law mirror2@24bit: 768 survivors, 2.2s, 7.26e+03 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['unit', 'mirror', 'mirror2', 'unit@24bit', 'mirror@24bit', 'mirror2@24bit'] (no labels): 4,480 survivors {'r2': 64, 'r2m': 64, 'r4': 3584, 'r4m': 768}, 383.4s
+C: 107,520 (2^16.7) machines vs decimal output digits on 8 prompts (no labels): 13440 survivors {'r2': 192, 'r2m': 192, 'r4': 10752, 'r4m': 2304}, 9.1s, 4.91e+04 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [26, 28], 'Kx': [26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a', 'a.a', 'b.b'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [26, 28], 'W': [26, 28], 'cw': [5, 6, 7]}
+C1: 13,440 (2^13.7) machines vs semigroup law y(x, 50+49) = y(y(x, 50), 49) on 8 prompts (no labels): 4480 survivors {'r2': 64, 'r2m': 64, 'r4': 3584, 'r4m': 768}, 123.6s, 368 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [26, 28], 'Kx': [26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a', 'a.a', 'b.b'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [26, 28], 'W': [26, 28]}
+machines evaluated 390,612,648 = 2^28.5 (stage C alone without C0: 4,813,406,208 = 2^32.2)
+exit 0

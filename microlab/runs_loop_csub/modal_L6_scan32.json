@@ -1,0 +1,906 @@
+{
+ "exp": "loop_csub",
+ "where": "modal cpu=32",
+ "tag": "L6_scan32",
+ "workers": 31,
+ "chunk": 512,
+ "brute": false,
+ "serial_depth": 3,
+ "grow_chunk": 1024,
+ "scan": 32,
+ "probe_seed": 1,
+ "label_seed": 0,
+ "K_lab": 8,
+ "job_slice": null,
+ "first_labels": [
+  [
+   54253,
+   39215,
+   14940
+  ],
+  [
+   5969,
+   2023,
+   3764
+  ],
+  [
+   6313,
+   3163,
+   4777
+  ],
+  [
+   7493,
+   1629,
+   1119
+  ],
+  [
+   723253,
+   643486,
+   317648
+  ],
+  [
+   888673,
+   622684,
+   224572
+  ],
+  [
+   55973,
+   53733,
+   36003
+  ],
+  [
+   721453,
+   368727,
+   339773
+  ]
+ ],
+ "wall": 5843.217036485672,
+ "L": 6,
+ "K": 32,
+ "isa": [
+  "add",
+  "sub",
+  "mul",
+  "csub"
+ ],
+ "merge": true,
+ "space": 52605871718400,
+ "levels": [
+  {
+   "depth": 1,
+   "partial": 70,
+   "states": 64,
+   "raw": 70.0
+  },
+  {
+   "depth": 2,
+   "partial": 5977,
+   "states": 3503,
+   "raw": 6532.0
+  },
+  {
+   "depth": 3,
+   "partial": 422618,
+   "states": 194261,
+   "raw": 787055.0
+  },
+  {
+   "depth": 4,
+   "partial": 24348016,
+   "states": 10911833,
+   "raw": 97599637.0
+  }
+ ],
+ "states_last": 697525318,
+ "bodies": 5880272682,
+ "raw": 24900923417.0,
+ "functions_chunk_local": 2510265514,
+ "loop_runs": 2510265514,
+ "functions_exact": null,
+ "functions_hll": 83117379.4849252,
+ "curve_raw": [
+  24900923417.0,
+  318.0,
+  288.0,
+  288.0,
+  180.0,
+  180.0,
+  180.0,
+  180.0,
+  180.0
+ ],
+ "curve_fn": [
+  83117379.4849252,
+  8,
+  5,
+  5,
+  4,
+  4,
+  4,
+  4,
+  4
+ ],
+ "seconds": 5837.610667705536,
+ "t_materialise": 8.509722471237183,
+ "t_enum_cpu": 5084.144829034805,
+ "t_loop_cpu": 175421.9547305107,
+ "jobs": 21313,
+ "jobs_total": 21313,
+ "survivor_table": [
+  {
+   "k": 1,
+   "functions": 8,
+   "raw": 318.0,
+   "correct_functions": 4,
+   "correct_raw": 180.0
+  },
+  {
+   "k": 2,
+   "functions": 5,
+   "raw": 288.0,
+   "correct_functions": 4,
+   "correct_raw": 180.0
+  },
+  {
+   "k": 3,
+   "functions": 5,
+   "raw": 288.0,
+   "correct_functions": 4,
+   "correct_raw": 180.0
+  },
+  {
+   "k": 4,
+   "functions": 4,
+   "raw": 180.0,
+   "correct_functions": 4,
+   "correct_raw": 180.0
+  },
+  {
+   "k": 5,
+   "functions": 4,
+   "raw": 180.0,
+   "correct_functions": 4,
+   "correct_raw": 180.0
+  },
+  {
+   "k": 6,
+   "functions": 4,
+   "raw": 180.0,
+   "correct_functions": 4,
+   "correct_raw": 180.0
+  },
+  {
+   "k": 7,
+   "functions": 4,
+   "raw": 180.0,
+   "correct_functions": 4,
+   "correct_raw": 180.0
+  },
+  {
+   "k": 8,
+   "functions": 4,
+   "raw": 180.0,
+   "correct_functions": 4,
+   "correct_raw": 180.0
+  },
+  {
+   "k": 1000,
+   "functions": 4,
+   "raw": 180.0,
+   "correct_functions": 4,
+   "correct_raw": 180.0
+  }
+ ],
+ "checked": [
+  {
+   "body": "mul,1,3;add,0,0;sub,4,7;csub,8,8;sub,10,9;csub,11,11",
+   "show": "t0=mul(x,d); t1=add(s,s); t2=sub(0,t0); t3=csub(t1); t4=sub(t3,t2); t5=csub(t4)",
+   "mult": 123.0,
+   "passed": 8,
+   "rows_passed": 1000,
+   "train_all": true,
+   "fresh": {
+    "13": 1.0,
+    "16": 1.0,
+    "20": 1.0,
+    "24": 1.0
+   },
+   "correct": true
+  },
+  {
+   "body": "mul,1,3;add,0,7;csub,8,8;add,0,9;csub,10,10;csub,11,11",
+   "show": "t0=mul(x,d); t1=add(s,t0); t2=csub(t1); t3=add(s,t2); t4=csub(t3); t5=csub(t4)",
+   "mult": 36.0,
+   "passed": 8,
+   "rows_passed": 1000,
+   "train_all": true,
+   "fresh": {
+    "13": 1.0,
+    "16": 1.0,
+    "20": 1.0,
+    "24": 1.0
+   },
+   "correct": true
+  },
+  {
+   "body": "csub,0,0;mul,1,3;add,7,8;add,7,9;csub,10,10;csub,11,11",
+   "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=add(t0,t2); t4=csub(t3); t5=csub(t4)",
+   "mult": 18.0,
+   "passed": 8,
+   "rows_passed": 1000,
+   "train_all": true,
+   "fresh": {
+    "13": 1.0,
+    "16": 1.0,
+    "20": 1.0,
+    "24": 1.0
+   },
+   "correct": true
+  },
+  {
+   "body": "csub,0,0;mul,1,3;add,7,8;csub,9,9;add,0,10;csub,11,11",
+   "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=csub(t2); t4=add(s,t3); t5=csub(t4)",
+   "mult": 3.0,
+   "passed": 8,
+   "rows_passed": 1000,
+   "train_all": true,
+   "fresh": {
+    "13": 1.0,
+    "16": 1.0,
+    "20": 1.0,
+    "24": 1.0
+   },
+   "correct": true
+  },
+  {
+   "body": "csub,0,0;sub,4,3;mul,1,8;sub,9,7;sub,7,10;csub,11,11",
+   "show": "t0=csub(s); t1=sub(0,d); t2=mul(x,t1); t3=sub(t2,t0); t4=sub(t0,t3); t5=csub(t4)",
+   "mult": 108.0,
+   "passed": 3,
+   "rows_passed": 3,
+   "train_all": false,
+   "fresh": {
+    "13": 0.925,
+    "16": 0.91,
+    "20": 0.85,
+    "24": 0.885
+   },
+   "correct": false
+  },
+  {
+   "body": "add,3,6;add,7,7;mul,8,8;sub,5,9;mul,9,10;sub,0,11",
+   "show": "t0=add(d,2); t1=add(t0,t0); t2=mul(t1,t1); t3=sub(1,t2); t4=mul(t2,t3); t5=sub(s,t4)",
+   "mult": 18.0,
+   "passed": 1,
+   "rows_passed": 1,
+   "train_all": false,
+   "fresh": {
+    "13": 0.0,
+    "16": 0.0,
+    "20": 0.0,
+    "24": 0.0
+   },
+   "correct": false
+  },
+  {
+   "body": "sub,2,0;csub,7,7;add,8,8;csub,9,9;mul,1,3;sub,11,10",
+   "show": "t0=sub(N,s); t1=csub(t0); t2=add(t1,t1); t3=csub(t2); t4=mul(x,d); t5=sub(t4,t3)",
+   "mult": 10.0,
+   "passed": 1,
+   "rows_passed": 1,
+   "train_all": false,
+   "fresh": {
+    "13": 0.19,
+    "16": 0.225,
+    "20": 0.25,
+    "24": 0.215
+   },
+   "correct": false
+  },
+  {
+   "body": "sub,2,1;mul,3,7;sub,8,0;add,9,9;csub,10,10;sub,8,11",
+   "show": "t0=sub(N,x); t1=mul(d,t0); t2=sub(t1,s); t3=add(t2,t2); t4=csub(t3); t5=sub(t1,t4)",
+   "mult": 2.0,
+   "passed": 1,
+   "rows_passed": 1,
+   "train_all": false,
+   "fresh": {
+    "13": 0.075,
+    "16": 0.07,
+    "20": 0.025,
+    "24": 0.015
+   },
+   "correct": false
+  }
+ ],
+ "n_checked": 8,
+ "order_stats": {
+  "R": 32,
+  "functions_hit": 11000,
+  "functions_correct": 4,
+  "orders": 2000,
+  "table": [
+   {
+    "k": 1,
+    "median": 19.0,
+    "p90": 287.0,
+    "max": 8546,
+    "only_correct": 0.0,
+    "expected_iid": 62.369
+   },
+   {
+    "k": 2,
+    "median": 7.0,
+    "p90": 14.0,
+    "max": 486,
+    "only_correct": 0.1475,
+    "expected_iid": 8.600382999999999
+   },
+   {
+    "k": 3,
+    "median": 5.0,
+    "p90": 9.0,
+    "max": 22,
+    "only_correct": 0.333,
+    "expected_iid": 6.330688379
+   },
+   {
+    "k": 4,
+    "median": 5.0,
+    "p90": 7.0,
+    "max": 20,
+    "only_correct": 0.466,
+    "expected_iid": 5.483941906411002
+   },
+   {
+    "k": 6,
+    "median": 4.0,
+    "p90": 6.0,
+    "max": 13,
+    "only_correct": 0.646,
+    "expected_iid": 4.774012312593084
+   },
+   {
+    "k": 8,
+    "median": 4.0,
+    "p90": 5.0,
+    "max": 8,
+    "only_correct": 0.7725,
+    "expected_iid": 4.471866429556156
+   },
+   {
+    "k": 12,
+    "median": 4.0,
+    "p90": 4.0,
+    "max": 6,
+    "only_correct": 0.9225,
+    "expected_iid": 4.212438241590104
+   },
+   {
+    "k": 16,
+    "median": 4.0,
+    "p90": 4.0,
+    "max": 5,
+    "only_correct": 0.9735,
+    "expected_iid": 4.107143149060008
+   },
+   {
+    "k": 24,
+    "median": 4.0,
+    "p90": 4.0,
+    "max": 5,
+    "only_correct": 0.9995,
+    "expected_iid": 4.030842787798332
+   },
+   {
+    "k": 32,
+    "median": 4.0,
+    "p90": 4.0,
+    "max": 4,
+    "only_correct": 1.0,
+    "expected_iid": 4.009379517627726
+   }
+  ],
+  "labels_needed": {
+   "median": 5.0,
+   "p90": 12.0,
+   "p99": 19.0,
+   "max": 25,
+   "over_R": 0.0
+  },
+  "expected_iid_more": {
+   "48": 4.000897414937365,
+   "64": 4.000086478841654,
+   "100": 4.000000448099426,
+   "200": 4.000000000000201
+  },
+  "functions": [
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=sub(0,t0); t3=csub(t1); t4=sub(t3,t2); t5=csub(t4)",
+    "body": "mul,1,3;add,0,0;sub,4,7;csub,8,8;sub,10,9;csub,11,11",
+    "mult": 123.0,
+    "rate": 1.0,
+    "correct": true,
+    "scan_hits": 32
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=csub(t1); t3=add(s,t2); t4=csub(t3); t5=csub(t4)",
+    "body": "mul,1,3;add,0,7;csub,8,8;add,0,9;csub,10,10;csub,11,11",
+    "mult": 36.0,
+    "rate": 1.0,
+    "correct": true,
+    "scan_hits": 32
+   },
+   {
+    "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=add(t0,t2); t4=csub(t3); t5=csub(t4)",
+    "body": "csub,0,0;mul,1,3;add,7,8;add,7,9;csub,10,10;csub,11,11",
+    "mult": 18.0,
+    "rate": 1.0,
+    "correct": true,
+    "scan_hits": 32
+   },
+   {
+    "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=csub(t2); t4=add(s,t3); t5=csub(t4)",
+    "body": "csub,0,0;mul,1,3;add,7,8;csub,9,9;add,0,10;csub,11,11",
+    "mult": 3.0,
+    "rate": 1.0,
+    "correct": true,
+    "scan_hits": 32
+   },
+   {
+    "show": "t0=csub(s); t1=sub(0,d); t2=mul(x,t1); t3=sub(t2,t0); t4=sub(t0,t3); t5=csub(t4)",
+    "body": "csub,0,0;sub,4,3;mul,1,8;sub,9,7;sub,7,10;csub,11,11",
+    "mult": 108.0,
+    "rate": 0.864,
+    "correct": false,
+    "scan_hits": 27
+   },
+   {
+    "show": "t0=add(s,s); t1=csub(t0); t2=csub(t1); t3=csub(t2); t4=mul(x,d); t5=add(t3,t4)",
+    "body": "add,0,0;csub,7,7;csub,8,8;csub,9,9;mul,1,3;add,10,11",
+    "mult": 90.0,
+    "rate": 0.744,
+    "correct": false,
+    "scan_hits": 21
+   },
+   {
+    "show": "t0=csub(s); t1=sub(0,d); t2=mul(x,t1); t3=sub(t2,t0); t4=sub(s,t3); t5=csub(t4)",
+    "body": "csub,0,0;sub,4,3;mul,1,8;sub,9,7;sub,0,10;csub,11,11",
+    "mult": 130.0,
+    "rate": 0.67,
+    "correct": false,
+    "scan_hits": 20
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=sub(0,t0); t3=csub(t1); t4=csub(t3); t5=sub(t4,t2)",
+    "body": "mul,1,3;add,0,0;sub,4,7;csub,8,8;csub,10,10;sub,11,9",
+    "mult": 125.0,
+    "rate": 0.586,
+    "correct": false,
+    "scan_hits": 16
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=csub(t1); t3=sub(t2,t0); t4=add(t2,t3); t5=csub(t4)",
+    "body": "mul,1,3;add,0,7;csub,8,8;sub,9,7;add,9,10;csub,11,11",
+    "mult": 4.0,
+    "rate": 0.531,
+    "correct": false,
+    "scan_hits": 16
+   },
+   {
+    "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=csub(t2); t4=sub(t3,t1); t5=add(t2,t4)",
+    "body": "csub,0,0;mul,1,3;add,7,8;csub,9,9;sub,10,8;add,9,11",
+    "mult": 39.0,
+    "rate": 0.488,
+    "correct": false,
+    "scan_hits": 16
+   },
+   {
+    "show": "t0=add(x,N); t1=mul(d,t0); t2=add(s,s); t3=add(t1,t2); t4=csub(t3); t5=csub(t4)",
+    "body": "add,1,2;mul,3,7;add,0,0;add,8,9;csub,10,10;csub,11,11",
+    "mult": 8.0,
+    "rate": 0.465,
+    "correct": false,
+    "scan_hits": 11
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=csub(t1); t3=sub(t2,t0); t4=csub(t2); t5=add(t3,t4)",
+    "body": "mul,1,3;add,0,7;csub,8,8;sub,9,7;csub,9,9;add,10,11",
+    "mult": 7.0,
+    "rate": 0.361,
+    "correct": false,
+    "scan_hits": 12
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=add(t1,t1); t3=csub(t2); t4=sub(t3,t0); t5=csub(t4)",
+    "body": "mul,1,3;add,0,7;add,8,8;csub,9,9;sub,10,7;csub,11,11",
+    "mult": 2.0,
+    "rate": 0.354,
+    "correct": false,
+    "scan_hits": 13
+   },
+   {
+    "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=add(t2,t2); t4=csub(t3); t5=sub(t4,t1)",
+    "body": "csub,0,0;mul,1,3;add,7,8;add,9,9;csub,10,10;sub,11,8",
+    "mult": 4.0,
+    "rate": 0.336,
+    "correct": false,
+    "scan_hits": 12
+   },
+   {
+    "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=csub(t2); t4=sub(t3,t1); t5=add(t3,t4)",
+    "body": "csub,0,0;mul,1,3;add,7,8;csub,9,9;sub,10,8;add,10,11",
+    "mult": 12.0,
+    "rate": 0.329,
+    "correct": false,
+    "scan_hits": 11
+   },
+   {
+    "show": "t0=add(x,N); t1=mul(d,t0); t2=add(s,s); t3=csub(t2); t4=add(t1,t3); t5=csub(t4)",
+    "body": "add,1,2;mul,3,7;add,0,0;csub,9,9;add,8,10;csub,11,11",
+    "mult": 12.0,
+    "rate": 0.326,
+    "correct": false,
+    "scan_hits": 6
+   },
+   {
+    "show": "t0=csub(s); t1=add(x,N); t2=mul(d,t1); t3=add(t0,t2); t4=add(t0,t3); t5=csub(t4)",
+    "body": "csub,0,0;add,1,2;mul,3,8;add,7,9;add,7,10;csub,11,11",
+    "mult": 15.0,
+    "rate": 0.319,
+    "correct": false,
+    "scan_hits": 6
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=add(t1,t1); t3=csub(t2); t4=csub(t3); t5=sub(t4,t0)",
+    "body": "mul,1,3;add,0,7;add,8,8;csub,9,9;csub,10,10;sub,11,7",
+    "mult": 3.0,
+    "rate": 0.273,
+    "correct": false,
+    "scan_hits": 13
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=csub(t1); t3=add(t2,t2); t4=csub(t3); t5=sub(t4,t0)",
+    "body": "mul,1,3;add,0,7;csub,8,8;add,9,9;csub,10,10;sub,11,7",
+    "mult": 2.0,
+    "rate": 0.272,
+    "correct": false,
+    "scan_hits": 13
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=sub(t1,d); t3=add(t0,t2); t4=add(d,t3); t5=csub(t4)",
+    "body": "mul,1,3;add,0,0;sub,8,3;add,7,9;add,3,10;csub,11,11",
+    "mult": 4834.0,
+    "rate": 0.262,
+    "correct": false,
+    "scan_hits": 8
+   },
+   {
+    "show": "t0=sub(N,s); t1=csub(t0); t2=add(t1,t1); t3=csub(t2); t4=mul(x,d); t5=sub(t4,t3)",
+    "body": "sub,2,0;csub,7,7;add,8,8;csub,9,9;mul,1,3;sub,11,10",
+    "mult": 35.0,
+    "rate": 0.256,
+    "correct": false,
+    "scan_hits": 11
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=csub(t1); t3=add(s,t2); t4=sub(t1,t3); t5=sub(t2,t4)",
+    "body": "mul,1,3;add,0,7;csub,8,8;add,0,9;sub,8,10;sub,9,11",
+    "mult": 72.0,
+    "rate": 0.241,
+    "correct": false,
+    "scan_hits": 7
+   },
+   {
+    "show": "t0=sub(0,x); t1=mul(d,t0); t2=sub(s,t1); t3=csub(t2); t4=csub(s); t5=add(t3,t4)",
+    "body": "sub,4,1;mul,3,7;sub,0,8;csub,9,9;csub,0,0;add,10,11",
+    "mult": 40.0,
+    "rate": 0.24,
+    "correct": false,
+    "scan_hits": 7
+   },
+   {
+    "show": "t0=sub(0,d); t1=mul(x,t0); t2=sub(s,t1); t3=add(t2,t2); t4=csub(t3); t5=add(t1,t4)",
+    "body": "sub,4,3;mul,1,7;sub,0,8;add,9,9;csub,10,10;add,8,11",
+    "mult": 57.0,
+    "rate": 0.232,
+    "correct": false,
+    "scan_hits": 8
+   },
+   {
+    "show": "t0=sub(d,1); t1=add(s,s); t2=mul(x,t0); t3=add(x,t1); t4=csub(t3); t5=add(t2,t4)",
+    "body": "sub,3,5;add,0,0;mul,1,7;add,1,8;csub,10,10;add,9,11",
+    "mult": 162.0,
+    "rate": 0.224,
+    "correct": false,
+    "scan_hits": 9
+   },
+   {
+    "show": "t0=sub(x,s); t1=mul(d,t0); t2=add(d,2); t3=mul(s,t2); t4=csub(t3); t5=add(t1,t4)",
+    "body": "sub,1,0;mul,3,7;add,3,6;mul,0,9;csub,10,10;add,8,11",
+    "mult": 20.0,
+    "rate": 0.208,
+    "correct": false,
+    "scan_hits": 5
+   },
+   {
+    "show": "t0=csub(s); t1=add(x,N); t2=add(t0,t0); t3=mul(d,t1); t4=csub(t2); t5=add(t3,t4)",
+    "body": "csub,0,0;add,1,2;add,7,7;mul,3,8;csub,9,9;add,10,11",
+    "mult": 20.0,
+    "rate": 0.181,
+    "correct": false,
+    "scan_hits": 3
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=add(x,t2); t4=csub(t3); t5=sub(t4,x)",
+    "body": "mul,1,3;add,0,0;add,7,8;add,1,9;csub,10,10;sub,11,1",
+    "mult": 34.0,
+    "rate": 0.178,
+    "correct": false,
+    "scan_hits": 10
+   },
+   {
+    "show": "t0=add(s,s); t1=csub(t0); t2=sub(x,t0); t3=add(t1,t2); t4=mul(d,t3); t5=add(t1,t4)",
+    "body": "add,0,0;csub,7,7;sub,1,7;add,8,9;mul,3,10;add,8,11",
+    "mult": 22.0,
+    "rate": 0.152,
+    "correct": false,
+    "scan_hits": 3
+   },
+   {
+    "show": "t0=add(s,s); t1=add(d,t0); t2=csub(t0); t3=sub(t0,t1); t4=mul(x,t3); t5=sub(t2,t4)",
+    "body": "add,0,0;add,3,7;csub,7,7;sub,7,8;mul,1,10;sub,9,11",
+    "mult": 5171.0,
+    "rate": 0.144,
+    "correct": false,
+    "scan_hits": 4
+   },
+   {
+    "show": "t0=csub(s); t1=add(x,t0); t2=sub(s,t1); t3=add(t0,t0); t4=mul(d,t2); t5=sub(t3,t4)",
+    "body": "csub,0,0;add,1,7;sub,0,8;add,7,7;mul,3,9;sub,10,11",
+    "mult": 137.0,
+    "rate": 0.141,
+    "correct": false,
+    "scan_hits": 7
+   },
+   {
+    "show": "t0=add(s,x); t1=csub(t0); t2=sub(d,2); t3=mul(x,t2); t4=add(t1,t1); t5=add(t3,t4)",
+    "body": "add,0,1;csub,7,7;sub,3,6;mul,1,9;add,8,8;add,10,11",
+    "mult": 86.0,
+    "rate": 0.137,
+    "correct": false,
+    "scan_hits": 7
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=add(s,t2); t4=csub(t3); t5=sub(t4,s)",
+    "body": "mul,1,3;add,0,0;add,7,8;add,0,9;csub,10,10;sub,11,0",
+    "mult": 20.0,
+    "rate": 0.135,
+    "correct": false,
+    "scan_hits": 9
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=add(s,t1); t3=csub(t2); t4=sub(t3,s); t5=add(t0,t4)",
+    "body": "mul,1,3;add,0,0;add,0,8;csub,9,9;sub,10,0;add,7,11",
+    "mult": 102.0,
+    "rate": 0.115,
+    "correct": false,
+    "scan_hits": 7
+   },
+   {
+    "show": "t0=csub(s); t1=mul(x,d); t2=add(x,t0); t3=sub(x,t1); t4=sub(t3,t0); t5=sub(t2,t4)",
+    "body": "csub,0,0;mul,1,3;add,1,7;sub,1,8;sub,10,7;sub,9,11",
+    "mult": 9835.0,
+    "rate": 0.113,
+    "correct": false,
+    "scan_hits": 3
+   },
+   {
+    "show": "t0=sub(d,2); t1=add(s,x); t2=add(t1,t1); t3=mul(x,t0); t4=csub(t2); t5=add(t3,t4)",
+    "body": "sub,3,6;add,0,1;add,8,8;mul,1,7;csub,9,9;add,10,11",
+    "mult": 40.0,
+    "rate": 0.109,
+    "correct": false,
+    "scan_hits": 5
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=sub(t1,t0); t3=add(t0,t0); t4=csub(t2); t5=add(t3,t4)",
+    "body": "mul,1,3;add,0,0;sub,8,7;add,7,7;csub,9,9;add,10,11",
+    "mult": 50.0,
+    "rate": 0.097,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=add(s,x); t1=mul(d,t0); t2=add(s,t1); t3=csub(t2); t4=sub(2,d); t5=mul(t3,t4)",
+    "body": "add,0,1;mul,3,7;add,0,8;csub,9,9;sub,6,3;mul,10,11",
+    "mult": 5.0,
+    "rate": 0.094,
+    "correct": false,
+    "scan_hits": 3
+   },
+   {
+    "show": "t0=mul(x,d); t1=sub(x,s); t2=add(s,t0); t3=sub(t2,t1); t4=csub(t3); t5=add(x,t4)",
+    "body": "mul,1,3;sub,1,0;add,0,7;sub,9,8;csub,10,10;add,1,11",
+    "mult": 70.0,
+    "rate": 0.093,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=add(t0,t2); t4=add(t0,t3); t5=sub(t4,s)",
+    "body": "csub,0,0;mul,1,3;add,7,8;add,7,9;add,7,10;sub,11,0",
+    "mult": 670.0,
+    "rate": 0.087,
+    "correct": false,
+    "scan_hits": 3
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,t0); t2=add(t1,t1); t3=add(s,t2); t4=csub(t3); t5=sub(t4,t1)",
+    "body": "mul,1,3;add,0,7;add,8,8;add,0,9;csub,10,10;sub,11,8",
+    "mult": 3.0,
+    "rate": 0.078,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(N,x); t1=mul(d,t0); t2=sub(t1,s); t3=add(t2,t2); t4=csub(t3); t5=sub(t1,t4)",
+    "body": "sub,2,1;mul,3,7;sub,8,0;add,9,9;csub,10,10;sub,8,11",
+    "mult": 2.0,
+    "rate": 0.078,
+    "correct": false,
+    "scan_hits": 3
+   },
+   {
+    "show": "t0=add(s,s); t1=sub(t0,x); t2=csub(t1); t3=add(x,t2); t4=mul(x,d); t5=add(t3,t4)",
+    "body": "add,0,0;sub,7,1;csub,8,8;add,1,9;mul,1,3;add,10,11",
+    "mult": 116.0,
+    "rate": 0.07,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=mul(x,d); t1=sub(s,t0); t2=csub(t1); t3=add(t0,t2); t4=add(t3,t3); t5=add(t0,t4)",
+    "body": "mul,1,3;sub,0,7;csub,8,8;add,7,9;add,10,10;add,7,11",
+    "mult": 3.0,
+    "rate": 0.063,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=add(t1,t2); t4=csub(t3); t5=sub(t4,t1)",
+    "body": "mul,1,3;add,0,0;add,7,8;add,8,9;csub,10,10;sub,11,8",
+    "mult": 16.0,
+    "rate": 0.058,
+    "correct": false,
+    "scan_hits": 3
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=sub(t0,t1); t3=add(t1,t1); t4=csub(t3); t5=add(t2,t4)",
+    "body": "mul,1,3;add,0,0;sub,7,8;add,8,8;csub,10,10;add,9,11",
+    "mult": 128.0,
+    "rate": 0.051,
+    "correct": false,
+    "scan_hits": 4
+   },
+   {
+    "show": "t0=sub(N,s); t1=csub(t0); t2=mul(x,d); t3=sub(s,t1); t4=add(t2,t3); t5=csub(t4)",
+    "body": "sub,2,0;csub,7,7;mul,1,3;sub,0,8;add,9,10;csub,11,11",
+    "mult": 32.0,
+    "rate": 0.049,
+    "correct": false,
+    "scan_hits": 5
+   },
+   {
+    "show": "t0=sub(s,x); t1=add(t0,t0); t2=add(d,2); t3=csub(t1); t4=mul(x,t2); t5=add(t3,t4)",
+    "body": "sub,0,1;add,7,7;add,3,6;csub,8,8;mul,1,9;add,10,11",
+    "mult": 20.0,
+    "rate": 0.048,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=add(t2,t2); t4=csub(t3); t5=sub(t4,t2)",
+    "body": "mul,1,3;add,0,0;add,7,8;add,9,9;csub,10,10;sub,11,9",
+    "mult": 10.0,
+    "rate": 0.048,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=sub(t0,t1); t3=csub(t1); t4=add(t3,t3); t5=add(t2,t4)",
+    "body": "mul,1,3;add,0,0;sub,7,8;csub,8,8;add,10,10;add,9,11",
+    "mult": 314.0,
+    "rate": 0.047,
+    "correct": false,
+    "scan_hits": 3
+   },
+   {
+    "show": "t0=csub(s); t1=add(t0,t0); t2=sub(N,t1); t3=mul(x,d); t4=csub(t2); t5=sub(t3,t4)",
+    "body": "csub,0,0;add,7,7;sub,2,8;mul,1,3;csub,9,9;sub,10,11",
+    "mult": 42.0,
+    "rate": 0.041,
+    "correct": false,
+    "scan_hits": 5
+   },
+   {
+    "show": "t0=sub(N,s); t1=csub(t0); t2=mul(x,d); t3=sub(s,t1); t4=csub(t3); t5=add(t2,t4)",
+    "body": "sub,2,0;csub,7,7;mul,1,3;sub,0,8;csub,10,10;add,9,11",
+    "mult": 133.0,
+    "rate": 0.038,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=csub(t2); t4=sub(t2,t3); t5=sub(t3,t4)",
+    "body": "mul,1,3;add,0,0;add,7,8;csub,9,9;sub,9,10;sub,10,11",
+    "mult": 20.0,
+    "rate": 0.031,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=csub(s); t1=sub(t0,s); t2=add(t0,t1); t3=add(t2,t2); t4=mul(x,d); t5=add(t3,t4)",
+    "body": "csub,0,0;sub,7,0;add,7,8;add,9,9;mul,1,3;add,10,11",
+    "mult": 98.0,
+    "rate": 0.03,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=add(d,1); t1=mul(x,t0); t2=sub(x,s); t3=add(s,t1); t4=csub(t3); t5=sub(t4,t2)",
+    "body": "add,3,5;mul,1,7;sub,1,0;add,0,8;csub,10,10;sub,11,9",
+    "mult": 71.0,
+    "rate": 0.027,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=sub(N,x); t1=mul(d,t0); t2=sub(s,t1); t3=add(s,t2); t4=add(N,t3); t5=csub(t4)",
+    "body": "sub,2,1;mul,3,7;sub,0,8;add,0,9;add,2,10;csub,11,11",
+    "mult": 115.0,
+    "rate": 0.022,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=mul(x,d); t1=sub(N,s); t2=add(s,t0); t3=csub(t2); t4=csub(t1); t5=sub(t3,t4)",
+    "body": "mul,1,3;sub,2,0;add,0,7;csub,9,9;csub,8,8;sub,10,11",
+    "mult": 10.0,
+    "rate": 0.018,
+    "correct": false,
+    "scan_hits": 1
+   },
+   {
+    "show": "t0=sub(N,x); t1=mul(t0,t0); t2=sub(s,t1); t3=mul(d,t2); t4=sub(s,t3); t5=csub(t4)",
+    "body": "sub,2,1;mul,7,7;sub,0,8;mul,3,9;sub,0,10;csub,11,11",
+    "mult": 4.0,
+    "rate": 0.016,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=csub(s); t1=sub(t0,d); t2=add(x,t1); t3=add(d,t2); t4=sub(s,t3); t5=mul(t4,t4)",
+    "body": "csub,0,0;sub,7,3;add,1,8;add,3,9;sub,0,10;mul,11,11",
+    "mult": 10526.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   },
+   {
+    "show": "t0=sub(N,x); t1=sub(d,t0); t2=sub(t0,t1); t3=csub(t2); t4=add(t1,t3); t5=mul(t4,t4)",
+    "body": "sub,2,1;sub,3,7;sub,7,8;csub,9,9;add,8,10;mul,11,11",
+    "mult": 2654.0,
+    "rate": 0.015,
+    "correct": false,
+    "scan_hits": 2
+   }
+  ]
+ },
+ "certified": {
+  "body": "t0=mul(x,d); t1=add(s,s); t2=sub(0,t0); t3=csub(t1); t4=sub(t3,t2); t5=csub(t4)",
+  "depth_t": 64,
+  "depth_ood_n_t": 64
+ },
+ "t_check": 4.248118877410889
+}

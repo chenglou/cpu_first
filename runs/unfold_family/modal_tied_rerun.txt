@@ -1,0 +1,18 @@
+grad_square_tied10 grad --tasks square --models tied10 --orders oracle free --weights none sens --seeds 5
+grad_square_tied20 grad --tasks square --models tied20 --orders oracle free --weights none sens --seeds 5
+grad_cube_tied10 grad --tasks cube --models tied10 --orders oracle free --weights none sens --seeds 5
+grad_cube_tied20 grad --tasks cube --models tied20 --orders oracle free --weights none sens --seeds 5
+grad_squarep1_tied10 grad --tasks square+1 --models tied10 --orders oracle free --weights none sens --seeds 5
+grad_squarep1_tied20 grad --tasks square+1 --models tied20 --orders oracle free --weights none sens --seeds 5
+grad_squarexx0_tied10 grad --tasks square*x0 --models tied10 --orders oracle free --weights none sens --seeds 5
+grad_squarexx0_tied20 grad --tasks square*x0 --models tied20 --orders oracle free --weights none sens --seeds 5
+grad_squarepx0_tied10 grad --tasks square+x0 --models tied10 --orders oracle free --weights none sens --seeds 5
+grad_squarepx0_tied20 grad --tasks square+x0 --models tied20 --orders oracle free --weights none sens --seeds 5
+grad_cubep2_tied10 grad --tasks cube+2 --models tied10 --orders oracle free --weights none sens --seeds 5
+grad_cubep2_tied20 grad --tasks cube+2 --models tied20 --orders oracle free --weights none sens --seeds 5
+fold_square_tied10 fold --tasks square --models tied10 --bits_list 12 16 20 24 --seeds 5 --stages 32 --weights none
+fold_cube_tied10 fold --tasks cube --models tied10 --bits_list 12 16 20 24 --seeds 5 --stages 32 --weights none
+fold_squarep1_tied10 fold --tasks square+1 --models tied10 --bits_list 12 16 20 24 --seeds 5 --stages 32 --weights none
+fold_squarexx0_tied10 fold --tasks square*x0 --models tied10 --bits_list 12 16 20 24 --seeds 5 --stages 32 --weights none
+fold_squarepx0_tied10 fold --tasks square+x0 --models tied10 --bits_list 12 16 20 24 --seeds 5 --stages 32 --weights none
+fold_cubep2_tied10 fold --tasks cube+2 --models tied10 --bits_list 12 16 20 24 --seeds 5 --stages 32 --weights none

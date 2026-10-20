@@ -1,0 +1,135 @@
+{
+ "device": "mps",
+ "torch": "2.12.1",
+ "chunk": 1048576,
+ "bench": [
+  {
+   "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+   "rows": 1,
+   "lanes": 65536,
+   "seconds": 0.11325024999678135,
+   "machine_rows_per_s": 578683.0492812385,
+   "survivors": 2
+  },
+  {
+   "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+   "rows": 4,
+   "lanes": 65536,
+   "seconds": 0.13528804200177547,
+   "machine_rows_per_s": 1937673.1019328355,
+   "survivors": 1
+  },
+  {
+   "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+   "rows": 16,
+   "lanes": 65536,
+   "seconds": 0.3122941659967182,
+   "machine_rows_per_s": 3357654.7824816527,
+   "survivors": 1
+  },
+  {
+   "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+   "rows": 64,
+   "lanes": 16384,
+   "seconds": 0.31117375000030734,
+   "machine_rows_per_s": 3369744.395209957,
+   "survivors": 0
+  },
+  {
+   "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+   "rows": 1,
+   "lanes": 979776,
+   "seconds": 0.12753983300353866,
+   "machine_rows_per_s": 7682117.632793322,
+   "survivors": 81
+  },
+  {
+   "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+   "rows": 4,
+   "lanes": 262144,
+   "seconds": 0.12779866700293496,
+   "machine_rows_per_s": 8204905.611229254,
+   "survivors": 18
+  },
+  {
+   "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+   "rows": 16,
+   "lanes": 65536,
+   "seconds": 0.12284641701262444,
+   "machine_rows_per_s": 8535666.122783557,
+   "survivors": 18
+  },
+  {
+   "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+   "rows": 64,
+   "lanes": 16384,
+   "seconds": 0.1148421249963576,
+   "machine_rows_per_s": 9130586.882063156,
+   "survivors": 18
+  },
+  {
+   "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+   "rows": 1,
+   "lanes": 1048576,
+   "seconds": 0.3631135829928098,
+   "machine_rows_per_s": 2887735.543676325,
+   "survivors": 0
+  },
+  {
+   "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+   "rows": 4,
+   "lanes": 262144,
+   "seconds": 0.2644664580002427,
+   "machine_rows_per_s": 3964873.3072949373,
+   "survivors": 0
+  },
+  {
+   "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+   "rows": 16,
+   "lanes": 65536,
+   "seconds": 0.2639450830029091,
+   "machine_rows_per_s": 3972705.185754277,
+   "survivors": 0
+  },
+  {
+   "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+   "rows": 64,
+   "lanes": 16384,
+   "seconds": 0.2649925840087235,
+   "machine_rows_per_s": 3957001.302215616,
+   "survivors": 0
+  },
+  {
+   "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+   "rows": 1,
+   "lanes": 1048576,
+   "seconds": 0.1843970000045374,
+   "machine_rows_per_s": 5686513.3379295645,
+   "survivors": 712
+  },
+  {
+   "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+   "rows": 4,
+   "lanes": 262144,
+   "seconds": 0.17115075000037905,
+   "machine_rows_per_s": 6126622.29056944,
+   "survivors": 177
+  },
+  {
+   "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+   "rows": 16,
+   "lanes": 65536,
+   "seconds": 0.1713923750066897,
+   "machine_rows_per_s": 6117985.120161108,
+   "survivors": 0
+  },
+  {
+   "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+   "rows": 64,
+   "lanes": 16384,
+   "seconds": 0.1711982090055244,
+   "machine_rows_per_s": 6124923.8884628955,
+   "survivors": 0
+  }
+ ]
+}

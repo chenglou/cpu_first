@@ -1,0 +1,54 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-2oBcyHHCyW0kfHCotia3X6
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_exact_modal.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+└── 🔨 Created function spec.
+    depth 1: 35 partial programs -> 31 distinct states (0.0s)
+    depth 2: 1,761 partial programs -> 1,073 distinct states (0.0s)
+    depth 3: 91,221 partial programs -> 43,482 distinct states (0.1s)
+    depth 4: 5,087,908 partial programs -> 2,095,359 distinct states (7.9s)
+    depth 5: 161,273,845 states (chunk-local dedup), last instruction evaluated (82.6s)
+{
+ "isa": "basic",
+ "target": "p8",
+ "L": 6,
+ "bits": 16,
+ "workers": 30,
+ "space": 115241423220000,
+ "states": [
+  31,
+  1073,
+  43482,
+  2095359,
+  161273845
+ ],
+ "curve": [
+  17901682221.0,
+  336.0,
+  65.0,
+  65.0,
+  64.0,
+  64.0,
+  64.0,
+  64.0,
+  64.0
+ ],
+ "seconds": 82.64103412628174,
+ "wall": 82.65250182151794,
+ "survivors_probe": 54,
+ "survivors_all_rows": 7
+}
+alias   2.0 [1.0, 1.0, 0.0105, 0.0] t0=sub(x,N); t1=mul(x,t0); t2=mul(t1,t1); t3=mod(t2,N); t4=mul(t3,t3); t5=mod(t4,N)
+alias   2.0 [1.0, 1.0, 0.015, 0.0] t0=mul(x,x); t1=mod(t0,N); t2=sub(t1,N); t3=mul(t1,t2); t4=mul(t3,t3); t5=mod(t4,N)
+alias   1.0 [1.0, 1.0, 1.0, 0.139] t0=mul(x,x); t1=mod(t0,N); t2=mul(t1,t1); t3=mod(t2,N); t4=mul(t2,t3); t5=mod(t4,N)
+CORRECT 1.0 [1.0, 1.0, 1.0, 1.0] t0=mul(x,x); t1=mod(t0,N); t2=mul(t1,t1); t3=mod(t2,N); t4=mul(t3,t3); t5=mod(t4,N)
+alias   1.0 [1.0, 1.0, 1.0, 0.1425] t0=mul(x,x); t1=mod(t0,N); t2=mul(t0,t1); t3=mod(t2,N); t4=mul(t3,t3); t5=mod(t4,N)
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-2oBcyHHCyW0kfHCotia3X6

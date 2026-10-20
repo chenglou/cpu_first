@@ -1,0 +1,22 @@
+[darts basic L=2 target sq data h1@16 loss mse] raw space 22,500; equivalent-correct 1 -> chance 4.4444444444444447e-05
+  seed 0: no  t0=add(1,2); t1=add(2,2)  loss 38.293->0.288
+  seed 1: no  t0=div(2,1); t1=add(2,2)  loss 39.076->0.244
+  seed 2: no  t0=mod(2,2); t1=add(2,2)  loss 38.526->0.267
+  seed 3: no  t0=sub(2,0); t1=add(2,2)  loss 37.954->0.261
+  seed 4: no  t0=mod(1,0); t1=add(2,2)  loss 38.587->0.245
+  seed 5: no  t0=div(2,1); t1=add(2,2)  loss 39.208->0.261
+  seed 6: no  t0=div(0,2); t1=add(2,2)  loss 36.582->0.248
+  seed 7: no  t0=mod(2,1); t1=add(2,2)  loss 39.319->0.271
+  seed 8: no  t0=div(1,2); t1=add(2,2)  loss 38.136->0.254
+  seed 9: no  t0=sub(2,0); t1=add(2,2)  loss 38.807->0.254
+  seed 10: no  t0=mod(0,1); t1=add(2,2)  loss 39.849->0.258
+  seed 11: no  t0=sub(2,1); t1=add(2,2)  loss 38.393->0.249
+  seed 12: no  t0=mod(0,1); t1=add(2,2)  loss 38.027->0.250
+  seed 13: no  t0=div(0,0); t1=add(2,2)  loss 37.926->0.241
+  seed 14: no  t0=sub(0,2); t1=add(2,2)  loss 39.020->0.256
+  seed 15: no  t0=div(0,1); t1=add(2,2)  loss 39.780->0.248
+  seed 16: no  t0=sub(0,2); t1=add(2,2)  loss 38.638->0.250
+  seed 17: no  t0=div(2,1); t1=add(2,2)  loss 39.173->0.259
+  seed 18: no  t0=div(0,2); t1=add(2,2)  loss 39.774->0.256
+  seed 19: no  t0=mod(1,1); t1=add(2,2)  loss 39.061->0.251
+  => 0/20 seeds harden to a correct program (145s)

@@ -1,0 +1,16 @@
+ambiguity square     k=-1: s*x0^2 - x0^3 + s*x0             norm^2 3 (hidden 1); T=1 1.000 T=2 1.000 T=4 0.0008; certified max T 2/2
+ambiguity square     k=+1: -s*x0^2 + x0^3 + 2*s^2 - s*x0    norm^2 7 (hidden 1); T=1 1.000 T=2 1.000 T=4 0.0010; certified max T 2/2
+ambiguity cube      : diagonal [0, 0, 0, 1] is cubic, (s - x0)(s - g) has degree 4: no blind spot
+ambiguity square+1   k=-1: s*x0^2 - x0^3 + s*x0 + s - x0 + 1 norm^2 6 (hidden 2); T=1 1.000 T=2 1.000 T=4 0.0006; certified max T 2/2
+ambiguity square+1   k=+1: -s*x0^2 + x0^3 + 2*s^2 - s*x0 - s + x0 + 1 norm^2 10 (hidden 2); T=1 1.000 T=2 1.000 T=4 0.0004; certified max T 2/2
+ambiguity square*x0 : diagonal [0, 0, 0, 1] is cubic, (s - x0)(s - g) has degree 4: no blind spot
+ambiguity square+x0  k=-1: s*x0^2 - x0^3 + 2*s*x0 - x0^2 + x0 norm^2 8 (hidden 2); T=1 1.000 T=2 1.000 T=4 0.0007; certified max T 2/2
+ambiguity square+x0  k=+1: -s*x0^2 + x0^3 + 2*s^2 - 2*s*x0 + x0^2 + x0 norm^2 12 (hidden 2); T=1 1.000 T=2 1.000 T=4 0.0006; certified max T 2/2
+ambiguity cube+2    : diagonal [2, 0, 0, 1] is cubic, (s - x0)(s - g) has degree 4: no blind spot
+adversarial square+blind (hidden -s*x0^2 + x0^3 + 2*s^2 - s*x0), 2 T=1 + 2 T=2 rows + 0 T=4 rows: certified 0/20, found {'s^2': 20}
+adversarial square+blind (hidden -s*x0^2 + x0^3 + 2*s^2 - s*x0), 2 T=1 + 2 T=2 rows + 1 T=4 rows: certified 20/20, found {'-s*x0^2 + x0^3 + 2*s^2 - s*x0': 20}
+adversarial square+blind (hidden -s*x0^2 + x0^3 + 2*s^2 - s*x0), 2 T=1 + 2 T=2 rows + 2 T=4 rows: certified 20/20, found {'-s*x0^2 + x0^3 + 2*s^2 - s*x0': 20}
+adversarial square+x0-blind (hidden s*x0^2 - x0^3 + 2*s*x0 - x0^2 + x0), 2 T=1 + 2 T=2 rows + 0 T=4 rows: certified 0/20, found {'s^2 + x0': 20}
+adversarial square+x0-blind (hidden s*x0^2 - x0^3 + 2*s*x0 - x0^2 + x0), 2 T=1 + 2 T=2 rows + 1 T=4 rows: certified 20/20, found {'s*x0^2 - x0^3 + 2*s*x0 - x0^2 + x0': 20}
+adversarial square+x0-blind (hidden s*x0^2 - x0^3 + 2*s*x0 - x0^2 + x0), 2 T=1 + 2 T=2 rows + 2 T=4 rows: certified 20/20, found {'s*x0^2 - x0^3 + 2*s*x0 - x0^2 + x0': 20}
+wall 2.2s

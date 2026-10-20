@@ -1,0 +1,1549 @@
+{
+ "log": {
+  "device": "mps",
+  "torch": "2.12.1",
+  "compiled": "",
+  "chunk": 1048576,
+  "args": {
+   "data": "/private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/f90ac968-2b9c-4f1c-a51e-c2cf0582042a/scratchpad/one-layer-deeper/data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2",
+   "device": "mps",
+   "chunk": 1048576,
+   "gates": 65536,
+   "out": "runs/cell_ports_mps.json",
+   "bench": false,
+   "alias_demo": false,
+   "fuse_probe": false,
+   "compile": "",
+   "rows": "1,4,16,64",
+   "core": "ports",
+   "families": "r2,r2m,r4,r4m",
+   "ppop": "all",
+   "law": "id,comm",
+   "law_synth": "",
+   "law_synth_n": 16,
+   "count_law": "",
+   "c_check": "labels",
+   "stop_after": "C",
+   "join_cap": 2000000,
+   "ablate": "",
+   "ab_cache": "/private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/48046994-6b8d-497e-9781-fbeb8499b780/scratchpad/ab_cache_full.json",
+   "cell_law": true,
+   "width_law": 0,
+   "cell_audit": "",
+   "cell_audit_sets": ""
+  },
+  "A": {
+   "space": 188743680,
+   "survivors": 7782,
+   "seconds": 30.688265562057495,
+   "warmup_seconds": 0.0,
+   "alive_after_row_groups": [
+    10448,
+    8509,
+    8404,
+    7782
+   ],
+   "machine_rows": 188871994,
+   "machine_rows_per_s": 13439518.713724883,
+   "by_family": {
+    "r2": 7782
+   },
+   "free": {
+    "gate": [
+     "0x16",
+     "0x32",
+     "0x36",
+     "0x3a",
+     "0x3e",
+     "0x56",
+     "0x72",
+     "0x76",
+     "0x7a",
+     "0x7e",
+     "0x96",
+     "0xb2",
+     "0xb6",
+     "0xba",
+     "0xbe",
+     "0xd6",
+     "0xf2",
+     "0xf6",
+     "0xfa",
+     "0xfe",
+     "0x432",
+     "0x436",
+     "0x43a",
+     "0x43e",
+     "0x472",
+     "0x476",
+     "0x47a",
+     "0x47e",
+     "0x4b2",
+     "0x4b6",
+     "0x4ba",
+     "0x4be",
+     "0x4f2",
+     "0x4f6",
+     "0x4fa",
+     "0x4fe",
+     "0x832",
+     "0x836",
+     "0x83a",
+     "0x83e",
+     "0x872",
+     "0x876",
+     "0x87a",
+     "0x87e",
+     "0x8b2",
+     "0x8b6",
+     "0x8ba",
+     "0x8be",
+     "0x8f2",
+     "0x8f6",
+     "0x8fa",
+     "0x8fe",
+     "0xc1a",
+     "0xc32",
+     "0xc36",
+     "0xc3a",
+     "0xc3e",
+     "0xc5a",
+     "0xc72",
+     "0xc76",
+     "0xc7a",
+     "0xc7e",
+     "0xc96",
+     "0xc9a",
+     "0xcb2",
+     "0xcb6",
+     "0xcba",
+     "0xcbe",
+     "0xcda",
+     "0xcf2",
+     "0xcf6",
+     "0xcfa",
+     "0xcfe",
+     "0x2016",
+     "0x201e",
+     "0x203a",
+     "0x2056",
+     "0x205e",
+     "0x207a",
+     "0x2096",
+     "0x209e",
+     "0x20ba",
+     "0x20d6",
+     "0x20de",
+     "0x20fa",
+     "0x2816",
+     "0x281e",
+     "0x283a",
+     "0x2856",
+     "0x285e",
+     "0x2896",
+     "0x289e",
+     "0x28ba",
+     "0x28d6",
+     "0x28de",
+     "0x4016",
+     "0x4032",
+     "0x4036",
+     "0x403a",
+     "0x403e",
+     "0x4056",
+     "0x4072",
+     "0x4076",
+     "0x407a",
+     "0x407e",
+     "0x4096",
+     "0x40b2",
+     "0x40b6",
+     "0x40ba",
+     "0x40be",
+     "0x40d6",
+     "0x40f2",
+     "0x40f6",
+     "0x40fa",
+     "0x40fe",
+     "0x4432",
+     "0x4436",
+     "0x443a",
+     "0x443e",
+     "0x4472",
+     "0x4476",
+     "0x447a",
+     "0x447e",
+     "0x44b2",
+     "0x44b6",
+     "0x44ba",
+     "0x44be",
+     "0x44f2",
+     "0x44f6",
+     "0x44fa",
+     "0x44fe",
+     "0x4832",
+     "0x4836",
+     "0x483a",
+     "0x483e",
+     "0x4872",
+     "0x4876",
+     "0x487a",
+     "0x487e",
+     "0x48b2",
+     "0x48b6",
+     "0x48ba",
+     "0x48be",
+     "0x48f2",
+     "0x48f6",
+     "0x48fa",
+     "0x48fe",
+     "0x4c1a",
+     "0x4c32",
+     "0x4c36",
+     "0x4c3a",
+     "0x4c3e",
+     "0x4c5a",
+     "0x4c72",
+     "0x4c76",
+     "0x4c7a",
+     "0x4c7e",
+     "0x4c9a",
+     "0x4cb2",
+     "0x4cb6",
+     "0x4cba",
+     "0x4cbe",
+     "0x4cda",
+     "0x4cf2",
+     "0x4cf6",
+     "0x4cfa",
+     "0x4cfe",
+     "0x6016",
+     "0x601e",
+     "0x603a",
+     "0x6056",
+     "0x605e",
+     "0x607a",
+     "0x6096",
+     "0x609e",
+     "0x60ba",
+     "0x60d6",
+     "0x60de",
+     "0x60fa",
+     "0x6816",
+     "0x681e",
+     "0x683a",
+     "0x6856",
+     "0x685e",
+     "0x6896",
+     "0x689e",
+     "0x68ba",
+     "0x68d6",
+     "0x68de",
+     "0x8016",
+     "0x8032",
+     "0x8036",
+     "0x803a",
+     "0x803e",
+     "0x8056",
+     "0x8072",
+     "0x8076",
+     "0x807a",
+     "0x807e",
+     "0x8096",
+     "0x80b2",
+     "0x80b6",
+     "0x80ba",
+     "0x80be",
+     "0x80d6",
+     "0x80f2",
+     "0x80f6",
+     "0x80fa",
+     "0x80fe",
+     "0x8432",
+     "0x8436",
+     "0x843a",
+     "0x843e",
+     "0x8472",
+     "0x8476",
+     "0x847a",
+     "0x847e",
+     "0x84b2",
+     "0x84b6",
+     "0x84ba",
+     "0x84be",
+     "0x84f2",
+     "0x84f6",
+     "0x84fa",
+     "0x84fe",
+     "0x8832",
+     "0x8836",
+     "0x883a",
+     "0x883e",
+     "0x8872",
+     "0x8876",
+     "0x887a",
+     "0x887e",
+     "0x88b2",
+     "0x88b6",
+     "0x88ba",
+     "0x88be",
+     "0x88f2",
+     "0x88f6",
+     "0x88fa",
+     "0x88fe",
+     "0x8c1a",
+     "0x8c32",
+     "0x8c36",
+     "0x8c3a",
+     "0x8c3e",
+     "0x8c5a",
+     "0x8c72",
+     "0x8c76",
+     "0x8c7a",
+     "0x8c7e",
+     "0x8c9a",
+     "0x8cb2",
+     "0x8cb6",
+     "0x8cba",
+     "0x8cbe",
+     "0x8cda",
+     "0x8cf2",
+     "0x8cf6",
+     "0x8cfa",
+     "0x8cfe",
+     "0xa016",
+     "0xa01e",
+     "0xa03a",
+     "0xa056",
+     "0xa05e",
+     "0xa07a",
+     "0xa096",
+     "0xa09e",
+     "0xa0ba",
+     "0xa0d6",
+     "0xa0de",
+     "0xa0fa",
+     "0xa816",
+     "0xa81e",
+     "0xa83a",
+     "0xa856",
+     "0xa85e",
+     "0xa896",
+     "0xa89e",
+     "0xa8ba",
+     "0xa8d6",
+     "0xa8de",
+     "0xb0ba",
+     "0xb8ba",
+     "0xc016",
+     "0xc032",
+     "0xc036",
+     "0xc03a",
+     "0xc03e",
+     "0xc056",
+     "0xc072",
+     "0xc076",
+     "0xc07a",
+     "0xc07e",
+     "0xc096",
+     "0xc0b2",
+     "0xc0b6",
+     "0xc0ba",
+     "0xc0be",
+     "0xc0d6",
+     "0xc0f2",
+     "0xc0f6",
+     "0xc0fa",
+     "0xc0fe",
+     "0xc432",
+     "0xc436",
+     "0xc43a",
+     "0xc43e",
+     "0xc472",
+     "0xc476",
+     "0xc47a",
+     "0xc47e",
+     "0xc4b2",
+     "0xc4b6",
+     "0xc4ba",
+     "0xc4be",
+     "0xc4f2",
+     "0xc4f6",
+     "0xc4fa",
+     "0xc4fe",
+     "0xc832",
+     "0xc836",
+     "0xc83a",
+     "0xc83e",
+     "0xc872",
+     "0xc876",
+     "0xc87a",
+     "0xc87e",
+     "0xc8b2",
+     "0xc8b6",
+     "0xc8ba",
+     "0xc8be",
+     "0xc8f2",
+     "0xc8f6",
+     "0xc8fa",
+     "0xc8fe",
+     "0xcc1a",
+     "0xcc32",
+     "0xcc36",
+     "0xcc3a",
+     "0xcc3e",
+     "0xcc5a",
+     "0xcc72",
+     "0xcc76",
+     "0xcc7a",
+     "0xcc7e",
+     "0xcc9a",
+     "0xccb2",
+     "0xccb6",
+     "0xccba",
+     "0xccbe",
+     "0xccda",
+     "0xccf2",
+     "0xccf6",
+     "0xccfa",
+     "0xccfe",
+     "0xe016",
+     "0xe01e",
+     "0xe03a",
+     "0xe056",
+     "0xe05e",
+     "0xe07a",
+     "0xe096",
+     "0xe09e",
+     "0xe0ba",
+     "0xe0d6",
+     "0xe0de",
+     "0xe0fa",
+     "0xe816",
+     "0xe81e",
+     "0xe83a",
+     "0xe856",
+     "0xe85e",
+     "0xe896",
+     "0xe89e",
+     "0xe8ba",
+     "0xe8d6",
+     "0xe8de",
+     "0xf0ba",
+     "0xf2ba",
+     "0xf8ba"
+    ],
+    "d2b_mul": [
+     [
+      3,
+      1
+     ],
+     [
+      3,
+      2
+     ],
+     [
+      3,
+      3
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      4,
+      4
+     ]
+    ],
+    "b2d_thr": [
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "b2d_add": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ]
+   },
+   "distinct_gates": 382
+  },
+  "B": {
+   "space": 996096,
+   "survivors": 64,
+   "seconds": 0.530104398727417,
+   "warmup_seconds": 0.0,
+   "alive_after_row_groups": [
+    64,
+    64,
+    64,
+    64
+   ],
+   "machine_rows": 996544,
+   "machine_rows_per_s": 2300500.8081096048,
+   "by_family": {
+    "r2": 64
+   },
+   "free": {
+    "d2b_mul": [
+     [
+      3,
+      1
+     ],
+     [
+      3,
+      2
+     ],
+     [
+      3,
+      3
+     ]
+    ],
+    "b2d_thr": [
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "b2d_add": [
+     0,
+     2,
+     3
+    ],
+    "entry_radix": [
+     2,
+     4
+    ],
+    "Ke": [
+     22,
+     24,
+     26,
+     28
+    ],
+    "Kx": [
+     22,
+     24,
+     26,
+     28
+    ]
+   }
+  },
+  "grammar": {
+   "families": {
+    "r2": {
+     "factors": [
+      "ppdir",
+      "ppop",
+      "l1src",
+      "l1sh",
+      "qsrc",
+      "l2src",
+      "l2sh",
+      "osh",
+      "csh",
+      "Km",
+      "W"
+     ],
+     "size": 952342272
+    },
+    "r2m": {
+     "factors": [
+      "ppdir",
+      "ppop",
+      "r2msh",
+      "r2mq",
+      "r2mrow",
+      "osh",
+      "csh",
+      "Km",
+      "W"
+     ],
+     "size": 3359232
+    },
+    "r4": {
+     "factors": [
+      "ppdir",
+      "ppop",
+      "r4hold",
+      "r4qtree",
+      "r4c1sh",
+      "r4c2sh",
+      "q4",
+      "r4q1sh",
+      "r4osh",
+      "r4csh",
+      "r4cin",
+      "Km",
+      "W"
+     ],
+     "size": 906992640
+    },
+    "r4m": {
+     "factors": [
+      "ppdir",
+      "ppop",
+      "r4m1sh",
+      "r4m2sh",
+      "r4mpp",
+      "r4mqn",
+      "q4",
+      "r4osh",
+      "r4csh",
+      "r4cin",
+      "Km",
+      "W"
+     ],
+     "size": 14511882240
+    }
+   },
+   "core_with_cw": 49123729152,
+   "joint": 1186789557180385198080
+  },
+  "cells": {
+   "rows": 32,
+   "families": {
+    "r2": {
+     "laws": {
+      "r2.cell1": {
+       "factors": [
+        "l1src",
+        "l1sh"
+       ],
+       "machines": 216,
+       "survivors": 12,
+       "seconds": 0.06281280517578125
+      },
+      "r2.quot": {
+       "factors": [
+        "qsrc"
+       ],
+       "machines": 84,
+       "survivors": 6,
+       "seconds": 0.025485992431640625
+      },
+      "r2.cell2": {
+       "factors": [
+        "l2src",
+        "l2sh"
+       ],
+       "machines": 729,
+       "survivors": 12,
+       "seconds": 0.024602890014648438
+      },
+      "r2.handoff": {
+       "factors": [
+        "osh",
+        "csh"
+       ],
+       "machines": 108,
+       "survivors": 12,
+       "seconds": 0.02805304527282715
+      }
+     },
+     "wiring_survivors": 72,
+     "space_before": 952342272,
+     "space_after": 6912
+    },
+    "r2m": {
+     "laws": {
+      "r2m.cell": {
+       "factors": [
+        "r2msh",
+        "r2mrow",
+        "r2mq"
+       ],
+       "machines": 3888,
+       "survivors": 6,
+       "seconds": 0.047022104263305664
+      },
+      "r2m.handoff": {
+       "factors": [
+        "osh",
+        "csh"
+       ],
+       "machines": 54,
+       "survivors": 4,
+       "seconds": 0.024709224700927734
+      }
+     },
+     "wiring_survivors": 4,
+     "space_before": 3359232,
+     "space_after": 384
+    },
+    "r4": {
+     "laws": {
+      "r4.cell1": {
+       "factors": [
+        "r4hold",
+        "r4c1sh"
+       ],
+       "machines": 108,
+       "survivors": 12,
+       "seconds": 0.016292095184326172
+      },
+      "r4.cell2": {
+       "factors": [
+        "r4hold",
+        "r4c2sh"
+       ],
+       "machines": 108,
+       "survivors": 12,
+       "seconds": 0.008011102676391602
+      },
+      "r4.quot": {
+       "factors": [
+        "q4"
+       ],
+       "machines": 288,
+       "survivors": 8,
+       "seconds": 0.03236675262451172
+      },
+      "r4.qtree": {
+       "factors": [
+        "r4qtree",
+        "r4q1sh"
+       ],
+       "machines": 9,
+       "survivors": 3,
+       "seconds": 0.008218050003051758
+      },
+      "r4.handoff": {
+       "factors": [
+        "r4osh",
+        "r4csh",
+        "r4cin"
+       ],
+       "machines": 135,
+       "survivors": 14,
+       "seconds": 0.08870220184326172
+      }
+     },
+     "wiring_survivors": 112,
+     "space_before": 906992640,
+     "space_after": 10752
+    },
+    "r4m": {
+     "laws": {
+      "r4m.cell1": {
+       "factors": [
+        "r4mpp",
+        "r4m1sh"
+       ],
+       "machines": 648,
+       "survivors": 3,
+       "seconds": 0.03275585174560547
+      },
+      "r4m.cell2": {
+       "factors": [
+        "r4m2sh"
+       ],
+       "machines": 27,
+       "survivors": 3,
+       "seconds": 0.01818704605102539
+      },
+      "r4m.quot": {
+       "factors": [
+        "q4",
+        "r4mqn"
+       ],
+       "machines": 576,
+       "survivors": 6,
+       "seconds": 0.03174996376037598
+      },
+      "r4m.handoff": {
+       "factors": [
+        "r4osh",
+        "r4csh",
+        "r4cin"
+       ],
+       "machines": 135,
+       "survivors": 4,
+       "seconds": 0.008185863494873047
+      }
+     },
+     "wiring_survivors": 24,
+     "space_before": 14511882240,
+     "space_after": 2304
+    }
+   },
+   "seconds": 0.45815134048461914,
+   "machines": 7113
+  },
+  "C0": {
+   "laws": [
+    "id",
+    "comm"
+   ],
+   "contexts": 8,
+   "families": {
+    "r2": {
+     "space": 55296,
+     "checks": [
+      {
+       "check": "id",
+       "machines": 55296,
+       "survivors": 3456,
+       "seconds": 0.4854090213775635,
+       "warmup_seconds": 0.0,
+       "alive_after_row_groups": [
+        3456,
+        3456,
+        3456,
+        3456
+       ],
+       "machine_rows": 79488,
+       "machine_rows_per_s": 185561.93841057704
+      },
+      {
+       "check": "comm",
+       "machines": 3456,
+       "survivors": 3456,
+       "seconds": 0.40229082107543945,
+       "warmup_seconds": 0.0,
+       "alive_after_row_groups": [
+        3456,
+        3456,
+        3456,
+        3456
+       ],
+       "machine_rows": 27648,
+       "machine_rows_per_s": 72687.23968246969
+      }
+     ],
+     "survivors": 3456,
+     "free": {
+      "entry_radix": [
+       2,
+       4
+      ],
+      "Ke": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "Kx": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "ppop": [
+       "a.b",
+       "b.a"
+      ],
+      "l1src": [
+       [
+        0,
+        1,
+        2
+       ],
+       [
+        0,
+        2,
+        1
+       ],
+       [
+        1,
+        0,
+        2
+       ],
+       [
+        1,
+        2,
+        0
+       ],
+       [
+        2,
+        0,
+        1
+       ],
+       [
+        2,
+        1,
+        0
+       ]
+      ],
+      "l2src": [
+       [
+        0,
+        1,
+        2
+       ],
+       [
+        0,
+        2,
+        1
+       ],
+       [
+        1,
+        0,
+        2
+       ],
+       [
+        1,
+        2,
+        0
+       ],
+       [
+        2,
+        0,
+        1
+       ],
+       [
+        2,
+        1,
+        0
+       ]
+      ],
+      "l2sh": [
+       [
+        0,
+        0,
+        1
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        1,
+        0,
+        0
+       ],
+       [
+        1,
+        1,
+        2
+       ],
+       [
+        1,
+        2,
+        1
+       ],
+       [
+        2,
+        1,
+        1
+       ]
+      ],
+      "osh": [
+       1,
+       2
+      ],
+      "csh": [
+       0,
+       -1
+      ],
+      "Km": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "W": [
+       24,
+       26,
+       28
+      ]
+     }
+    },
+    "r2m": {
+     "space": 3072,
+     "checks": [
+      {
+       "check": "id",
+       "machines": 3072,
+       "survivors": 192,
+       "seconds": 0.41953611373901367,
+       "warmup_seconds": 0.0,
+       "alive_after_row_groups": [
+        192,
+        192,
+        192,
+        192
+       ],
+       "machine_rows": 4416,
+       "machine_rows_per_s": 11988.207286474824
+      },
+      {
+       "check": "comm",
+       "machines": 192,
+       "survivors": 192,
+       "seconds": 0.351315975189209,
+       "warmup_seconds": 0.0,
+       "alive_after_row_groups": [
+        192,
+        192,
+        192,
+        192
+       ],
+       "machine_rows": 1536,
+       "machine_rows_per_s": 4650.872913948003
+      }
+     ],
+     "survivors": 192,
+     "free": {
+      "entry_radix": [
+       2,
+       4
+      ],
+      "Ke": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "Kx": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "ppop": [
+       "a.b",
+       "b.a"
+      ],
+      "osh": [
+       1,
+       2
+      ],
+      "csh": [
+       0,
+       -1
+      ],
+      "r2mq": [
+       "s^c^db0",
+       "~(s^c^db0)"
+      ],
+      "r2mrow": [
+       [
+        "0",
+        "b",
+        "N",
+        "b+N"
+       ],
+       [
+        "N",
+        "b+N",
+        "0",
+        "b"
+       ]
+      ],
+      "r2msh": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        1,
+        1,
+        1
+       ]
+      ],
+      "Km": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "W": [
+       24,
+       26,
+       28
+      ]
+     }
+    },
+    "r4": {
+     "space": 86016,
+     "checks": [
+      {
+       "check": "id",
+       "machines": 86016,
+       "survivors": 5376,
+       "seconds": 0.44814181327819824,
+       "warmup_seconds": 0.0,
+       "alive_after_row_groups": [
+        5376,
+        5376,
+        5376,
+        5376
+       ],
+       "machine_rows": 123648,
+       "machine_rows_per_s": 321147.09270955424
+      },
+      {
+       "check": "comm",
+       "machines": 5376,
+       "survivors": 5376,
+       "seconds": 0.3411858081817627,
+       "warmup_seconds": 0.0,
+       "alive_after_row_groups": [
+        5376,
+        5376,
+        5376,
+        5376
+       ],
+       "machine_rows": 43008,
+       "machine_rows_per_s": 134077.84656860644
+      }
+     ],
+     "survivors": 5376,
+     "free": {
+      "entry_radix": [
+       2,
+       4
+      ],
+      "Ke": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "Kx": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "ppop": [
+       "a.b",
+       "b.a"
+      ],
+      "r4hold": [
+       "Ss",
+       "Sc",
+       "P0",
+       "P1"
+      ],
+      "q4": [
+       "gen",
+       "n1"
+      ],
+      "r4qtree": [
+       "(u,v,Q0)(Q1)",
+       "(u,Q0,Q1)(v)",
+       "(v,Q0,Q1)(u)"
+      ],
+      "r4cin": [
+       "u1",
+       "v0",
+       "u1&v0",
+       "u1|v0",
+       "0"
+      ],
+      "Km": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "W": [
+       24,
+       26,
+       28
+      ]
+     }
+    },
+    "r4m": {
+     "space": 18432,
+     "checks": [
+      {
+       "check": "id",
+       "machines": 18432,
+       "survivors": 1152,
+       "seconds": 0.42162609100341797,
+       "warmup_seconds": 0.0,
+       "alive_after_row_groups": [
+        1152,
+        1152,
+        1152,
+        1152
+       ],
+       "machine_rows": 26496,
+       "machine_rows_per_s": 72992.28830016738
+      },
+      {
+       "check": "comm",
+       "machines": 1152,
+       "survivors": 1152,
+       "seconds": 0.3297569751739502,
+       "warmup_seconds": 0.0,
+       "alive_after_row_groups": [
+        1152,
+        1152,
+        1152,
+        1152
+       ],
+       "machine_rows": 9216,
+       "machine_rows_per_s": 29541.183683722556
+      }
+     ],
+     "survivors": 1152,
+     "free": {
+      "entry_radix": [
+       2,
+       4
+      ],
+      "Ke": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "Kx": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "ppop": [
+       "a.b",
+       "b.a"
+      ],
+      "q4": [
+       "gen",
+       "n1",
+       "n3",
+       "x1",
+       "~S0",
+       "swap"
+      ],
+      "r4cin": [
+       "u1",
+       "v0",
+       "u1&v0",
+       "u1|v0"
+      ],
+      "r4mqn": [
+       [
+        "0",
+        "N",
+        "2N",
+        "3N"
+       ],
+       [
+        "0",
+        "2N",
+        "3N",
+        "N"
+       ],
+       [
+        "0",
+        "3N",
+        "2N",
+        "N"
+       ],
+       [
+        "3N",
+        "0",
+        "N",
+        "2N"
+       ]
+      ],
+      "Km": [
+       22,
+       24,
+       26,
+       28
+      ],
+      "W": [
+       24,
+       26,
+       28
+      ]
+     }
+    }
+   },
+   "space": 162816,
+   "survivors": 10176,
+   "seconds": 3.218902111053467,
+   "by_family": {
+    "r2": 3456,
+    "r2m": 192,
+    "r4": 5376,
+    "r4m": 1152
+   }
+  },
+  "C": {
+   "space": 244224,
+   "survivors": 30528,
+   "seconds": 2.8513760566711426,
+   "warmup_seconds": 0.0,
+   "alive_after_row_groups": [
+    30528,
+    30528,
+    30528,
+    30528
+   ],
+   "machine_rows": 2167488,
+   "machine_rows_per_s": 867926.775999668,
+   "by_family": {
+    "r2": 10368,
+    "r2m": 576,
+    "r4": 16128,
+    "r4m": 3456
+   },
+   "free": {
+    "entry_radix": [
+     2,
+     4
+    ],
+    "Ke": [
+     22,
+     24,
+     26,
+     28
+    ],
+    "Kx": [
+     22,
+     24,
+     26,
+     28
+    ],
+    "mult": [
+     "r2",
+     "r2m",
+     "r4",
+     "r4m"
+    ],
+    "ppop": [
+     "a.b",
+     "b.a"
+    ],
+    "l1src": [
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      0,
+      2,
+      1
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      1,
+      2,
+      0
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      2,
+      1,
+      0
+     ]
+    ],
+    "l2src": [
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      0,
+      2,
+      1
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      1,
+      2,
+      0
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      2,
+      1,
+      0
+     ]
+    ],
+    "l2sh": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      1,
+      2,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ]
+    ],
+    "osh": [
+     1,
+     2
+    ],
+    "csh": [
+     0,
+     -1
+    ],
+    "r2mq": [
+     "s^c^db0",
+     "~(s^c^db0)"
+    ],
+    "r2mrow": [
+     [
+      "0",
+      "b",
+      "N",
+      "b+N"
+     ],
+     [
+      "N",
+      "b+N",
+      "0",
+      "b"
+     ]
+    ],
+    "r4hold": [
+     "Ss",
+     "Sc",
+     "P0",
+     "P1"
+    ],
+    "q4": [
+     "gen",
+     "n1",
+     "n3",
+     "x1",
+     "~S0",
+     "swap"
+    ],
+    "r4qtree": [
+     "(u,v,Q0)(Q1)",
+     "(u,Q0,Q1)(v)",
+     "(v,Q0,Q1)(u)"
+    ],
+    "r4cin": [
+     "u1",
+     "v0",
+     "u1&v0",
+     "u1|v0",
+     "0"
+    ],
+    "r4mqn": [
+     [
+      "0",
+      "N",
+      "2N",
+      "3N"
+     ],
+     [
+      "0",
+      "2N",
+      "3N",
+      "N"
+     ],
+     [
+      "0",
+      "3N",
+      "2N",
+      "N"
+     ],
+     [
+      "3N",
+      "0",
+      "N",
+      "2N"
+     ]
+    ],
+    "r2msh": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      1
+     ]
+    ],
+    "Km": [
+     22,
+     24,
+     26,
+     28
+    ],
+    "W": [
+     24,
+     26,
+     28
+    ],
+    "cw": [
+     5,
+     6,
+     7
+    ]
+   },
+   "core_designs": {
+    "r2": 1728,
+    "r2m": 96,
+    "r4": 2688,
+    "r4m": 576
+   }
+  },
+  "evaluated_machines": 190164105,
+  "labels_only_C_would_be": 3143918665728,
+  "wall_seconds": 6.612847805023193
+ },
+ "audit": []
+}

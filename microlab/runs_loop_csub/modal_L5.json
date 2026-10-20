@@ -1,0 +1,215 @@
+{
+ "exp": "loop_csub",
+ "where": "modal cpu=32",
+ "tag": "L5",
+ "workers": 31,
+ "chunk": 1024,
+ "probe_seed": 1,
+ "label_seed": 0,
+ "K_lab": 8,
+ "job_slice": null,
+ "first_labels": [
+  [
+   54253,
+   39215,
+   14940
+  ],
+  [
+   5969,
+   2023,
+   3764
+  ],
+  [
+   6313,
+   3163,
+   4777
+  ],
+  [
+   7493,
+   1629,
+   1119
+  ],
+  [
+   723253,
+   643486,
+   317648
+  ],
+  [
+   888673,
+   622684,
+   224572
+  ],
+  [
+   55973,
+   53733,
+   36003
+  ],
+  [
+   721453,
+   368727,
+   339773
+  ]
+ ],
+ "wall": 12.742815256118774,
+ "L": 5,
+ "K": 32,
+ "space": 168608563200,
+ "levels": [
+  {
+   "depth": 1,
+   "partial": 70,
+   "states": 64,
+   "raw": 70.0
+  },
+  {
+   "depth": 2,
+   "partial": 5977,
+   "states": 3503,
+   "raw": 6532.0
+  },
+  {
+   "depth": 3,
+   "partial": 422618,
+   "states": 194261,
+   "raw": 787055.0
+  }
+ ],
+ "states_last": 12950057,
+ "bodies": 112444771,
+ "raw": 272637962.0,
+ "functions_chunk_local": 35895041,
+ "functions_exact": 3365584,
+ "functions_hll": 3375169.4595193937,
+ "curve_raw": [
+  272637962.0,
+  20.0,
+  20.0,
+  20.0,
+  12.0,
+  12.0,
+  12.0,
+  12.0,
+  12.0
+ ],
+ "curve_fn": [
+  3365584,
+  2,
+  2,
+  2,
+  1,
+  1,
+  1,
+  1,
+  1
+ ],
+ "seconds": 7.556464910507202,
+ "t_materialise": 0.8106753826141357,
+ "t_enum_cpu": 93.6873254776001,
+ "t_loop_cpu": 68.49151349067688,
+ "jobs": 190,
+ "jobs_total": 190,
+ "survivor_table": [
+  {
+   "k": 1,
+   "functions": 2,
+   "raw": 20.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 2,
+   "functions": 2,
+   "raw": 20.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 3,
+   "functions": 2,
+   "raw": 20.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 4,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 5,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 6,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 7,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 8,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  },
+  {
+   "k": 1000,
+   "functions": 1,
+   "raw": 12.0,
+   "correct_functions": 1,
+   "correct_raw": 12.0
+  }
+ ],
+ "checked": [
+  {
+   "body": "mul,1,3;add,0,0;add,7,8;csub,9,9;csub,10,10",
+   "show": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)",
+   "mult": 12.0,
+   "passed": 8,
+   "rows_passed": 1000,
+   "train_all": true,
+   "fresh": {
+    "13": 1.0,
+    "16": 1.0,
+    "20": 1.0,
+    "24": 1.0
+   },
+   "correct": true
+  },
+  {
+   "body": "csub,0,0;mul,1,3;add,7,8;add,7,9;csub,10,10",
+   "show": "t0=csub(s); t1=mul(x,d); t2=add(t0,t1); t3=add(t0,t2); t4=csub(t3)",
+   "mult": 8.0,
+   "passed": 3,
+   "rows_passed": 3,
+   "train_all": false,
+   "fresh": {
+    "13": 0.925,
+    "16": 0.91,
+    "20": 0.85,
+    "24": 0.885
+   },
+   "correct": false
+  }
+ ],
+ "n_checked": 2,
+ "certified": {
+  "body": "t0=mul(x,d); t1=add(s,s); t2=add(t0,t1); t3=csub(t2); t4=csub(t3)",
+  "depth_t": 64,
+  "depth_ood_n_t": 64
+ },
+ "t_check": 0.9857184886932373
+}

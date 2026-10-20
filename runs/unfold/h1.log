@@ -1,0 +1,22 @@
+h1 value  seed 0: train T=1 exact 0.001    (0.1s)
+h1 value  seed 1: train T=1 exact 0.001    (0.1s)
+h1 value  seed 2: train T=1 exact 0.001    (0.1s)
+h1 tied   seed 0: train T=1 exact 1.000  depth_t max T=64 depth_ood_n_t max T=64  (0.0s)
+   learned: [10.]
+h1 tied   seed 1: train T=1 exact 1.000  depth_t max T=64 depth_ood_n_t max T=64  (0.0s)
+   learned: [10.]
+h1 tied   seed 2: train T=1 exact 1.000  depth_t max T=64 depth_ood_n_t max T=64  (0.0s)
+   learned: [10.]
+h1 untied seed 0: train T=1 exact 0.000    (0.1s)
+   learned: [   1.7232220154   17.7338509925  463.3676740241   -0.9339790976
+ -135.8295056048  168.9427201608    1.2132715515    1.458993122 ]
+h1 untied seed 1: train T=1 exact 0.000    (0.2s)
+   learned: [  1.0944281689  10.0430719009  99.9243942876 244.055111023
+  70.1117217503 -75.8860111952   1.6554051876   0.8183982727]
+h1 untied seed 2: train T=1 exact 0.000    (0.2s)
+   learned: [ 7.1742604684e+00  1.8952599793e+01  3.1184598212e+02  1.0187192760e+02
+  1.0642962753e+02 -5.8981870839e+01  3.7580214673e-01  1.1029325467e-01]
+h1 bidig  seed 0: train T=1 exact 0.000    (0.4s)
+h1 bidig  seed 1: train T=1 exact 0.000    (0.4s)
+h1 bidig  seed 2: train T=1 exact 0.000    (0.3s)
+wall 3.6s

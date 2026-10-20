@@ -1,0 +1,34 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '12', '--fmt', 'v4', '--steps', '24000', '--batch', '128', '--data', 'h1like', '--eval_every', '2000', '--eval_n', '1024', '--final_n', '50000', '--ladder_only_if_exact', '--device', 'cuda']
+W=4 L=474 trace lines=66 params=4752918 data=h1like curriculum=none fmt=v4
+h1like: 936324 step traces, 430 pool moduli, 594 unseen
+step 2000 loss 0.0013 tf_seq 0.883 pool: ans=0.8975 trace=0.8779 firsterr={'P': 52, 'M': 8, 'D': 29, 'R': 26, 'A': 7, 'E': 3} unseen: ans=0.8799 trace=0.8584 firsterr={'D': 41, 'P': 62, 'R': 16, 'A': 8, 'E': 6, 'M': 12} t=174s
+step 4000 loss 0.0004 tf_seq 0.953 pool: ans=0.9668 trace=0.9639 firsterr={'P': 26, 'A': 7, 'D': 4} unseen: ans=0.9590 trace=0.9502 firsterr={'P': 33, 'M': 7, 'A': 9, 'D': 2} t=347s
+step 6000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=521s
+step 8000 loss 0.0000 tf_seq 1.000 pool: ans=0.9990 trace=0.9990 firsterr={'A': 1} unseen: ans=1.0000 trace=0.9990 firsterr={'M': 1} t=694s
+step 10000 loss 0.0000 tf_seq 1.000 pool: ans=0.9990 trace=0.9990 firsterr={'P': 1} unseen: ans=1.0000 trace=1.0000 firsterr={} t=867s
+step 12000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=1041s
+step 14000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=1214s
+step 16000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=1388s
+step 18000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=1561s
+step 20000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=1735s
+step 22000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=1908s
+step 24000 loss 0.0000 tf_seq 1.000 pool: ans=1.0000 trace=1.0000 firsterr={} unseen: ans=1.0000 trace=1.0000 firsterr={} t=2082s
+final single-step (pool moduli): (1.0, 1.0, {})
+    ladder b=12 T=1   exact=1.0000
+    ladder b=12 T=2   exact=1.0000
+    ladder b=12 T=4   exact=1.0000
+    ladder b=12 T=8   exact=1.0000
+    ladder b=12 T=16  exact=1.0000
+    ladder b=12 T=32  exact=1.0000
+    ladder b=12 T=64  exact=1.0000
+final single-step (unseen moduli): (1.0, 1.0, {})
+    ladder b=12 T=1   exact=1.0000
+    ladder b=12 T=2   exact=1.0000
+    ladder b=12 T=4   exact=1.0000
+    ladder b=12 T=8   exact=1.0000
+    ladder b=12 T=16  exact=1.0000
+    ladder b=12 T=32  exact=1.0000
+    ladder b=12 T=64  exact=1.0000
+done {"params": 4752918, "L": 474, "train_time": 2081.8951482772827, "single_step_pool": [1.0, 1.0, {}], "ladder_pool": {"max_t": 64, "accs": {"1": 1.0, "2": 1.0, "4": 1.0, "8": 1.0, "16": 1.0, "32": 1.0, "64": 1.0}}, "single_step_unseen": [1.0, 1.0, {}], "ladder_unseen": {"max_t": 64, "accs": {"1": 1.0, "2": 1.0, "4": 1.0, "8": 1.0, "16": 1.0, "32": 1.0, "64": 1.0}}, "total_time": 3020.4256196022034}
+
+exit code 0, wall 3030s

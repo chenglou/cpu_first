@@ -1,0 +1,35 @@
+{
+ "gpu": "NVIDIA H100 80GB HBM3",
+ "modal_cpu": 16,
+ "form": "warmed closure (same as the MPS probe)",
+ "note": "parsed from runs/modal_fuse.log (the JSON was overwritten by a retried earlier run, kept as h100_fuse_argform.json)",
+ "fuse_probe": [
+  {
+   "case": "core, full adder",
+   "lanes": 979776,
+   "eager_machines_per_s": 30200000.0,
+   "compiled_machines_per_s": 390000000.0,
+   "speedup": 12.9,
+   "compile_s": 110,
+   "bit_exact": true
+  },
+  {
+   "case": "core + port wiring, full adder",
+   "lanes": 4194304,
+   "eager_machines_per_s": 105000000.0,
+   "compiled_machines_per_s": 641000000.0,
+   "speedup": 6.1,
+   "compile_s": 114,
+   "bit_exact": true
+  },
+  {
+   "case": "core, per-lane cell x qsrc x l2sh",
+   "lanes": 4194304,
+   "eager_machines_per_s": 48500000.0,
+   "compiled_machines_per_s": 488000000.0,
+   "speedup": 10.1,
+   "compile_s": 245,
+   "bit_exact": true
+  }
+ ]
+}

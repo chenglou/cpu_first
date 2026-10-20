@@ -1,0 +1,49 @@
+A, B from /runs/ab_cache_full.json: 7,782 and 64 survivors (30.7s + 0.5s when computed)
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 22, 'exq': 's^c', 'Kx': 22}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 24, 'exq': 's^c', 'Kx': 24}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 26, 'exq': 's^c', 'Kx': 26}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 2, 'Ke': 28, 'exq': 's^c', 'Kx': 28}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 22, 'exq': 's^c', 'Kx': 22}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 24, 'exq': 's^c', 'Kx': 24}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 26, 'exq': 's^c', 'Kx': 26}
+    {'gate': '0xe896', 'd2b_mul': (3, 1), 'd2b_order': 'msb_first', 'b2d_thr': 5, 'b2d_add': 3, 'b2d_order': 'msb_first', 'entry_radix': 4, 'Ke': 28, 'exq': 's^c', 'Kx': 28}
+core grammar: 75,209,472 = 2^26.2 machines incl. cw ({'r2': 1306368, 'r2m': 124416, 'r4': 3732480, 'r4m': 19906560} x 3); joint space 1,817,000,002,065,530,880 = 2^60.7
+C0 r2: 10,450,944 (2^23.3) machines vs law id: 74,940 survivors, 1.5s, 9.33e+06 machine-rows/s
+C0 r2: 74,940 (2^16.2) machines vs law comm: 96 survivors, 0.5s, 1.47e+05 machine-rows/s
+C0 r2: 96 (2^6.6) machines vs law assoc: 96 survivors, 0.4s, 1.84e+03 machine-rows/s
+C0 r2: 96 (2^6.6) machines vs law id@24bit: 48 survivors, 0.3s, 2.4e+03 machine-rows/s
+C0 r2: 48 (2^5.6) machines vs law comm@24bit: 48 survivors, 0.4s, 2.13e+03 machine-rows/s
+C0 r2: 48 (2^5.6) machines vs law assoc@24bit: 32 survivors, 0.3s, 2.18e+03 machine-rows/s
+C0 r2m: 995,328 (2^19.9) machines vs law id: 2,562 survivors, 0.5s, 2.09e+06 machine-rows/s
+C0 r2m: 2,562 (2^11.3) machines vs law comm: 96 survivors, 0.5s, 6.56e+03 machine-rows/s
+C0 r2m: 96 (2^6.6) machines vs law assoc: 96 survivors, 0.4s, 1.92e+03 machine-rows/s
+C0 r2m: 96 (2^6.6) machines vs law id@24bit: 48 survivors, 0.3s, 2.43e+03 machine-rows/s
+C0 r2m: 48 (2^5.6) machines vs law comm@24bit: 48 survivors, 0.4s, 2.16e+03 machine-rows/s
+C0 r2m: 48 (2^5.6) machines vs law assoc@24bit: 32 survivors, 0.3s, 2.27e+03 machine-rows/s
+C0 r4: 29,859,840 (2^24.8) machines vs law id: 5,376 survivors, 2.3s, 1.33e+07 machine-rows/s
+C0 r4: 5,376 (2^12.4) machines vs law comm: 5,376 survivors, 0.5s, 8.46e+04 machine-rows/s
+C0 r4: 5,376 (2^12.4) machines vs law assoc: 5,376 survivors, 0.5s, 9.6e+04 machine-rows/s
+C0 r4: 5,376 (2^12.4) machines vs law id@24bit: 2,688 survivors, 0.4s, 1.17e+05 machine-rows/s
+C0 r4: 2,688 (2^11.4) machines vs law comm@24bit: 2,688 survivors, 0.4s, 1.09e+05 machine-rows/s
+C0 r4: 2,688 (2^11.4) machines vs law assoc@24bit: 1,792 survivors, 0.3s, 1.13e+05 machine-rows/s
+C0 r4m: 159,252,480 (2^27.2) machines vs law id: 1,152 survivors, 8.0s, 2.08e+07 machine-rows/s
+C0 r4m: 1,152 (2^10.2) machines vs law comm: 1,152 survivors, 0.5s, 1.8e+04 machine-rows/s
+C0 r4m: 1,152 (2^10.2) machines vs law assoc: 1,152 survivors, 0.5s, 2e+04 machine-rows/s
+C0 r4m: 1,152 (2^10.2) machines vs law id@24bit: 576 survivors, 0.4s, 2.79e+04 machine-rows/s
+C0 r4m: 576 (2^9.2) machines vs law comm@24bit: 576 survivors, 0.4s, 2.4e+04 machine-rows/s
+C0 r4m: 576 (2^9.2) machines vs law assoc@24bit: 384 survivors, 0.3s, 2.34e+04 machine-rows/s
+C0: 200,558,592 (2^27.6) core machines x 8 entry/exit contexts vs laws ['id', 'comm', 'assoc', 'id@24bit', 'comm@24bit', 'assoc@24bit'] (no labels): 2,240 survivors {'r2': 32, 'r2m': 32, 'r4': 1792, 'r4m': 384}, 20.4s
+C: 53,760 (2^15.7) machines vs 64 T=1 labels: 6720 survivors {'r2': 96, 'r2m': 96, 'r4': 5376, 'r4m': 1152}, 1.6s, 3.1e+05 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [26, 28], 'Kx': [26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [26, 28], 'W': [26, 28], 'cw': [5, 6, 7]}
+C1: 6,720 (2^12.7) machines vs semigroup law y(x, 50+49) = y(y(x, 50), 49) on 8 prompts (no labels): 2240 survivors {'r2': 32, 'r2m': 32, 'r4': 1792, 'r4m': 384}, 31.9s, 706 machine-rows/s; free: {'entry_radix': [2, 4], 'Ke': [26, 28], 'Kx': [26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [26, 28], 'W': [26, 28]}
+machines evaluated 390,456,318 = 2^28.5 (stage C alone without C0: 4,813,406,208 = 2^32.2)
+D: T=1 training rows (1000): 2240/2240 machines exact (0.3s)
+D: T=2 training rows (1000): 2240/2240 machines exact (0.7s)
+D: T=4 training rows (33333): 2240/2240 machines exact (9.2s)
+D: T=8 training rows (33333): 2240/2240 machines exact (21.1s)
+D: T=16 training rows (33333): 2240/2240 machines exact (40.3s)
+D: 2240 machines fit every training row {'r2': 32, 'r2m': 32, 'r4': 1792, 'r4m': 384}; free switches: {'entry_radix': [2, 4], 'Ke': [26, 28], 'Kx': [26, 28], 'mult': ['r2', 'r2m', 'r4', 'r4m'], 'ppop': ['a.b', 'b.a'], 'l2sh': [(0, 1, 0), (1, 2, 1)], 'osh': [1, 2], 'csh': [0, -1], 'r2mq': ['s^c^db0', '~(s^c^db0)'], 'r2mrow': [('0', 'b', 'N', 'b+N'), ('N', 'b+N', '0', 'b')], 'r4hold': ['Ss', 'Sc', 'P0', 'P1'], 'q4': ['gen', 'n1', 'n3', 'x1', '~S0', 'swap'], 'r4qtree': ['(u,v,Q0)(Q1)', '(u,Q0,Q1)(v)', '(v,Q0,Q1)(u)'], 'r4cin': ['u1', 'v0', 'u1&v0', 'u1|v0', '0'], 'r4mqn': [('0', 'N', '2N', '3N'), ('0', '2N', '3N', 'N'), ('0', '3N', '2N', 'N'), ('3N', '0', 'N', '2N')], 'Km': [26, 28], 'W': [26, 28]}
+E: 2240/2240 training-consistent machines certify T=64 on both profiles {'r2': 32, 'r2m': 32, 'r4': 1792, 'r4m': 384} (17.5s)
+   r2: {'machines': 32, 'certify_both': 32, 'entry_radix': {'2': [16, 16], '4': [16, 16]}, 'Ke': {'26': [16, 16], '28': [16, 16]}, 'Kx': {'26': [16, 16], '28': [16, 16]}, 'ppop': {'a.b': [16, 16], 'b.a': [16, 16]}, 'l2sh': {'(0, 1, 0)': [16, 16], '(1, 2, 1)': [16, 16]}, 'osh': {'1': [16, 16], '2': [16, 16]}, 'csh': {'0': [16, 16], '-1': [16, 16]}, 'Km': {'26': [16, 16], '28': [16, 16]}, 'W': {'26': [16, 16], '28': [16, 16]}}
+   r2m: {'machines': 32, 'certify_both': 32, 'entry_radix': {'2': [16, 16], '4': [16, 16]}, 'Ke': {'26': [16, 16], '28': [16, 16]}, 'Kx': {'26': [16, 16], '28': [16, 16]}, 'ppop': {'a.b': [16, 16], 'b.a': [16, 16]}, 'r2mq': {'s^c^db0': [16, 16], '~(s^c^db0)': [16, 16]}, 'r2mrow': {"('0', 'b', 'N', 'b+N')": [16, 16], "('N', 'b+N', '0', 'b')": [16, 16]}, 'Km': {'26': [16, 16], '28': [16, 16]}, 'W': {'26': [16, 16], '28': [16, 16]}}
+   r4: {'machines': 1792, 'certify_both': 1792, 'entry_radix': {'2': [896, 896], '4': [896, 896]}, 'Ke': {'26': [896, 896], '28': [896, 896]}, 'Kx': {'26': [896, 896], '28': [896, 896]}, 'ppop': {'a.b': [896, 896], 'b.a': [896, 896]}, 'r4hold': {'Ss': [448, 448], 'Sc': [448, 448], 'P0': [448, 448], 'P1': [448, 448]}, 'r4qtree': {'(u,v,Q0)(Q1)': [640, 640], '(u,Q0,Q1)(v)': [640, 640], '(v,Q0,Q1)(u)': [512, 512]}, 'q4': {'gen': [896, 896], 'n1': [896, 896]}, 'r4cin': {'u1': [384, 384], 'v0': [384, 384], 'u1&v0': [384, 384], 'u1|v0': [384, 384], '0': [256, 256]}, 'Km': {'26': [896, 896], '28': [896, 896]}, 'W': {'26': [896, 896], '28': [896, 896]}}
+   r4m: {'machines': 384, 'certify_both': 384, 'entry_radix': {'2': [192, 192], '4': [192, 192]}, 'Ke': {'26': [192, 192], '28': [192, 192]}, 'Kx': {'26': [192, 192], '28': [192, 192]}, 'ppop': {'a.b': [192, 192], 'b.a': [192, 192]}, 'r4mqn': {"('0', 'N', '2N', '3N')": [128, 128], "('0', '2N', '3N', 'N')": [64, 64], "('0', '3N', '2N', 'N')": [128, 128], "('3N', '0', 'N', '2N')": [64, 64]}, 'q4': {'gen': [64, 64], 'n1': [64, 64], 'swap': [64, 64], 'n3': [64, 64], 'x1': [64, 64], '~S0': [64, 64]}, 'r4cin': {'u1': [96, 96], 'v0': [96, 96], 'u1&v0': [96, 96], 'u1|v0': [96, 96]}, 'Km': {'26': [192, 192], '28': [192, 192]}, 'W': {'26': [192, 192], '28': [192, 192]}}

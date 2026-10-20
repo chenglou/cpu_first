@@ -1,0 +1,168 @@
+{
+ "device": "cpu",
+ "torch": "2.12.1",
+ "chunk": 1048576,
+ "compiled": false,
+ "bench": [
+  {
+   "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+   "rows": 1,
+   "lanes": 65536,
+   "seconds": 0.12922500001150183,
+   "machine_rows_per_s": 507146.4499451877,
+   "survivors": 2,
+   "compiled": false,
+   "first_call_seconds": 0.13171908298681956
+  },
+  {
+   "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+   "rows": 4,
+   "lanes": 65536,
+   "seconds": 0.5462371250032447,
+   "machine_rows_per_s": 479908.79418611986,
+   "survivors": 1,
+   "compiled": false,
+   "first_call_seconds": 0.5462371250032447
+  },
+  {
+   "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+   "rows": 16,
+   "lanes": 65536,
+   "seconds": 1.137068416996044,
+   "machine_rows_per_s": 922174.9406866588,
+   "survivors": 1,
+   "compiled": false,
+   "first_call_seconds": 1.1478480839869007
+  },
+  {
+   "case": "gate: 65,536 per-lane cells, reference wiring, full T=1 machine",
+   "rows": 64,
+   "lanes": 16384,
+   "seconds": 1.134979333000956,
+   "machine_rows_per_s": 923872.3292233874,
+   "survivors": 0,
+   "compiled": false,
+   "first_call_seconds": 1.134979333000956
+  },
+  {
+   "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+   "rows": 1,
+   "lanes": 979776,
+   "seconds": 0.506332332995953,
+   "machine_rows_per_s": 1935045.2976263538,
+   "survivors": 81,
+   "compiled": false,
+   "first_call_seconds": 0.5151299579883926
+  },
+  {
+   "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+   "rows": 4,
+   "lanes": 262144,
+   "seconds": 0.5138152500003343,
+   "machine_rows_per_s": 2040764.6522739793,
+   "survivors": 18,
+   "compiled": false,
+   "first_call_seconds": 0.5157402079930762
+  },
+  {
+   "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+   "rows": 16,
+   "lanes": 65536,
+   "seconds": 0.4929496249969816,
+   "machine_rows_per_s": 2127146.359035004,
+   "survivors": 18,
+   "compiled": false,
+   "first_call_seconds": 0.4975940419972176
+  },
+  {
+   "case": "wiring: 979,776 core combos, full adder, full T=1 machine",
+   "rows": 64,
+   "lanes": 16384,
+   "seconds": 0.4707958340004552,
+   "machine_rows_per_s": 2227241.458553319,
+   "survivors": 18,
+   "compiled": false,
+   "first_call_seconds": 0.4707958340004552
+  },
+  {
+   "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+   "rows": 1,
+   "lanes": 1048576,
+   "seconds": 1.2840543330094079,
+   "machine_rows_per_s": 816613.4197316068,
+   "survivors": 0,
+   "compiled": false,
+   "first_call_seconds": 1.3009488340030657
+  },
+  {
+   "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+   "rows": 4,
+   "lanes": 262144,
+   "seconds": 0.9852327910048189,
+   "machine_rows_per_s": 1064292.63172471,
+   "survivors": 0,
+   "compiled": false,
+   "first_call_seconds": 0.9852327910048189
+  },
+  {
+   "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+   "rows": 16,
+   "lanes": 65536,
+   "seconds": 0.9677023330004886,
+   "machine_rows_per_s": 1083572.875916039,
+   "survivors": 0,
+   "compiled": false,
+   "first_call_seconds": 0.9785794590134174
+  },
+  {
+   "case": "joint: per-lane cell x qsrc x l2sh (12.4M), full T=1 machine",
+   "rows": 64,
+   "lanes": 16384,
+   "seconds": 0.9648509999969974,
+   "machine_rows_per_s": 1086775.0564628767,
+   "survivors": 0,
+   "compiled": false,
+   "first_call_seconds": 0.9752544590010075
+  },
+  {
+   "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+   "rows": 1,
+   "lanes": 1048576,
+   "seconds": 0.7463862080039689,
+   "machine_rows_per_s": 1404870.546582265,
+   "survivors": 712,
+   "compiled": false,
+   "first_call_seconds": 0.7492394580040127
+  },
+  {
+   "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+   "rows": 4,
+   "lanes": 262144,
+   "seconds": 0.6943310839997139,
+   "machine_rows_per_s": 1510195.9629398244,
+   "survivors": 177,
+   "compiled": false,
+   "first_call_seconds": 0.6975297499884618
+  },
+  {
+   "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+   "rows": 16,
+   "lanes": 65536,
+   "seconds": 0.6768129999982193,
+   "machine_rows_per_s": 1549284.6620894675,
+   "survivors": 0,
+   "compiled": false,
+   "first_call_seconds": 0.6768129999982193
+  },
+  {
+   "case": "round trip: per-lane cell x io (188.7M), d2b + b2d",
+   "rows": 64,
+   "lanes": 16384,
+   "seconds": 0.675552874992718,
+   "machine_rows_per_s": 1552174.5799857678,
+   "survivors": 0,
+   "compiled": false,
+   "first_call_seconds": 0.6788014170015231
+  }
+ ]
+}

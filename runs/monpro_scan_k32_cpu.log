@@ -1,0 +1,5 @@
+608 machines without a witness (76 wirings); 304 same-wiring controls at R = 2^26
+no witness, Km = 30 (R' = 2^28): 304 machines x 1048576 products: 0 machines with a wrong product (24s)
+no witness, Km = 32 (R' = 2^30): 304 machines x 1048576 products: 0 machines with a wrong product (25s)
+control R=2^26, Km = 28 (R' = 2^26): 304 machines x 1048576 products: 304 machines with a wrong product (23s)
+"$R/.venv/bin/python" "$CF/runs/monpro_scan_k32.py" "$CF" cpu 262144   258.76s user 22.88s system 384% cpu 1:13.24 total

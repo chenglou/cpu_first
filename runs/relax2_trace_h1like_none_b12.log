@@ -1,0 +1,17 @@
+W=4 L=177 trace lines=30 params=4751379 data=h1like curriculum=none
+h1like: 936324 step traces, 430 pool moduli, 594 unseen
+step 1000 loss 0.0764 tf_seq 0.016 pool: ans=0.0410 trace=0.0371 firsterr={'R': 143, 'P': 36, 'Q': 15, 'M': 2, 'A': 4} unseen: ans=0.0293 trace=0.0254 firsterr={'P': 31, 'R': 120, 'Q': 17, 'M': 30, 'A': 2} t=585s
+step 2000 loss 0.0095 tf_seq 0.625 pool: ans=0.5801 trace=0.5723 firsterr={'R': 125, 'Q': 48, 'P': 16, 'M': 8, 'A': 2, 'E': 1} unseen: ans=0.5996 trace=0.5684 firsterr={'R': 125, 'M': 20, 'P': 8, 'Q': 45, 'E': 2} t=1169s
+step 3000 loss 0.0054 tf_seq 0.703 pool: ans=0.6895 trace=0.6758 firsterr={'Q': 54, 'R': 88, 'P': 9, 'M': 8, 'A': 6, 'E': 1} unseen: ans=0.6914 trace=0.6797 firsterr={'R': 81, 'P': 11, 'Q': 57, 'M': 12, 'A': 3} t=2021s
+step 4000 loss 0.0041 tf_seq 0.812 pool: ans=0.7500 trace=0.7500 firsterr={'Q': 68, 'R': 60} unseen: ans=0.7383 trace=0.7383 firsterr={'Q': 69, 'R': 65} t=3079s
+step 5000 loss 0.0019 tf_seq 0.844 pool: ans=0.9121 trace=0.9121 firsterr={'Q': 36, 'R': 9} unseen: ans=0.8984 trace=0.8984 firsterr={'Q': 41, 'R': 11} t=4033s
+step 6000 loss 0.0005 tf_seq 0.969 pool: ans=0.9277 trace=0.9277 firsterr={'Q': 36, 'R': 1} unseen: ans=0.9160 trace=0.9160 firsterr={'Q': 41, 'R': 2} t=5024s
+step 7000 loss 0.0002 tf_seq 0.984 pool: ans=0.9551 trace=0.9551 firsterr={'Q': 23} unseen: ans=0.9512 trace=0.9512 firsterr={'Q': 24, 'R': 1} t=5966s
+step 8000 loss 0.0003 tf_seq 0.984 pool: ans=0.9648 trace=0.9648 firsterr={'Q': 18} unseen: ans=0.9648 trace=0.9629 firsterr={'Q': 17, 'M': 1, 'R': 1} t=6865s
+final single-step (pool moduli): (0.97125, 0.97125, {'Q': 200})
+    ladder b=12 T=1   exact=0.9661
+    ladder b=12 T=2   exact=0.9557
+    ladder b=12 T=4   exact=0.9219
+    ladder b=12 T=8   exact=0.8893
+    ladder b=12 T=16  exact=0.8138
+    ladder b=12 T=32  exact=0.7148

@@ -1,0 +1,8 @@
+q3_ht_best_b8_s1 sqmod --size 8 --model ht --est best --steps 2000 --seed0 1 --holdout 8 --threads 4 --eval_every 500 --tag q3
+q3_ht_best_b8_6k sqmod --size 8 --model ht --est best --steps 6000 --holdout 8 --threads 4 --eval_every 500 --tag q3
+q3_ht_best_b8_pool sqmod --size 8 --model ht --est best --steps 2000 --pool 1000 --holdout 8 --threads 4 --eval_every 500 --tag q3
+q3_xf_b8_pool_cmp sqmod --size 8 --model xf --steps 2000 --pool 1000 --holdout 8 --threads 4 --eval_every 500 --tag q3
+q3_ht_best_b6 sqmod --size 6 --model ht --est best --steps 2000 --holdout 8 --threads 4 --eval_every 500 --tag q3
+q3_ht_best_b10_6k sqmod --size 10 --model ht --est best --steps 6000 --holdout 8 --threads 4 --eval_every 500 --tag q3
+q3_ht_st_b8_6k sqmod --size 8 --model ht --est st --steps 6000 --holdout 8 --threads 4 --eval_every 500 --tag q3
+q3_xf_b8_6k sqmod --size 8 --model xf --steps 6000 --holdout 8 --threads 4 --eval_every 500 --tag q3

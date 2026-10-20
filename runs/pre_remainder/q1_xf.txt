@@ -1,0 +1,32 @@
+q1_xf_b8_none_s0 sqmod --size 8 --model xf  --steps 2000 --holdout 8 --eval_every 500 --seed0 0 --threads 2 --tag q1
+q1_xf_b8_pre_s0 sqmod --size 8 --model xf --aux pre --steps 2000 --holdout 8 --eval_every 500 --seed0 0 --threads 2 --tag q1
+q1_xf_b8_q_s0 sqmod --size 8 --model xf --aux q --steps 2000 --holdout 8 --eval_every 500 --seed0 0 --threads 2 --tag q1
+q1_xf_b8_pre,q_s0 sqmod --size 8 --model xf --aux pre,q --steps 2000 --holdout 8 --eval_every 500 --seed0 0 --threads 2 --tag q1
+q1_xf_b8_none_s1 sqmod --size 8 --model xf  --steps 2000 --holdout 8 --eval_every 500 --seed0 1 --threads 2 --tag q1
+q1_xf_b8_pre_s1 sqmod --size 8 --model xf --aux pre --steps 2000 --holdout 8 --eval_every 500 --seed0 1 --threads 2 --tag q1
+q1_xf_b8_q_s1 sqmod --size 8 --model xf --aux q --steps 2000 --holdout 8 --eval_every 500 --seed0 1 --threads 2 --tag q1
+q1_xf_b8_pre,q_s1 sqmod --size 8 --model xf --aux pre,q --steps 2000 --holdout 8 --eval_every 500 --seed0 1 --threads 2 --tag q1
+q1_xf_b10_none_s0 sqmod --size 10 --model xf  --steps 2000 --holdout 8 --eval_every 500 --seed0 0 --threads 2 --tag q1
+q1_xf_b10_pre_s0 sqmod --size 10 --model xf --aux pre --steps 2000 --holdout 8 --eval_every 500 --seed0 0 --threads 2 --tag q1
+q1_xf_b10_q_s0 sqmod --size 10 --model xf --aux q --steps 2000 --holdout 8 --eval_every 500 --seed0 0 --threads 2 --tag q1
+q1_xf_b10_pre,q_s0 sqmod --size 10 --model xf --aux pre,q --steps 2000 --holdout 8 --eval_every 500 --seed0 0 --threads 2 --tag q1
+q1_xf_b10_none_s1 sqmod --size 10 --model xf  --steps 2000 --holdout 8 --eval_every 500 --seed0 1 --threads 2 --tag q1
+q1_xf_b10_pre_s1 sqmod --size 10 --model xf --aux pre --steps 2000 --holdout 8 --eval_every 500 --seed0 1 --threads 2 --tag q1
+q1_xf_b10_q_s1 sqmod --size 10 --model xf --aux q --steps 2000 --holdout 8 --eval_every 500 --seed0 1 --threads 2 --tag q1
+q1_xf_b10_pre,q_s1 sqmod --size 10 --model xf --aux pre,q --steps 2000 --holdout 8 --eval_every 500 --seed0 1 --threads 2 --tag q1
+q1_xf_b6_none_s0 sqmod --size 6 --model xf  --steps 2000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b6_pre_s0 sqmod --size 6 --model xf --aux pre --steps 2000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b6_q_s0 sqmod --size 6 --model xf --aux q --steps 2000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b6_pre,q_s0 sqmod --size 6 --model xf --aux pre,q --steps 2000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b6_none_pool_s0 sqmod --size 6 --model xf  --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b6_pre_pool_s0 sqmod --size 6 --model xf --aux pre --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b6_q_pool_s0 sqmod --size 6 --model xf --aux q --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b6_pre,q_pool_s0 sqmod --size 6 --model xf --aux pre,q --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b8_none_pool_s0 sqmod --size 8 --model xf  --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b8_pre_pool_s0 sqmod --size 8 --model xf --aux pre --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b8_q_pool_s0 sqmod --size 8 --model xf --aux q --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b8_pre,q_pool_s0 sqmod --size 8 --model xf --aux pre,q --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b10_none_pool_s0 sqmod --size 10 --model xf  --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b10_pre_pool_s0 sqmod --size 10 --model xf --aux pre --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b10_q_pool_s0 sqmod --size 10 --model xf --aux q --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1
+q1_xf_b10_pre,q_pool_s0 sqmod --size 10 --model xf --aux pre,q --steps 2000 --pool 1000 --holdout 8 --eval_every 500 --threads 2 --tag q1

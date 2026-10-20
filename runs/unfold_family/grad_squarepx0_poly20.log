@@ -1,0 +1,5 @@
+grad square+x0  poly20 oracle none: certified 0/5; fp64 model exact on T=1 after phase A 0/5, at the end T=1 0/5 T=2 0/5; rounded [('-s*x0 - x0^2 + 3882*s + 3270*x0 - 3303545', 1), ('-s*x0 - x0^2 + 3910*s + 3243*x0 - 3302409', 1), ('-s*x0 - x0^2 + 3900*s + 3253*x0 - 3302437', 1)]  (1.0s/seed)
+grad square+x0  poly20 oracle sens: certified 0/5; fp64 model exact on T=1 after phase A 0/5, at the end T=1 0/5 T=2 0/5; rounded [('-s^2 + 2046*s + 2552*x0 - 1630571', 1), ('-s^2 + 2050*s + 2549*x0 - 1630496', 1), ('-s^2 + 2056*s + 2543*x0 - 1631772', 1)]  (1.1s/seed)
+grad square+x0  poly20 free   none: certified 0/5; fp64 model exact on T=1 after phase A 0/5, at the end T=1 0/5 T=2 0/5; rounded [('-309*s - 347*x0 + 87049', 1), ('-295*s - 360*x0 + 82750', 1), ('-403*s - 252*x0 + 81674', 1)]  (1.0s/seed)
+grad square+x0  poly20 free   sens: certified 0/5; fp64 model exact on T=1 after phase A 0/5, at the end T=1 0/5 T=2 0/5; rounded [('-s^2 - x0^2 - 121*s - 30*x0 + 51870', 1), ('-s*x0 - x0^2 + 34*s - 184*x0 + 50739', 1), ('-s^2 - s*x0 - x0^2 + 4*s - 154*x0 + 50392', 1)]  (1.1s/seed)
+wall 22.4s

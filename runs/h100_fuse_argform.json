@@ -1,0 +1,45 @@
+{
+ "gpu": "NVIDIA H100 80GB HBM3",
+ "returncode": 0,
+ "wall_seconds": 632.4182975292206,
+ "log": "  core, full adder | 979,776 lanes: eager 1.89e+07/s, compiled 2.54e+08/s (13.5x, compile 145s, bit-exact True)\n  core + port wiring, full adder | 4,194,304 lanes: eager 6.28e+07/s, compiled 5.4e+08/s (8.6x, compile 198s, bit-exact True)\n  core, per-lane cell x qsrc x l2sh | 4,194,304 lanes: eager 4.22e+07/s, compiled 4.73e+08/s (11.2x, compile 271s, bit-exact True)\n",
+ "out": {
+  "device": "cuda",
+  "torch": "2.12.1+cu130",
+  "fuse_probe": [
+   {
+    "case": "core, full adder",
+    "lanes": 979776,
+    "eager_s": 0.05194165400000017,
+    "compiled_s": 0.003851542999996127,
+    "compile_s": 145.33759976,
+    "eager_machines_per_s": 18863011.177888114,
+    "compiled_machines_per_s": 254385320.37705025,
+    "speedup": 13.485933819264746,
+    "bit_exact": true
+   },
+   {
+    "case": "core + port wiring, full adder",
+    "lanes": 4194304,
+    "eager_s": 0.0667935570000111,
+    "compiled_s": 0.0077644230000259995,
+    "compile_s": 198.236736793,
+    "eager_machines_per_s": 62795038.74901141,
+    "compiled_machines_per_s": 540195195.4428494,
+    "speedup": 8.602513927923226,
+    "bit_exact": true
+   },
+   {
+    "case": "core, per-lane cell x qsrc x l2sh",
+    "lanes": 4194304,
+    "eager_s": 0.09934311699998943,
+    "compiled_s": 0.008859140000026855,
+    "compile_s": 271.28665054400005,
+    "eager_machines_per_s": 42220378.48883326,
+    "compiled_machines_per_s": 473443697.69382644,
+    "speedup": 11.213629878259999,
+    "bit_exact": true
+   }
+  ]
+ }
+}

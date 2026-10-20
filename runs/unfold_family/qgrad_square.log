@@ -1,0 +1,7 @@
+qgrad square     h1   oracle   : certified 5/5; rounded diagonal right 5/5; found [('s^2', 5)]  (0.1s/seed)
+qgrad square     h1   free     : certified 0/5; rounded diagonal right 0/5; found [('7*s^2 - 8*s*x0 - 3*x0^2 - 1375*s + 1496*x0 - 1607', 5)]  (0.1s/seed)
+qgrad square     fold fold   12: certified 1/5; rounded diagonal right 5/5; found [('s*x0^2 - x0^3 + s*x0 - s + x0', 3), ('s^2 + 5*s - 5*x0', 1), ('s^2', 1)]  (0.2s/seed)
+qgrad square     fold fold   16: certified 0/5; rounded diagonal right 5/5; found [('s*x0^2 - x0^3 + s^2 - s + x0', 2), ('s^2 - 2*s + 2*x0', 1), ('s*x0', 1)]  (0.2s/seed)
+qgrad square     fold fold   20: certified 0/5; rounded diagonal right 0/5; found [('x0^2 + 6*s - 6*x0 - 24', 1), ('s^2 - s + x0 - 1', 1), ('s*x0^2 - x0^3 + s*x0 - 28*s + 28*x0 + 22', 1)]  (0.2s/seed)
+qgrad square     fold fold   24: certified 0/5; rounded diagonal right 0/5; found [('-s*x0^2 + x0^3 + 32*s*x0 - 31*x0^2 - 8805*s + 8805*x0 + 23656', 1), ('-s*x0^2 + x0^3 + 6*s*x0 - 5*x0^2 - 15399*s + 15399*x0 + 44315', 1), ('x0^2 - 6*s + 6*x0 - 18676', 1)]  (0.2s/seed)
+wall 5.9s

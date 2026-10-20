@@ -1,0 +1,92 @@
+{
+ "isa": "basic",
+ "target": "p8",
+ "L": 6,
+ "bits": 16,
+ "workers": 30,
+ "space": 115241423220000,
+ "states": [
+  31,
+  1073,
+  43482,
+  2095359,
+  161273845
+ ],
+ "curve": [
+  17901682221.0,
+  336.0,
+  65.0,
+  65.0,
+  64.0,
+  64.0,
+  64.0,
+  64.0,
+  64.0
+ ],
+ "seconds": 82.64103412628174,
+ "wall": 82.65250182151794,
+ "survivors_probe": 54,
+ "survivors_all_rows": 7,
+ "groups": [
+  {
+   "correct": false,
+   "raw": 2.0,
+   "n": 2,
+   "acc": [
+    1.0,
+    1.0,
+    0.0105,
+    0.0
+   ],
+   "example": "t0=sub(x,N); t1=mul(x,t0); t2=mul(t1,t1); t3=mod(t2,N); t4=mul(t3,t3); t5=mod(t4,N)"
+  },
+  {
+   "correct": false,
+   "raw": 2.0,
+   "n": 2,
+   "acc": [
+    1.0,
+    1.0,
+    0.015,
+    0.0
+   ],
+   "example": "t0=mul(x,x); t1=mod(t0,N); t2=sub(t1,N); t3=mul(t1,t2); t4=mul(t3,t3); t5=mod(t4,N)"
+  },
+  {
+   "correct": false,
+   "raw": 1.0,
+   "n": 1,
+   "acc": [
+    1.0,
+    1.0,
+    1.0,
+    0.139
+   ],
+   "example": "t0=mul(x,x); t1=mod(t0,N); t2=mul(t1,t1); t3=mod(t2,N); t4=mul(t2,t3); t5=mod(t4,N)"
+  },
+  {
+   "correct": true,
+   "raw": 1.0,
+   "n": 1,
+   "acc": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "example": "t0=mul(x,x); t1=mod(t0,N); t2=mul(t1,t1); t3=mod(t2,N); t4=mul(t3,t3); t5=mod(t4,N)"
+  },
+  {
+   "correct": false,
+   "raw": 1.0,
+   "n": 1,
+   "acc": [
+    1.0,
+    1.0,
+    1.0,
+    0.1425
+   ],
+   "example": "t0=mul(x,x); t1=mod(t0,N); t2=mul(t0,t1); t3=mod(t2,N); t4=mul(t3,t3); t5=mod(t4,N)"
+  }
+ ]
+}

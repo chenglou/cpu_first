@@ -1,0 +1,12 @@
+model params=796426 W=4 K=12 layers=1 d=256 device=mps
+/Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/relax_step.py:181: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:839.)
+  log.append({"step": step, "loss": float(loss), "time": el, **accs})
+step 1000 loss 1.5264 fresh=0.0386 t=362s
+step 2000 loss 1.5513 fresh=0.0428 t=705s
+step 3000 loss 1.5256 fresh=0.0453 t=1062s
+step 4000 loss 1.4814 fresh=0.0546 t=1431s
+step 5000 loss 1.4633 fresh=0.0811 t=1812s
+step 6000 loss 1.4384 fresh=0.0870 t=2292s
+step 7000 loss 1.4006 fresh=0.0955 t=2974s
+killed at Mon Oct 19 15:38:47 PDT 2026 to free the GPU: still rising slowly, far from 100%

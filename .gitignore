@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+# run outputs over 5 MB (search dumps, checkpoints): kept on disk, not in git
+/runs/h100_search_cell_ports.json
+/runs/h100_search_cellfree_k32.json
+/runs/h100_search_collapse_c1_k32.json
+/runs/h100_search_collapse_d_k32.json
+/runs/h100_search_collapse_k32.json
+/runs/h100_search_law_ports.json
+/runs/h100_search_law_small.json
+/runs/h100_search_lawsq_small.json
+/runs/h100_search_nolaw_small.json
+/runs/h100_search_nowidth_k32.json
+/runs/h100_search_synth24_small.json
+/runs/h100_search_witness_k32.json
+/runs/relax2_trace_h1like_forward_b12.pt
+/runs/relax2_trace_h1like_reverse_b12.pt

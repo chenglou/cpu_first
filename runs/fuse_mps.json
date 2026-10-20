@@ -1,0 +1,39 @@
+{
+ "device": "mps",
+ "torch": "2.12.1",
+ "fuse_probe": [
+  {
+   "case": "core, full adder",
+   "lanes": 979776,
+   "eager_s": 0.05952850000176113,
+   "compiled_s": 0.006766917009372264,
+   "compile_s": 20.433948999998393,
+   "eager_machines_per_s": 16458939.835054027,
+   "compiled_machines_per_s": 144789126.07366073,
+   "speedup": 8.796989813723652,
+   "bit_exact": true
+  },
+  {
+   "case": "core + port wiring, full adder",
+   "lanes": 1048576,
+   "eager_s": 0.06099458399694413,
+   "compiled_s": 0.006511874991701916,
+   "compile_s": 20.638952041001176,
+   "eager_machines_per_s": 17191296.854365535,
+   "compiled_machines_per_s": 161025204.1595087,
+   "speedup": 9.366669979793768,
+   "bit_exact": true
+  },
+  {
+   "case": "core, per-lane cell x qsrc x l2sh",
+   "lanes": 1048576,
+   "eager_s": 0.1245690840005409,
+   "compiled_s": 0.016636791988275945,
+   "compile_s": 49.084960125008365,
+   "eager_machines_per_s": 8417626.31886614,
+   "compiled_machines_per_s": 63027535.64142284,
+   "speedup": 7.48756635824536,
+   "bit_exact": true
+  }
+ ]
+}

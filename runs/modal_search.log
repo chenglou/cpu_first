@@ -1,0 +1,151 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-IpeO9KlhbVTOAKA4Gk3pWi
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/modal_h1
+│   00.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/spec_gra
+│   mmar.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/submissi
+│   on.py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/f90ac968-2b9c-4f1c-a51e-c2cf058204
+│   2a/scratchpad/one-layer-deeper/benchmark
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/f90ac968-2b9c-4f1c-a51e-c2cf058204
+│   2a/scratchpad/one-layer-deeper/data
+├── 🔨 Created function h1.
+└── 🔨 Created function grammar.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+m': 26, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 2, 'Ke': 26, 'Kx': 26, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 26, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 2, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 3034}
+    {'machine': {'entry_radix': 2, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3638}
+    {'machine': {'entry_radix': 2, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 4242}
+    {'machine': {'entry_radix': 2, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 2, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 2, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 2, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 2, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 2, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 3014}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3614}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 4214}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 3014}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3614}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 4214}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 2, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 22, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2541}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 22, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 2925}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 22, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 3308}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 22, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2637}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 22, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3021}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 22, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 3404}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 22, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2637}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 22, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3021}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 22, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 3404}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 22, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2541}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 22, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 2925}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 22, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 3308}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 22, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2637}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 22, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3021}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 22, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 3404}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 22, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2637}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 22, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3021}
+    {'machine': {'entry_radix': 4, 'Ke': 22, 'Kx': 22, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 22, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 3404}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 24, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2884}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 24, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3458}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 24, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 4032}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 24, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 1, 'ood_correct': 3502}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 24, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 1, 'ood_correct': 4079}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 24, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 1, 'ood_correct': 4653}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 24, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 1, 'ood_correct': 3502}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 24, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 1, 'ood_correct': 4079}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 24, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 1, 'ood_correct': 4653}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 24, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2884}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 24, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3458}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 24, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 4032}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 24, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 1, 'ood_correct': 3502}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 24, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 1, 'ood_correct': 4079}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 24, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 1, 'ood_correct': 4653}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 24, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 1, 'ood_correct': 3502}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 24, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 1, 'ood_correct': 4079}
+    {'machine': {'entry_radix': 4, 'Ke': 24, 'Kx': 24, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 24, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 1, 'ood_correct': 4653}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 26, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2884}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 26, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3458}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 26, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 4032}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 26, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 26, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 26, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 26, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 26, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 26, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2884}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3458}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 4032}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 4, 'Ke': 26, 'Kx': 26, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 26, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2884}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3458}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 4032}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (0, 1, 0), 'osh': 1, 'csh': 0, 'Km': 28, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 24, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 0, 'ood_correct': 2884}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 24, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 0, 'ood_correct': 3458}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 24, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 0, 'ood_correct': 4032}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 26, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 26, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 26, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 28, 'cw': 5}, 'seen_maxT': 16, 'seen_correct': 3840, 'ood_maxT': 16, 'ood_correct': 3844}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 28, 'cw': 6}, 'seen_maxT': 32, 'seen_correct': 4608, 'ood_maxT': 32, 'ood_correct': 4610}
+    {'machine': {'entry_radix': 4, 'Ke': 28, 'Kx': 28, 'l2sh': (1, 2, 1), 'osh': 2, 'csh': -1, 'Km': 28, 'W': 28, 'cw': 7}, 'seen_maxT': 64, 'seen_correct': 5376, 'ood_maxT': 64, 'ood_correct': 5376}
+ 
+search: returncode=0 wall=31.4s gpu=NVIDIA H100 80GB HBM3 -> /Users/chenglou/Library/Application Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/runs/h100_search.json
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-IpeO9KlhbVTOAKA4Gk3pWi

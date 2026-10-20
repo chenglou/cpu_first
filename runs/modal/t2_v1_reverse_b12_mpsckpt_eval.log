@@ -1,0 +1,9 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_trace.py args=['--bits', '12', '--fmt', 'v1', '--steps', '0', '--resume', '/root/ckpt/relax2_trace_h1like_reverse_b12.pt', '--data', 'h1like', '--eval_every', '1000', '--eval_n', '512', '--final_n', '20000', '--ladder_only_if_exact', '--device', 'cuda']
+resumed from /root/ckpt/relax2_trace_h1like_reverse_b12.pt
+W=4 L=177 trace lines=30 params=4751892 data=h1like curriculum=none fmt=v1
+h1like: 936324 step traces, 430 pool moduli, 594 unseen
+final single-step (pool moduli): (0.8792, 0.879, {'R': 166, 'Q': 32, 'P': 2})
+final single-step (unseen moduli): (0.835, 0.75975, {'R': 96, 'M': 94, 'Q': 9, 'P': 1})
+done {"params": 4751892, "L": 177, "train_time": 3.337860107421875e-06, "single_step_pool": [0.8792, 0.879, {"R": 166, "Q": 32, "P": 2}], "single_step_unseen": [0.835, 0.75975, {"R": 96, "M": 94, "Q": 9, "P": 1}], "total_time": 22.595967531204224}
+
+exit code 0, wall 30s

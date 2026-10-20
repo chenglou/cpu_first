@@ -1,0 +1,33 @@
+gpu=NVIDIA H100 80GB HBM3 script=relax_step.py args=['--bits', '8', '--data', 'h1like', '--steps', '8000', '--eval_every', '1000', '--K', '12', '--device', 'cuda']
+h1like b=8: 936324 step pairs, 64 pool moduli, 0 unseen
+model params=798996 W=3 K=12 layers=1 d=256 device=cuda
+/root/cpu_first/relax_step.py:203: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  log.append({"step": step, "loss": float(loss), "time": el, **accs})
+step 1000 loss 0.3706 fresh=0.2214 pool=0.2336 t=24s
+step 2000 loss 0.1578 fresh=0.3750 pool=0.3796 t=46s
+step 3000 loss 0.0543 fresh=0.4912 pool=0.4963 t=69s
+step 4000 loss 0.0492 fresh=0.6060 pool=0.6097 t=91s
+step 5000 loss 0.0151 fresh=0.7067 pool=0.7085 t=113s
+step 6000 loss 0.0051 fresh=0.7803 pool=0.7821 t=135s
+step 7000 loss 0.0005 fresh=0.8146 pool=0.8146 t=157s
+step 8000 loss 0.0005 fresh=0.8218 pool=0.8215 t=179s
+single-step exact (fresh moduli, 100k): 0.81919
+    ladder b=8 T=1   exact=0.9974
+    ladder b=8 T=2   exact=1.0000
+    ladder b=8 T=4   exact=0.9987
+    ladder b=8 T=8   exact=0.9987
+    ladder b=8 T=16  exact=0.9974
+    ladder b=8 T=32  exact=0.9974
+    ladder b=8 T=64  exact=0.9961
+single-step exact (pool moduli, 100k): 0.8185
+    ladder b=8 T=1   exact=0.9974
+    ladder b=8 T=2   exact=1.0000
+    ladder b=8 T=4   exact=0.9987
+    ladder b=8 T=8   exact=0.9987
+    ladder b=8 T=16  exact=0.9974
+    ladder b=8 T=32  exact=0.9974
+    ladder b=8 T=64  exact=0.9961
+done {"params": 798996, "train_time": 178.57235407829285, "single_step_fresh_100k": 0.81919, "ladder_fresh": {"max_t": 0, "accs": {"1": 0.9973958333333334, "2": 1.0, "4": 0.9986979166666666, "8": 0.9986979166666666, "16": 0.9973958333333334, "32": 0.9973958333333334, "64": 0.99609375}}, "single_step_pool_100k": 0.8185, "ladder_pool": {"max_t": 0, "accs": {"1": 0.9973958333333334, "2": 1.0, "4": 0.9986979166666666, "8": 0.9986979166666666, "16": 0.9973958333333334, "32": 0.9973958333333334, "64": 0.99609375}}, "total_time": 183.5343165397644}
+
+exit code 0, wall 191s

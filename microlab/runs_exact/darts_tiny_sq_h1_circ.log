@@ -1,0 +1,22 @@
+[darts tiny L=2 target sq data h1@16 loss circ] raw space 3,600; equivalent-correct 1 -> chance 0.0002777777777777778
+  seed 0: no  t0=mod(1,0); t1=mod(2,x)  loss 0.996->1.080
+  seed 1: no  t0=mod(1,2); t1=mod(0,N)  loss 0.997->1.047
+  seed 2: no  t0=mod(0,1); t1=mod(x,0)  loss 0.990->0.967
+  seed 3: no  t0=mod(1,0); t1=mod(0,0)  loss 0.929->0.917
+  seed 4: no  t0=mod(1,0); t1=mod(0,x)  loss 0.938->0.929
+  seed 5: no  t0=mod(2,0); t1=mod(0,0)  loss 1.048->1.025
+  seed 6: no  t0=mod(2,0); t1=mod(1,0)  loss 1.018->0.908
+  seed 7: no  t0=mod(1,1); t1=mod(x,N)  loss 1.034->1.109
+  seed 8: no  t0=mod(1,0); t1=mod(2,0)  loss 1.026->1.012
+  seed 9: no  t0=mod(2,1); t1=mod(N,1)  loss 1.078->0.994
+  seed 10: no  t0=mul(x,x); t1=mul(1,2)  loss 1.014->1.057
+  seed 11: no  t0=mod(1,1); t1=mod(x,x)  loss 0.948->1.001
+  seed 12: no  t0=mod(2,2); t1=mod(0,N)  loss 0.997->0.952
+  seed 13: no  t0=mod(x,x); t1=mod(1,0)  loss 1.004->0.990
+  seed 14: no  t0=mod(0,1); t1=mod(N,2)  loss 1.025->0.995
+  seed 15: no  t0=mod(2,1); t1=mod(1,N)  loss 1.019->1.008
+  seed 16: no  t0=mod(2,2); t1=mod(1,0)  loss 0.977->1.062
+  seed 17: no  t0=mod(2,2); t1=mod(x,2)  loss 1.022->0.991
+  seed 18: no  t0=mod(x,x); t1=mod(N,N)  loss 0.963->0.970
+  seed 19: no  t0=mod(1,0); t1=mod(0,2)  loss 1.078->1.014
+  => 0/20 seeds harden to a correct program (134s)

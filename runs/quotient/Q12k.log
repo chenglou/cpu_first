@@ -1,0 +1,66 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-YsFqR0Di9rJE2HVEqR35IH
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_modal.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_matched.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /run.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /tasks.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_ladder.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /models.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /__init__.py
+└── 🔨 Created function run_cell.
+24 cells
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+mod@6 longdiv_estc fresh seed1: exact 0.044  seen 0.74 unseen 0.025  held-out moduli 0.025  digits(lo->hi) [0.21 0.24]  curve [0.03 0.05 0.05 0.04]  741.1s  matched seen/unseen 0.05/0.02  wide @7:0.01/0.01 @10:0.00/0.00  choice all-right raw 0.01 mapped 0.02 (exact if all right 0.20)  est raw 0.00 mapped 0.02  ho4 12000
+mod@6 longdiv_est fresh seed0: exact 0.544  seen 1.00  digits(lo->hi) [0.59 0.83]  curve [0.06 0.37 0.53 0.54]  793.2s  wide @7:0.01/0.01 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.23 (exact if all right 0.85)  est raw 0.00 mapped 0.23  ho0 12000
+mod@6 longdiv_tr fresh seed1: exact 0.045  seen 0.74 unseen 0.016  held-out moduli 0.016  digits(lo->hi) [0.21 0.23]  curve [0.04 0.05 0.05 0.04]  1022.1s  matched seen/unseen 0.05/0.03  wide @7:0.00/0.00 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.02 (exact if all right 0.25)  est raw 0.00 mapped 0.02  ho4 12000
+mod@6 longdiv_est fresh seed1: exact 0.531  seen 1.00  digits(lo->hi) [0.61 0.83]  curve [0.06 0.30 0.49 0.53]  1078.0s  wide @7:0.01/0.01 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.27 (exact if all right 0.82)  est raw 0.00 mapped 0.27  ho0 12000
+mod@6 longdiv_est fresh seed1: exact 0.040  seen 0.74 unseen 0.020  held-out moduli 0.020  digits(lo->hi) [0.20 0.23]  curve [0.03 0.03 0.05 0.04]  1082.1s  matched seen/unseen 0.05/0.03  wide @7:0.00/0.00 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.02 (exact if all right 0.11)  est raw 0.00 mapped 0.02  ho4 12000
+mod@6 longdiv_est fresh seed0: exact 0.043  seen 0.74 unseen 0.033  held-out moduli 0.033  digits(lo->hi) [0.21 0.23]  curve [0.04 0.06 0.03 0.04]  1104.5s  matched seen/unseen 0.05/0.02  wide @7:0.01/0.02 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.02 (exact if all right 0.10)  est raw 0.00 mapped 0.02  ho4 12000
+mod@6 longdiv_estc fresh seed0: exact 0.079  seen 0.74 unseen 0.035  held-out moduli 0.035  digits(lo->hi) [0.22 0.27]  curve [0.04 0.04 0.03 0.08]  1102.9s  matched seen/unseen 0.08/0.03  wide @7:0.00/0.00 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.02 (exact if all right 0.16)  est raw 0.01 mapped 0.02  ho4 12000
+mod@6 longdiv_estc fresh seed0: exact 0.451  seen 1.00  digits(lo->hi) [0.53 0.72]  curve [0.04 0.18 0.43 0.45]  1107.4s  wide @7:0.01/0.01 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.13 (exact if all right 0.80)  est raw 0.00 mapped 0.14  ho0 12000
+mod@6 longdiv_tr fresh seed1: exact 0.586  seen 1.00  digits(lo->hi) [0.72 0.76]  curve [0.06 0.04 0.49 0.59]  1157.5s  wide @7:0.01/0.00 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.49 (exact if all right 0.86)  est raw 0.00 mapped 0.49  ho0 12000
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+mod@6 longdiv_estc fresh seed1: exact 0.476  seen 1.00  digits(lo->hi) [0.54 0.81]  curve [0.06 0.36 0.44 0.48]  1232.5s  wide @7:0.01/0.01 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.14 (exact if all right 0.92)  est raw 0.00 mapped 0.14  ho0 12000
+mod@6 longdiv_tr fresh seed0: exact 0.442  seen 1.00  digits(lo->hi) [0.64 0.65]  curve [0.05 0.04 0.39 0.44]  1257.3s  wide @7:0.01/0.01 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.14 (exact if all right 0.77)  est raw 0.00 mapped 0.14  ho0 12000
+mod@6 longdiv_tr fresh seed0: exact 0.042  seen 0.74 unseen 0.033  held-out moduli 0.033  digits(lo->hi) [0.22 0.22]  curve [0.04 0.06 0.04 0.04]  1408.0s  matched seen/unseen 0.05/0.02  wide @7:0.01/0.01 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.02 (exact if all right 0.12)  est raw 0.00 mapped 0.02  ho4 12000
+mod@7 longdiv_tr fresh seed1: exact 0.059  ood@8 0.011  seen 1.00  digits(lo->hi) [0.21 0.16 0.96]  curve [0.02 0.04 0.08 0.06]  2057.5s  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.32)  est raw 0.00 mapped 0.01  ho0 12000
+mod@7 longdiv_tr fresh seed0: exact 0.056  ood@8 0.013  seen 0.74 unseen 0.029  held-out moduli 0.029  digits(lo->hi) [0.20 0.18 0.95]  curve [0.02 0.04 0.08 0.06]  2069.9s  matched seen/unseen 0.05/0.02  wide @10:0.01/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.18)  est raw 0.00 mapped 0.01  ho4 12000
+mod@7 longdiv_tr fresh seed1: exact 0.053  ood@8 0.015  seen 0.74 unseen 0.025  held-out moduli 0.025  digits(lo->hi) [0.22 0.18 0.95]  curve [0.03 0.05 0.08 0.05]  2084.9s  matched seen/unseen 0.05/0.03  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.26)  est raw 0.00 mapped 0.01  ho4 12000
+mod@7 longdiv_estc fresh seed0: exact 0.054  ood@8 0.015  seen 1.00 unseen 0.000  digits(lo->hi) [0.21 0.18 0.95]  curve [0.03 0.04 0.07 0.05]  2210.3s  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.32)  est raw 0.00 mapped 0.01  ho0 12000
+mod@7 longdiv_est fresh seed0: exact 0.046  ood@8 0.015  seen 0.74 unseen 0.017  held-out moduli 0.017  digits(lo->hi) [0.20 0.17 0.95]  curve [0.02 0.05 0.07 0.05]  2275.2s  matched seen/unseen 0.05/0.02  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.16)  est raw 0.00 mapped 0.01  ho4 12000
+mod@7 longdiv_est fresh seed0: exact 0.051  ood@8 0.009  seen 1.00 unseen 0.000  digits(lo->hi) [0.20 0.17 0.96]  curve [0.02 0.03 0.07 0.05]  2313.0s  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.23)  est raw 0.00 mapped 0.01  ho0 12000
+mod@7 longdiv_est fresh seed1: exact 0.054  ood@8 0.019  seen 0.74 unseen 0.023  held-out moduli 0.023  digits(lo->hi) [0.20 0.17 0.95]  curve [0.03 0.05 0.07 0.05]  2427.2s  matched seen/unseen 0.06/0.02  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.25)  est raw 0.00 mapped 0.01  ho4 12000
+mod@7 longdiv_est fresh seed1: exact 0.049  ood@8 0.011  seen 1.00  digits(lo->hi) [0.20 0.16 0.96]  curve [0.03 0.04 0.06 0.05]  2664.5s  wide @10:0.01/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.16)  est raw 0.00 mapped 0.01  ho0 12000
+mod@7 longdiv_estc fresh seed0: exact 0.054  ood@8 0.013  seen 0.74 unseen 0.025  held-out moduli 0.025  digits(lo->hi) [0.20 0.17 0.95]  curve [0.02 0.05 0.06 0.05]  2735.2s  matched seen/unseen 0.05/0.02  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.22)  est raw 0.00 mapped 0.01  ho4 12000
+mod@7 longdiv_tr fresh seed0: exact 0.049  ood@8 0.014  seen 1.00 unseen 0.000  digits(lo->hi) [0.22 0.16 0.96]  curve [0.03 0.03 0.07 0.05]  2319.3s  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.23)  est raw 0.00 mapped 0.01  ho0 12000
+mod@7 longdiv_estc fresh seed1: exact 0.049  ood@8 0.017  seen 1.00  digits(lo->hi) [0.21 0.16 0.96]  curve [0.04 0.04 0.07 0.05]  2086.1s  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.26)  est raw 0.00 mapped 0.01  ho0 12000
+mod@7 longdiv_estc fresh seed1: exact 0.062  ood@8 0.015  seen 0.74 unseen 0.023  held-out moduli 0.023  digits(lo->hi) [0.21 0.18 0.95]  curve [0.03 0.06 0.09 0.06]  6426.4s  matched seen/unseen 0.06/0.02  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.27)  est raw 0.00 mapped 0.01  ho4 12000
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-YsFqR0Di9rJE2HVEqR35IH

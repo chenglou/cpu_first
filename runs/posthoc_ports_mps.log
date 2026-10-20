@@ -1,0 +1,19 @@
+45216 training-consistent machines, 4016 certify
+after id@24bit: 25056 machines {'r4': 16128, 'r4m': 3456, 'r2': 5184, 'r2m': 288}; certify among them: 4016; certifying machines removed: 0 (7s)
+after comm@24bit: 25056 machines {'r4': 16128, 'r4m': 3456, 'r2': 5184, 'r2m': 288}; certify among them: 4016; certifying machines removed: 0 (11s)
+after assoc@24bit: 15048 machines {'r4': 9384, 'r4m': 2016, 'r2': 3456, 'r2m': 192}; certify among them: 4016; certifying machines removed: 0 (14s)
+after semigroup 50+49: 5016 machines {'r4': 3128, 'r4m': 672, 'r2': 1152, 'r2m': 64}; certify among them: 4016; certifying machines removed: 0 (108s)
+
+1000 survive every label-free check but do not certify:
+  mult: failing {'r4': 904, 'r4m': 96} | certifying {'r2': 1152, 'r2m': 64, 'r4': 2224, 'r4m': 576}
+  r4c1sh: failing {'(0, 2, 2)': 456, '(0, 0, 2)': 448, '(0, 0, 0)': 96} | certifying {'(0, 0, 0)': 3584, '(0, 2, 2)': 288, '(0, 0, 2)': 144}
+  r4c2sh: failing {'(0, 0, 0)': 552, '(0, 0, 2)': 448} | certifying {'(0, 0, 0)': 3872, '(0, 0, 2)': 144}
+  r4m1sh: failing {'(0, 0, 0)': 904, '(0, 0, 2)': 96} | certifying {'(0, 0, 0)': 3824, '(0, 0, 2)': 192}
+  r4hold: failing {'Ss': 228, 'Sc': 228, 'P0': 224, 'P1': 320} | certifying {'P1': 2312, 'Ss': 592, 'Sc': 592, 'P0': 520}
+  r4qtree: failing {'(u,Q0,Q1)(v)': 280, '(v,Q0,Q1)(u)': 224, '(u,v,Q0)(Q1)': 496} | certifying {'(u,v,Q0)(Q1)': 2432, '(u,Q0,Q1)(v)': 880, '(v,Q0,Q1)(u)': 704}
+  Km: failing {'26': 536, '28': 464} | certifying {'26': 1696, '28': 2320}
+  W: failing {'28': 536, '26': 464} | certifying {'26': 1936, '28': 2080}
+  entry_radix: failing {'2': 500, '4': 500} | certifying {'2': 2008, '4': 2008}
+  Ke: failing {'24': 536, '26': 464} | certifying {'26': 2320, '28': 1696}
+  seen_maxT / ood_maxT of the failing: [((64, 1), 392), ((64, 32), 304), ((64, 8), 160), ((64, 2), 144)]
+  ood correct of the failing (of 5376): [(5375, 264), (4705, 116), (5371, 80), (4714, 72), (4717, 72), (4718, 72)]

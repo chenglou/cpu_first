@@ -38,7 +38,8 @@ The same recipe certified on 8 of 8 further seeds on CPU, and on 4 of 4 seeds th
 **What broke.** The first recipe moved the previous version's lessons onto single subtractions. It certified on the
 official run and on 8 of 8 CPU seeds, but:
 - three of those seeds sat stuck for roughly 350 to 1,150 steps;
-- one seed that never sees an answer was still stuck after 5,000 steps.
+- one seed that never sees an answer never got out. When its hour of training ran out it still had one entry wrong,
+  and it failed certification.
 
 One table entry, "0 minus 0 with a borrow", settled on a blur that the self-check prefers. The self-check subtracts N,
 adds N back and compares. Writing 0 where the truth is 9 costs one wrong digit in it, and every step toward 9 first
@@ -76,7 +77,7 @@ cpu and everything else official, one seed per run:
 | recipe | seeds | certified T = 64 on both profiles | table rows right | frozen at step | training s / evaluation s (CPU) |
 |---|---|---|---|---|---|
 | first recipe (`ID_BORROW = 0`), with the rows' answers | 74, 1, 2, 3, 4, 5, 6, 7 | **8/8** | 200/200 | 516, 545, 524, **824**, 411, 497, **1,489**, **1,467** | 324–830 / 17–25 |
-| first recipe, identity only (`REAL_MAX_T = 0`: never sees a label) | 74, 1, 2, 3 | 3/3 finished; seed 3 PENDING | 200/200 where certified | 641, 518, 493; seed 3 at about half the checks after 5,000+ steps | 278–369 / 17–24 |
+| first recipe, identity only (`REAL_MAX_T = 0`: never sees a label) | 74, 1, 2, 3 | 3/4: seed 3 **failed** (no rung certified: 640→570 of 768 seen, 530→413 OOD-N; test 5,673/9,999) | 200/200; seed 3: 199/200, only (0, 0, borrow 1) wrong | 641, 518, 493; seed 3 never (51% of the checks when the 3,600 s ran out, step 15,150) | 278–3,600 / 17–25 |
 | **final** (complete identity), with the rows' answers | 74, 1, 2, 3, 4, 5, 6, 7 | **8/8** | 200/200 | 417, 481, 457, 446, 464, 434, 456, 474 | 306–502 / 18–31 |
 | **final**, identity only | 74, 1, 2, 3 | **4/4** | 200/200 | 408, 466, 443, 544 | 282–355 / 19–24 |
 
@@ -186,8 +187,9 @@ The first recipe was Stage 2's lessons moved onto single links unchanged, with t
 (`ID_BORROW = 0`). It certified on the official run (`chain_official`, frozen at step 516) and on 8/8 CPU seeds. But:
 - seeds 3, 6 and 7 spent roughly 350, 1,000 and 1,150 steps of phase B at 49–52% of the checks passing (hard exact
   0.50–0.52 at every log line from step 250 to 1,250 for seeds 6 and 7) before they froze at 824, 1,489 and 1,467;
-- the identity-only run of seed 3 sat at 51% for over 5,000 steps (its record is still running into the 3,600 s cap
-  at the time of writing).
+- the identity-only run of seed 3 sat at 51% until training hit the 3,600 s cap (step 15,150) and failed
+  certification. Its table ended 199/200 right, wrong only at (0, 0, borrow 1), the row of §5.2. Test: 5,673/9,999
+  exact. Rungs from 640 down to 570 of 768 on seen moduli, and from 530 down to 413 on unseen ones.
 
 ### 5.2 The stalled state
 Reproduced locally (`chain_local/diag_chain.py 700 64 6`: seed 6, batch 64, digits-only check), printing the snapped table against true subtraction every
@@ -197,7 +199,8 @@ Reproduced locally (`chain_local/diag_chain.py 700 64 6`: seed 6, batch 64, digi
 - **Later.** Only (0, 0, borrow 1) was wrong, from step 550 to the end of the 700 steps, with the digits-only check
   passing on 48.8% of the links.
 
-Its digit was a blur: P(0) = 0.67–0.70, P(9) = 0.30–0.32, borrow right (0.997–0.999).
+Its digit was a blur: P(0) = 0.67–0.70, P(9) = 0.30–0.32, borrow right (0.997–0.999). At the official batch the
+failed identity-only seed 3 ended with exactly this row wrong.
 
 That row is the cell at the zeros above N's top digit when a link goes negative (D < N). The true result there is a run
 of 9s (the wrap-around): adding N back carries through all of them and every place comes back 0. Written as 0s
@@ -250,7 +253,7 @@ The digits-only check had seed 6 stuck and seed 3 stalled for about 400 steps at
 On Modal (batch 512), the final file:
 - certified on the official run: frozen at 417 instead of 516;
 - on CPU: 8/8 seeds frozen at 417–481 with the answers (first recipe: 411–1,489), and 4/4 at 408–544 identity-only,
-  including seed 3, which the first recipe left stuck.
+  including seed 3, on which the first recipe failed.
 
 ### 5.4 Side notes
 - **Checking only the live links does not fix it.** These are the links up to and including the first that borrows

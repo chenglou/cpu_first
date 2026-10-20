@@ -261,3 +261,20 @@ KeyError: 'ties_last'
 Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
 Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
 mod@7 longdiv_em fresh seed0: exact 0.002  ood@8 0.004  seen 1.00 unseen 0.000  digits(lo->hi) [0.10 0.12 0.05]  curve [0.00 0.00 0.00 0.00]  9279.8s  wide @10:0.00/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.00)  est raw 0.00 mapped 0.01  ho0 12000
+Traceback (most recent call last):
+cell failed: KeyError('ties_last')
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'

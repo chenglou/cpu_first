@@ -1,0 +1,61 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-LTceIBiAHJJzwcySM6Vr3M
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_clock_modal.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_clock.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_report.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_ladder.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_matched.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /tasks.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /run.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /models.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /__init__.py
+├── 🔨 Created function run_cell.
+└── 🔨 Created function grad_cell.
+12 gradient checks
+grad 6 bits pre 0 s0 losses {'clock': 0.9874, 'ce': 2.3022} B=256: clock -0.50 ce +0.42 | B=1024: clock -0.05 ce +0.46 | B=4096: clock +0.49 ce +0.51 | B=16384: clock -0.22 ce +0.50 | B=65536: clock -0.40 ce +0.49
+grad 6 bits pre 0 s1 losses {'clock': 1.0003, 'ce': 2.3035} B=256: clock -0.59 ce +0.34 | B=1024: clock -0.70 ce +0.40 | B=4096: clock -0.53 ce +0.44 | B=16384: clock -0.50 ce +0.43 | B=65536: clock +0.15 ce +0.43
+grad 6 bits pre 3000 s0 losses {'clock': 0.9389, 'ce': 0.0812} B=256: clock +0.16 ce -0.07 | B=1024: clock -0.01 ce -0.06 | B=4096: clock -0.03 ce +0.17 | B=16384: clock +0.24 ce +0.14 | B=65536: clock +0.34 ce +0.21
+grad 7 bits pre 0 s0 losses {'clock': 1.0234, 'ce': 2.3267} B=256: clock +0.22 ce +0.98 | B=1024: clock +0.10 ce +0.98 | B=4096: clock +0.03 ce +0.98 | B=16384: clock -0.12 ce +0.98 | B=65536: clock -0.01 ce +0.98
+grad 7 bits pre 0 s1 losses {'clock': 1.0116, 'ce': 2.2874} B=256: clock +0.70 ce +0.97 | B=1024: clock -0.49 ce +0.97 | B=4096: clock +0.10 ce +0.97 | B=16384: clock +0.15 ce +0.97 | B=65536: clock -0.23 ce +0.97
+grad 6 bits pre 3000 s1 losses {'clock': 0.9758, 'ce': 0.0907} B=256: clock +0.17 ce -0.04 | B=1024: clock -0.01 ce -0.05 | B=4096: clock +0.13 ce +0.05 | B=16384: clock +0.09 ce -0.23 | B=65536: clock +0.21 ce -0.15
+grad 10 bits pre 0 s0 losses {'clock': 1.0004, 'ce': 2.3217} B=256: clock -0.09 ce +0.98 | B=1024: clock +0.14 ce +0.98 | B=4096: clock -0.04 ce +0.98 | B=16384: clock -0.01 ce +0.98 | B=65536: clock -0.26 ce +0.98
+grad 10 bits pre 0 s1 losses {'clock': 1.0038, 'ce': 2.2905} B=256: clock -0.58 ce +0.96 | B=1024: clock -0.59 ce +0.97 | B=4096: clock +0.68 ce +0.97 | B=16384: clock +0.09 ce +0.97 | B=65536: clock -0.58 ce +0.97
+grad 7 bits pre 3000 s0 losses {'clock': 0.4112, 'ce': 0.4831} B=256: clock +0.70 ce +0.10 | B=1024: clock +0.93 ce +0.01 | B=4096: clock +0.96 ce -0.01 | B=16384: clock +0.97 ce +0.10 | B=65536: clock +0.97 ce +0.03
+grad 7 bits pre 3000 s1 losses {'clock': 0.4067, 'ce': 0.4791} B=256: clock +0.97 ce +0.10 | B=1024: clock +0.97 ce +0.05 | B=4096: clock +0.98 ce +0.00 | B=16384: clock +0.97 ce -0.02 | B=65536: clock +0.98 ce -0.10
+grad 10 bits pre 3000 s1 losses {'clock': 0.6756, 'ce': 0.8276} B=256: clock +0.68 ce -0.16 | B=1024: clock +0.69 ce -0.10 | B=4096: clock +0.79 ce +0.06 | B=16384: clock +0.77 ce -0.07 | B=65536: clock +0.81 ce +0.14
+grad 10 bits pre 3000 s0 losses {'clock': 0.7099, 'ce': 0.8522} B=256: clock +0.02 ce -0.09 | B=1024: clock +0.01 ce +0.10 | B=4096: clock +0.03 ce +0.11 | B=16384: clock -0.03 ce -0.04 | B=65536: clock -0.04 ce +0.00
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-LTceIBiAHJJzwcySM6Vr3M

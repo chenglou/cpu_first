@@ -1,0 +1,271 @@
+{
+  "manifest": "squaring-mod-hard-h1",
+  "model_spec": {
+    "vocab_size": 17,
+    "max_seq_len": 21,
+    "maximum_model_state_elements": 500000000
+  },
+  "training_batch_size": 512,
+  "evaluation_batch_size": 16384,
+  "max_training_steps": 20000,
+  "total_training_time_seconds": 3600.0,
+  "training_time_seconds_per_seed": 3600.0,
+  "evaluation_time_seconds_per_seed": 1800.0,
+  "seeds": [
+    74
+  ]
+}
+LR step=1 phase=A k=1 in_stage=1 loss=2.2945 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step=1 loss=2.294495 accuracy=0.000000 elapsed=2.3s budget=3600.0s
+step=100 loss=0.434800 accuracy=0.000000 elapsed=3.7s budget=3600.0s
+step=200 loss=0.342413 accuracy=0.000000 elapsed=5.7s budget=3600.0s
+LR step=250 phase=A k=8 in_stage=250 loss=0.3401 hard_exact=0.0104 win=0.0101 rows_visited=200/200
+step=300 loss=0.338046 accuracy=0.000000 elapsed=7.3s budget=3600.0s
+step=400 loss=0.334702 accuracy=0.000000 elapsed=9.1s budget=3600.0s
+LR step=500 phase=A k=8 in_stage=500 loss=0.3357 hard_exact=0.0099 win=0.0143 rows_visited=200/200
+step=500 loss=0.335735 accuracy=0.000000 elapsed=10.7s budget=3600.0s
+step=600 loss=0.346548 accuracy=0.000000 elapsed=12.3s budget=3600.0s
+step=700 loss=0.342826 accuracy=0.000000 elapsed=13.8s budget=3600.0s
+LR step=750 phase=A k=8 in_stage=750 loss=0.3457 hard_exact=0.0546 win=0.0563 rows_visited=200/200
+step=800 loss=0.345350 accuracy=0.000000 elapsed=15.5s budget=3600.0s
+step=900 loss=0.346294 accuracy=0.000000 elapsed=16.9s budget=3600.0s
+LR step=1000 phase=A k=8 in_stage=1000 loss=0.3471 hard_exact=0.0546 win=0.0577 rows_visited=200/200
+step=1000 loss=0.347070 accuracy=0.000000 elapsed=18.6s budget=3600.0s
+step=1100 loss=0.342463 accuracy=0.000000 elapsed=20.1s budget=3600.0s
+step=1200 loss=0.346224 accuracy=0.000000 elapsed=21.8s budget=3600.0s
+LR step=1250 phase=A k=8 in_stage=1250 loss=0.3425 hard_exact=0.0572 win=0.0573 rows_visited=200/200
+step=1300 loss=0.348704 accuracy=0.000000 elapsed=23.3s budget=3600.0s
+step=1400 loss=0.343336 accuracy=0.000000 elapsed=25.0s budget=3600.0s
+LR step=1500 phase=A k=8 in_stage=1500 loss=0.3450 hard_exact=0.0571 win=0.0562 rows_visited=200/200
+LR switch_to_own_borrow step=1500 k=8 win=0.0562
+step=1500 loss=0.345027 accuracy=0.000000 elapsed=26.5s budget=3600.0s
+step=1600 loss=4.064811 accuracy=0.000000 elapsed=30.9s budget=3600.0s
+step=1700 loss=3.770806 accuracy=0.000000 elapsed=35.0s budget=3600.0s
+LR step=1750 phase=B k=8 in_stage=250 loss=1.3605 hard_exact=0.0681 win=0.0680 rows_visited=200/200
+LR step=1750 real_rows=4 real_hard_exact=0.0000
+step=1800 loss=3.665977 accuracy=0.000000 elapsed=39.4s budget=3600.0s
+step=1900 loss=3.405182 accuracy=0.000000 elapsed=43.6s budget=3600.0s
+LR step=2000 phase=B k=8 in_stage=500 loss=1.2873 hard_exact=0.0268 win=0.0424 rows_visited=200/200
+LR step=2000 real_rows=15 real_hard_exact=0.0000
+step=2000 loss=3.694183 accuracy=0.000000 elapsed=48.0s budget=3600.0s
+step=2100 loss=3.584877 accuracy=0.000000 elapsed=52.3s budget=3600.0s
+step=2200 loss=3.629807 accuracy=0.000000 elapsed=56.8s budget=3600.0s
+LR step=2250 phase=B k=8 in_stage=750 loss=1.2459 hard_exact=0.0159 win=0.0395 rows_visited=200/200
+LR step=2250 real_rows=15 real_hard_exact=0.0000
+step=2300 loss=3.523011 accuracy=0.000000 elapsed=61.0s budget=3600.0s
+step=2400 loss=3.737136 accuracy=0.000000 elapsed=65.4s budget=3600.0s
+LR step=2500 phase=B k=8 in_stage=1000 loss=1.2475 hard_exact=0.0119 win=0.0236 rows_visited=200/200
+LR step=2500 real_rows=13 real_hard_exact=0.0000
+step=2500 loss=3.611099 accuracy=0.000000 elapsed=70.0s budget=3600.0s
+step=2600 loss=3.533819 accuracy=0.000000 elapsed=74.5s budget=3600.0s
+step=2700 loss=3.626637 accuracy=0.000000 elapsed=78.6s budget=3600.0s
+LR step=2750 phase=B k=8 in_stage=1250 loss=1.2736 hard_exact=0.0467 win=0.0392 rows_visited=200/200
+LR step=2750 real_rows=8 real_hard_exact=0.0000
+step=2800 loss=3.609657 accuracy=0.000000 elapsed=83.0s budget=3600.0s
+step=2900 loss=3.533441 accuracy=0.000000 elapsed=87.2s budget=3600.0s
+LR step=3000 phase=B k=8 in_stage=1500 loss=1.2737 hard_exact=0.0262 win=0.0222 rows_visited=200/200
+LR step=3000 real_rows=10 real_hard_exact=0.0000
+step=3000 loss=3.610795 accuracy=0.000000 elapsed=91.6s budget=3600.0s
+step=3100 loss=3.581498 accuracy=0.000000 elapsed=95.7s budget=3600.0s
+step=3200 loss=3.576832 accuracy=0.000000 elapsed=100.1s budget=3600.0s
+LR step=3250 phase=B k=8 in_stage=1750 loss=1.3121 hard_exact=0.0115 win=0.0151 rows_visited=200/200
+LR step=3250 real_rows=12 real_hard_exact=0.0000
+step=3300 loss=3.587446 accuracy=0.000000 elapsed=104.3s budget=3600.0s
+step=3400 loss=3.561317 accuracy=0.000000 elapsed=108.7s budget=3600.0s
+LR step=3500 phase=B k=8 in_stage=2000 loss=1.3110 hard_exact=0.0119 win=0.0017 rows_visited=200/200
+LR step=3500 real_rows=13 real_hard_exact=0.0000
+step=3500 loss=3.610072 accuracy=0.000000 elapsed=112.9s budget=3600.0s
+step=3600 loss=3.632864 accuracy=0.000000 elapsed=117.3s budget=3600.0s
+step=3700 loss=3.632240 accuracy=0.000000 elapsed=121.5s budget=3600.0s
+LR step=3750 phase=B k=8 in_stage=2250 loss=1.3559 hard_exact=0.0115 win=0.0165 rows_visited=200/200
+LR step=3750 real_rows=11 real_hard_exact=0.0000
+step=3800 loss=3.596632 accuracy=0.000000 elapsed=125.8s budget=3600.0s
+step=3900 loss=3.566377 accuracy=0.000000 elapsed=130.4s budget=3600.0s
+LR step=4000 phase=B k=8 in_stage=2500 loss=1.2376 hard_exact=0.0210 win=0.0231 rows_visited=200/200
+LR step=4000 real_rows=10 real_hard_exact=0.0000
+step=4000 loss=3.561180 accuracy=0.000000 elapsed=134.9s budget=3600.0s
+step=4100 loss=3.652673 accuracy=0.000000 elapsed=139.1s budget=3600.0s
+step=4200 loss=3.556860 accuracy=0.000000 elapsed=143.5s budget=3600.0s
+LR step=4250 phase=B k=8 in_stage=2750 loss=1.3453 hard_exact=0.0307 win=0.0355 rows_visited=200/200
+LR step=4250 real_rows=3 real_hard_exact=0.0000
+step=4300 loss=3.599411 accuracy=0.000000 elapsed=147.6s budget=3600.0s
+step=4400 loss=3.598999 accuracy=0.000000 elapsed=152.0s budget=3600.0s
+LR step=4500 phase=B k=8 in_stage=3000 loss=1.3168 hard_exact=0.0417 win=0.0366 rows_visited=200/200
+LR step=4500 real_rows=8 real_hard_exact=0.0000
+step=4500 loss=3.614356 accuracy=0.000000 elapsed=156.2s budget=3600.0s
+step=4600 loss=3.549151 accuracy=0.000000 elapsed=160.5s budget=3600.0s
+step=4700 loss=3.527744 accuracy=0.000000 elapsed=164.7s budget=3600.0s
+LR step=4750 phase=B k=8 in_stage=3250 loss=1.3060 hard_exact=0.0401 win=0.0443 rows_visited=200/200
+LR step=4750 real_rows=6 real_hard_exact=0.0000
+step=4800 loss=3.627246 accuracy=0.000000 elapsed=169.1s budget=3600.0s
+step=4900 loss=3.630530 accuracy=0.000000 elapsed=173.3s budget=3600.0s
+LR step=5000 phase=B k=8 in_stage=3500 loss=1.2460 hard_exact=0.0332 win=0.0308 rows_visited=200/200
+LR step=5000 real_rows=10 real_hard_exact=0.0000
+step=5000 loss=3.512956 accuracy=0.000000 elapsed=178.0s budget=3600.0s
+step=5100 loss=3.647423 accuracy=0.000000 elapsed=182.3s budget=3600.0s
+step=5200 loss=3.537391 accuracy=0.000000 elapsed=186.9s budget=3600.0s
+LR step=5250 phase=B k=8 in_stage=3750 loss=1.2438 hard_exact=0.0275 win=0.0238 rows_visited=200/200
+LR step=5250 real_rows=11 real_hard_exact=0.0000
+step=5300 loss=3.584856 accuracy=0.000000 elapsed=191.6s budget=3600.0s
+step=5400 loss=3.562261 accuracy=0.000000 elapsed=196.1s budget=3600.0s
+LR step=5500 phase=B k=8 in_stage=4000 loss=1.2859 hard_exact=0.0000 win=0.0108 rows_visited=200/200
+LR step=5500 real_rows=9 real_hard_exact=0.0000
+step=5500 loss=3.617099 accuracy=0.000000 elapsed=200.3s budget=3600.0s
+step=5600 loss=3.569648 accuracy=0.000000 elapsed=204.8s budget=3600.0s
+step=5700 loss=3.516530 accuracy=0.000000 elapsed=209.0s budget=3600.0s
+LR step=5750 phase=B k=8 in_stage=4250 loss=1.3545 hard_exact=0.0289 win=0.0259 rows_visited=200/200
+LR step=5750 real_rows=7 real_hard_exact=0.0000
+step=5800 loss=3.669990 accuracy=0.000000 elapsed=213.4s budget=3600.0s
+step=5900 loss=3.503108 accuracy=0.000000 elapsed=217.7s budget=3600.0s
+LR step=6000 phase=B k=8 in_stage=4500 loss=1.2353 hard_exact=0.0321 win=0.0301 rows_visited=200/200
+LR step=6000 real_rows=9 real_hard_exact=0.0000
+step=6000 loss=3.482388 accuracy=0.000000 elapsed=222.1s budget=3600.0s
+step=6100 loss=3.539220 accuracy=0.000000 elapsed=226.3s budget=3600.0s
+step=6200 loss=3.606704 accuracy=0.000000 elapsed=230.7s budget=3600.0s
+LR step=6250 phase=B k=8 in_stage=4750 loss=1.2279 hard_exact=0.0297 win=0.0288 rows_visited=200/200
+LR step=6250 real_rows=14 real_hard_exact=0.0000
+step=6300 loss=3.584766 accuracy=0.000000 elapsed=234.9s budget=3600.0s
+step=6400 loss=3.586492 accuracy=0.000000 elapsed=239.4s budget=3600.0s
+LR step=6500 phase=B k=8 in_stage=5000 loss=1.2881 hard_exact=0.0474 win=0.0362 rows_visited=200/200
+LR step=6500 real_rows=8 real_hard_exact=0.0000
+step=6500 loss=3.584978 accuracy=0.000000 elapsed=244.0s budget=3600.0s
+step=6600 loss=3.641140 accuracy=0.000000 elapsed=248.8s budget=3600.0s
+step=6700 loss=3.606557 accuracy=0.000000 elapsed=253.0s budget=3600.0s
+LR step=6750 phase=B k=8 in_stage=5250 loss=1.3198 hard_exact=0.0379 win=0.0363 rows_visited=200/200
+LR step=6750 real_rows=11 real_hard_exact=0.0000
+step=6800 loss=3.568911 accuracy=0.000000 elapsed=257.5s budget=3600.0s
+step=6900 loss=3.542532 accuracy=0.000000 elapsed=261.8s budget=3600.0s
+LR step=7000 phase=B k=8 in_stage=5500 loss=1.2968 hard_exact=0.0320 win=0.0096 rows_visited=200/200
+LR step=7000 real_rows=7 real_hard_exact=0.0000
+step=7000 loss=3.577477 accuracy=0.000000 elapsed=266.7s budget=3600.0s
+step=7100 loss=3.528120 accuracy=0.000000 elapsed=271.4s budget=3600.0s
+step=7200 loss=3.567945 accuracy=0.000000 elapsed=275.8s budget=3600.0s
+LR step=7250 phase=B k=8 in_stage=5750 loss=1.3150 hard_exact=0.0265 win=0.0148 rows_visited=200/200
+LR step=7250 real_rows=11 real_hard_exact=0.0000
+step=7300 loss=3.637593 accuracy=0.000000 elapsed=279.9s budget=3600.0s
+step=7400 loss=3.569772 accuracy=0.000000 elapsed=284.2s budget=3600.0s
+LR step=7500 phase=B k=8 in_stage=6000 loss=1.2989 hard_exact=0.0291 win=0.0214 rows_visited=200/200
+LR step=7500 real_rows=7 real_hard_exact=0.0000
+step=7500 loss=3.580298 accuracy=0.000000 elapsed=288.3s budget=3600.0s
+step=7600 loss=3.563330 accuracy=0.000000 elapsed=292.7s budget=3600.0s
+step=7700 loss=3.604687 accuracy=0.000000 elapsed=296.8s budget=3600.0s
+LR step=7750 phase=B k=8 in_stage=6250 loss=1.2748 hard_exact=0.0232 win=0.0303 rows_visited=200/200
+LR step=7750 real_rows=16 real_hard_exact=0.0000
+step=7800 loss=3.549333 accuracy=0.000000 elapsed=301.3s budget=3600.0s
+step=7900 loss=3.510002 accuracy=0.000000 elapsed=305.8s budget=3600.0s
+LR step=8000 phase=B k=8 in_stage=6500 loss=1.2706 hard_exact=0.0482 win=0.0370 rows_visited=200/200
+LR step=8000 real_rows=14 real_hard_exact=0.0000
+step=8000 loss=3.553880 accuracy=0.000000 elapsed=310.3s budget=3600.0s
+step=8100 loss=3.639740 accuracy=0.000000 elapsed=314.4s budget=3600.0s
+step=8200 loss=3.541539 accuracy=0.000000 elapsed=318.8s budget=3600.0s
+LR step=8250 phase=B k=8 in_stage=6750 loss=1.2949 hard_exact=0.0187 win=0.0296 rows_visited=200/200
+LR step=8250 real_rows=6 real_hard_exact=0.0000
+step=8300 loss=3.659143 accuracy=0.000000 elapsed=323.0s budget=3600.0s
+step=8400 loss=3.580052 accuracy=0.000000 elapsed=327.4s budget=3600.0s
+LR step=8500 phase=B k=8 in_stage=7000 loss=1.3291 hard_exact=0.0363 win=0.0231 rows_visited=200/200
+LR step=8500 real_rows=9 real_hard_exact=0.0000
+step=8500 loss=3.664000 accuracy=0.000000 elapsed=331.6s budget=3600.0s
+step=8600 loss=3.483674 accuracy=0.000000 elapsed=336.0s budget=3600.0s
+step=8700 loss=3.646866 accuracy=0.000000 elapsed=340.2s budget=3600.0s
+LR step=8750 phase=B k=8 in_stage=7250 loss=1.2729 hard_exact=0.0168 win=0.0325 rows_visited=200/200
+LR step=8750 real_rows=9 real_hard_exact=0.0000
+step=8800 loss=3.563148 accuracy=0.000000 elapsed=344.6s budget=3600.0s
+step=8900 loss=3.726828 accuracy=0.000000 elapsed=348.9s budget=3600.0s
+LR step=9000 phase=B k=8 in_stage=7500 loss=1.2669 hard_exact=0.0263 win=0.0256 rows_visited=200/200
+LR step=9000 real_rows=10 real_hard_exact=0.0000
+step=9000 loss=3.620973 accuracy=0.000000 elapsed=353.3s budget=3600.0s
+step=9100 loss=3.672367 accuracy=0.000000 elapsed=357.6s budget=3600.0s
+step=9200 loss=3.804498 accuracy=0.000000 elapsed=362.0s budget=3600.0s
+LR step=9250 phase=B k=8 in_stage=7750 loss=1.2982 hard_exact=0.0402 win=0.0478 rows_visited=200/200
+LR step=9250 real_rows=9 real_hard_exact=0.0000
+step=9300 loss=3.635156 accuracy=0.000000 elapsed=366.7s budget=3600.0s
+step=9400 loss=3.467174 accuracy=0.000000 elapsed=371.4s budget=3600.0s
+LR step=9500 phase=B k=8 in_stage=8000 loss=1.2722 hard_exact=0.0082 win=0.0142 rows_visited=200/200
+LR step=9500 real_rows=8 real_hard_exact=0.0000
+step=9500 loss=3.559142 accuracy=0.000000 elapsed=375.6s budget=3600.0s
+step=9600 loss=3.548611 accuracy=0.000000 elapsed=380.0s budget=3600.0s
+step=9700 loss=3.629972 accuracy=0.000000 elapsed=384.3s budget=3600.0s
+LR step=9750 phase=B k=8 in_stage=8250 loss=1.2794 hard_exact=0.0191 win=0.0219 rows_visited=200/200
+LR step=9750 real_rows=8 real_hard_exact=0.0000
+step=9800 loss=3.584229 accuracy=0.000000 elapsed=388.7s budget=3600.0s
+step=9900 loss=3.626513 accuracy=0.000000 elapsed=392.9s budget=3600.0s
+LR step=10000 phase=B k=8 in_stage=8500 loss=1.2842 hard_exact=0.0222 win=0.0239 rows_visited=200/200
+LR step=10000 real_rows=7 real_hard_exact=0.0000
+step=10000 loss=3.587803 accuracy=0.000000 elapsed=397.1s budget=3600.0s
+step=10100 loss=3.606095 accuracy=0.000000 elapsed=401.1s budget=3600.0s
+step=10200 loss=3.620258 accuracy=0.000000 elapsed=405.8s budget=3600.0s
+LR step=10250 phase=B k=8 in_stage=8750 loss=1.2670 hard_exact=0.0222 win=0.0207 rows_visited=200/200
+LR step=10250 real_rows=14 real_hard_exact=0.0000
+step=10300 loss=3.608194 accuracy=0.000000 elapsed=409.6s budget=3600.0s
+step=10400 loss=3.588794 accuracy=0.000000 elapsed=413.8s budget=3600.0s
+LR step=10500 phase=B k=8 in_stage=9000 loss=1.3701 hard_exact=0.0265 win=0.0211 rows_visited=200/200
+LR step=10500 real_rows=5 real_hard_exact=0.0000
+step=10500 loss=3.538826 accuracy=0.000000 elapsed=417.8s budget=3600.0s
+step=10600 loss=3.636114 accuracy=0.000000 elapsed=422.0s budget=3600.0s
+step=10700 loss=3.622097 accuracy=0.000000 elapsed=426.6s budget=3600.0s
+LR step=10750 phase=B k=8 in_stage=9250 loss=1.2438 hard_exact=0.0386 win=0.0395 rows_visited=200/200
+LR step=10750 real_rows=4 real_hard_exact=0.0000
+step=10800 loss=3.617765 accuracy=0.000000 elapsed=431.2s budget=3600.0s
+step=10900 loss=3.523915 accuracy=0.000000 elapsed=435.3s budget=3600.0s
+LR step=11000 phase=B k=8 in_stage=9500 loss=1.2414 hard_exact=0.0104 win=0.0109 rows_visited=200/200
+LR step=11000 real_rows=15 real_hard_exact=0.0000
+step=11000 loss=3.482968 accuracy=0.000000 elapsed=439.6s budget=3600.0s
+step=11100 loss=3.579839 accuracy=0.000000 elapsed=443.6s budget=3600.0s
+step=11200 loss=3.578564 accuracy=0.000000 elapsed=447.8s budget=3600.0s
+LR step=11250 phase=B k=8 in_stage=9750 loss=1.2935 hard_exact=0.0572 win=0.0464 rows_visited=200/200
+LR step=11250 real_rows=7 real_hard_exact=0.0000
+step=11300 loss=3.617348 accuracy=0.000000 elapsed=451.9s budget=3600.0s
+step=11400 loss=3.557956 accuracy=0.000000 elapsed=456.1s budget=3600.0s
+LR step=11500 phase=B k=8 in_stage=10000 loss=1.3155 hard_exact=0.0447 win=0.0583 rows_visited=200/200
+LR step=11500 real_rows=15 real_hard_exact=0.0000
+step=11500 loss=3.661540 accuracy=0.000000 elapsed=460.2s budget=3600.0s
+step=11600 loss=3.643871 accuracy=0.000000 elapsed=464.5s budget=3600.0s
+step=11700 loss=3.475435 accuracy=0.000000 elapsed=468.5s budget=3600.0s
+LR step=11750 phase=B k=8 in_stage=10250 loss=1.3067 hard_exact=0.0485 win=0.0416 rows_visited=200/200
+LR step=11750 real_rows=13 real_hard_exact=0.0000
+step=11800 loss=3.572699 accuracy=0.000000 elapsed=472.8s budget=3600.0s
+step=11900 loss=3.683142 accuracy=0.000000 elapsed=476.9s budget=3600.0s
+LR step=12000 phase=B k=8 in_stage=10500 loss=1.2250 hard_exact=0.0289 win=0.0273 rows_visited=200/200
+LR step=12000 real_rows=9 real_hard_exact=0.0000
+step=12000 loss=3.602277 accuracy=0.000000 elapsed=481.4s budget=3600.0s
+step=12100 loss=3.487285 accuracy=0.000000 elapsed=485.8s budget=3600.0s
+step=12200 loss=3.566679 accuracy=0.000000 elapsed=490.2s budget=3600.0s
+LR step=12250 phase=B k=8 in_stage=10750 loss=1.2670 hard_exact=0.0353 win=0.0200 rows_visited=200/200
+LR step=12250 real_rows=7 real_hard_exact=0.0000
+step=12300 loss=3.620789 accuracy=0.000000 elapsed=494.1s budget=3600.0s
+step=12400 loss=3.568988 accuracy=0.000000 elapsed=498.3s budget=3600.0s
+LR step=12500 phase=B k=8 in_stage=11000 loss=1.2824 hard_exact=0.0369 win=0.0209 rows_visited=200/200
+LR step=12500 real_rows=8 real_hard_exact=0.0000
+step=12500 loss=3.574733 accuracy=0.000000 elapsed=502.2s budget=3600.0s
+step=12600 loss=3.506105 accuracy=0.000000 elapsed=506.5s budget=3600.0s
+step=12700 loss=3.620358 accuracy=0.000000 elapsed=510.3s budget=3600.0s
+LR step=12750 phase=B k=8 in_stage=11250 loss=1.2729 hard_exact=0.0376 win=0.0416 rows_visited=200/200
+LR step=12750 real_rows=7 real_hard_exact=0.0000
+step=12800 loss=3.618569 accuracy=0.000000 elapsed=514.3s budget=3600.0s
+step=12900 loss=3.558164 accuracy=0.000000 elapsed=518.1s budget=3600.0s
+LR step=13000 phase=B k=8 in_stage=11500 loss=1.2613 hard_exact=0.0116 win=0.0175 rows_visited=200/200
+LR step=13000 real_rows=9 real_hard_exact=0.0000
+step=13000 loss=3.512153 accuracy=0.000000 elapsed=522.1s budget=3600.0s
+step=13100 loss=3.541611 accuracy=0.000000 elapsed=525.9s budget=3600.0s
+step=13200 loss=3.627955 accuracy=0.000000 elapsed=529.9s budget=3600.0s
+LR step=13250 phase=B k=8 in_stage=11750 loss=1.2475 hard_exact=0.0115 win=0.0198 rows_visited=200/200
+LR step=13250 real_rows=16 real_hard_exact=0.0000
+step=13300 loss=3.620504 accuracy=0.000000 elapsed=533.8s budget=3600.0s
+step=13400 loss=3.530568 accuracy=0.000000 elapsed=537.7s budget=3600.0s
+LR step=13500 phase=B k=8 in_stage=12000 loss=1.2878 hard_exact=0.0282 win=0.0207 rows_visited=200/200
+LR step=13500 real_rows=11 real_hard_exact=0.0000
+step=13500 loss=3.580829 accuracy=0.000000 elapsed=541.5s budget=3600.0s
+step=13600 loss=3.563340 accuracy=0.000000 elapsed=546.0s budget=3600.0s
+step=13700 loss=3.494389 accuracy=0.000000 elapsed=550.2s budget=3600.0s
+LR step=13750 phase=B k=8 in_stage=12250 loss=1.2941 hard_exact=0.0000 win=0.0149 rows_visited=200/200
+LR step=13750 real_rows=13 real_hard_exact=0.0000
+step=13800 loss=3.571131 accuracy=0.000000 elapsed=554.2s budget=3600.0s
+step=13900 loss=3.619249 accuracy=0.000000 elapsed=557.9s budget=3600.0s
+LR step=14000 phase=B k=8 in_stage=12500 loss=1.3085 hard_exact=0.0254 win=0.0317 rows_visited=200/200
+LR step=14000 real_rows=15 real_hard_exact=0.0000
+step=14000 loss=3.592674 accuracy=0.000000 elapsed=561.8s budget=3600.0s
+step=14100 loss=3.553952 accuracy=0.000000 elapsed=565.6s budget=3600.0s
+step=14200 loss=3.708074 accuracy=0.000000 elapsed=569.5s budget=3600.0s
+LR step=14250 phase=B k=8 in_stage=12750 loss=1.3165 hard_exact=0.0484 win=0.0416 rows_visited=200/200
+LR step=14250 real_rows=10 real_hard_exact=0.0000
+step=14300 loss=3.581305 accuracy=0.000000 elapsed=573.2s budget=3600.0s

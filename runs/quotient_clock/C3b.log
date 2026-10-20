@@ -1,0 +1,53 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-SrfTTN45uw4Fc7uAuVBytE
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_clock_modal.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_clock.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_report.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_matched.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_ladder.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /run.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /tasks.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /models.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /__init__.py
+├── 🔨 Created function run_cell.
+└── 🔨 Created function grad_cell.
+4 cells
+digits given (modq), clock, batch 16384 | modq@6 longdiv_clock fresh seed1: exact 0.018  seen 1.00  digits(lo->hi) [0.10 0.18]  curve [0.02 0.02 0.01 0.02]  731.5s  wide @7:0.00/0.00 @10:0.00/0.00  choice all-right raw 1.00 mapped 1.00 (exact if all right 0.02)  est raw 1.00 mapped 1.00  mod-N 0.02  oracle 0.02/0.02  table 0.00 (best map 0.00 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  ho0 400
+digits given (modq), clock, batch 16384 | modq@6 longdiv_clock fresh seed0: exact 0.004  seen 1.00  digits(lo->hi) [0.11 0.04]  curve [0.00 0.01 0.00 0.00]  843.0s  wide @7:0.00/0.00 @10:0.00/0.00  choice all-right raw 1.00 mapped 1.00 (exact if all right 0.00)  est raw 1.00 mapped 1.00  mod-N 0.03  oracle 0.00/0.03  table 0.00 (best map 0.00 [8, 9, 7, 9, 8, 8, 7, 8, 8, 7])  ho0 400
+digits given (modq), clock, batch 16384 | modq@7 longdiv_clock fresh seed0: exact 0.000  ood@8 0.000  seen 1.00  digits(lo->hi) [0.10 0.10 0.00]  curve [0.00 0.00 0.00 0.00]  981.3s  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 1.00 mapped 1.00 (exact if all right 0.00)  est raw 1.00 mapped 1.00  mod-N 0.01  oracle 0.00/0.01  table 0.00 (best map 0.00 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  ho0 400
+digits given (modq), clock, batch 16384 | modq@7 longdiv_clock fresh seed1: exact 0.001  ood@8 0.000  seen 1.00  digits(lo->hi) [0.10 0.12 0.03]  curve [0.00 0.00 0.00 0.00]  1011.3s  wide @10:0.00/0.00 @14:0.00/0.00  choice all-right raw 1.00 mapped 1.00 (exact if all right 0.00)  est raw 1.00 mapped 1.00  mod-N 0.01  oracle 0.00/0.01  table 0.00 (best map 0.00 [2, 0, 0, 0, 0, 0, 0, 0, 0, 0])  ho0 400
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-SrfTTN45uw4Fc7uAuVBytE

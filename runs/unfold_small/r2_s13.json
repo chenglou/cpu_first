@@ -1,0 +1,2277 @@
+{
+ "name": "r2_s13",
+ "gpu": "",
+ "returncode": 0,
+ "wall_seconds": 1031.1595294475555,
+ "manifest": {
+  "name": "squaring-mod-hard-h1",
+  "data": {
+   "kind": "squaring_mod",
+   "data_root": "data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2",
+   "batch_size": 512,
+   "eval_batch_size": 512,
+   "shuffle_train": true,
+   "shuffle_eval": false,
+   "num_workers": 2,
+   "pin_memory": true,
+   "drop_last": true,
+   "seed": 45
+  },
+  "runtime": {
+   "device": "cpu",
+   "dtype": "bfloat16",
+   "amp": true,
+   "compile": false,
+   "total_training_time_seconds": 3600,
+   "max_steps": 1000000,
+   "seeds": [
+    13
+   ],
+   "grad_clip": 1,
+   "log_every": 100
+  },
+  "model_state": {
+   "maximum_elements": 500000000
+  }
+ },
+ "log": "=1.000000 elapsed=858.5s budget=3600.0s\nstep=168200 loss=0.000000 accuracy=1.000000 elapsed=859.0s budget=3600.0s\nstep=168300 loss=0.000000 accuracy=1.000000 elapsed=859.5s budget=3600.0s\nstep=168400 loss=0.000000 accuracy=1.000000 elapsed=860.1s budget=3600.0s\nstep=168500 loss=0.000000 accuracy=1.000000 elapsed=860.6s budget=3600.0s\nstep=168600 loss=0.000000 accuracy=1.000000 elapsed=861.1s budget=3600.0s\nstep=168700 loss=0.000000 accuracy=1.000000 elapsed=861.6s budget=3600.0s\nstep=168800 loss=0.000000 accuracy=1.000000 elapsed=862.3s budget=3600.0s\nstep=168900 loss=0.000000 accuracy=1.000000 elapsed=862.8s budget=3600.0s\nlm update=169000 B=10.000000000000 w=[2.217154064509952e-11, -7.856208901740186e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=8.967e-17\nstep=169000 loss=0.000000 accuracy=1.000000 elapsed=863.3s budget=3600.0s\nstep=169100 loss=0.000000 accuracy=1.000000 elapsed=863.8s budget=3600.0s\nstep=169200 loss=0.000000 accuracy=1.000000 elapsed=864.3s budget=3600.0s\nstep=169300 loss=0.000000 accuracy=1.000000 elapsed=864.8s budget=3600.0s\nstep=169400 loss=0.000000 accuracy=1.000000 elapsed=865.3s budget=3600.0s\nstep=169500 loss=0.000000 accuracy=1.000000 elapsed=865.8s budget=3600.0s\nstep=169600 loss=0.000000 accuracy=1.000000 elapsed=866.3s budget=3600.0s\nstep=169700 loss=0.000000 accuracy=1.000000 elapsed=866.8s budget=3600.0s\nstep=169800 loss=0.000000 accuracy=1.000000 elapsed=867.3s budget=3600.0s\nstep=169900 loss=0.000000 accuracy=1.000000 elapsed=867.8s budget=3600.0s\nlm update=170000 B=10.000000000000 w=[2.4849792362724443e-11, -7.877482303617067e-14, 1.0] rows=7/7 s=1.00e-09 carried=100.0 move=1.547e-17\nstep=170000 loss=0.000000 accuracy=1.000000 elapsed=868.3s budget=3600.0s\nstep=170100 loss=0.000000 accuracy=1.000000 elapsed=868.8s budget=3600.0s\nstep=170200 loss=0.000000 accuracy=1.000000 elapsed=869.3s budget=3600.0s\nstep=170300 loss=0.000000 accuracy=1.000000 elapsed=869.8s budget=3600.0s\nstep=170400 loss=0.000000 accuracy=1.000000 elapsed=870.5s budget=3600.0s\nstep=170500 loss=0.000000 accuracy=1.000000 elapsed=871.0s budget=3600.0s\nstep=170600 loss=0.000000 accuracy=1.000000 elapsed=871.5s budget=3600.0s\nstep=170700 loss=0.000000 accuracy=1.000000 elapsed=872.0s budget=3600.0s\nstep=170800 loss=0.000000 accuracy=1.000000 elapsed=872.5s budget=3600.0s\nstep=170900 loss=0.000000 accuracy=1.000000 elapsed=873.0s budget=3600.0s\nlm update=171000 B=10.000000000000 w=[2.1757229698438074e-11, -7.81821642473722e-14, 1.0] rows=4/4 s=1.00e-09 carried=100.0 move=7.654e-18\nstep=171000 loss=0.000000 accuracy=1.000000 elapsed=873.4s budget=3600.0s\nstep=171100 loss=0.000000 accuracy=1.000000 elapsed=873.9s budget=3600.0s\nstep=171200 loss=0.000000 accuracy=1.000000 elapsed=874.4s budget=3600.0s\nstep=171300 loss=0.000000 accuracy=1.000000 elapsed=874.9s budget=3600.0s\nstep=171400 loss=0.000000 accuracy=1.000000 elapsed=875.4s budget=3600.0s\nstep=171500 loss=0.000000 accuracy=1.000000 elapsed=875.9s budget=3600.0s\nstep=171600 loss=0.000000 accuracy=1.000000 elapsed=876.4s budget=3600.0s\nstep=171700 loss=0.000000 accuracy=1.000000 elapsed=876.9s budget=3600.0s\nstep=171800 loss=0.000000 accuracy=1.000000 elapsed=877.4s budget=3600.0s\nstep=171900 loss=0.000000 accuracy=1.000000 elapsed=877.9s budget=3600.0s\nlm update=172000 B=10.000000000000 w=[2.6139531511537584e-11, -7.87663933642796e-14, 1.0] rows=6/6 s=1.00e-09 carried=100.0 move=3.944e-16\nstep=172000 loss=0.000000 accuracy=1.000000 elapsed=878.5s budget=3600.0s\nstep=172100 loss=0.000000 accuracy=1.000000 elapsed=879.0s budget=3600.0s\nstep=172200 loss=0.000000 accuracy=1.000000 elapsed=879.5s budget=3600.0s\nstep=172300 loss=0.000000 accuracy=1.000000 elapsed=880.0s budget=3600.0s\nstep=172400 loss=0.000000 accuracy=1.000000 elapsed=880.5s budget=3600.0s\nstep=172500 loss=0.000000 accuracy=1.000000 elapsed=881.0s budget=3600.0s\nstep=172600 loss=0.000000 accuracy=1.000000 elapsed=881.5s budget=3600.0s\nstep=172700 loss=0.000000 accuracy=1.000000 elapsed=882.0s budget=3600.0s\nstep=172800 loss=0.000000 accuracy=1.000000 elapsed=882.5s budget=3600.0s\nstep=172900 loss=0.000000 accuracy=1.000000 elapsed=883.0s budget=3600.0s\nlm update=173000 B=10.000000000000 w=[2.5046319185317856e-11, -7.848289482496537e-14, 1.0] rows=3/3 s=1.00e-09 carried=100.0 move=5.685e-18\nstep=173000 loss=0.000000 accuracy=1.000000 elapsed=883.5s budget=3600.0s\nstep=173100 loss=0.000000 accuracy=1.000000 elapsed=883.9s budget=3600.0s\nstep=173200 loss=0.000000 accuracy=1.000000 elapsed=884.4s budget=3600.0s\nstep=173300 loss=0.000000 accuracy=1.000000 elapsed=884.9s budget=3600.0s\nstep=173400 loss=0.000000 accuracy=1.000000 elapsed=885.4s budget=3600.0s\nstep=173500 loss=0.000000 accuracy=1.000000 elapsed=885.9s budget=3600.0s\nstep=173600 loss=0.000000 accuracy=1.000000 elapsed=886.6s budget=3600.0s\nstep=173700 loss=0.000000 accuracy=1.000000 elapsed=887.1s budget=3600.0s\nstep=173800 loss=0.000000 accuracy=1.000000 elapsed=887.6s budget=3600.0s\nstep=173900 loss=0.000000 accuracy=1.000000 elapsed=888.1s budget=3600.0s\nlm update=174000 B=10.000000000000 w=[2.4599912384903888e-11, -7.82493847820663e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=5.085e-17\nstep=174000 loss=0.000000 accuracy=1.000000 elapsed=888.6s budget=3600.0s\nstep=174100 loss=0.000000 accuracy=1.000000 elapsed=889.1s budget=3600.0s\nstep=174200 loss=0.000000 accuracy=1.000000 elapsed=889.6s budget=3600.0s\nstep=174300 loss=0.000000 accuracy=1.000000 elapsed=890.1s budget=3600.0s\nstep=174400 loss=0.000000 accuracy=1.000000 elapsed=890.6s budget=3600.0s\nstep=174500 loss=0.000000 accuracy=1.000000 elapsed=891.1s budget=3600.0s\nstep=174600 loss=0.000000 accuracy=1.000000 elapsed=891.6s budget=3600.0s\nstep=174700 loss=0.000000 accuracy=1.000000 elapsed=892.1s budget=3600.0s\nstep=174800 loss=0.000000 accuracy=1.000000 elapsed=892.6s budget=3600.0s\nstep=174900 loss=0.000000 accuracy=1.000000 elapsed=893.1s budget=3600.0s\nlm update=175000 B=10.000000000000 w=[2.319534495032194e-11, -7.785489782160745e-14, 1.0] rows=3/3 s=1.00e-09 carried=100.0 move=3.728e-18\nstep=175000 loss=0.000000 accuracy=1.000000 elapsed=893.6s budget=3600.0s\nstep=175100 loss=0.000000 accuracy=1.000000 elapsed=894.1s budget=3600.0s\nstep=175200 loss=0.000000 accuracy=1.000000 elapsed=894.8s budget=3600.0s\nstep=175300 loss=0.000000 accuracy=1.000000 elapsed=895.3s budget=3600.0s\nstep=175400 loss=0.000000 accuracy=1.000000 elapsed=895.8s budget=3600.0s\nstep=175500 loss=0.000000 accuracy=1.000000 elapsed=896.3s budget=3600.0s\nstep=175600 loss=0.000000 accuracy=1.000000 elapsed=896.8s budget=3600.0s\nstep=175700 loss=0.000000 accuracy=1.000000 elapsed=897.3s budget=3600.0s\nstep=175800 loss=0.000000 accuracy=1.000000 elapsed=897.8s budget=3600.0s\nstep=175900 loss=0.000000 accuracy=1.000000 elapsed=898.3s budget=3600.0s\nlm update=176000 B=10.000000000000 w=[2.5426914046500215e-11, -7.811274820327882e-14, 1.0] rows=3/3 s=1.00e-09 carried=100.0 move=3.874e-17\nstep=176000 loss=0.000000 accuracy=1.000000 elapsed=898.8s budget=3600.0s\nstep=176100 loss=0.000000 accuracy=1.000000 elapsed=899.3s budget=3600.0s\nstep=176200 loss=0.000000 accuracy=1.000000 elapsed=899.8s budget=3600.0s\nstep=176300 loss=0.000000 accuracy=1.000000 elapsed=900.2s budget=3600.0s\nstep=176400 loss=0.000000 accuracy=1.000000 elapsed=900.7s budget=3600.0s\nstep=176500 loss=0.000000 accuracy=1.000000 elapsed=901.3s budget=3600.0s\nstep=176600 loss=0.000000 accuracy=1.000000 elapsed=901.7s budget=3600.0s\nstep=176700 loss=0.000000 accuracy=1.000000 elapsed=902.3s budget=3600.0s\nstep=176800 loss=0.000000 accuracy=1.000000 elapsed=903.0s budget=3600.0s\nstep=176900 loss=0.000000 accuracy=1.000000 elapsed=903.5s budget=3600.0s\nlm update=177000 B=10.000000000000 w=[2.4556835731548432e-11, -7.784125720302487e-14, 1.0] rows=3/3 s=1.00e-09 carried=100.0 move=2.620e-16\nstep=177000 loss=0.000000 accuracy=1.000000 elapsed=904.0s budget=3600.0s\nstep=177100 loss=0.000000 accuracy=1.000000 elapsed=904.5s budget=3600.0s\nstep=177200 loss=0.000000 accuracy=1.000000 elapsed=905.0s budget=3600.0s\nstep=177300 loss=0.000000 accuracy=1.000000 elapsed=905.5s budget=3600.0s\nstep=177400 loss=0.000000 accuracy=1.000000 elapsed=906.0s budget=3600.0s\nstep=177500 loss=0.000000 accuracy=1.000000 elapsed=906.5s budget=3600.0s\nstep=177600 loss=0.000000 accuracy=1.000000 elapsed=907.0s budget=3600.0s\nstep=177700 loss=0.000000 accuracy=1.000000 elapsed=907.5s budget=3600.0s\nstep=177800 loss=0.000000 accuracy=1.000000 elapsed=908.0s budget=3600.0s\nstep=177900 loss=0.000000 accuracy=1.000000 elapsed=908.6s budget=3600.0s\nlm update=178000 B=10.000000000000 w=[1.9453525595958254e-11, -7.690206029484573e-14, 1.0] rows=4/4 s=1.00e-09 carried=100.0 move=5.276e-16\nstep=178000 loss=0.000000 accuracy=1.000000 elapsed=909.1s budget=3600.0s\nstep=178100 loss=0.000000 accuracy=1.000000 elapsed=909.6s budget=3600.0s\nstep=178200 loss=0.000000 accuracy=1.000000 elapsed=910.1s budget=3600.0s\nstep=178300 loss=0.000000 accuracy=1.000000 elapsed=910.6s budget=3600.0s\nstep=178400 loss=0.000000 accuracy=1.000000 elapsed=911.4s budget=3600.0s\nstep=178500 loss=0.000000 accuracy=1.000000 elapsed=911.9s budget=3600.0s\nstep=178600 loss=0.000000 accuracy=1.000000 elapsed=912.4s budget=3600.0s\nstep=178700 loss=0.000000 accuracy=1.000000 elapsed=912.9s budget=3600.0s\nstep=178800 loss=0.000000 accuracy=1.000000 elapsed=913.4s budget=3600.0s\nstep=178900 loss=0.000000 accuracy=1.000000 elapsed=913.9s budget=3600.0s\nlm update=179000 B=10.000000000000 w=[2.3240451230144288e-11, -7.736357127835491e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=2.882e-17\nstep=179000 loss=0.000000 accuracy=1.000000 elapsed=914.4s budget=3600.0s\nstep=179100 loss=0.000000 accuracy=1.000000 elapsed=914.9s budget=3600.0s\nstep=179200 loss=0.000000 accuracy=1.000000 elapsed=915.4s budget=3600.0s\nstep=179300 loss=0.000000 accuracy=1.000000 elapsed=915.9s budget=3600.0s\nstep=179400 loss=0.000000 accuracy=1.000000 elapsed=916.4s budget=3600.0s\nstep=179500 loss=0.000000 accuracy=1.000000 elapsed=916.8s budget=3600.0s\nstep=179600 loss=0.000000 accuracy=1.000000 elapsed=917.3s budget=3600.0s\nstep=179700 loss=0.000000 accuracy=1.000000 elapsed=917.9s budget=3600.0s\nstep=179800 loss=0.000000 accuracy=1.000000 elapsed=918.3s budget=3600.0s\nstep=179900 loss=0.000000 accuracy=1.000000 elapsed=919.0s budget=3600.0s\nlm update=180000 B=10.000000000000 w=[2.2590422588120163e-11, -7.705917474216603e-14, 1.0] rows=3/3 s=1.00e-09 carried=100.0 move=4.159e-17\nstep=180000 loss=0.000000 accuracy=1.000000 elapsed=919.5s budget=3600.0s\nstep=180100 loss=0.000000 accuracy=1.000000 elapsed=920.0s budget=3600.0s\nstep=180200 loss=0.000000 accuracy=1.000000 elapsed=920.5s budget=3600.0s\nstep=180300 loss=0.000000 accuracy=1.000000 elapsed=921.0s budget=3600.0s\nstep=180400 loss=0.000000 accuracy=1.000000 elapsed=921.5s budget=3600.0s\nstep=180500 loss=0.000000 accuracy=1.000000 elapsed=922.0s budget=3600.0s\nstep=180600 loss=0.000000 accuracy=1.000000 elapsed=922.5s budget=3600.0s\nstep=180700 loss=0.000000 accuracy=1.000000 elapsed=923.0s budget=3600.0s\nstep=180800 loss=0.000000 accuracy=1.000000 elapsed=923.5s budget=3600.0s\nstep=180900 loss=0.000000 accuracy=1.000000 elapsed=924.0s budget=3600.0s\nlm update=181000 B=10.000000000000 w=[2.2668643004375433e-11, -7.70292304334147e-14, 1.0] rows=9/9 s=1.00e-09 carried=100.0 move=7.405e-17\nstep=181000 loss=0.000000 accuracy=1.000000 elapsed=924.5s budget=3600.0s\nstep=181100 loss=0.000000 accuracy=1.000000 elapsed=925.0s budget=3600.0s\nstep=181200 loss=0.000000 accuracy=1.000000 elapsed=925.6s budget=3600.0s\nstep=181300 loss=0.000000 accuracy=1.000000 elapsed=926.1s budget=3600.0s\nstep=181400 loss=0.000000 accuracy=1.000000 elapsed=926.6s budget=3600.0s\nstep=181500 loss=0.000000 accuracy=1.000000 elapsed=927.3s budget=3600.0s\nstep=181600 loss=0.000000 accuracy=1.000000 elapsed=927.9s budget=3600.0s\nstep=181700 loss=0.000000 accuracy=1.000000 elapsed=928.4s budget=3600.0s\nstep=181800 loss=0.000000 accuracy=1.000000 elapsed=928.9s budget=3600.0s\nstep=181900 loss=0.000000 accuracy=1.000000 elapsed=929.4s budget=3600.0s\nlm update=182000 B=10.000000000000 w=[1.9795162037317127e-11, -7.638980864966421e-14, 1.0] rows=7/7 s=1.00e-09 carried=100.0 move=2.604e-16\nstep=182000 loss=0.000000 accuracy=1.000000 elapsed=929.9s budget=3600.0s\nstep=182100 loss=0.000000 accuracy=1.000000 elapsed=930.4s budget=3600.0s\nstep=182200 loss=0.000000 accuracy=1.000000 elapsed=931.0s budget=3600.0s\nstep=182300 loss=0.000000 accuracy=1.000000 elapsed=931.5s budget=3600.0s\nstep=182400 loss=0.000000 accuracy=1.000000 elapsed=932.0s budget=3600.0s\nstep=182500 loss=0.000000 accuracy=1.000000 elapsed=932.5s budget=3600.0s\nstep=182600 loss=0.000000 accuracy=1.000000 elapsed=933.0s budget=3600.0s\nstep=182700 loss=0.000000 accuracy=1.000000 elapsed=933.5s budget=3600.0s\nstep=182800 loss=0.000000 accuracy=1.000000 elapsed=934.0s budget=3600.0s\nstep=182900 loss=0.000000 accuracy=1.000000 elapsed=934.5s budget=3600.0s\nlm update=183000 B=10.000000000000 w=[2.4225498343466434e-11, -7.70636267473368e-14, 1.0] rows=3/3 s=1.00e-09 carried=100.0 move=4.386e-17\nstep=183000 loss=0.000000 accuracy=1.000000 elapsed=935.0s budget=3600.0s\nstep=183100 loss=0.000000 accuracy=1.000000 elapsed=935.8s budget=3600.0s\nstep=183200 loss=0.000000 accuracy=1.000000 elapsed=936.3s budget=3600.0s\nstep=183300 loss=0.000000 accuracy=1.000000 elapsed=936.8s budget=3600.0s\nstep=183400 loss=0.000000 accuracy=1.000000 elapsed=937.3s budget=3600.0s\nstep=183500 loss=0.000000 accuracy=1.000000 elapsed=937.8s budget=3600.0s\nstep=183600 loss=0.000000 accuracy=1.000000 elapsed=938.4s budget=3600.0s\nstep=183700 loss=0.000000 accuracy=1.000000 elapsed=938.9s budget=3600.0s\nstep=183800 loss=0.000000 accuracy=1.000000 elapsed=939.4s budget=3600.0s\nstep=183900 loss=0.000000 accuracy=1.000000 elapsed=939.9s budget=3600.0s\nlm update=184000 B=10.000000000000 w=[2.0129922034817227e-11, -7.620211292481624e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=1.583e-16\nstep=184000 loss=0.000000 accuracy=1.000000 elapsed=940.4s budget=3600.0s\nstep=184100 loss=0.000000 accuracy=1.000000 elapsed=940.9s budget=3600.0s\nstep=184200 loss=0.000000 accuracy=1.000000 elapsed=941.5s budget=3600.0s\nstep=184300 loss=0.000000 accuracy=1.000000 elapsed=942.1s budget=3600.0s\nstep=184400 loss=0.000000 accuracy=1.000000 elapsed=942.6s budget=3600.0s\nstep=184500 loss=0.000000 accuracy=1.000000 elapsed=943.2s budget=3600.0s\nstep=184600 loss=0.000000 accuracy=1.000000 elapsed=943.7s budget=3600.0s\nstep=184700 loss=0.000000 accuracy=1.000000 elapsed=944.4s budget=3600.0s\nstep=184800 loss=0.000000 accuracy=1.000000 elapsed=944.9s budget=3600.0s\nstep=184900 loss=0.000000 accuracy=1.000000 elapsed=945.4s budget=3600.0s\nlm update=185000 B=10.000000000000 w=[1.9645271520651875e-11, -7.609289310846548e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=2.217e-17\nstep=185000 loss=0.000000 accuracy=1.000000 elapsed=946.0s budget=3600.0s\nstep=185100 loss=0.000000 accuracy=1.000000 elapsed=946.5s budget=3600.0s\nstep=185200 loss=0.000000 accuracy=1.000000 elapsed=947.0s budget=3600.0s\nstep=185300 loss=0.000000 accuracy=1.000000 elapsed=947.5s budget=3600.0s\nstep=185400 loss=0.000000 accuracy=1.000000 elapsed=948.0s budget=3600.0s\nstep=185500 loss=0.000000 accuracy=1.000000 elapsed=948.5s budget=3600.0s\nstep=185600 loss=0.000000 accuracy=1.000000 elapsed=949.0s budget=3600.0s\nstep=185700 loss=0.000000 accuracy=1.000000 elapsed=949.5s budget=3600.0s\nstep=185800 loss=0.000000 accuracy=1.000000 elapsed=950.0s budget=3600.0s\nstep=185900 loss=0.000000 accuracy=1.000000 elapsed=950.5s budget=3600.0s\nlm update=186000 B=10.000000000000 w=[2.011498086151864e-11, -7.597058832714554e-14, 1.0] rows=6/6 s=1.00e-09 carried=100.0 move=2.911e-16\nstep=186000 loss=0.000000 accuracy=1.000000 elapsed=951.0s budget=3600.0s\nstep=186100 loss=0.000000 accuracy=1.000000 elapsed=951.5s budget=3600.0s\nstep=186200 loss=0.000000 accuracy=1.000000 elapsed=952.0s budget=3600.0s\nstep=186300 loss=0.000000 accuracy=1.000000 elapsed=952.7s budget=3600.0s\nstep=186400 loss=0.000000 accuracy=1.000000 elapsed=953.2s budget=3600.0s\nstep=186500 loss=0.000000 accuracy=1.000000 elapsed=953.7s budget=3600.0s\nstep=186600 loss=0.000000 accuracy=1.000000 elapsed=954.2s budget=3600.0s\nstep=186700 loss=0.000000 accuracy=1.000000 elapsed=954.7s budget=3600.0s\nstep=186800 loss=0.000000 accuracy=1.000000 elapsed=955.2s budget=3600.0s\nstep=186900 loss=0.000000 accuracy=1.000000 elapsed=955.7s budget=3600.0s\nlm update=187000 B=10.000000000000 w=[1.927195729389819e-11, -7.563573248617339e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=2.495e-16\nstep=187000 loss=0.000000 accuracy=1.000000 elapsed=956.2s budget=3600.0s\nstep=187100 loss=0.000000 accuracy=1.000000 elapsed=956.7s budget=3600.0s\nstep=187200 loss=0.000000 accuracy=1.000000 elapsed=957.3s budget=3600.0s\nstep=187300 loss=0.000000 accuracy=1.000000 elapsed=957.8s budget=3600.0s\nstep=187400 loss=0.000000 accuracy=1.000000 elapsed=958.3s budget=3600.0s\nstep=187500 loss=0.000000 accuracy=1.000000 elapsed=958.8s budget=3600.0s\nstep=187600 loss=0.000000 accuracy=1.000000 elapsed=959.3s budget=3600.0s\nstep=187700 loss=0.000000 accuracy=1.000000 elapsed=959.9s budget=3600.0s\nstep=187800 loss=0.000000 accuracy=1.000000 elapsed=960.4s budget=3600.0s\nstep=187900 loss=0.000000 accuracy=1.000000 elapsed=961.1s budget=3600.0s\nlm update=188000 B=10.000000000000 w=[2.3956350791998204e-11, -7.623209789114904e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=1.878e-18\nstep=188000 loss=0.000000 accuracy=1.000000 elapsed=961.6s budget=3600.0s\nstep=188100 loss=0.000000 accuracy=1.000000 elapsed=962.1s budget=3600.0s\nstep=188200 loss=0.000000 accuracy=1.000000 elapsed=962.6s budget=3600.0s\nstep=188300 loss=0.000000 accuracy=1.000000 elapsed=963.1s budget=3600.0s\nstep=188400 loss=0.000000 accuracy=1.000000 elapsed=963.6s budget=3600.0s\nstep=188500 loss=0.000000 accuracy=1.000000 elapsed=964.1s budget=3600.0s\nstep=188600 loss=0.000000 accuracy=1.000000 elapsed=964.6s budget=3600.0s\nstep=188700 loss=0.000000 accuracy=1.000000 elapsed=965.2s budget=3600.0s\nstep=188800 loss=0.000000 accuracy=1.000000 elapsed=965.7s budget=3600.0s\nstep=188900 loss=0.000000 accuracy=1.000000 elapsed=966.2s budget=3600.0s\nlm update=189000 B=10.000000000000 w=[2.0474930778613398e-11, -7.558227454280628e-14, 1.0] rows=6/6 s=1.00e-09 carried=100.0 move=2.275e-19\nstep=189000 loss=0.000000 accuracy=1.000000 elapsed=966.7s budget=3600.0s\nstep=189100 loss=0.000000 accuracy=1.000000 elapsed=967.2s budget=3600.0s\nstep=189200 loss=0.000000 accuracy=1.000000 elapsed=967.8s budget=3600.0s\nstep=189300 loss=0.000000 accuracy=1.000000 elapsed=968.3s budget=3600.0s\nstep=189400 loss=0.000000 accuracy=1.000000 elapsed=968.8s budget=3600.0s\nstep=189500 loss=0.000000 accuracy=1.000000 elapsed=969.5s budget=3600.0s\nstep=189600 loss=0.000000 accuracy=1.000000 elapsed=970.0s budget=3600.0s\nstep=189700 loss=0.000000 accuracy=1.000000 elapsed=970.5s budget=3600.0s\nstep=189800 loss=0.000000 accuracy=1.000000 elapsed=971.0s budget=3600.0s\nstep=189900 loss=0.000000 accuracy=1.000000 elapsed=971.5s budget=3600.0s\nlm update=190000 B=10.000000000000 w=[2.187415873433629e-11, -7.570971573191837e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=5.770e-17\nstep=190000 loss=0.000000 accuracy=1.000000 elapsed=972.0s budget=3600.0s\nstep=190100 loss=0.000000 accuracy=1.000000 elapsed=972.5s budget=3600.0s\nstep=190200 loss=0.000000 accuracy=1.000000 elapsed=973.0s budget=3600.0s\nstep=190300 loss=0.000000 accuracy=1.000000 elapsed=973.5s budget=3600.0s\nstep=190400 loss=0.000000 accuracy=1.000000 elapsed=974.0s budget=3600.0s\nstep=190500 loss=0.000000 accuracy=1.000000 elapsed=974.5s budget=3600.0s\nstep=190600 loss=0.000000 accuracy=1.000000 elapsed=975.0s budget=3600.0s\nstep=190700 loss=0.000000 accuracy=1.000000 elapsed=975.5s budget=3600.0s\nstep=190800 loss=0.000000 accuracy=1.000000 elapsed=976.0s budget=3600.0s\nstep=190900 loss=0.000000 accuracy=1.000000 elapsed=976.5s budget=3600.0s\nlm update=191000 B=10.000000000000 w=[2.0591030616690098e-11, -7.534659609556224e-14, 1.0] rows=8/8 s=1.00e-09 carried=100.0 move=1.743e-16\nstep=191000 loss=0.000000 accuracy=1.000000 elapsed=977.0s budget=3600.0s\nstep=191100 loss=0.000000 accuracy=1.000000 elapsed=977.7s budget=3600.0s\nstep=191200 loss=0.000000 accuracy=1.000000 elapsed=978.2s budget=3600.0s\nstep=191300 loss=0.000000 accuracy=1.000000 elapsed=978.7s budget=3600.0s\nstep=191400 loss=0.000000 accuracy=1.000000 elapsed=979.2s budget=3600.0s\nstep=191500 loss=0.000000 accuracy=1.000000 elapsed=979.7s budget=3600.0s\nstep=191600 loss=0.000000 accuracy=1.000000 elapsed=980.2s budget=3600.0s\nstep=191700 loss=0.000000 accuracy=1.000000 elapsed=980.7s budget=3600.0s\nstep=191800 loss=0.000000 accuracy=1.000000 elapsed=981.2s budget=3600.0s\nstep=191900 loss=0.000000 accuracy=1.000000 elapsed=981.7s budget=3600.0s\nlm update=192000 B=10.000000000000 w=[2.1143163608794424e-11, -7.540162613207946e-14, 1.0] rows=3/3 s=1.00e-09 carried=100.0 move=2.397e-17\nstep=192000 loss=0.000000 accuracy=1.000000 elapsed=982.2s budget=3600.0s\nstep=192100 loss=0.000000 accuracy=1.000000 elapsed=982.7s budget=3600.0s\nstep=192200 loss=0.000000 accuracy=1.000000 elapsed=983.2s budget=3600.0s\nstep=192300 loss=0.000000 accuracy=1.000000 elapsed=983.7s budget=3600.0s\nstep=192400 loss=0.000000 accuracy=1.000000 elapsed=984.2s budget=3600.0s\nstep=192500 loss=0.000000 accuracy=1.000000 elapsed=984.7s budget=3600.0s\nstep=192600 loss=0.000000 accuracy=1.000000 elapsed=985.3s budget=3600.0s\nstep=192700 loss=0.000000 accuracy=1.000000 elapsed=986.1s budget=3600.0s\nstep=192800 loss=0.000000 accuracy=1.000000 elapsed=986.6s budget=3600.0s\nstep=192900 loss=0.000000 accuracy=1.000000 elapsed=987.2s budget=3600.0s\nlm update=193000 B=10.000000000000 w=[2.2669029847710576e-11, -7.54791669162029e-14, 1.0] rows=9/9 s=1.00e-09 carried=100.0 move=5.072e-17\nstep=193000 loss=0.000000 accuracy=1.000000 elapsed=987.7s budget=3600.0s\nstep=193100 loss=0.000000 accuracy=1.000000 elapsed=988.2s budget=3600.0s\nstep=193200 loss=0.000000 accuracy=1.000000 elapsed=988.7s budget=3600.0s\nstep=193300 loss=0.000000 accuracy=1.000000 elapsed=989.2s budget=3600.0s\nstep=193400 loss=0.000000 accuracy=1.000000 elapsed=989.7s budget=3600.0s\nstep=193500 loss=0.000000 accuracy=1.000000 elapsed=990.2s budget=3600.0s\nstep=193600 loss=0.000000 accuracy=1.000000 elapsed=990.7s budget=3600.0s\nstep=193700 loss=0.000000 accuracy=1.000000 elapsed=991.2s budget=3600.0s\nstep=193800 loss=0.000000 accuracy=1.000000 elapsed=991.7s budget=3600.0s\nstep=193900 loss=0.000000 accuracy=1.000000 elapsed=992.2s budget=3600.0s\nlm update=194000 B=10.000000000000 w=[1.8324378472933667e-11, -7.468088240912898e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=1.783e-17\nstep=194000 loss=0.000000 accuracy=1.000000 elapsed=992.7s budget=3600.0s\nstep=194100 loss=0.000000 accuracy=1.000000 elapsed=993.3s budget=3600.0s\nstep=194200 loss=0.000000 accuracy=1.000000 elapsed=993.8s budget=3600.0s\nstep=194300 loss=0.000000 accuracy=1.000000 elapsed=994.5s budget=3600.0s\nstep=194400 loss=0.000000 accuracy=1.000000 elapsed=995.0s budget=3600.0s\nstep=194500 loss=0.000000 accuracy=1.000000 elapsed=995.6s budget=3600.0s\nstep=194600 loss=0.000000 accuracy=1.000000 elapsed=996.0s budget=3600.0s\nstep=194700 loss=0.000000 accuracy=1.000000 elapsed=996.6s budget=3600.0s\nstep=194800 loss=0.000000 accuracy=1.000000 elapsed=997.0s budget=3600.0s\nstep=194900 loss=0.000000 accuracy=1.000000 elapsed=997.6s budget=3600.0s\nlm update=195000 B=10.000000000000 w=[2.26749782145097e-11, -7.532145615768773e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=3.012e-18\nstep=195000 loss=0.000000 accuracy=1.000000 elapsed=998.1s budget=3600.0s\nstep=195100 loss=0.000000 accuracy=1.000000 elapsed=998.6s budget=3600.0s\nstep=195200 loss=0.000000 accuracy=1.000000 elapsed=999.1s budget=3600.0s\nstep=195300 loss=0.000000 accuracy=1.000000 elapsed=999.6s budget=3600.0s\nstep=195400 loss=0.000000 accuracy=1.000000 elapsed=1000.0s budget=3600.0s\nstep=195500 loss=0.000000 accuracy=1.000000 elapsed=1000.5s budget=3600.0s\nstep=195600 loss=0.000000 accuracy=1.000000 elapsed=1001.0s budget=3600.0s\nstep=195700 loss=0.000000 accuracy=1.000000 elapsed=1001.5s budget=3600.0s\nstep=195800 loss=0.000000 accuracy=1.000000 elapsed=1002.0s budget=3600.0s\nstep=195900 loss=0.000000 accuracy=1.000000 elapsed=1002.7s budget=3600.0s\nlm update=196000 B=10.000000000000 w=[1.8131116399922043e-11, -7.455541988898168e-14, 1.0] rows=9/9 s=1.00e-09 carried=100.0 move=2.173e-17\nstep=196000 loss=0.000000 accuracy=1.000000 elapsed=1003.2s budget=3600.0s\nstep=196100 loss=0.000000 accuracy=1.000000 elapsed=1003.6s budget=3600.0s\nstep=196200 loss=0.000000 accuracy=1.000000 elapsed=1004.1s budget=3600.0s\nstep=196300 loss=0.000000 accuracy=1.000000 elapsed=1004.6s budget=3600.0s\nstep=196400 loss=0.000000 accuracy=1.000000 elapsed=1005.1s budget=3600.0s\nstep=196500 loss=0.000000 accuracy=1.000000 elapsed=1005.6s budget=3600.0s\nstep=196600 loss=0.000000 accuracy=1.000000 elapsed=1006.1s budget=3600.0s\nstep=196700 loss=0.000000 accuracy=1.000000 elapsed=1006.6s budget=3600.0s\nstep=196800 loss=0.000000 accuracy=1.000000 elapsed=1007.1s budget=3600.0s\nstep=196900 loss=0.000000 accuracy=1.000000 elapsed=1007.6s budget=3600.0s\nlm update=197000 B=10.000000000000 w=[2.0878816037184222e-11, -7.481736313385418e-14, 1.0] rows=6/6 s=1.00e-09 carried=100.0 move=8.383e-17\nstep=197000 loss=0.000000 accuracy=1.000000 elapsed=1008.1s budget=3600.0s\nstep=197100 loss=0.000000 accuracy=1.000000 elapsed=1008.6s budget=3600.0s\nstep=197200 loss=0.000000 accuracy=1.000000 elapsed=1009.1s budget=3600.0s\nstep=197300 loss=0.000000 accuracy=1.000000 elapsed=1009.6s budget=3600.0s\nstep=197400 loss=0.000000 accuracy=1.000000 elapsed=1010.1s budget=3600.0s\nstep=197500 loss=0.000000 accuracy=1.000000 elapsed=1010.8s budget=3600.0s\nstep=197600 loss=0.000000 accuracy=1.000000 elapsed=1011.3s budget=3600.0s\nstep=197700 loss=0.000000 accuracy=1.000000 elapsed=1011.7s budget=3600.0s\nstep=197800 loss=0.000000 accuracy=1.000000 elapsed=1012.2s budget=3600.0s\nstep=197900 loss=0.000000 accuracy=1.000000 elapsed=1012.7s budget=3600.0s\nlm update=198000 B=10.000000000000 w=[1.9915217044919054e-11, -7.461496969330544e-14, 1.0] rows=7/7 s=1.00e-09 carried=100.0 move=4.946e-17\nstep=198000 loss=0.000000 accuracy=1.000000 elapsed=1013.2s budget=3600.0s\nstep=198100 loss=0.000000 accuracy=1.000000 elapsed=1013.7s budget=3600.0s\nstep=198200 loss=0.000000 accuracy=1.000000 elapsed=1014.2s budget=3600.0s\nstep=198300 loss=0.000000 accuracy=1.000000 elapsed=1014.7s budget=3600.0s\nstep=198400 loss=0.000000 accuracy=1.000000 elapsed=1015.1s budget=3600.0s\nstep=198500 loss=0.000000 accuracy=1.000000 elapsed=1015.6s budget=3600.0s\nstep=198600 loss=0.000000 accuracy=1.000000 elapsed=1016.1s budget=3600.0s\nstep=198700 loss=0.000000 accuracy=1.000000 elapsed=1016.6s budget=3600.0s\nstep=198800 loss=0.000000 accuracy=1.000000 elapsed=1017.1s budget=3600.0s\nstep=198900 loss=0.000000 accuracy=1.000000 elapsed=1017.6s budget=3600.0s\nlm update=199000 B=10.000000000000 w=[2.3178922323174866e-11, -7.502888420144252e-14, 1.0] rows=3/3 s=1.00e-09 carried=100.0 move=2.575e-17\nstep=199000 loss=0.000000 accuracy=1.000000 elapsed=1018.1s budget=3600.0s\nstep=199100 loss=0.000000 accuracy=1.000000 elapsed=1018.8s budget=3600.0s\nstep=199200 loss=0.000000 accuracy=1.000000 elapsed=1019.3s budget=3600.0s\nstep=199300 loss=0.000000 accuracy=1.000000 elapsed=1019.8s budget=3600.0s\nstep=199400 loss=0.000000 accuracy=1.000000 elapsed=1020.3s budget=3600.0s\nstep=199500 loss=0.000000 accuracy=1.000000 elapsed=1020.8s budget=3600.0s\nstep=199600 loss=0.000000 accuracy=1.000000 elapsed=1021.3s budget=3600.0s\nstep=199700 loss=0.000000 accuracy=1.000000 elapsed=1021.7s budget=3600.0s\nstep=199800 loss=0.000000 accuracy=1.000000 elapsed=1022.2s budget=3600.0s\nstep=199900 loss=0.000000 accuracy=1.000000 elapsed=1022.7s budget=3600.0s\nlm update=200000 B=10.000000000000 w=[2.0552155463593458e-11, -7.447506017920977e-14, 1.0] rows=5/5 s=1.00e-09 carried=100.0 move=2.786e-17\nstep=200000 loss=0.000000 accuracy=1.000000 elapsed=1023.2s budget=3600.0s\nseed=13 split=test loss=0.260987 exact_accuracy=1.000000\nseed=13 split=ood_t loss=0.260987 exact_accuracy=1.000000\nseed=13 split=ood_n_t loss=0.260987 exact_accuracy=1.000000\nseed=13 profile=seen_n depth_t=1 exact_accuracy=1.000000 certified=True\nseed=13 profile=seen_n depth_t=2 exact_accuracy=1.000000 certified=True\nseed=13 profile=seen_n depth_t=4 exact_accuracy=1.000000 certified=True\nseed=13 profile=seen_n depth_t=8 exact_accuracy=1.000000 certified=True\nseed=13 profile=seen_n depth_t=16 exact_accuracy=1.000000 certified=True\nseed=13 profile=seen_n depth_t=32 exact_accuracy=1.000000 certified=True\nseed=13 profile=seen_n depth_t=64 exact_accuracy=1.000000 certified=True\nseed=13 profile=ood_n depth_t=1 exact_accuracy=1.000000 certified=True\nseed=13 profile=ood_n depth_t=2 exact_accuracy=1.000000 certified=True\nseed=13 profile=ood_n depth_t=4 exact_accuracy=1.000000 certified=True\nseed=13 profile=ood_n depth_t=8 exact_accuracy=1.000000 certified=True\nseed=13 profile=ood_n depth_t=16 exact_accuracy=1.000000 certified=True\nseed=13 profile=ood_n depth_t=32 exact_accuracy=1.000000 certified=True\nseed=13 profile=ood_n depth_t=64 exact_accuracy=1.000000 certified=True\nRESULT_JSON={\"depth_profile\": {\"depth_factor\": 64, \"ladder\": [1, 2, 4, 8, 16, 32, 64], \"max_certified_time_steps\": 64, \"ood_n_ladder\": [1, 2, 4, 8, 16, 32, 64], \"ood_n_max_certified_time_steps\": 64, \"ood_n_profile_available\": true}, \"manifest\": \"squaring-mod-hard-h1\", \"score\": {\"mean_exact_accuracy\": 1.0, \"mean_loss\": 0.2609872607490031, \"num_measurements\": 3, \"primary_metric\": \"mean_exact_accuracy\"}, \"seeds\": [{\"completed_training_steps\": 200000, \"depth_profile\": {\"depth_factor\": 64, \"ladder\": [1, 2, 4, 8, 16, 32, 64], \"max_certified_time_steps\": 64, \"ood_n_ladder\": [1, 2, 4, 8, 16, 32, 64], \"ood_n_max_certified_time_steps\": 64, \"ood_n_rungs\": [{\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 1}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 2}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 4}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 8}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 16}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 32}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 64}], \"rungs\": [{\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 1}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 2}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 4}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 8}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 16}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 32}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 64}]}, \"evaluation\": {\"ood_n_t\": {\"correct_examples\": 10002, \"exact_accuracy\": 1.0, \"example_count\": 10002, \"loss\": 0.26098726512201686}, \"ood_t\": {\"correct_examples\": 10002, \"exact_accuracy\": 1.0, \"example_count\": 10002, \"loss\": 0.260987251996994}, \"test\": {\"correct_examples\": 9999, \"exact_accuracy\": 1.0, \"example_count\": 9999, \"loss\": 0.2609872651279984}}, \"evaluation_batch_size\": 4096, \"evaluation_budget_seconds\": 1800.0, \"evaluation_seconds\": 3.1403824419999182, \"final_train_loss\": 0.0, \"max_training_steps\": 200000, \"model_state_elements\": 4, \"optimizer_state_elements_after_first_step\": 30, \"seed\": 13, \"training_batch_size\": 512, \"training_seconds\": 1023.185755195}], \"structured_metrics\": [{\"elapsed_seconds\": 2.5, \"exact_accuracy\": 0.0, \"loss\": 0.0, \"seed\": 13, \"step\": 1, \"type\": \"train\"}, {\"elapsed_seconds\": 5.6, \"exact_accuracy\": 0.0, \"loss\": 0.0, \"seed\": 13, \"step\": 700, \"type\": \"train\"}, {\"elapsed_seconds\": 9.1, \"exact_accuracy\": 0.0, \"loss\": 0.0, \"seed\": 13, \"step\": 1500, \"type\": \"train\"}, {\"elapsed_seconds\": 12.8, \"exact_accuracy\": 0.0, \"loss\": 0.0, \"seed\": 13, \"step\": 2300, \"type\": \"train\"}, {\"elapsed_seconds\": 16.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 3100, \"type\": \"train\"}, {\"elapsed_seconds\": 20.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 3900, \"type\": \"train\"}, {\"elapsed_seconds\": 23.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 4700, \"type\": \"train\"}, {\"elapsed_seconds\": 27.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 5500, \"type\": \"train\"}, {\"elapsed_seconds\": 31.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 6300, \"type\": \"train\"}, {\"elapsed_seconds\": 34.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 7100, \"type\": \"train\"}, {\"elapsed_seconds\": 38.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 7900, \"type\": \"train\"}, {\"elapsed_seconds\": 42.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 8700, \"type\": \"train\"}, {\"elapsed_seconds\": 45.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 9500, \"type\": \"train\"}, {\"elapsed_seconds\": 49.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 10300, \"type\": \"train\"}, {\"elapsed_seconds\": 52.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 11100, \"type\": \"train\"}, {\"elapsed_seconds\": 56.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 11900, \"type\": \"train\"}, {\"elapsed_seconds\": 60.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 12700, \"type\": \"train\"}, {\"elapsed_seconds\": 64.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 13500, \"type\": \"train\"}, {\"elapsed_seconds\": 67.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 14300, \"type\": \"train\"}, {\"elapsed_seconds\": 71.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 15100, \"type\": \"train\"}, {\"elapsed_seconds\": 75.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 15900, \"type\": \"train\"}, {\"elapsed_seconds\": 79.2, \"exact_accuracy\": 0.002, \"loss\": -0.0, \"seed\": 13, \"step\": 16700, \"type\": \"train\"}, {\"elapsed_seconds\": 82.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 17500, \"type\": \"train\"}, {\"elapsed_seconds\": 86.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 18300, \"type\": \"train\"}, {\"elapsed_seconds\": 90.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 19100, \"type\": \"train\"}, {\"elapsed_seconds\": 94.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 19900, \"type\": \"train\"}, {\"elapsed_seconds\": 97.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 20700, \"type\": \"train\"}, {\"elapsed_seconds\": 101.7, \"exact_accuracy\": 0.002, \"loss\": -0.0, \"seed\": 13, \"step\": 21500, \"type\": \"train\"}, {\"elapsed_seconds\": 105.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 22300, \"type\": \"train\"}, {\"elapsed_seconds\": 109.0, \"exact_accuracy\": 0.002, \"loss\": -0.0, \"seed\": 13, \"step\": 23100, \"type\": \"train\"}, {\"elapsed_seconds\": 112.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 23900, \"type\": \"train\"}, {\"elapsed_seconds\": 116.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 13, \"step\": 24700, \"type\": \"train\"}, {\"elapsed_seconds\": 120.2, \"exact_accuracy\": 0.002, \"loss\": 0.0, \"seed\": 13, \"step\": 25500, \"type\": \"train\"}, {\"elapsed_seconds\": 124.3, \"exact_accuracy\": 0.67, \"loss\": 0.0, \"seed\": 13, \"step\": 26300, \"type\": \"train\"}, {\"elapsed_seconds\": 128.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 27100, \"type\": \"train\"}, {\"elapsed_seconds\": 132.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 27900, \"type\": \"train\"}, {\"elapsed_seconds\": 137.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 28700, \"type\": \"train\"}, {\"elapsed_seconds\": 141.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 29500, \"type\": \"train\"}, {\"elapsed_seconds\": 146.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 30300, \"type\": \"train\"}, {\"elapsed_seconds\": 150.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 31100, \"type\": \"train\"}, {\"elapsed_seconds\": 154.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 31900, \"type\": \"train\"}, {\"elapsed_seconds\": 159.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 32700, \"type\": \"train\"}, {\"elapsed_seconds\": 163.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 33500, \"type\": \"train\"}, {\"elapsed_seconds\": 167.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 34300, \"type\": \"train\"}, {\"elapsed_seconds\": 172.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 35100, \"type\": \"train\"}, {\"elapsed_seconds\": 176.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 35900, \"type\": \"train\"}, {\"elapsed_seconds\": 180.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 36700, \"type\": \"train\"}, {\"elapsed_seconds\": 184.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 37500, \"type\": \"train\"}, {\"elapsed_seconds\": 189.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 38300, \"type\": \"train\"}, {\"elapsed_seconds\": 193.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 39100, \"type\": \"train\"}, {\"elapsed_seconds\": 197.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 39900, \"type\": \"train\"}, {\"elapsed_seconds\": 201.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 40700, \"type\": \"train\"}, {\"elapsed_seconds\": 205.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 41500, \"type\": \"train\"}, {\"elapsed_seconds\": 209.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 42300, \"type\": \"train\"}, {\"elapsed_seconds\": 213.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 43100, \"type\": \"train\"}, {\"elapsed_seconds\": 217.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 43900, \"type\": \"train\"}, {\"elapsed_seconds\": 222.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 44700, \"type\": \"train\"}, {\"elapsed_seconds\": 226.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 45500, \"type\": \"train\"}, {\"elapsed_seconds\": 230.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 46300, \"type\": \"train\"}, {\"elapsed_seconds\": 234.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 47100, \"type\": \"train\"}, {\"elapsed_seconds\": 238.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 47900, \"type\": \"train\"}, {\"elapsed_seconds\": 242.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 48700, \"type\": \"train\"}, {\"elapsed_seconds\": 246.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 49500, \"type\": \"train\"}, {\"elapsed_seconds\": 250.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 50300, \"type\": \"train\"}, {\"elapsed_seconds\": 254.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 51100, \"type\": \"train\"}, {\"elapsed_seconds\": 258.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 51900, \"type\": \"train\"}, {\"elapsed_seconds\": 263.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 52700, \"type\": \"train\"}, {\"elapsed_seconds\": 267.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 53500, \"type\": \"train\"}, {\"elapsed_seconds\": 271.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 54300, \"type\": \"train\"}, {\"elapsed_seconds\": 275.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 55100, \"type\": \"train\"}, {\"elapsed_seconds\": 279.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 55900, \"type\": \"train\"}, {\"elapsed_seconds\": 283.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 56700, \"type\": \"train\"}, {\"elapsed_seconds\": 287.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 57500, \"type\": \"train\"}, {\"elapsed_seconds\": 291.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 58300, \"type\": \"train\"}, {\"elapsed_seconds\": 296.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 59100, \"type\": \"train\"}, {\"elapsed_seconds\": 300.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 59900, \"type\": \"train\"}, {\"elapsed_seconds\": 304.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 60700, \"type\": \"train\"}, {\"elapsed_seconds\": 308.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 61500, \"type\": \"train\"}, {\"elapsed_seconds\": 312.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 62300, \"type\": \"train\"}, {\"elapsed_seconds\": 316.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 63100, \"type\": \"train\"}, {\"elapsed_seconds\": 320.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 63900, \"type\": \"train\"}, {\"elapsed_seconds\": 324.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 64700, \"type\": \"train\"}, {\"elapsed_seconds\": 329.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 65500, \"type\": \"train\"}, {\"elapsed_seconds\": 333.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 66300, \"type\": \"train\"}, {\"elapsed_seconds\": 337.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 67100, \"type\": \"train\"}, {\"elapsed_seconds\": 341.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 67900, \"type\": \"train\"}, {\"elapsed_seconds\": 345.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 68700, \"type\": \"train\"}, {\"elapsed_seconds\": 349.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 69500, \"type\": \"train\"}, {\"elapsed_seconds\": 353.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 70300, \"type\": \"train\"}, {\"elapsed_seconds\": 357.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 71100, \"type\": \"train\"}, {\"elapsed_seconds\": 362.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 71900, \"type\": \"train\"}, {\"elapsed_seconds\": 366.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 72700, \"type\": \"train\"}, {\"elapsed_seconds\": 370.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 73500, \"type\": \"train\"}, {\"elapsed_seconds\": 374.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 74300, \"type\": \"train\"}, {\"elapsed_seconds\": 378.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 75100, \"type\": \"train\"}, {\"elapsed_seconds\": 382.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 75900, \"type\": \"train\"}, {\"elapsed_seconds\": 386.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 76700, \"type\": \"train\"}, {\"elapsed_seconds\": 390.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 77500, \"type\": \"train\"}, {\"elapsed_seconds\": 394.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 78300, \"type\": \"train\"}, {\"elapsed_seconds\": 398.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 79100, \"type\": \"train\"}, {\"elapsed_seconds\": 403.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 79900, \"type\": \"train\"}, {\"elapsed_seconds\": 407.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 80700, \"type\": \"train\"}, {\"elapsed_seconds\": 411.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 81500, \"type\": \"train\"}, {\"elapsed_seconds\": 415.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 82300, \"type\": \"train\"}, {\"elapsed_seconds\": 419.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 83100, \"type\": \"train\"}, {\"elapsed_seconds\": 423.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 83900, \"type\": \"train\"}, {\"elapsed_seconds\": 427.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 84700, \"type\": \"train\"}, {\"elapsed_seconds\": 431.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 85500, \"type\": \"train\"}, {\"elapsed_seconds\": 436.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 86300, \"type\": \"train\"}, {\"elapsed_seconds\": 440.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 87100, \"type\": \"train\"}, {\"elapsed_seconds\": 444.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 87900, \"type\": \"train\"}, {\"elapsed_seconds\": 448.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 88700, \"type\": \"train\"}, {\"elapsed_seconds\": 452.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 89500, \"type\": \"train\"}, {\"elapsed_seconds\": 456.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 90300, \"type\": \"train\"}, {\"elapsed_seconds\": 460.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 91100, \"type\": \"train\"}, {\"elapsed_seconds\": 464.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 91900, \"type\": \"train\"}, {\"elapsed_seconds\": 468.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 92700, \"type\": \"train\"}, {\"elapsed_seconds\": 472.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 93500, \"type\": \"train\"}, {\"elapsed_seconds\": 477.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 94300, \"type\": \"train\"}, {\"elapsed_seconds\": 481.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 95100, \"type\": \"train\"}, {\"elapsed_seconds\": 485.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 95900, \"type\": \"train\"}, {\"elapsed_seconds\": 489.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 96700, \"type\": \"train\"}, {\"elapsed_seconds\": 493.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 97500, \"type\": \"train\"}, {\"elapsed_seconds\": 497.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 98300, \"type\": \"train\"}, {\"elapsed_seconds\": 501.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 99100, \"type\": \"train\"}, {\"elapsed_seconds\": 505.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 99900, \"type\": \"train\"}, {\"elapsed_seconds\": 509.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 100700, \"type\": \"train\"}, {\"elapsed_seconds\": 513.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 101500, \"type\": \"train\"}, {\"elapsed_seconds\": 517.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 102300, \"type\": \"train\"}, {\"elapsed_seconds\": 521.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 103100, \"type\": \"train\"}, {\"elapsed_seconds\": 525.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 103900, \"type\": \"train\"}, {\"elapsed_seconds\": 529.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 104700, \"type\": \"train\"}, {\"elapsed_seconds\": 533.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 105500, \"type\": \"train\"}, {\"elapsed_seconds\": 537.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 106300, \"type\": \"train\"}, {\"elapsed_seconds\": 541.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 107100, \"type\": \"train\"}, {\"elapsed_seconds\": 545.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 107900, \"type\": \"train\"}, {\"elapsed_seconds\": 550.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 108700, \"type\": \"train\"}, {\"elapsed_seconds\": 554.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 109500, \"type\": \"train\"}, {\"elapsed_seconds\": 558.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 110300, \"type\": \"train\"}, {\"elapsed_seconds\": 562.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 111100, \"type\": \"train\"}, {\"elapsed_seconds\": 566.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 111900, \"type\": \"train\"}, {\"elapsed_seconds\": 570.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 112700, \"type\": \"train\"}, {\"elapsed_seconds\": 575.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 113500, \"type\": \"train\"}, {\"elapsed_seconds\": 579.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 114300, \"type\": \"train\"}, {\"elapsed_seconds\": 583.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 115100, \"type\": \"train\"}, {\"elapsed_seconds\": 587.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 115900, \"type\": \"train\"}, {\"elapsed_seconds\": 591.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 116700, \"type\": \"train\"}, {\"elapsed_seconds\": 595.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 117500, \"type\": \"train\"}, {\"elapsed_seconds\": 600.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 118300, \"type\": \"train\"}, {\"elapsed_seconds\": 604.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 119100, \"type\": \"train\"}, {\"elapsed_seconds\": 608.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 119900, \"type\": \"train\"}, {\"elapsed_seconds\": 613.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 120700, \"type\": \"train\"}, {\"elapsed_seconds\": 617.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 121500, \"type\": \"train\"}, {\"elapsed_seconds\": 621.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 122300, \"type\": \"train\"}, {\"elapsed_seconds\": 626.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 123100, \"type\": \"train\"}, {\"elapsed_seconds\": 630.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 123900, \"type\": \"train\"}, {\"elapsed_seconds\": 634.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 124700, \"type\": \"train\"}, {\"elapsed_seconds\": 638.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 125500, \"type\": \"train\"}, {\"elapsed_seconds\": 642.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 126300, \"type\": \"train\"}, {\"elapsed_seconds\": 646.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 127100, \"type\": \"train\"}, {\"elapsed_seconds\": 650.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 127900, \"type\": \"train\"}, {\"elapsed_seconds\": 654.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 128700, \"type\": \"train\"}, {\"elapsed_seconds\": 659.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 129500, \"type\": \"train\"}, {\"elapsed_seconds\": 663.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 130300, \"type\": \"train\"}, {\"elapsed_seconds\": 667.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 131100, \"type\": \"train\"}, {\"elapsed_seconds\": 671.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 131900, \"type\": \"train\"}, {\"elapsed_seconds\": 675.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 132700, \"type\": \"train\"}, {\"elapsed_seconds\": 679.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 133500, \"type\": \"train\"}, {\"elapsed_seconds\": 683.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 134300, \"type\": \"train\"}, {\"elapsed_seconds\": 687.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 135100, \"type\": \"train\"}, {\"elapsed_seconds\": 692.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 135900, \"type\": \"train\"}, {\"elapsed_seconds\": 696.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 136700, \"type\": \"train\"}, {\"elapsed_seconds\": 700.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 137500, \"type\": \"train\"}, {\"elapsed_seconds\": 704.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 138300, \"type\": \"train\"}, {\"elapsed_seconds\": 708.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 139100, \"type\": \"train\"}, {\"elapsed_seconds\": 712.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 139900, \"type\": \"train\"}, {\"elapsed_seconds\": 716.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 140700, \"type\": \"train\"}, {\"elapsed_seconds\": 720.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 141500, \"type\": \"train\"}, {\"elapsed_seconds\": 725.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 142300, \"type\": \"train\"}, {\"elapsed_seconds\": 729.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 143100, \"type\": \"train\"}, {\"elapsed_seconds\": 733.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 143900, \"type\": \"train\"}, {\"elapsed_seconds\": 737.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 144700, \"type\": \"train\"}, {\"elapsed_seconds\": 741.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 145500, \"type\": \"train\"}, {\"elapsed_seconds\": 745.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 146300, \"type\": \"train\"}, {\"elapsed_seconds\": 750.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 147100, \"type\": \"train\"}, {\"elapsed_seconds\": 754.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 147900, \"type\": \"train\"}, {\"elapsed_seconds\": 758.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 148700, \"type\": \"train\"}, {\"elapsed_seconds\": 762.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 149500, \"type\": \"train\"}, {\"elapsed_seconds\": 766.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 150300, \"type\": \"train\"}, {\"elapsed_seconds\": 770.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 151100, \"type\": \"train\"}, {\"elapsed_seconds\": 774.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 151900, \"type\": \"train\"}, {\"elapsed_seconds\": 779.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 152700, \"type\": \"train\"}, {\"elapsed_seconds\": 783.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 153500, \"type\": \"train\"}, {\"elapsed_seconds\": 787.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 154300, \"type\": \"train\"}, {\"elapsed_seconds\": 791.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 155100, \"type\": \"train\"}, {\"elapsed_seconds\": 795.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 155900, \"type\": \"train\"}, {\"elapsed_seconds\": 799.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 156700, \"type\": \"train\"}, {\"elapsed_seconds\": 803.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 157500, \"type\": \"train\"}, {\"elapsed_seconds\": 807.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 158300, \"type\": \"train\"}, {\"elapsed_seconds\": 811.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 159100, \"type\": \"train\"}, {\"elapsed_seconds\": 815.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 159900, \"type\": \"train\"}, {\"elapsed_seconds\": 819.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 160700, \"type\": \"train\"}, {\"elapsed_seconds\": 824.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 161500, \"type\": \"train\"}, {\"elapsed_seconds\": 828.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 162300, \"type\": \"train\"}, {\"elapsed_seconds\": 832.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 163100, \"type\": \"train\"}, {\"elapsed_seconds\": 836.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 163900, \"type\": \"train\"}, {\"elapsed_seconds\": 840.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 164700, \"type\": \"train\"}, {\"elapsed_seconds\": 844.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 165500, \"type\": \"train\"}, {\"elapsed_seconds\": 849.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 166300, \"type\": \"train\"}, {\"elapsed_seconds\": 853.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 167100, \"type\": \"train\"}, {\"elapsed_seconds\": 857.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 167900, \"type\": \"train\"}, {\"elapsed_seconds\": 861.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 168700, \"type\": \"train\"}, {\"elapsed_seconds\": 865.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 169500, \"type\": \"train\"}, {\"elapsed_seconds\": 869.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 170300, \"type\": \"train\"}, {\"elapsed_seconds\": 873.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 171100, \"type\": \"train\"}, {\"elapsed_seconds\": 877.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 171900, \"type\": \"train\"}, {\"elapsed_seconds\": 882.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 172700, \"type\": \"train\"}, {\"elapsed_seconds\": 885.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 173500, \"type\": \"train\"}, {\"elapsed_seconds\": 890.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 174300, \"type\": \"train\"}, {\"elapsed_seconds\": 894.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 175100, \"type\": \"train\"}, {\"elapsed_seconds\": 898.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 175900, \"type\": \"train\"}, {\"elapsed_seconds\": 902.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 176700, \"type\": \"train\"}, {\"elapsed_seconds\": 906.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 177500, \"type\": \"train\"}, {\"elapsed_seconds\": 910.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 178300, \"type\": \"train\"}, {\"elapsed_seconds\": 914.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 179100, \"type\": \"train\"}, {\"elapsed_seconds\": 919.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 179900, \"type\": \"train\"}, {\"elapsed_seconds\": 923.0, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 180700, \"type\": \"train\"}, {\"elapsed_seconds\": 927.3, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 181500, \"type\": \"train\"}, {\"elapsed_seconds\": 931.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 182300, \"type\": \"train\"}, {\"elapsed_seconds\": 935.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 183100, \"type\": \"train\"}, {\"elapsed_seconds\": 939.9, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 183900, \"type\": \"train\"}, {\"elapsed_seconds\": 944.4, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 184700, \"type\": \"train\"}, {\"elapsed_seconds\": 948.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 185500, \"type\": \"train\"}, {\"elapsed_seconds\": 952.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 186300, \"type\": \"train\"}, {\"elapsed_seconds\": 956.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 187100, \"type\": \"train\"}, {\"elapsed_seconds\": 961.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 187900, \"type\": \"train\"}, {\"elapsed_seconds\": 965.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 188700, \"type\": \"train\"}, {\"elapsed_seconds\": 969.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 189500, \"type\": \"train\"}, {\"elapsed_seconds\": 973.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 190300, \"type\": \"train\"}, {\"elapsed_seconds\": 977.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 191100, \"type\": \"train\"}, {\"elapsed_seconds\": 981.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 191900, \"type\": \"train\"}, {\"elapsed_seconds\": 986.1, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 192700, \"type\": \"train\"}, {\"elapsed_seconds\": 990.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 193500, \"type\": \"train\"}, {\"elapsed_seconds\": 994.5, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 194300, \"type\": \"train\"}, {\"elapsed_seconds\": 998.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 195100, \"type\": \"train\"}, {\"elapsed_seconds\": 1002.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 195900, \"type\": \"train\"}, {\"elapsed_seconds\": 1006.6, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 196700, \"type\": \"train\"}, {\"elapsed_seconds\": 1010.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 197500, \"type\": \"train\"}, {\"elapsed_seconds\": 1014.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 198300, \"type\": \"train\"}, {\"elapsed_seconds\": 1018.8, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 199100, \"type\": \"train\"}, {\"elapsed_seconds\": 1022.7, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 199900, \"type\": \"train\"}, {\"elapsed_seconds\": 1023.2, \"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 13, \"step\": 200000, \"type\": \"train\"}, {\"exact_accuracy\": 1.0, \"loss\": 0.261, \"seed\": 13, \"split\": \"test\", \"type\": \"evaluation\"}, {\"exact_accuracy\": 1.0, \"loss\": 0.261, \"seed\": 13, \"split\": \"ood_t\", \"type\": \"evaluation\"}, {\"exact_accuracy\": 1.0, \"loss\": 0.261, \"seed\": 13, \"split\": \"ood_n_t\", \"type\": \"evaluation\"}, {\"completed_steps\": 200000, \"mean_exact_accuracy\": 1.0, \"training_seconds\": 1023.2, \"type\": \"summary\"}]}\n",
+ "result": {
+  "depth_profile": {
+   "depth_factor": 64,
+   "ladder": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+   ],
+   "max_certified_time_steps": 64,
+   "ood_n_ladder": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+   ],
+   "ood_n_max_certified_time_steps": 64,
+   "ood_n_profile_available": true
+  },
+  "manifest": "squaring-mod-hard-h1",
+  "score": {
+   "mean_exact_accuracy": 1.0,
+   "mean_loss": 0.2609872607490031,
+   "num_measurements": 3,
+   "primary_metric": "mean_exact_accuracy"
+  },
+  "seeds": [
+   {
+    "completed_training_steps": 200000,
+    "depth_profile": {
+     "depth_factor": 64,
+     "ladder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+     ],
+     "max_certified_time_steps": 64,
+     "ood_n_ladder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+     ],
+     "ood_n_max_certified_time_steps": 64,
+     "ood_n_rungs": [
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 1
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 2
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 4
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 8
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 16
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 32
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 64
+      }
+     ],
+     "rungs": [
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 1
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 2
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 4
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 8
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 16
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 32
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 64
+      }
+     ]
+    },
+    "evaluation": {
+     "ood_n_t": {
+      "correct_examples": 10002,
+      "exact_accuracy": 1.0,
+      "example_count": 10002,
+      "loss": 0.26098726512201686
+     },
+     "ood_t": {
+      "correct_examples": 10002,
+      "exact_accuracy": 1.0,
+      "example_count": 10002,
+      "loss": 0.260987251996994
+     },
+     "test": {
+      "correct_examples": 9999,
+      "exact_accuracy": 1.0,
+      "example_count": 9999,
+      "loss": 0.2609872651279984
+     }
+    },
+    "evaluation_batch_size": 4096,
+    "evaluation_budget_seconds": 1800.0,
+    "evaluation_seconds": 3.1403824419999182,
+    "final_train_loss": 0.0,
+    "max_training_steps": 200000,
+    "model_state_elements": 4,
+    "optimizer_state_elements_after_first_step": 30,
+    "seed": 13,
+    "training_batch_size": 512,
+    "training_seconds": 1023.185755195
+   }
+  ],
+  "structured_metrics": [
+   {
+    "elapsed_seconds": 2.5,
+    "exact_accuracy": 0.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 1,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 5.6,
+    "exact_accuracy": 0.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 9.1,
+    "exact_accuracy": 0.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 1500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 12.8,
+    "exact_accuracy": 0.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 2300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 16.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 3100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 20.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 3900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 23.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 4700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 27.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 5500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 31.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 6300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 34.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 7100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 38.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 7900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 42.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 8700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 45.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 9500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 49.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 10300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 52.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 11100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 56.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 11900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 60.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 12700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 64.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 13500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 67.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 14300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 71.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 15100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 75.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 15900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 79.2,
+    "exact_accuracy": 0.002,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 16700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 82.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 17500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 86.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 18300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 90.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 19100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 94.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 19900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 97.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 20700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 101.7,
+    "exact_accuracy": 0.002,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 21500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 105.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 22300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 109.0,
+    "exact_accuracy": 0.002,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 23100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 112.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 23900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 116.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 13,
+    "step": 24700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 120.2,
+    "exact_accuracy": 0.002,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 25500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 124.3,
+    "exact_accuracy": 0.67,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 26300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 128.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 27100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 132.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 27900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 137.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 28700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 141.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 29500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 146.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 30300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 150.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 31100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 154.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 31900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 159.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 32700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 163.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 33500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 167.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 34300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 172.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 35100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 176.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 35900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 180.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 36700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 184.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 37500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 189.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 38300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 193.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 39100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 197.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 39900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 201.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 40700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 205.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 41500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 209.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 42300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 213.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 43100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 217.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 43900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 222.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 44700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 226.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 45500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 230.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 46300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 234.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 47100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 238.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 47900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 242.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 48700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 246.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 49500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 250.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 50300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 254.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 51100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 258.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 51900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 263.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 52700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 267.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 53500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 271.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 54300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 275.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 55100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 279.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 55900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 283.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 56700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 287.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 57500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 291.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 58300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 296.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 59100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 300.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 59900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 304.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 60700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 308.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 61500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 312.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 62300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 316.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 63100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 320.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 63900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 324.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 64700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 329.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 65500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 333.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 66300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 337.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 67100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 341.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 67900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 345.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 68700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 349.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 69500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 353.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 70300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 357.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 71100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 362.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 71900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 366.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 72700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 370.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 73500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 374.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 74300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 378.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 75100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 382.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 75900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 386.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 76700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 390.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 77500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 394.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 78300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 398.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 79100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 403.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 79900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 407.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 80700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 411.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 81500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 415.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 82300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 419.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 83100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 423.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 83900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 427.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 84700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 431.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 85500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 436.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 86300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 440.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 87100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 444.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 87900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 448.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 88700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 452.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 89500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 456.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 90300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 460.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 91100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 464.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 91900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 468.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 92700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 472.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 93500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 477.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 94300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 481.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 95100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 485.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 95900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 489.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 96700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 493.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 97500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 497.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 98300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 501.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 99100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 505.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 99900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 509.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 100700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 513.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 101500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 517.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 102300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 521.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 103100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 525.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 103900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 529.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 104700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 533.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 105500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 537.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 106300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 541.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 107100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 545.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 107900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 550.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 108700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 554.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 109500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 558.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 110300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 562.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 111100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 566.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 111900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 570.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 112700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 575.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 113500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 579.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 114300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 583.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 115100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 587.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 115900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 591.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 116700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 595.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 117500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 600.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 118300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 604.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 119100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 608.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 119900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 613.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 120700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 617.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 121500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 621.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 122300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 626.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 123100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 630.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 123900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 634.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 124700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 638.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 125500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 642.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 126300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 646.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 127100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 650.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 127900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 654.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 128700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 659.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 129500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 663.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 130300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 667.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 131100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 671.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 131900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 675.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 132700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 679.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 133500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 683.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 134300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 687.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 135100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 692.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 135900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 696.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 136700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 700.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 137500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 704.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 138300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 708.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 139100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 712.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 139900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 716.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 140700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 720.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 141500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 725.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 142300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 729.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 143100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 733.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 143900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 737.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 144700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 741.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 145500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 745.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 146300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 750.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 147100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 754.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 147900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 758.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 148700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 762.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 149500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 766.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 150300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 770.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 151100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 774.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 151900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 779.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 152700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 783.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 153500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 787.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 154300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 791.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 155100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 795.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 155900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 799.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 156700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 803.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 157500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 807.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 158300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 811.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 159100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 815.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 159900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 819.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 160700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 824.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 161500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 828.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 162300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 832.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 163100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 836.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 163900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 840.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 164700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 844.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 165500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 849.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 166300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 853.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 167100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 857.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 167900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 861.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 168700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 865.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 169500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 869.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 170300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 873.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 171100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 877.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 171900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 882.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 172700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 885.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 173500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 890.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 174300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 894.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 175100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 898.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 175900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 902.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 176700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 906.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 177500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 910.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 178300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 914.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 179100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 919.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 179900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 923.0,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 180700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 927.3,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 181500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 931.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 182300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 935.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 183100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 939.9,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 183900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 944.4,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 184700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 948.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 185500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 952.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 186300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 956.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 187100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 961.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 187900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 965.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 188700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 969.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 189500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 973.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 190300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 977.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 191100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 981.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 191900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 986.1,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 192700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 990.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 193500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 994.5,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 194300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 998.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 195100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1002.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 195900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1006.6,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 196700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1010.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 197500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1014.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 198300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1018.8,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 199100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1022.7,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 199900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1023.2,
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 13,
+    "step": 200000,
+    "type": "train"
+   },
+   {
+    "exact_accuracy": 1.0,
+    "loss": 0.261,
+    "seed": 13,
+    "split": "test",
+    "type": "evaluation"
+   },
+   {
+    "exact_accuracy": 1.0,
+    "loss": 0.261,
+    "seed": 13,
+    "split": "ood_t",
+    "type": "evaluation"
+   },
+   {
+    "exact_accuracy": 1.0,
+    "loss": 0.261,
+    "seed": 13,
+    "split": "ood_n_t",
+    "type": "evaluation"
+   },
+   {
+    "completed_steps": 200000,
+    "mean_exact_accuracy": 1.0,
+    "training_seconds": 1023.2,
+    "type": "summary"
+   }
+  ]
+ },
+ "submission": "\"\"\"UnfoldS: UnfoldB (cpu_first/unfold_sub) at the manifest's batch size, with the fit's information kept across batches.\n\nModel and loss residual are UnfoldB's (fp64 inside, autocast off):\n  * every digit string (N, x, T, and the label inside the loss) is worth sum_i B^i d_i, one learned base B;\n  * one squaring step maps a state value s to V = w0 + w1 s + w2 s^2 (learned) and snaps it to the integer\n    r = round(V) mod round(n), n the modulus string's value; the step loops round(t) times;\n  * the final state is written in base round(B) and read out as a phase over the 10 digit tokens, with a\n    straight-through term carrying the gradient of V.\nTraining (answer-only labels, single-step rows only):\n  * clock residual e = (V - y - k n) / n in turns of the live modulus n, against the model's own nearest unfolding\n    k = max(0, round((V - y) / n));\n  * seed rows (always in, read as not wrapping: k = 0): rows whose phase moves by less than C_SEED turns per unit\n    change of w (|de/dw| < C_SEED), an absolute threshold in the model's own units, so a batch need not contain any;\n  * every other row comes in once the model predicts its phase to within U_MAX turns and its residual agrees with that\n    prediction (GATE sigma). The prediction uses the information of all rows admitted so far, not only this batch's:\n    the optimizer keeps it as an information matrix, and the loss reads it. Before P + 1 rows' worth of information\n    has been gathered, only seeds count;\n  * optimizer: an iterated information filter (recursive Gauss-Newton). Earlier batches' admitted rows are carried as\n    one quadratic (information matrix, gradient, residual sum of squares) around an anchor; it decays with a half-life\n    of HALF_LIFE training rows and is capped at CNT_MAX rows' worth. Within a batch (USES evaluator uses) each update\n    is a Levenberg-Marquardt step on this batch's admitted rows plus the carried quadratic, with trust regions; after\n    the batch's last use its rows join the carried quadratic. The model holds still until P + 1 rows' worth of\n    information is in, and in batches with no admitted rows. The gradient is the evaluator's backward (the loss is\n    divided by a detached nu so the\n    evaluator's clipping never bites; the optimizer multiplies nu back); the curvature comes from the loss's\n    closed-form residual Jacobian. No rows are stored: 30 numbers of optimizer state.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport math\n\nimport torch\nfrom torch import Tensor, nn\n\nfrom benchmark import (\n    ModelSpec,\n    OptimizerBundle,\n    OptimizerSpec,\n    Submission,\n    TokenLossBatch,\n    assert_model_state,\n)\n\nDIGIT, MARK_N, MARK_X, MARK_T = 7, 2, 3, 4  # token ids: digit d is DIGIT + d\nD = 9                                       # digit slots (24-bit values have at most 8 decimal digits)\nP = 4                                       # parameters, in model.parameters() order: B, w0, w1, w2\n\nB_INIT = (4.0, 16.0)   # base B ~ U(B_INIT)\nW_INIT = 1e-3          # w ~ W_INIT * N(0, 1): V starts near 0, so every unfolding starts at k = 0 (plain regression)\nKAPPA = 10.0           # logit scale of the phase readout\nC_SEED = 1.5           # seed: a unit change of w moves the row's phase by less than C_SEED turns\nU_MAX = 0.05           # admit a row once its predicted phase std (turns) is below U_MAX\nGATE = 3.0             # ... and its residual is within GATE predicted std\nS_FLOOR = 1e-9         # floor on the residual std (turns), above fp64 noise at 24 bits\nGATE_ITERS = 16        # admit / re-estimate rounds per step\nDAMP = 1e-9            # LM damping on the column-normalized Gauss-Newton matrix\nTRUST = 0.25           # trust region: no admitted row's phase moves more than TRUST turns per update\nBTRUST = 0.1           # ... and the base moves by at most BTRUST * B per batch (the model's own reading changes slowly)\nPRIOR = 1e-12          # weak prior information (turns^2) per unit^2 of (B / B_SCALE, w0, w1, w2) around the anchor\nB_SCALE = 0.1\nHALF_LIFE = 100_000    # carried information halves every HALF_LIFE training rows\nCNT_MAX = 100.0        # ... and is scaled down to at most CNT_MAX admitted rows' worth\nUSES = 8               # updates per batch: should_reuse_batch always asks, the evaluator allows 8\nBATCH = 512\nEVAL_BATCH = 4096\nMAX_STEPS = 200_000\nLOG_EVERY = 1000\n\n\ndef parse(input_ids: Tensor, attention_mask: Tensor):\n    \"\"\"Prompt `N <N digits, LSB first> X <x, MSB first> T <T, MSB first>` -> LSB-first digit arrays [rows, D].\"\"\"\n    pos = lambda tok: (input_ids == tok).int().argmax(1)\n    i_n, i_x, i_t = pos(MARK_N), pos(MARK_X), pos(MARK_T)\n    end = attention_mask.long().sum(1)\n    k = torch.arange(D, device=input_ids.device)[None]\n\n    def field(start, step, count):\n        idx = (start[:, None] + step * k).clamp(0, input_ids.shape[1] - 1)\n        d = (input_ids.gather(1, idx) - DIGIT).clamp(0, 9)\n        return torch.where(k < count[:, None], d, 0)\n\n    Nd = field(i_n + 1, 1, i_x - i_n - 1)\n    Xd = field(i_t - 1, -1, i_t - i_x - 1)\n    Td = field(end - 1, -1, end - i_t - 1)\n    return Nd, Xd, Td, end\n\n\nclass Config:\n    def __init__(self, vocab_size: int, max_seq_len: int) -> None:\n        self.vocab_size = vocab_size\n        self.max_seq_len = max_seq_len\n\n\nclass UnfoldS(nn.Module):\n    def __init__(self, spec: ModelSpec) -> None:\n        super().__init__()\n        self.config = Config(spec.vocab_size, spec.max_seq_len)\n        self.base = nn.Parameter(torch.empty(1).uniform_(*B_INIT))\n        self.w = nn.Parameter(W_INIT * torch.randn(3))\n        self.stats: dict = {}   # the last loss's Gauss-Newton pieces, read by the optimizer\n        self.memory: dict = {}  # the optimizer's carried information, read by the loss\n\n    def forward(self, input_ids: Tensor, attention_mask: Tensor | None = None):\n        if attention_mask is None:\n            attention_mask = input_ids != 0\n        with torch.autocast(input_ids.device.type, enabled=False):\n            return self._forward(input_ids, attention_mask)\n\n    def _forward(self, input_ids: Tensor, attention_mask: Tensor):\n        f64, dev = torch.float64, input_ids.device\n        Nd, Xd, Td, end = parse(input_ids, attention_mask)\n        B, w = self.base.to(f64)[0], self.w.to(f64)\n        i = torch.arange(D, device=dev, dtype=f64)\n        pw = B ** i                                  # place values B^i\n        dpw = i * B ** (i - 1).clamp_min(0)          # d(B^i)/dB, closed form\n        n, t, s = Nd.to(f64) @ pw, Td.to(f64) @ pw, Xd.to(f64) @ pw\n        nr = torch.round(n.detach()).clamp_min(1)    # snapped modulus\n        steps = torch.round(t.detach()).clamp_min(0)\n\n        state = torch.remainder(torch.round(s.detach()), nr)  # snapped state (an integer)\n        cont = s                                     # the last step's continuous V, for the straight-through readout\n        v1 = None\n        for it in range(int(steps.max().item()) if steps.numel() else 0):\n            live = steps > it\n            src = s if it == 0 else state            # step 1 reads x through B; later steps read the snapped state\n            v = w[0] + w[1] * src + w[2] * src * src\n            if it == 0:\n                v1 = v\n            cont = torch.where(live, v, cont)\n            state = torch.where(live, torch.remainder(torch.round(v.detach()), nr), state)\n\n        # write the state in base round(B); digit k carries the gradient of the continuous remainder / b^k\n        b = torch.round(B.detach()).clamp(2, 36)\n        place = b.long() ** torch.arange(D, device=dev)\n        digs = (state.long()[:, None] // place[None]) % b.long()\n        rho = cont - nr * torch.floor(torch.round(cont.detach()) / nr)\n        dig = digs.to(f64) + (rho - rho.detach())[:, None] / b ** i\n        k = (end[:, None] - 1 - torch.arange(input_ids.shape[1], device=dev)[None]).clamp(0, D - 1)\n        dk = dig.gather(1, k)                                         # answers are right-aligned on the prompt\n        c = torch.arange(10, device=dev, dtype=f64)\n        phase = KAPPA * torch.cos(2 * math.pi * (dk[..., None] - c) / 10)\n        rows, L, V = input_ids.shape[0], input_ids.shape[1], self.config.vocab_size\n        low = lambda width: torch.full((rows, L, width), -2 * KAPPA, device=dev, dtype=f64)\n        logits = torch.cat([low(DIGIT), phase, low(V - DIGIT - 10)], -1).float()\n\n        aux = None\n        if self.training:\n            aux = {\"v1\": v1, \"s\": s, \"ds\": Xd.to(f64) @ dpw, \"n\": n, \"dn\": Nd.to(f64) @ dpw, \"pw\": pw,\n                   \"dpw\": dpw, \"w\": w, \"single\": steps == 1, \"stats\": self.stats, \"memory\": self.memory}\n        return logits, aux\n\n\ndef token_training_loss(batch: TokenLossBatch) -> Tensor:\n    with torch.autocast(batch.labels.device.type, enabled=False):\n        return _clock_loss(batch, batch.auxiliary)\n\n\ndef _clock_loss(batch: TokenLossBatch, aux: dict) -> Tensor:\n    f64 = torch.float64\n    stats, memory = aux[\"stats\"], aux[\"memory\"]\n    stats.clear()\n    sel = torch.nonzero(aux[\"single\"]).flatten()\n    if aux[\"v1\"] is None or sel.numel() == 0:\n        return aux[\"w\"].sum() * 0.0\n    labels, valid = batch.labels[sel], batch.valid_mask[sel]\n    cnt = valid.long().sum(1)\n    k = torch.arange(D, device=labels.device)[None]\n    yd = (labels.gather(1, (cnt[:, None] - 1 - k).clamp_min(0)) - DIGIT).clamp(0, 9)\n    yd = torch.where(k < cnt[:, None], yd, 0).to(f64)\n    y, dy = yd @ aux[\"pw\"], yd @ aux[\"dpw\"]                      # the label's value through the same base\n    V, s, ds, n, dn, w = (aux[\"v1\"][sel], aux[\"s\"][sel], aux[\"ds\"][sel], aux[\"n\"][sel], aux[\"dn\"][sel],\n                          aux[\"w\"])\n    nb = n.detach().clamp_min(1.0)\n    sd = s.detach()\n    # seeds: a unit change of w moves the row's phase by less than C_SEED turns (|de/dw| = |(1, s, s^2)| / n)\n    seed = torch.stack([torch.ones_like(sd), sd, sd * sd], 1).norm(dim=1) / nb < C_SEED\n    kstar = torch.clamp(torch.round((V - y).detach() / nb), min=0)   # the model's own nearest unfolding, k >= 0\n    kstar = torch.where(seed, 0.0, kstar)                              # ... except seeds, read as not wrapping\n    e = (V - y - kstar * n) / n.clamp_min(1.0)                         # clock residual, in turns of the live modulus\n    ed_ = e.detach()\n    J = torch.stack([((w[1] + 2 * w[2] * sd) * ds - dy - (kstar + ed_) * dn).detach(), torch.ones_like(sd), sd,\n                     sd * sd], 1) / nb[:, None]                        # d e / d (B, w0, w1, w2), closed form\n\n    # Seeds: rows whose phase moves by less than C_SEED turns per unit change of w. Then every row whose phase the\n    # model predicts to within U_MAX turns (variance s^2 J N^-1 J^T, N the information of this batch's admitted rows\n    # plus the carried information of earlier batches, s^2 the residual variance of all of them) and whose residual\n    # agrees with that prediction; re-estimated until the admitted set stops changing. Before P + 1 rows' worth of\n    # information has been gathered, only seeds count.\n    count = sel.numel()\n    ed = torch.nan_to_num(e.detach(), nan=1e30, posinf=1e30, neginf=-1e30)\n    lam = memory[\"lam\"] + memory[\"lam0\"]\n    rss0, cnt0 = memory[\"rss\"], memory[\"cnt\"]\n    inc, eye = seed, torch.eye(P, dtype=f64, device=e.device)\n    s2 = math.inf\n    for _ in range(GATE_ITERS):\n        m = cnt0 + int(inc.sum())\n        if m < P + 1:\n            break\n        Ji = J[inc]\n        Nm = lam + Ji.T @ Ji\n        col = Nm.diagonal().clamp_min(1e-300).sqrt()\n        Jn = J / col\n        lev = (Jn * torch.linalg.solve(Nm / col[:, None] / col[None, :] + 1e-12 * eye, Jn.T).T).sum(1)\n        s2 = max(rss0 + float((ed[inc] ** 2).sum()), 0.0) / (m - P) + S_FLOOR ** 2\n        var = s2 * lev\n        new = seed | ((var < U_MAX ** 2) & (ed * ed < GATE ** 2 * (var + s2)))\n        if bool((new == inc).all()):\n            break\n        inc = new\n    inc = torch.nonzero(inc).flatten()\n    if inc.numel() == 0:\n        stats.update(count=count, m=0, s=math.sqrt(s2))\n        return aux[\"w\"].sum() * 0.0\n\n    ei, Ji = e[inc], J[inc]\n    loss = 0.5 * (ei * ei).sum()\n    g = Ji.T @ ei.detach()\n    nu = max(2.0 * float(g.norm()), 1e-30)\n    stats.update(J=Ji, e=ei.detach(), nu=nu, m=inc.numel(), count=count, s=math.sqrt(s2),\n                 emax=float(ei.detach().abs().max()), rows=sel[inc], k=kstar[inc])\n    return loss / nu + (loss - loss / nu).detach()   # value: the clock cost; gradient: scaled by 1 / nu\n\n\nclass InformationLM(torch.optim.Optimizer):\n    \"\"\"Iterated information filter: Levenberg-Marquardt on this batch's rows plus the carried quadratic of earlier\n    batches.\n\n    The earlier batches' admitted rows are summarized at the anchor theta_a (the parameters after the previous batch)\n    by their Gauss-Newton information LAM = sum J^T J, their gradient G = sum J^T e and their residual sum of squares,\n    all decayed by the half-life and capped at CNT_MAX rows' worth. Gradient of an update: the evaluator's backward of\n    the scaled loss, times nu, plus the carried G + LAM (theta - theta_a). Curvature: J^T J from the loss's closed-form\n    residual Jacobian plus LAM, plus a weak prior around the anchor. The step is shrunk so that no admitted row's\n    predicted phase moves more than TRUST turns, the carried rows' RMS phase move from the anchor stays under TRUST\n    within the batch, and the base moves by at most BTRUST * B per batch; it is zero while fewer than P + 1 rows' worth\n    of information is in, and in a batch with no admitted rows. After the batch's last use (the evaluator allows USES\n    uses and should_reuse_batch always asks)\n    its rows are added to the carried quadratic, which is re-centered at the new parameters. The parameters themselves\n    (fp32 under amp) are the state: the model computes with them, so no hidden fp64 digits are kept.\"\"\"\n\n    def __init__(self, params, model: nn.Module) -> None:\n        super().__init__(params, {})\n        self.stats, self.memory = model.stats, model.memory\n        self.updates = 0\n        ps = self._params()\n        dev = ps[0].device\n        f64 = torch.float64\n        st = self.state[ps[0]]\n        st[\"theta\"] = torch.cat([p.detach().flatten().to(f64) for p in ps])\n        st[\"anchor\"] = st[\"theta\"].clone()\n        st[\"lam\"] = torch.zeros(P, P, dtype=f64, device=dev)\n        st[\"grad\"] = torch.zeros(P, dtype=f64, device=dev)\n        st[\"rss\"] = torch.zeros((), dtype=f64, device=dev)\n        st[\"cnt\"] = torch.zeros((), dtype=f64, device=dev)\n        self.lam0 = PRIOR * torch.diag(torch.tensor([1.0 / B_SCALE ** 2, 1.0, 1.0, 1.0], dtype=f64, device=dev))\n        self.decay = 0.5 ** (BATCH / HALF_LIFE)\n        self._publish()\n\n    def _params(self):\n        return [p for group in self.param_groups for p in group[\"params\"]]\n\n    def _carried_rss(self, st: dict, theta: Tensor) -> Tensor:\n        d = theta - st[\"anchor\"]\n        return st[\"rss\"] + 2 * st[\"grad\"] @ d + d @ st[\"lam\"] @ d\n\n    def _publish(self) -> None:\n        st = self.state[self._params()[0]]\n        self.memory.update(lam=st[\"lam\"], lam0=self.lam0, rss=float(self._carried_rss(st, st[\"theta\"])),\n                           cnt=float(st[\"cnt\"]))\n\n    @torch.no_grad()\n    def step(self, closure=None):\n        ps = self._params()\n        st, S = self.state[ps[0]], self.stats\n        self.updates += 1\n        theta, anchor, lam = st[\"theta\"], st[\"anchor\"], st[\"lam\"]\n        prior = lam + self.lam0\n        rhs = prior @ (theta - anchor) + st[\"grad\"]\n        Nm = prior.clone()\n        J = S.get(\"J\")\n        if J is not None:\n            grad = torch.cat([(p.grad if p.grad is not None else torch.zeros_like(p)).flatten().to(torch.float64)\n                              for p in ps]) * S[\"nu\"]\n            rhs = rhs + grad\n            Nm = Nm + J.T @ J\n        col = Nm.diagonal().clamp_min(1e-300).sqrt()\n        A = Nm / col[:, None] / col[None, :] + DAMP * torch.eye(P, dtype=Nm.dtype, device=Nm.device)\n        delta = torch.linalg.solve(A, rhs / col) / col\n        move = float((J @ delta).abs().max()) if J is not None else 0.0\n        room = BTRUST * abs(float(anchor[0]))   # |B - B_anchor| <= BTRUST * |B_anchor| for the whole batch\n        d0B, dB = float(theta[0] - anchor[0]), float(delta[0])\n        bscale = (d0B + room) / dB if dB > 0 else (room - d0B) / -dB if dB < 0 else math.inf\n        scale = min(1.0, TRUST / max(move, 1e-300), max(bscale, 0.0))\n        # the carried quadratic is a linearization at the anchor: within this batch, keep the carried rows' RMS phase\n        # move from the anchor under TRUST (or, once there, non-increasing)\n        cnt = max(float(st[\"cnt\"]), 1.0)\n        d0 = theta - anchor\n        a, b = float(delta @ lam @ delta) / cnt, float(d0 @ lam @ delta) / cnt\n        f0 = float(d0 @ lam @ d0) / cnt\n        bound = max(TRUST ** 2, f0)\n        if a * scale * scale - 2 * b * scale + f0 > bound:\n            scale = max(0.0, (b + math.sqrt(max(b * b - a * (f0 - bound), 0.0))) / a)\n        if float(st[\"cnt\"]) + S.get(\"m\", 0) < P + 1:\n            scale = 0.0   # fewer than P + 1 rows' worth of information: hold still, keep gathering\n        if J is None:\n            scale = 0.0   # no admitted rows in this batch: nothing new to fit\n        delta = delta * scale\n        theta = theta - delta\n        at = 0\n        for p in ps:   # the model computes with its own (fp32) parameters, so they are the state: no hidden digits\n            k = p.numel()\n            p.copy_(theta[at:at + k].view_as(p).to(p.dtype))\n            at += k\n        theta = torch.cat([p.detach().flatten().to(torch.float64) for p in ps])\n        delta = st[\"theta\"] - theta\n        st[\"theta\"] = theta\n        if self.updates % USES == 0:   # the batch's last use: carry its rows forward, re-centered at theta\n            d = theta - anchor\n            rss, grad_c = self._carried_rss(st, theta), st[\"grad\"] + lam @ d\n            if J is not None:\n                e_post = S[\"e\"] - J @ delta          # this batch's residuals at the new theta (linearized)\n                rss = rss + (e_post ** 2).sum()\n                grad_c = grad_c + J.T @ e_post\n                lam = lam + J.T @ J\n            count = float(st[\"cnt\"]) + S.get(\"m\", 0)\n            keep = min(self.decay, CNT_MAX / max(count, 1e-300))   # at most CNT_MAX rows' worth is carried\n            st[\"lam\"] = keep * lam\n            st[\"grad\"] = keep * grad_c\n            st[\"rss\"] = keep * rss\n            st[\"cnt\"] = keep * (st[\"cnt\"] + S.get(\"m\", 0))\n            st[\"anchor\"] = theta.clone()\n        self._publish()\n        if LOG_EVERY and (self.updates % LOG_EVERY == 0):\n            print(f\"lm update={self.updates} B={float(theta[0]):.12f} w={[float(v) for v in theta[1:]]} \"\n                  f\"rows={S.get('m', 0)}/{S.get('count', 0)} s={S.get('s', math.inf):.2e} \"\n                  f\"carried={float(st['cnt']):.1f} move={move:.3e}\", flush=True)\n        return None\n\n\ndef build_model(spec: ModelSpec) -> UnfoldS:\n    model = UnfoldS(spec)\n    assert_model_state(model, spec)\n    return model\n\n\ndef build_optimizer(model: nn.Module, spec: OptimizerSpec) -> OptimizerBundle:\n    return OptimizerBundle(InformationLM(model.parameters(), model), should_reuse_batch=lambda context: True)\n\n\nSUBMISSION = Submission(\n    build_model=build_model,\n    build_optimizer=build_optimizer,\n    token_training_loss=token_training_loss,\n    batch_size=BATCH,\n    eval_batch_size=EVAL_BATCH,\n    max_steps=MAX_STEPS,\n)\n"
+}

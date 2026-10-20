@@ -1,0 +1,116 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-fJwaBjH4wgQw3pIj3BxdOW
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_shared_modal.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_shared.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_matched.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_ladder.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /run.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /tasks.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /__init__.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /models.py
+└── 🔨 Created function run_one.
+24 runs
+6 bits shared seed 0 ho0 S5: stages 
+  after estimator: exact 0.884 given 0.941 hard 0.864  rows right 0.740 (path 0.914 of 162, over-trial borrows 0.915)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.88/0.94 @7:0.02/0.69 @10:0.00/0.39 @14:0.00/0.12 @20:0.00/0.02
+  after own borrow (hit None): exact 0.042 given 0.053 hard 0.036  rows right 0.070 (path 0.086 of 162, over-trial borrows 0.545)  map [0, 0, 0, 0, 0, 0, 0, 2, 0, 2]  widths own/given @6:0.04/0.05 @7:0.00/0.00 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  103.0s
+6 bits shared seed 3 ho0 S5: stages 
+  after estimator: exact 0.959 given 0.993 hard 0.959  rows right 0.775 (path 0.957 of 162, over-trial borrows 0.91)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.96/0.99 @7:0.01/0.78 @10:0.00/0.49 @14:0.00/0.21 @20:0.00/0.04
+  after own borrow (hit None): exact 0.022 given 0.174 hard 0.029  rows right 0.160 (path 0.198 of 162, over-trial borrows 0.5)  map [2, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.02/0.17 @7:0.01/0.09 @10:0.00/0.01 @14:0.00/0.00 @20:0.00/0.00  101.6s
+6 bits shared seed 2 ho0 S5: stages 
+  after estimator: exact 0.971 given 0.999 hard 0.974  rows right 0.720 (path 0.889 of 162, over-trial borrows 0.765)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.97/1.00 @7:0.02/0.73 @10:0.00/0.41 @14:0.00/0.17 @20:0.00/0.02
+  after own borrow (hit None): exact 0.041 given 0.047 hard 0.035  rows right 0.075 (path 0.093 of 162, over-trial borrows 0.47)  map [0, 0, 0, 0, 0, 0, 0, 2, 0, 2]  widths own/given @6:0.04/0.05 @7:0.01/0.01 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  107.2s
+6 bits shared seed 0 ho4 S5: stages 
+  after estimator: exact 0.801 given 0.979 hard 0.390  held-out moduli 0.425  rows right 0.000 (path 0.000 of 162, over-trial borrows 0.08)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.80/0.98 @7:0.01/0.46 @10:0.00/0.11 @14:0.00/0.01 @20:0.00/0.00
+  after own borrow (hit None): exact 0.038 given 0.046 hard 0.035  held-out moduli 0.010  rows right 0.090 (path 0.105 of 162, over-trial borrows 0.545)  map [0, 0, 1, 1, 0, 0, 0, 2, 3, 0]  widths own/given @6:0.04/0.05 @7:0.01/0.01 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  117.8s
+6 bits shared seed 2 ho4 S5: stages 
+  after estimator: exact 0.828 given 0.983 hard 0.822  held-out moduli 0.592  rows right 0.755 (path 0.932 of 162, over-trial borrows 0.805)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.83/0.98 @7:0.02/0.74 @10:0.00/0.43 @14:0.00/0.18 @20:0.00/0.03
+  after own borrow (hit None): exact 0.036 given 0.020 hard 0.029  held-out moduli 0.020  rows right 0.030 (path 0.037 of 162, over-trial borrows 0.48)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 2]  widths own/given @6:0.04/0.02 @7:0.01/0.00 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  120.8s
+6 bits shared seed 1 ho4 S5: stages 
+  after estimator: exact 0.848 given 0.974 hard 0.856  held-out moduli 0.543  rows right 0.735 (path 0.907 of 162, over-trial borrows 0.775)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.85/0.97 @7:0.01/0.71 @10:0.00/0.41 @14:0.00/0.15 @20:0.00/0.02
+  after own borrow (hit None): exact 0.043 given 0.038 hard 0.035  held-out moduli 0.020  rows right 0.055 (path 0.068 of 162, over-trial borrows 0.46)  map [1, 0, 0, 0, 0, 0, 0, 0, 1, 2]  widths own/given @6:0.04/0.04 @7:0.01/0.01 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  129.2s
+6 bits shared seed 3 ho4 S5: stages 
+  after estimator: exact 0.874 given 0.999 hard 0.876  held-out moduli 0.563  rows right 0.755 (path 0.932 of 162, over-trial borrows 0.875)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.87/1.00 @7:0.01/0.75 @10:0.00/0.46 @14:0.00/0.18 @20:0.00/0.03
+  after own borrow (hit None): exact 0.043 given 0.056 hard 0.043  held-out moduli 0.025  rows right 0.060 (path 0.074 of 162, over-trial borrows 0.515)  map [0, 0, 0, 0, 0, 0, 0, 2, 0, 2]  widths own/given @6:0.04/0.06 @7:0.00/0.01 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  123.9s
+6 bits shared seed 1 ho0 S5: stages 
+  after estimator: exact 0.942 given 0.970 hard 0.933  rows right 0.740 (path 0.914 of 162, over-trial borrows 0.84)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.94/0.97 @7:0.01/0.71 @10:0.00/0.43 @14:0.00/0.17 @20:0.00/0.02
+  after own borrow (hit None): exact 0.045 given 0.075 hard 0.039  rows right 0.040 (path 0.049 of 162, over-trial borrows 0.415)  map [0, 0, 0, 0, 0, 0, 2, 2, 2, 0]  widths own/given @6:0.04/0.08 @7:0.01/0.01 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  158.5s
+7 bits shared seed 2 ho0 S5: stages 
+  after estimator: exact 0.846 given 0.975 hard 0.721  rows right 0.905 (path 0.905 of 200, over-trial borrows 0.935)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/1.00 @7:0.85/0.97 @10:0.39/0.88 @14:0.13/0.65 @20:0.02/0.33
+  after own borrow (hit None): exact 0.012 given 0.138 hard 0.006  rows right 0.430 (path 0.430 of 200, over-trial borrows 0.715)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.03/0.29 @7:0.01/0.14 @10:0.00/0.02 @14:0.00/0.00 @20:0.00/0.00  125.6s
+7 bits shared seed 2 ho4 S5: stages 
+  after estimator: exact 0.759 given 0.913 hard 0.650  held-out moduli 0.681  rows right 0.745 (path 0.745 of 200, over-trial borrows 0.795)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/0.96 @7:0.76/0.91 @10:0.21/0.65 @14:0.03/0.30 @20:0.00/0.06
+  after own borrow (hit None): exact 0.012 given 0.154 hard 0.005  held-out moduli 0.019  rows right 0.400 (path 0.400 of 200, over-trial borrows 0.585)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.02/0.29 @7:0.01/0.15 @10:0.00/0.04 @14:0.00/0.01 @20:0.00/0.00  135.0s
+7 bits shared seed 1 ho4 S5: stages 
+  after estimator: exact 0.810 given 0.973 hard 0.704  held-out moduli 0.740  rows right 0.840 (path 0.840 of 200, over-trial borrows 0.89)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.03/1.00 @7:0.81/0.97 @10:0.24/0.79 @14:0.05/0.47 @20:0.00/0.12
+  after own borrow (hit None): exact 0.012 given 0.693 hard 0.015  held-out moduli 0.019  rows right 0.730 (path 0.730 of 200, over-trial borrows 0.795)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.07/0.87 @7:0.01/0.69 @10:0.00/0.40 @14:0.00/0.13 @20:0.00/0.01  176.7s
+7 bits shared seed 3 ho0 S5: stages 
+  after estimator: exact 0.785 given 0.876 hard 0.593  rows right 0.775 (path 0.775 of 200, over-trial borrows 0.85)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/0.95 @7:0.79/0.88 @10:0.24/0.69 @14:0.04/0.37 @20:0.00/0.09
+  after own borrow (hit None): exact 0.012 given 0.680 hard 0.010  rows right 0.690 (path 0.690 of 200, over-trial borrows 0.745)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.06/0.81 @7:0.01/0.68 @10:0.00/0.35 @14:0.00/0.10 @20:0.00/0.01  196.7s
+10 bits shared seed 0 ho4 S5: stages 
+  after estimator: exact 0.655 given 0.934 hard 0.551  held-out moduli 0.663  rows right 0.980 (path 0.980 of 200, over-trial borrows 0.98)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/0.99 @7:0.64/0.98 @10:0.66/0.93 @14:0.15/0.88 @20:0.18/0.71
+  after own borrow (hit None): exact 0.004 given 0.000 hard 0.000  held-out moduli 0.008  rows right 0.240 (path 0.240 of 200, over-trial borrows 0.675)  map [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.02/0.04 @7:0.01/0.01 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  188.0s
+7 bits shared seed 1 ho0 S5: stages 
+  after estimator: exact 0.848 given 0.993 hard 0.743  rows right 0.995 (path 0.995 of 200, over-trial borrows 0.995)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/1.00 @7:0.85/0.99 @10:0.45/0.98 @14:0.24/0.93 @20:0.08/0.81
+  after own borrow (hit 100): exact 1.000 given 1.000 hard 1.000  rows right 1.000 (path 1.000 of 200, over-trial borrows 1.0)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:1.00/1.00 @7:1.00/1.00 @10:1.00/1.00 @14:1.00/1.00 @20:1.00/1.00  218.2s
+7 bits shared seed 0 ho4 S5: stages 
+  after estimator: exact 0.816 given 0.962 hard 0.704  held-out moduli 0.742  rows right 0.945 (path 0.945 of 200, over-trial borrows 0.96)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/0.99 @7:0.82/0.96 @10:0.36/0.87 @14:0.16/0.72 @20:0.03/0.44
+  after own borrow (hit None): exact 0.012 given 0.032 hard 0.009  held-out moduli 0.019  rows right 0.215 (path 0.215 of 200, over-trial borrows 0.735)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.02/0.08 @7:0.01/0.03 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  214.7s
+7 bits shared seed 0 ho0 S5: stages 
+  after estimator: exact 0.858 given 0.997 hard 0.743  rows right 1.000 (path 1.000 of 200, over-trial borrows 1.0)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/1.00 @7:0.86/1.00 @10:0.46/0.99 @14:0.23/0.93 @20:0.07/0.80
+  after own borrow (hit 0): exact 1.000 given 1.000 hard 1.000  rows right 1.000 (path 1.000 of 200, over-trial borrows 1.0)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:1.00/1.00 @7:1.00/1.00 @10:1.00/1.00 @14:1.00/1.00 @20:1.00/1.00  227.4s
+7 bits shared seed 3 ho4 S5: stages 
+  after estimator: exact 0.797 given 0.939 hard 0.698  held-out moduli 0.739  rows right 0.775 (path 0.775 of 200, over-trial borrows 0.82)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/0.98 @7:0.80/0.94 @10:0.23/0.72 @14:0.04/0.36 @20:0.00/0.07
+  after own borrow (hit None): exact 0.012 given 0.474 hard 0.007  held-out moduli 0.019  rows right 0.585 (path 0.585 of 200, over-trial borrows 0.7)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.03/0.64 @7:0.01/0.47 @10:0.00/0.20 @14:0.00/0.06 @20:0.00/0.00  221.1s
+10 bits shared seed 2 ho4 S5: stages 
+  after estimator: exact 0.596 given 0.835 hard 0.466  held-out moduli 0.601  rows right 0.965 (path 0.965 of 200, over-trial borrows 0.965)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/0.96 @7:0.58/0.91 @10:0.60/0.83 @14:0.14/0.74 @20:0.15/0.54
+  after own borrow (hit None): exact 0.004 given 0.286 hard 0.001  held-out moduli 0.008  rows right 0.845 (path 0.845 of 200, over-trial borrows 0.85)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.13/0.74 @7:0.01/0.57 @10:0.00/0.29 @14:0.00/0.07 @20:0.00/0.00  286.7s
+10 bits shared seed 1 ho4 S5: stages 
+  after estimator: exact 0.699 given 0.950 hard 0.558  held-out moduli 0.681  rows right 0.980 (path 0.980 of 200, over-trial borrows 0.98)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.03/0.99 @7:0.63/0.98 @10:0.70/0.95 @14:0.17/0.89 @20:0.23/0.78
+  after own borrow (hit None): exact 0.004 given 0.117 hard 0.001  held-out moduli 0.008  rows right 0.645 (path 0.645 of 200, over-trial borrows 0.83)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.05/0.49 @7:0.01/0.36 @10:0.00/0.12 @14:0.00/0.02 @20:0.00/0.00  294.6s
+10 bits shared seed 1 ho0 S5: stages 
+  after estimator: exact 0.723 given 1.000 hard 0.610  rows right 1.000 (path 1.000 of 200, over-trial borrows 1.0)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/1.00 @7:0.63/1.00 @10:0.72/1.00 @14:0.18/1.00 @20:0.27/1.00
+  after own borrow (hit 0): exact 1.000 given 1.000 hard 1.000  rows right 1.000 (path 1.000 of 200, over-trial borrows 1.0)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:1.00/1.00 @7:1.00/1.00 @10:1.00/1.00 @14:1.00/1.00 @20:1.00/1.00  334.6s
+10 bits shared seed 0 ho0 S5: stages 
+  after estimator: exact 0.650 given 0.901 hard 0.528  rows right 0.960 (path 0.960 of 200, over-trial borrows 0.96)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/0.98 @7:0.62/0.96 @10:0.65/0.90 @14:0.15/0.79 @20:0.17/0.59
+  after own borrow (hit None): exact 0.004 given 0.018 hard 0.000  rows right 0.385 (path 0.385 of 200, over-trial borrows 0.625)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.02/0.32 @7:0.01/0.17 @10:0.00/0.02 @14:0.00/0.00 @20:0.00/0.00  360.6s
+10 bits shared seed 3 ho0 S5: stages 
+  after estimator: exact 0.674 given 0.892 hard 0.520  rows right 0.965 (path 0.965 of 200, over-trial borrows 0.965)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.03/0.99 @7:0.60/0.95 @10:0.67/0.89 @14:0.15/0.79 @20:0.19/0.62
+  after own borrow (hit None): exact 0.000 given 0.000 hard 0.000  rows right 0.235 (path 0.235 of 200, over-trial borrows 0.73)  map [0, 0, 3, 1, 4, 1, 3, 0, 4, 8]  widths own/given @6:0.02/0.06 @7:0.01/0.00 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  368.1s
+10 bits shared seed 2 ho0 S5: stages 
+  after estimator: exact 0.715 given 0.980 hard 0.592  rows right 0.985 (path 0.985 of 200, over-trial borrows 0.985)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.03/1.00 @7:0.63/1.00 @10:0.71/0.98 @14:0.17/0.94 @20:0.25/0.87
+  after own borrow (hit None): exact 0.004 given 0.001 hard 0.000  rows right 0.235 (path 0.235 of 200, over-trial borrows 0.665)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.02/0.03 @7:0.01/0.01 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  374.7s
+10 bits shared seed 3 ho4 S5: stages 
+  after estimator: exact 0.715 given 0.984 hard 0.601  held-out moduli 0.701  rows right 0.990 (path 0.990 of 200, over-trial borrows 0.99)  map [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  widths own/given @6:0.02/1.00 @7:0.63/1.00 @10:0.71/0.98 @14:0.17/0.96 @20:0.22/0.88
+  after own borrow (hit None): exact 0.004 given 0.224 hard 0.003  held-out moduli 0.008  rows right 0.770 (path 0.770 of 200, over-trial borrows 0.81)  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.03/0.68 @7:0.01/0.53 @10:0.00/0.22 @14:0.00/0.05 @20:0.00/0.00  371.6s
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-fJwaBjH4wgQw3pIj3BxdOW

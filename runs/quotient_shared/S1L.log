@@ -1,0 +1,71 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-zYPD8ydEtkgH0ZVAoeA43D
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_shared_modal.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_shared.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_matched.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_ladder.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /run.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /tasks.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /models.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /__init__.py
+└── 🔨 Created function run_one.
+9 runs
+6 bits learned seed 1 ho0 S1L: stages k1:1000/0.40 k2:1500/0.43
+  after estimator: exact 0.417 given 0.025 hard 0.381  map [3, 0, 1, 2, 1, 3, 2, 3, 6, 2]  widths own/given @6:0.42/0.03 @7:0.01/0.00 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00
+  after own borrow (hit None): exact 0.580 given 0.020 hard 0.520  map [3, 0, 1, 9, 1, 4, 2, 3, 5, 2]  widths own/given @6:0.58/0.02 @7:0.01/0.01 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  207.9s
+6 bits learned seed 0 ho0 S1L: stages k1:1000/0.32 k2:1500/0.50
+  after estimator: exact 0.478 given 0.019 hard 0.444  map [2, 5, 4, 1, 9, 0, 2, 4, 3, 3]  widths own/given @6:0.48/0.02 @7:0.01/0.00 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00
+  after own borrow (hit None): exact 0.707 given 0.018 hard 0.676  map [2, 9, 4, 1, 7, 0, 1, 5, 3, 3]  widths own/given @6:0.71/0.02 @7:0.01/0.00 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  217.0s
+6 bits learned seed 2 ho0 S1L: stages k1:1000/0.39 k2:1500/0.42
+  after estimator: exact 0.420 given 0.030 hard 0.384  map [3, 5, 2, 2, 1, 3, 1, 2, 0, 1]  widths own/given @6:0.42/0.03 @7:0.01/0.01 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00
+  after own borrow (hit None): exact 0.452 given 0.018 hard 0.317  map [3, 5, 0, 0, 1, 3, 1, 2, 0, 1]  widths own/given @6:0.45/0.02 @7:0.01/0.00 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  267.9s
+7 bits learned seed 1 ho0 S1L: stages k1:1000/0.16 k2:1000/0.07 k3:1500/0.30
+  after estimator: exact 0.307 given 0.018 hard 0.257  map [5, 0, 6, 6, 4, 0, 5, 2, 1, 8]  widths own/given @6:0.03/0.02 @7:0.31/0.02 @10:0.01/0.00 @14:0.00/0.00 @20:0.00/0.00
+  after own borrow (hit None): exact 0.061 given 0.022 hard 0.029  map [1, 2, 0, 0, 0, 0, 0, 0, 1, 0]  widths own/given @6:0.02/0.02 @7:0.06/0.02 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  418.0s
+7 bits learned seed 0 ho0 S1L: stages k1:1000/0.23 k2:1000/0.12 k3:1500/0.42
+  after estimator: exact 0.413 given 0.012 hard 0.384  map [5, 4, 6, 2, 3, 8, 1, 5, 5, 0]  widths own/given @6:0.03/0.00 @7:0.41/0.01 @10:0.01/0.00 @14:0.00/0.00 @20:0.00/0.00
+  after own borrow (hit None): exact 0.058 given 0.015 hard 0.050  map [0, 5, 0, 0, 0, 0, 0, 0, 1, 0]  widths own/given @6:0.02/0.01 @7:0.06/0.02 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  510.2s
+7 bits learned seed 2 ho0 S1L: stages k1:1000/0.16 k2:1000/0.08 k3:1500/0.25
+  after estimator: exact 0.249 given 0.058 hard 0.202  map [7, 5, 2, 5, 1, 0, 0, 4, 0, 6]  widths own/given @6:0.03/0.04 @7:0.25/0.06 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00
+  after own borrow (hit None): exact 0.049 given 0.041 hard 0.036  map [0, 1, 0, 1, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.02/0.04 @7:0.05/0.04 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  526.6s
+10 bits learned seed 2 ho0 S1L: stages k1:1000/0.29 k2:1000/0.10 k3:1000/0.05 k4:1500/0.09
+  after estimator: exact 0.094 given 0.002 hard 0.092  map [1, 0, 1, 2, 2, 0, 4, 5, 3, 7]  widths own/given @6:0.03/0.01 @7:0.25/0.01 @10:0.09/0.00 @14:0.00/0.00 @20:0.00/0.00
+  after own borrow (hit None): exact 0.003 given 0.003 hard 0.003  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.04/0.01 @7:0.02/0.01 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  551.9s
+10 bits learned seed 1 ho0 S1L: stages k1:1000/0.34 k2:1000/0.16 k3:1000/0.08 k4:1500/0.17
+  after estimator: exact 0.168 given 0.001 hard 0.174  map [2, 0, 4, 5, 9, 9, 1, 3, 7, 0]  widths own/given @6:0.03/0.00 @7:0.32/0.01 @10:0.17/0.00 @14:0.01/0.00 @20:0.00/0.00
+  after own borrow (hit None): exact 0.005 given 0.003 hard 0.002  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.03/0.02 @7:0.02/0.01 @10:0.01/0.00 @14:0.00/0.00 @20:0.00/0.00  899.6s
+10 bits learned seed 0 ho0 S1L: stages k1:1000/0.24 k2:1000/0.14 k3:1000/0.08 k4:1500/0.13
+  after estimator: exact 0.141 given 0.004 hard 0.148  map [4, 1, 0, 7, 2, 3, 5, 2, 1, 0]  widths own/given @6:0.04/0.06 @7:0.27/0.03 @10:0.14/0.00 @14:0.00/0.00 @20:0.00/0.00
+  after own borrow (hit None): exact 0.003 given 0.003 hard 0.002  map [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  widths own/given @6:0.03/0.04 @7:0.02/0.02 @10:0.00/0.00 @14:0.00/0.00 @20:0.00/0.00  960.7s
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-zYPD8ydEtkgH0ZVAoeA43D

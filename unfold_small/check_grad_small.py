@@ -3,9 +3,10 @@
     python check_grad_small.py <submission.py>      (from the one-layer-deeper repo root, H1 generated)
 
 On one real training batch (8,192 rows, seed 74), at three generic parameter points, with every single-step row
-admitted (C_SEED raised): the evaluator-style backward of the submission's loss, times nu, must equal J^T e from the
-loss's own stats, and each row of J must match autograd. Then, with the shipped C_SEED and the optimizer's initial
-(empty) carried information, only seed rows may enter.
+admitted (C_SEED raised, so every row is a seed, unfolded with k = 0): the evaluator-style backward of the
+submission's loss, times nu, must equal J^T e from the loss's own stats, and each row of J must match autograd. Then
+with the shipped C_SEED (seeds k = 0, other rows their own unfolding) the per-row check covers both kinds of rows; with
+the optimizer's initial (empty) carried information only seed rows may enter the loss.
 """
 
 from __future__ import annotations
@@ -59,12 +60,8 @@ for tag, src in (("all", re.sub(r"^C_SEED = .*$", "C_SEED = 1e30", src0, flags=r
                                                           target_positions=tpos, auxiliary=aux))
         loss.backward()
         st = dict(model.stats)
-        if "J" not in st:
-            print(f"[{tag}] trial {trial}: no rows admitted ({st.get('count')} single-step rows)")
-            continue
-        g_auto = torch.cat([p.grad.flatten().to(f64) for p in model.parameters()]) * st["nu"]
-        g_closed = st["J"].T @ st["e"]
-        scaled_norm = float(g_auto.norm() / st["nu"])
+        g_auto = torch.cat([(p.grad if p.grad is not None else torch.zeros_like(p)).flatten().to(f64)
+                            for p in model.parameters()]) * st.get("nu", 1.0)
 
         # per-row autograd Jacobian of the same residual
         logits, aux = model(ids, attention_mask=mask)
@@ -77,7 +74,9 @@ for tag, src in (("all", re.sub(r"^C_SEED = .*$", "C_SEED = 1e30", src0, flags=r
         y = yd @ aux["pw"]
         V, n = aux["v1"][sel], aux["n"][sel]
         nb = n.detach()
-        ks = torch.clamp(torch.round((V - y).detach() / nb), min=0)
+        sd0 = aux["s"][sel].detach()
+        is_seed = torch.stack([torch.ones_like(sd0), sd0, sd0 * sd0], 1).norm(dim=1) / nb < sub.C_SEED
+        ks = torch.where(is_seed, 0.0, torch.clamp(torch.round((V - y).detach() / nb), min=0))   # the loss's rule
         e = (V - y - ks * n) / n
         rows = list(range(0, len(sel), max(1, len(sel) // 40)))
         Ja = torch.stack([torch.cat([g.flatten().to(f64) for g in
@@ -88,8 +87,18 @@ for tag, src in (("all", re.sub(r"^C_SEED = .*$", "C_SEED = 1e30", src0, flags=r
                           - (ks + e.detach()) * aux["dn"][sel].detach(), torch.ones_like(sd), sd, sd * sd],
                          1) / nb[:, None]
         rel = (Ja - Jc[rows]).abs().max(0).values / Ja.abs().max(0).values.clamp_min(1e-300)
-        gerr = float((g_auto - g_closed).norm() / g_closed.norm().clamp_min(1e-300))
-        seeds = int((Jc[:, 1:].norm(dim=1) < sub.C_SEED).sum())
-        print(f"[{tag}] trial {trial}: B={float(model.base):.2f} included {st['m']}/{st['count']} single-step rows "
-              f"(seeds {seeds}); |grad*nu - J^T e| / |J^T e| = {gerr:.2e}; scaled grad norm {scaled_norm:.3f}; "
-              f"per-row J max rel err per column {[f'{v:.1e}' for v in rel.tolist()]}")
+        seeds, wrapped = int(is_seed.sum()), int((ks > 0).sum())
+        msg = (f"[{tag}] trial {trial}: B={float(model.base):.2f} {len(sel)} single-step rows (seeds {seeds}, rows "
+               f"unfolded with k > 0: {wrapped}); per-row J max rel err per column "
+               f"{[f'{v:.1e}' for v in rel.tolist()]}")
+        if "J" in st:
+            g_closed = st["J"].T @ st["e"]
+            gerr = float((g_auto - g_closed).norm() / g_closed.norm().clamp_min(1e-300))
+            where = {int(r): i for i, r in enumerate(sel.tolist())}
+            e_mine = e.detach()[torch.tensor([where[int(r)] for r in st["rows"].tolist()])]
+            msg += (f"; admitted {st['m']}: |grad*nu - J^T e| / |J^T e| = {gerr:.2e}, scaled grad norm "
+                    f"{float(g_auto.norm() / st['nu']):.3f}, max |e_loss - e_check| = "
+                    f"{float((st['e'] - e_mine).abs().max()):.1e}")
+        else:
+            msg += "; no rows admitted (empty carried information, no seed in this batch at this point)"
+        print(msg)

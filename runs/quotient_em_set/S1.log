@@ -1,0 +1,263 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-m7akfUvy1xAWZ2UFXXY4Ze
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_em_set_modal.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_em_set.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_em.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_quotient_report.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_matched.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /run.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /ext_ladder.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /tasks.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /models.py
+├── 🔨 Created mount /Users/chenglou/Library/Application 
+│   Support/Claude/scratch-workspaces/2037fc6c-747d-4cf1-a5f5-8a4697a4e390/5ef58
+│   abe-646a-4ac9-9fae-d0ea15914ce2/scratch-2026-10-19-536f87/cpu_first/microlab
+│   /__init__.py
+└── 🔨 Created function run_cell.
+16 cells
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+mod@6 longdiv_em fresh seed0: exact 0.046  seen 1.00  digits(lo->hi) [0.18 0.23]  curve [0.04 0.05 0.05 0.05]  616.1s  wide @7:0.00/0.00 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.03 (exact if all right 0.03)  est raw 0.00 mapped 0.03  ho0 3000
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+mod@6 longdiv_em fresh seed1: exact 0.043  seen 1.00  digits(lo->hi) [0.19 0.19]  curve [0.03 0.04 0.04 0.04]  1042.9s  wide @7:0.00/0.00 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.03 (exact if all right 0.07)  est raw 0.00 mapped 0.03  ho0 3000
+Traceback (most recent call last):
+cell failed: KeyError('ties_last')
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+Traceback (most recent call last):
+cell failed: KeyError('ties_last')
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+mod@7 longdiv_em fresh seed0: exact 0.000  ood@8 0.004  seen 0.91 unseen 0.000  digits(lo->hi) [0.13 0.11 0.02]  curve [0.00 0.00 0.00 0.00]  2211.6s  matched seen/unseen 0.00/0.00  wide @10:0.00/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.00)  est raw 0.00 mapped 0.01  ho0 3000
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+mod@7 longdiv_em fresh seed1: exact 0.002  ood@8 0.007  seen 0.92 unseen 0.000  digits(lo->hi) [0.10 0.13 0.39]  curve [0.00 0.00 0.00 0.00]  2660.0s  matched seen/unseen 0.01/0.00  wide @10:0.00/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.02 (exact if all right 0.00)  est raw 0.00 mapped 0.02  ho0 3000
+mod@6 longdiv_em fresh seed1: exact 0.036  seen 1.00  digits(lo->hi) [0.20 0.20]  curve [0.03 0.04 0.02 0.04]  3272.3s  wide @7:0.00/0.00 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.03 (exact if all right 0.01)  est raw 0.00 mapped 0.03  ho0 12000
+mod@6 longdiv_em fresh seed0: exact 0.039  seen 1.00  digits(lo->hi) [0.19 0.24]  curve [0.04 0.03 0.05 0.04]  3819.7s  wide @7:0.01/0.01 @10:0.00/0.00  choice all-right raw 0.00 mapped 0.03 (exact if all right 0.09)  est raw 0.00 mapped 0.03  ho0 12000
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+cell failed: KeyError('ties_last')
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+Traceback (most recent call last):
+cell failed: KeyError('ties_last')
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+Traceback (most recent call last):
+cell failed: KeyError('ties_last')
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+cell failed: KeyError('ties_last')
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+mod@7 longdiv_em fresh seed1: exact 0.002  ood@8 0.005  seen 1.00  digits(lo->hi) [0.12 0.11 0.14]  curve [0.00 0.00 0.00 0.00]  8760.2s  wide @10:0.00/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.00)  est raw 0.00 mapped 0.01  ho0 12000
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/ext_quotient_em_set_modal.py", line 44, in run_cell
+    r = cell(log=None, threads=4, **spec)
+  File "/root/microlab/ext_quotient_em_set.py", line 184, in cell
+    r["em_test"] = em_test(net, task, size)
+                   ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/microlab/ext_quotient_em.py", line 195, in em_test
+    out[k].append(val)
+    ~~~^^^
+KeyError: 'ties_last'
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+mod@7 longdiv_em fresh seed0: exact 0.002  ood@8 0.004  seen 1.00 unseen 0.000  digits(lo->hi) [0.10 0.12 0.05]  curve [0.00 0.00 0.00 0.00]  9279.8s  wide @10:0.00/0.01 @14:0.00/0.00  choice all-right raw 0.00 mapped 0.01 (exact if all right 0.00)  est raw 0.00 mapped 0.01  ho0 12000

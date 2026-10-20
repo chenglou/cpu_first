@@ -36,6 +36,7 @@ subtracts), and exact / exact mod N with the true quotient digits given (oracle 
 microlab/results_quotient_clock.jsonl.
 
     python -m microlab.ext_quotient_clock selftest       # with the exact cell: invariance, the copy cell, the lessons
+    python -m microlab.ext_quotient_clock toy            # the loss alone fits free per-example digits
     python -m microlab.ext_quotient_clock bench --size 10
     python -m microlab.ext_quotient_clock cell modq --size 6 --extra '{"pick": "given", "score": "clock", "noise": 0.3}'
     python -m microlab.ext_quotient_clock report
@@ -113,9 +114,10 @@ class LongDivClock(LongDivEst):
     choose = "est"                                                             # LongDivEst then builds the estimator
 
     def __init__(self, in_widths, out_width, aux_widths, pick="est", score="clock", noise=0.0, est_teach="range",
-                 **kw):
+                 pre_score=None, pre_noise=0.0, pre_frac=0.0, **kw):
         super().__init__(in_widths, out_width, aux_widths, **kw)
         self.pick, self.score, self.noise, self.est_teach = pick, score, noise, est_teach
+        self.pre = (pre_score, pre_noise, pre_frac)                          # a first phase (train() switches)
 
     def cell_at(self, r, n, c, slot):
         """The digit cell for one slot per row (LongDiv.cell computes all ten at once): r, n, c [..., 10]; slot [...]."""
@@ -243,21 +245,32 @@ def copy_cell_at(r, n, c, slot):
 
 
 @torch.no_grad()
-def cell_table(net):
-    """The cell on all 10^4 one-hot entries (slot q, r, n, borrow in c): the share with digit and borrow right for
-    r - m*n - c, per slot and multiplier m. Returns the share with slot q read as q, the best multiplier per slot, and
-    the share under that map."""
-    q, r, n, c = (a.reshape(-1) for a in torch.meshgrid(*[torch.arange(10)] * 4, indexing="ij"))
-    d, b = (o.argmax(-1) for o in net.cell_at(oh(r), oh(n), oh(c), q))
-    A = torch.zeros(10, 10)
+def cell_table(net, size, n=1000, seed=50_000):
+    """The cell's trial subtraction on its own, where long division uses it: for slot k and digit m, Rp uniform in
+    [m*N, (m+1)*N) (so m is the right quotient digit), the share whose trial result has the digits of the remainder
+    Rp - m*N, on the w places the answer reads ("low") and on all W places. Digits only: the
+    10-way borrow is a code the cell passes to itself. Returns the low share with slot k read as digit k, the best
+    digit per slot (by the low share) and both shares under that map. A copy cell (subtract nothing) maps every slot
+    to 0."""
+    rng = np.random.default_rng(seed)
+    w = len(str((1 << size) - 1))
+    W = 3 * w + 1
+    N = torch.from_numpy(((rng.integers(1 << (size - 2), 1 << (size - 1), n) * 2) + 1).astype(np.int64))
+    u = torch.from_numpy(rng.random(n))
+    dig = lambda v: torch.remainder(v[:, None] // 10 ** torch.arange(W), 10)
+    No = oh(dig(N))
+    low, full = torch.zeros(10, 10), torch.zeros(10, 10)
     for m in range(10):
-        x = r - m * n - c
-        ok = (d == x % 10) & (b == (-x).clamp_min(0).add(9).div(10, rounding_mode="floor"))
-        A[:, m] = ok.float().view(10, -1).mean(1)
-    best = A.argmax(1)
-    return {"table_right": round(float(A.diag().mean()), 4), "slot_multiplier": best.tolist(),
-            "table_right_best_map": round(float(A.max(1).values.mean()), 4),
-            "multipliers_used": int(len(set(best.tolist())))}
+        Rp = m * N + (u * N.double()).long()
+        Ro, want = oh(dig(Rp)), dig(Rp - m * N)
+        for k in range(10):
+            ok = net.trial(Ro, No, torch.full((n,), k))[0].argmax(-1) == want
+            low[k, m], full[k, m] = ok[:, :w].all(1).float().mean(), ok.all(1).float().mean()
+    best = low.argmax(1)
+    pick = lambda A: float(A.gather(1, best[:, None]).mean())
+    return {"table_right": round(float(low.diag().mean()), 4), "table_right_full": round(float(full.diag().mean()), 4),
+            "slot_multiplier": best.tolist(), "table_right_best_map": round(pick(low), 4),
+            "table_right_best_map_full": round(pick(full), 4), "multipliers_used": int(len(set(best.tolist())))}
 
 
 @torch.no_grad()
@@ -276,13 +289,15 @@ def clock_test(net, task, size, n=2000, seed=10_000):
         out[f"exact_{name}"] = round(float((R[:, :y.shape[1]].argmax(-1) == y).all(1).float().mean()), 4)
         out[f"exact_mod_n_{name}"] = round(float((torch.remainder(signed(R.argmax(-1)) - yv, Nv) == 0)
                                                  .float().mean()), 4)
-    return out | cell_table(net)
+    return out | cell_table(net, size)
 
 
 def train(task_name, size, model="longdiv_clock", seed=0, steps=3000, batch=256, lr=3e-3, checkpoints=4, marks_n=12,
-          threads=None, tag="", holdout=0, **model_kw):
+          threads=None, tag="", holdout=0, save=None, **model_kw):
     """ext_ladder.cell's training (same init, AdamW, OneCycle, clipping, data stream, checkpoints and evaluation) with
-    the model's own loss (net.train_loss). Returns (row, net, the training inputs' keys)."""
+    the model's own loss (net.train_loss). With pre_frac > 0 the first pre_frac of the steps use (pre_score,
+    pre_noise) instead of the model's score and noise. `save`: a path for the trained state_dict.
+    Returns (row, net, the training inputs' keys)."""
     if threads:
         torch.set_num_threads(threads)
     task = TASKS[task_name]
@@ -295,8 +310,11 @@ def train(task_name, size, model="longdiv_clock", seed=0, steps=3000, batch=256,
     marks = {round(steps * (i + 1) / checkpoints) for i in range(checkpoints - 1)}
     at = {round(steps * (i + 1) / marks_n) for i in range(marks_n)}
     curve, train_curve, losses, seen, recent = [], [], [], [], []
+    main = (net.score, net.noise)
+    pre_steps = round(steps * net.pre[2]) if net.pre[0] else 0
     t0 = time.time()
     for step in range(steps):
+        net.score, net.noise = net.pre[:2] if step < pre_steps else main
         b = sample_kept(task, batch, size, rng, holdout)
         seen.append(keys(b.inputs))
         x, y, _ = _tensors(b, "cpu")
@@ -312,8 +330,12 @@ def train(task_name, size, model="longdiv_clock", seed=0, steps=3000, batch=256,
             curve.append([step + 1, round(evaluate(net, task, size, n=500, seed=20_000 + step)[0], 4)])
         if step + 1 in at:
             row = {"step": step + 1, **{k: round(float(np.mean([s[k] for s in recent])), 4) for k in st}}
-            train_curve.append(row | {"table_right": cell_table(net)["table_right"]})
+            train_curve.append(row | {"table_right": cell_table(net, size, n=500)["table_right"]})
+        if step + 1 == pre_steps:
+            train_curve.append({"step": step + 1, "switch": True, **clock_test(net, TASKS[model_kw.get("task", task_name)], size)})
     train_keys = np.unique(np.concatenate(seen))
+    if save:
+        torch.save(net.state_dict(), save)
     exact, per_digit, split = evaluate_split(net, task, size, train_keys, holdout=holdout)
     curve.append([steps, round(exact, 4)])
     ood_size = ood_exact = None
@@ -412,6 +434,136 @@ def selftest(bits=(6, 7, 10), n=300, seed=0):
                       f"estimator {ge:.3g}")
 
 
+def _step_grads(net, x, y, kind, multiplier=None):
+    """The gradient of a loss for the cell's parameters, split by division step (summed over the examples): [L, P].
+    kind "clock" / "ce": the ST clock or the answer's cross-entropy (w digits), along the given quotient digits from the
+    model's own registers; each step's share is its own trial's vector-Jacobian product. kind "teach": teacher-forced,
+    every step's trial from the exact previous register toward the exact next one (digits of all W places), with the
+    true digits (multiplier None) or every slot subtracting multiplier*N (0: the copy cell)."""
+    v, n, W, w = net.prep(x)
+    B, L = v.shape[:2]
+    q = net.given(x)
+    params = net.cell_params()
+    flat = lambda gs: torch.cat([g.reshape(-1) for g in gs])
+    out = torch.zeros(L, sum(p.numel() for p in params))
+    if kind == "teach":
+        Nv, Rv = value(x["N"]), torch.zeros(B, dtype=torch.long)
+        dig = lambda val: oh(torch.remainder(torch.remainder(val, 10 ** W)[:, None] // 10 ** torch.arange(W), 10))
+        for t in reversed(range(L)):
+            Rp = 10 * Rv + x["v"][:, t]
+            m = q[:, t] if multiplier is None else torch.full_like(q[:, t], multiplier)
+            Rv = Rp - m * Nv
+            D = net.trial(dig(Rp), n, q[:, t])[0]
+            loss = -(D.clamp_min(1e-9).log() * dig(Rv)).sum()
+            out[t] = flat(torch.autograd.grad(loss, params))
+        return out
+    R, Rps, Ds = oh(torch.zeros(B, W, dtype=torch.long)), {}, {}
+    for t in reversed(range(L)):
+        Rps[t] = torch.cat([v[:, t:t + 1], R[:, :W - 1]], 1)
+        R = Ds[t] = net.trial(Rps[t], n, q[:, t])[0]
+    loss = (clock(R, x["N"], y).sum() if kind == "clock"
+            else F.cross_entropy(R[:, :w].clamp_min(1e-9).log().flatten(0, 1), y.flatten(), reduction="sum"))
+    gD = torch.autograd.grad(loss, [Ds[t] for t in range(L)])
+    for t in range(L):
+        D = net.trial(Rps[t].detach(), n, q[:, t])[0]
+        out[t] = flat(torch.autograd.grad(D, params, grad_outputs=gD[t]))
+    return out
+
+
+def gradcheck(size=6, batches=(256, 1024, 4096, 16384, 65536), ref_batch=65536, chunk=4096, seed=0, pre_steps=0,
+              threads=4):
+    """Run 3: does the clock's gradient for the cell point along the subtraction's own lesson? With the true digits
+    given (modq), on the cell at init or after `pre_steps` of cross-entropy training (given digits, batch 256, lr
+    3e-3), compare per division step and in total the gradient of the ST clock and of the answer's cross-entropy (B
+    examples) with two teacher-forced references on ref_batch other examples: toward the exact subtraction ("true")
+    and toward the copy cell ("copy", every slot subtracting nothing, a zero-loss solution of the clock). Returns
+    cosines by B and step (first division step first), plus the losses and the cell's measures."""
+    torch.set_num_threads(threads)
+    task = TASKS["modq"]
+    in_w, out_w, _ = task.widths(size)
+    torch.manual_seed(seed)
+    net = MODELS["longdiv_clock"](in_w, out_w, {}, pick="given", score="ce")
+    if pre_steps:
+        opt = torch.optim.AdamW(net.parameters(), lr=3e-3, weight_decay=0.01)
+        sched = torch.optim.lr_scheduler.OneCycleLR(opt, 3e-3, total_steps=pre_steps, pct_start=0.1)
+        rng = np.random.default_rng(seed)
+        for _ in range(pre_steps):
+            x, y, _ = _tensors(task.sample(256, size, rng), "cpu")
+            loss = net.train_loss(x, y)[0]
+            opt.zero_grad()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0)
+            opt.step()
+            sched.step()
+
+    def grads(kind, B, sd, multiplier=None):
+        rng, g = np.random.default_rng(sd), 0
+        for i in range(0, B, chunk):
+            x, y, _ = _tensors(task.sample(min(chunk, B - i), size, rng), "cpu")
+            g = g + _step_grads(net, x, y, kind, multiplier)
+        return g
+
+    def cos(a, b):                                    # 0 for a step whose gradient is (numerically) absent
+        a, b = a.double(), b.double()
+        return 0.0 if min(a.norm(), b.norm()) < 1e-20 else float((a * b).sum() / (a.norm() * b.norm()))
+    ref = {"true": grads("teach", ref_batch, 70_000), "copy": grads("teach", ref_batch, 70_000, multiplier=0)}
+    x, y, _ = _tensors(task.sample(4096, size, np.random.default_rng(80_000)), "cpu")
+    with torch.no_grad():
+        R = net.choose_path(x, net.given(x))[0]
+        losses = {"clock": round(float(clock(R, x["N"], y).mean()), 4),
+                  "ce": round(float(F.cross_entropy(R[:, :y.shape[1]].clamp_min(1e-9).log().flatten(0, 1),
+                                                    y.flatten())), 4)}
+    out = {"size": size, "seed": seed, "pre_steps": pre_steps, "ref_batch": ref_batch, "losses": losses,
+           "cell": clock_test(net, task, size), "by_batch": []}
+    for i, B in enumerate(batches):
+        row = {"batch": B}
+        for kind in ("clock", "ce"):
+            g = grads(kind, B, 90_000 + i)
+            for name, r in ref.items():
+                row[f"{kind}_vs_{name}"] = round(cos(g.sum(0), r.sum(0)), 4)
+                row[f"{kind}_vs_{name}_by_step"] = [round(cos(g[t], r[t]), 4) for t in reversed(range(len(g)))]
+        out["by_batch"].append(row)
+    return out
+
+
+def recheck(paths, out=os.path.join(os.path.dirname(__file__), "results_quotient_clock_cells.jsonl")):
+    """Recompute clock_test (with this cell_table) for saved cells: each path is a cell's .pt next to its row .json
+    (as ext_quotient_clock_modal.py writes them). Appends {tag, file, size, model_kw, seed, steps, clock_test} rows."""
+    for p in paths:
+        r = json.loads(open(p.removesuffix(".pt") + ".json").read())
+        task = TASKS[r["task"]]
+        in_w, out_w, _ = task.widths(r["size"])
+        net = MODELS[r["model"]](in_w, out_w, {}, **r["model_kw"])
+        net.load_state_dict(torch.load(p))
+        row = {"tag": r["tag"], "file": os.path.basename(p), "size": r["size"], "model_kw": r["model_kw"],
+               "seed": r["seed"], "steps": r["steps"], "batch": r["batch"], "clock_test": clock_test(net, task, r["size"])}
+        with open(out, "a") as f:
+            f.write(json.dumps(row) + "\n")
+        c = row["clock_test"]
+        print(f"{row['file']:55} oracle {c['exact_oracle']:.2f}/{c['exact_mod_n_oracle']:.2f}  table {c['table_right']:.2f}"
+              f" (full {c['table_right_full']:.2f})  best map {c['table_right_best_map']:.2f} {c['slot_multiplier']}", flush=True)
+
+
+def toy(bits=((6, 7), (7, 10)), n=512, steps=300, seed=0):
+    """Is the loss sound? Free digit logits for each example's W-digit register (no cell, no sharing), trained by the
+    clock alone with Adam: the share whose register value becomes congruent to the answer mod N."""
+    torch.manual_seed(seed)
+    for b, W in bits:
+        bt = TASKS["mod"].sample(n, b, np.random.default_rng(seed))
+        x, y, _ = _tensors(bt, "cpu")
+        for mode in ("st", "mean"):
+            for scale in (0.1, 3.0):
+                Z = (scale * torch.randn(n, W, 10)).requires_grad_()
+                opt = torch.optim.Adam([Z], lr=0.1)
+                for _ in range(steps):
+                    loss = clock(Z.softmax(-1), x["N"], y, mode).mean()
+                    opt.zero_grad()
+                    loss.backward()
+                    opt.step()
+                ok = (torch.remainder(signed(Z.argmax(-1)) - value(y), value(x["N"])) == 0).float().mean()
+                print(f"{b} bits, W = {W}, {mode:4}, logits ~ {scale} N(0,1): after {steps} steps, r = y mod N on {ok:.3f}")
+
+
 def bench(size=7, steps=3, batch=256, threads=4, seed=0):
     """Seconds per training step for each pick (clock score), against longdiv_est's soft step."""
     torch.set_num_threads(threads)
@@ -437,15 +589,35 @@ def name(r):
     out = f"{pick}, {'clock' if kw.get('score', 'clock') == 'clock' else kw['score']}"
     if kw.get("noise"):
         out += f", {kw['noise']:.0%} of digits off by one"
+    if kw.get("pre_frac"):
+        out += f", after {kw['pre_score']} for the first {kw['pre_frac']:.0%} of steps"
+    if r.get("batch", 256) != 256:
+        out += f", batch {r['batch']}"
     if r.get("train_task"):
         out += f", trained on {r['train_task']}"
     return out
 
 
+CELLS = os.path.join(os.path.dirname(__file__), "results_quotient_clock_cells.jsonl")
+
+
+def _rechecked(rows):
+    """Rows with clock_test replaced by its recheck (results_quotient_clock_cells.jsonl) where there is one; other rows
+    lose the cell-table entries, which an earlier version of cell_table measured differently."""
+    key = lambda r: (r["tag"], r["size"], r["seed"], r["steps"], json.dumps(r["model_kw"], sort_keys=True))
+    fresh = {key(c): c["clock_test"] for c in qr.load(CELLS)}
+    for r in rows:
+        if key(r) in fresh:
+            r["clock_test"] = fresh[key(r)]
+        else:
+            r["clock_test"] = {k: v for k, v in r["clock_test"].items() if not k.startswith(("table", "slot", "mult"))}
+    return rows
+
+
 def report(path=RESULTS):
     """The tables of FINDINGS_quotient_clock.md."""
     groups = {}
-    for r in qr.load(path):
+    for r in _rechecked(qr.load(path)):
         groups.setdefault((name(r), r["size"], r["steps"]), {}).setdefault(r.get("holdout", 0), []).append(r)
     lines = ["| variant | bits | steps | exact | exact mod N | held-out moduli (trained) | one bit wider | "
              "one digit wider | every choice right | cell table right (best slot map) | oracle digits: exact (mod N) |",
@@ -455,14 +627,42 @@ def report(path=RESULTS):
         c = [r["clock_test"] for r in main]
         hos = qr.span([r.get("exact_heldout_moduli") for r in ho]) + (f" ({qr.span([qr.kept(r) for r in ho])})"
                                                                       if ho else "")
+        new = [x for x in c if "table_right_full" in x]           # rows before the trial-level table: no cell column
+        st = f"{k[2] // 1000}k" if k[2] >= 1000 else str(k[2])
         lines.append(
-            f"| {k[0]} | {k[1]} | {k[2] // 1000}k | {qr.span([r['exact'] for r in main])} | "
+            f"| {k[0]} | {k[1]} | {st} | {qr.span([r['exact'] for r in main])} | "
             f"{qr.span([x['exact_mod_n_own'] for x in c])} | {hos} | {qr.span([qr.wider1(r) for r in main])} | "
             f"{qr.span([qr.digit1(r) for r in main])} | "
             f"{qr.span([r['choice']['choice_mapped']['all'] for r in main])} | "
-            f"{qr.span([x['table_right'] for x in c])} ({qr.span([x['table_right_best_map'] for x in c])}) | "
+            f"{qr.span([x['table_right'] for x in new])} ({qr.span([x['table_right_best_map'] for x in new])}) | "
             f"{qr.span([x['exact_oracle'] for x in c])} ({qr.span([x['exact_mod_n_oracle'] for x in c])}) |")
     return "\n".join(lines)
+
+
+GRAD = os.path.join(os.path.dirname(__file__), "results_quotient_clock_grad.jsonl")
+
+
+def grad_report(path=GRAD):
+    """Run 3's gradient checks: cosine of the clock's and the answer cross-entropy's gradient for the cell with the
+    teacher-forced lesson toward the exact subtraction (and toward the copy cell), by batch, over seeds; per step for
+    the largest batch (first division step first)."""
+    groups = {}
+    for r in qr.load(path):
+        groups.setdefault((r["size"], r["pre_steps"]), []).append(r)
+    lines = ["| bits | cell | batch | clock vs exact lesson | clock vs copy lesson | answer CE vs exact lesson |",
+             "|---|---|---|---|---|---|"]
+    steps = []
+    for (size, pre), rs in sorted(groups.items()):
+        state = "at init" if not pre else f"after {pre} CE steps (oracle exact {qr.span([r['cell']['exact_oracle'] for r in rs])})"
+        for i, b in enumerate(rs[0]["by_batch"]):
+            col = lambda k: qr.span([r["by_batch"][i][k] for r in rs], "{:+.2f}")
+            lines.append(f"| {size} | {state} | {b['batch']:,} | {col('clock_vs_true')} | {col('clock_vs_copy')} | "
+                         f"{col('ce_vs_true')} |")
+        last = lambda k: " / ".join("[" + " ".join(f"{a:+.2f}" if abs(a) <= 1 else " 0  " for a in r["by_batch"][-1][k])
+                                    + "]" for r in rs)                # |cos| > 1: an old row's vanishing gradient
+        steps.append(f"{size} bits, {state}, batch {rs[0]['by_batch'][-1]['batch']:,}: clock {last('clock_vs_true_by_step')}"
+                     f"; answer CE {last('ce_vs_true_by_step')}")
+    return "\n".join(lines + [""] + steps)
 
 
 def runs_report(path=RESULTS):
@@ -471,7 +671,7 @@ def runs_report(path=RESULTS):
     for r in sorted(qr.load(path), key=lambda r: (name(r), r["size"], r["steps"], r.get("holdout", 0), r["seed"])):
         c = r["clock_test"]
         curve = " ".join(f"{p['step']}:{p['exact']:.2f}/{p['exact_mod_n']:.2f}/{p['table_right']:.2f}"
-                         for p in r["train_curve"][::3])
+                         for p in [p for p in r["train_curve"] if not p.get("switch")][::3])
         out.append(f"{name(r):55} {r['size']} {r['steps'] // 1000:>2}k ho{r.get('holdout', 0)} s{r['seed']}  "
                    f"exact {r['exact']:.2f} mod-N {c['exact_mod_n_own']:.2f}  table {c['table_right']:.2f} "
                    f"best {c['table_right_best_map']:.2f} map {c['slot_multiplier']}  "
@@ -499,17 +699,25 @@ def main():
     s.add_argument("--steps", type=int, default=3)
     s.add_argument("--threads", type=int, default=4)
     sub.add_parser("selftest")
+    sub.add_parser("toy")
+    s = sub.add_parser("recheck")
+    s.add_argument("paths", nargs="+", help="saved cells (.pt next to their row .json)")
     s = sub.add_parser("report")
     s.add_argument("--runs", action="store_true", help="per run: the slot map and the training curve")
+    s.add_argument("--grad", action="store_true", help="run 3's gradient checks")
     a = p.parse_args()
     if a.cmd == "cell":
         r = cell(a.task, a.size, steps=a.steps, lr=a.lr, seed=a.seed, threads=a.threads, holdout=a.holdout,
                  train_on=a.train_on, tag=a.tag, log=None if a.nolog else RESULTS, **json.loads(a.extra))
         print(show_clock(r), flush=True)
+    elif a.cmd == "recheck":
+        recheck(a.paths)
+    elif a.cmd == "toy":
+        toy()
     elif a.cmd == "bench":
         bench(a.size, a.steps, threads=a.threads)
     elif a.cmd == "report":
-        print(runs_report() if a.runs else report())
+        print(grad_report() if a.grad else runs_report() if a.runs else report())
     else:
         selftest()
 

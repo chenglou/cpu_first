@@ -1,0 +1,1870 @@
+{
+ "name": "p1_s1_cpu_seed74",
+ "gpu": "",
+ "returncode": 0,
+ "wall_seconds": 2427.8623111248016,
+ "manifest": {
+  "name": "squaring-mod-hard-h1",
+  "data": {
+   "kind": "squaring_mod",
+   "data_root": "data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2",
+   "batch_size": 512,
+   "eval_batch_size": 512,
+   "shuffle_train": true,
+   "shuffle_eval": false,
+   "num_workers": 2,
+   "pin_memory": true,
+   "drop_last": true,
+   "seed": 45
+  },
+  "runtime": {
+   "device": "cpu",
+   "dtype": "bfloat16",
+   "amp": true,
+   "compile": false,
+   "total_training_time_seconds": 3600,
+   "max_steps": 1000000,
+   "seeds": [
+    74
+   ],
+   "grad_clip": 1,
+   "log_every": 100
+  },
+  "model_state": {
+   "maximum_elements": 500000000
+  }
+ },
+ "stdout": "{\n  \"manifest\": \"squaring-mod-hard-h1\",\n  \"model_spec\": {\n    \"vocab_size\": 17,\n    \"max_seq_len\": 21,\n    \"maximum_model_state_elements\": 500000000\n  },\n  \"training_batch_size\": 512,\n  \"evaluation_batch_size\": 16384,\n  \"max_training_steps\": 20000,\n  \"total_training_time_seconds\": 3600.0,\n  \"training_time_seconds_per_seed\": 3600.0,\n  \"evaluation_time_seconds_per_seed\": 1800.0,\n  \"seeds\": [\n    74\n  ]\n}\nLR step=1 phase=A k=1 in_stage=1 loss=2.3029 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=1 loss=2.302881 accuracy=0.000000 elapsed=2.3s budget=3600.0s\nstep=100 loss=1.941210 accuracy=0.000000 elapsed=5.0s budget=3600.0s\nstep=200 loss=1.922237 accuracy=0.000000 elapsed=7.8s budget=3600.0s\nLR step=250 phase=A k=1 in_stage=250 loss=1.9257 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=300 loss=1.916547 accuracy=0.000000 elapsed=10.5s budget=3600.0s\nstep=400 loss=1.916789 accuracy=0.000000 elapsed=13.4s budget=3600.0s\nLR step=500 phase=A k=1 in_stage=500 loss=1.5404 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=500 loss=1.540430 accuracy=0.000000 elapsed=17.3s budget=3600.0s\nstep=600 loss=1.156519 accuracy=0.000000 elapsed=21.3s budget=3600.0s\nstep=700 loss=1.004375 accuracy=0.000000 elapsed=25.2s budget=3600.0s\nLR step=750 phase=A k=1 in_stage=750 loss=1.0074 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=800 loss=0.848339 accuracy=0.000000 elapsed=29.3s budget=3600.0s\nstep=900 loss=0.715425 accuracy=0.000000 elapsed=33.3s budget=3600.0s\nLR step=1000 phase=A k=1 in_stage=1000 loss=0.6101 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=1000 loss=0.610145 accuracy=0.000000 elapsed=37.4s budget=3600.0s\nstep=1100 loss=0.590721 accuracy=0.000000 elapsed=41.3s budget=3600.0s\nstep=1200 loss=0.572241 accuracy=0.000000 elapsed=45.3s budget=3600.0s\nLR step=1250 phase=A k=1 in_stage=1250 loss=0.5754 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=1300 loss=0.533351 accuracy=0.000000 elapsed=49.1s budget=3600.0s\nstep=1400 loss=0.507332 accuracy=0.000000 elapsed=53.0s budget=3600.0s\nLR step=1500 phase=A k=1 in_stage=1500 loss=0.4817 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR stage_done step=1500 phase=A k=1 steps=1500 win=0.0000\nstep=1500 loss=0.481736 accuracy=0.000000 elapsed=56.9s budget=3600.0s\nstep=1600 loss=1.011451 accuracy=0.000000 elapsed=64.7s budget=3600.0s\nstep=1700 loss=0.994990 accuracy=0.000000 elapsed=72.2s budget=3600.0s\nLR step=1750 phase=A k=2 in_stage=250 loss=0.9222 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=1800 loss=0.968111 accuracy=0.000000 elapsed=80.1s budget=3600.0s\nstep=1900 loss=0.942853 accuracy=0.000000 elapsed=87.7s budget=3600.0s\nLR step=2000 phase=A k=2 in_stage=500 loss=0.9099 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=2000 loss=0.909919 accuracy=0.000000 elapsed=95.6s budget=3600.0s\nstep=2100 loss=0.923623 accuracy=0.000000 elapsed=103.2s budget=3600.0s\nstep=2200 loss=0.915175 accuracy=0.000000 elapsed=111.0s budget=3600.0s\nLR step=2250 phase=A k=2 in_stage=750 loss=0.9003 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=2300 loss=0.890990 accuracy=0.000000 elapsed=118.6s budget=3600.0s\nstep=2400 loss=0.877984 accuracy=0.000000 elapsed=126.5s budget=3600.0s\nLR step=2500 phase=A k=2 in_stage=1000 loss=0.9175 hard_exact=0.0000 win=0.0003 rows_visited=200/200\nstep=2500 loss=0.917515 accuracy=0.000000 elapsed=133.9s budget=3600.0s\nstep=2600 loss=0.887868 accuracy=0.000000 elapsed=141.9s budget=3600.0s\nstep=2700 loss=0.911254 accuracy=0.000000 elapsed=149.4s budget=3600.0s\nLR step=2750 phase=A k=2 in_stage=1250 loss=0.8675 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=2800 loss=0.909516 accuracy=0.000000 elapsed=157.2s budget=3600.0s\nstep=2900 loss=0.911851 accuracy=0.000000 elapsed=164.8s budget=3600.0s\nLR step=3000 phase=A k=2 in_stage=1500 loss=0.8858 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR stage_done step=3000 phase=A k=2 steps=1500 win=0.0000\nstep=3000 loss=0.885776 accuracy=0.000000 elapsed=172.7s budget=3600.0s\nstep=3100 loss=1.351223 accuracy=0.000000 elapsed=183.5s budget=3600.0s\nstep=3200 loss=1.345768 accuracy=0.000000 elapsed=194.4s budget=3600.0s\nLR step=3250 phase=A k=3 in_stage=250 loss=1.3378 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=3300 loss=1.371897 accuracy=0.000000 elapsed=205.2s budget=3600.0s\nstep=3400 loss=1.351313 accuracy=0.000000 elapsed=216.2s budget=3600.0s\nLR step=3500 phase=A k=3 in_stage=500 loss=1.3401 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=3500 loss=1.340059 accuracy=0.000000 elapsed=226.7s budget=3600.0s\nstep=3600 loss=1.299369 accuracy=0.000000 elapsed=237.3s budget=3600.0s\nstep=3700 loss=1.358090 accuracy=0.000000 elapsed=247.9s budget=3600.0s\nLR step=3750 phase=A k=3 in_stage=750 loss=1.3478 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=3800 loss=1.379822 accuracy=0.000000 elapsed=258.6s budget=3600.0s\nstep=3900 loss=1.333666 accuracy=0.000000 elapsed=269.2s budget=3600.0s\nLR step=4000 phase=A k=3 in_stage=1000 loss=1.3552 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=4000 loss=1.355167 accuracy=0.000000 elapsed=279.9s budget=3600.0s\nstep=4100 loss=1.353690 accuracy=0.000000 elapsed=290.4s budget=3600.0s\nstep=4200 loss=1.334652 accuracy=0.000000 elapsed=301.2s budget=3600.0s\nLR step=4250 phase=A k=3 in_stage=1250 loss=1.3531 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=4300 loss=1.369362 accuracy=0.000000 elapsed=311.6s budget=3600.0s\nstep=4400 loss=1.342165 accuracy=0.000000 elapsed=322.0s budget=3600.0s\nLR step=4500 phase=A k=3 in_stage=1500 loss=1.3468 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR stage_done step=4500 phase=A k=3 steps=1500 win=0.0000\nstep=4500 loss=1.346781 accuracy=0.000000 elapsed=332.3s budget=3600.0s\nstep=4600 loss=1.805893 accuracy=0.000000 elapsed=346.0s budget=3600.0s\nstep=4700 loss=1.802472 accuracy=0.000000 elapsed=359.5s budget=3600.0s\nLR step=4750 phase=A k=4 in_stage=250 loss=1.7742 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=4800 loss=1.772063 accuracy=0.000000 elapsed=373.2s budget=3600.0s\nstep=4900 loss=1.750229 accuracy=0.000000 elapsed=386.7s budget=3600.0s\nLR step=5000 phase=A k=4 in_stage=500 loss=1.7923 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=5000 loss=1.792349 accuracy=0.000000 elapsed=400.4s budget=3600.0s\nstep=5100 loss=1.784508 accuracy=0.000000 elapsed=413.7s budget=3600.0s\nstep=5200 loss=1.776991 accuracy=0.000000 elapsed=427.3s budget=3600.0s\nLR step=5250 phase=A k=4 in_stage=750 loss=1.7736 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=5300 loss=1.806178 accuracy=0.000000 elapsed=440.4s budget=3600.0s\nstep=5400 loss=1.788622 accuracy=0.000000 elapsed=454.1s budget=3600.0s\nLR step=5500 phase=A k=4 in_stage=1000 loss=1.8014 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=5500 loss=1.801406 accuracy=0.000000 elapsed=467.3s budget=3600.0s\nstep=5600 loss=1.792319 accuracy=0.000000 elapsed=480.8s budget=3600.0s\nstep=5700 loss=1.790033 accuracy=0.000000 elapsed=495.0s budget=3600.0s\nLR step=5750 phase=A k=4 in_stage=1250 loss=1.8006 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=5800 loss=1.798830 accuracy=0.000000 elapsed=515.1s budget=3600.0s\nstep=5900 loss=1.822253 accuracy=0.000000 elapsed=532.6s budget=3600.0s\nLR step=6000 phase=A k=4 in_stage=1500 loss=1.7824 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR stage_done step=6000 phase=A k=4 steps=1500 win=0.0000\nstep=6000 loss=1.782375 accuracy=0.000000 elapsed=550.1s budget=3600.0s\nstep=6100 loss=2.098001 accuracy=0.000000 elapsed=570.1s budget=3600.0s\nstep=6200 loss=2.098370 accuracy=0.000000 elapsed=590.0s budget=3600.0s\nLR step=6250 phase=A k=5 in_stage=250 loss=2.1074 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=6300 loss=2.131109 accuracy=0.000000 elapsed=611.5s budget=3600.0s\nstep=6400 loss=2.099277 accuracy=0.000000 elapsed=631.4s budget=3600.0s\nLR step=6500 phase=A k=5 in_stage=500 loss=2.1303 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=6500 loss=2.130343 accuracy=0.000000 elapsed=648.4s budget=3600.0s\nstep=6600 loss=2.108621 accuracy=0.000000 elapsed=665.0s budget=3600.0s\nstep=6700 loss=2.084805 accuracy=0.000000 elapsed=681.7s budget=3600.0s\nLR step=6750 phase=A k=5 in_stage=750 loss=2.1139 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=6800 loss=2.109931 accuracy=0.000000 elapsed=698.6s budget=3600.0s\nstep=6900 loss=2.129692 accuracy=0.000000 elapsed=715.2s budget=3600.0s\nLR step=7000 phase=A k=5 in_stage=1000 loss=2.1051 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=7000 loss=2.105062 accuracy=0.000000 elapsed=731.9s budget=3600.0s\nstep=7100 loss=2.108734 accuracy=0.000000 elapsed=748.8s budget=3600.0s\nstep=7200 loss=2.111457 accuracy=0.000000 elapsed=765.5s budget=3600.0s\nLR step=7250 phase=A k=5 in_stage=1250 loss=2.1303 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=7300 loss=2.092928 accuracy=0.000000 elapsed=781.9s budget=3600.0s\nstep=7400 loss=2.098735 accuracy=0.000000 elapsed=798.7s budget=3600.0s\nLR step=7500 phase=A k=5 in_stage=1500 loss=2.0865 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR stage_done step=7500 phase=A k=5 steps=1500 win=0.0000\nstep=7500 loss=2.086547 accuracy=0.000000 elapsed=815.4s budget=3600.0s\nstep=7600 loss=2.250046 accuracy=0.000000 elapsed=835.4s budget=3600.0s\nstep=7700 loss=2.240378 accuracy=0.000000 elapsed=855.3s budget=3600.0s\nLR step=7750 phase=A k=6 in_stage=250 loss=2.2631 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=7800 loss=2.251613 accuracy=0.000000 elapsed=875.5s budget=3600.0s\nstep=7900 loss=2.253492 accuracy=0.000000 elapsed=895.1s budget=3600.0s\nLR step=8000 phase=A k=6 in_stage=500 loss=2.2570 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=8000 loss=2.257012 accuracy=0.000000 elapsed=914.6s budget=3600.0s\nstep=8100 loss=2.252100 accuracy=0.000000 elapsed=934.0s budget=3600.0s\nstep=8200 loss=2.253060 accuracy=0.000000 elapsed=953.3s budget=3600.0s\nLR step=8250 phase=A k=6 in_stage=750 loss=2.2364 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=8300 loss=2.248113 accuracy=0.000000 elapsed=972.3s budget=3600.0s\nstep=8400 loss=2.240187 accuracy=0.000000 elapsed=991.7s budget=3600.0s\nLR step=8500 phase=A k=6 in_stage=1000 loss=2.2179 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=8500 loss=2.217856 accuracy=0.000000 elapsed=1010.7s budget=3600.0s\nstep=8600 loss=2.249925 accuracy=0.000000 elapsed=1030.0s budget=3600.0s\nstep=8700 loss=2.248295 accuracy=0.000000 elapsed=1048.9s budget=3600.0s\nLR step=8750 phase=A k=6 in_stage=1250 loss=2.2533 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=8800 loss=2.255366 accuracy=0.000000 elapsed=1068.2s budget=3600.0s\nstep=8900 loss=2.243019 accuracy=0.000000 elapsed=1087.3s budget=3600.0s\nLR step=9000 phase=A k=6 in_stage=1500 loss=2.2458 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR stage_done step=9000 phase=A k=6 steps=1500 win=0.0000\nstep=9000 loss=2.245844 accuracy=0.000000 elapsed=1106.7s budget=3600.0s\nstep=9100 loss=2.280791 accuracy=0.000000 elapsed=1128.8s budget=3600.0s\nstep=9200 loss=2.290465 accuracy=0.000000 elapsed=1151.3s budget=3600.0s\nLR step=9250 phase=A k=7 in_stage=250 loss=2.2772 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=9300 loss=2.288365 accuracy=0.000000 elapsed=1173.2s budget=3600.0s\nstep=9400 loss=2.282780 accuracy=0.000000 elapsed=1195.6s budget=3600.0s\nLR step=9500 phase=A k=7 in_stage=500 loss=2.2957 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=9500 loss=2.295683 accuracy=0.000000 elapsed=1217.6s budget=3600.0s\nstep=9600 loss=2.295463 accuracy=0.000000 elapsed=1240.2s budget=3600.0s\nstep=9700 loss=2.288224 accuracy=0.000000 elapsed=1262.5s budget=3600.0s\nLR step=9750 phase=A k=7 in_stage=750 loss=2.2841 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=9800 loss=2.275136 accuracy=0.000000 elapsed=1285.0s budget=3600.0s\nstep=9900 loss=2.295079 accuracy=0.000000 elapsed=1307.5s budget=3600.0s\nLR step=10000 phase=A k=7 in_stage=1000 loss=2.2874 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=10000 loss=2.287410 accuracy=0.000000 elapsed=1330.2s budget=3600.0s\nstep=10100 loss=2.278245 accuracy=0.000000 elapsed=1352.6s budget=3600.0s\nstep=10200 loss=2.278947 accuracy=0.000000 elapsed=1375.4s budget=3600.0s\nLR step=10250 phase=A k=7 in_stage=1250 loss=2.2906 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=10300 loss=2.288115 accuracy=0.000000 elapsed=1398.3s budget=3600.0s\nstep=10400 loss=2.286484 accuracy=0.000000 elapsed=1421.1s budget=3600.0s\nLR step=10500 phase=A k=7 in_stage=1500 loss=2.2899 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR stage_done step=10500 phase=A k=7 steps=1500 win=0.0000\nstep=10500 loss=2.289926 accuracy=0.000000 elapsed=1443.4s budget=3600.0s\nstep=10600 loss=2.299977 accuracy=0.000000 elapsed=1469.0s budget=3600.0s\nstep=10700 loss=2.305259 accuracy=0.000000 elapsed=1494.4s budget=3600.0s\nLR step=10750 phase=A k=8 in_stage=250 loss=2.3098 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=10800 loss=2.301288 accuracy=0.000000 elapsed=1520.8s budget=3600.0s\nstep=10900 loss=2.306621 accuracy=0.000000 elapsed=1545.9s budget=3600.0s\nLR step=11000 phase=A k=8 in_stage=500 loss=2.3013 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=11000 loss=2.301287 accuracy=0.000000 elapsed=1571.3s budget=3600.0s\nstep=11100 loss=2.298740 accuracy=0.000000 elapsed=1596.6s budget=3600.0s\nstep=11200 loss=2.297960 accuracy=0.000000 elapsed=1622.4s budget=3600.0s\nLR step=11250 phase=A k=8 in_stage=750 loss=2.3025 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=11300 loss=2.299897 accuracy=0.000000 elapsed=1647.6s budget=3600.0s\nstep=11400 loss=2.295048 accuracy=0.000000 elapsed=1673.5s budget=3600.0s\nLR step=11500 phase=A k=8 in_stage=1000 loss=2.2965 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=11500 loss=2.296546 accuracy=0.000000 elapsed=1699.2s budget=3600.0s\nstep=11600 loss=2.298005 accuracy=0.000000 elapsed=1725.2s budget=3600.0s\nstep=11700 loss=2.296081 accuracy=0.000000 elapsed=1751.3s budget=3600.0s\nLR step=11750 phase=A k=8 in_stage=1250 loss=2.3013 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nstep=11800 loss=2.301279 accuracy=0.000000 elapsed=1777.4s budget=3600.0s\nstep=11900 loss=2.301027 accuracy=0.000000 elapsed=1802.8s budget=3600.0s\nLR step=12000 phase=A k=8 in_stage=1500 loss=2.3008 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR switch_to_own_borrow step=12000 k=8 win=0.0000\nstep=12000 loss=2.300788 accuracy=0.000000 elapsed=1828.8s budget=3600.0s\nstep=12100 loss=7.874722 accuracy=0.000000 elapsed=1836.2s budget=3600.0s\nstep=12200 loss=5.261211 accuracy=0.000000 elapsed=1843.9s budget=3600.0s\nLR step=12250 phase=B k=8 in_stage=250 loss=2.4168 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=12250 real_rows=7 real_hard_exact=0.0000\nstep=12300 loss=4.801602 accuracy=0.000000 elapsed=1851.4s budget=3600.0s\nstep=12400 loss=4.531961 accuracy=0.000000 elapsed=1858.9s budget=3600.0s\nLR step=12500 phase=B k=8 in_stage=500 loss=2.3219 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=12500 real_rows=8 real_hard_exact=0.0000\nstep=12500 loss=4.686193 accuracy=0.000000 elapsed=1866.4s budget=3600.0s\nstep=12600 loss=4.657874 accuracy=0.000000 elapsed=1873.9s budget=3600.0s\nstep=12700 loss=4.734028 accuracy=0.000000 elapsed=1881.1s budget=3600.0s\nLR step=12750 phase=B k=8 in_stage=750 loss=2.3585 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=12750 real_rows=7 real_hard_exact=0.0000\nstep=12800 loss=4.747956 accuracy=0.000000 elapsed=1888.6s budget=3600.0s\nstep=12900 loss=4.557039 accuracy=0.000000 elapsed=1896.0s budget=3600.0s\nLR step=13000 phase=B k=8 in_stage=1000 loss=2.3408 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=13000 real_rows=9 real_hard_exact=0.0000\nstep=13000 loss=4.708347 accuracy=0.000000 elapsed=1903.5s budget=3600.0s\nstep=13100 loss=4.580517 accuracy=0.000000 elapsed=1910.8s budget=3600.0s\nstep=13200 loss=4.596049 accuracy=0.000000 elapsed=1918.3s budget=3600.0s\nLR step=13250 phase=B k=8 in_stage=1250 loss=2.2849 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=13250 real_rows=16 real_hard_exact=0.0000\nstep=13300 loss=4.581035 accuracy=0.000000 elapsed=1925.4s budget=3600.0s\nstep=13400 loss=4.559250 accuracy=0.000000 elapsed=1933.0s budget=3600.0s\nLR step=13500 phase=B k=8 in_stage=1500 loss=2.2795 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=13500 real_rows=11 real_hard_exact=0.0000\nstep=13500 loss=4.520715 accuracy=0.000000 elapsed=1940.2s budget=3600.0s\nstep=13600 loss=4.567909 accuracy=0.000000 elapsed=1948.0s budget=3600.0s\nstep=13700 loss=4.570013 accuracy=0.000000 elapsed=1955.4s budget=3600.0s\nLR step=13750 phase=B k=8 in_stage=1750 loss=2.2831 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=13750 real_rows=13 real_hard_exact=0.0000\nstep=13800 loss=4.526966 accuracy=0.000000 elapsed=1962.7s budget=3600.0s\nstep=13900 loss=4.620205 accuracy=0.000000 elapsed=1969.7s budget=3600.0s\nLR step=14000 phase=B k=8 in_stage=2000 loss=2.2802 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=14000 real_rows=15 real_hard_exact=0.0000\nstep=14000 loss=4.510397 accuracy=0.000000 elapsed=1977.1s budget=3600.0s\nstep=14100 loss=4.655145 accuracy=0.000000 elapsed=1984.4s budget=3600.0s\nstep=14200 loss=4.615703 accuracy=0.000000 elapsed=1991.7s budget=3600.0s\nLR step=14250 phase=B k=8 in_stage=2250 loss=2.2751 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=14250 real_rows=10 real_hard_exact=0.0000\nstep=14300 loss=4.526914 accuracy=0.000000 elapsed=1999.0s budget=3600.0s\nstep=14400 loss=4.503130 accuracy=0.000000 elapsed=2006.5s budget=3600.0s\nLR step=14500 phase=B k=8 in_stage=2500 loss=2.2838 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=14500 real_rows=11 real_hard_exact=0.0000\nstep=14500 loss=4.585967 accuracy=0.000000 elapsed=2013.6s budget=3600.0s\nstep=14600 loss=4.596851 accuracy=0.000000 elapsed=2021.0s budget=3600.0s\nstep=14700 loss=4.569260 accuracy=0.000000 elapsed=2027.7s budget=3600.0s\nLR step=14750 phase=B k=8 in_stage=2750 loss=2.2854 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=14750 real_rows=13 real_hard_exact=0.0000\nstep=14800 loss=4.533950 accuracy=0.000000 elapsed=2034.9s budget=3600.0s\nstep=14900 loss=4.576112 accuracy=0.000000 elapsed=2041.9s budget=3600.0s\nLR step=15000 phase=B k=8 in_stage=3000 loss=2.2775 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=15000 real_rows=7 real_hard_exact=0.0000\nstep=15000 loss=4.529505 accuracy=0.000000 elapsed=2049.4s budget=3600.0s\nstep=15100 loss=4.579699 accuracy=0.000000 elapsed=2056.5s budget=3600.0s\nstep=15200 loss=4.572927 accuracy=0.000000 elapsed=2063.5s budget=3600.0s\nLR step=15250 phase=B k=8 in_stage=3250 loss=2.2834 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=15250 real_rows=11 real_hard_exact=0.0000\nstep=15300 loss=4.605124 accuracy=0.000000 elapsed=2070.5s budget=3600.0s\nstep=15400 loss=4.491235 accuracy=0.000000 elapsed=2077.8s budget=3600.0s\nLR step=15500 phase=B k=8 in_stage=3500 loss=2.2752 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=15500 real_rows=13 real_hard_exact=0.0000\nstep=15500 loss=4.545717 accuracy=0.000000 elapsed=2084.9s budget=3600.0s\nstep=15600 loss=4.613801 accuracy=0.000000 elapsed=2092.4s budget=3600.0s\nstep=15700 loss=4.639729 accuracy=0.000000 elapsed=2099.5s budget=3600.0s\nLR step=15750 phase=B k=8 in_stage=3750 loss=2.2871 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=15750 real_rows=11 real_hard_exact=0.0000\nstep=15800 loss=4.594899 accuracy=0.000000 elapsed=2106.8s budget=3600.0s\nstep=15900 loss=4.593771 accuracy=0.000000 elapsed=2113.9s budget=3600.0s\nLR step=16000 phase=B k=8 in_stage=4000 loss=2.2803 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=16000 real_rows=9 real_hard_exact=0.0000\nstep=16000 loss=4.584626 accuracy=0.000000 elapsed=2121.3s budget=3600.0s\nstep=16100 loss=4.580507 accuracy=0.000000 elapsed=2128.2s budget=3600.0s\nstep=16200 loss=4.584618 accuracy=0.000000 elapsed=2135.4s budget=3600.0s\nLR step=16250 phase=B k=8 in_stage=4250 loss=2.2851 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=16250 real_rows=7 real_hard_exact=0.0000\nstep=16300 loss=4.489666 accuracy=0.000000 elapsed=2142.5s budget=3600.0s\nstep=16400 loss=4.515716 accuracy=0.000000 elapsed=2150.0s budget=3600.0s\nLR step=16500 phase=B k=8 in_stage=4500 loss=2.2775 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=16500 real_rows=7 real_hard_exact=0.0000\nstep=16500 loss=4.497430 accuracy=0.000000 elapsed=2157.1s budget=3600.0s\nstep=16600 loss=4.561263 accuracy=0.000000 elapsed=2164.4s budget=3600.0s\nstep=16700 loss=4.613197 accuracy=0.000000 elapsed=2171.5s budget=3600.0s\nLR step=16750 phase=B k=8 in_stage=4750 loss=2.2706 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=16750 real_rows=10 real_hard_exact=0.0000\nstep=16800 loss=4.582756 accuracy=0.000000 elapsed=2178.6s budget=3600.0s\nstep=16900 loss=4.514122 accuracy=0.000000 elapsed=2185.5s budget=3600.0s\nLR step=17000 phase=B k=8 in_stage=5000 loss=2.2861 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=17000 real_rows=10 real_hard_exact=0.0000\nstep=17000 loss=4.560163 accuracy=0.000000 elapsed=2192.8s budget=3600.0s\nstep=17100 loss=4.579174 accuracy=0.000000 elapsed=2200.0s budget=3600.0s\nstep=17200 loss=4.568479 accuracy=0.000000 elapsed=2207.4s budget=3600.0s\nLR step=17250 phase=B k=8 in_stage=5250 loss=2.2909 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=17250 real_rows=15 real_hard_exact=0.0000\nstep=17300 loss=4.623602 accuracy=0.000000 elapsed=2214.5s budget=3600.0s\nstep=17400 loss=4.571431 accuracy=0.000000 elapsed=2221.7s budget=3600.0s\nLR step=17500 phase=B k=8 in_stage=5500 loss=2.2747 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=17500 real_rows=8 real_hard_exact=0.0000\nstep=17500 loss=4.513666 accuracy=0.000000 elapsed=2228.9s budget=3600.0s\nstep=17600 loss=4.540062 accuracy=0.000000 elapsed=2236.1s budget=3600.0s\nstep=17700 loss=4.503001 accuracy=0.000000 elapsed=2243.1s budget=3600.0s\nLR step=17750 phase=B k=8 in_stage=5750 loss=2.2728 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=17750 real_rows=10 real_hard_exact=0.0000\nstep=17800 loss=4.561304 accuracy=0.000000 elapsed=2250.5s budget=3600.0s\nstep=17900 loss=4.504124 accuracy=0.000000 elapsed=2257.7s budget=3600.0s\nLR step=18000 phase=B k=8 in_stage=6000 loss=2.2786 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=18000 real_rows=12 real_hard_exact=0.0000\nstep=18000 loss=4.593704 accuracy=0.000000 elapsed=2264.9s budget=3600.0s\nstep=18100 loss=4.590672 accuracy=0.000000 elapsed=2271.9s budget=3600.0s\nstep=18200 loss=4.546104 accuracy=0.000000 elapsed=2279.3s budget=3600.0s\nLR step=18250 phase=B k=8 in_stage=6250 loss=2.2857 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=18250 real_rows=20 real_hard_exact=0.0000\nstep=18300 loss=4.599726 accuracy=0.000000 elapsed=2286.4s budget=3600.0s\nstep=18400 loss=4.575233 accuracy=0.000000 elapsed=2293.7s budget=3600.0s\nLR step=18500 phase=B k=8 in_stage=6500 loss=2.2716 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=18500 real_rows=9 real_hard_exact=0.0000\nstep=18500 loss=4.601869 accuracy=0.000000 elapsed=2301.2s budget=3600.0s\nstep=18600 loss=4.521883 accuracy=0.000000 elapsed=2308.7s budget=3600.0s\nstep=18700 loss=4.493801 accuracy=0.000000 elapsed=2315.9s budget=3600.0s\nLR step=18750 phase=B k=8 in_stage=6750 loss=2.2719 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=18750 real_rows=7 real_hard_exact=0.0000\nstep=18800 loss=4.603182 accuracy=0.000000 elapsed=2323.3s budget=3600.0s\nstep=18900 loss=4.522171 accuracy=0.000000 elapsed=2330.6s budget=3600.0s\nLR step=19000 phase=B k=8 in_stage=7000 loss=2.2753 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=19000 real_rows=10 real_hard_exact=0.0000\nstep=19000 loss=4.493002 accuracy=0.000000 elapsed=2338.2s budget=3600.0s\nstep=19100 loss=4.562731 accuracy=0.000000 elapsed=2345.7s budget=3600.0s\nstep=19200 loss=4.557780 accuracy=0.000000 elapsed=2353.0s budget=3600.0s\nLR step=19250 phase=B k=8 in_stage=7250 loss=2.2737 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=19250 real_rows=10 real_hard_exact=0.0000\nstep=19300 loss=4.542398 accuracy=0.000000 elapsed=2360.2s budget=3600.0s\nstep=19400 loss=4.547099 accuracy=0.000000 elapsed=2367.7s budget=3600.0s\nLR step=19500 phase=B k=8 in_stage=7500 loss=2.2672 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=19500 real_rows=12 real_hard_exact=0.0000\nstep=19500 loss=4.531642 accuracy=0.000000 elapsed=2375.1s budget=3600.0s\nstep=19600 loss=4.582788 accuracy=0.000000 elapsed=2382.1s budget=3600.0s\nstep=19700 loss=4.536078 accuracy=0.000000 elapsed=2389.4s budget=3600.0s\nLR step=19750 phase=B k=8 in_stage=7750 loss=2.2753 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=19750 real_rows=6 real_hard_exact=0.0000\nstep=19800 loss=4.549738 accuracy=0.000000 elapsed=2396.9s budget=3600.0s\nstep=19900 loss=4.564509 accuracy=0.000000 elapsed=2404.1s budget=3600.0s\nLR step=20000 phase=B k=8 in_stage=8000 loss=2.2946 hard_exact=0.0000 win=0.0000 rows_visited=200/200\nLR step=20000 real_rows=6 real_hard_exact=0.0000\nstep=20000 loss=4.662983 accuracy=0.000000 elapsed=2411.7s budget=3600.0s\nTABLE digit=91608563121554931031233019616506119173823021305424726155249322621180337303325500035302710039929496657424439241807008920495857413027160697807063605994362377059987717869596788596300906389746587406529160\nTABLE borrow=01010101010101011100111100000111010101110101011101000100011001010101101101101101110101010100001101011101110101011001101111010101010111010101011101110111011101010101110111110101110001011001110111110101\nTABLE train_visits min=7835263 rows_never=0 counts=136472433,623437685,25219789,19033378,25600567,20005288,25424587,19693283,23781537,17920425,20020514,14456873,19807825,13324818,19707063,12242018,19539938,12617824,19469284,13038421,42577835,187702251,20634846,14620079,20929152,15287622,20781994,15074655,19531542,13724597,16691462,11006217,16574177,10157872,16494154,9328402,16424424,9589427,16356617,9891805,46437471,177509705,21683275,15989047,22009223,16703995,21736424,16426894,20297530,14777506,17284088,11811968,17133510,10820123,16967705,9940176,16893481,10164443,16775340,10406176,43139158,173777788,21001621,15827958,21264030,16548279,21182996,16437423,19689695,14712730,16789730,11784185,16536735,10663835,16458798,9910910,16324491,10026526,16366403,10388099,45488765,175168844,21727270,16080596,22021471,16838530,22239976,16822729,21079378,15800611,17924883,12720408,17696386,11613107,17610904,10810175,17525396,11005075,17542243,11407493,39532689,133233009,21136737,16024553,21414693,16874081,21770303,16999384,21129445,16214671,18125549,13347061,17932103,12269315,17913290,11677226,17860661,11759273,18198238,12608769,45412362,148769408,23536260,18321285,24096587,19580354,24484039,19816935,24207656,19308092,20718421,15888010,21050017,15190411,20936156,14452121,21193292,14900605,21445271,15879748,40914330,133280055,21308088,15970826,21767529,17040416,22154527,17218851,21953723,16846028,18892495,13864709,19360349,13370611,19285193,12687121,19511590,13153937,19563148,13944294,42919777,132046381,21227448,14227966,21835868,15285929,21995183,15406877,22486363,15787536,19235236,12810715,20396139,13077849,20158763,11908568,20899911,13028237,20060872,13063062,30115791,95483456,16729161,9421718,17193001,10034006,17216304,10089119,17559515,10432330,15386615,8437436,16277665,8664803,15992360,7835263,16574489,8567642,15826025,8362011\nTABLE schedule phase=B step=20000 history=[(1500, 'A', 1, 1500, 0.0), (3000, 'A', 2, 1500, 0.0), (4500, 'A', 3, 1500, 0.0), (6000, 'A', 4, 1500, 0.0), (7500, 'A', 5, 1500, 0.0), (9000, 'A', 6, 1500, 0.0), (10500, 'A', 7, 1500, 0.0), (12000, 'switch', 8, 1500, 0.0)]\nAUDIT eval_rows_used=200/200 used_but_never_trained=0\nseed=74 split=test loss=17.916615 exact_accuracy=0.000300\nseed=74 split=ood_t loss=17.917320 exact_accuracy=0.000400\nseed=74 split=ood_n_t loss=17.919588 exact_accuracy=0.000400\nseed=74 profile=seen_n depth_t=1 exact_accuracy=0.000000 certified=False\nseed=74 profile=seen_n depth_t=2 exact_accuracy=0.000000 certified=False\nseed=74 profile=seen_n depth_t=4 exact_accuracy=0.002604 certified=False\nseed=74 profile=seen_n depth_t=8 exact_accuracy=0.000000 certified=False\nseed=74 profile=seen_n depth_t=16 exact_accuracy=0.000000 certified=False\nseed=74 profile=seen_n depth_t=32 exact_accuracy=0.000000 certified=False\nseed=74 profile=seen_n depth_t=64 exact_accuracy=0.000000 certified=False\nseed=74 profile=ood_n depth_t=1 exact_accuracy=0.000000 certified=False\nseed=74 profile=ood_n depth_t=2 exact_accuracy=0.000000 certified=False\nseed=74 profile=ood_n depth_t=4 exact_accuracy=0.000000 certified=False\nseed=74 profile=ood_n depth_t=8 exact_accuracy=0.000000 certified=False\nseed=74 profile=ood_n depth_t=16 exact_accuracy=0.000000 certified=False\nseed=74 profile=ood_n depth_t=32 exact_accuracy=0.000000 certified=False\nseed=74 profile=ood_n depth_t=64 exact_accuracy=0.000000 certified=False\nRESULT_JSON={\"depth_profile\": {\"depth_factor\": 0, \"ladder\": [1, 2, 4, 8, 16, 32, 64], \"max_certified_time_steps\": null, \"ood_n_ladder\": [1, 2, 4, 8, 16, 32, 64], \"ood_n_max_certified_time_steps\": null, \"ood_n_profile_available\": true}, \"manifest\": \"squaring-mod-hard-h1\", \"score\": {\"mean_exact_accuracy\": 0.0003666233387775719, \"mean_loss\": 17.9178409576416, \"num_measurements\": 3, \"primary_metric\": \"mean_exact_accuracy\"}, \"seeds\": [{\"completed_training_steps\": 20000, \"depth_profile\": {\"depth_factor\": 0, \"ladder\": [1, 2, 4, 8, 16, 32, 64], \"max_certified_time_steps\": null, \"ood_n_ladder\": [1, 2, 4, 8, 16, 32, 64], \"ood_n_max_certified_time_steps\": null, \"ood_n_rungs\": [{\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 1}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 2}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 4}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 8}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 16}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 32}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 64}], \"rungs\": [{\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 1}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 2}, {\"correct_examples\": 2, \"exact_accuracy\": 0.0026041667442768812, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 4}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 8}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 16}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 32}, {\"correct_examples\": 0, \"exact_accuracy\": 0.0, \"example_count\": 768, \"status\": \"failed\", \"time_steps\": 64}]}, \"evaluation\": {\"ood_n_t\": {\"correct_examples\": 4, \"exact_accuracy\": 0.00039992001256905496, \"example_count\": 10002, \"loss\": 17.919588088989258}, \"ood_t\": {\"correct_examples\": 4, \"exact_accuracy\": 0.00039992001256905496, \"example_count\": 10002, \"loss\": 17.917320251464844}, \"test\": {\"correct_examples\": 3, \"exact_accuracy\": 0.00030002999119460583, \"example_count\": 9999, \"loss\": 17.916614532470703}}, \"evaluation_batch_size\": 16384, \"evaluation_budget_seconds\": 1800.0, \"evaluation_seconds\": 10.468235164999896, \"final_train_loss\": 4.662982940673828, \"max_training_steps\": 20000, \"model_state_elements\": 1002400, \"optimizer_state_elements_after_first_step\": 4802, \"seed\": 74, \"training_batch_size\": 512, \"training_seconds\": 2411.686363064}], \"structured_metrics\": [{\"elapsed_seconds\": 2.3, \"exact_accuracy\": 0.0, \"loss\": 2.303, \"seed\": 74, \"step\": 1, \"type\": \"train\"}, {\"elapsed_seconds\": 5.0, \"exact_accuracy\": 0.0, \"loss\": 1.941, \"seed\": 74, \"step\": 100, \"type\": \"train\"}, {\"elapsed_seconds\": 7.8, \"exact_accuracy\": 0.0, \"loss\": 1.922, \"seed\": 74, \"step\": 200, \"type\": \"train\"}, {\"elapsed_seconds\": 10.5, \"exact_accuracy\": 0.0, \"loss\": 1.917, \"seed\": 74, \"step\": 300, \"type\": \"train\"}, {\"elapsed_seconds\": 13.4, \"exact_accuracy\": 0.0, \"loss\": 1.917, \"seed\": 74, \"step\": 400, \"type\": \"train\"}, {\"elapsed_seconds\": 17.3, \"exact_accuracy\": 0.0, \"loss\": 1.54, \"seed\": 74, \"step\": 500, \"type\": \"train\"}, {\"elapsed_seconds\": 21.3, \"exact_accuracy\": 0.0, \"loss\": 1.157, \"seed\": 74, \"step\": 600, \"type\": \"train\"}, {\"elapsed_seconds\": 25.2, \"exact_accuracy\": 0.0, \"loss\": 1.004, \"seed\": 74, \"step\": 700, \"type\": \"train\"}, {\"elapsed_seconds\": 29.3, \"exact_accuracy\": 0.0, \"loss\": 0.848, \"seed\": 74, \"step\": 800, \"type\": \"train\"}, {\"elapsed_seconds\": 33.3, \"exact_accuracy\": 0.0, \"loss\": 0.715, \"seed\": 74, \"step\": 900, \"type\": \"train\"}, {\"elapsed_seconds\": 37.4, \"exact_accuracy\": 0.0, \"loss\": 0.61, \"seed\": 74, \"step\": 1000, \"type\": \"train\"}, {\"elapsed_seconds\": 41.3, \"exact_accuracy\": 0.0, \"loss\": 0.591, \"seed\": 74, \"step\": 1100, \"type\": \"train\"}, {\"elapsed_seconds\": 45.3, \"exact_accuracy\": 0.0, \"loss\": 0.572, \"seed\": 74, \"step\": 1200, \"type\": \"train\"}, {\"elapsed_seconds\": 49.1, \"exact_accuracy\": 0.0, \"loss\": 0.533, \"seed\": 74, \"step\": 1300, \"type\": \"train\"}, {\"elapsed_seconds\": 53.0, \"exact_accuracy\": 0.0, \"loss\": 0.507, \"seed\": 74, \"step\": 1400, \"type\": \"train\"}, {\"elapsed_seconds\": 56.9, \"exact_accuracy\": 0.0, \"loss\": 0.482, \"seed\": 74, \"step\": 1500, \"type\": \"train\"}, {\"elapsed_seconds\": 64.7, \"exact_accuracy\": 0.0, \"loss\": 1.011, \"seed\": 74, \"step\": 1600, \"type\": \"train\"}, {\"elapsed_seconds\": 72.2, \"exact_accuracy\": 0.0, \"loss\": 0.995, \"seed\": 74, \"step\": 1700, \"type\": \"train\"}, {\"elapsed_seconds\": 80.1, \"exact_accuracy\": 0.0, \"loss\": 0.968, \"seed\": 74, \"step\": 1800, \"type\": \"train\"}, {\"elapsed_seconds\": 87.7, \"exact_accuracy\": 0.0, \"loss\": 0.943, \"seed\": 74, \"step\": 1900, \"type\": \"train\"}, {\"elapsed_seconds\": 95.6, \"exact_accuracy\": 0.0, \"loss\": 0.91, \"seed\": 74, \"step\": 2000, \"type\": \"train\"}, {\"elapsed_seconds\": 103.2, \"exact_accuracy\": 0.0, \"loss\": 0.924, \"seed\": 74, \"step\": 2100, \"type\": \"train\"}, {\"elapsed_seconds\": 111.0, \"exact_accuracy\": 0.0, \"loss\": 0.915, \"seed\": 74, \"step\": 2200, \"type\": \"train\"}, {\"elapsed_seconds\": 118.6, \"exact_accuracy\": 0.0, \"loss\": 0.891, \"seed\": 74, \"step\": 2300, \"type\": \"train\"}, {\"elapsed_seconds\": 126.5, \"exact_accuracy\": 0.0, \"loss\": 0.878, \"seed\": 74, \"step\": 2400, \"type\": \"train\"}, {\"elapsed_seconds\": 133.9, \"exact_accuracy\": 0.0, \"loss\": 0.918, \"seed\": 74, \"step\": 2500, \"type\": \"train\"}, {\"elapsed_seconds\": 141.9, \"exact_accuracy\": 0.0, \"loss\": 0.888, \"seed\": 74, \"step\": 2600, \"type\": \"train\"}, {\"elapsed_seconds\": 149.4, \"exact_accuracy\": 0.0, \"loss\": 0.911, \"seed\": 74, \"step\": 2700, \"type\": \"train\"}, {\"elapsed_seconds\": 157.2, \"exact_accuracy\": 0.0, \"loss\": 0.91, \"seed\": 74, \"step\": 2800, \"type\": \"train\"}, {\"elapsed_seconds\": 164.8, \"exact_accuracy\": 0.0, \"loss\": 0.912, \"seed\": 74, \"step\": 2900, \"type\": \"train\"}, {\"elapsed_seconds\": 172.7, \"exact_accuracy\": 0.0, \"loss\": 0.886, \"seed\": 74, \"step\": 3000, \"type\": \"train\"}, {\"elapsed_seconds\": 183.5, \"exact_accuracy\": 0.0, \"loss\": 1.351, \"seed\": 74, \"step\": 3100, \"type\": \"train\"}, {\"elapsed_seconds\": 194.4, \"exact_accuracy\": 0.0, \"loss\": 1.346, \"seed\": 74, \"step\": 3200, \"type\": \"train\"}, {\"elapsed_seconds\": 205.2, \"exact_accuracy\": 0.0, \"loss\": 1.372, \"seed\": 74, \"step\": 3300, \"type\": \"train\"}, {\"elapsed_seconds\": 216.2, \"exact_accuracy\": 0.0, \"loss\": 1.351, \"seed\": 74, \"step\": 3400, \"type\": \"train\"}, {\"elapsed_seconds\": 226.7, \"exact_accuracy\": 0.0, \"loss\": 1.34, \"seed\": 74, \"step\": 3500, \"type\": \"train\"}, {\"elapsed_seconds\": 237.3, \"exact_accuracy\": 0.0, \"loss\": 1.299, \"seed\": 74, \"step\": 3600, \"type\": \"train\"}, {\"elapsed_seconds\": 247.9, \"exact_accuracy\": 0.0, \"loss\": 1.358, \"seed\": 74, \"step\": 3700, \"type\": \"train\"}, {\"elapsed_seconds\": 258.6, \"exact_accuracy\": 0.0, \"loss\": 1.38, \"seed\": 74, \"step\": 3800, \"type\": \"train\"}, {\"elapsed_seconds\": 269.2, \"exact_accuracy\": 0.0, \"loss\": 1.334, \"seed\": 74, \"step\": 3900, \"type\": \"train\"}, {\"elapsed_seconds\": 279.9, \"exact_accuracy\": 0.0, \"loss\": 1.355, \"seed\": 74, \"step\": 4000, \"type\": \"train\"}, {\"elapsed_seconds\": 290.4, \"exact_accuracy\": 0.0, \"loss\": 1.354, \"seed\": 74, \"step\": 4100, \"type\": \"train\"}, {\"elapsed_seconds\": 301.2, \"exact_accuracy\": 0.0, \"loss\": 1.335, \"seed\": 74, \"step\": 4200, \"type\": \"train\"}, {\"elapsed_seconds\": 311.6, \"exact_accuracy\": 0.0, \"loss\": 1.369, \"seed\": 74, \"step\": 4300, \"type\": \"train\"}, {\"elapsed_seconds\": 322.0, \"exact_accuracy\": 0.0, \"loss\": 1.342, \"seed\": 74, \"step\": 4400, \"type\": \"train\"}, {\"elapsed_seconds\": 332.3, \"exact_accuracy\": 0.0, \"loss\": 1.347, \"seed\": 74, \"step\": 4500, \"type\": \"train\"}, {\"elapsed_seconds\": 346.0, \"exact_accuracy\": 0.0, \"loss\": 1.806, \"seed\": 74, \"step\": 4600, \"type\": \"train\"}, {\"elapsed_seconds\": 359.5, \"exact_accuracy\": 0.0, \"loss\": 1.802, \"seed\": 74, \"step\": 4700, \"type\": \"train\"}, {\"elapsed_seconds\": 373.2, \"exact_accuracy\": 0.0, \"loss\": 1.772, \"seed\": 74, \"step\": 4800, \"type\": \"train\"}, {\"elapsed_seconds\": 386.7, \"exact_accuracy\": 0.0, \"loss\": 1.75, \"seed\": 74, \"step\": 4900, \"type\": \"train\"}, {\"elapsed_seconds\": 400.4, \"exact_accuracy\": 0.0, \"loss\": 1.792, \"seed\": 74, \"step\": 5000, \"type\": \"train\"}, {\"elapsed_seconds\": 413.7, \"exact_accuracy\": 0.0, \"loss\": 1.785, \"seed\": 74, \"step\": 5100, \"type\": \"train\"}, {\"elapsed_seconds\": 427.3, \"exact_accuracy\": 0.0, \"loss\": 1.777, \"seed\": 74, \"step\": 5200, \"type\": \"train\"}, {\"elapsed_seconds\": 440.4, \"exact_accuracy\": 0.0, \"loss\": 1.806, \"seed\": 74, \"step\": 5300, \"type\": \"train\"}, {\"elapsed_seconds\": 454.1, \"exact_accuracy\": 0.0, \"loss\": 1.789, \"seed\": 74, \"step\": 5400, \"type\": \"train\"}, {\"elapsed_seconds\": 467.3, \"exact_accuracy\": 0.0, \"loss\": 1.801, \"seed\": 74, \"step\": 5500, \"type\": \"train\"}, {\"elapsed_seconds\": 480.8, \"exact_accuracy\": 0.0, \"loss\": 1.792, \"seed\": 74, \"step\": 5600, \"type\": \"train\"}, {\"elapsed_seconds\": 495.0, \"exact_accuracy\": 0.0, \"loss\": 1.79, \"seed\": 74, \"step\": 5700, \"type\": \"train\"}, {\"elapsed_seconds\": 515.1, \"exact_accuracy\": 0.0, \"loss\": 1.799, \"seed\": 74, \"step\": 5800, \"type\": \"train\"}, {\"elapsed_seconds\": 532.6, \"exact_accuracy\": 0.0, \"loss\": 1.822, \"seed\": 74, \"step\": 5900, \"type\": \"train\"}, {\"elapsed_seconds\": 550.1, \"exact_accuracy\": 0.0, \"loss\": 1.782, \"seed\": 74, \"step\": 6000, \"type\": \"train\"}, {\"elapsed_seconds\": 570.1, \"exact_accuracy\": 0.0, \"loss\": 2.098, \"seed\": 74, \"step\": 6100, \"type\": \"train\"}, {\"elapsed_seconds\": 590.0, \"exact_accuracy\": 0.0, \"loss\": 2.098, \"seed\": 74, \"step\": 6200, \"type\": \"train\"}, {\"elapsed_seconds\": 611.5, \"exact_accuracy\": 0.0, \"loss\": 2.131, \"seed\": 74, \"step\": 6300, \"type\": \"train\"}, {\"elapsed_seconds\": 631.4, \"exact_accuracy\": 0.0, \"loss\": 2.099, \"seed\": 74, \"step\": 6400, \"type\": \"train\"}, {\"elapsed_seconds\": 648.4, \"exact_accuracy\": 0.0, \"loss\": 2.13, \"seed\": 74, \"step\": 6500, \"type\": \"train\"}, {\"elapsed_seconds\": 665.0, \"exact_accuracy\": 0.0, \"loss\": 2.109, \"seed\": 74, \"step\": 6600, \"type\": \"train\"}, {\"elapsed_seconds\": 681.7, \"exact_accuracy\": 0.0, \"loss\": 2.085, \"seed\": 74, \"step\": 6700, \"type\": \"train\"}, {\"elapsed_seconds\": 698.6, \"exact_accuracy\": 0.0, \"loss\": 2.11, \"seed\": 74, \"step\": 6800, \"type\": \"train\"}, {\"elapsed_seconds\": 715.2, \"exact_accuracy\": 0.0, \"loss\": 2.13, \"seed\": 74, \"step\": 6900, \"type\": \"train\"}, {\"elapsed_seconds\": 731.9, \"exact_accuracy\": 0.0, \"loss\": 2.105, \"seed\": 74, \"step\": 7000, \"type\": \"train\"}, {\"elapsed_seconds\": 748.8, \"exact_accuracy\": 0.0, \"loss\": 2.109, \"seed\": 74, \"step\": 7100, \"type\": \"train\"}, {\"elapsed_seconds\": 765.5, \"exact_accuracy\": 0.0, \"loss\": 2.111, \"seed\": 74, \"step\": 7200, \"type\": \"train\"}, {\"elapsed_seconds\": 781.9, \"exact_accuracy\": 0.0, \"loss\": 2.093, \"seed\": 74, \"step\": 7300, \"type\": \"train\"}, {\"elapsed_seconds\": 798.7, \"exact_accuracy\": 0.0, \"loss\": 2.099, \"seed\": 74, \"step\": 7400, \"type\": \"train\"}, {\"elapsed_seconds\": 815.4, \"exact_accuracy\": 0.0, \"loss\": 2.087, \"seed\": 74, \"step\": 7500, \"type\": \"train\"}, {\"elapsed_seconds\": 835.4, \"exact_accuracy\": 0.0, \"loss\": 2.25, \"seed\": 74, \"step\": 7600, \"type\": \"train\"}, {\"elapsed_seconds\": 855.3, \"exact_accuracy\": 0.0, \"loss\": 2.24, \"seed\": 74, \"step\": 7700, \"type\": \"train\"}, {\"elapsed_seconds\": 875.5, \"exact_accuracy\": 0.0, \"loss\": 2.252, \"seed\": 74, \"step\": 7800, \"type\": \"train\"}, {\"elapsed_seconds\": 895.1, \"exact_accuracy\": 0.0, \"loss\": 2.253, \"seed\": 74, \"step\": 7900, \"type\": \"train\"}, {\"elapsed_seconds\": 914.6, \"exact_accuracy\": 0.0, \"loss\": 2.257, \"seed\": 74, \"step\": 8000, \"type\": \"train\"}, {\"elapsed_seconds\": 934.0, \"exact_accuracy\": 0.0, \"loss\": 2.252, \"seed\": 74, \"step\": 8100, \"type\": \"train\"}, {\"elapsed_seconds\": 953.3, \"exact_accuracy\": 0.0, \"loss\": 2.253, \"seed\": 74, \"step\": 8200, \"type\": \"train\"}, {\"elapsed_seconds\": 972.3, \"exact_accuracy\": 0.0, \"loss\": 2.248, \"seed\": 74, \"step\": 8300, \"type\": \"train\"}, {\"elapsed_seconds\": 991.7, \"exact_accuracy\": 0.0, \"loss\": 2.24, \"seed\": 74, \"step\": 8400, \"type\": \"train\"}, {\"elapsed_seconds\": 1010.7, \"exact_accuracy\": 0.0, \"loss\": 2.218, \"seed\": 74, \"step\": 8500, \"type\": \"train\"}, {\"elapsed_seconds\": 1030.0, \"exact_accuracy\": 0.0, \"loss\": 2.25, \"seed\": 74, \"step\": 8600, \"type\": \"train\"}, {\"elapsed_seconds\": 1048.9, \"exact_accuracy\": 0.0, \"loss\": 2.248, \"seed\": 74, \"step\": 8700, \"type\": \"train\"}, {\"elapsed_seconds\": 1068.2, \"exact_accuracy\": 0.0, \"loss\": 2.255, \"seed\": 74, \"step\": 8800, \"type\": \"train\"}, {\"elapsed_seconds\": 1087.3, \"exact_accuracy\": 0.0, \"loss\": 2.243, \"seed\": 74, \"step\": 8900, \"type\": \"train\"}, {\"elapsed_seconds\": 1106.7, \"exact_accuracy\": 0.0, \"loss\": 2.246, \"seed\": 74, \"step\": 9000, \"type\": \"train\"}, {\"elapsed_seconds\": 1128.8, \"exact_accuracy\": 0.0, \"loss\": 2.281, \"seed\": 74, \"step\": 9100, \"type\": \"train\"}, {\"elapsed_seconds\": 1151.3, \"exact_accuracy\": 0.0, \"loss\": 2.29, \"seed\": 74, \"step\": 9200, \"type\": \"train\"}, {\"elapsed_seconds\": 1173.2, \"exact_accuracy\": 0.0, \"loss\": 2.288, \"seed\": 74, \"step\": 9300, \"type\": \"train\"}, {\"elapsed_seconds\": 1195.6, \"exact_accuracy\": 0.0, \"loss\": 2.283, \"seed\": 74, \"step\": 9400, \"type\": \"train\"}, {\"elapsed_seconds\": 1217.6, \"exact_accuracy\": 0.0, \"loss\": 2.296, \"seed\": 74, \"step\": 9500, \"type\": \"train\"}, {\"elapsed_seconds\": 1240.2, \"exact_accuracy\": 0.0, \"loss\": 2.295, \"seed\": 74, \"step\": 9600, \"type\": \"train\"}, {\"elapsed_seconds\": 1262.5, \"exact_accuracy\": 0.0, \"loss\": 2.288, \"seed\": 74, \"step\": 9700, \"type\": \"train\"}, {\"elapsed_seconds\": 1285.0, \"exact_accuracy\": 0.0, \"loss\": 2.275, \"seed\": 74, \"step\": 9800, \"type\": \"train\"}, {\"elapsed_seconds\": 1307.5, \"exact_accuracy\": 0.0, \"loss\": 2.295, \"seed\": 74, \"step\": 9900, \"type\": \"train\"}, {\"elapsed_seconds\": 1330.2, \"exact_accuracy\": 0.0, \"loss\": 2.287, \"seed\": 74, \"step\": 10000, \"type\": \"train\"}, {\"elapsed_seconds\": 1352.6, \"exact_accuracy\": 0.0, \"loss\": 2.278, \"seed\": 74, \"step\": 10100, \"type\": \"train\"}, {\"elapsed_seconds\": 1375.4, \"exact_accuracy\": 0.0, \"loss\": 2.279, \"seed\": 74, \"step\": 10200, \"type\": \"train\"}, {\"elapsed_seconds\": 1398.3, \"exact_accuracy\": 0.0, \"loss\": 2.288, \"seed\": 74, \"step\": 10300, \"type\": \"train\"}, {\"elapsed_seconds\": 1421.1, \"exact_accuracy\": 0.0, \"loss\": 2.286, \"seed\": 74, \"step\": 10400, \"type\": \"train\"}, {\"elapsed_seconds\": 1443.4, \"exact_accuracy\": 0.0, \"loss\": 2.29, \"seed\": 74, \"step\": 10500, \"type\": \"train\"}, {\"elapsed_seconds\": 1469.0, \"exact_accuracy\": 0.0, \"loss\": 2.3, \"seed\": 74, \"step\": 10600, \"type\": \"train\"}, {\"elapsed_seconds\": 1494.4, \"exact_accuracy\": 0.0, \"loss\": 2.305, \"seed\": 74, \"step\": 10700, \"type\": \"train\"}, {\"elapsed_seconds\": 1520.8, \"exact_accuracy\": 0.0, \"loss\": 2.301, \"seed\": 74, \"step\": 10800, \"type\": \"train\"}, {\"elapsed_seconds\": 1545.9, \"exact_accuracy\": 0.0, \"loss\": 2.307, \"seed\": 74, \"step\": 10900, \"type\": \"train\"}, {\"elapsed_seconds\": 1571.3, \"exact_accuracy\": 0.0, \"loss\": 2.301, \"seed\": 74, \"step\": 11000, \"type\": \"train\"}, {\"elapsed_seconds\": 1596.6, \"exact_accuracy\": 0.0, \"loss\": 2.299, \"seed\": 74, \"step\": 11100, \"type\": \"train\"}, {\"elapsed_seconds\": 1622.4, \"exact_accuracy\": 0.0, \"loss\": 2.298, \"seed\": 74, \"step\": 11200, \"type\": \"train\"}, {\"elapsed_seconds\": 1647.6, \"exact_accuracy\": 0.0, \"loss\": 2.3, \"seed\": 74, \"step\": 11300, \"type\": \"train\"}, {\"elapsed_seconds\": 1673.5, \"exact_accuracy\": 0.0, \"loss\": 2.295, \"seed\": 74, \"step\": 11400, \"type\": \"train\"}, {\"elapsed_seconds\": 1699.2, \"exact_accuracy\": 0.0, \"loss\": 2.297, \"seed\": 74, \"step\": 11500, \"type\": \"train\"}, {\"elapsed_seconds\": 1725.2, \"exact_accuracy\": 0.0, \"loss\": 2.298, \"seed\": 74, \"step\": 11600, \"type\": \"train\"}, {\"elapsed_seconds\": 1751.3, \"exact_accuracy\": 0.0, \"loss\": 2.296, \"seed\": 74, \"step\": 11700, \"type\": \"train\"}, {\"elapsed_seconds\": 1777.4, \"exact_accuracy\": 0.0, \"loss\": 2.301, \"seed\": 74, \"step\": 11800, \"type\": \"train\"}, {\"elapsed_seconds\": 1802.8, \"exact_accuracy\": 0.0, \"loss\": 2.301, \"seed\": 74, \"step\": 11900, \"type\": \"train\"}, {\"elapsed_seconds\": 1828.8, \"exact_accuracy\": 0.0, \"loss\": 2.301, \"seed\": 74, \"step\": 12000, \"type\": \"train\"}, {\"elapsed_seconds\": 1836.2, \"exact_accuracy\": 0.0, \"loss\": 7.875, \"seed\": 74, \"step\": 12100, \"type\": \"train\"}, {\"elapsed_seconds\": 1843.9, \"exact_accuracy\": 0.0, \"loss\": 5.261, \"seed\": 74, \"step\": 12200, \"type\": \"train\"}, {\"elapsed_seconds\": 1851.4, \"exact_accuracy\": 0.0, \"loss\": 4.802, \"seed\": 74, \"step\": 12300, \"type\": \"train\"}, {\"elapsed_seconds\": 1858.9, \"exact_accuracy\": 0.0, \"loss\": 4.532, \"seed\": 74, \"step\": 12400, \"type\": \"train\"}, {\"elapsed_seconds\": 1866.4, \"exact_accuracy\": 0.0, \"loss\": 4.686, \"seed\": 74, \"step\": 12500, \"type\": \"train\"}, {\"elapsed_seconds\": 1873.9, \"exact_accuracy\": 0.0, \"loss\": 4.658, \"seed\": 74, \"step\": 12600, \"type\": \"train\"}, {\"elapsed_seconds\": 1881.1, \"exact_accuracy\": 0.0, \"loss\": 4.734, \"seed\": 74, \"step\": 12700, \"type\": \"train\"}, {\"elapsed_seconds\": 1888.6, \"exact_accuracy\": 0.0, \"loss\": 4.748, \"seed\": 74, \"step\": 12800, \"type\": \"train\"}, {\"elapsed_seconds\": 1896.0, \"exact_accuracy\": 0.0, \"loss\": 4.557, \"seed\": 74, \"step\": 12900, \"type\": \"train\"}, {\"elapsed_seconds\": 1903.5, \"exact_accuracy\": 0.0, \"loss\": 4.708, \"seed\": 74, \"step\": 13000, \"type\": \"train\"}, {\"elapsed_seconds\": 1910.8, \"exact_accuracy\": 0.0, \"loss\": 4.581, \"seed\": 74, \"step\": 13100, \"type\": \"train\"}, {\"elapsed_seconds\": 1918.3, \"exact_accuracy\": 0.0, \"loss\": 4.596, \"seed\": 74, \"step\": 13200, \"type\": \"train\"}, {\"elapsed_seconds\": 1925.4, \"exact_accuracy\": 0.0, \"loss\": 4.581, \"seed\": 74, \"step\": 13300, \"type\": \"train\"}, {\"elapsed_seconds\": 1933.0, \"exact_accuracy\": 0.0, \"loss\": 4.559, \"seed\": 74, \"step\": 13400, \"type\": \"train\"}, {\"elapsed_seconds\": 1940.2, \"exact_accuracy\": 0.0, \"loss\": 4.521, \"seed\": 74, \"step\": 13500, \"type\": \"train\"}, {\"elapsed_seconds\": 1948.0, \"exact_accuracy\": 0.0, \"loss\": 4.568, \"seed\": 74, \"step\": 13600, \"type\": \"train\"}, {\"elapsed_seconds\": 1955.4, \"exact_accuracy\": 0.0, \"loss\": 4.57, \"seed\": 74, \"step\": 13700, \"type\": \"train\"}, {\"elapsed_seconds\": 1962.7, \"exact_accuracy\": 0.0, \"loss\": 4.527, \"seed\": 74, \"step\": 13800, \"type\": \"train\"}, {\"elapsed_seconds\": 1969.7, \"exact_accuracy\": 0.0, \"loss\": 4.62, \"seed\": 74, \"step\": 13900, \"type\": \"train\"}, {\"elapsed_seconds\": 1977.1, \"exact_accuracy\": 0.0, \"loss\": 4.51, \"seed\": 74, \"step\": 14000, \"type\": \"train\"}, {\"elapsed_seconds\": 1984.4, \"exact_accuracy\": 0.0, \"loss\": 4.655, \"seed\": 74, \"step\": 14100, \"type\": \"train\"}, {\"elapsed_seconds\": 1991.7, \"exact_accuracy\": 0.0, \"loss\": 4.616, \"seed\": 74, \"step\": 14200, \"type\": \"train\"}, {\"elapsed_seconds\": 1999.0, \"exact_accuracy\": 0.0, \"loss\": 4.527, \"seed\": 74, \"step\": 14300, \"type\": \"train\"}, {\"elapsed_seconds\": 2006.5, \"exact_accuracy\": 0.0, \"loss\": 4.503, \"seed\": 74, \"step\": 14400, \"type\": \"train\"}, {\"elapsed_seconds\": 2013.6, \"exact_accuracy\": 0.0, \"loss\": 4.586, \"seed\": 74, \"step\": 14500, \"type\": \"train\"}, {\"elapsed_seconds\": 2021.0, \"exact_accuracy\": 0.0, \"loss\": 4.597, \"seed\": 74, \"step\": 14600, \"type\": \"train\"}, {\"elapsed_seconds\": 2027.7, \"exact_accuracy\": 0.0, \"loss\": 4.569, \"seed\": 74, \"step\": 14700, \"type\": \"train\"}, {\"elapsed_seconds\": 2034.9, \"exact_accuracy\": 0.0, \"loss\": 4.534, \"seed\": 74, \"step\": 14800, \"type\": \"train\"}, {\"elapsed_seconds\": 2041.9, \"exact_accuracy\": 0.0, \"loss\": 4.576, \"seed\": 74, \"step\": 14900, \"type\": \"train\"}, {\"elapsed_seconds\": 2049.4, \"exact_accuracy\": 0.0, \"loss\": 4.53, \"seed\": 74, \"step\": 15000, \"type\": \"train\"}, {\"elapsed_seconds\": 2056.5, \"exact_accuracy\": 0.0, \"loss\": 4.58, \"seed\": 74, \"step\": 15100, \"type\": \"train\"}, {\"elapsed_seconds\": 2063.5, \"exact_accuracy\": 0.0, \"loss\": 4.573, \"seed\": 74, \"step\": 15200, \"type\": \"train\"}, {\"elapsed_seconds\": 2070.5, \"exact_accuracy\": 0.0, \"loss\": 4.605, \"seed\": 74, \"step\": 15300, \"type\": \"train\"}, {\"elapsed_seconds\": 2077.8, \"exact_accuracy\": 0.0, \"loss\": 4.491, \"seed\": 74, \"step\": 15400, \"type\": \"train\"}, {\"elapsed_seconds\": 2084.9, \"exact_accuracy\": 0.0, \"loss\": 4.546, \"seed\": 74, \"step\": 15500, \"type\": \"train\"}, {\"elapsed_seconds\": 2092.4, \"exact_accuracy\": 0.0, \"loss\": 4.614, \"seed\": 74, \"step\": 15600, \"type\": \"train\"}, {\"elapsed_seconds\": 2099.5, \"exact_accuracy\": 0.0, \"loss\": 4.64, \"seed\": 74, \"step\": 15700, \"type\": \"train\"}, {\"elapsed_seconds\": 2106.8, \"exact_accuracy\": 0.0, \"loss\": 4.595, \"seed\": 74, \"step\": 15800, \"type\": \"train\"}, {\"elapsed_seconds\": 2113.9, \"exact_accuracy\": 0.0, \"loss\": 4.594, \"seed\": 74, \"step\": 15900, \"type\": \"train\"}, {\"elapsed_seconds\": 2121.3, \"exact_accuracy\": 0.0, \"loss\": 4.585, \"seed\": 74, \"step\": 16000, \"type\": \"train\"}, {\"elapsed_seconds\": 2128.2, \"exact_accuracy\": 0.0, \"loss\": 4.581, \"seed\": 74, \"step\": 16100, \"type\": \"train\"}, {\"elapsed_seconds\": 2135.4, \"exact_accuracy\": 0.0, \"loss\": 4.585, \"seed\": 74, \"step\": 16200, \"type\": \"train\"}, {\"elapsed_seconds\": 2142.5, \"exact_accuracy\": 0.0, \"loss\": 4.49, \"seed\": 74, \"step\": 16300, \"type\": \"train\"}, {\"elapsed_seconds\": 2150.0, \"exact_accuracy\": 0.0, \"loss\": 4.516, \"seed\": 74, \"step\": 16400, \"type\": \"train\"}, {\"elapsed_seconds\": 2157.1, \"exact_accuracy\": 0.0, \"loss\": 4.497, \"seed\": 74, \"step\": 16500, \"type\": \"train\"}, {\"elapsed_seconds\": 2164.4, \"exact_accuracy\": 0.0, \"loss\": 4.561, \"seed\": 74, \"step\": 16600, \"type\": \"train\"}, {\"elapsed_seconds\": 2171.5, \"exact_accuracy\": 0.0, \"loss\": 4.613, \"seed\": 74, \"step\": 16700, \"type\": \"train\"}, {\"elapsed_seconds\": 2178.6, \"exact_accuracy\": 0.0, \"loss\": 4.583, \"seed\": 74, \"step\": 16800, \"type\": \"train\"}, {\"elapsed_seconds\": 2185.5, \"exact_accuracy\": 0.0, \"loss\": 4.514, \"seed\": 74, \"step\": 16900, \"type\": \"train\"}, {\"elapsed_seconds\": 2192.8, \"exact_accuracy\": 0.0, \"loss\": 4.56, \"seed\": 74, \"step\": 17000, \"type\": \"train\"}, {\"elapsed_seconds\": 2200.0, \"exact_accuracy\": 0.0, \"loss\": 4.579, \"seed\": 74, \"step\": 17100, \"type\": \"train\"}, {\"elapsed_seconds\": 2207.4, \"exact_accuracy\": 0.0, \"loss\": 4.568, \"seed\": 74, \"step\": 17200, \"type\": \"train\"}, {\"elapsed_seconds\": 2214.5, \"exact_accuracy\": 0.0, \"loss\": 4.624, \"seed\": 74, \"step\": 17300, \"type\": \"train\"}, {\"elapsed_seconds\": 2221.7, \"exact_accuracy\": 0.0, \"loss\": 4.571, \"seed\": 74, \"step\": 17400, \"type\": \"train\"}, {\"elapsed_seconds\": 2228.9, \"exact_accuracy\": 0.0, \"loss\": 4.514, \"seed\": 74, \"step\": 17500, \"type\": \"train\"}, {\"elapsed_seconds\": 2236.1, \"exact_accuracy\": 0.0, \"loss\": 4.54, \"seed\": 74, \"step\": 17600, \"type\": \"train\"}, {\"elapsed_seconds\": 2243.1, \"exact_accuracy\": 0.0, \"loss\": 4.503, \"seed\": 74, \"step\": 17700, \"type\": \"train\"}, {\"elapsed_seconds\": 2250.5, \"exact_accuracy\": 0.0, \"loss\": 4.561, \"seed\": 74, \"step\": 17800, \"type\": \"train\"}, {\"elapsed_seconds\": 2257.7, \"exact_accuracy\": 0.0, \"loss\": 4.504, \"seed\": 74, \"step\": 17900, \"type\": \"train\"}, {\"elapsed_seconds\": 2264.9, \"exact_accuracy\": 0.0, \"loss\": 4.594, \"seed\": 74, \"step\": 18000, \"type\": \"train\"}, {\"elapsed_seconds\": 2271.9, \"exact_accuracy\": 0.0, \"loss\": 4.591, \"seed\": 74, \"step\": 18100, \"type\": \"train\"}, {\"elapsed_seconds\": 2279.3, \"exact_accuracy\": 0.0, \"loss\": 4.546, \"seed\": 74, \"step\": 18200, \"type\": \"train\"}, {\"elapsed_seconds\": 2286.4, \"exact_accuracy\": 0.0, \"loss\": 4.6, \"seed\": 74, \"step\": 18300, \"type\": \"train\"}, {\"elapsed_seconds\": 2293.7, \"exact_accuracy\": 0.0, \"loss\": 4.575, \"seed\": 74, \"step\": 18400, \"type\": \"train\"}, {\"elapsed_seconds\": 2301.2, \"exact_accuracy\": 0.0, \"loss\": 4.602, \"seed\": 74, \"step\": 18500, \"type\": \"train\"}, {\"elapsed_seconds\": 2308.7, \"exact_accuracy\": 0.0, \"loss\": 4.522, \"seed\": 74, \"step\": 18600, \"type\": \"train\"}, {\"elapsed_seconds\": 2315.9, \"exact_accuracy\": 0.0, \"loss\": 4.494, \"seed\": 74, \"step\": 18700, \"type\": \"train\"}, {\"elapsed_seconds\": 2323.3, \"exact_accuracy\": 0.0, \"loss\": 4.603, \"seed\": 74, \"step\": 18800, \"type\": \"train\"}, {\"elapsed_seconds\": 2330.6, \"exact_accuracy\": 0.0, \"loss\": 4.522, \"seed\": 74, \"step\": 18900, \"type\": \"train\"}, {\"elapsed_seconds\": 2338.2, \"exact_accuracy\": 0.0, \"loss\": 4.493, \"seed\": 74, \"step\": 19000, \"type\": \"train\"}, {\"elapsed_seconds\": 2345.7, \"exact_accuracy\": 0.0, \"loss\": 4.563, \"seed\": 74, \"step\": 19100, \"type\": \"train\"}, {\"elapsed_seconds\": 2353.0, \"exact_accuracy\": 0.0, \"loss\": 4.558, \"seed\": 74, \"step\": 19200, \"type\": \"train\"}, {\"elapsed_seconds\": 2360.2, \"exact_accuracy\": 0.0, \"loss\": 4.542, \"seed\": 74, \"step\": 19300, \"type\": \"train\"}, {\"elapsed_seconds\": 2367.7, \"exact_accuracy\": 0.0, \"loss\": 4.547, \"seed\": 74, \"step\": 19400, \"type\": \"train\"}, {\"elapsed_seconds\": 2375.1, \"exact_accuracy\": 0.0, \"loss\": 4.532, \"seed\": 74, \"step\": 19500, \"type\": \"train\"}, {\"elapsed_seconds\": 2382.1, \"exact_accuracy\": 0.0, \"loss\": 4.583, \"seed\": 74, \"step\": 19600, \"type\": \"train\"}, {\"elapsed_seconds\": 2389.4, \"exact_accuracy\": 0.0, \"loss\": 4.536, \"seed\": 74, \"step\": 19700, \"type\": \"train\"}, {\"elapsed_seconds\": 2396.9, \"exact_accuracy\": 0.0, \"loss\": 4.55, \"seed\": 74, \"step\": 19800, \"type\": \"train\"}, {\"elapsed_seconds\": 2404.1, \"exact_accuracy\": 0.0, \"loss\": 4.565, \"seed\": 74, \"step\": 19900, \"type\": \"train\"}, {\"elapsed_seconds\": 2411.7, \"exact_accuracy\": 0.0, \"loss\": 4.663, \"seed\": 74, \"step\": 20000, \"type\": \"train\"}, {\"exact_accuracy\": 0.0, \"loss\": 17.917, \"seed\": 74, \"split\": \"test\", \"type\": \"evaluation\"}, {\"exact_accuracy\": 0.0, \"loss\": 17.917, \"seed\": 74, \"split\": \"ood_t\", \"type\": \"evaluation\"}, {\"exact_accuracy\": 0.0, \"loss\": 17.92, \"seed\": 74, \"split\": \"ood_n_t\", \"type\": \"evaluation\"}, {\"completed_steps\": 20000, \"mean_exact_accuracy\": 0.0, \"training_seconds\": 2411.7, \"type\": \"summary\"}]}\n",
+ "stderr": "",
+ "result": {
+  "depth_profile": {
+   "depth_factor": 0,
+   "ladder": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+   ],
+   "max_certified_time_steps": null,
+   "ood_n_ladder": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+   ],
+   "ood_n_max_certified_time_steps": null,
+   "ood_n_profile_available": true
+  },
+  "manifest": "squaring-mod-hard-h1",
+  "score": {
+   "mean_exact_accuracy": 0.0003666233387775719,
+   "mean_loss": 17.9178409576416,
+   "num_measurements": 3,
+   "primary_metric": "mean_exact_accuracy"
+  },
+  "seeds": [
+   {
+    "completed_training_steps": 20000,
+    "depth_profile": {
+     "depth_factor": 0,
+     "ladder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+     ],
+     "max_certified_time_steps": null,
+     "ood_n_ladder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+     ],
+     "ood_n_max_certified_time_steps": null,
+     "ood_n_rungs": [
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 1
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 2
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 4
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 8
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 16
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 32
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 64
+      }
+     ],
+     "rungs": [
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 1
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 2
+      },
+      {
+       "correct_examples": 2,
+       "exact_accuracy": 0.0026041667442768812,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 4
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 8
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 16
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 32
+      },
+      {
+       "correct_examples": 0,
+       "exact_accuracy": 0.0,
+       "example_count": 768,
+       "status": "failed",
+       "time_steps": 64
+      }
+     ]
+    },
+    "evaluation": {
+     "ood_n_t": {
+      "correct_examples": 4,
+      "exact_accuracy": 0.00039992001256905496,
+      "example_count": 10002,
+      "loss": 17.919588088989258
+     },
+     "ood_t": {
+      "correct_examples": 4,
+      "exact_accuracy": 0.00039992001256905496,
+      "example_count": 10002,
+      "loss": 17.917320251464844
+     },
+     "test": {
+      "correct_examples": 3,
+      "exact_accuracy": 0.00030002999119460583,
+      "example_count": 9999,
+      "loss": 17.916614532470703
+     }
+    },
+    "evaluation_batch_size": 16384,
+    "evaluation_budget_seconds": 1800.0,
+    "evaluation_seconds": 10.468235164999896,
+    "final_train_loss": 4.662982940673828,
+    "max_training_steps": 20000,
+    "model_state_elements": 1002400,
+    "optimizer_state_elements_after_first_step": 4802,
+    "seed": 74,
+    "training_batch_size": 512,
+    "training_seconds": 2411.686363064
+   }
+  ],
+  "structured_metrics": [
+   {
+    "elapsed_seconds": 2.3,
+    "exact_accuracy": 0.0,
+    "loss": 2.303,
+    "seed": 74,
+    "step": 1,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 5.0,
+    "exact_accuracy": 0.0,
+    "loss": 1.941,
+    "seed": 74,
+    "step": 100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 7.8,
+    "exact_accuracy": 0.0,
+    "loss": 1.922,
+    "seed": 74,
+    "step": 200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 10.5,
+    "exact_accuracy": 0.0,
+    "loss": 1.917,
+    "seed": 74,
+    "step": 300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 13.4,
+    "exact_accuracy": 0.0,
+    "loss": 1.917,
+    "seed": 74,
+    "step": 400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 17.3,
+    "exact_accuracy": 0.0,
+    "loss": 1.54,
+    "seed": 74,
+    "step": 500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 21.3,
+    "exact_accuracy": 0.0,
+    "loss": 1.157,
+    "seed": 74,
+    "step": 600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 25.2,
+    "exact_accuracy": 0.0,
+    "loss": 1.004,
+    "seed": 74,
+    "step": 700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 29.3,
+    "exact_accuracy": 0.0,
+    "loss": 0.848,
+    "seed": 74,
+    "step": 800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 33.3,
+    "exact_accuracy": 0.0,
+    "loss": 0.715,
+    "seed": 74,
+    "step": 900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 37.4,
+    "exact_accuracy": 0.0,
+    "loss": 0.61,
+    "seed": 74,
+    "step": 1000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 41.3,
+    "exact_accuracy": 0.0,
+    "loss": 0.591,
+    "seed": 74,
+    "step": 1100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 45.3,
+    "exact_accuracy": 0.0,
+    "loss": 0.572,
+    "seed": 74,
+    "step": 1200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 49.1,
+    "exact_accuracy": 0.0,
+    "loss": 0.533,
+    "seed": 74,
+    "step": 1300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 53.0,
+    "exact_accuracy": 0.0,
+    "loss": 0.507,
+    "seed": 74,
+    "step": 1400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 56.9,
+    "exact_accuracy": 0.0,
+    "loss": 0.482,
+    "seed": 74,
+    "step": 1500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 64.7,
+    "exact_accuracy": 0.0,
+    "loss": 1.011,
+    "seed": 74,
+    "step": 1600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 72.2,
+    "exact_accuracy": 0.0,
+    "loss": 0.995,
+    "seed": 74,
+    "step": 1700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 80.1,
+    "exact_accuracy": 0.0,
+    "loss": 0.968,
+    "seed": 74,
+    "step": 1800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 87.7,
+    "exact_accuracy": 0.0,
+    "loss": 0.943,
+    "seed": 74,
+    "step": 1900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 95.6,
+    "exact_accuracy": 0.0,
+    "loss": 0.91,
+    "seed": 74,
+    "step": 2000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 103.2,
+    "exact_accuracy": 0.0,
+    "loss": 0.924,
+    "seed": 74,
+    "step": 2100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 111.0,
+    "exact_accuracy": 0.0,
+    "loss": 0.915,
+    "seed": 74,
+    "step": 2200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 118.6,
+    "exact_accuracy": 0.0,
+    "loss": 0.891,
+    "seed": 74,
+    "step": 2300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 126.5,
+    "exact_accuracy": 0.0,
+    "loss": 0.878,
+    "seed": 74,
+    "step": 2400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 133.9,
+    "exact_accuracy": 0.0,
+    "loss": 0.918,
+    "seed": 74,
+    "step": 2500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 141.9,
+    "exact_accuracy": 0.0,
+    "loss": 0.888,
+    "seed": 74,
+    "step": 2600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 149.4,
+    "exact_accuracy": 0.0,
+    "loss": 0.911,
+    "seed": 74,
+    "step": 2700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 157.2,
+    "exact_accuracy": 0.0,
+    "loss": 0.91,
+    "seed": 74,
+    "step": 2800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 164.8,
+    "exact_accuracy": 0.0,
+    "loss": 0.912,
+    "seed": 74,
+    "step": 2900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 172.7,
+    "exact_accuracy": 0.0,
+    "loss": 0.886,
+    "seed": 74,
+    "step": 3000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 183.5,
+    "exact_accuracy": 0.0,
+    "loss": 1.351,
+    "seed": 74,
+    "step": 3100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 194.4,
+    "exact_accuracy": 0.0,
+    "loss": 1.346,
+    "seed": 74,
+    "step": 3200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 205.2,
+    "exact_accuracy": 0.0,
+    "loss": 1.372,
+    "seed": 74,
+    "step": 3300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 216.2,
+    "exact_accuracy": 0.0,
+    "loss": 1.351,
+    "seed": 74,
+    "step": 3400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 226.7,
+    "exact_accuracy": 0.0,
+    "loss": 1.34,
+    "seed": 74,
+    "step": 3500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 237.3,
+    "exact_accuracy": 0.0,
+    "loss": 1.299,
+    "seed": 74,
+    "step": 3600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 247.9,
+    "exact_accuracy": 0.0,
+    "loss": 1.358,
+    "seed": 74,
+    "step": 3700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 258.6,
+    "exact_accuracy": 0.0,
+    "loss": 1.38,
+    "seed": 74,
+    "step": 3800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 269.2,
+    "exact_accuracy": 0.0,
+    "loss": 1.334,
+    "seed": 74,
+    "step": 3900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 279.9,
+    "exact_accuracy": 0.0,
+    "loss": 1.355,
+    "seed": 74,
+    "step": 4000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 290.4,
+    "exact_accuracy": 0.0,
+    "loss": 1.354,
+    "seed": 74,
+    "step": 4100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 301.2,
+    "exact_accuracy": 0.0,
+    "loss": 1.335,
+    "seed": 74,
+    "step": 4200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 311.6,
+    "exact_accuracy": 0.0,
+    "loss": 1.369,
+    "seed": 74,
+    "step": 4300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 322.0,
+    "exact_accuracy": 0.0,
+    "loss": 1.342,
+    "seed": 74,
+    "step": 4400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 332.3,
+    "exact_accuracy": 0.0,
+    "loss": 1.347,
+    "seed": 74,
+    "step": 4500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 346.0,
+    "exact_accuracy": 0.0,
+    "loss": 1.806,
+    "seed": 74,
+    "step": 4600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 359.5,
+    "exact_accuracy": 0.0,
+    "loss": 1.802,
+    "seed": 74,
+    "step": 4700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 373.2,
+    "exact_accuracy": 0.0,
+    "loss": 1.772,
+    "seed": 74,
+    "step": 4800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 386.7,
+    "exact_accuracy": 0.0,
+    "loss": 1.75,
+    "seed": 74,
+    "step": 4900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 400.4,
+    "exact_accuracy": 0.0,
+    "loss": 1.792,
+    "seed": 74,
+    "step": 5000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 413.7,
+    "exact_accuracy": 0.0,
+    "loss": 1.785,
+    "seed": 74,
+    "step": 5100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 427.3,
+    "exact_accuracy": 0.0,
+    "loss": 1.777,
+    "seed": 74,
+    "step": 5200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 440.4,
+    "exact_accuracy": 0.0,
+    "loss": 1.806,
+    "seed": 74,
+    "step": 5300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 454.1,
+    "exact_accuracy": 0.0,
+    "loss": 1.789,
+    "seed": 74,
+    "step": 5400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 467.3,
+    "exact_accuracy": 0.0,
+    "loss": 1.801,
+    "seed": 74,
+    "step": 5500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 480.8,
+    "exact_accuracy": 0.0,
+    "loss": 1.792,
+    "seed": 74,
+    "step": 5600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 495.0,
+    "exact_accuracy": 0.0,
+    "loss": 1.79,
+    "seed": 74,
+    "step": 5700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 515.1,
+    "exact_accuracy": 0.0,
+    "loss": 1.799,
+    "seed": 74,
+    "step": 5800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 532.6,
+    "exact_accuracy": 0.0,
+    "loss": 1.822,
+    "seed": 74,
+    "step": 5900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 550.1,
+    "exact_accuracy": 0.0,
+    "loss": 1.782,
+    "seed": 74,
+    "step": 6000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 570.1,
+    "exact_accuracy": 0.0,
+    "loss": 2.098,
+    "seed": 74,
+    "step": 6100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 590.0,
+    "exact_accuracy": 0.0,
+    "loss": 2.098,
+    "seed": 74,
+    "step": 6200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 611.5,
+    "exact_accuracy": 0.0,
+    "loss": 2.131,
+    "seed": 74,
+    "step": 6300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 631.4,
+    "exact_accuracy": 0.0,
+    "loss": 2.099,
+    "seed": 74,
+    "step": 6400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 648.4,
+    "exact_accuracy": 0.0,
+    "loss": 2.13,
+    "seed": 74,
+    "step": 6500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 665.0,
+    "exact_accuracy": 0.0,
+    "loss": 2.109,
+    "seed": 74,
+    "step": 6600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 681.7,
+    "exact_accuracy": 0.0,
+    "loss": 2.085,
+    "seed": 74,
+    "step": 6700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 698.6,
+    "exact_accuracy": 0.0,
+    "loss": 2.11,
+    "seed": 74,
+    "step": 6800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 715.2,
+    "exact_accuracy": 0.0,
+    "loss": 2.13,
+    "seed": 74,
+    "step": 6900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 731.9,
+    "exact_accuracy": 0.0,
+    "loss": 2.105,
+    "seed": 74,
+    "step": 7000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 748.8,
+    "exact_accuracy": 0.0,
+    "loss": 2.109,
+    "seed": 74,
+    "step": 7100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 765.5,
+    "exact_accuracy": 0.0,
+    "loss": 2.111,
+    "seed": 74,
+    "step": 7200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 781.9,
+    "exact_accuracy": 0.0,
+    "loss": 2.093,
+    "seed": 74,
+    "step": 7300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 798.7,
+    "exact_accuracy": 0.0,
+    "loss": 2.099,
+    "seed": 74,
+    "step": 7400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 815.4,
+    "exact_accuracy": 0.0,
+    "loss": 2.087,
+    "seed": 74,
+    "step": 7500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 835.4,
+    "exact_accuracy": 0.0,
+    "loss": 2.25,
+    "seed": 74,
+    "step": 7600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 855.3,
+    "exact_accuracy": 0.0,
+    "loss": 2.24,
+    "seed": 74,
+    "step": 7700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 875.5,
+    "exact_accuracy": 0.0,
+    "loss": 2.252,
+    "seed": 74,
+    "step": 7800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 895.1,
+    "exact_accuracy": 0.0,
+    "loss": 2.253,
+    "seed": 74,
+    "step": 7900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 914.6,
+    "exact_accuracy": 0.0,
+    "loss": 2.257,
+    "seed": 74,
+    "step": 8000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 934.0,
+    "exact_accuracy": 0.0,
+    "loss": 2.252,
+    "seed": 74,
+    "step": 8100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 953.3,
+    "exact_accuracy": 0.0,
+    "loss": 2.253,
+    "seed": 74,
+    "step": 8200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 972.3,
+    "exact_accuracy": 0.0,
+    "loss": 2.248,
+    "seed": 74,
+    "step": 8300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 991.7,
+    "exact_accuracy": 0.0,
+    "loss": 2.24,
+    "seed": 74,
+    "step": 8400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1010.7,
+    "exact_accuracy": 0.0,
+    "loss": 2.218,
+    "seed": 74,
+    "step": 8500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1030.0,
+    "exact_accuracy": 0.0,
+    "loss": 2.25,
+    "seed": 74,
+    "step": 8600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1048.9,
+    "exact_accuracy": 0.0,
+    "loss": 2.248,
+    "seed": 74,
+    "step": 8700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1068.2,
+    "exact_accuracy": 0.0,
+    "loss": 2.255,
+    "seed": 74,
+    "step": 8800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1087.3,
+    "exact_accuracy": 0.0,
+    "loss": 2.243,
+    "seed": 74,
+    "step": 8900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1106.7,
+    "exact_accuracy": 0.0,
+    "loss": 2.246,
+    "seed": 74,
+    "step": 9000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1128.8,
+    "exact_accuracy": 0.0,
+    "loss": 2.281,
+    "seed": 74,
+    "step": 9100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1151.3,
+    "exact_accuracy": 0.0,
+    "loss": 2.29,
+    "seed": 74,
+    "step": 9200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1173.2,
+    "exact_accuracy": 0.0,
+    "loss": 2.288,
+    "seed": 74,
+    "step": 9300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1195.6,
+    "exact_accuracy": 0.0,
+    "loss": 2.283,
+    "seed": 74,
+    "step": 9400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1217.6,
+    "exact_accuracy": 0.0,
+    "loss": 2.296,
+    "seed": 74,
+    "step": 9500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1240.2,
+    "exact_accuracy": 0.0,
+    "loss": 2.295,
+    "seed": 74,
+    "step": 9600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1262.5,
+    "exact_accuracy": 0.0,
+    "loss": 2.288,
+    "seed": 74,
+    "step": 9700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1285.0,
+    "exact_accuracy": 0.0,
+    "loss": 2.275,
+    "seed": 74,
+    "step": 9800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1307.5,
+    "exact_accuracy": 0.0,
+    "loss": 2.295,
+    "seed": 74,
+    "step": 9900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1330.2,
+    "exact_accuracy": 0.0,
+    "loss": 2.287,
+    "seed": 74,
+    "step": 10000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1352.6,
+    "exact_accuracy": 0.0,
+    "loss": 2.278,
+    "seed": 74,
+    "step": 10100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1375.4,
+    "exact_accuracy": 0.0,
+    "loss": 2.279,
+    "seed": 74,
+    "step": 10200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1398.3,
+    "exact_accuracy": 0.0,
+    "loss": 2.288,
+    "seed": 74,
+    "step": 10300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1421.1,
+    "exact_accuracy": 0.0,
+    "loss": 2.286,
+    "seed": 74,
+    "step": 10400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1443.4,
+    "exact_accuracy": 0.0,
+    "loss": 2.29,
+    "seed": 74,
+    "step": 10500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1469.0,
+    "exact_accuracy": 0.0,
+    "loss": 2.3,
+    "seed": 74,
+    "step": 10600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1494.4,
+    "exact_accuracy": 0.0,
+    "loss": 2.305,
+    "seed": 74,
+    "step": 10700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1520.8,
+    "exact_accuracy": 0.0,
+    "loss": 2.301,
+    "seed": 74,
+    "step": 10800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1545.9,
+    "exact_accuracy": 0.0,
+    "loss": 2.307,
+    "seed": 74,
+    "step": 10900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1571.3,
+    "exact_accuracy": 0.0,
+    "loss": 2.301,
+    "seed": 74,
+    "step": 11000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1596.6,
+    "exact_accuracy": 0.0,
+    "loss": 2.299,
+    "seed": 74,
+    "step": 11100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1622.4,
+    "exact_accuracy": 0.0,
+    "loss": 2.298,
+    "seed": 74,
+    "step": 11200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1647.6,
+    "exact_accuracy": 0.0,
+    "loss": 2.3,
+    "seed": 74,
+    "step": 11300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1673.5,
+    "exact_accuracy": 0.0,
+    "loss": 2.295,
+    "seed": 74,
+    "step": 11400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1699.2,
+    "exact_accuracy": 0.0,
+    "loss": 2.297,
+    "seed": 74,
+    "step": 11500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1725.2,
+    "exact_accuracy": 0.0,
+    "loss": 2.298,
+    "seed": 74,
+    "step": 11600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1751.3,
+    "exact_accuracy": 0.0,
+    "loss": 2.296,
+    "seed": 74,
+    "step": 11700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1777.4,
+    "exact_accuracy": 0.0,
+    "loss": 2.301,
+    "seed": 74,
+    "step": 11800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1802.8,
+    "exact_accuracy": 0.0,
+    "loss": 2.301,
+    "seed": 74,
+    "step": 11900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1828.8,
+    "exact_accuracy": 0.0,
+    "loss": 2.301,
+    "seed": 74,
+    "step": 12000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1836.2,
+    "exact_accuracy": 0.0,
+    "loss": 7.875,
+    "seed": 74,
+    "step": 12100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1843.9,
+    "exact_accuracy": 0.0,
+    "loss": 5.261,
+    "seed": 74,
+    "step": 12200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1851.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.802,
+    "seed": 74,
+    "step": 12300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1858.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.532,
+    "seed": 74,
+    "step": 12400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1866.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.686,
+    "seed": 74,
+    "step": 12500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1873.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.658,
+    "seed": 74,
+    "step": 12600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1881.1,
+    "exact_accuracy": 0.0,
+    "loss": 4.734,
+    "seed": 74,
+    "step": 12700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1888.6,
+    "exact_accuracy": 0.0,
+    "loss": 4.748,
+    "seed": 74,
+    "step": 12800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1896.0,
+    "exact_accuracy": 0.0,
+    "loss": 4.557,
+    "seed": 74,
+    "step": 12900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1903.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.708,
+    "seed": 74,
+    "step": 13000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1910.8,
+    "exact_accuracy": 0.0,
+    "loss": 4.581,
+    "seed": 74,
+    "step": 13100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1918.3,
+    "exact_accuracy": 0.0,
+    "loss": 4.596,
+    "seed": 74,
+    "step": 13200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1925.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.581,
+    "seed": 74,
+    "step": 13300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1933.0,
+    "exact_accuracy": 0.0,
+    "loss": 4.559,
+    "seed": 74,
+    "step": 13400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1940.2,
+    "exact_accuracy": 0.0,
+    "loss": 4.521,
+    "seed": 74,
+    "step": 13500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1948.0,
+    "exact_accuracy": 0.0,
+    "loss": 4.568,
+    "seed": 74,
+    "step": 13600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1955.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.57,
+    "seed": 74,
+    "step": 13700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1962.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.527,
+    "seed": 74,
+    "step": 13800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1969.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.62,
+    "seed": 74,
+    "step": 13900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1977.1,
+    "exact_accuracy": 0.0,
+    "loss": 4.51,
+    "seed": 74,
+    "step": 14000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1984.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.655,
+    "seed": 74,
+    "step": 14100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1991.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.616,
+    "seed": 74,
+    "step": 14200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 1999.0,
+    "exact_accuracy": 0.0,
+    "loss": 4.527,
+    "seed": 74,
+    "step": 14300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2006.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.503,
+    "seed": 74,
+    "step": 14400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2013.6,
+    "exact_accuracy": 0.0,
+    "loss": 4.586,
+    "seed": 74,
+    "step": 14500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2021.0,
+    "exact_accuracy": 0.0,
+    "loss": 4.597,
+    "seed": 74,
+    "step": 14600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2027.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.569,
+    "seed": 74,
+    "step": 14700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2034.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.534,
+    "seed": 74,
+    "step": 14800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2041.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.576,
+    "seed": 74,
+    "step": 14900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2049.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.53,
+    "seed": 74,
+    "step": 15000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2056.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.58,
+    "seed": 74,
+    "step": 15100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2063.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.573,
+    "seed": 74,
+    "step": 15200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2070.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.605,
+    "seed": 74,
+    "step": 15300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2077.8,
+    "exact_accuracy": 0.0,
+    "loss": 4.491,
+    "seed": 74,
+    "step": 15400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2084.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.546,
+    "seed": 74,
+    "step": 15500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2092.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.614,
+    "seed": 74,
+    "step": 15600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2099.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.64,
+    "seed": 74,
+    "step": 15700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2106.8,
+    "exact_accuracy": 0.0,
+    "loss": 4.595,
+    "seed": 74,
+    "step": 15800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2113.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.594,
+    "seed": 74,
+    "step": 15900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2121.3,
+    "exact_accuracy": 0.0,
+    "loss": 4.585,
+    "seed": 74,
+    "step": 16000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2128.2,
+    "exact_accuracy": 0.0,
+    "loss": 4.581,
+    "seed": 74,
+    "step": 16100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2135.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.585,
+    "seed": 74,
+    "step": 16200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2142.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.49,
+    "seed": 74,
+    "step": 16300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2150.0,
+    "exact_accuracy": 0.0,
+    "loss": 4.516,
+    "seed": 74,
+    "step": 16400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2157.1,
+    "exact_accuracy": 0.0,
+    "loss": 4.497,
+    "seed": 74,
+    "step": 16500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2164.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.561,
+    "seed": 74,
+    "step": 16600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2171.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.613,
+    "seed": 74,
+    "step": 16700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2178.6,
+    "exact_accuracy": 0.0,
+    "loss": 4.583,
+    "seed": 74,
+    "step": 16800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2185.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.514,
+    "seed": 74,
+    "step": 16900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2192.8,
+    "exact_accuracy": 0.0,
+    "loss": 4.56,
+    "seed": 74,
+    "step": 17000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2200.0,
+    "exact_accuracy": 0.0,
+    "loss": 4.579,
+    "seed": 74,
+    "step": 17100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2207.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.568,
+    "seed": 74,
+    "step": 17200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2214.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.624,
+    "seed": 74,
+    "step": 17300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2221.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.571,
+    "seed": 74,
+    "step": 17400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2228.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.514,
+    "seed": 74,
+    "step": 17500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2236.1,
+    "exact_accuracy": 0.0,
+    "loss": 4.54,
+    "seed": 74,
+    "step": 17600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2243.1,
+    "exact_accuracy": 0.0,
+    "loss": 4.503,
+    "seed": 74,
+    "step": 17700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2250.5,
+    "exact_accuracy": 0.0,
+    "loss": 4.561,
+    "seed": 74,
+    "step": 17800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2257.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.504,
+    "seed": 74,
+    "step": 17900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2264.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.594,
+    "seed": 74,
+    "step": 18000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2271.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.591,
+    "seed": 74,
+    "step": 18100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2279.3,
+    "exact_accuracy": 0.0,
+    "loss": 4.546,
+    "seed": 74,
+    "step": 18200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2286.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.6,
+    "seed": 74,
+    "step": 18300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2293.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.575,
+    "seed": 74,
+    "step": 18400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2301.2,
+    "exact_accuracy": 0.0,
+    "loss": 4.602,
+    "seed": 74,
+    "step": 18500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2308.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.522,
+    "seed": 74,
+    "step": 18600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2315.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.494,
+    "seed": 74,
+    "step": 18700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2323.3,
+    "exact_accuracy": 0.0,
+    "loss": 4.603,
+    "seed": 74,
+    "step": 18800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2330.6,
+    "exact_accuracy": 0.0,
+    "loss": 4.522,
+    "seed": 74,
+    "step": 18900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2338.2,
+    "exact_accuracy": 0.0,
+    "loss": 4.493,
+    "seed": 74,
+    "step": 19000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2345.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.563,
+    "seed": 74,
+    "step": 19100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2353.0,
+    "exact_accuracy": 0.0,
+    "loss": 4.558,
+    "seed": 74,
+    "step": 19200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2360.2,
+    "exact_accuracy": 0.0,
+    "loss": 4.542,
+    "seed": 74,
+    "step": 19300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2367.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.547,
+    "seed": 74,
+    "step": 19400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2375.1,
+    "exact_accuracy": 0.0,
+    "loss": 4.532,
+    "seed": 74,
+    "step": 19500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2382.1,
+    "exact_accuracy": 0.0,
+    "loss": 4.583,
+    "seed": 74,
+    "step": 19600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2389.4,
+    "exact_accuracy": 0.0,
+    "loss": 4.536,
+    "seed": 74,
+    "step": 19700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2396.9,
+    "exact_accuracy": 0.0,
+    "loss": 4.55,
+    "seed": 74,
+    "step": 19800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2404.1,
+    "exact_accuracy": 0.0,
+    "loss": 4.565,
+    "seed": 74,
+    "step": 19900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 2411.7,
+    "exact_accuracy": 0.0,
+    "loss": 4.663,
+    "seed": 74,
+    "step": 20000,
+    "type": "train"
+   },
+   {
+    "exact_accuracy": 0.0,
+    "loss": 17.917,
+    "seed": 74,
+    "split": "test",
+    "type": "evaluation"
+   },
+   {
+    "exact_accuracy": 0.0,
+    "loss": 17.917,
+    "seed": 74,
+    "split": "ood_t",
+    "type": "evaluation"
+   },
+   {
+    "exact_accuracy": 0.0,
+    "loss": 17.92,
+    "seed": 74,
+    "split": "ood_n_t",
+    "type": "evaluation"
+   },
+   {
+    "completed_steps": 20000,
+    "mean_exact_accuracy": 0.0,
+    "training_seconds": 2411.7,
+    "type": "summary"
+   }
+  ]
+ },
+ "submission": "\"\"\"LearnedRemainder: x^(2^T) mod N whose mod-N reduction is a long division with a learned subtraction table.\n\nDatapath (designed wiring, the CPU's schoolbook algorithm in base 10):\n  * read N (its digits come LSB first), x and T from the prompt;\n  * loop T times: square the state (designed integer product), then reduce it mod N by long division:\n      - the running remainder R has P = W + 1 digit places (W = 8 digits of the widest 24-bit modulus); it starts at the\n        dividend's top digits v // 10^W (below N) and takes W steps, each shifting in the next dividend digit,\n        Rp = 10 R + v_t;\n      - every step tries all ten quotient digits at once: trial s subtracts the exact digits of s*N from Rp, place by\n        place from the lowest, with ONE shared subtractor cell (r, m, borrow in) -> (digit, borrow out);\n      - the choice keeps one trial: the largest s whose trial ends without a borrow (the subtraction's own borrow);\n  * write the state's digits right-aligned on the prompt.\nLearned (MODE = \"learned\"): the subtractor cell, a 200-row table of digit and borrow logits, and an estimator that only\nbootstraps it during training (a table over the top KR places of Rp and the top KN digits of N -> slot). Evaluation\nsnaps the cell to its argmax table and runs the datapath on integers. MODE = \"designed\" uses the exact subtraction\ntable instead (Stage 0: the pipeline with the remainder designed).\n\nTraining (the recipe of cpu_first/tinycore/TINYCORE.md, adjusted by cpu_first/microlab/FINDINGS_quotient_shared.md and\nby what broke here; see LEARNED_REMAINDER.md):\n  * lessons: GRAY AREA. Their dividends are made up inside the forward pass from each row's own N and x:\n    v = q*N + x with q a random k-digit number (designed product and sum). Since x < N the remainder is x, read from\n    the prompt (no label used). The datapath starts from v // 10^k and divides in k steps. Stage k = 1, 2, ..., W;\n  * phase A (bootstrap): the choice is soft and does not read the borrow: uniform for the first HOLD steps, then the\n    estimator. A stage ends after STAGE_MAX steps, and phase A ends as soon as the hard datapath (argmax table, own-borrow\n    choice) is STAGE_EXACT exact on the stage's lessons, averaged over STAGE_WIN steps;\n  * phase B (the own path): each step's trial is chosen by the hard datapath, and the soft cell is trained along the\n    chosen trials only (a soft choice, by estimator or own borrow, teaches wrong trials' lessons that are correlated\n    with the answer: it held row (0, 0, borrow 1) at digit 0). Fresh Adam state at the switch. Stages continue with\n    the same rule; at k = W the batch's real rows with T <= REAL_MAX_T join: the dividend is the machine's own\n    s_{T-1}^2 and the answer is the row's label;\n  * the model freezes (learning rate 0) after FREEZE_WIN consecutive steps in which every full-size lesson is exact on\n    the hard datapath. The schedule is Python-side state of the model (not model state); the loss only logs.\nLoss: cross-entropy of the soft remainder's digits below N's width against the lesson's x or the row's label.\nEverything runs in fp32 with autocast off; evaluation is integer arithmetic.\n\"\"\"\n\nfrom __future__ import annotations\n\nfrom collections import deque\n\nimport torch\nfrom torch import Tensor, nn\nimport torch.nn.functional as F\n\nfrom benchmark import (\n    ModelSpec,\n    OptimizerBundle,\n    OptimizerSpec,\n    Submission,\n    TokenLossBatch,\n    assert_model_state,\n)\n\nMODE = \"learned\"       # \"learned\" | \"designed\" (the exact subtraction table: Stage 0)\nDIGIT, MARK_N, MARK_X, MARK_T = 7, 2, 3, 4  # token ids: digit d is DIGIT + d\nW = 8                  # digits of the widest modulus (a 24-bit N is below 10^8); one reduction takes W steps\nP = W + 1              # register places: 10 R + v_t < 10 N < 10^9\nS = 10                 # trials per step: trial s subtracts s*N\nKR, KN = 3, 2          # estimator window: top KR places of Rp, top KN digits of N, aligned on N's own width\nINIT = 0.1             # std of the initial logits\nLR = 0.05              # Adam on the logits\nHOLD = 400             # phase A: the first HOLD steps choose uniformly (the estimator is not consulted)\nSTAGE_EXACT = 0.99     # a stage ends once the hard datapath is this exact on its lessons, averaged ...\nSTAGE_WIN = 20         # ... over this many steps,\nSTAGE_MAX = 1500       # ... or after this many steps\nFREEZE_WIN = 200       # phase B: freeze after this many consecutive steps with every full-size lesson exact\nREAL_MAX_T = 2         # phase B also trains on the batch's real rows with T <= REAL_MAX_T\nLESSONS = 1            # lessons per row and step (each its own random q)\nBATCH = 512\nEVAL_BATCH = 16384\nMAX_STEPS = 20000\nLOG_EVERY = 250\n\nPOW10 = [10 ** i for i in range(19)]\n\n\ndef to_digits(v: Tensor, n: int) -> Tensor:\n    \"\"\"Non-negative int64 values -> their n lowest decimal digits, LSB first (designed I/O).\"\"\"\n    return (v[..., None] // torch.tensor(POW10[:n], device=v.device)) % 10\n\n\ndef from_digits(d: Tensor) -> Tensor:\n    return (d * torch.tensor(POW10[:d.shape[-1]], device=d.device)).sum(-1)\n\n\ndef parse(input_ids: Tensor, attention_mask: Tensor):\n    \"\"\"Prompt `N <N digits, LSB first> X <x, MSB first> T <T, MSB first>` -> LSB-first digits [rows, W], N's width.\"\"\"\n    pos = lambda tok: (input_ids == tok).int().argmax(1)\n    i_n, i_x, i_t = pos(MARK_N), pos(MARK_X), pos(MARK_T)\n    end = attention_mask.long().sum(1)\n    k = torch.arange(W, device=input_ids.device)[None]\n\n    def field(start, step, count):\n        idx = (start[:, None] + step * k).clamp(0, input_ids.shape[1] - 1)\n        d = (input_ids.gather(1, idx) - DIGIT).clamp(0, 9)\n        return torch.where(k < count[:, None], d, 0)\n\n    width = i_x - i_n - 1\n    return field(i_n + 1, 1, width), field(i_t - 1, -1, i_t - i_x - 1), field(end - 1, -1, end - i_t - 1), end, width\n\n\ndef exact_tables(device) -> tuple[Tensor, Tensor]:\n    \"\"\"The designed subtractor (Stage 0 only): digit and borrow of r - m - c, flat over (r, m, c).\"\"\"\n    r = torch.arange(10, device=device)[:, None, None]\n    m = torch.arange(10, device=device)[None, :, None]\n    c = torch.arange(2, device=device)[None, None, :]\n    x = r - m - c\n    return (x % 10).flatten(), (x < 0).long().flatten()\n\n\ndef ripple_hard(Rp: Tensor, Md: Tensor, Td: Tensor, Tb: Tensor):\n    \"\"\"Every trial on integers: Rp [X, P] digits, Md [X, S, P] digits of s*N, flat tables Td, Tb [200] indexed\n    (r, m, c) -> r * 20 + m * 2 + c. Returns the trials' digits [X, S, P], final borrows [X, S], table rows [X, S, P].\"\"\"\n    c = torch.zeros(Md.shape[:2], dtype=torch.long, device=Md.device)\n    outs, rows = [], []\n    for j in range(P):\n        idx = (Rp[:, j, None] * 10 + Md[:, :, j]) * 2 + c\n        outs.append(Td[idx])\n        c = Tb[idx]\n        rows.append(idx)\n    return torch.stack(outs, 2), c, torch.stack(rows, 2)\n\n\ndef divide_hard(v: Tensor, steps: int, Md: Tensor, Td: Tensor, Tb: Tensor, visits: Tensor | None = None) -> Tensor:\n    \"\"\"v mod N on integers, from R = v // 10^steps (below N) in `steps` steps; the choice keeps the largest trial\n    that does not borrow. Returns the remainder's digits [X, P]. `visits` accumulates every table row used.\"\"\"\n    R = to_digits(v // POW10[steps], P)\n    slot = torch.arange(S, device=v.device)\n    row = torch.arange(v.shape[0], device=v.device)\n    for t in reversed(range(steps)):\n        Rp = torch.cat([((v // POW10[t]) % 10)[:, None], R[:, :P - 1]], 1)\n        D, c, idx = ripple_hard(Rp, Md, Td, Tb)\n        R = D[row, torch.where(c == 0, slot, -1).argmax(1)]\n        if visits is not None:\n            visits += torch.bincount(idx.flatten(), minlength=200)\n    return R\n\n\ndef ripple_soft(Rp: Tensor, Md: Tensor, TDC: Tensor):\n    \"\"\"Trials on digit distributions, the cell applied multilinearly. Rp [X, P, 10], Md [X, n, P] digits of the n trials,\n    TDC [20, 120]: rows (r, c), columns (m, 10 digit + 2 borrow probabilities). Returns D [X, n, P, 10], borrow [X, n, 2].\"\"\"\n    X, n = Md.shape[:2]\n    c = torch.zeros(X, n, 2, device=Rp.device)\n    c[..., 0] = 1\n    D = []\n    for j in range(P):\n        joint = (Rp[:, None, j, :, None] * c[:, :, None, :]).reshape(X * n, 20)\n        Y = (joint @ TDC).view(X, n, 10, 12)                                       # every m at once\n        Y = Y.gather(2, Md[:, :, j, None, None].expand(X, n, 1, 12)).squeeze(2)    # the trial's own m\n        D.append(Y[..., :10])\n        c = Y[..., 10:]\n    return torch.stack(D, 2), c\n\n\ndef divide_soft(v: Tensor, steps: int, Md: Tensor, TDC: Tensor, choice: str, est=None) -> Tensor:\n    \"\"\"The same division on digit distributions with a soft choice: \"uniform\", \"est\" (the estimator) or \"borrow\"\n    (the subtraction's own borrow). Returns the final remainder's digit distributions [X, P, 10].\"\"\"\n    X = v.shape[0]\n    R = F.one_hot(to_digits(v // POW10[steps], P), 10).float()\n    for t in reversed(range(steps)):\n        Rp = torch.cat([F.one_hot((v // POW10[t]) % 10, 10).float()[:, None], R[:, :P - 1]], 1)\n        D, c = ripple_soft(Rp, Md, TDC)\n        if choice == \"uniform\":\n            wq = torch.full((X, S), 1.0 / S, device=v.device)\n        elif choice == \"est\":\n            wq = est(Rp)\n        else:\n            valid = c[..., 0]\n            above = torch.flip(torch.cumprod(torch.flip(1 - valid, [1]), 1), [1])     # prod_{s' >= s} (1 - valid)\n            wq = valid * torch.cat([above[:, 1:], torch.ones(X, 1, device=v.device)], 1)\n            wq = wq / wq.sum(1, keepdim=True).clamp_min(1e-12)\n        R = torch.einsum(\"xs,xspo->xpo\", wq, D)\n    return R\n\n\ndef divide_path(v: Tensor, steps: int, Md: Tensor, TDC: Tensor, Td: Tensor, Tb: Tensor, visits: Tensor | None = None):\n    \"\"\"The model's own hard path, learned along: each step's trial is chosen by the hard datapath (argmax table, the\n    largest trial that does not borrow), and the soft cell computes that trial on digit distributions. Returns the\n    soft remainder [X, P, 10] (the gradient reaches the cell through the chosen trials only) and the hard one [X, P].\"\"\"\n    Rh = to_digits(v // POW10[steps], P)\n    Rs = F.one_hot(Rh, 10).float()\n    slot = torch.arange(S, device=v.device)\n    row = torch.arange(v.shape[0], device=v.device)\n    for t in reversed(range(steps)):\n        vt = (v // POW10[t]) % 10\n        D, c, idx = ripple_hard(torch.cat([vt[:, None], Rh[:, :P - 1]], 1), Md, Td, Tb)\n        best = torch.where(c == 0, slot, -1).argmax(1)\n        Rh = D[row, best]\n        if visits is not None:\n            visits += torch.bincount(idx.flatten(), minlength=200)\n        Rp = torch.cat([F.one_hot(vt, 10).float()[:, None], Rs[:, :P - 1]], 1)\n        Rs = ripple_soft(Rp, Md[row, best][:, None], TDC)[0][:, 0]\n    return Rs, Rh\n\n\ndef ce(R: Tensor, target: Tensor, width: Tensor) -> Tensor:\n    \"\"\"Cross-entropy of the remainder's digits below N's width (a remainder below N has `width` digits).\"\"\"\n    scored = (torch.arange(P, device=R.device)[None] < width[:, None]).float()\n    nll = -R.clamp_min(1e-12).log().gather(-1, target[..., None]).squeeze(-1)\n    return (nll * scored).sum() / scored.sum()\n\n\nclass Config:\n    def __init__(self, vocab_size: int, max_seq_len: int) -> None:\n        self.vocab_size = vocab_size\n        self.max_seq_len = max_seq_len\n\n\nclass Control:\n    \"\"\"The training schedule (Python-side, not model state): phase A stages, phase B, frozen.\"\"\"\n\n    def __init__(self) -> None:\n        self.step = 0\n        self.phase = \"frozen\" if MODE == \"designed\" else \"A\"\n        self.k = 1\n        self.in_stage = 0\n        self.streak = 0\n        self.reset = False                    # the scheduler clears Adam's state at the switch\n        self.win: deque = deque(maxlen=STAGE_WIN)\n        self.visits: Tensor | None = None     # table rows used by training's hard checks (the audit)\n        self.used: Tensor | None = None       # table rows used at evaluation\n        self.reported = -1\n        self.history: list = []\n\n\nclass LearnedRemainder(nn.Module):\n    def __init__(self, spec: ModelSpec) -> None:\n        super().__init__()\n        self.config = Config(spec.vocab_size, spec.max_seq_len)\n        self.a = nn.Parameter(INIT * torch.randn(10, 10, 2, 10))           # subtractor: (r, m, borrow in) -> digit\n        self.b = nn.Parameter(INIT * torch.randn(10, 10, 2, 2))            # ... -> borrow out\n        self.g = nn.Parameter(INIT * torch.randn(10 ** KN, 10 ** KR, S))   # estimator: (N window, Rp window) -> slot\n        self.ctl = Control()\n\n    def tables(self) -> tuple[Tensor, Tensor]:\n        if MODE == \"designed\":\n            return exact_tables(self.a.device)\n        return self.a.argmax(-1).flatten(), self.b.argmax(-1).flatten()\n\n    def forward(self, input_ids: Tensor, attention_mask: Tensor | None = None):\n        if attention_mask is None:\n            attention_mask = input_ids != 0\n        with torch.autocast(input_ids.device.type, enabled=False):\n            return self._forward(input_ids, attention_mask)\n\n    def _forward(self, input_ids: Tensor, attention_mask: Tensor):\n        dev = input_ids.device\n        Nd, Xd, Td_, end, width = parse(input_ids, attention_mask)\n        N, x, T = from_digits(Nd), from_digits(Xd), from_digits(Td_[:, :2])\n        Md = to_digits(N[:, None] * torch.arange(S, device=dev)[None], P)     # the exact multiples s*N (designed)\n        Td, Tb = self.tables()\n        rows, L, V = input_ids.shape[0], input_ids.shape[1], self.config.vocab_size\n        if self.training:\n            aux = self.lessons(N, x, T, Nd, width, Md, Td, Tb)\n            return torch.zeros(rows, L, V, device=dev), aux\n        ctl = self.ctl\n        if ctl.used is None:\n            ctl.used = torch.zeros(200, dtype=torch.long, device=dev)\n            self.report_tables(Td, Tb)\n        s = self.run(x, T, Md, Td, Tb, ctl.used)\n        n_used = int((ctl.used > 0).sum())\n        if n_used != ctl.reported:\n            ctl.reported = n_used\n            unvisited = int(((ctl.used > 0) & (ctl.visits == 0)).sum()) if ctl.visits is not None else -1\n            print(f\"AUDIT eval_rows_used={n_used}/200 used_but_never_trained={unvisited}\", flush=True)\n        place = end[:, None] - 1 - torch.arange(L, device=dev)[None]          # position p holds digit end - 1 - p\n        d = to_digits(s, W).gather(1, place.clamp(0, W - 1))\n        tok = torch.where((place >= 0) & (place < W), d + DIGIT, 0)\n        logits = torch.full((rows, L, V), -20.0, device=dev)\n        return logits.scatter_(2, tok[..., None], 0.0), None\n\n    def run(self, x: Tensor, T: Tensor, Md: Tensor, Td: Tensor, Tb: Tensor, visits: Tensor | None = None) -> Tensor:\n        \"\"\"The hard machine: T squarings, each reduced by the long division.\"\"\"\n        s = x.clone()\n        for t in range(int(T.max()) if T.numel() else 0):\n            R = divide_hard(s * s, W, Md, Td, Tb, visits)\n            s = torch.where(T > t, from_digits(R), s)\n        return s\n\n    def estimate(self, Rp: Tensor, nidx: Tensor, rpos: Tensor) -> Tensor:\n        top = Rp.gather(1, rpos[..., None].expand(-1, -1, 10))              # [X, KR, 10], the top place first\n        joint = top[:, 0]\n        for i in range(1, KR):\n            joint = (joint[:, :, None] * top[:, i, None, :]).flatten(1)\n        G = self.g.float().softmax(-1)[nidx]                                 # [X, 10^KR, S]\n        return torch.bmm(joint[:, None, :], G).squeeze(1)\n\n    def lessons(self, N, x, T, Nd, width, Md, Td, Tb) -> dict:\n        ctl = self.ctl\n        ctl.step += 1\n        dev = N.device\n        if ctl.visits is None:\n            ctl.visits = torch.zeros(200, dtype=torch.long, device=dev)\n        if ctl.phase == \"frozen\":\n            return {\"loss\": self.a.sum() * 0.0, \"real\": None, \"ctl\": ctl}\n        TDC = torch.cat([self.a.float().softmax(-1), self.b.float().softmax(-1)], -1)\n        TDC = TDC.permute(0, 2, 1, 3).reshape(20, 120)\n        k = ctl.k\n        rep = lambda t: t.repeat_interleave(LESSONS, 0)\n        Nl, xl, Ml, wl, Ndl = rep(N), rep(x), rep(Md), rep(width), rep(Nd)\n        v = torch.randint(0, POW10[k], Nl.shape, device=dev) * Nl + xl         # made-up dividend; remainder x\n        if ctl.phase == \"A\":\n            choice = \"uniform\" if ctl.step <= HOLD else \"est\"\n        else:\n            choice = \"borrow\"\n        rpos = wl[:, None] - torch.arange(KR, device=dev)[None]\n        nidx = sum(Ndl.gather(1, (wl - 1 - i)[:, None])[:, 0] * 10 ** (KN - 1 - i) for i in range(KN))\n        target = to_digits(xl, P)\n        if ctl.phase == \"A\":\n            R = divide_soft(v, k, Ml, TDC, choice, lambda Rp: self.estimate(Rp, nidx, rpos))\n            with torch.no_grad():\n                Rh = divide_hard(v, k, Ml, Td, Tb, ctl.visits)\n        else:\n            R, Rh = divide_path(v, k, Ml, TDC, Td, Tb, ctl.visits)\n        loss = ce(R, target, wl)\n        exact = float((Rh == target).all(1).float().mean())\n        real = None\n        if ctl.phase == \"B\" and k == W:\n            sel = torch.nonzero(T <= REAL_MAX_T).flatten()\n            if sel.numel():\n                with torch.no_grad():\n                    sp = self.run(x[sel], T[sel] - 1, Md[sel], Td, Tb)\n                Rr, Rrh = divide_path(sp * sp, W, Md[sel], TDC, Td, Tb, ctl.visits)\n                real = {\"sel\": sel, \"R\": Rr, \"Rh\": Rrh, \"width\": width[sel]}\n        self.control(exact, float(loss.detach()))\n        return {\"loss\": loss, \"real\": real, \"ctl\": ctl}\n\n    def control(self, exact: float, loss: float) -> None:\n        ctl = self.ctl\n        ctl.win.append(exact)\n        ctl.in_stage += 1\n        mean = sum(ctl.win) / len(ctl.win)\n        if ctl.step % LOG_EVERY == 0 or ctl.step == 1:\n            print(f\"LR step={ctl.step} phase={ctl.phase} k={ctl.k} in_stage={ctl.in_stage} loss={loss:.4f} \"\n                  f\"hard_exact={exact:.4f} win={mean:.4f} rows_visited={int((ctl.visits > 0).sum())}/200\", flush=True)\n        ready = len(ctl.win) == STAGE_WIN and mean >= STAGE_EXACT\n        timeout = ctl.in_stage >= STAGE_MAX\n        if ctl.phase == \"A\" and (ready or (ctl.k == W and timeout)):\n            # the hard datapath with the own-borrow choice is exact on this stage: from now on the soft choice is the\n            # own borrow, with a fresh optimizer (Adam's memory of phase A's lessons would slow the repairs)\n            ctl.history.append((ctl.step, \"switch\", ctl.k, ctl.in_stage, round(mean, 4)))\n            print(f\"LR switch_to_own_borrow step={ctl.step} k={ctl.k} win={mean:.4f}\", flush=True)\n            ctl.phase, ctl.reset = \"B\", True\n            if ctl.k < W:\n                self.advance(mean)\n            else:\n                ctl.in_stage = 0\n                ctl.win.clear()\n        elif ctl.k < W and (ready or timeout):\n            self.advance(mean)\n        elif ctl.phase == \"B\" and ctl.k == W:\n            ctl.streak = ctl.streak + 1 if exact == 1.0 else 0\n            if ctl.streak >= FREEZE_WIN:\n                ctl.history.append((ctl.step, \"frozen\", W, ctl.in_stage, 1.0))\n                print(f\"LR frozen step={ctl.step} history={ctl.history}\", flush=True)\n                ctl.phase = \"frozen\"\n\n    def advance(self, mean: float) -> None:\n        ctl = self.ctl\n        ctl.history.append((ctl.step, ctl.phase, ctl.k, ctl.in_stage, round(mean, 4)))\n        print(f\"LR stage_done step={ctl.step} phase={ctl.phase} k={ctl.k} steps={ctl.in_stage} win={mean:.4f}\",\n              flush=True)\n        ctl.k, ctl.in_stage = ctl.k + 1, 0\n        ctl.win.clear()\n\n    def report_tables(self, Td: Tensor, Tb: Tensor) -> None:\n        \"\"\"At the first evaluation batch: the snapped table and how often training's hard checks used each row.\"\"\"\n        ctl = self.ctl\n        print(\"TABLE digit=\" + \"\".join(str(int(d)) for d in Td.tolist()), flush=True)\n        print(\"TABLE borrow=\" + \"\".join(str(int(d)) for d in Tb.tolist()), flush=True)\n        if ctl.visits is not None:\n            v = ctl.visits\n            print(f\"TABLE train_visits min={int(v.min())} rows_never={int((v == 0).sum())} \"\n                  f\"counts={','.join(str(int(c)) for c in v.tolist())}\", flush=True)\n        print(f\"TABLE schedule phase={ctl.phase} step={ctl.step} history={ctl.history}\", flush=True)\n\n\ndef token_training_loss(batch: TokenLossBatch) -> Tensor:\n    aux = batch.auxiliary\n    with torch.autocast(batch.labels.device.type, enabled=False):\n        loss = aux[\"loss\"]\n        real = aux[\"real\"]\n        if real is None:\n            return loss\n        sel = real[\"sel\"]\n        labels, valid = batch.labels[sel], batch.valid_mask[sel]\n        cnt = valid.long().sum(1)\n        k = torch.arange(P, device=labels.device)[None]\n        yd = (labels.gather(1, (cnt[:, None] - 1 - k).clamp(0, labels.shape[1] - 1)) - DIGIT).clamp(0, 9)\n        yd = torch.where(k < cnt[:, None], yd, 0)                           # the label's digits, LSB first\n        ctl = aux[\"ctl\"]\n        if ctl.step % LOG_EVERY == 0:\n            ex = float((real[\"Rh\"] == yd).all(1).float().mean())\n            print(f\"LR step={ctl.step} real_rows={sel.numel()} real_hard_exact={ex:.4f}\", flush=True)\n        return loss + ce(real[\"R\"], yd, real[\"width\"])\n\n\nclass Schedule:\n    \"\"\"Scheduler: a fresh Adam state at the switch to the own borrow; learning rate 0 once the model is frozen.\"\"\"\n\n    def __init__(self, optimizer: torch.optim.Optimizer, ctl: Control) -> None:\n        self.optimizer, self.ctl = optimizer, ctl\n\n    def step(self) -> None:\n        if self.ctl.reset:\n            self.optimizer.state.clear()\n            self.ctl.reset = False\n        if self.ctl.phase == \"frozen\":\n            for group in self.optimizer.param_groups:\n                group[\"lr\"] = 0.0\n\n\ndef build_model(spec: ModelSpec) -> LearnedRemainder:\n    model = LearnedRemainder(spec)\n    assert_model_state(model, spec)\n    return model\n\n\ndef build_optimizer(model: nn.Module, spec: OptimizerSpec) -> OptimizerBundle:\n    # fused keeps Adam's step counter on the accelerator (the evaluator checks every optimizer state tensor)\n    opt = torch.optim.Adam(model.parameters(), lr=LR, fused=spec.device_type in (\"cuda\", \"mps\"))\n    return OptimizerBundle(opt, scheduler=Schedule(opt, model.ctl))\n\n\nSUBMISSION = Submission(\n    build_model=build_model,\n    build_optimizer=build_optimizer,\n    token_training_loss=token_training_loss,\n    batch_size=BATCH,\n    max_steps=MAX_STEPS,\n    eval_batch_size=EVAL_BATCH,\n)\n"
+}

@@ -9,8 +9,8 @@ Model and loss residual are UnfoldB's (fp64 inside, autocast off):
 Training (answer-only labels, single-step rows only):
   * clock residual e = (V - y - k n) / n in turns of the live modulus n, against the model's own nearest unfolding
     k = max(0, round((V - y) / n));
-  * seed rows (always in): rows whose phase moves by less than C_SEED turns per unit change of w (|de/dw| < C_SEED),
-    an absolute threshold in the model's own units, so a batch need not contain any;
+  * seed rows (always in, read as not wrapping: k = 0): rows whose phase moves by less than C_SEED turns per unit
+    change of w (|de/dw| < C_SEED), an absolute threshold in the model's own units, so a batch need not contain any;
   * every other row comes in once the model predicts its phase to within U_MAX turns and its residual agrees with that
     prediction (GATE sigma). The prediction uses the information of all rows admitted so far, not only this batch's:
     the optimizer keeps it as an information matrix, and the loss reads it. Before P + 1 rows' worth of information
@@ -20,7 +20,8 @@ Training (answer-only labels, single-step rows only):
     of HALF_LIFE training rows and is capped at CNT_MAX rows' worth. Within a batch (USES evaluator uses) each update
     is a Levenberg-Marquardt step on this batch's admitted rows plus the carried quadratic, with trust regions; after
     the batch's last use its rows join the carried quadratic. The model holds still until P + 1 rows' worth of
-    information is in. The gradient is the evaluator's backward (the loss is divided by a detached nu so the
+    information is in, and in batches with no admitted rows. The gradient is the evaluator's backward (the loss is
+    divided by a detached nu so the
     evaluator's clipping never bites; the optimizer multiplies nu back); the curvature comes from the loss's
     closed-form residual Jacobian. No rows are stored: 30 numbers of optimizer state.
 """
@@ -55,18 +56,15 @@ S_FLOOR = 1e-9         # floor on the residual std (turns), above fp64 noise at 
 GATE_ITERS = 16        # admit / re-estimate rounds per step
 DAMP = 1e-9            # LM damping on the column-normalized Gauss-Newton matrix
 TRUST = 0.25           # trust region: no admitted row's phase moves more than TRUST turns per update
-BTRUST = 0.1           # ... and the base moves by at most BTRUST * B (the model's own reading changes slowly)
+BTRUST = 0.1           # ... and the base moves by at most BTRUST * B per batch (the model's own reading changes slowly)
 PRIOR = 1e-12          # weak prior information (turns^2) per unit^2 of (B / B_SCALE, w0, w1, w2) around the anchor
 B_SCALE = 0.1
 HALF_LIFE = 100_000    # carried information halves every HALF_LIFE training rows
 CNT_MAX = 100.0        # ... and is scaled down to at most CNT_MAX admitted rows' worth
-SEED_K0 = True         # seeds are unfolded with k = 0
-FRESH_ONLY = True      # a batch without admitted rows does not move the parameters
-BTRUST_BATCH = True    # the base's BTRUST bound holds per batch (from the anchor), not per update
 USES = 8               # updates per batch: should_reuse_batch always asks, the evaluator allows 8
 BATCH = 512
 EVAL_BATCH = 4096
-MAX_STEPS = 1_000_000
+MAX_STEPS = 200_000
 LOG_EVERY = 1000
 
 
@@ -178,8 +176,7 @@ def _clock_loss(batch: TokenLossBatch, aux: dict) -> Tensor:
     # seeds: a unit change of w moves the row's phase by less than C_SEED turns (|de/dw| = |(1, s, s^2)| / n)
     seed = torch.stack([torch.ones_like(sd), sd, sd * sd], 1).norm(dim=1) / nb < C_SEED
     kstar = torch.clamp(torch.round((V - y).detach() / nb), min=0)   # the model's own nearest unfolding, k >= 0
-    if SEED_K0:
-        kstar = torch.where(seed, 0.0, kstar)                          # ... except seeds, read as not wrapping
+    kstar = torch.where(seed, 0.0, kstar)                              # ... except seeds, read as not wrapping
     e = (V - y - kstar * n) / n.clamp_min(1.0)                         # clock residual, in turns of the live modulus
     ed_ = e.detach()
     J = torch.stack([((w[1] + 2 * w[2] * sd) * ds - dy - (kstar + ed_) * dn).detach(), torch.ones_like(sd), sd,
@@ -235,8 +232,9 @@ class InformationLM(torch.optim.Optimizer):
     the scaled loss, times nu, plus the carried G + LAM (theta - theta_a). Curvature: J^T J from the loss's closed-form
     residual Jacobian plus LAM, plus a weak prior around the anchor. The step is shrunk so that no admitted row's
     predicted phase moves more than TRUST turns, the carried rows' RMS phase move from the anchor stays under TRUST
-    within the batch, and the base moves by at most BTRUST * B; it is zero while fewer than P + 1 rows' worth of
-    information is in. After the batch's last use (the evaluator allows USES uses and should_reuse_batch always asks)
+    within the batch, and the base moves by at most BTRUST * B per batch; it is zero while fewer than P + 1 rows' worth
+    of information is in, and in a batch with no admitted rows. After the batch's last use (the evaluator allows USES
+    uses and should_reuse_batch always asks)
     its rows are added to the carried quadratic, which is re-centered at the new parameters. The parameters themselves
     (fp32 under amp) are the state: the model computes with them, so no hidden fp64 digits are kept."""
 
@@ -289,12 +287,9 @@ class InformationLM(torch.optim.Optimizer):
         A = Nm / col[:, None] / col[None, :] + DAMP * torch.eye(P, dtype=Nm.dtype, device=Nm.device)
         delta = torch.linalg.solve(A, rhs / col) / col
         move = float((J @ delta).abs().max()) if J is not None else 0.0
-        if BTRUST_BATCH:   # |B - B_anchor| <= BTRUST * |B_anchor| for the whole batch
-            room = BTRUST * abs(float(anchor[0]))
-            d0B, dB = float(theta[0] - anchor[0]), float(delta[0])
-            bscale = (d0B + room) / dB if dB > 0 else (room - d0B) / -dB if dB < 0 else math.inf
-        else:
-            bscale = BTRUST * abs(float(theta[0])) / max(abs(float(delta[0])), 1e-300)
+        room = BTRUST * abs(float(anchor[0]))   # |B - B_anchor| <= BTRUST * |B_anchor| for the whole batch
+        d0B, dB = float(theta[0] - anchor[0]), float(delta[0])
+        bscale = (d0B + room) / dB if dB > 0 else (room - d0B) / -dB if dB < 0 else math.inf
         scale = min(1.0, TRUST / max(move, 1e-300), max(bscale, 0.0))
         # the carried quadratic is a linearization at the anchor: within this batch, keep the carried rows' RMS phase
         # move from the anchor under TRUST (or, once there, non-increasing)
@@ -307,7 +302,7 @@ class InformationLM(torch.optim.Optimizer):
             scale = max(0.0, (b + math.sqrt(max(b * b - a * (f0 - bound), 0.0))) / a)
         if float(st["cnt"]) + S.get("m", 0) < P + 1:
             scale = 0.0   # fewer than P + 1 rows' worth of information: hold still, keep gathering
-        if FRESH_ONLY and J is None:
+        if J is None:
             scale = 0.0   # no admitted rows in this batch: nothing new to fit
         delta = delta * scale
         theta = theta - delta

@@ -1,0 +1,101 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-ac14rrLqXF7B2GlaLQPoeF
+Building image im-xJB6pZwSjma04UGID1N3O1
+
+=> Step 0: FROM base
+
+=> Step 1: ENV H1_DATA=/root/h1
+Saving image...
+Image saved, took 531.67ms
+
+Built image im-xJB6pZwSjma04UGID1N3O1 in 1.25s
+
+
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/learned_wiring/tiny/modal_tiny.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/learned_wiring/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/learned_wiring/tiny/tiny_io.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/learned_wiring/tiny/tiny_sq.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/learned_wiring/tiny/tiny_suites.p
+│   y
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/learned_wiring/tiny/tiny_div.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/learned_wiring/tiny/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/one-layer-deeper/data/generated/squaring_mo
+│   d_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
+└── 🔨 Created function run_job.
+16 jobs
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+/root/learned_wiring/tiny/tiny_io.py:244: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step={step} loss={float(loss):.4f} chosen={chosen:.4f} snapped_ok={ok:.4f} tiling={int(tiling)} "
+s3 step+offsets+absolute_s1 table=None train=None full=None certified=True stop=153 secs=7.9 true_wiring=None
+s3 step+offsets_s1 table=None train=None full=None certified=True stop=107 secs=5.5 true_wiring=None
+s3 step+offsets+absolute_s3 table=None train=None full=None certified=True stop=158 secs=7.9 true_wiring=None
+s3 step_s0 table=None train=None full=None certified=True stop=105 secs=6.8 true_wiring=None
+s3 step+offsets+absolute_s2 table=None train=None full=None certified=True stop=161 secs=10.1 true_wiring=None
+s3 step_s1 table=None train=None full=None certified=True stop=104 secs=8.3 true_wiring=None
+s3 step+offsets_s2 table=None train=None full=None certified=True stop=113 secs=9.7 true_wiring=None
+s3 step+offsets_s3 table=None train=None full=None certified=True stop=115 secs=8.2 true_wiring=None
+s3 step+offsets+absolute_s4 table=None train=None full=None certified=True stop=152 secs=11.0 true_wiring=None
+s3 step+offsets+absolute_s0 table=None train=None full=None certified=False stop=None secs=77.0 true_wiring=None
+s3 offsets_s1 table=None train=None full=None certified=False stop=None secs=89.1 true_wiring=None
+s3 step+offsets+absolute_s5 table=None train=None full=None certified=False stop=None secs=93.8 true_wiring=None
+s3 offsets_s0 table=None train=None full=None certified=False stop=None secs=93.5 true_wiring=None
+s3 absolute_s1 table=None train=None full=None certified=False stop=None secs=93.5 true_wiring=None
+s3 absolute_s0 table=None train=None full=None certified=False stop=None secs=99.1 true_wiring=None
+s3 step+offsets_s0 table=None train=None full=None certified=False stop=None secs=107.4 true_wiring=None
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-ac14rrLqXF7B2GlaLQPoeF

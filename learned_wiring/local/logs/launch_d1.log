@@ -1,0 +1,137 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-vXqcVoVd6fwGgNc5Aik5tY
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/learned_wiring/local/modal_diag.p
+│   y
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+└── 🔨 Created function diag.
+spawned ['d1_s74', 'd1_s1', 'd1_s2', 'd1_s4']
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+
+===========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+=========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+d1_s1 | step 648 loss 0.3569 phase frozen io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: a=prev b=N keep=gated nread=given read=low shift=up vread=given gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=1.0000 510.4s
+d1_s4 | step 603 loss 0.3549 phase frozen io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: a=prev b=N keep=gated nread=given read=low shift=up vread=given gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=0.9991 626.0s
+d1_s2 | step 702 loss 0.3857 phase frozen io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: a=prev b=N keep=gated nread=given read=low shift=up vread=given gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=0.9991 644.2s
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+Stopping app - user stopped from CLI.
+Runner terminated.
+[modal-client] 2026-10-21T03:06:52-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 414, in _retry_transient_errors
+    raise exc
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 44, in __exit__
+    raise exc from None  # from None to skip the grpc-internal cause
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 346, in _raise_for_grpc_status
+    raise GRPCError(status, message, details)
+grpclib.exceptions.GRPCError: (<Status.FAILED_PRECONDITION: 9>, 'App state is APP_STATE_STOPPED', None)
+FAILED call: d1_s74 RemoteError('')
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-vXqcVoVd6fwGgNc5Aik5tY

@@ -1,0 +1,100 @@
+# argv=['train', '1200', '512', '6'] wall=412s rc=0
+LR step=1 phase=A in_phase=1 loss=2.1651 hard_exact=0.0000 win=0.0000 gate=11 rows_visited=200/200
+step 1 loss 2.1651 phase A win 0.000 rows_right 26/200 gate [1, 1] p_commit [0.518, 0.504] wrong ['(0,0,0)->(9,0)', '(0,0,1)->(0,0)', '(0,1,0)->(3,1)', '(0,1,1)->(2,1)'] 0.3s
+LR step=25 phase=A in_phase=25 loss=0.9068 hard_exact=0.0434 win=0.0365 gate=11 rows_visited=200/200
+step 25 loss 0.9068 phase A win 0.037 rows_right 84/200 gate [1, 1] p_commit [0.518, 0.504] wrong ['(0,0,0)->(9,0)', '(0,0,1)->(9,0)', '(0,1,1)->(9,1)', '(0,2,1)->(8,1)'] 5.3s
+LR step=50 phase=A in_phase=50 loss=0.4267 hard_exact=0.2356 win=0.1038 gate=11 rows_visited=200/200
+step 50 loss 0.4267 phase A win 0.104 rows_right 156/200 gate [1, 1] p_commit [0.518, 0.504] wrong ['(0,0,1)->(0,0)', '(2,2,0)->(0,1)', '(2,5,0)->(6,1)', '(2,9,1)->(3,1)'] 10.9s
+LR step=75 phase=A in_phase=75 loss=0.2434 hard_exact=0.7151 win=0.4659 gate=11 rows_visited=200/200
+step 75 loss 0.2434 phase A win 0.466 rows_right 189/200 gate [1, 1] p_commit [0.518, 0.504] wrong ['(0,0,1)->(9,0)', '(2,2,0)->(0,1)', '(4,4,0)->(0,1)', '(5,5,0)->(0,1)'] 16.4s
+LR switch_to_own_borrow step=92 win=0.8181
+LR step=100 phase=B in_phase=8 loss=4.3623 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 100 loss 4.3623 phase B win 0.000 rows_right 199/200 gate [0, 0] p_commit [0.326, 0.313] wrong ['(0,0,1)->(0,0)'] 24.8s
+LR step=125 phase=B in_phase=33 loss=1.8470 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 125 loss 1.8470 phase B win 0.000 rows_right 194/200 gate [0, 0] p_commit [0.044, 0.063] wrong ['(0,0,1)->(0,0)', '(1,1,1)->(0,1)', '(4,4,1)->(0,1)', '(6,6,1)->(0,1)'] 33.7s
+LR step=150 phase=B in_phase=58 loss=1.6659 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 150 loss 1.6659 phase B win 0.000 rows_right 189/200 gate [0, 0] p_commit [0.06, 0.056] wrong ['(0,0,1)->(9,0)', '(0,8,0)->(0,1)', '(1,1,1)->(0,1)', '(2,2,1)->(0,0)'] 42.6s
+LR step=175 phase=B in_phase=83 loss=1.5842 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 175 loss 1.5842 phase B win 0.000 rows_right 184/200 gate [0, 0] p_commit [0.063, 0.056] wrong ['(0,0,1)->(0,0)', '(0,2,0)->(0,0)', '(0,4,0)->(0,0)', '(0,5,0)->(0,1)'] 52.3s
+LR step=200 phase=B in_phase=108 loss=1.5613 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 200 loss 1.5613 phase B win 0.000 rows_right 175/200 gate [0, 0] p_commit [0.07, 0.057] wrong ['(0,0,1)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,1)', '(0,4,0)->(0,0)'] 60.8s
+LR step=225 phase=B in_phase=133 loss=1.5236 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 225 loss 1.5236 phase B win 0.000 rows_right 167/200 gate [0, 0] p_commit [0.074, 0.057] wrong ['(0,0,1)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,1)', '(0,4,0)->(0,0)'] 69.5s
+LR step=250 phase=B in_phase=158 loss=1.5016 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 250 loss 1.5016 phase B win 0.000 rows_right 160/200 gate [0, 0] p_commit [0.078, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,1)'] 77.7s
+LR step=275 phase=B in_phase=183 loss=1.5018 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 275 loss 1.5018 phase B win 0.000 rows_right 157/200 gate [0, 0] p_commit [0.082, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 86.9s
+LR step=300 phase=B in_phase=208 loss=1.4839 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 300 loss 1.4839 phase B win 0.000 rows_right 153/200 gate [0, 0] p_commit [0.083, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 95.6s
+LR step=325 phase=B in_phase=233 loss=1.4848 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 325 loss 1.4848 phase B win 0.000 rows_right 151/200 gate [0, 0] p_commit [0.083, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 104.0s
+LR step=350 phase=B in_phase=258 loss=1.4664 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 350 loss 1.4664 phase B win 0.000 rows_right 154/200 gate [0, 0] p_commit [0.084, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 112.8s
+LR step=375 phase=B in_phase=283 loss=1.4841 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 375 loss 1.4841 phase B win 0.000 rows_right 145/200 gate [0, 0] p_commit [0.085, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 121.5s
+LR step=400 phase=B in_phase=308 loss=1.4747 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 400 loss 1.4747 phase B win 0.000 rows_right 144/200 gate [0, 0] p_commit [0.085, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 130.2s
+LR step=425 phase=B in_phase=333 loss=1.4715 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 425 loss 1.4715 phase B win 0.000 rows_right 143/200 gate [0, 0] p_commit [0.085, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 138.6s
+LR step=450 phase=B in_phase=358 loss=1.4590 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 450 loss 1.4590 phase B win 0.000 rows_right 142/200 gate [0, 0] p_commit [0.085, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 147.2s
+LR step=475 phase=B in_phase=383 loss=1.4449 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 475 loss 1.4449 phase B win 0.000 rows_right 139/200 gate [0, 0] p_commit [0.086, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 155.9s
+LR step=500 phase=B in_phase=408 loss=1.4567 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 500 loss 1.4567 phase B win 0.000 rows_right 139/200 gate [0, 0] p_commit [0.086, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 164.6s
+LR step=525 phase=B in_phase=433 loss=1.4498 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 525 loss 1.4498 phase B win 0.000 rows_right 139/200 gate [0, 0] p_commit [0.086, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 173.6s
+LR step=550 phase=B in_phase=458 loss=1.4585 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 550 loss 1.4585 phase B win 0.000 rows_right 139/200 gate [0, 0] p_commit [0.087, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 182.7s
+LR step=575 phase=B in_phase=483 loss=1.4632 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 575 loss 1.4632 phase B win 0.000 rows_right 137/200 gate [0, 0] p_commit [0.087, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 191.8s
+LR step=600 phase=B in_phase=508 loss=1.4438 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 600 loss 1.4438 phase B win 0.000 rows_right 138/200 gate [0, 0] p_commit [0.088, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 200.2s
+LR step=625 phase=B in_phase=533 loss=1.4471 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 625 loss 1.4471 phase B win 0.000 rows_right 139/200 gate [0, 0] p_commit [0.088, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 208.8s
+LR step=650 phase=B in_phase=558 loss=1.4446 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 650 loss 1.4446 phase B win 0.000 rows_right 136/200 gate [0, 0] p_commit [0.087, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 217.7s
+LR step=675 phase=B in_phase=583 loss=1.4402 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 675 loss 1.4402 phase B win 0.000 rows_right 136/200 gate [0, 0] p_commit [0.088, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 226.5s
+LR step=700 phase=B in_phase=608 loss=1.4486 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 700 loss 1.4486 phase B win 0.000 rows_right 135/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 235.1s
+LR step=725 phase=B in_phase=633 loss=1.4344 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 725 loss 1.4344 phase B win 0.000 rows_right 135/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 243.7s
+LR step=750 phase=B in_phase=658 loss=1.4342 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 750 loss 1.4342 phase B win 0.000 rows_right 136/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 252.0s
+LR step=775 phase=B in_phase=683 loss=1.4346 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 775 loss 1.4346 phase B win 0.000 rows_right 135/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 260.0s
+LR step=800 phase=B in_phase=708 loss=1.4484 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 800 loss 1.4484 phase B win 0.000 rows_right 133/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 268.1s
+LR step=825 phase=B in_phase=733 loss=1.4403 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 825 loss 1.4403 phase B win 0.000 rows_right 136/200 gate [0, 0] p_commit [0.088, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 276.5s
+LR step=850 phase=B in_phase=758 loss=1.4412 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 850 loss 1.4412 phase B win 0.000 rows_right 135/200 gate [0, 0] p_commit [0.09, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 284.4s
+LR step=875 phase=B in_phase=783 loss=1.4491 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 875 loss 1.4491 phase B win 0.000 rows_right 135/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 292.7s
+LR step=900 phase=B in_phase=808 loss=1.4344 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 900 loss 1.4344 phase B win 0.000 rows_right 136/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 301.0s
+LR step=925 phase=B in_phase=833 loss=1.4228 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 925 loss 1.4228 phase B win 0.000 rows_right 134/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 309.3s
+LR step=950 phase=B in_phase=858 loss=1.4292 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 950 loss 1.4292 phase B win 0.000 rows_right 134/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 318.1s
+LR step=975 phase=B in_phase=883 loss=1.4359 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 975 loss 1.4359 phase B win 0.000 rows_right 136/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 326.9s
+LR step=1000 phase=B in_phase=908 loss=1.4447 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 1000 loss 1.4447 phase B win 0.000 rows_right 134/200 gate [0, 0] p_commit [0.09, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 335.5s
+LR step=1025 phase=B in_phase=933 loss=1.4266 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 1025 loss 1.4266 phase B win 0.000 rows_right 134/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 343.7s
+LR step=1050 phase=B in_phase=958 loss=1.4318 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 1050 loss 1.4318 phase B win 0.000 rows_right 133/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 353.0s
+LR step=1075 phase=B in_phase=983 loss=1.4543 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 1075 loss 1.4543 phase B win 0.000 rows_right 135/200 gate [0, 0] p_commit [0.09, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 363.0s
+LR step=1100 phase=B in_phase=1008 loss=1.4351 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 1100 loss 1.4351 phase B win 0.000 rows_right 136/200 gate [0, 0] p_commit [0.09, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 371.4s
+LR step=1125 phase=B in_phase=1033 loss=1.4370 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 1125 loss 1.4370 phase B win 0.000 rows_right 136/200 gate [0, 0] p_commit [0.089, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 379.4s
+LR step=1150 phase=B in_phase=1058 loss=1.4404 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 1150 loss 1.4404 phase B win 0.000 rows_right 135/200 gate [0, 0] p_commit [0.09, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 387.8s
+LR step=1175 phase=B in_phase=1083 loss=1.4346 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 1175 loss 1.4346 phase B win 0.000 rows_right 132/200 gate [0, 0] p_commit [0.09, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 396.0s
+LR step=1200 phase=B in_phase=1108 loss=1.4347 hard_exact=0.0000 win=0.0000 gate=00 rows_visited=200/200
+step 1200 loss 1.4347 phase B win 0.000 rows_right 131/200 gate [0, 0] p_commit [0.09, 0.057] wrong ['(0,0,1)->(0,0)', '(0,1,0)->(0,0)', '(0,2,0)->(0,0)', '(0,3,0)->(0,0)'] 404.1s

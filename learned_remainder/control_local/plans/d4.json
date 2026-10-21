@@ -1,0 +1,106 @@
+[
+ {
+  "name": "d4_def_s74",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "74"
+  ]
+ },
+ {
+  "name": "d4_def_s1",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "1"
+  ]
+ },
+ {
+  "name": "d4_def_s2",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "2"
+  ]
+ },
+ {
+  "name": "d4_def_s3",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "3"
+  ]
+ },
+ {
+  "name": "d4_def_s6",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "6"
+  ]
+ },
+ {
+  "name": "d4_def_s7",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "7"
+  ]
+ },
+ {
+  "name": "d4_idonly_s74",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "74",
+   "REAL_MAX_T=0"
+  ]
+ },
+ {
+  "name": "d4_idonly_s3",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "3",
+   "REAL_MAX_T=0"
+  ]
+ },
+ {
+  "name": "d4_off_s3",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "3",
+   "OWN_GATE=off"
+  ]
+ },
+ {
+  "name": "d4_borrow_s3",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "3",
+   "GATE=borrow"
+  ]
+ },
+ {
+  "name": "d4_borrow_s6",
+  "argv": [
+   "train",
+   "1500",
+   "512",
+   "6",
+   "GATE=borrow"
+  ]
+ }
+]

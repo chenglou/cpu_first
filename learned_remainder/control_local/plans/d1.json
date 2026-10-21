@@ -1,0 +1,136 @@
+[
+ {
+  "name": "d1_def_s74",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "74"
+  ]
+ },
+ {
+  "name": "d1_def_s1",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "1"
+  ]
+ },
+ {
+  "name": "d1_def_s2",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "2"
+  ]
+ },
+ {
+  "name": "d1_def_s3",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "3"
+  ]
+ },
+ {
+  "name": "d1_def_s6",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "6"
+  ]
+ },
+ {
+  "name": "d1_def_s7",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "7"
+  ]
+ },
+ {
+  "name": "d1_borrow_s74",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "74",
+   "GATE=borrow"
+  ]
+ },
+ {
+  "name": "d1_borrow_s3",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "3",
+   "GATE=borrow"
+  ]
+ },
+ {
+  "name": "d1_borrow_s6",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "6",
+   "GATE=borrow"
+  ]
+ },
+ {
+  "name": "d1_live_s3",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "3",
+   "ID_LINKS=live"
+  ]
+ },
+ {
+  "name": "d1_live_s6",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "6",
+   "ID_LINKS=live"
+  ]
+ },
+ {
+  "name": "d1_idonly_s74",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "74",
+   "REAL_MAX_T=0"
+  ]
+ },
+ {
+  "name": "d1_idonly_s3",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "3",
+   "REAL_MAX_T=0"
+  ]
+ },
+ {
+  "name": "d1_noown_s3",
+  "argv": [
+   "train",
+   "1200",
+   "512",
+   "3",
+   "OWN_GATE=False"
+  ]
+ }
+]

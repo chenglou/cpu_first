@@ -1,0 +1,255 @@
+{
+ "cfg": {
+  "W": 3,
+  "widths": [
+   2
+  ],
+  "div": 3,
+  "mul": 3,
+  "part": "chain,io,mul",
+  "rows": 256,
+  "cert_rows": 3000,
+  "seed": 0,
+  "chunk": 400000,
+  "out": ""
+ },
+ "sizes": {
+  "div": 108864000,
+  "chain": 3600,
+  "io": 30240,
+  "mul": 4235364
+ },
+ "chain": {
+  "combinations": 3600,
+  "ladder": {
+   "pass_all_rows": 2,
+   "pass_99": 2,
+   "pass_90": 2
+  },
+  "passing": [
+   {
+    "a": "Rp",
+    "b": "Mq",
+    "op": "sub",
+    "flag": "borrow",
+    "keep": "gated",
+    "nread": "given",
+    "g0": "commit",
+    "g1": "hold",
+    "cert": 1.0
+   },
+   {
+    "a": "D",
+    "b": "M",
+    "op": "sub",
+    "flag": "borrow",
+    "keep": "gated",
+    "nread": "given",
+    "g0": "commit",
+    "g1": "hold",
+    "cert": 1.0
+   }
+  ],
+  "passing_correct": 2
+ },
+ "io_truth": {
+  "combinations": 30240,
+  "x": {
+   "pass_all_rows": 28,
+   "pass_99": 28,
+   "pass_90": 31
+  },
+  "x+n": {
+   "pass_all_rows": 28,
+   "pass_99": 28,
+   "pass_90": 28
+  },
+  "a_only": {
+   "pass_all_rows": 4,
+   "pass_99": 4,
+   "pass_90": 4
+  },
+  "x+n+a": {
+   "pass_all_rows": 4,
+   "pass_99": 4,
+   "pass_90": 4
+  },
+  "x+n+q": {
+   "pass_all_rows": 4,
+   "pass_99": 4,
+   "pass_90": 4
+  },
+  "x+n+q+a": {
+   "pass_all_rows": 4,
+   "pass_99": 4,
+   "pass_90": 4
+  },
+  "passing": [
+   {
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'add')",
+    "post": "0",
+    "final": "csub",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   },
+   {
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'add')",
+    "post": "0",
+    "final": "none",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   },
+   {
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'rep')",
+    "post": "0",
+    "final": "csub",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   },
+   {
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'rep')",
+    "post": "0",
+    "final": "none",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   }
+  ],
+  "passing_correct": 4
+ },
+ "io_trial": {
+  "combinations": 30240,
+  "x": {
+   "pass_all_rows": 28,
+   "pass_99": 28,
+   "pass_90": 31
+  },
+  "x+n": {
+   "pass_all_rows": 28,
+   "pass_99": 28,
+   "pass_90": 28
+  },
+  "a_only": {
+   "pass_all_rows": 4,
+   "pass_99": 4,
+   "pass_90": 4
+  },
+  "x+n+a": {
+   "pass_all_rows": 4,
+   "pass_99": 4,
+   "pass_90": 4
+  },
+  "x+n+q": {
+   "pass_all_rows": 4,
+   "pass_99": 4,
+   "pass_90": 4
+  },
+  "x+n+q+a": {
+   "pass_all_rows": 4,
+   "pass_99": 4,
+   "pass_90": 4
+  },
+  "passing": [
+   {
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'add')",
+    "post": "0",
+    "final": "csub",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   },
+   {
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'add')",
+    "post": "0",
+    "final": "none",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   },
+   {
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'rep')",
+    "post": "0",
+    "final": "csub",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   },
+   {
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'rep')",
+    "post": "0",
+    "final": "none",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   }
+  ],
+  "passing_correct": 4
+ },
+ "mul": {
+  "rules_per_kind": 686,
+  "layouts": 470596,
+  "ladder_pass": 1,
+  "passing": [
+   "((1, 1, 0), (1, 1, 1))"
+  ],
+  "number_rules": [
+   {
+    "num": "(-1, -1)",
+    "distributive": false
+   },
+   {
+    "num": "(-1, 0)",
+    "distributive": true
+   },
+   {
+    "num": "(-1, 1)",
+    "distributive": true
+   },
+   {
+    "num": "(0, -1)",
+    "distributive": true
+   },
+   {
+    "num": "(0, 0)",
+    "distributive": false
+   },
+   {
+    "num": "(0, 1)",
+    "distributive": true
+   },
+   {
+    "num": "(1, -1)",
+    "distributive": true
+   },
+   {
+    "num": "(1, 0)",
+    "distributive": true
+   },
+   {
+    "num": "(1, 1)",
+    "distributive": false
+   }
+  ]
+ },
+ "seconds": 25.6,
+ "log": "chain {\"combinations\": 3600, \"ladder\": {\"pass_all_rows\": 2, \"pass_99\": 2, \"pass_90\": 2}, \"passing_correct\": 2}\nio_truth {\"combinations\": 30240, \"x\": {\"pass_all_rows\": 28, \"pass_99\": 28, \"pass_90\": 31}, \"x+n\": {\"pass_all_rows\": 28, \"pass_99\": 28, \"pass_90\": 28}, \"a_only\": {\"pass_all_rows\": 4, \"pass_99\": 4, \"pass_90\": 4}, \"x+n+a\": {\"pass_all_rows\": 4, \"pass_99\": 4, \"pass_90\": 4}, \"x+n+q\": {\"pass_all_rows\": 4, \"pass_99\": 4, \"pass_90\": 4}, \"x+n+q+a\": {\"pass_all_rows\": 4, \"pass_99\": 4, \"pass_90\": 4}, \"passing_correct\": 4}\nio_trial {\"combinations\": 30240, \"x\": {\"pass_all_rows\": 28, \"pass_99\": 28, \"pass_90\": 31}, \"x+n\": {\"pass_all_rows\": 28, \"pass_99\": 28, \"pass_90\": 28}, \"a_only\": {\"pass_all_rows\": 4, \"pass_99\": 4, \"pass_90\": 4}, \"x+n+a\": {\"pass_all_rows\": 4, \"pass_99\": 4, \"pass_90\": 4}, \"x+n+q\": {\"pass_all_rows\": 4, \"pass_99\": 4, \"pass_90\": 4}, \"x+n+q+a\": {\"pass_all_rows\": 4, \"pass_99\": 4, \"pass_90\": 4}, \"passing_correct\": 4}\nmul {\"rules_per_kind\": 686, \"layouts\": 470596, \"ladder_pass\": 1, \"passing\": [\"((1, 1, 0), (1, 1, 1))\"], \"number_rules\": [{\"num\": \"(-1, -1)\", \"distributive\": false}, {\"num\": \"(-1, 0)\", \"distributive\": true}, {\"num\": \"(-1, 1)\", \"distributive\": true}, {\"num\": \"(0, -1)\", \"distributive\": true}, {\"num\": \"(0, 0)\", \"distributive\": false}, {\"num\": \"(0, 1)\", \"distributive\": true}, {\"num\": \"(1, -1)\", \"distributive\": true}, {\"num\": \"(1, 0)\", \"distributive\": true}, {\"num\": \"(1, 1)\", \"distributive\": false}]}\n"
+}

@@ -1,0 +1,96 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-RoHaXr61hX4yy2OG4ZitTt
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/local/modal_diag_wide
+│   .py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+└── 🔨 Created function diag.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+spawned ['e2_d3m2_local_s74', 'e2_d3m2_local_s1', 'e2_d4m3_local_s74', 'e2_d0m0_s74']
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+
+===========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+=========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+e2_d0m0_s74 | step 530 loss 0.3905 phase frozen io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: a=D b=M keep=gated nread=given vread=given bring=(1,0,'rep') read=(0,'given') gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=0.9991 833.1s
+e2_d3m2_local_s74 | step 588 loss 0.4229 phase frozen io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: a=Rp b=Mq op=sub flag=borrow keep=gated nread=given vread=given start=top order=down bring=(1,0,'rep') post=0 final=none read=(0,'given') gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=1.0000 962.4s
+e2_d3m2_local_s1 | step 667 loss 0.4037 phase frozen io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: a=Rp b=Mq op=sub flag=borrow keep=gated nread=given vread=given start=top order=down bring=(1,0,'rep') post=0 final=csub read=(0,'given') gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=1.0000 1046.1s
+e2_d4m3_local_s74 | step 573 loss 0.4305 phase frozen io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: a=D b=M op=sub flag=borrow keep=gated nread=given vread=given start=top order=down bring=(1,0,'add') post=0 final=csub read=(0,'given') gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=1.0000 1861.9s
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-RoHaXr61hX4yy2OG4ZitTt

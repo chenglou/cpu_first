@@ -1,0 +1,26 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-IdAxTL2CWyK62S8vDvRZPJ
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/exact_wide.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/modal_exact.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/tiny_wide.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/wide.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/__init__.py
+└── 🔨 Created function run_job.
+W8_widths4-5-6-7_div3_mul2_partchain-io_rows64_cert_rows2000 chain {"combinations": 3600, "ladder": {"pass_all_rows": 2, "pass_99": 2, "pass_90": 2}, "passing_correct": 2}
+io_truth {"combinations": 146880, "x": {"pass_all_rows": 31, "pass_99": 31, "pass_90": 31}, "x+n": {"pass_all_rows": 28, "pass_99": 28, "pass_90": 28}, "a_only": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+a": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+q": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+q+a": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "passing_correct": 4}
+io_trial {"combinations": 146880, "x": {"pass_all_rows": 31, "pass_99": 31, "pass_90": 31}, "x+n": {"pass_all_rows": 28, "pass_99": 28, "pass_90": 28}, "a_only": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+a": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+q": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+q+a": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "passing_correct": 4}
+
+W8_widths4-5-6-7_div4_mul2_partchain-io_rows48_cert_rows2000 chain {"combinations": 9408, "ladder": {"pass_all_rows": 3, "pass_99": 3, "pass_90": 3}, "passing_correct": 3}
+io_truth {"combinations": 435200, "x": {"pass_all_rows": 79, "pass_99": 79, "pass_90": 81}, "x+n": {"pass_all_rows": 39, "pass_99": 39, "pass_90": 39}, "a_only": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+a": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+q": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+q+a": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "passing_correct": 6}
+io_trial {"combinations": 435200, "x": {"pass_all_rows": 79, "pass_99": 79, "pass_90": 81}, "x+n": {"pass_all_rows": 39, "pass_99": 39, "pass_90": 39}, "a_only": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+a": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+q": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+q+a": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "passing_correct": 6}
+
+[modal-client] 2026-10-21T12:05:02-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-IdAxTL2CWyK62S8vDvRZPJ

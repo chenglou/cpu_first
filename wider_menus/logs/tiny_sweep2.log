@@ -1,0 +1,342 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-XsoN1Zw6unuXj363FnrD6f
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/modal_tiny_wide.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/suites.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/tiny_wide.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/wide.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/__init__.py
+└── 🔨 Created function run_job.
+159 jobs
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d3m2_s1 certified=False true_wiring=False pool_exact=0.64675 cert_exact=0.5771442860715179 stopped=None settled_at=789 seconds=568.8 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d3m2_s7 certified=False true_wiring=False pool_exact=0.6475 cert_exact=0.5773943485871468 stopped=None settled_at=180 seconds=581.5 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d3m2_s0 certified=False true_wiring=False pool_exact=0.64875 cert_exact=0.5761440360090022 stopped=None settled_at=173 seconds=584.0 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d3m2_s6 certified=False true_wiring=False pool_exact=0.644 cert_exact=0.5708927231807952 stopped=None settled_at=109 seconds=602.2 {'chain': 'trial multiples', 'numbers': 'rows by multiplicand digit, reversed'}
+io local_d4m3_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=138 settled_at=109 seconds=73.9 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+io local_d4m3_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=160 settled_at=130 seconds=94.7 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+io local_d4m3_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=133 settled_at=103 seconds=61.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d3m2_s4 certified=False true_wiring=False pool_exact=0.64675 cert_exact=0.5673918479619905 stopped=None settled_at=219 seconds=796.9 {'chain': 'trial multiples', 'numbers': 'rows by multiplicand digit'}
+io local_d4m3_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=177 settled_at=147 seconds=118.6 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+io local_d4m3_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=112 settled_at=83 seconds=63.3 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws joint_xna_d0_s0 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=109 settled_at=79 seconds=18.9 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws joint_xna_d0_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=114 settled_at=84 seconds=18.2 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+laws joint_xna_d0_s2 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=116 settled_at=91 seconds=20.3 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+io local_d4m3_s7 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=123 settled_at=93 seconds=74.7 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+laws joint_xna_d0_s3 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=142 settled_at=112 seconds=25.2 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws joint_xna_d0_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=120 settled_at=90 seconds=23.2 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws joint_xna_d0_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=103 settled_at=73 seconds=18.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws joint_xna_d0_s6 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=113 settled_at=83 seconds=23.7 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws joint_xna_d0_s7 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=121 settled_at=91 seconds=19.3 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit'}
+io local_d4m3_s6 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=167 settled_at=138 seconds=135.6 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws joint_xnqa_d0_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=114 settled_at=84 seconds=20.3 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+laws joint_xnqa_d0_s0 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=103 settled_at=73 seconds=23.0 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d3m2_s2 certified=False true_wiring=False pool_exact=0.6475 cert_exact=0.5818954738684671 stopped=None settled_at=124 seconds=956.4 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws joint_xnqa_d0_s3 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=105 settled_at=75 seconds=21.3 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws joint_xnqa_d0_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=116 settled_at=86 seconds=24.5 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws joint_xnqa_d0_s2 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=116 settled_at=97 seconds=39.0 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+laws joint_xnqa_d0_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=107 settled_at=77 seconds=37.3 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws joint_xnqa_d0_s6 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=111 settled_at=81 seconds=22.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws joint_xnqa_d0_s7 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=122 settled_at=92 seconds=26.0 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d3m2_s3 certified=False true_wiring=False pool_exact=0.65525 cert_exact=0.5746436609152288 stopped=None settled_at=154 seconds=1080.5 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xna_d0_s2 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=613 settled_at=583 seconds=101.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+laws whole_xna_d0_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=140 settled_at=110 seconds=29.3 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xna_d0_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=208 settled_at=178 seconds=32.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xna_d0_s7 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=154 settled_at=124 seconds=20.7 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit'}
+laws whole_xna_d0_s3 certified=False true_wiring=False pool_exact=0.275 cert_exact=0.3643410852713178 stopped=None settled_at=189 seconds=150.8 {'chain': 'other', 'numbers': 'rows by multiplier digit'}
+laws whole_xnqa_d0_s0 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=106 settled_at=76 seconds=14.4 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+io cs_d4m3_s7 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=557 settled_at=527 seconds=598.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+laws whole_xna_d0_s0 certified=False true_wiring=False pool_exact=0.2755 cert_exact=0.3598399599899975 stopped=None settled_at=84 seconds=224.5 {'chain': 'other', 'numbers': 'rows by multiplier digit'}
+laws whole_xna_d0_s6 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=338 settled_at=308 seconds=91.0 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws whole_xna_d0_s1 certified=False true_wiring=False pool_exact=0.03525 cert_exact=0.09277319329832458 stopped=None settled_at=643 seconds=233.1 {'chain': 'other', 'numbers': 'rows by multiplicand digit, reversed'}
+laws whole_xnqa_d0_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=119 settled_at=89 seconds=26.6 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xnqa_d0_s6 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=114 settled_at=84 seconds=31.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d4m3_s4 certified=False true_wiring=False pool_exact=0.64675 cert_exact=0.5673918479619905 stopped=None settled_at=240 seconds=1266.9 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws whole_xnqa_d0_s1 certified=False true_wiring=False pool_exact=0.03425 cert_exact=0.10577644411102775 stopped=None settled_at=595 seconds=162.6 {'chain': 'other', 'numbers': 'rows by multiplicand digit, reversed'}
+laws whole_xnqa_d0_s2 certified=False true_wiring=False pool_exact=0.033 cert_exact=0.09502375593898475 stopped=None settled_at=136 seconds=149.8 {'chain': 'other', 'numbers': 'rows by multiplicand digit, reversed'}
+laws whole_xnqa_d0_s3 certified=False true_wiring=False pool_exact=0.04575 cert_exact=0.09827456864216054 stopped=None settled_at=774 seconds=152.6 {'chain': 'other', 'numbers': 'rows by multiplier digit'}
+laws joint_xna_d1_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=106 settled_at=76 seconds=49.2 {'chain': 'repeated subtraction', 'numbers': 'diagonals j - i'}
+laws joint_xna_d1_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=155 settled_at=125 seconds=100.3 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d4m3_s3 certified=False true_wiring=False pool_exact=0.65675 cert_exact=0.5748937234308578 stopped=None settled_at=434 seconds=1388.1 {'chain': 'other', 'numbers': 'rows by multiplicand digit, reversed'}
+laws joint_xna_d1_s4 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=112 settled_at=82 seconds=55.2 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws joint_xna_d1_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=148 settled_at=118 seconds=151.7 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+laws joint_xna_d1_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=101 settled_at=71 seconds=45.8 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws joint_xna_d1_s6 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=117 settled_at=87 seconds=62.6 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+laws joint_xna_d1_s2 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=160 settled_at=130 seconds=128.3 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+io cs_d4m3_s1 certified=False true_wiring=False pool_exact=0.64675 cert_exact=0.5771442860715179 stopped=None settled_at=154 seconds=1456.6 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws whole_xnqa_d0_s5 certified=False true_wiring=False pool_exact=0.0345 cert_exact=0.10252563140785197 stopped=None settled_at=532 seconds=246.5 {'chain': 'other', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xnqa_d0_s7 certified=False true_wiring=False pool_exact=0.03725 cert_exact=0.10227556889222306 stopped=None settled_at=112 seconds=238.0 {'chain': 'other', 'numbers': 'rows by multiplicand digit'}
+laws joint_xnqa_d1_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=133 settled_at=103 seconds=87.3 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xna_d1_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=135 settled_at=105 seconds=22.9 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+laws joint_xnqa_d1_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=104 settled_at=74 seconds=80.3 {'chain': 'repeated subtraction', 'numbers': 'diagonals j - i'}
+laws joint_xna_d1_s7 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=173 settled_at=143 seconds=150.0 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws joint_xnqa_d1_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=102 settled_at=72 seconds=87.0 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws whole_xna_d1_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=149 settled_at=119 seconds=27.3 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+laws joint_xnqa_d1_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=131 settled_at=101 seconds=135.9 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xna_d1_s2 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=151 settled_at=121 seconds=42.9 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws whole_xna_d1_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=104 settled_at=74 seconds=24.5 {'chain': 'repeated subtraction', 'numbers': 'diagonals j - i'}
+laws joint_xnqa_d1_s2 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=159 settled_at=129 seconds=152.1 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws joint_xnqa_d1_s6 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=114 settled_at=84 seconds=147.1 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xnqa_d1_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=135 settled_at=105 seconds=33.6 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+laws joint_xnqa_d1_s4 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=160 settled_at=130 seconds=163.9 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d4m3_s5 certified=False true_wiring=False pool_exact=0.6575 cert_exact=0.5773943485871468 stopped=None settled_at=160 seconds=1629.7 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws whole_xnqa_d1_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=103 settled_at=73 seconds=27.3 {'chain': 'repeated subtraction', 'numbers': 'diagonals j - i'}
+laws whole_xnqa_d1_s4 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=177 settled_at=147 seconds=51.2 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws whole_xnqa_d1_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=135 settled_at=105 seconds=47.9 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws joint_xnqa_d1_s7 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=159 settled_at=129 seconds=226.0 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws whole_xna_d1_s6 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=404 settled_at=374 seconds=171.9 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xna_d1_s5 certified=False true_wiring=False pool_exact=0.47325 cert_exact=0.4973743435858965 stopped=None settled_at=91 seconds=226.2 {'chain': 'other', 'numbers': 'rows by multiplier digit'}
+/root/wider_menus/tiny_wide.py:347: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  "max_prob": {k: round(float(model.lp(k).exp().max()), 4) for k in model.sw},
+io cs_d4m3_s0 certified=False true_wiring=False pool_exact=0.65075 cert_exact=0.5763940985246312 stopped=None settled_at=196 seconds=1803.6 {'chain': 'other', 'numbers': 'rows by multiplier digit'}
+io cs_d4m3_s6 certified=False true_wiring=False pool_exact=0.644 cert_exact=0.5708927231807952 stopped=None settled_at=441 seconds=1264.4 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws whole_xnqa_d1_s1 certified=False true_wiring=False pool_exact=0.03425 cert_exact=0.10577644411102775 stopped=None settled_at=136 seconds=261.3 {'chain': 'other', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xna_d1_s4 certified=False true_wiring=False pool_exact=0.47 cert_exact=0.48662165541385344 stopped=None settled_at=83 seconds=312.8 {'chain': 'other', 'numbers': 'rows by multiplier digit'}
+laws whole_xna_d1_s7 certified=False true_wiring=False pool_exact=0.27575 cert_exact=0.361090272568142 stopped=None settled_at=580 seconds=290.9 {'chain': 'other', 'numbers': 'rows by multiplier digit'}
+Traceback (most recent call last):
+job failed: RuntimeError('stack expects a non-empty TensorList')
+  File "/pkg/modal/_runtime/container_io_manager.py", line 946, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/modal_tiny_wide.py", line 44, in run_job
+    r = run(cfg)
+  File "/root/wider_menus/tiny_wide.py", line 287, in run
+    io_ok = bool(law_verdicts(model.idx(ni), xi, Ni, Qr).all())
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/wider_menus/tiny_wide.py", line 215, in law_verdicts
+    return torch.stack(vs).all(0)
+           ~~~~~~~~~~~^^^^
+RuntimeError: stack expects a non-empty TensorList
+job failed: RuntimeError('stack expects a non-empty TensorList')
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 946, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/modal_tiny_wide.py", line 44, in run_job
+    r = run(cfg)
+  File "/root/wider_menus/tiny_wide.py", line 287, in run
+    io_ok = bool(law_verdicts(model.idx(ni), xi, Ni, Qr).all())
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/wider_menus/tiny_wide.py", line 215, in law_verdicts
+    return torch.stack(vs).all(0)
+           ~~~~~~~~~~~^^^^
+RuntimeError: stack expects a non-empty TensorList
+Traceback (most recent call last):
+job failed: RuntimeError('stack expects a non-empty TensorList')
+  File "/pkg/modal/_runtime/container_io_manager.py", line 946, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/modal_tiny_wide.py", line 44, in run_job
+    r = run(cfg)
+  File "/root/wider_menus/tiny_wide.py", line 287, in run
+    io_ok = bool(law_verdicts(model.idx(ni), xi, Ni, Qr).all())
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/wider_menus/tiny_wide.py", line 215, in law_verdicts
+    return torch.stack(vs).all(0)
+           ~~~~~~~~~~~^^^^
+RuntimeError: stack expects a non-empty TensorList
+job failed: RuntimeError('stack expects a non-empty TensorList')
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 946, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/modal_tiny_wide.py", line 44, in run_job
+    r = run(cfg)
+  File "/root/wider_menus/tiny_wide.py", line 287, in run
+    io_ok = bool(law_verdicts(model.idx(ni), xi, Ni, Qr).all())
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/wider_menus/tiny_wide.py", line 215, in law_verdicts
+    return torch.stack(vs).all(0)
+           ~~~~~~~~~~~^^^^
+RuntimeError: stack expects a non-empty TensorList
+Traceback (most recent call last):
+job failed: RuntimeError('stack expects a non-empty TensorList')
+  File "/pkg/modal/_runtime/container_io_manager.py", line 946, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/modal_tiny_wide.py", line 44, in run_job
+    r = run(cfg)
+  File "/root/wider_menus/tiny_wide.py", line 287, in run
+    io_ok = bool(law_verdicts(model.idx(ni), xi, Ni, Qr).all())
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/wider_menus/tiny_wide.py", line 215, in law_verdicts
+    return torch.stack(vs).all(0)
+           ~~~~~~~~~~~^^^^
+RuntimeError: stack expects a non-empty TensorList
+job failed: RuntimeError('stack expects a non-empty TensorList')
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 946, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/modal_tiny_wide.py", line 44, in run_job
+    r = run(cfg)
+  File "/root/wider_menus/tiny_wide.py", line 287, in run
+    io_ok = bool(law_verdicts(model.idx(ni), xi, Ni, Qr).all())
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/wider_menus/tiny_wide.py", line 215, in law_verdicts
+    return torch.stack(vs).all(0)
+           ~~~~~~~~~~~^^^^
+RuntimeError: stack expects a non-empty TensorList
+job failed: RuntimeError('stack expects a non-empty TensorList')
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 946, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/modal_tiny_wide.py", line 44, in run_job
+    r = run(cfg)
+  File "/root/wider_menus/tiny_wide.py", line 287, in run
+    io_ok = bool(law_verdicts(model.idx(ni), xi, Ni, Qr).all())
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/wider_menus/tiny_wide.py", line 215, in law_verdicts
+    return torch.stack(vs).all(0)
+           ~~~~~~~~~~~^^^^
+RuntimeError: stack expects a non-empty TensorList
+job failed: RuntimeError('stack expects a non-empty TensorList')
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 946, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/modal_tiny_wide.py", line 44, in run_job
+    r = run(cfg)
+  File "/root/wider_menus/tiny_wide.py", line 287, in run
+    io_ok = bool(law_verdicts(model.idx(ni), xi, Ni, Qr).all())
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/wider_menus/tiny_wide.py", line 215, in law_verdicts
+    return torch.stack(vs).all(0)
+           ~~~~~~~~~~~^^^^
+RuntimeError: stack expects a non-empty TensorList
+laws ladder_xnqa_d3_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=132 settled_at=128 seconds=77.8 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws whole_xnqa_d1_s7 certified=False true_wiring=False pool_exact=0.03725 cert_exact=0.10227556889222306 stopped=None settled_at=372 seconds=304.6 {'chain': 'other', 'numbers': 'rows by multiplier digit'}
+laws whole_xnqa_d1_s6 certified=False true_wiring=False pool_exact=0.03575 cert_exact=0.10127531882970743 stopped=None settled_at=313 seconds=335.6 {'chain': 'other', 'numbers': 'rows by multiplier digit, reversed'}
+laws ladder_xnqa_d3_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=119 settled_at=89 seconds=66.9 {'chain': 'repeated subtraction', 'numbers': 'diagonals j - i'}
+laws ladder_xnqa_d3_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=192 settled_at=162 seconds=107.3 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws ladder_xnqa_d3_s2 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=143 settled_at=113 seconds=83.5 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws whole_xnqa_d1_s2 certified=False true_wiring=False pool_exact=0.033 cert_exact=0.09502375593898475 stopped=None settled_at=423 seconds=456.6 {'chain': 'other', 'numbers': 'rows by multiplier digit'}
+laws ladder_xnqa_d3_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=112 settled_at=82 seconds=70.5 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+laws ladder_xnqa_d3_s6 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=124 settled_at=109 seconds=71.3 {'chain': 'trial multiples', 'numbers': 'rows by multiplicand digit, reversed'}
+laws ladder_xnqa_d3_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=200 settled_at=170 seconds=110.0 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit'}
+laws ladder_q_d3_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=141 settled_at=111 seconds=61.1 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws ladder_q_d3_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=193 settled_at=163 seconds=76.7 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws ladder_q_d3_s2 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=151 settled_at=121 seconds=68.2 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws ladder_q_d3_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=124 settled_at=94 seconds=50.1 {'chain': 'repeated subtraction', 'numbers': 'diagonals j - i'}
+laws ladder_xnqa_d3_s7 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=174 settled_at=163 seconds=177.7 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit'}
+laws ladder_q_d3_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=112 settled_at=82 seconds=43.4 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+laws ladder_q_d3_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=204 settled_at=174 seconds=86.4 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit'}
+laws ladder_q_d3_s6 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=132 settled_at=102 seconds=59.8 {'chain': 'trial multiples', 'numbers': 'rows by multiplicand digit, reversed'}
+w4 w4_enum_d0m0_s0 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=84 settled_at=54 seconds=22.6 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d0m0_s1 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=97 settled_at=67 seconds=23.8 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d0m0_s2 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=91 settled_at=61 seconds=25.9 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d0m0_s4 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=88 settled_at=58 seconds=18.4 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d0m0_s3 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=94 settled_at=64 seconds=28.9 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d0m0_s6 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=70 settled_at=40 seconds=18.0 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d0m0_s5 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=84 settled_at=54 seconds=28.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d0m0_s7 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=89 settled_at=59 seconds=24.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws ladder_q_d3_s7 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=182 settled_at=159 seconds=143.3 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit'}
+w4 w4_enum_d3m2_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=138 settled_at=108 seconds=96.1 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d3m2_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=174 settled_at=144 seconds=145.0 {'chain': 'trial multiples', 'numbers': 'diagonals i - j'}
+w4 w4_enum_d3m2_s2 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=179 settled_at=177 seconds=147.4 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d3m2_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=185 settled_at=155 seconds=161.8 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+w4 w4_enum_d3m2_s6 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=85 settled_at=55 seconds=105.9 {'chain': 'trial multiples', 'numbers': 'rows by multiplicand digit, reversed'}
+w4 w4_enum_d3m2_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=129 settled_at=99 seconds=110.6 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+w4 w4_enum_d3m2_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=145 settled_at=126 seconds=249.8 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+w4 w4_local_d3m2_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=140 settled_at=110 seconds=57.1 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws ladder_xn_d3_s3 certified=False true_wiring=False pool_exact=0.65525 cert_exact=0.5746436609152288 stopped=None settled_at=113 seconds=938.7 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+w4 w4_local_d3m2_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=176 settled_at=146 seconds=95.7 {'chain': 'trial multiples', 'numbers': 'diagonals i - j'}
+laws ladder_xn_d3_s6 certified=False true_wiring=False pool_exact=0.644 cert_exact=0.5708927231807952 stopped=None settled_at=82 seconds=895.4 {'chain': 'trial multiples', 'numbers': 'rows by multiplicand digit, reversed'}
+w4 w4_local_d3m2_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=136 settled_at=127 seconds=55.4 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+w4 w4_enum_d3m2_s7 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=174 settled_at=144 seconds=138.9 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_local_d3m2_s6 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=80 settled_at=62 seconds=35.2 {'chain': 'trial multiples', 'numbers': 'rows by multiplicand digit, reversed'}
+laws ladder_xn_d3_s5 certified=False true_wiring=False pool_exact=0.6545 cert_exact=0.5768942235558889 stopped=None settled_at=138 seconds=960.9 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+w4 w4_local_d3m2_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=128 settled_at=98 seconds=57.7 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+w4 w4_local_d3m2_s2 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=167 settled_at=137 seconds=143.4 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_local_d3m2_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=171 settled_at=141 seconds=86.0 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+w4 w4_local_d3m2_s7 certified=True true_wiring=True pool_exact=1.0 cert_exact=1.0 stopped=177 settled_at=147 seconds=82.7 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+laws ladder_xn_d3_s0 certified=False true_wiring=False pool_exact=0.64875 cert_exact=0.5761440360090022 stopped=None settled_at=116 seconds=1213.1 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+laws ladder_xn_d3_s1 certified=False true_wiring=False pool_exact=0.6445 cert_exact=0.5768942235558889 stopped=None settled_at=132 seconds=1265.5 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d4m3_s2 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=123 settled_at=119 seconds=188.8 {'chain': 'repeated subtraction', 'numbers': 'diagonals j - i'}
+laws ladder_xn_d3_s7 certified=False true_wiring=False pool_exact=0.646 cert_exact=0.5773943485871468 stopped=None settled_at=161 seconds=1123.0 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit'}
+w4 w4_enum_d4m3_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=132 settled_at=102 seconds=213.8 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d4m3_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=132 settled_at=103 seconds=233.9 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d4m3_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=144 settled_at=134 seconds=271.3 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+w4 w4_local_d4m3_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=120 settled_at=90 seconds=87.3 {'chain': 'trial multiples', 'numbers': 'rows by multiplicand digit'}
+w4 w4_enum_d4m3_s1 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=131 settled_at=125 seconds=304.4 {'chain': 'trial multiples', 'numbers': 'rows by multiplicand digit'}
+laws ladder_xn_d3_s4 certified=False true_wiring=False pool_exact=0.64675 cert_exact=0.5673918479619905 stopped=None settled_at=186 seconds=1284.2 {'chain': 'trial multiples', 'numbers': 'rows by multiplicand digit'}
+w4 w4_local_d4m3_s0 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=149 settled_at=119 seconds=117.4 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+w4 w4_local_d4m3_s3 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=132 settled_at=110 seconds=75.0 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_local_d4m3_s5 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=134 settled_at=109 seconds=95.4 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit'}
+w4 w4_local_d4m3_s6 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=134 settled_at=114 seconds=101.5 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+w4 w4_local_d4m3_s2 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=127 settled_at=97 seconds=177.9 {'chain': 'repeated subtraction', 'numbers': 'diagonals j - i'}
+w4 w4_enum_d4m3_s7 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=150 settled_at=120 seconds=268.9 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+w4 w4_local_d4m3_s7 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=153 settled_at=126 seconds=93.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplicand digit, reversed'}
+w4 w4_local_d4m3_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=185 settled_at=155 seconds=157.8 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+w4 w4_enum_d4m3_s6 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=157 settled_at=127 seconds=387.2 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+laws ladder_xn_d3_s2 certified=False true_wiring=False pool_exact=0.64625 cert_exact=0.5813953488372093 stopped=None settled_at=125 seconds=1556.0 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+w4 w4_enum_d4m3_s4 certified=True true_wiring=False pool_exact=1.0 cert_exact=1.0 stopped=193 settled_at=179 seconds=782.2 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit'}
+io cs_d3m2_s5 certified=False true_wiring=False pool_exact=0.6545 cert_exact=0.5768942235558889 stopped=None settled_at=190 seconds=688.0 {'chain': 'trial multiples', 'numbers': 'rows by multiplier digit, reversed'}
+grow d2m3_s2 certified=False true_wiring=False pool_exact=0.64625 cert_exact=0.5813953488372093 stopped=None settled_at=140 seconds=1291.1 {'chain': 'repeated subtraction', 'numbers': 'rows by multiplier digit, reversed'}
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-XsoN1Zw6unuXj363FnrD6f

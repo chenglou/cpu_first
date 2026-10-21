@@ -1,0 +1,32 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-DqSmoUAEAFVKg4XPreQbi8
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/exact_wide.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/modal_exact.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/tiny_wide.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/wide.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/__init__.py
+└── 🔨 Created function run_job.
+W3_div1_mul2_partchain-io-joint-mul chain {"combinations": 3600, "ladder": {"pass_all_rows": 2, "pass_99": 2, "pass_90": 2}, "passing_correct": 2}
+io_truth {"combinations": 16, "x": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "x+n": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "a_only": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "x+n+a": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "x+n+q": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "x+n+q+a": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "passing_correct": 1}
+io_trial {"combinations": 16, "x": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "x+n": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "a_only": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "x+n+a": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "x+n+q": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "x+n+q+a": {"pass_all_rows": 1, "pass_99": 1, "pass_90": 1}, "passing_correct": 1}
+joint {"combinations": 57600, "x": {"pass_all_rows": 1942, "pass_99": 1942, "pass_90": 1942}, "x+n": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+a": {"pass_all_rows": 2, "pass_99": 2, "pass_90": 2}, "x+n+q": {"pass_all_rows": 2, "pass_99": 2, "pass_90": 2}, "x+n+q+a": {"pass_all_rows": 2, "pass_99": 2, "pass_90": 2}, "passing_correct": 2}
+mul {"rules_per_kind": 300, "layouts": 90000, "ladder_pass": 1, "passing": ["((1, 1, 0), (1, 1, 1))"], "number_rules": [{"num": "(-1, -1)", "distributive": false}, {"num": "(-1, 0)", "distributive": true}, {"num": "(-1, 1)", "distributive": true}, {"num": "(0, -1)", "distributive": true}, {"num": "(0, 0)", "distributive": false}, {"num": "(0, 1)", "distributive": true}, {"num": "(1, -1)", "distributive": true}, {"num": "(1, 0)", "distributive": true}, {"num": "(1, 1)", "distributive": false}]}
+
+W3_div3_mul3_partchain-io-mul chain {"combinations": 3600, "ladder": {"pass_all_rows": 2, "pass_99": 2, "pass_90": 2}, "passing_correct": 2}
+io_truth {"combinations": 30240, "x": {"pass_all_rows": 28, "pass_99": 28, "pass_90": 31}, "x+n": {"pass_all_rows": 28, "pass_99": 28, "pass_90": 28}, "a_only": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+a": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+q": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+q+a": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "passing_correct": 4}
+io_trial {"combinations": 30240, "x": {"pass_all_rows": 28, "pass_99": 28, "pass_90": 31}, "x+n": {"pass_all_rows": 28, "pass_99": 28, "pass_90": 28}, "a_only": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+a": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+q": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "x+n+q+a": {"pass_all_rows": 4, "pass_99": 4, "pass_90": 4}, "passing_correct": 4}
+mul {"rules_per_kind": 686, "layouts": 470596, "ladder_pass": 1, "passing": ["((1, 1, 0), (1, 1, 1))"], "number_rules": [{"num": "(-1, -1)", "distributive": false}, {"num": "(-1, 0)", "distributive": true}, {"num": "(-1, 1)", "distributive": true}, {"num": "(0, -1)", "distributive": true}, {"num": "(0, 0)", "distributive": false}, {"num": "(0, 1)", "distributive": true}, {"num": "(1, -1)", "distributive": true}, {"num": "(1, 0)", "distributive": true}, {"num": "(1, 1)", "distributive": false}]}
+
+W3_div4_mul2_partchain-io chain {"combinations": 9408, "ladder": {"pass_all_rows": 3, "pass_99": 3, "pass_90": 3}, "passing_correct": 3}
+io_truth {"combinations": 89600, "x": {"pass_all_rows": 65, "pass_99": 65, "pass_90": 71}, "x+n": {"pass_all_rows": 39, "pass_99": 39, "pass_90": 39}, "a_only": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+a": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+q": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+q+a": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "passing_correct": 6}
+io_trial {"combinations": 89600, "x": {"pass_all_rows": 65, "pass_99": 65, "pass_90": 71}, "x+n": {"pass_all_rows": 39, "pass_99": 39, "pass_90": 39}, "a_only": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+a": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+q": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "x+n+q+a": {"pass_all_rows": 6, "pass_99": 6, "pass_90": 6}, "passing_correct": 6}
+
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-DqSmoUAEAFVKg4XPreQbi8

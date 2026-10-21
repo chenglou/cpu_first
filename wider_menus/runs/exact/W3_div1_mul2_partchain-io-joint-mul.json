@@ -1,0 +1,262 @@
+{
+ "cfg": {
+  "W": 3,
+  "widths": [
+   2
+  ],
+  "div": 1,
+  "mul": 2,
+  "part": "chain,io,joint,mul",
+  "rows": 256,
+  "cert_rows": 3000,
+  "seed": 0,
+  "chunk": 400000,
+  "out": ""
+ },
+ "sizes": {
+  "div": 57600,
+  "chain": 3600,
+  "io": 16,
+  "mul": 810000
+ },
+ "chain": {
+  "combinations": 3600,
+  "ladder": {
+   "pass_all_rows": 2,
+   "pass_99": 2,
+   "pass_90": 2
+  },
+  "passing": [
+   {
+    "a": "Rp",
+    "b": "Mq",
+    "op": "sub",
+    "flag": "borrow",
+    "keep": "gated",
+    "nread": "given",
+    "g0": "commit",
+    "g1": "hold",
+    "cert": 1.0
+   },
+   {
+    "a": "D",
+    "b": "M",
+    "op": "sub",
+    "flag": "borrow",
+    "keep": "gated",
+    "nread": "given",
+    "g0": "commit",
+    "g1": "hold",
+    "cert": 1.0
+   }
+  ],
+  "passing_correct": 2
+ },
+ "io_truth": {
+  "combinations": 16,
+  "x": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "x+n": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "a_only": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "x+n+a": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "x+n+q": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "x+n+q+a": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "passing": [
+   {
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'rep')",
+    "post": "0",
+    "final": "none",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   }
+  ],
+  "passing_correct": 1
+ },
+ "io_trial": {
+  "combinations": 16,
+  "x": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "x+n": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "a_only": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "x+n+a": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "x+n+q": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "x+n+q+a": {
+   "pass_all_rows": 1,
+   "pass_99": 1,
+   "pass_90": 1
+  },
+  "passing": [
+   {
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'rep')",
+    "post": "0",
+    "final": "none",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   }
+  ],
+  "passing_correct": 1
+ },
+ "joint": {
+  "combinations": 57600,
+  "x": {
+   "pass_all_rows": 1942,
+   "pass_99": 1942,
+   "pass_90": 1942
+  },
+  "x+n": {
+   "pass_all_rows": 4,
+   "pass_99": 4,
+   "pass_90": 4
+  },
+  "x+n+a": {
+   "pass_all_rows": 2,
+   "pass_99": 2,
+   "pass_90": 2
+  },
+  "x+n+q": {
+   "pass_all_rows": 2,
+   "pass_99": 2,
+   "pass_90": 2
+  },
+  "x+n+q+a": {
+   "pass_all_rows": 2,
+   "pass_99": 2,
+   "pass_90": 2
+  },
+  "passing": [
+   {
+    "a": "Rp",
+    "b": "Mq",
+    "op": "sub",
+    "flag": "borrow",
+    "keep": "gated",
+    "nread": "given",
+    "g0": "commit",
+    "g1": "hold",
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'rep')",
+    "post": "0",
+    "final": "none",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   },
+   {
+    "a": "D",
+    "b": "M",
+    "op": "sub",
+    "flag": "borrow",
+    "keep": "gated",
+    "nread": "given",
+    "g0": "commit",
+    "g1": "hold",
+    "vread": "given",
+    "start": "top",
+    "order": "down",
+    "bring": "(1, 0, 'rep')",
+    "post": "0",
+    "final": "none",
+    "read": "(0, 'given')",
+    "cert": 1.0
+   }
+  ],
+  "passing_correct": 2
+ },
+ "mul": {
+  "rules_per_kind": 300,
+  "layouts": 90000,
+  "ladder_pass": 1,
+  "passing": [
+   "((1, 1, 0), (1, 1, 1))"
+  ],
+  "number_rules": [
+   {
+    "num": "(-1, -1)",
+    "distributive": false
+   },
+   {
+    "num": "(-1, 0)",
+    "distributive": true
+   },
+   {
+    "num": "(-1, 1)",
+    "distributive": true
+   },
+   {
+    "num": "(0, -1)",
+    "distributive": true
+   },
+   {
+    "num": "(0, 0)",
+    "distributive": false
+   },
+   {
+    "num": "(0, 1)",
+    "distributive": true
+   },
+   {
+    "num": "(1, -1)",
+    "distributive": true
+   },
+   {
+    "num": "(1, 0)",
+    "distributive": true
+   },
+   {
+    "num": "(1, 1)",
+    "distributive": false
+   }
+  ]
+ },
+ "seconds": 22.3,
+ "log": "chain {\"combinations\": 3600, \"ladder\": {\"pass_all_rows\": 2, \"pass_99\": 2, \"pass_90\": 2}, \"passing_correct\": 2}\nio_truth {\"combinations\": 16, \"x\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"x+n\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"a_only\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"x+n+a\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"x+n+q\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"x+n+q+a\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"passing_correct\": 1}\nio_trial {\"combinations\": 16, \"x\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"x+n\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"a_only\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"x+n+a\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"x+n+q\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"x+n+q+a\": {\"pass_all_rows\": 1, \"pass_99\": 1, \"pass_90\": 1}, \"passing_correct\": 1}\njoint {\"combinations\": 57600, \"x\": {\"pass_all_rows\": 1942, \"pass_99\": 1942, \"pass_90\": 1942}, \"x+n\": {\"pass_all_rows\": 4, \"pass_99\": 4, \"pass_90\": 4}, \"x+n+a\": {\"pass_all_rows\": 2, \"pass_99\": 2, \"pass_90\": 2}, \"x+n+q\": {\"pass_all_rows\": 2, \"pass_99\": 2, \"pass_90\": 2}, \"x+n+q+a\": {\"pass_all_rows\": 2, \"pass_99\": 2, \"pass_90\": 2}, \"passing_correct\": 2}\nmul {\"rules_per_kind\": 300, \"layouts\": 90000, \"ladder_pass\": 1, \"passing\": [\"((1, 1, 0), (1, 1, 1))\"], \"number_rules\": [{\"num\": \"(-1, -1)\", \"distributive\": false}, {\"num\": \"(-1, 0)\", \"distributive\": true}, {\"num\": \"(-1, 1)\", \"distributive\": true}, {\"num\": \"(0, -1)\", \"distributive\": true}, {\"num\": \"(0, 0)\", \"distributive\": false}, {\"num\": \"(0, 1)\", \"distributive\": true}, {\"num\": \"(1, -1)\", \"distributive\": true}, {\"num\": \"(1, 0)\", \"distributive\": true}, {\"num\": \"(1, 1)\", \"distributive\": false}]}\n"
+}

@@ -1,0 +1,66 @@
+[
+ {
+  "name": "s3_f_final_b512_seed1",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "1"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s3_f_final_b512_seed2",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "2"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s3_w70_warm_b512_seed1",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "1",
+   "ADDER_WARM=70"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s3_w70_warm_b512_seed2",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "2",
+   "ADDER_WARM=70"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s3_w100_warm_b512_seed1",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "1",
+   "ADDER_WARM=100"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s3_w100_warm_b512_seed2",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "2",
+   "ADDER_WARM=100"
+  ],
+  "gpu": true
+ }
+]

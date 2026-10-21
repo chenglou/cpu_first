@@ -1,0 +1,24 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-UAuGBHKu19VPBUtsKdiMaJ
+✓ Created objects.
+├── 🔨 Created mount 
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+├── 🔨 Created function diag.
+└── 🔨 Created function diag_gpu.
+s4_w50_b512_seed1 | step 338 loss 0.0061 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 141.5s wrong(r,m,c->d,b) []
+s4_w50_b512_seed2 | step 339 loss 0.0068 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 137.0s wrong(r,m,c->d,b) []
+s4_w70_nowrap_b512_seed2 | step 1000 loss 4.3275 phase B win 0.090 true 170/200 closest_wrong stuck_001 171/200 533.1s
+s4_w70_nowrap_b512_seed1 | step 1000 loss 3.1102 phase B win 0.090 true 168/200 closest_wrong stuck_001 169/200 558.6s
+s4_w30_b512_seed1 | step 1000 loss 3.6451 phase B win 0.088 true 150/200 closest_wrong stuck_001 151/200 559.4s
+s4_w30_b512_seed2 | step 897 loss 0.0317 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 451.2s wrong(r,m,c->d,b) []
+s4_w70_idonly_b512_seed1 | step 328 loss 0.0024 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 65.6s wrong(r,m,c->d,b) []
+s4_w70_idonly_b512_seed2 | step 329 loss 0.0025 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 64.9s wrong(r,m,c->d,b) []
+s4_w10_b512_seed1 | step 1000 loss 3.5663 phase B win 0.121 true 112/200 closest_wrong stuck_001 113/200 567.7s
+s4_w10_b512_seed2 | step 1000 loss 3.9493 phase B win 0.292 true 99/200 closest_wrong stuck_001 100/200 564.3s
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-UAuGBHKu19VPBUtsKdiMaJ

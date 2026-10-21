@@ -1,0 +1,193 @@
+LR step=1 phase=A in_phase=1 loss=12.9022 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 1 loss 12.9022 phase A win 0.000 true 22/200 closest_wrong borrow_free 24/200 0.8s
+LR step=25 phase=A in_phase=25 loss=7.6138 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 25 loss 7.6138 phase A win 0.000 true 23/200 closest_wrong lazy_sticky 41/200 4.7s
+LR step=50 phase=A in_phase=50 loss=5.2198 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 50 loss 5.2198 phase A win 0.000 true 20/200 closest_wrong lazy_sticky 44/200 8.7s
+LR step=75 phase=A in_phase=75 loss=4.3601 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 75 loss 4.3601 phase A win 0.000 true 22/200 closest_wrong lazy_sticky 37/200 12.7s
+LR step=100 phase=A in_phase=100 loss=3.7192 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 100 loss 3.7192 phase A win 0.000 true 21/200 closest_wrong lazy_sticky 33/200 16.6s
+LR step=125 phase=A in_phase=125 loss=3.4347 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 125 loss 3.4347 phase A win 0.000 true 21/200 closest_wrong lazy_sticky 37/200 20.6s
+LR step=150 phase=A in_phase=150 loss=3.3155 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 150 loss 3.3155 phase A win 0.000 true 22/200 closest_wrong lazy_sticky 36/200 24.6s
+LR step=175 phase=A in_phase=175 loss=3.2732 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 175 loss 3.2732 phase A win 0.000 true 23/200 closest_wrong lazy_sticky 40/200 28.6s
+LR step=200 phase=A in_phase=200 loss=3.1779 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 200 loss 3.1779 phase A win 0.000 true 25/200 closest_wrong lazy_sticky 34/200 32.6s
+LR step=225 phase=A in_phase=225 loss=3.0369 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 225 loss 3.0369 phase A win 0.000 true 26/200 closest_wrong copy_minuend 33/200 36.6s
+LR step=250 phase=A in_phase=250 loss=2.5503 hard_exact=0.0643 win=0.0253 rows_visited=200/200
+step 250 loss 2.5503 phase A win 0.025 true 30/200 closest_wrong lazy_sticky 33/200 40.6s
+LR step=275 phase=A in_phase=275 loss=1.5072 hard_exact=0.0462 win=0.0483 rows_visited=200/200
+step 275 loss 1.5072 phase A win 0.048 true 35/200 closest_wrong lazy_sticky 38/200 44.5s
+LR step=300 phase=A in_phase=300 loss=1.2145 hard_exact=0.0466 win=0.0571 rows_visited=200/200
+LR switch_to_own_borrow step=300 win=0.0571
+step 300 loss 1.2145 phase B win 0.000 true 34/200 closest_wrong lazy_sticky 45/200 48.5s
+LR step=325 phase=B in_phase=25 loss=1.2021 hard_exact=0.0602 win=0.0506 rows_visited=200/200
+LR step=325 real_rows=13 real_hard_exact=0.0000
+step 325 loss 9.6342 phase B win 0.051 true 35/200 closest_wrong lazy_sticky 45/200 66.1s
+LR step=350 phase=B in_phase=50 loss=1.1998 hard_exact=0.0801 win=0.0640 rows_visited=200/200
+LR step=350 real_rows=10 real_hard_exact=0.0000
+step 350 loss 6.9863 phase B win 0.064 true 36/200 closest_wrong lazy_sticky 46/200 83.6s
+LR step=375 phase=B in_phase=75 loss=1.2480 hard_exact=0.0672 win=0.0620 rows_visited=200/200
+LR step=375 real_rows=10 real_hard_exact=0.1000
+step 375 loss 10.0780 phase B win 0.062 true 35/200 closest_wrong lazy_sticky 50/200 101.1s
+LR step=400 phase=B in_phase=100 loss=1.2741 hard_exact=0.0937 win=0.0860 rows_visited=200/200
+LR step=400 real_rows=15 real_hard_exact=0.0000
+step 400 loss 7.5733 phase B win 0.086 true 35/200 closest_wrong lazy_sticky 50/200 118.4s
+LR step=425 phase=B in_phase=125 loss=1.3083 hard_exact=0.0374 win=0.0623 rows_visited=200/200
+LR step=425 real_rows=17 real_hard_exact=0.0000
+step 425 loss 5.4457 phase B win 0.062 true 34/200 closest_wrong lazy_sticky 53/200 135.9s
+LR step=450 phase=B in_phase=150 loss=1.2452 hard_exact=0.0557 win=0.0494 rows_visited=200/200
+LR step=450 real_rows=17 real_hard_exact=0.0000
+step 450 loss 5.8703 phase B win 0.049 true 35/200 closest_wrong lazy_sticky 53/200 153.3s
+LR step=475 phase=B in_phase=175 loss=1.2057 hard_exact=0.0535 win=0.0513 rows_visited=200/200
+LR step=475 real_rows=15 real_hard_exact=0.0000
+step 475 loss 7.0608 phase B win 0.051 true 35/200 closest_wrong lazy_sticky 53/200 170.7s
+LR step=500 phase=B in_phase=200 loss=1.1431 hard_exact=0.1040 win=0.0814 rows_visited=200/200
+LR step=500 real_rows=9 real_hard_exact=0.0000
+step 500 loss 8.4697 phase B win 0.081 true 37/200 closest_wrong lazy_sticky 54/200 187.7s
+LR step=525 phase=B in_phase=225 loss=1.1365 hard_exact=0.0867 win=0.0950 rows_visited=200/200
+LR step=525 real_rows=12 real_hard_exact=0.0000
+step 525 loss 8.5398 phase B win 0.095 true 38/200 closest_wrong lazy_sticky 54/200 205.0s
+LR step=550 phase=B in_phase=250 loss=1.1157 hard_exact=0.1145 win=0.0912 rows_visited=200/200
+LR step=550 real_rows=9 real_hard_exact=0.0000
+step 550 loss 10.4843 phase B win 0.091 true 38/200 closest_wrong lazy_sticky 54/200 222.4s
+LR step=575 phase=B in_phase=275 loss=1.0776 hard_exact=0.0818 win=0.0953 rows_visited=200/200
+LR step=575 real_rows=9 real_hard_exact=0.0000
+step 575 loss 6.2739 phase B win 0.095 true 38/200 closest_wrong lazy_sticky 55/200 239.8s
+LR step=600 phase=B in_phase=300 loss=1.0722 hard_exact=0.1204 win=0.1112 rows_visited=200/200
+LR step=600 real_rows=12 real_hard_exact=0.0000
+step 600 loss 7.2536 phase B win 0.111 true 38/200 closest_wrong lazy_sticky 55/200 258.3s
+LR step=625 phase=B in_phase=325 loss=1.0824 hard_exact=0.0845 win=0.0955 rows_visited=200/200
+LR step=625 real_rows=9 real_hard_exact=0.0000
+step 625 loss 8.7411 phase B win 0.095 true 39/200 closest_wrong lazy_sticky 54/200 276.6s
+LR step=650 phase=B in_phase=350 loss=1.0787 hard_exact=0.0872 win=0.0947 rows_visited=200/200
+LR step=650 real_rows=7 real_hard_exact=0.0000
+step 650 loss 5.6801 phase B win 0.095 true 40/200 closest_wrong lazy_sticky 54/200 293.8s
+LR step=675 phase=B in_phase=375 loss=1.0590 hard_exact=0.1189 win=0.1030 rows_visited=200/200
+LR step=675 real_rows=18 real_hard_exact=0.0000
+step 675 loss 6.9518 phase B win 0.103 true 40/200 closest_wrong lazy_sticky 55/200 311.1s
+LR step=700 phase=B in_phase=400 loss=1.1256 hard_exact=0.0823 win=0.0914 rows_visited=200/200
+LR step=700 real_rows=10 real_hard_exact=0.0000
+step 700 loss 5.0563 phase B win 0.091 true 40/200 closest_wrong lazy_sticky 51/200 328.4s
+LR step=725 phase=B in_phase=425 loss=1.1048 hard_exact=0.0640 win=0.0722 rows_visited=200/200
+LR step=725 real_rows=8 real_hard_exact=0.0000
+step 725 loss 3.7254 phase B win 0.072 true 40/200 closest_wrong lazy_sticky 50/200 345.7s
+LR step=750 phase=B in_phase=450 loss=1.0939 hard_exact=0.0801 win=0.0793 rows_visited=200/200
+LR step=750 real_rows=12 real_hard_exact=0.0000
+step 750 loss 6.1216 phase B win 0.079 true 41/200 closest_wrong lazy_sticky 49/200 363.4s
+LR step=775 phase=B in_phase=475 loss=1.0249 hard_exact=0.0908 win=0.0805 rows_visited=200/200
+LR step=775 real_rows=8 real_hard_exact=0.0000
+step 775 loss 3.3715 phase B win 0.081 true 40/200 closest_wrong lazy_sticky 48/200 380.8s
+LR step=800 phase=B in_phase=500 loss=0.9957 hard_exact=0.0901 win=0.0894 rows_visited=200/200
+LR step=800 real_rows=19 real_hard_exact=0.0000
+step 800 loss 4.3113 phase B win 0.089 true 38/200 closest_wrong lazy_sticky 47/200 398.1s
+LR step=825 phase=B in_phase=525 loss=0.9670 hard_exact=0.0754 win=0.0903 rows_visited=200/200
+LR step=825 real_rows=13 real_hard_exact=0.0000
+step 825 loss 4.7326 phase B win 0.090 true 38/200 closest_wrong lazy_sticky 48/200 415.7s
+LR step=850 phase=B in_phase=550 loss=0.9818 hard_exact=0.0933 win=0.0854 rows_visited=200/200
+LR step=850 real_rows=12 real_hard_exact=0.0000
+step 850 loss 4.0800 phase B win 0.085 true 39/200 closest_wrong lazy_sticky 47/200 433.3s
+LR step=875 phase=B in_phase=575 loss=0.9373 hard_exact=0.0730 win=0.0849 rows_visited=200/200
+LR step=875 real_rows=8 real_hard_exact=0.0000
+step 875 loss 6.7318 phase B win 0.085 true 38/200 closest_wrong lazy_sticky 47/200 450.8s
+LR step=900 phase=B in_phase=600 loss=0.9464 hard_exact=0.0845 win=0.0974 rows_visited=200/200
+LR step=900 real_rows=10 real_hard_exact=0.0000
+step 900 loss 3.3865 phase B win 0.097 true 37/200 closest_wrong lazy_sticky 46/200 468.2s
+LR step=925 phase=B in_phase=625 loss=0.9475 hard_exact=0.1069 win=0.1001 rows_visited=200/200
+LR step=925 real_rows=7 real_hard_exact=0.0000
+step 925 loss 5.1436 phase B win 0.100 true 38/200 closest_wrong lazy_sticky 47/200 485.8s
+LR step=950 phase=B in_phase=650 loss=0.9440 hard_exact=0.1084 win=0.1076 rows_visited=200/200
+LR step=950 real_rows=11 real_hard_exact=0.0000
+step 950 loss 4.5501 phase B win 0.108 true 36/200 closest_wrong lazy_sticky 46/200 503.2s
+LR step=975 phase=B in_phase=675 loss=0.9376 hard_exact=0.0884 win=0.1027 rows_visited=200/200
+LR step=975 real_rows=6 real_hard_exact=0.1667
+step 975 loss 6.4114 phase B win 0.103 true 37/200 closest_wrong lazy_sticky 46/200 520.7s
+LR step=1000 phase=B in_phase=700 loss=0.9919 hard_exact=0.0969 win=0.0984 rows_visited=200/200
+LR step=1000 real_rows=14 real_hard_exact=0.0000
+step 1000 loss 3.4086 phase B win 0.098 true 36/200 closest_wrong lazy_sticky 46/200 537.9s
+LR step=1025 phase=B in_phase=725 loss=0.9568 hard_exact=0.0964 win=0.0912 rows_visited=200/200
+LR step=1025 real_rows=8 real_hard_exact=0.0000
+step 1025 loss 4.4985 phase B win 0.091 true 36/200 closest_wrong lazy_sticky 46/200 555.2s
+LR step=1050 phase=B in_phase=750 loss=0.9473 hard_exact=0.0942 win=0.0933 rows_visited=200/200
+LR step=1050 real_rows=13 real_hard_exact=0.0000
+step 1050 loss 4.6554 phase B win 0.093 true 36/200 closest_wrong lazy_sticky 45/200 572.5s
+LR step=1075 phase=B in_phase=775 loss=0.9448 hard_exact=0.0801 win=0.0966 rows_visited=200/200
+LR step=1075 real_rows=9 real_hard_exact=0.0000
+step 1075 loss 4.4953 phase B win 0.097 true 37/200 closest_wrong lazy_sticky 46/200 589.9s
+LR step=1100 phase=B in_phase=800 loss=0.9173 hard_exact=0.0994 win=0.0997 rows_visited=200/200
+LR step=1100 real_rows=3 real_hard_exact=0.0000
+step 1100 loss 8.5749 phase B win 0.100 true 37/200 closest_wrong lazy_sticky 46/200 607.2s
+LR step=1125 phase=B in_phase=825 loss=0.9168 hard_exact=0.0908 win=0.1005 rows_visited=200/200
+LR step=1125 real_rows=13 real_hard_exact=0.0000
+step 1125 loss 4.2021 phase B win 0.101 true 37/200 closest_wrong lazy_sticky 46/200 624.8s
+LR step=1150 phase=B in_phase=850 loss=0.9417 hard_exact=0.1001 win=0.0972 rows_visited=200/200
+LR step=1150 real_rows=14 real_hard_exact=0.0000
+step 1150 loss 6.2779 phase B win 0.097 true 37/200 closest_wrong lazy_sticky 46/200 642.0s
+LR step=1175 phase=B in_phase=875 loss=0.9540 hard_exact=0.1111 win=0.0997 rows_visited=200/200
+LR step=1175 real_rows=11 real_hard_exact=0.0000
+step 1175 loss 3.4334 phase B win 0.100 true 37/200 closest_wrong lazy_sticky 46/200 659.3s
+LR step=1200 phase=B in_phase=900 loss=0.9269 hard_exact=0.1101 win=0.1050 rows_visited=200/200
+LR step=1200 real_rows=13 real_hard_exact=0.0000
+step 1200 loss 4.0516 phase B win 0.105 true 35/200 closest_wrong lazy_sticky 46/200 676.7s
+LR step=1225 phase=B in_phase=925 loss=0.9211 hard_exact=0.1130 win=0.1073 rows_visited=200/200
+LR step=1225 real_rows=13 real_hard_exact=0.0000
+step 1225 loss 4.4050 phase B win 0.107 true 38/200 closest_wrong lazy_sticky 46/200 695.3s
+LR step=1250 phase=B in_phase=950 loss=0.9246 hard_exact=0.0906 win=0.1012 rows_visited=200/200
+LR step=1250 real_rows=11 real_hard_exact=0.0000
+step 1250 loss 4.0736 phase B win 0.101 true 37/200 closest_wrong lazy_sticky 46/200 712.9s
+LR step=1275 phase=B in_phase=975 loss=0.9018 hard_exact=0.0972 win=0.0960 rows_visited=200/200
+LR step=1275 real_rows=11 real_hard_exact=0.0000
+step 1275 loss 3.6546 phase B win 0.096 true 37/200 closest_wrong lazy_sticky 46/200 730.5s
+LR step=1300 phase=B in_phase=1000 loss=0.9520 hard_exact=0.0898 win=0.0985 rows_visited=200/200
+LR step=1300 real_rows=9 real_hard_exact=0.0000
+step 1300 loss 4.1636 phase B win 0.098 true 37/200 closest_wrong lazy_sticky 46/200 747.9s
+LR step=1325 phase=B in_phase=1025 loss=0.9036 hard_exact=0.1052 win=0.0968 rows_visited=200/200
+LR step=1325 real_rows=9 real_hard_exact=0.0000
+step 1325 loss 5.6720 phase B win 0.097 true 38/200 closest_wrong lazy_sticky 46/200 765.3s
+LR step=1350 phase=B in_phase=1050 loss=0.9317 hard_exact=0.1038 win=0.1030 rows_visited=200/200
+LR step=1350 real_rows=10 real_hard_exact=0.0000
+step 1350 loss 5.5269 phase B win 0.103 true 38/200 closest_wrong lazy_sticky 46/200 782.7s
+LR step=1375 phase=B in_phase=1075 loss=0.9521 hard_exact=0.0969 win=0.0886 rows_visited=200/200
+LR step=1375 real_rows=9 real_hard_exact=0.0000
+step 1375 loss 3.8822 phase B win 0.089 true 38/200 closest_wrong lazy_sticky 46/200 800.1s
+LR step=1400 phase=B in_phase=1100 loss=0.9284 hard_exact=0.0764 win=0.0958 rows_visited=200/200
+LR step=1400 real_rows=14 real_hard_exact=0.0000
+step 1400 loss 4.1254 phase B win 0.096 true 38/200 closest_wrong lazy_sticky 46/200 817.9s
+LR step=1425 phase=B in_phase=1125 loss=0.9545 hard_exact=0.0935 win=0.0972 rows_visited=200/200
+LR step=1425 real_rows=14 real_hard_exact=0.0000
+step 1425 loss 4.9100 phase B win 0.097 true 38/200 closest_wrong lazy_sticky 46/200 835.3s
+LR step=1450 phase=B in_phase=1150 loss=0.9077 hard_exact=0.0876 win=0.0772 rows_visited=200/200
+LR step=1450 real_rows=10 real_hard_exact=0.0000
+step 1450 loss 4.9841 phase B win 0.077 true 39/200 closest_wrong lazy_sticky 46/200 852.8s
+LR step=1475 phase=B in_phase=1175 loss=0.9355 hard_exact=0.0864 win=0.0883 rows_visited=200/200
+LR step=1475 real_rows=12 real_hard_exact=0.0000
+step 1475 loss 4.4039 phase B win 0.088 true 37/200 closest_wrong lazy_sticky 46/200 870.7s
+LR step=1500 phase=B in_phase=1200 loss=0.9009 hard_exact=0.0713 win=0.0863 rows_visited=200/200
+LR step=1500 real_rows=14 real_hard_exact=0.0000
+step 1500 loss 4.4182 phase B win 0.086 true 37/200 closest_wrong lazy_sticky 46/200 888.3s
+digit table, borrow in 0 (rows r, columns m) | borrow out
+0 7 5 9 6 2 4 1 4 9 | 0 1 0 1 1 1 1 1 1 1
+1 0 5 2 8 3 6 7 4 2 | 0 0 1 1 1 1 1 1 1 1
+2 9 0 1 2 4 2 9 2 1 | 0 0 0 1 1 1 1 1 1 1
+3 2 5 0 6 5 4 2 4 3 | 0 0 0 0 1 1 1 1 1 1
+4 4 2 4 0 2 8 4 6 4 | 0 0 0 0 0 1 1 1 1 1
+5 5 3 5 0 0 2 5 5 5 | 0 0 0 0 0 0 1 1 1 1
+6 6 0 6 3 2 0 6 3 6 | 0 0 0 0 0 0 0 1 1 1
+7 1 5 3 6 9 4 0 4 2 | 0 0 0 0 0 0 0 0 1 1
+8 8 0 8 4 2 3 8 0 8 | 0 0 0 0 0 0 0 0 0 1
+9 2 5 0 6 1 4 2 4 0 | 0 0 0 0 0 0 0 0 0 0
+digit table, borrow in 1 (rows r, columns m) | borrow out
+0 7 5 9 6 2 4 1 4 3 | 1 1 1 1 1 1 1 1 1 1
+1 0 9 2 8 3 6 7 6 2 | 1 1 1 1 1 1 1 1 1 1
+2 9 4 1 2 4 2 3 2 1 | 1 0 1 1 1 1 1 1 1 1
+3 2 1 0 6 5 4 2 6 9 | 0 0 0 1 1 1 1 1 1 1
+4 4 2 4 3 2 8 4 8 4 | 0 0 0 0 1 1 1 1 1 1
+5 5 3 5 0 0 2 5 5 5 | 0 0 0 0 0 1 1 1 1 1
+6 6 0 6 1 2 3 6 3 6 | 0 0 0 0 0 0 1 1 1 1
+7 1 5 2 6 9 4 0 7 2 | 0 0 0 0 0 0 0 1 1 1
+8 8 0 8 4 2 0 8 1 8 | 0 0 0 0 0 0 0 0 1 1
+9 2 5 3 8 1 4 2 4 0 | 0 0 0 0 0 0 0 0 0 1

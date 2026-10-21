@@ -1,0 +1,36 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-ekTbHPTVeNBodRnCIr909x
+✓ Created objects.
+├── 🔨 Created mount 
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+├── 🔨 Created function diag.
+└── 🔨 Created function diag_gpu.
+s2_a1_all_ans1_b512_seed1 | step 1500 loss 4.4931 phase B win 0.054 true 38/200 closest_wrong lazy_sticky 79/200 1072.7s
+s2_a1_all_ans1_b512_seed2 | step 1500 loss 3.2258 phase B win 0.124 true 36/200 closest_wrong lazy_sticky 70/200 1062.4s
+s2_a2_all_ans1soft_b512_seed1 | step 1500 loss 3.4557 phase B win 0.085 true 38/200 closest_wrong lazy_sticky 73/200 1048.0s
+s2_a2_all_ans1soft_b512_seed2 | step 1500 loss 3.4166 phase B win 0.071 true 38/200 closest_wrong lazy_sticky 65/200 1055.5s
+s2_a3_all_ans1_fixb_b512_seed1 | step 1500 loss 3.6802 phase B win 0.194 true 43/200 closest_wrong lazy_sticky 76/200 1019.2s
+s2_a3_all_ans1_fixb_b512_seed2 | step 1500 loss 3.8377 phase B win 0.017 true 28/200 closest_wrong lazy_sticky 76/200 707.7s
+s2_a4_all_ans1soft_fixb_b512_seed1 | step 1500 loss 3.3368 phase B win 0.188 true 36/200 closest_wrong lazy_sticky 77/200 1035.7s
+s2_a4_all_ans1soft_fixb_b512_seed2 | step 1500 loss 3.5649 phase B win 0.135 true 30/200 closest_wrong lazy_sticky 69/200 1031.5s
+s2_a5_ansonly_b512_seed1 | step 1500 loss 2.3081 phase B win 0.006 true 42/200 closest_wrong stuck_001 43/200 698.2s
+s2_a5_ansonly_b512_seed2 | step 1500 loss 2.2671 phase B win 0.005 true 40/200 closest_wrong stuck_001 41/200 1027.9s
+s2_a6_ansonly_soft_b512_seed1 | step 1500 loss 2.3151 phase B win 0.006 true 39/200 closest_wrong stuck_001 40/200 987.2s
+s2_a6_ansonly_soft_b512_seed2 | step 1500 loss 2.2773 phase B win 0.006 true 39/200 closest_wrong stuck_001 40/200 990.1s
+s2_a7_all_b512_seed1 | step 1500 loss 3.1354 phase B win 0.117 true 39/200 closest_wrong lazy_sticky 72/200 928.4s
+s2_a7_all_b512_seed2 | step 1500 loss 4.4182 phase B win 0.086 true 37/200 closest_wrong lazy_sticky 46/200 888.3s
+s2_b1_table_b512_seed1 | step 1500 loss 2.9029 phase B win 0.309 true 28/200 adder_true 28/200 closest_wrong lazy_sticky 50/200 880.6s
+s2_b1_table_b512_seed2 | step 1500 loss 5.1411 phase B win 0.307 true 32/200 adder_true 34/200 closest_wrong lazy_sticky 53/200 879.9s
+s2_b2_table_order_b512_seed1 | step 1500 loss 2.8916 phase B win 0.233 true 36/200 adder_true 33/200 closest_wrong stuck_001 37/200 894.5s
+s2_b2_table_order_b512_seed2 | step 1500 loss 2.9281 phase B win 0.355 true 42/200 adder_true 39/200 closest_wrong stuck_001 43/200 607.4s
+s2_b3_table_order_ans1_b512_seed1 | step 1500 loss 2.8662 phase B win 0.308 true 30/200 adder_true 36/200 closest_wrong lazy_sticky 58/200 1081.2s
+s2_b3_table_order_ans1_b512_seed2 | step 1500 loss 2.8937 phase B win 0.269 true 33/200 adder_true 38/200 closest_wrong copy_minuend 47/200 1117.6s
+s2_d1_designed_b512_seed1 | step 614 loss 0.0547 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 216.8s wrong(r,m,c->d,b) []
+s2_d1_designed_b512_seed2 | step 606 loss 0.0628 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 212.0s wrong(r,m,c->d,b) []
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-ekTbHPTVeNBodRnCIr909x

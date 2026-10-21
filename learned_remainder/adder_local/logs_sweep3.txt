@@ -1,0 +1,20 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-pW3KtbXiZ4o8aODtUV4Mo4
+✓ Created objects.
+├── 🔨 Created mount 
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+├── 🔨 Created function diag.
+└── 🔨 Created function diag_gpu.
+s3_f_final_b512_seed1 | step 1000 loss 3.5933 phase B win 0.085 true 26/200 closest_wrong lazy_sticky 79/200 562.6s
+s3_w70_warm_b512_seed1 | step 328 loss 0.0064 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 139.7s wrong(r,m,c->d,b) []
+s3_f_final_b512_seed2 | step 1000 loss 3.3014 phase B win 0.146 true 31/200 closest_wrong lazy_sticky 68/200 549.9s
+s3_w70_warm_b512_seed2 | step 343 loss 0.0113 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 152.7s wrong(r,m,c->d,b) []
+s3_w100_warm_b512_seed1 | step 329 loss 0.0179 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 151.4s wrong(r,m,c->d,b) []
+s3_w100_warm_b512_seed2 | step 324 loss 0.0333 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 145.9s wrong(r,m,c->d,b) []
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-pW3KtbXiZ4o8aODtUV4Mo4

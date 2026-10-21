@@ -1,0 +1,311 @@
+[
+ {
+  "name": "s1_v0_base_b64_seed1",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "1"
+  ]
+ },
+ {
+  "name": "s1_v0_base_b64_seed2",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "2"
+  ]
+ },
+ {
+  "name": "s1_v0_base_b64_seed3",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "3"
+  ]
+ },
+ {
+  "name": "s1_v1_neg2_b64_seed1",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "1",
+   "ANCHOR_NEG2=1.0"
+  ]
+ },
+ {
+  "name": "s1_v1_neg2_b64_seed2",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "2",
+   "ANCHOR_NEG2=1.0"
+  ]
+ },
+ {
+  "name": "s1_v1_neg2_b64_seed3",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "3",
+   "ANCHOR_NEG2=1.0"
+  ]
+ },
+ {
+  "name": "s1_v2_comm_b64_seed1",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "1",
+   "ANCHOR_COMM=1.0"
+  ]
+ },
+ {
+  "name": "s1_v2_comm_b64_seed2",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "2",
+   "ANCHOR_COMM=1.0"
+  ]
+ },
+ {
+  "name": "s1_v2_comm_b64_seed3",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "3",
+   "ANCHOR_COMM=1.0"
+  ]
+ },
+ {
+  "name": "s1_v3_neg2comm_b64_seed1",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "1",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0"
+  ]
+ },
+ {
+  "name": "s1_v3_neg2comm_b64_seed2",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "2",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0"
+  ]
+ },
+ {
+  "name": "s1_v3_neg2comm_b64_seed3",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "3",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0"
+  ]
+ },
+ {
+  "name": "s1_v4_order_b64_seed1",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "1",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0"
+  ]
+ },
+ {
+  "name": "s1_v4_order_b64_seed2",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "2",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0"
+  ]
+ },
+ {
+  "name": "s1_v4_order_b64_seed3",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "3",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0"
+  ]
+ },
+ {
+  "name": "s1_v5_all_b64_seed1",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "1",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0"
+  ]
+ },
+ {
+  "name": "s1_v5_all_b64_seed2",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "2",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0"
+  ]
+ },
+ {
+  "name": "s1_v5_all_b64_seed3",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "3",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0"
+  ]
+ },
+ {
+  "name": "s1_v6_all_selfA_b64_seed1",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "1",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0",
+   "SELF_FROM='A'"
+  ]
+ },
+ {
+  "name": "s1_v6_all_selfA_b64_seed2",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "2",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0",
+   "SELF_FROM='A'"
+  ]
+ },
+ {
+  "name": "s1_v6_all_selfA_b64_seed3",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "3",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0",
+   "SELF_FROM='A'"
+  ]
+ },
+ {
+  "name": "s1_v7_all_noZS_b64_seed1",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "1",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0",
+   "ANCHOR_ZERO=0.0",
+   "ANCHOR_SELF=0.0"
+  ]
+ },
+ {
+  "name": "s1_v7_all_noZS_b64_seed2",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "2",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0",
+   "ANCHOR_ZERO=0.0",
+   "ANCHOR_SELF=0.0"
+  ]
+ },
+ {
+  "name": "s1_v7_all_noZS_b64_seed3",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "3",
+   "ANCHOR_NEG2=1.0",
+   "ANCHOR_COMM=1.0",
+   "ANCHOR_LESS=1.0",
+   "ANCHOR_MORE=1.0",
+   "ANCHOR_ZERO=0.0",
+   "ANCHOR_SELF=0.0"
+  ]
+ },
+ {
+  "name": "s1_v8_designed_b64_seed1",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "1",
+   "ADDER='designed'"
+  ]
+ },
+ {
+  "name": "s1_v8_designed_b64_seed2",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "2",
+   "ADDER='designed'"
+  ]
+ },
+ {
+  "name": "s1_v8_designed_b64_seed3",
+  "argv": [
+   "train",
+   "1500",
+   "64",
+   "3",
+   "ADDER='designed'"
+  ]
+ }
+]

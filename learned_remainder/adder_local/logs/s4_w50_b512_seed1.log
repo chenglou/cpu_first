@@ -1,0 +1,61 @@
+LR step=1 phase=A in_phase=1 loss=8.6506 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 1 loss 8.6506 phase A win 0.000 true 23/200 closest_wrong swapped_code 31/200 1.0s
+LR step=25 phase=A in_phase=25 loss=3.7508 hard_exact=0.0410 win=0.0150 rows_visited=200/200
+step 25 loss 3.7508 phase A win 0.015 true 104/200 closest_wrong stuck_001 105/200 4.7s
+LR step=50 phase=A in_phase=50 loss=1.1005 hard_exact=0.2848 win=0.2280 rows_visited=200/200
+step 50 loss 1.1005 phase A win 0.228 true 180/200 closest_wrong stuck_001 181/200 8.3s
+LR step=75 phase=A in_phase=75 loss=1.4530 hard_exact=0.0825 win=0.0821 rows_visited=200/200
+step 75 loss 1.4530 phase A win 0.082 true 180/200 closest_wrong stuck_001 181/200 12.7s
+LR step=100 phase=A in_phase=100 loss=0.9708 hard_exact=0.1208 win=0.1008 rows_visited=200/200
+step 100 loss 0.9708 phase A win 0.101 true 185/200 closest_wrong stuck_001 184/200 17.0s
+LR step=125 phase=A in_phase=125 loss=0.2867 hard_exact=0.6874 win=0.4076 rows_visited=200/200
+step 125 loss 0.2867 phase A win 0.408 true 196/200 closest_wrong stuck_001 195/200 21.3s wrong(r,m,c->d,b) [(1, 1, 1, 0, 1), (2, 0, 1, 2, 0), (3, 0, 1, 3, 0), (4, 0, 1, 4, 0)]
+LR switch_to_own_borrow step=138 win=0.8016
+LR step=150 phase=B in_phase=12 loss=0.0708 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=150 real_rows=7 real_hard_exact=1.0000
+step 150 loss 0.3010 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 31.1s wrong(r,m,c->d,b) []
+LR step=175 phase=B in_phase=37 loss=0.0158 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=175 real_rows=13 real_hard_exact=1.0000
+step 175 loss 0.0859 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 45.7s wrong(r,m,c->d,b) []
+LR step=200 phase=B in_phase=62 loss=0.0075 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=200 real_rows=17 real_hard_exact=1.0000
+step 200 loss 0.0475 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 60.6s wrong(r,m,c->d,b) []
+LR step=225 phase=B in_phase=87 loss=0.0048 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=225 real_rows=7 real_hard_exact=1.0000
+step 225 loss 0.0325 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 75.7s wrong(r,m,c->d,b) []
+LR step=250 phase=B in_phase=112 loss=0.0035 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=250 real_rows=16 real_hard_exact=1.0000
+step 250 loss 0.0153 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 90.6s wrong(r,m,c->d,b) []
+LR step=275 phase=B in_phase=137 loss=0.0027 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=275 real_rows=16 real_hard_exact=1.0000
+step 275 loss 0.0158 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 105.3s wrong(r,m,c->d,b) []
+LR step=300 phase=B in_phase=162 loss=0.0022 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=300 real_rows=8 real_hard_exact=1.0000
+step 300 loss 0.0083 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 119.7s wrong(r,m,c->d,b) []
+LR step=325 phase=B in_phase=187 loss=0.0018 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=325 real_rows=12 real_hard_exact=1.0000
+step 325 loss 0.0086 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 134.1s wrong(r,m,c->d,b) []
+LR frozen step=338 history=[(138, 'switch', 138, 0.8016), (338, 'frozen', 200, 1.0)]
+step 338 loss 0.0061 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 141.5s wrong(r,m,c->d,b) []
+digit table, borrow in 0 (rows r, columns m) | borrow out
+0 9 8 7 6 5 4 3 2 1 | 0 1 1 1 1 1 1 1 1 1
+1 0 9 8 7 6 5 4 3 2 | 0 0 1 1 1 1 1 1 1 1
+2 1 0 9 8 7 6 5 4 3 | 0 0 0 1 1 1 1 1 1 1
+3 2 1 0 9 8 7 6 5 4 | 0 0 0 0 1 1 1 1 1 1
+4 3 2 1 0 9 8 7 6 5 | 0 0 0 0 0 1 1 1 1 1
+5 4 3 2 1 0 9 8 7 6 | 0 0 0 0 0 0 1 1 1 1
+6 5 4 3 2 1 0 9 8 7 | 0 0 0 0 0 0 0 1 1 1
+7 6 5 4 3 2 1 0 9 8 | 0 0 0 0 0 0 0 0 1 1
+8 7 6 5 4 3 2 1 0 9 | 0 0 0 0 0 0 0 0 0 1
+9 8 7 6 5 4 3 2 1 0 | 0 0 0 0 0 0 0 0 0 0
+digit table, borrow in 1 (rows r, columns m) | borrow out
+9 8 7 6 5 4 3 2 1 0 | 1 1 1 1 1 1 1 1 1 1
+0 9 8 7 6 5 4 3 2 1 | 0 1 1 1 1 1 1 1 1 1
+1 0 9 8 7 6 5 4 3 2 | 0 0 1 1 1 1 1 1 1 1
+2 1 0 9 8 7 6 5 4 3 | 0 0 0 1 1 1 1 1 1 1
+3 2 1 0 9 8 7 6 5 4 | 0 0 0 0 1 1 1 1 1 1
+4 3 2 1 0 9 8 7 6 5 | 0 0 0 0 0 1 1 1 1 1
+5 4 3 2 1 0 9 8 7 6 | 0 0 0 0 0 0 1 1 1 1
+6 5 4 3 2 1 0 9 8 7 | 0 0 0 0 0 0 0 1 1 1
+7 6 5 4 3 2 1 0 9 8 | 0 0 0 0 0 0 0 0 1 1
+8 7 6 5 4 3 2 1 0 9 | 0 0 0 0 0 0 0 0 0 1

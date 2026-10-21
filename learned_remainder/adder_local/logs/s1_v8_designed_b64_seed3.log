@@ -1,0 +1,81 @@
+LR step=1 phase=A in_phase=1 loss=6.4800 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+step 1 loss 6.4800 phase A win 0.000 true 29/200 closest_wrong stuck_001 29/200 0.1s
+LR step=25 phase=A in_phase=25 loss=2.0287 hard_exact=0.0543 win=0.0501 rows_visited=200/200
+step 25 loss 2.0287 phase A win 0.050 true 97/200 closest_wrong stuck_001 97/200 2.4s
+LR step=50 phase=A in_phase=50 loss=0.6052 hard_exact=0.2565 win=0.1758 rows_visited=200/200
+step 50 loss 0.6052 phase A win 0.176 true 169/200 closest_wrong stuck_001 169/200 4.7s
+LR step=75 phase=A in_phase=75 loss=0.3018 hard_exact=0.4164 win=0.3282 rows_visited=200/200
+step 75 loss 0.3018 phase A win 0.328 true 187/200 closest_wrong stuck_001 187/200 7.2s
+LR step=100 phase=A in_phase=100 loss=0.1896 hard_exact=0.5645 win=0.5808 rows_visited=200/200
+step 100 loss 0.1896 phase A win 0.581 true 190/200 closest_wrong stuck_001 190/200 9.4s wrong(r,m,c->d,b) [(0, 0, 1, 0, 0), (1, 1, 1, 0, 0), (2, 2, 1, 0, 0), (3, 3, 1, 0, 0), (4, 4, 1, 0, 0), (5, 5, 1, 0, 0), (6, 6, 1, 0, 0), (7, 7, 1, 0, 0), (8, 8, 1, 0, 0), (9, 9, 1, 0, 1)]
+LR step=125 phase=A in_phase=125 loss=0.1247 hard_exact=0.7852 win=0.7210 rows_visited=200/200
+step 125 loss 0.1247 phase A win 0.721 true 190/200 closest_wrong stuck_001 190/200 11.8s wrong(r,m,c->d,b) [(0, 0, 1, 9, 0), (1, 1, 1, 0, 0), (2, 2, 1, 9, 0), (3, 3, 1, 9, 0), (4, 4, 1, 9, 0), (5, 5, 1, 9, 0), (6, 6, 1, 0, 0), (7, 7, 1, 9, 0), (8, 8, 1, 0, 0), (9, 9, 1, 0, 1)]
+LR step=150 phase=A in_phase=150 loss=0.0971 hard_exact=0.7951 win=0.7849 rows_visited=200/200
+step 150 loss 0.0971 phase A win 0.785 true 191/200 closest_wrong stuck_001 191/200 14.1s wrong(r,m,c->d,b) [(0, 0, 1, 9, 0), (1, 1, 1, 0, 0), (2, 2, 1, 9, 0), (3, 3, 1, 9, 0), (4, 4, 1, 9, 0), (5, 5, 1, 9, 0), (6, 6, 1, 9, 0), (7, 7, 1, 9, 0), (8, 8, 1, 9, 0)]
+LR step=175 phase=A in_phase=175 loss=0.0805 hard_exact=0.7947 win=0.7947 rows_visited=200/200
+step 175 loss 0.0805 phase A win 0.795 true 191/200 closest_wrong stuck_001 191/200 16.5s wrong(r,m,c->d,b) [(0, 0, 1, 9, 0), (1, 1, 1, 0, 0), (2, 2, 1, 9, 0), (3, 3, 1, 9, 0), (4, 4, 1, 9, 0), (5, 5, 1, 9, 0), (6, 6, 1, 9, 0), (7, 7, 1, 9, 0), (8, 8, 1, 9, 0)]
+LR step=200 phase=A in_phase=200 loss=0.0698 hard_exact=0.7869 win=0.7940 rows_visited=200/200
+step 200 loss 0.0698 phase A win 0.794 true 191/200 closest_wrong stuck_001 191/200 18.7s wrong(r,m,c->d,b) [(0, 0, 1, 9, 0), (1, 1, 1, 9, 0), (2, 2, 1, 9, 0), (3, 3, 1, 9, 0), (4, 4, 1, 9, 0), (5, 5, 1, 9, 0), (6, 6, 1, 9, 0), (7, 7, 1, 9, 0), (8, 8, 1, 9, 0)]
+LR step=225 phase=A in_phase=225 loss=0.0613 hard_exact=0.7980 win=0.7932 rows_visited=200/200
+step 225 loss 0.0613 phase A win 0.793 true 191/200 closest_wrong stuck_001 191/200 20.9s wrong(r,m,c->d,b) [(0, 0, 1, 9, 0), (1, 1, 1, 9, 0), (2, 2, 1, 9, 0), (3, 3, 1, 9, 0), (4, 4, 1, 9, 0), (5, 5, 1, 9, 0), (6, 6, 1, 9, 0), (7, 7, 1, 9, 0), (8, 8, 1, 9, 0)]
+LR step=250 phase=A in_phase=250 loss=0.0555 hard_exact=0.8066 win=0.7974 rows_visited=200/200
+step 250 loss 0.0555 phase A win 0.797 true 192/200 closest_wrong stuck_001 192/200 23.1s wrong(r,m,c->d,b) [(0, 0, 1, 9, 0), (1, 1, 1, 9, 0), (2, 2, 1, 9, 0), (3, 3, 1, 9, 0), (4, 4, 1, 9, 0), (5, 5, 1, 9, 0), (6, 6, 1, 9, 0), (8, 8, 1, 9, 0)]
+LR switch_to_own_borrow step=254 win=0.8005
+LR step=275 phase=B in_phase=21 loss=2.5944 hard_exact=0.0000 win=0.0000 rows_visited=200/200
+LR step=275 real_rows=2 real_hard_exact=0.0000
+step 275 loss 5.2512 phase B win 0.000 true 192/200 closest_wrong stuck_001 192/200 28.9s wrong(r,m,c->d,b) [(0, 0, 1, 9, 0), (1, 1, 1, 9, 0), (2, 2, 1, 9, 0), (3, 3, 1, 0, 0), (4, 4, 1, 9, 0), (5, 5, 1, 9, 0), (6, 6, 1, 0, 0), (8, 8, 1, 9, 0)]
+LR step=300 phase=B in_phase=46 loss=0.8215 hard_exact=0.4588 win=0.3090 rows_visited=200/200
+LR step=300 real_rows=1 real_hard_exact=0.0000
+step 300 loss 3.4118 phase B win 0.309 true 193/200 closest_wrong stuck_001 194/200 34.1s wrong(r,m,c->d,b) [(0, 0, 1, 0, 1), (1, 1, 1, 9, 0), (2, 2, 1, 9, 0), (3, 3, 1, 0, 0), (5, 5, 1, 9, 0), (6, 6, 1, 0, 1), (8, 8, 1, 9, 0)]
+LR step=325 phase=B in_phase=71 loss=0.4082 hard_exact=0.4985 win=0.4693 rows_visited=200/200
+LR step=325 real_rows=1 real_hard_exact=1.0000
+step 325 loss 1.7503 phase B win 0.469 true 196/200 closest_wrong stuck_001 197/200 38.2s wrong(r,m,c->d,b) [(0, 0, 1, 0, 1), (1, 1, 1, 9, 0), (2, 2, 1, 9, 0), (3, 3, 1, 0, 1)]
+LR step=350 phase=B in_phase=96 loss=0.3553 hard_exact=0.4837 win=0.4946 rows_visited=200/200
+LR step=350 real_rows=2 real_hard_exact=1.0000
+step 350 loss 1.5670 phase B win 0.495 true 197/200 closest_wrong stuck_001 198/200 42.1s wrong(r,m,c->d,b) [(0, 0, 1, 0, 1), (1, 1, 1, 9, 0), (3, 3, 1, 0, 1)]
+LR step=375 phase=B in_phase=121 loss=0.2930 hard_exact=0.5217 win=0.4952 rows_visited=200/200
+step 375 loss 0.2930 phase B win 0.495 true 199/200 closest_wrong stuck_001 200/200 46.4s wrong(r,m,c->d,b) [(0, 0, 1, 0, 1)]
+LR step=400 phase=B in_phase=146 loss=0.1315 hard_exact=1.0000 win=0.5870 rows_visited=200/200
+LR step=400 real_rows=1 real_hard_exact=1.0000
+step 400 loss 0.8396 phase B win 0.587 true 200/200 closest_wrong stuck_001 199/200 50.8s wrong(r,m,c->d,b) []
+LR step=425 phase=B in_phase=171 loss=0.0780 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+step 425 loss 0.0780 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 55.2s wrong(r,m,c->d,b) []
+LR step=450 phase=B in_phase=196 loss=0.0464 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+step 450 loss 0.0464 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 59.4s wrong(r,m,c->d,b) []
+LR step=475 phase=B in_phase=221 loss=0.0326 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=475 real_rows=1 real_hard_exact=1.0000
+step 475 loss 0.3244 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 63.8s wrong(r,m,c->d,b) []
+LR step=500 phase=B in_phase=246 loss=0.0232 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=500 real_rows=1 real_hard_exact=1.0000
+step 500 loss 0.1238 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 68.3s wrong(r,m,c->d,b) []
+LR step=525 phase=B in_phase=271 loss=0.0195 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+LR step=525 real_rows=2 real_hard_exact=1.0000
+step 525 loss 0.0853 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 72.9s wrong(r,m,c->d,b) []
+LR step=550 phase=B in_phase=296 loss=0.0164 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+step 550 loss 0.0164 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 77.2s wrong(r,m,c->d,b) []
+LR step=575 phase=B in_phase=321 loss=0.0135 hard_exact=1.0000 win=1.0000 rows_visited=200/200
+step 575 loss 0.0135 phase B win 1.000 true 200/200 closest_wrong stuck_001 199/200 81.5s wrong(r,m,c->d,b) []
+LR frozen step=597 history=[(254, 'switch', 254, 0.8005), (597, 'frozen', 343, 1.0)]
+step 597 loss 0.0431 phase frozen win 1.000 true 200/200 closest_wrong stuck_001 199/200 85.4s wrong(r,m,c->d,b) []
+digit table, borrow in 0 (rows r, columns m) | borrow out
+0 9 8 7 6 5 4 3 2 1 | 0 1 1 1 1 1 1 1 1 1
+1 0 9 8 7 6 5 4 3 2 | 0 0 1 1 1 1 1 1 1 1
+2 1 0 9 8 7 6 5 4 3 | 0 0 0 1 1 1 1 1 1 1
+3 2 1 0 9 8 7 6 5 4 | 0 0 0 0 1 1 1 1 1 1
+4 3 2 1 0 9 8 7 6 5 | 0 0 0 0 0 1 1 1 1 1
+5 4 3 2 1 0 9 8 7 6 | 0 0 0 0 0 0 1 1 1 1
+6 5 4 3 2 1 0 9 8 7 | 0 0 0 0 0 0 0 1 1 1
+7 6 5 4 3 2 1 0 9 8 | 0 0 0 0 0 0 0 0 1 1
+8 7 6 5 4 3 2 1 0 9 | 0 0 0 0 0 0 0 0 0 1
+9 8 7 6 5 4 3 2 1 0 | 0 0 0 0 0 0 0 0 0 0
+digit table, borrow in 1 (rows r, columns m) | borrow out
+9 8 7 6 5 4 3 2 1 0 | 1 1 1 1 1 1 1 1 1 1
+0 9 8 7 6 5 4 3 2 1 | 0 1 1 1 1 1 1 1 1 1
+1 0 9 8 7 6 5 4 3 2 | 0 0 1 1 1 1 1 1 1 1
+2 1 0 9 8 7 6 5 4 3 | 0 0 0 1 1 1 1 1 1 1
+3 2 1 0 9 8 7 6 5 4 | 0 0 0 0 1 1 1 1 1 1
+4 3 2 1 0 9 8 7 6 5 | 0 0 0 0 0 1 1 1 1 1
+5 4 3 2 1 0 9 8 7 6 | 0 0 0 0 0 0 1 1 1 1
+6 5 4 3 2 1 0 9 8 7 | 0 0 0 0 0 0 0 1 1 1
+7 6 5 4 3 2 1 0 9 8 | 0 0 0 0 0 0 0 0 1 1
+8 7 6 5 4 3 2 1 0 9 | 0 0 0 0 0 0 0 0 0 1

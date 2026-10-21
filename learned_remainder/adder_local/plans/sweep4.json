@@ -1,0 +1,116 @@
+[
+ {
+  "name": "s4_w70_nowrap_b512_seed1",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "1",
+   "ADDER_WARM=70",
+   "ANCHOR_WRAP=0.0"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s4_w70_nowrap_b512_seed2",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "2",
+   "ADDER_WARM=70",
+   "ANCHOR_WRAP=0.0"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s4_w50_b512_seed1",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "1",
+   "ADDER_WARM=50"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s4_w50_b512_seed2",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "2",
+   "ADDER_WARM=50"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s4_w30_b512_seed1",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "1",
+   "ADDER_WARM=30"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s4_w30_b512_seed2",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "2",
+   "ADDER_WARM=30"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s4_w10_b512_seed1",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "1",
+   "ADDER_WARM=10"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s4_w10_b512_seed2",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "2",
+   "ADDER_WARM=10"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s4_w70_idonly_b512_seed1",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "1",
+   "ADDER_WARM=70",
+   "REAL_MAX_T=0"
+  ],
+  "gpu": true
+ },
+ {
+  "name": "s4_w70_idonly_b512_seed2",
+  "argv": [
+   "train",
+   "1000",
+   "512",
+   "2",
+   "ADDER_WARM=70",
+   "REAL_MAX_T=0"
+  ],
+  "gpu": true
+ }
+]

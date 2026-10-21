@@ -1,0 +1,97 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-pU2eBELqyZBI1aAkvCl77X
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/anchored/modal_diag_w
+│   ide_anchored.py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+└── 🔨 Created function diag.
+spawned ['w1_s74', 'w1_s1', 'w1_s2', 'w1_s4']
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+w1_s1 | history [(5, 'io2_digits'), (133, 'io3_ranked', (0, 0, 1, 1)), (152, 'io4_reading', 0.9915), (186, 'order_digits'), (228, 'switch', 228, 0.8094), (248, 'ladder', 20), (286, 'pieces'), (398, 'chain', 170), (428, 'wire_io', 30), (458, 'T_resolved', 64), (637, 'frozen', 239, 1.0)] GRADTEST splits=depth_t_1,depth_t_2 rows=32 exact=1.0000 loss=1.9295e+00 every_parameter_gets_gradient=True GRADTEST splits=depth_t_8,depth_ood_n_t_4 rows=32 exact=1.0000 loss=1.9295e+00 every_parameter_gets_gradient=False
+w1_s4 | history [(6, 'io2_digits'), (117, 'io3_ranked', (0, 0, 1, 1)), (136, 'io4_reading', 0.9914), (230, 'order_digits'), (270, 'switch', 270, 0.8229), (290, 'ladder', 20), (330, 'pieces'), (452, 'chain', 182), (483, 'wire_io', 31), (513, 'T_resolved', 64), (692, 'frozen', 240, 1.0)] GRADTEST splits=depth_t_1,depth_t_2 rows=32 exact=1.0000 loss=1.9295e+00 every_parameter_gets_gradient=True GRADTEST splits=depth_t_8,depth_ood_n_t_4 rows=32 exact=1.0000 loss=1.9295e+00 every_parameter_gets_gradient=False
+w1_s74 | history [(3, 'io2_digits'), (83, 'io3_ranked', (0, 0, 1, 1)), (105, 'io4_reading', 0.9904), (141, 'order_digits'), (185, 'switch', 185, 0.8126), (205, 'ladder', 20), (241, 'pieces'), (357, 'chain', 172), (390, 'wire_io', 33), (415, 'T_resolved', 64), (594, 'frozen', 237, 1.0)] GRADTEST splits=depth_t_1,depth_t_2 rows=32 exact=1.0000 loss=1.9295e+00 every_parameter_gets_gradient=True GRADTEST splits=depth_t_8,depth_ood_n_t_4 rows=32 exact=1.0000 loss=1.9295e+00 every_parameter_gets_gradient=False
+w1_s2 | history [(4, 'io2_digits'), (71, 'io3_ranked', (0, 0, 1, 1)), (98, 'io4_reading', 0.9908), (145, 'order_digits'), (188, 'switch', 188, 0.8159), (208, 'ladder', 20), (245, 'pieces'), (358, 'chain', 170), (380, 'wire_io', 22), (472, 'T_resolved', 64), (591, 'frozen', 233, 1.0)] GRADTEST splits=depth_t_1,depth_t_2 rows=32 exact=1.0000 loss=1.9295e+00 every_parameter_gets_gradient=True GRADTEST splits=depth_t_8,depth_ood_n_t_4 rows=32 exact=1.0000 loss=1.9295e+00 every_parameter_gets_gradient=True
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-pU2eBELqyZBI1aAkvCl77X

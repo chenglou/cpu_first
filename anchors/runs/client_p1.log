@@ -1,0 +1,148 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-igVkvKh1GqdVtmyfeIPexN
+Building image im-eKyg5olvzHFKDJpDmQLYsl
+
+=> Step 0: FROM base
+
+=> Step 1: RUN python -m pip install numpy torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+Looking in indexes: https://download.pytorch.org/whl/cpu
+Collecting numpy
+  Downloading numpy-2.5.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Collecting torch==2.8.0
+  Downloading https://download-r2.pytorch.org/whl/cpu/torch-2.8.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (29 kB)
+Collecting filelock (from torch==2.8.0)
+  Downloading filelock-3.32.3-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.8.0)
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting setuptools (from torch==2.8.0)
+  Downloading https://download.pytorch.org/whl/setuptools-78.1.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting sympy>=1.13.3 (from torch==2.8.0)
+  Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx (from torch==2.8.0)
+  Downloading networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting jinja2 (from torch==2.8.0)
+  Downloading https://download.pytorch.org/whl/jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch==2.8.0)
+  Downloading fsspec-2026.7.0-py3-none-any.whl.metadata (10 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch==2.8.0)
+  Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.8.0)
+  Downloading https://download.pytorch.org/whl/markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Downloading https://download-r2.pytorch.org/whl/cpu/torch-2.8.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (183.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 183.9/183.9 MB 382.2 MB/s eta 0:00:00
+Downloading numpy-2.5.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 218.8 MB/s eta 0:00:00
+Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 363.6 MB/s eta 0:00:00
+Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 539.0 MB/s eta 0:00:00
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading filelock-3.32.3-py3-none-any.whl (98 kB)
+Downloading fsspec-2026.7.0-py3-none-any.whl (206 kB)
+Downloading https://download.pytorch.org/whl/jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading https://download.pytorch.org/whl/markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Downloading networkx-3.6.1-py3-none-any.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 391.7 MB/s eta 0:00:00
+Downloading https://download.pytorch.org/whl/setuptools-78.1.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 553.6 MB/s eta 0:00:00
+Installing collected packages: mpmath, typing-extensions, sympy, setuptools, numpy, networkx, MarkupSafe, fsspec, filelock, jinja2, torch
+
+Successfully installed MarkupSafe-3.0.3 filelock-3.32.3 fsspec-2026.7.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 numpy-2.5.2 setuptools-78.1.0 sympy-1.14.0 torch-2.8.0+cpu typing-extensions-4.16.0
+Saving image...
+Image saved, took 4.12s
+
+Built image im-eKyg5olvzHFKDJpDmQLYsl in 33.78s
+
+
+Building image im-iA7kEJnfqEGXfCf5h3TKOn
+
+=> Step 0: FROM base
+
+=> Step 1: ENV H1_DATA=/data/h1
+
+=> Step 2: ENV PYTHONPATH=/lab
+Saving image...
+Image saved, took 561.11ms
+
+Built image im-iA7kEJnfqEGXfCf5h3TKOn in 1.29s
+
+
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/anchors/modal_lab.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/exact.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/tiny.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/core.py
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f
+│   53/scratchpad/data/h1/train.jsonl
+└── 🔨 Created function run_job.
+19 jobs (0 already in p1.jsonl)
+╭─ Modal Deprecation Warning (2025-06-27) ─────────────────────────────────────╮
+│ Function.map currently leaks an internal exception wrapping type             │
+│ (modal.exceptions.UserCodeException) when `return_exceptions=True` is set.   │
+│ In the future, this will change, and the underlying exception will be        │
+│ returned directly.                                                           │
+│ To opt into the future behavior and silence this warning, add                │
+│ `wrap_returned_exceptions=False`:                                            │
+│                                                                              │
+│     f.map(..., return_exceptions=True, wrap_returned_exceptions=False)       │
+│                                                                              │
+│ Source: anchors/modal_lab.py:91                                              │
+│   for res in run_job.map(todo, return_exceptions=True, order_outputs=False): │
+╰──────────────────────────────────────────────────────────────────────────────╯
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/core.py:519: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/core.py:519: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:519: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:519: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:519: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+t10w2_gate_monk_id_s3 {'rows': 2, 'digits': 18, 'borrows': 18, 'closest': 'swapped borrow code 26', 'gated_on': None} 26s
+t10w2_gate_monk_id_s1 {'rows': 2, 'digits': 22, 'borrows': 18, 'closest': 'digits relabeled (d -> -d) 15', 'gated_on': None} 28s
+c_gate_monk_id_b64_s2 {'rows': 4, 'digits': 24, 'borrows': 43, 'closest': 'digits relabeled (d -> -d) 17', 'gated_on': None} 30s
+t10w2_gate_monk_id_s0 {'rows': 3, 'digits': 23, 'borrows': 18, 'closest': 'digits relabeled (d -> -d) 18', 'gated_on': None} 32s
+t10w2_gate_monk_id_s2 {'rows': 3, 'digits': 22, 'borrows': 18, 'closest': 'swapped borrow code 21', 'gated_on': None} 33s
+t10w2_mon_id_tb_s0 {'rows': 94, 'digits': 94, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 93', 'gated_on': None} 104s
+c_gate_monk_id_b512_s2 {'rows': 5, 'digits': 24, 'borrows': 44, 'closest': 'digits relabeled (d -> -d) 15', 'gated_on': None} 106s
+t10w2_monk_id_tb_s0 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': None} 179s
+t10w2_mon_id_tb_s1 {'rows': 85, 'digits': 85, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 84', 'gated_on': None} 191s
+c_gate_monk_id_b64_s3 {'rows': 117, 'digits': 117, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 116', 'gated_on': 149} 204s
+t10w2_monk_id_tb_s3 {'rows': 195, 'digits': 195, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 194', 'gated_on': None} 219s
+t10w2_monk_id_tb_s1 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': None} 242s
+c_gate_monk_id_b64_s1 {'rows': 107, 'digits': 107, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 106', 'gated_on': 82} 250s
+t6w3_monk_id_tb_s2 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 271s
+t10w2_monk_id_tb_s2 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': None} 279s
+t6w3_monk_id_tb_s0 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 341s
+t6w3_monk_id_tb_s1 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 361s
+t6w3_monk_id_tb_s3 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 407s

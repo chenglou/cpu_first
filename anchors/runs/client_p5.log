@@ -1,0 +1,264 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-wmAWHX4FlCoyZQ5HSIVjAH
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/anchors/modal_lab.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/exact.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/tiny.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/core.py
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f
+│   53/scratchpad/data/h1/train.jsonl
+└── 🔨 Created function run_job.
+192 jobs (0 already in p5.jsonl)
+╭─ Modal Deprecation Warning (2025-06-27) ─────────────────────────────────────╮
+│ Function.map currently leaks an internal exception wrapping type             │
+│ (modal.exceptions.UserCodeException) when `return_exceptions=True` is set.   │
+│ In the future, this will change, and the underlying exception will be        │
+│ returned directly.                                                           │
+│ To opt into the future behavior and silence this warning, add                │
+│ `wrap_returned_exceptions=False`:                                            │
+│                                                                              │
+│     f.map(..., return_exceptions=True, wrap_returned_exceptions=False)       │
+│                                                                              │
+│ Source: anchors/modal_lab.py:106                                             │
+│   for res in run_job.map(todo, return_exceptions=True, order_outputs=False): │
+╰──────────────────────────────────────────────────────────────────────────────╯
+/lab/core.py:591: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:591: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:591: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:591: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:591: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:591: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:591: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:591: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+min_b64_s5 {'rows': 195, 'digits': 195, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 194', 'gated_on': None} 32s
+min_b64_s1 {'rows': 196, 'digits': 196, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 195', 'gated_on': None} 34s
+min_b64_s2 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': None} 38s
+min_b64_s4 {'rows': 156, 'digits': 156, 'borrows': 200, 'closest': 'true except (r, 0, 1) -> r 156', 'gated_on': None} 50s
+min_b64_s7 {'rows': 177, 'digits': 177, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 176', 'gated_on': None} 51s
+min_b64_s6 {'rows': 185, 'digits': 185, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 184', 'gated_on': None} 57s
+min_b64_s8 {'rows': 182, 'digits': 182, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 181', 'gated_on': None} 57s
+min_b64_s3 {'rows': 152, 'digits': 152, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 151', 'gated_on': None} 59s
+min_b64_s9 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': None} 31s
+min_b64_s10 {'rows': 156, 'digits': 156, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 155', 'gated_on': None} 33s
+min_b64_s11 {'rows': 163, 'digits': 163, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 162', 'gated_on': None} 39s
+min_b64_s12 {'rows': 196, 'digits': 196, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 195', 'gated_on': None} 56s
+ans2_b64_s1 {'rows': 23, 'digits': 23, 'borrows': 198, 'closest': 'true borrows, digits ignore the borrow 28', 'gated_on': 58} 83s
+ans2_b64_s2 {'rows': 21, 'digits': 21, 'borrows': 198, 'closest': 'true borrows, digit r - m - [m even] 22', 'gated_on': 60} 91s
+ans2_b64_s3 {'rows': 18, 'digits': 18, 'borrows': 199, 'closest': 'true borrows, digit r - m - [m even] 23', 'gated_on': 75} 95s
+min_b512_s1 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': None} 129s
+min_b512_s3 {'rows': 191, 'digits': 191, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 190', 'gated_on': None} 130s
+min_b512_s2 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': None} 133s
+min_b512_s4 {'rows': 160, 'digits': 160, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 159', 'gated_on': None} 142s
+ans2_b64_s4 {'rows': 18, 'digits': 18, 'borrows': 197, 'closest': 'true borrows, digit r - m - [m = 0] 23', 'gated_on': 96} 154s
+ans10_b64_s1 {'rows': 18, 'digits': 18, 'borrows': 199, 'closest': 'true borrows, digits ignore the borrow 22', 'gated_on': 43} 132s
+ans10_b64_s2 {'rows': 15, 'digits': 15, 'borrows': 198, 'closest': 'true borrows, digits ignore the borrow 19', 'gated_on': 49} 146s
+ans10_b64_s3 {'rows': 23, 'digits': 23, 'borrows': 199, 'closest': 'true borrows, digit r - m - [m even] 24', 'gated_on': 53} 155s
+ans10_b64_s4 {'rows': 17, 'digits': 17, 'borrows': 197, 'closest': 'true borrows, digit r - m - [m = 0] 20', 'gated_on': 80} 214s
+ans30_b64_s2 {'rows': 17, 'digits': 17, 'borrows': 200, 'closest': 'true borrows, digit r - m - [m = 0] 25', 'gated_on': 74} 245s
+ans30_b64_s1 {'rows': 20, 'digits': 20, 'borrows': 200, 'closest': 'true borrows, digit r - m - [m even] 24', 'gated_on': 46} 260s
+ans30_b64_s3 {'rows': 26, 'digits': 26, 'borrows': 200, 'closest': 'true borrows, digit r - m - [m = 0] 27', 'gated_on': 68} 247s
+t3_core_s0 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 14s
+ans100_b64_s1 {'rows': 15, 'digits': 15, 'borrows': 200, 'closest': 'true borrows, digit r - m - [m = 0] 22', 'gated_on': 43} 177s
+t3_core_s1 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'lazy 11', 'gated_on': None} 15s
+t3_core_s2 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'lazy 11', 'gated_on': None} 15s
+t3_core_s4 {'rows': 12, 'digits': 12, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 12', 'gated_on': None} 9s
+t3_core_s3 {'rows': 12, 'digits': 12, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 12', 'gated_on': None} 15s
+t3_core_s7 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 9s
+t3_warm_s0 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 8s
+ans100_b64_s2 {'rows': 20, 'digits': 20, 'borrows': 200, 'closest': 'true borrows, digit r - m - [m even] 28', 'gated_on': 73} 171s
+t3_warm_s1 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 5s
+t3_warm_s3 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 5s
+t3_core_s6 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 16s
+t3_core_s5 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 16s
+t3_warm_s2 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 8s
+t3_warm_s4 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 5s
+t3_warm_s5 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 5s
+t3_warm_s6 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 8s
+t3_warm_s7 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 9s
+t3_core_noanchors_s1 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (r, 0, 1) -> r 10', 'gated_on': None} 8s
+ans30_b64_s4 {'rows': 21, 'digits': 21, 'borrows': 199, 'closest': 'borrows in the mod-2 part 24', 'gated_on': 100} 230s
+t3_core_noanchors_s2 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (r, 0, 1) -> r 10', 'gated_on': None} 8s
+t3_core_noanchors_s0 {'rows': 13, 'digits': 13, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 13', 'gated_on': None} 13s
+t3_core_noanchors_s5 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 8s
+t3_core_noanchors_s3 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (r, 0, 1) -> r 10', 'gated_on': None} 12s
+t3_core_noanchors_s7 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 8s
+ans100_b64_s3 {'rows': 17, 'digits': 17, 'borrows': 200, 'closest': 'true borrows, digit r - m - [m even] 21', 'gated_on': 63} 178s
+t3_core_noanchors_s4 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 14s
+t3_core_noanchors_s6 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 11', 'gated_on': None} 12s
+t3_core_hardcin_s1 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'lazy 11', 'gated_on': None} 9s
+t3_core_hardcin_s0 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 14s
+t3_core_hardcin_s3 {'rows': 12, 'digits': 12, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 12', 'gated_on': None} 9s
+t3_core_hardcin_s2 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'lazy 11', 'gated_on': None} 13s
+t3_core_hardcin_s4 {'rows': 12, 'digits': 12, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 12', 'gated_on': None} 9s
+t3_core_hardcin_s7 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 9s
+t3_core_hardcin_s6 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 14s
+t3_core_hardcin_s5 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 16s
+t3_core_dec_s1 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 11s
+t3_core_dec_s3 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 12s
+t3_core_dec_s4 {'rows': 12, 'digits': 12, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 12', 'gated_on': None} 10s
+t3_core_dec_s0 {'rows': 12, 'digits': 12, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 12', 'gated_on': None} 18s
+t3_core_dec_s2 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 16s
+t3_core_dec_s7 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 11s
+t3_core_dec_s5 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 16s
+t3_core_chain_s0 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 11s
+t3_core_chain_s1 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'lazy 11', 'gated_on': None} 10s
+t3_core_dec_s6 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 10', 'gated_on': None} 18s
+t3_core_chain_s4 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 11s
+t3_core_chain_s2 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'lazy 11', 'gated_on': None} 16s
+t3_core_chain_s3 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'lazy 11', 'gated_on': None} 15s
+t3_core_chain_s7 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'lazy 11', 'gated_on': None} 10s
+t3_core_chain_s6 {'rows': 6, 'digits': 6, 'borrows': 18, 'closest': 'true borrows, digits ignore the borrow 9', 'gated_on': None} 10s
+t3_core_chain_s5 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'lazy 11', 'gated_on': None} 16s
+t3_core_nn0_s1 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (r, 0, 1) -> r 11', 'gated_on': None} 12s
+t3_core_nn0_s0 {'rows': 9, 'digits': 9, 'borrows': 18, 'closest': 'lazy 12', 'gated_on': None} 20s
+t3_core_nn0_s4 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 11', 'gated_on': None} 11s
+t3_core_nn0_s5 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 11', 'gated_on': None} 12s
+t3_core_nn0_s2 {'rows': 9, 'digits': 9, 'borrows': 18, 'closest': 'lazy 12', 'gated_on': None} 19s
+t3_core_nn0_s3 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 11', 'gated_on': None} 19s
+t3_core_nn0_s7 {'rows': 9, 'digits': 9, 'borrows': 18, 'closest': 'lazy 12', 'gated_on': None} 12s
+t3_core_nn0_s6 {'rows': 9, 'digits': 9, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 9', 'gated_on': None} 18s
+t3_core_ans100_s1 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 13s
+t3_core_ans100_s2 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 13s
+t3_core_ans100_s5 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 13s
+t3_core_ans100_s0 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 22s
+t3_core_ans100_s3 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 20s
+t3_core_ans100_s7 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 13s
+t3_core_ans100_s4 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 21s
+t3_core_ans10_s0 {'rows': 8, 'digits': 8, 'borrows': 18, 'closest': 'lazy 9', 'gated_on': None} 13s
+t3_core_ans100_s6 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 20s
+t3_core_ans10_s1 {'rows': 12, 'digits': 12, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 12', 'gated_on': None} 10s
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+t3_mon_s0 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 5s
+t3_core_ans10_s4 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 11s
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+t3_core_ans10_s6 {'rows': 12, 'digits': 12, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 12', 'gated_on': None} 12s
+t3_mon_s1 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 5s
+t3_mon_s2 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 5s
+t3_core_ans10_s2 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 21s
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+t3_core_ans10_s3 {'rows': 10, 'digits': 10, 'borrows': 18, 'closest': 'true except (r, 0, 1) -> r 10', 'gated_on': None} 18s
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+t3_core_ans10_s5 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 18s
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+t3_mon_s3 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 6s
+t3_mon_s4 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 5s
+t3_mon_s5 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 4s
+t3_core_ans10_s7 {'rows': 12, 'digits': 12, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 12', 'gated_on': None} 17s
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+t3_mon_id_s2 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 6s
+t3_mon_s7 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 8s
+t3_mon_s6 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 9s
+t3_mon_id_s1 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 6s
+t3_mon_id_s3 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 6s
+t3_mon_id_s0 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 9s
+t3_mon_uncoupled_s1 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 4s
+t3_mon_id_s4 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 9s
+t3_mon_uncoupled_s0 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 5s
+t3_mon_id_s5 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 6s
+t3_mon_uncoupled_s2 {'rows': 15, 'digits': 15, 'borrows': 18, 'closest': 'true except (r, 0, 1) -> r 16', 'gated_on': None} 5s
+t3_mon_uncoupled_s5 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 4s
+t3_mon_uncoupled_s3 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 5s
+t3_mon_id_s6 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 9s
+t3_mon_uncoupled_s6 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 4s
+t3_mon_uncoupled_s4 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 6s
+t3_mon_id_s7 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 11s
+t3_mon_uncoupled_s7 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 6s
+t3_core_mon_s3 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 13s
+t3_core_mon_s0 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 11', 'gated_on': None} 14s
+t3_core_mon_s1 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 11', 'gated_on': None} 16s
+t4_mon_s0 {'rows': 27, 'digits': 27, 'borrows': 32, 'closest': 'true except (r, 0, 1) -> r 29', 'gated_on': None} 2s
+t4_mon_s1 {'rows': 26, 'digits': 26, 'borrows': 32, 'closest': 'true except (r, 0, 1) -> r 28', 'gated_on': None} 2s
+t4_mon_s2 {'rows': 27, 'digits': 27, 'borrows': 32, 'closest': 'true except (r, 0, 1) -> r 29', 'gated_on': None} 2s
+t4_mon_s3 {'rows': 26, 'digits': 26, 'borrows': 32, 'closest': 'true except (r, 0, 1) -> r 28', 'gated_on': None} 2s
+t3_core_mon_s2 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 11', 'gated_on': None} 20s
+t4_mon_s4 {'rows': 31, 'digits': 31, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 30', 'gated_on': None} 2s
+t3_core_mon_s4 {'rows': 18, 'digits': 18, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 17', 'gated_on': None} 20s
+t4_mon_s5 {'rows': 31, 'digits': 31, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 30', 'gated_on': None} 2s
+t4_mon_s7 {'rows': 26, 'digits': 26, 'borrows': 32, 'closest': 'true except (r, 0, 1) -> r 28', 'gated_on': None} 2s
+t4_mon_s6 {'rows': 27, 'digits': 27, 'borrows': 32, 'closest': 'true except (r, 0, 1) -> r 29', 'gated_on': None} 3s
+t3_core_mon_s5 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 11', 'gated_on': None} 23s
+t3_core_mon_s6 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 11', 'gated_on': None} 20s
+t4_mon_zero_s1 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 3s
+t4_mon_zero_s2 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 3s
+t4_mon_zero_s0 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 4s
+t3_core_mon_s7 {'rows': 11, 'digits': 11, 'borrows': 18, 'closest': 'true except (0, 0, 1) -> 0 11', 'gated_on': None} 13s
+t4_mon_zero_s3 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 4s
+t4_mon_zero_s6 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 3s
+t4_mon_zero_s7 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 2s
+t4_mon_id_s1 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 3s
+t4_mon_zero_s5 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 4s
+t4_mon_zero_s4 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 4s
+t4_mon_id_s0 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 5s
+t4_mon_id_s4 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 3s
+t4_mon_id_s3 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 3s
+t4_mon_id_s5 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 3s
+t4_mon_id_s2 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 4s
+t4_mon_id_s6 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 5s
+t4_mon_id_s7 {'rows': 32, 'digits': 32, 'borrows': 32, 'closest': 'true except (0, 0, 1) -> 0 31', 'gated_on': None} 5s
+t5_mon_id_s1 {'rows': 46, 'digits': 46, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 45', 'gated_on': None} 6s
+ans100_b64_s4 {'rows': 16, 'digits': 16, 'borrows': 199, 'closest': 'true borrows, digit r - m - [m even] 24', 'gated_on': 95} 260s
+/lab/tiny.py:215: UserWarning: torch.searchsorted(): input value tensor is non-contiguous, this will lower the performance due to extra data copy when converting non-contiguous tensor to contiguous, please use contiguous input value tensor if possible. This message will only appear once per program. (Triggered internally at /pytorch/aten/src/ATen/native/BucketizationUtils.h:32.)
+  grp = torch.searchsorted(Ns, DN)
+t5_mon_id_s2 {'rows': 46, 'digits': 46, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 45', 'gated_on': None} 6s
+t5_mon_id_s3 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 6s
+t5_mon_id_s0 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 10s
+t5_mon_id_s4 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 10s
+t5_mon_id_s5 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 11s
+t5_mon_id_s7 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 8s
+t5_mon_id_s6 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 11s
+t5_monk_id_s2 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 12s
+t5_monk_id_s1 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 13s
+t5_monk_id_s0 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 17s
+t5_monk_id_s5 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 11s
+t5_monk_id_s3 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 16s
+t5_monk_id_s4 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 15s
+t6_mon_id_s0 {'rows': 59, 'digits': 59, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 58', 'gated_on': None} 9s
+t5_monk_id_s6 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 15s
+t6_mon_id_s1 {'rows': 59, 'digits': 59, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 58', 'gated_on': None} 12s
+t5_monk_id_s7 {'rows': 50, 'digits': 50, 'borrows': 50, 'closest': 'true except (0, 0, 1) -> 0 49', 'gated_on': None} 17s
+t6_mon_id_s6 {'rows': 59, 'digits': 59, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 58', 'gated_on': None} 9s
+t6_mon_id_s2 {'rows': 61, 'digits': 61, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 60', 'gated_on': None} 13s
+t6_mon_id_s3 {'rows': 58, 'digits': 58, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 57', 'gated_on': None} 12s
+t6_mon_id_s5 {'rows': 65, 'digits': 65, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 64', 'gated_on': None} 11s
+t6_mon_id_s4 {'rows': 59, 'digits': 59, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 58', 'gated_on': None} 14s
+t6_mon_id_s7 {'rows': 59, 'digits': 59, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 58', 'gated_on': None} 13s
+t6_monk_id_s0 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 17s
+t6_monk_id_s2 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 15s
+t6_monk_id_s1 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 20s
+t6_monk_id_s5 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 16s
+t6_monk_id_s3 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 19s
+t6_monk_id_s4 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 22s
+t6_monk_id_s7 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 17s
+t6_monk_id_s6 {'rows': 72, 'digits': 72, 'borrows': 72, 'closest': 'true except (0, 0, 1) -> 0 71', 'gated_on': None} 21s
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-wmAWHX4FlCoyZQ5HSIVjAH
+EXIT 0

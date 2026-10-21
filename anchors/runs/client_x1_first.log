@@ -1,0 +1,94 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-h4AMR3XeoJMlFANDVw8Y1J
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/exact.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/anchors/modal_lab.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/tiny.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/core.py
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f
+│   53/scratchpad/data/h1/train.jsonl
+└── 🔨 Created function run_job.
+120 jobs (0 already in x1.jsonl)
+╭─ Modal Deprecation Warning (2025-06-27) ─────────────────────────────────────╮
+│ Function.map currently leaks an internal exception wrapping type             │
+│ (modal.exceptions.UserCodeException) when `return_exceptions=True` is set.   │
+│ In the future, this will change, and the underlying exception will be        │
+│ returned directly.                                                           │
+│ To opt into the future behavior and silence this warning, add                │
+│ `wrap_returned_exceptions=False`:                                            │
+│                                                                              │
+│     f.map(..., return_exceptions=True, wrap_returned_exceptions=False)       │
+│                                                                              │
+│ Source: anchors/modal_lab.py:95                                              │
+│   for res in run_job.map(todo, return_exceptions=True, order_outputs=False): │
+╰──────────────────────────────────────────────────────────────────────────────╯
+x_b3w3_less+more_free (1, 387420489) 0s
+x_b3w3_zero_bt (1, 14348907) 0s
+x_b3w3_self_free (2, 472361766912) 0s
+x_b3w3_more_free (400, 678373276239) 0s
+x_b3w3_self_bt (1, 14348907) 0s
+x_b3w3_zero+self_free (2, 13062373632) 0s
+x_b3w3_zero+self_bt (1, 1594323) 0s
+x_b3w3_colord+roword_bt (1, 1) 0s
+x_b3w3_neg2_free (344, 2707917225984) 0s
+x_b3w3_neg2_bt (10, 13817466) 0s
+x_b3w3_colord+bijc_free (400, 400) 0s
+x_b3w3_colord+bijc_bt (1, 1) 0s
+x_b3w3_less_free (400, 502096953744) 0s
+x_b3w3_pref+colord_free (1, 1) 0s
+x_b3w3_pref+colord_bt (1, 1) 0s
+x_b3w3_pref+colord+roword_free (1, 1) 0s
+x_b3w3_pref+colord+roword_bt (1, 1) 0s
+x_b3w3_pref+colord+roword+bijc_free (1, 1) 0s
+x_b3w3_pref+colord+roword+bijc_bt (1, 1) 0s
+x_b3w3_less+more+colord+roword_free (1, 1) 0s
+x_b3w3_less+more+colord+roword_bt (1, 1) 0s
+x_b3w3_xmod_bt (1, 387420489) 0s
+x_b3w3_xmod_free (400, 11128176) 0s
+x_b4w2_less_free (400, 136608617616453096741797888) 0s
+x_b4w2_more_free (400, 146431139900821958786285568) 0s
+x_b4w2_less+more_free (1, 18446744073709551616) 0s
+x_b3w3_zero_free (2, 472361766912) 0s
+x_b4w2_self_bt (1, 72057594037927936) 0s
+x_b3w3_dc_bt (1, 1) 3s
+x_b4w2_zero+self_bt (1, 1125899906842624) 0s
+x_b4w2_zero+self_free (1, 37778931862957161709568) 0s
+x_b4w2_neg2_free (400, 157585369533360060781035520) 0s
+x_b4w2_neg2_bt (44, 113715890591105024) 0s
+x_b4w2_nn0_free (400, 57365919667585024) 0s
+x_b4w2_comm_free (400, 38078692558064616210432) 0s
+x_b4w2_nn0_bt (400, 70475776) 1s
+x_b3w3_comm_free (400, 14152164480) 6s
+x_b4w2_dc_bt (1, 4) 7s
+x_b4w2_xmod_free (400, 1152940982753296384) 7s
+x_b4w2_xmod_bt (1, 18446744073709551616) 0s
+x_b4w2_zero_free (1, 19342813113834066795298816) 0s
+x_b4w2_zero_bt (1, 72057594037927936) 0s
+x_b4w2_self_free (1, 19342813113834066795298816) 0s
+x_b4w2_lcc+zero+self+wrap+neg2+comm_free (400, 281474976717432) 1s
+x_b3w3_comm_bt (1, 1) 7s
+x_b3w3_wrap_free (400, 94789440) 0s
+x_b3w3_wrap_bt (400, 400) 0s
+x_b3w3_chain_free (400, 94789440) 0s
+x_b3w3_chain_bt (400, 400) 0s
+x_b4w2_lcc+zero+self+wrap+neg2+comm_bt (1, 1) 5s
+x_b4w2_less+more+lcc+zero+self+wrap+neg2+comm_bt (1, 1) 5s
+x_b4w2_lcc+zero+self+wrap_free (400, 583016040670512) 23s
+x_b3w3_lc_bt (22, 22) 32s
+x_b3w3_lcc_bt (2, 2) 31s
+x_b4w2_colord+bijc_free (400, 400) 2s
+x_b4w2_colord+bijc_bt (1, 1) 0s
+x_b4w2_colord+roword_bt (1, 1) 3s
+x_b4w2_lcc+zero+self+wrap_bt (4, 4) 8s
+x_b4w2_pref+colord_bt (1, 1) 6s
+x_b4w2_pref+colord+roword_bt (1, 1) 3s
+x_b4w2_pref+colord+roword+bijc_free (1, 1) 1s
+x_b4w2_pref+colord+roword+bijc_bt (1, 1) 0s
+x_b4w2_pref+colord+roword_free (1, 1) 21s
+x_b4w2_less+more+colord+roword_bt (1, 1) 3s
+x_b4w2_less+more+colord+roword_free (1, 1) 22s
+x_b4w2_pref+colord_free (1, 1) 47s

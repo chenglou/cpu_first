@@ -1,0 +1,86 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-if7mQmJJLKVWvazYqfWxTw
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/anchors/modal_lab.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/exact.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/tiny.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/core.py
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f
+│   53/scratchpad/data/h1/train.jsonl
+└── 🔨 Created function run_job.
+54 jobs (66 already in x1.jsonl)
+╭─ Modal Deprecation Warning (2025-06-27) ─────────────────────────────────────╮
+│ Function.map currently leaks an internal exception wrapping type             │
+│ (modal.exceptions.UserCodeException) when `return_exceptions=True` is set.   │
+│ In the future, this will change, and the underlying exception will be        │
+│ returned directly.                                                           │
+│ To opt into the future behavior and silence this warning, add                │
+│ `wrap_returned_exceptions=False`:                                            │
+│                                                                              │
+│     f.map(..., return_exceptions=True, wrap_returned_exceptions=False)       │
+│                                                                              │
+│ Source: anchors/modal_lab.py:106                                             │
+│   for res in run_job.map(todo, return_exceptions=True, order_outputs=False): │
+╰──────────────────────────────────────────────────────────────────────────────╯
+x_b3w3_dec_bt (400, 400) 0s
+x_b3w3_colord_free (400, 400) 2s
+x_b3w3_colord_bt (1, 1) 0s
+x_b3w3_roword_free (400, 400) 2s
+x_b3w3_roword_bt (1, 1) 0s
+x_b3w3_bijc_free (400, 104857600) 0s
+x_b3w3_bijc_bt (400, 400) 0s
+x_b3w3_pref_free (1, 387420489) 0s
+x_b3w3_ans_bt (1, 1) 5s
+x_b3w3_mon_bt (1, 1) 209s
+x_b3w3_ans2_bt (1, 1) 10s
+x_b3w3_nn0_free (400, 1721489760) 0s
+x_b3w3_nn0_bt (1, 3) 3s
+x_b3w3_lcc+zero+self+wrap_free (400, 10078095) 1s
+x_b3w3_lcc+zero+self+wrap_bt (1, 1) 0s
+x_b3w3_lcc+zero+self+wrap+neg2+comm_free (123, 10077818) 16s
+x_b3w3_lcc+zero+self+wrap+neg2+comm_bt (1, 1) 0s
+x_b3w3_less+more+lcc+zero+self+wrap+neg2+comm_free (1, 1) 10s
+x_b3w3_less+more+lcc+zero+self+wrap+neg2+comm_bt (1, 1) 0s
+x_b3w3_lcc_free (400, 20155790) 379s
+x_b3w3_colord+roword_free (360, 360) 161s
+x_b3w3_lc_free (400, 10078095) 457s
+x_b3w3_dc_free (1, 1) 600s
+x_b3w3_mon_free (0, 0) 602s
+x_b3w3_dec_free (0, 0) 600s
+x_b3w3_ans_free (0, 0) 600s
+x_b4w2_wrap_free (400, 63698913129528295424) 0s
+x_b4w2_wrap_bt (400, 6710886400) 0s
+x_b4w2_chain_free (400, 75948704115976044544) 0s
+x_b4w2_chain_bt (400, 6710886400) 0s
+x_b3w3_ans2_free (0, 0) 600s
+x_b4w2_dec_bt (400, 1600) 0s
+x_b4w2_lc_free (0, 0) 600s
+x_b4w2_lc_bt (0, 0) 600s
+x_b4w2_pref_free (1, 18446744073709551616) 0s
+x_b4w2_lcc_free (0, 0) 600s
+x_b4w2_colord_bt (1, 1) 6s
+x_b4w2_lcc_bt (0, 0) 600s
+x_b4w2_dc_free (0, 0) 600s
+x_b4w2_bijc_free (400, 1717986918400) 0s
+x_b4w2_bijc_bt (400, 400) 0s
+x_b4w2_comm_bt (1, 68719476736) 600s
+x_b4w2_dec_free (0, 0) 600s
+x_b4w2_roword_bt (1, 1) 7s
+x_b4w2_mon_free (0, 0) 600s
+x_b4w2_mon_bt (1, 4) 252s
+x_b4w2_ans_bt (1, 4096) 284s
+x_b4w2_colord_free (80, 80) 600s
+x_b4w2_roword_free (64, 64) 600s
+x_b4w2_ans_free (0, 0) 600s
+x_b4w2_ans2_free (0, 0) 600s
+x_b4w2_ans2_bt (1, 4096) 600s
+x_b4w2_less+more+lcc+zero+self+wrap+neg2+comm_free (0, 0) 600s
+x_b4w2_colord+roword_free (0, 0) 600s
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-if7mQmJJLKVWvazYqfWxTw
+EXIT 0

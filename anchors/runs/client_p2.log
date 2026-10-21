@@ -1,0 +1,140 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-K4IPvs595fNs83iVSjZpbF
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/anchors/modal_lab.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/exact.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/tiny.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors/core.py
+├── 🔨 Created mount 
+│   /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-s
+│   cratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9f
+│   ae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f
+│   53/scratchpad/data/h1/train.jsonl
+└── 🔨 Created function run_job.
+48 jobs (0 already in p2.jsonl)
+╭─ Modal Deprecation Warning (2025-06-27) ─────────────────────────────────────╮
+│ Function.map currently leaks an internal exception wrapping type             │
+│ (modal.exceptions.UserCodeException) when `return_exceptions=True` is set.   │
+│ In the future, this will change, and the underlying exception will be        │
+│ returned directly.                                                           │
+│ To opt into the future behavior and silence this warning, add                │
+│ `wrap_returned_exceptions=False`:                                            │
+│                                                                              │
+│     f.map(..., return_exceptions=True, wrap_returned_exceptions=False)       │
+│                                                                              │
+│ Source: anchors/modal_lab.py:91                                              │
+│   for res in run_job.map(todo, return_exceptions=True, order_outputs=False): │
+╰──────────────────────────────────────────────────────────────────────────────╯
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+/lab/core.py:551: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  return float(loss), hard
+r1_b64_s5 {'rows': 194, 'digits': 194, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 193', 'gated_on': 59} 94s
+r1_b64_s6 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 76} 94s
+r1_b64_s2 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 70} 99s
+abl_noBij_s2 {'rows': 150, 'digits': 150, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 149', 'gated_on': 70} 102s
+r1_b64_s4 {'rows': 196, 'digits': 196, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 195', 'gated_on': 96} 113s
+r1_b64_s8 {'rows': 194, 'digits': 194, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 193', 'gated_on': 77} 121s
+abl_noBij_s1 {'rows': 130, 'digits': 130, 'borrows': 199, 'closest': 'true except (0, 0, 1) -> 0 129', 'gated_on': 63} 127s
+r1_b64_s9 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 65} 132s
+r1_b64_s1 {'rows': 182, 'digits': 182, 'borrows': 199, 'closest': 'true except (0, 0, 1) -> 0 181', 'gated_on': 63} 135s
+r1_b64_s7 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 89} 137s
+r1_b64_s11 {'rows': 192, 'digits': 192, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 191', 'gated_on': 73} 137s
+r1_b64_s3 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 60} 139s
+r1_b64_s12 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 79} 139s
+r1_b64_s10 {'rows': 156, 'digits': 156, 'borrows': 196, 'closest': 'true except (0, 0, 1) -> 0 155', 'gated_on': 44} 142s
+abl_noBij_s4 {'rows': 127, 'digits': 127, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 126', 'gated_on': 96} 125s
+abl_noBij_s3 {'rows': 113, 'digits': 113, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 112', 'gated_on': 60} 142s
+abl_noCol_s2 {'rows': 19, 'digits': 19, 'borrows': 199, 'closest': 'copy the minuend 25', 'gated_on': 70} 76s
+abl_noCol_s1 {'rows': 17, 'digits': 17, 'borrows': 200, 'closest': 'lazy 58', 'gated_on': 63} 77s
+abl_noCol_s3 {'rows': 23, 'digits': 24, 'borrows': 198, 'closest': 'lazy 41', 'gated_on': 60} 82s
+abl_noLate_s1 {'rows': 188, 'digits': 188, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 187', 'gated_on': 63} 69s
+abl_noCol_s4 {'rows': 20, 'digits': 20, 'borrows': 200, 'closest': 'lazy 64', 'gated_on': 96} 83s
+abl_noLate_s2 {'rows': 194, 'digits': 194, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 193', 'gated_on': 70} 70s
+abl_factsNotPref_s2 {'rows': 4, 'digits': 24, 'borrows': 43, 'closest': 'digits relabeled (d -> -d) 17', 'gated_on': None} 28s
+abl_noLate_s3 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 60} 75s
+abl_noLate_s4 {'rows': 192, 'digits': 192, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 191', 'gated_on': 96} 80s
+abl_factsNotPref_s4 {'rows': 1, 'digits': 15, 'borrows': 42, 'closest': 'lazy 13', 'gated_on': None} 37s
+abl_lateWrapOnly_s4 {'rows': 192, 'digits': 192, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 191', 'gated_on': 96} 76s
+abl_lateWrapOnly_s2 {'rows': 194, 'digits': 194, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 193', 'gated_on': 70} 81s
+abl_lateWrapOnly_s1 {'rows': 188, 'digits': 188, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 187', 'gated_on': 63} 84s
+abl_lateWrapOnly_s3 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 60} 84s
+r1_b512_s4 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 97} 231s
+abl_factsNotPref_s1 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 82} 73s
+abl_factsNotPref_s3 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 149} 68s
+r1_b512_s1 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 43} 250s
+abl_lateLcOnly_s1 {'rows': 182, 'digits': 182, 'borrows': 199, 'closest': 'true except (0, 0, 1) -> 0 181', 'gated_on': 63} 118s
+abl_lateLcOnly_s4 {'rows': 196, 'digits': 196, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 195', 'gated_on': 96} 124s
+abl_lateLcOnly_s3 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 60} 127s
+abl_lateLcOnly_s2 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 70} 129s
+r1_b512_s3 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 82} 276s
+abl_plusId_s1 {'rows': 178, 'digits': 178, 'borrows': 199, 'closest': 'true except (0, 0, 1) -> 0 177', 'gated_on': 63} 103s
+abl_plusId_s3 {'rows': 186, 'digits': 186, 'borrows': 199, 'closest': 'true except (0, 0, 1) -> 0 185', 'gated_on': 60} 95s
+abl_plusId_s2 {'rows': 182, 'digits': 182, 'borrows': 199, 'closest': 'true except (0, 0, 1) -> 0 181', 'gated_on': 70} 133s
+r1_b512_s2 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 59} 323s
+abl_plusId_s4 {'rows': 200, 'digits': 200, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 199', 'gated_on': 96} 126s
+abl_lateAtGate_s2 {'rows': 54, 'digits': 54, 'borrows': 199, 'closest': 'true except (r, 0, 1) -> r 53', 'gated_on': 70} 125s
+abl_lateAtGate_s1 {'rows': 55, 'digits': 55, 'borrows': 198, 'closest': 'true borrows, digit r - m - [m even] 57', 'gated_on': 63} 143s
+abl_lateAtGate_s3 {'rows': 70, 'digits': 70, 'borrows': 200, 'closest': 'true except (0, 0, 1) -> 0 69', 'gated_on': 60} 138s
+abl_lateAtGate_s4 {'rows': 72, 'digits': 72, 'borrows': 200, 'closest': 'true except (r, 0, 1) -> r 71', 'gated_on': 96} 145s
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-K4IPvs595fNs83iVSjZpbF
+EXIT 0

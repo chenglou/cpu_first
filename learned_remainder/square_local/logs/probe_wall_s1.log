@@ -1,0 +1,42 @@
+offsets f(a, b) - a*b (rows a, columns b):
+tensor([[  0,   0,   0,   0,  10,  21,  21,  30,  50,  50],
+        [  0,   0,   0,  21,  21,  61,  61,  61,  71,  71],
+        [  0,   0,   0,  10,  20,  20,  20,  29,  39,  39],
+        [  0,   0,   0,   8,  18,  19,  29,  39,  49,  49],
+        [  0,   0,   0,   0,  10,  10,  13,  13,  22,  22],
+        [  0,   0,   0,   6,  16,  15,  23,  23,  23,  23],
+        [  0,   0,   0,   0,  19,  19,  15,  15,  15,  15],
+        [  0,   0,   2,  22,  22,  18,  18,  18,  18,  18],
+        [  0,   0,   0,   0,  -6,  -6,  -6,  -6,   3,   3],
+        [  0,   0,  20,  20,  20, -34, -34, -24, -31, -31]])
+as trained: (0.4834, [1.0, 1.0, 0.3413])
+row a=0: wall between b=3 and b=4 (offsets 0 | 10), block [4]
+   move one cell  : (0.5426, [1.0, 1.0, 0.3461])
+   move the block : (0.5426, [1.0, 1.0, 0.3461])
+row a=1: wall between b=2 and b=3 (offsets 0 | 21), block [3, 4]
+   move one cell  : (0.6081, [1.0, 1.0, 0.3503])
+   move the block : (0.5918, [1.0, 1.0, 0.3527])
+row a=2: wall between b=2 and b=3 (offsets 0 | 10), block [3]
+   move one cell  : (0.5159, [1.0, 1.0, 0.3477])
+   move the block : (0.5159, [1.0, 1.0, 0.3477])
+row a=3: wall between b=2 and b=3 (offsets 0 | 8), block [3]
+   move one cell  : (0.5594, [1.0, 1.0, 0.3515])
+   move the block : (0.5594, [1.0, 1.0, 0.3515])
+row a=4: wall between b=3 and b=4 (offsets 0 | 10), block [4, 5]
+   move one cell  : (0.5057, [1.0, 1.0, 0.3447])
+   move the block : (0.5404, [1.0, 1.0, 0.3465])
+row a=5: wall between b=2 and b=3 (offsets 0 | 6), block [3]
+   move one cell  : (0.5449, [1.0, 1.0, 0.3461])
+   move the block : (0.5449, [1.0, 1.0, 0.3461])
+row a=6: wall between b=3 and b=4 (offsets 0 | 19), block [4, 5]
+   move one cell  : (0.5292, [1.0, 1.0, 0.3438])
+   move the block : (0.545, [1.0, 1.0, 0.3457])
+row a=7: wall between b=1 and b=2 (offsets 0 | 2), block [2]
+   move one cell  : (0.5716, [1.0, 1.0, 0.3683])
+   move the block : (0.5716, [1.0, 1.0, 0.3683])
+row a=8: wall between b=3 and b=4 (offsets 0 | -6), block [4, 5, 6, 7]
+   move one cell  : (0.5032, [1.0, 1.0, 0.3443])
+   move the block : (0.5035, [1.0, 1.0, 0.3453])
+row a=9: wall between b=1 and b=2 (offsets 0 | 20), block [2, 3, 4]
+   move one cell  : (0.5222, [1.0, 1.0, 0.3596])
+   move the block : (0.5209, [1.0, 1.0, 0.365])

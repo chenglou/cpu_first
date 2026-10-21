@@ -1,0 +1,1840 @@
+{
+ "name": "combined_official",
+ "gpu": "NVIDIA H100 80GB HBM3, 610.57.04",
+ "returncode": 0,
+ "wall_seconds": 732.1403045654297,
+ "manifest": "benchmark/manifests/h100_hard_h1.json",
+ "stdout": "{\n  \"manifest\": \"squaring-mod-hard-h1\",\n  \"model_spec\": {\n    \"vocab_size\": 17,\n    \"max_seq_len\": 21,\n    \"maximum_model_state_elements\": 500000000\n  },\n  \"training_batch_size\": 512,\n  \"evaluation_batch_size\": 16384,\n  \"max_training_steps\": 20000,\n  \"total_training_time_seconds\": 3600.0,\n  \"training_time_seconds_per_seed\": 3600.0,\n  \"evaluation_time_seconds_per_seed\": 1800.0,\n  \"seeds\": [\n    74\n  ]\n}\nLR step=1 phase=A io=1 ladder=0 in_phase=1 loss=35.5683 hard_exact=0.0000 table_exact=0.0000 cmp=1.0000 ladder_ok=0.0000 win=0.0000 gate=01 io_exact=False chosen=0.0000 rows_visited=198/200 cells_visited=0/100 \nstep=1 loss=35.568295 accuracy=0.000000 elapsed=4.0s budget=3600.0s\nLR io_stage=2 step=5 history=(5, 'io2_digits')\nLR io_stage=3 step=63 history=(63, 'io3_ranked', (0, 0, 1, 1))\nLR io_stage=4 step=90 history=(90, 'io4_reading', 0.9921)\nstep=100 loss=22.121288 accuracy=0.000000 elapsed=14.5s budget=3600.0s\nLR switch_to_facts step=172 win=0.8121\nLR ladder_joins step=192 table_streak=20\nLR switch_to_gate step=192 win=1.0000\nstep=200 loss=1.799058 accuracy=0.000000 elapsed=29.7s budget=3600.0s\nLR step=250 phase=C io=4 ladder=1 in_phase=58 loss=0.7644 hard_exact=0.0078 table_exact=1.0000 cmp=1.0000 ladder_ok=0.2215 win=0.0017 gate=10 io_exact=True chosen=1.0000 rows_visited=200/200 cells_visited=38/100 \nstep=300 loss=0.457128 accuracy=0.000000 elapsed=52.3s budget=3600.0s\nstep=400 loss=7.125671 accuracy=0.000000 elapsed=214.3s budget=3600.0s\nLR io_stage=5 T_resolved step=448 rows=64 hits=64 snapped_right=1.000 share=0.9990\nLR step=500 real_rows=16 real_hard_exact=1.0000\nLR step=500 phase=C io=5 ladder=1 in_phase=308 loss=0.3291 hard_exact=1.0000 table_exact=1.0000 cmp=1.0000 ladder_ok=1.0000 win=1.0000 gate=10 io_exact=True chosen=1.0000 rows_visited=200/200 cells_visited=100/100 rows=64 hits=64 snapped_right=1.000 share=0.9990\nstep=500 loss=0.329137 accuracy=0.000000 elapsed=434.5s budget=3600.0s\nLR frozen step=545 history=[(5, 'io2_digits'), (63, 'io3_ranked', (0, 0, 1, 1)), (90, 'io4_reading', 0.9921), (172, 'switch', 172, 0.8121), (192, 'ladder', 20), (192, 'gate', 20, 1.0), (448, 'T_resolved', 64), (545, 'frozen', 353, 1.0)]\nstep=600 loss=-0.000000 accuracy=0.000000 elapsed=463.0s budget=3600.0s\nstep=700 loss=-0.000000 accuracy=0.000000 elapsed=463.9s budget=3600.0s\nstep=800 loss=-0.000000 accuracy=0.000000 elapsed=465.2s budget=3600.0s\nstep=900 loss=-0.000000 accuracy=0.000000 elapsed=466.2s budget=3600.0s\nstep=1000 loss=-0.000000 accuracy=0.000000 elapsed=467.4s budget=3600.0s\nstep=1100 loss=-0.000000 accuracy=0.000000 elapsed=468.3s budget=3600.0s\nstep=1200 loss=-0.000000 accuracy=0.000000 elapsed=469.6s budget=3600.0s\nstep=1300 loss=-0.000000 accuracy=0.000000 elapsed=470.6s budget=3600.0s\nstep=1400 loss=-0.000000 accuracy=0.000000 elapsed=471.8s budget=3600.0s\nstep=1500 loss=-0.000000 accuracy=0.000000 elapsed=472.8s budget=3600.0s\nstep=1600 loss=-0.000000 accuracy=0.000000 elapsed=473.9s budget=3600.0s\nstep=1700 loss=-0.000000 accuracy=0.000000 elapsed=474.9s budget=3600.0s\nstep=1800 loss=-0.000000 accuracy=0.000000 elapsed=476.2s budget=3600.0s\nstep=1900 loss=-0.000000 accuracy=0.000000 elapsed=477.1s budget=3600.0s\nstep=2000 loss=-0.000000 accuracy=0.000000 elapsed=478.3s budget=3600.0s\nstep=2100 loss=-0.000000 accuracy=0.000000 elapsed=479.3s budget=3600.0s\nstep=2200 loss=-0.000000 accuracy=0.000000 elapsed=480.5s budget=3600.0s\nstep=2300 loss=-0.000000 accuracy=0.000000 elapsed=481.5s budget=3600.0s\nstep=2400 loss=-0.000000 accuracy=0.000000 elapsed=482.8s budget=3600.0s\nstep=2500 loss=-0.000000 accuracy=0.000000 elapsed=483.7s budget=3600.0s\nstep=2600 loss=-0.000000 accuracy=0.000000 elapsed=485.0s budget=3600.0s\nstep=2700 loss=-0.000000 accuracy=0.000000 elapsed=485.9s budget=3600.0s\nstep=2800 loss=-0.000000 accuracy=0.000000 elapsed=487.1s budget=3600.0s\nstep=2900 loss=-0.000000 accuracy=0.000000 elapsed=488.0s budget=3600.0s\nstep=3000 loss=-0.000000 accuracy=0.000000 elapsed=489.2s budget=3600.0s\nstep=3100 loss=-0.000000 accuracy=0.000000 elapsed=490.1s budget=3600.0s\nstep=3200 loss=-0.000000 accuracy=0.000000 elapsed=491.4s budget=3600.0s\nstep=3300 loss=-0.000000 accuracy=0.000000 elapsed=492.3s budget=3600.0s\nstep=3400 loss=-0.000000 accuracy=0.000000 elapsed=493.6s budget=3600.0s\nstep=3500 loss=-0.000000 accuracy=0.000000 elapsed=494.5s budget=3600.0s\nstep=3600 loss=-0.000000 accuracy=0.000000 elapsed=495.8s budget=3600.0s\nstep=3700 loss=-0.000000 accuracy=0.000000 elapsed=496.7s budget=3600.0s\nstep=3800 loss=-0.000000 accuracy=0.000000 elapsed=497.9s budget=3600.0s\nstep=3900 loss=-0.000000 accuracy=0.000000 elapsed=498.9s budget=3600.0s\nstep=4000 loss=-0.000000 accuracy=0.000000 elapsed=500.1s budget=3600.0s\nstep=4100 loss=-0.000000 accuracy=0.000000 elapsed=501.0s budget=3600.0s\nstep=4200 loss=-0.000000 accuracy=0.000000 elapsed=502.2s budget=3600.0s\nstep=4300 loss=-0.000000 accuracy=0.000000 elapsed=503.2s budget=3600.0s\nstep=4400 loss=-0.000000 accuracy=0.000000 elapsed=504.3s budget=3600.0s\nstep=4500 loss=-0.000000 accuracy=0.000000 elapsed=505.3s budget=3600.0s\nstep=4600 loss=-0.000000 accuracy=0.000000 elapsed=506.5s budget=3600.0s\nstep=4700 loss=-0.000000 accuracy=0.000000 elapsed=507.4s budget=3600.0s\nstep=4800 loss=-0.000000 accuracy=0.000000 elapsed=508.6s budget=3600.0s\nstep=4900 loss=-0.000000 accuracy=0.000000 elapsed=509.5s budget=3600.0s\nstep=5000 loss=-0.000000 accuracy=0.000000 elapsed=510.8s budget=3600.0s\nstep=5100 loss=-0.000000 accuracy=0.000000 elapsed=511.7s budget=3600.0s\nstep=5200 loss=-0.000000 accuracy=0.000000 elapsed=512.9s budget=3600.0s\nstep=5300 loss=-0.000000 accuracy=0.000000 elapsed=513.8s budget=3600.0s\nstep=5400 loss=-0.000000 accuracy=0.000000 elapsed=515.0s budget=3600.0s\nstep=5500 loss=-0.000000 accuracy=0.000000 elapsed=515.9s budget=3600.0s\nstep=5600 loss=-0.000000 accuracy=0.000000 elapsed=517.1s budget=3600.0s\nstep=5700 loss=-0.000000 accuracy=0.000000 elapsed=518.1s budget=3600.0s\nstep=5800 loss=-0.000000 accuracy=0.000000 elapsed=519.3s budget=3600.0s\nstep=5900 loss=-0.000000 accuracy=0.000000 elapsed=520.2s budget=3600.0s\nstep=6000 loss=-0.000000 accuracy=0.000000 elapsed=521.5s budget=3600.0s\nstep=6100 loss=-0.000000 accuracy=0.000000 elapsed=522.4s budget=3600.0s\nstep=6200 loss=-0.000000 accuracy=0.000000 elapsed=523.6s budget=3600.0s\nstep=6300 loss=-0.000000 accuracy=0.000000 elapsed=524.5s budget=3600.0s\nstep=6400 loss=-0.000000 accuracy=0.000000 elapsed=525.7s budget=3600.0s\nstep=6500 loss=-0.000000 accuracy=0.000000 elapsed=526.6s budget=3600.0s\nstep=6600 loss=-0.000000 accuracy=0.000000 elapsed=527.8s budget=3600.0s\nstep=6700 loss=-0.000000 accuracy=0.000000 elapsed=528.8s budget=3600.0s\nstep=6800 loss=-0.000000 accuracy=0.000000 elapsed=530.0s budget=3600.0s\nstep=6900 loss=-0.000000 accuracy=0.000000 elapsed=530.9s budget=3600.0s\nstep=7000 loss=-0.000000 accuracy=0.000000 elapsed=532.1s budget=3600.0s\nstep=7100 loss=-0.000000 accuracy=0.000000 elapsed=533.0s budget=3600.0s\nstep=7200 loss=-0.000000 accuracy=0.000000 elapsed=534.2s budget=3600.0s\nstep=7300 loss=-0.000000 accuracy=0.000000 elapsed=535.1s budget=3600.0s\nstep=7400 loss=-0.000000 accuracy=0.000000 elapsed=536.3s budget=3600.0s\nstep=7500 loss=-0.000000 accuracy=0.000000 elapsed=537.3s budget=3600.0s\nstep=7600 loss=-0.000000 accuracy=0.000000 elapsed=538.5s budget=3600.0s\nstep=7700 loss=-0.000000 accuracy=0.000000 elapsed=539.4s budget=3600.0s\nstep=7800 loss=-0.000000 accuracy=0.000000 elapsed=540.6s budget=3600.0s\nstep=7900 loss=-0.000000 accuracy=0.000000 elapsed=541.5s budget=3600.0s\nstep=8000 loss=-0.000000 accuracy=0.000000 elapsed=542.7s budget=3600.0s\nstep=8100 loss=-0.000000 accuracy=0.000000 elapsed=543.6s budget=3600.0s\nstep=8200 loss=-0.000000 accuracy=0.000000 elapsed=544.8s budget=3600.0s\nstep=8300 loss=-0.000000 accuracy=0.000000 elapsed=545.7s budget=3600.0s\nstep=8400 loss=-0.000000 accuracy=0.000000 elapsed=546.9s budget=3600.0s\nstep=8500 loss=-0.000000 accuracy=0.000000 elapsed=547.8s budget=3600.0s\nstep=8600 loss=-0.000000 accuracy=0.000000 elapsed=549.0s budget=3600.0s\nstep=8700 loss=-0.000000 accuracy=0.000000 elapsed=549.9s budget=3600.0s\nstep=8800 loss=-0.000000 accuracy=0.000000 elapsed=551.1s budget=3600.0s\nstep=8900 loss=-0.000000 accuracy=0.000000 elapsed=552.0s budget=3600.0s\nstep=9000 loss=-0.000000 accuracy=0.000000 elapsed=553.1s budget=3600.0s\nstep=9100 loss=-0.000000 accuracy=0.000000 elapsed=554.0s budget=3600.0s\nstep=9200 loss=-0.000000 accuracy=0.000000 elapsed=555.2s budget=3600.0s\nstep=9300 loss=-0.000000 accuracy=0.000000 elapsed=556.1s budget=3600.0s\nstep=9400 loss=-0.000000 accuracy=0.000000 elapsed=557.2s budget=3600.0s\nstep=9500 loss=-0.000000 accuracy=0.000000 elapsed=558.1s budget=3600.0s\nstep=9600 loss=-0.000000 accuracy=0.000000 elapsed=559.3s budget=3600.0s\nstep=9700 loss=-0.000000 accuracy=0.000000 elapsed=560.2s budget=3600.0s\nstep=9800 loss=-0.000000 accuracy=0.000000 elapsed=561.4s budget=3600.0s\nstep=9900 loss=-0.000000 accuracy=0.000000 elapsed=562.3s budget=3600.0s\nstep=10000 loss=-0.000000 accuracy=0.000000 elapsed=563.5s budget=3600.0s\nstep=10100 loss=-0.000000 accuracy=0.000000 elapsed=564.4s budget=3600.0s\nstep=10200 loss=-0.000000 accuracy=0.000000 elapsed=565.6s budget=3600.0s\nstep=10300 loss=-0.000000 accuracy=0.000000 elapsed=566.5s budget=3600.0s\nstep=10400 loss=-0.000000 accuracy=0.000000 elapsed=567.6s budget=3600.0s\nstep=10500 loss=-0.000000 accuracy=0.000000 elapsed=568.5s budget=3600.0s\nstep=10600 loss=-0.000000 accuracy=0.000000 elapsed=569.7s budget=3600.0s\nstep=10700 loss=-0.000000 accuracy=0.000000 elapsed=570.7s budget=3600.0s\nstep=10800 loss=-0.000000 accuracy=0.000000 elapsed=571.8s budget=3600.0s\nstep=10900 loss=-0.000000 accuracy=0.000000 elapsed=572.7s budget=3600.0s\nstep=11000 loss=-0.000000 accuracy=0.000000 elapsed=573.9s budget=3600.0s\nstep=11100 loss=-0.000000 accuracy=0.000000 elapsed=574.7s budget=3600.0s\nstep=11200 loss=-0.000000 accuracy=0.000000 elapsed=575.9s budget=3600.0s\nstep=11300 loss=-0.000000 accuracy=0.000000 elapsed=576.8s budget=3600.0s\nstep=11400 loss=-0.000000 accuracy=0.000000 elapsed=577.9s budget=3600.0s\nstep=11500 loss=-0.000000 accuracy=0.000000 elapsed=578.8s budget=3600.0s\nstep=11600 loss=-0.000000 accuracy=0.000000 elapsed=579.9s budget=3600.0s\nstep=11700 loss=-0.000000 accuracy=0.000000 elapsed=580.8s budget=3600.0s\nstep=11800 loss=-0.000000 accuracy=0.000000 elapsed=581.9s budget=3600.0s\nstep=11900 loss=-0.000000 accuracy=0.000000 elapsed=582.8s budget=3600.0s\nstep=12000 loss=-0.000000 accuracy=0.000000 elapsed=584.0s budget=3600.0s\nstep=12100 loss=-0.000000 accuracy=0.000000 elapsed=584.8s budget=3600.0s\nstep=12200 loss=-0.000000 accuracy=0.000000 elapsed=586.1s budget=3600.0s\nstep=12300 loss=-0.000000 accuracy=0.000000 elapsed=586.9s budget=3600.0s\nstep=12400 loss=-0.000000 accuracy=0.000000 elapsed=588.1s budget=3600.0s\nstep=12500 loss=-0.000000 accuracy=0.000000 elapsed=589.0s budget=3600.0s\nstep=12600 loss=-0.000000 accuracy=0.000000 elapsed=590.1s budget=3600.0s\nstep=12700 loss=-0.000000 accuracy=0.000000 elapsed=591.0s budget=3600.0s\nstep=12800 loss=-0.000000 accuracy=0.000000 elapsed=592.1s budget=3600.0s\nstep=12900 loss=-0.000000 accuracy=0.000000 elapsed=593.1s budget=3600.0s\nstep=13000 loss=-0.000000 accuracy=0.000000 elapsed=594.2s budget=3600.0s\nstep=13100 loss=-0.000000 accuracy=0.000000 elapsed=595.1s budget=3600.0s\nstep=13200 loss=-0.000000 accuracy=0.000000 elapsed=596.2s budget=3600.0s\nstep=13300 loss=-0.000000 accuracy=0.000000 elapsed=597.2s budget=3600.0s\nstep=13400 loss=-0.000000 accuracy=0.000000 elapsed=598.3s budget=3600.0s\nstep=13500 loss=-0.000000 accuracy=0.000000 elapsed=599.2s budget=3600.0s\nstep=13600 loss=-0.000000 accuracy=0.000000 elapsed=600.3s budget=3600.0s\nstep=13700 loss=-0.000000 accuracy=0.000000 elapsed=601.2s budget=3600.0s\nstep=13800 loss=-0.000000 accuracy=0.000000 elapsed=602.4s budget=3600.0s\nstep=13900 loss=-0.000000 accuracy=0.000000 elapsed=603.3s budget=3600.0s\nstep=14000 loss=-0.000000 accuracy=0.000000 elapsed=604.4s budget=3600.0s\nstep=14100 loss=-0.000000 accuracy=0.000000 elapsed=605.3s budget=3600.0s\nstep=14200 loss=-0.000000 accuracy=0.000000 elapsed=606.4s budget=3600.0s\nstep=14300 loss=-0.000000 accuracy=0.000000 elapsed=607.3s budget=3600.0s\nstep=14400 loss=-0.000000 accuracy=0.000000 elapsed=608.4s budget=3600.0s\nstep=14500 loss=-0.000000 accuracy=0.000000 elapsed=609.3s budget=3600.0s\nstep=14600 loss=-0.000000 accuracy=0.000000 elapsed=610.5s budget=3600.0s\nstep=14700 loss=-0.000000 accuracy=0.000000 elapsed=611.4s budget=3600.0s\nstep=14800 loss=-0.000000 accuracy=0.000000 elapsed=612.5s budget=3600.0s\nstep=14900 loss=-0.000000 accuracy=0.000000 elapsed=613.4s budget=3600.0s\nstep=15000 loss=-0.000000 accuracy=0.000000 elapsed=614.6s budget=3600.0s\nstep=15100 loss=-0.000000 accuracy=0.000000 elapsed=615.6s budget=3600.0s\nstep=15200 loss=-0.000000 accuracy=0.000000 elapsed=616.8s budget=3600.0s\nstep=15300 loss=-0.000000 accuracy=0.000000 elapsed=617.7s budget=3600.0s\nstep=15400 loss=-0.000000 accuracy=0.000000 elapsed=618.8s budget=3600.0s\nstep=15500 loss=-0.000000 accuracy=0.000000 elapsed=619.7s budget=3600.0s\nstep=15600 loss=-0.000000 accuracy=0.000000 elapsed=621.0s budget=3600.0s\nstep=15700 loss=-0.000000 accuracy=0.000000 elapsed=621.9s budget=3600.0s\nstep=15800 loss=-0.000000 accuracy=0.000000 elapsed=623.1s budget=3600.0s\nstep=15900 loss=-0.000000 accuracy=0.000000 elapsed=624.0s budget=3600.0s\nstep=16000 loss=-0.000000 accuracy=0.000000 elapsed=625.2s budget=3600.0s\nstep=16100 loss=-0.000000 accuracy=0.000000 elapsed=626.1s budget=3600.0s\nstep=16200 loss=-0.000000 accuracy=0.000000 elapsed=627.3s budget=3600.0s\nstep=16300 loss=-0.000000 accuracy=0.000000 elapsed=628.2s budget=3600.0s\nstep=16400 loss=-0.000000 accuracy=0.000000 elapsed=629.3s budget=3600.0s\nstep=16500 loss=-0.000000 accuracy=0.000000 elapsed=630.2s budget=3600.0s\nstep=16600 loss=-0.000000 accuracy=0.000000 elapsed=631.5s budget=3600.0s\nstep=16700 loss=-0.000000 accuracy=0.000000 elapsed=632.3s budget=3600.0s\nstep=16800 loss=-0.000000 accuracy=0.000000 elapsed=633.6s budget=3600.0s\nstep=16900 loss=-0.000000 accuracy=0.000000 elapsed=634.5s budget=3600.0s\nstep=17000 loss=-0.000000 accuracy=0.000000 elapsed=635.7s budget=3600.0s\nstep=17100 loss=-0.000000 accuracy=0.000000 elapsed=636.6s budget=3600.0s\nstep=17200 loss=-0.000000 accuracy=0.000000 elapsed=637.9s budget=3600.0s\nstep=17300 loss=-0.000000 accuracy=0.000000 elapsed=638.8s budget=3600.0s\nstep=17400 loss=-0.000000 accuracy=0.000000 elapsed=640.0s budget=3600.0s\nstep=17500 loss=-0.000000 accuracy=0.000000 elapsed=640.9s budget=3600.0s\nstep=17600 loss=-0.000000 accuracy=0.000000 elapsed=642.1s budget=3600.0s\nstep=17700 loss=-0.000000 accuracy=0.000000 elapsed=643.0s budget=3600.0s\nstep=17800 loss=-0.000000 accuracy=0.000000 elapsed=644.2s budget=3600.0s\nstep=17900 loss=-0.000000 accuracy=0.000000 elapsed=645.0s budget=3600.0s\nstep=18000 loss=-0.000000 accuracy=0.000000 elapsed=646.2s budget=3600.0s\nstep=18100 loss=-0.000000 accuracy=0.000000 elapsed=647.1s budget=3600.0s\nstep=18200 loss=-0.000000 accuracy=0.000000 elapsed=648.3s budget=3600.0s\nstep=18300 loss=-0.000000 accuracy=0.000000 elapsed=649.2s budget=3600.0s\nstep=18400 loss=-0.000000 accuracy=0.000000 elapsed=650.3s budget=3600.0s\nstep=18500 loss=-0.000000 accuracy=0.000000 elapsed=651.2s budget=3600.0s\nstep=18600 loss=-0.000000 accuracy=0.000000 elapsed=652.4s budget=3600.0s\nstep=18700 loss=-0.000000 accuracy=0.000000 elapsed=653.3s budget=3600.0s\nstep=18800 loss=-0.000000 accuracy=0.000000 elapsed=654.4s budget=3600.0s\nstep=18900 loss=-0.000000 accuracy=0.000000 elapsed=655.3s budget=3600.0s\nstep=19000 loss=-0.000000 accuracy=0.000000 elapsed=656.4s budget=3600.0s\nstep=19100 loss=-0.000000 accuracy=0.000000 elapsed=657.3s budget=3600.0s\nstep=19200 loss=-0.000000 accuracy=0.000000 elapsed=658.4s budget=3600.0s\nstep=19300 loss=-0.000000 accuracy=0.000000 elapsed=659.3s budget=3600.0s\nstep=19400 loss=-0.000000 accuracy=0.000000 elapsed=660.5s budget=3600.0s\nstep=19500 loss=-0.000000 accuracy=0.000000 elapsed=661.4s budget=3600.0s\nstep=19600 loss=-0.000000 accuracy=0.000000 elapsed=662.5s budget=3600.0s\nstep=19700 loss=-0.000000 accuracy=0.000000 elapsed=663.4s budget=3600.0s\nstep=19800 loss=-0.000000 accuracy=0.000000 elapsed=664.6s budget=3600.0s\nstep=19900 loss=-0.000000 accuracy=0.000000 elapsed=665.5s budget=3600.0s\nstep=20000 loss=-0.000000 accuracy=0.000000 elapsed=666.6s budget=3600.0s\nTABLE digit=09988776655443322110100998877665544332212110099887766554433232211009988776655443433221100998877665545443322110099887766565544332211009988776766554433221100998878776655443322110099898877665544332211009\nTABLE borrow=01111111111111111111000111111111111111110000011111111111111100000001111111111111000000000111111111110000000000011111111100000000000001111111000000000000000111110000000000000000011100000000000000000001\nTABLE prod_lo=0000000000012345678902468024680369258147048260482605050505050628406284074185296308642086420987654321\nTABLE prod_hi=0000000000000000000000000111110000111222000112223300112233440011233445001223445600123445670012345678\nTABLE gate=10 p_commit=0.9999,0.0008\nTABLE train_visits min=638616 rows_never=0 counts=61562520,101777445,5303624,7246174,2338696,8173649,5497058,11446239,2712059,11827510,2748192,10622607,3115542,10484306,4767997,7301167,2013577,7431183,6372634,52826139,8647739,2850390,4841180,947858,1083033,914067,2110027,1172537,1526571,2168110,1367030,1296833,1369501,1120376,2144555,827191,964517,955198,3374405,4130295,6767538,1878417,1884411,723455,2786089,766075,1885318,1140446,1192089,1200445,1225996,1138044,1185046,936454,1935401,877663,800014,881048,2983151,3726886,5972654,1645874,1854565,638616,908963,847931,4146705,1014992,1203163,1101513,1167929,1057258,1205179,945792,1842828,750805,854949,728553,2700983,2720291,6501928,1628376,1844718,705418,907701,868472,2463614,1453855,3516614,1163462,1331822,1168812,1218637,963057,1853220,877874,833481,843638,2560279,2813676,6472642,1512669,1836316,658615,902490,789436,1873458,1074033,1271491,1277250,4012087,1068566,1323427,1595810,1969515,895080,753809,783111,2459252,3086713,7751465,1594893,1783326,693143,848491,795122,1918501,1118095,1200557,1093554,1306543,1313455,3170255,1042099,1885176,845526,815274,877153,2584921,3508607,5582802,1448179,1857012,639799,935411,822566,2022200,993197,1175878,1065767,1221564,1092034,1283837,970904,3401470,738782,797177,703724,2289554,2434547,5980299,1542881,1854176,695215,907489,787147,1813327,1057628,1143481,992519,1199544,1105180,1792988,1107367,1973519,875177,2277628,826938,2272651,2356913,16797416,2160819,1730425,645334,891480,830593,2239518,1286566,1139806,1138959,1288167,1254042,1143222,997734,2133903,1053965,795263,889884,37555843,4155430\nTABLE prod_train_visits min=79710 rows_never=0 counts=1247810,1129115,1072058,1021285,981219,912594,824447,816904,790030,748421,203254,183833,173199,166086,159740,148711,134173,132785,128733,122003,157954,143009,135837,129790,124079,115541,104159,102895,98315,93702,221293,200649,190282,179763,173770,161957,146415,144915,140219,132838,214212,192523,184246,175909,168952,156536,141622,140370,135983,128590,162955,147559,140041,133449,127321,117969,105461,105258,100657,95613,167701,151567,143690,137468,132003,122922,111159,110037,106609,100719,190018,172055,163268,153251,148507,138413,125019,124464,119670,113790,132840,120184,114055,107100,103382,95678,85761,85404,83544,79710,193739,175194,166556,158459,152107,140799,127040,126352,122296,115798\nTABLE gate_train_visits=322713,3071007\nTABLE schedule phase=frozen io=5 step=20000 history=[(5, 'io2_digits'), (63, 'io3_ranked', (0, 0, 1, 1)), (90, 'io4_reading', 0.9921), (172, 'switch', 172, 0.8121), (192, 'ladder', 20), (192, 'gate', 20, 1.0), (448, 'T_resolved', 64), (545, 'frozen', 353, 1.0)]\nIO field=N anchor=2 step=+1\nIO field=x anchor=4 step=-1\nIO field=T anchor=END step=-1\nIO field=writer anchor=END step=-1\nIO digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16] reading=(0, 0, 1, 1) rows_with_that_reading=1.0000\nIO code=7:0,8:1,9:2,10:3,11:4,12:5,13:6,14:7,15:8,16:9\nIO writer=0:7,1:8,2:9,3:10,4:11,5:12,6:13,7:14,8:15,9:16\nIO path=ste\nAUDIT eval_rows_used=200/200 used_but_never_trained=0 eval_product_cells_used=100/100 product_used_but_never_trained=0\nAUDIT countdown_rows_used=14 used_but_never_trained=0 min_train_visits=1730425 rows=[(0, 0, 0), (0, 0, 1), (0, 1, 0), (1, 0, 0), (1, 0, 1), (1, 1, 0), (2, 1, 0), (3, 1, 0), (4, 1, 0), (5, 1, 0), (6, 1, 0), (7, 1, 0), (8, 1, 0), (9, 1, 0)]\nAUDIT gate_rows_used=2/2 used_but_never_trained=0 train_visits=[322713, 3071007]\nseed=74 split=test loss=0.000000 exact_accuracy=1.000000\nAUDIT eval_rows_used=200/200 used_but_never_trained=0 eval_product_cells_used=100/100 product_used_but_never_trained=0\nAUDIT countdown_rows_used=18 used_but_never_trained=0 min_train_visits=1645874 rows=[(0, 0, 0), (0, 0, 1), (0, 1, 0), (1, 0, 0), (1, 0, 1), (1, 1, 0), (2, 0, 0), (2, 0, 1), (2, 1, 0), (3, 0, 0), (3, 0, 1), (3, 1, 0), (4, 1, 0), (5, 1, 0), (6, 1, 0), (7, 1, 0), (8, 1, 0), (9, 1, 0)]\nAUDIT gate_rows_used=2/2 used_but_never_trained=0 train_visits=[322713, 3071007]\nseed=74 split=ood_t loss=0.000000 exact_accuracy=1.000000\nseed=74 split=ood_n_t loss=0.000000 exact_accuracy=1.000000\nseed=74 profile=seen_n depth_t=1 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=2 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=4 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=8 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=16 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=32 exact_accuracy=1.000000 certified=True\nAUDIT eval_rows_used=200/200 used_but_never_trained=0 eval_product_cells_used=100/100 product_used_but_never_trained=0\nAUDIT countdown_rows_used=24 used_but_never_trained=0 min_train_visits=1512669 rows=[(0, 0, 0), (0, 0, 1), (0, 1, 0), (1, 0, 0), (1, 0, 1), (1, 1, 0), (2, 0, 0), (2, 0, 1), (2, 1, 0), (3, 0, 0), (3, 0, 1), (3, 1, 0), (4, 0, 0), (4, 0, 1), (4, 1, 0), (5, 0, 0), (5, 0, 1), (5, 1, 0), (6, 0, 0), (6, 0, 1), (6, 1, 0), (7, 1, 0), (8, 1, 0), (9, 1, 0)]\nAUDIT gate_rows_used=2/2 used_but_never_trained=0 train_visits=[322713, 3071007]\nseed=74 profile=seen_n depth_t=64 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=1 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=2 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=4 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=8 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=16 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=32 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=64 exact_accuracy=1.000000 certified=True\nRESULT_JSON={\"depth_profile\": {\"depth_factor\": 64, \"ladder\": [1, 2, 4, 8, 16, 32, 64], \"max_certified_time_steps\": 64, \"ood_n_ladder\": [1, 2, 4, 8, 16, 32, 64], \"ood_n_max_certified_time_steps\": 64, \"ood_n_profile_available\": true}, \"manifest\": \"squaring-mod-hard-h1\", \"score\": {\"mean_exact_accuracy\": 1.0, \"mean_loss\": 0.0, \"num_measurements\": 3, \"primary_metric\": \"mean_exact_accuracy\"}, \"seeds\": [{\"completed_training_steps\": 20000, \"depth_profile\": {\"depth_factor\": 64, \"ladder\": [1, 2, 4, 8, 16, 32, 64], \"max_certified_time_steps\": 64, \"ood_n_ladder\": [1, 2, 4, 8, 16, 32, 64], \"ood_n_max_certified_time_steps\": 64, \"ood_n_rungs\": [{\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 1}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 2}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 4}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 8}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 16}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 32}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 64}], \"rungs\": [{\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 1}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 2}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 4}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 8}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 16}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 32}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 64}]}, \"evaluation\": {\"ood_n_t\": {\"correct_examples\": 10002, \"exact_accuracy\": 1.0, \"example_count\": 10002, \"loss\": 0.0}, \"ood_t\": {\"correct_examples\": 10002, \"exact_accuracy\": 1.0, \"example_count\": 10002, \"loss\": 0.0}, \"test\": {\"correct_examples\": 9999, \"exact_accuracy\": 1.0, \"example_count\": 9999, \"loss\": 0.0}}, \"evaluation_batch_size\": 16384, \"evaluation_budget_seconds\": 1800.0, \"evaluation_seconds\": 48.197497161, \"final_train_loss\": -0.0, \"max_training_steps\": 20000, \"model_state_elements\": 5079, \"optimizer_state_elements_after_first_step\": 6157, \"seed\": 74, \"training_batch_size\": 512, \"training_seconds\": 666.641819225}], \"structured_metrics\": [{\"elapsed_seconds\": 4.0, \"exact_accuracy\": 0.0, \"loss\": 35.568, \"seed\": 74, \"step\": 1, \"type\": \"train\"}, {\"elapsed_seconds\": 14.5, \"exact_accuracy\": 0.0, \"loss\": 22.121, \"seed\": 74, \"step\": 100, \"type\": \"train\"}, {\"elapsed_seconds\": 29.7, \"exact_accuracy\": 0.0, \"loss\": 1.799, \"seed\": 74, \"step\": 200, \"type\": \"train\"}, {\"elapsed_seconds\": 52.3, \"exact_accuracy\": 0.0, \"loss\": 0.457, \"seed\": 74, \"step\": 300, \"type\": \"train\"}, {\"elapsed_seconds\": 214.3, \"exact_accuracy\": 0.0, \"loss\": 7.126, \"seed\": 74, \"step\": 400, \"type\": \"train\"}, {\"elapsed_seconds\": 434.5, \"exact_accuracy\": 0.0, \"loss\": 0.329, \"seed\": 74, \"step\": 500, \"type\": \"train\"}, {\"elapsed_seconds\": 463.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 600, \"type\": \"train\"}, {\"elapsed_seconds\": 463.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 700, \"type\": \"train\"}, {\"elapsed_seconds\": 465.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 800, \"type\": \"train\"}, {\"elapsed_seconds\": 466.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 900, \"type\": \"train\"}, {\"elapsed_seconds\": 467.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 1000, \"type\": \"train\"}, {\"elapsed_seconds\": 468.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 1100, \"type\": \"train\"}, {\"elapsed_seconds\": 469.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 1200, \"type\": \"train\"}, {\"elapsed_seconds\": 470.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 1300, \"type\": \"train\"}, {\"elapsed_seconds\": 471.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 1400, \"type\": \"train\"}, {\"elapsed_seconds\": 472.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 1500, \"type\": \"train\"}, {\"elapsed_seconds\": 473.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 1600, \"type\": \"train\"}, {\"elapsed_seconds\": 474.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 1700, \"type\": \"train\"}, {\"elapsed_seconds\": 476.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 1800, \"type\": \"train\"}, {\"elapsed_seconds\": 477.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 1900, \"type\": \"train\"}, {\"elapsed_seconds\": 478.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 2000, \"type\": \"train\"}, {\"elapsed_seconds\": 479.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 2100, \"type\": \"train\"}, {\"elapsed_seconds\": 480.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 2200, \"type\": \"train\"}, {\"elapsed_seconds\": 481.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 2300, \"type\": \"train\"}, {\"elapsed_seconds\": 482.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 2400, \"type\": \"train\"}, {\"elapsed_seconds\": 483.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 2500, \"type\": \"train\"}, {\"elapsed_seconds\": 485.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 2600, \"type\": \"train\"}, {\"elapsed_seconds\": 485.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 2700, \"type\": \"train\"}, {\"elapsed_seconds\": 487.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 2800, \"type\": \"train\"}, {\"elapsed_seconds\": 488.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 2900, \"type\": \"train\"}, {\"elapsed_seconds\": 489.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 3000, \"type\": \"train\"}, {\"elapsed_seconds\": 490.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 3100, \"type\": \"train\"}, {\"elapsed_seconds\": 491.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 3200, \"type\": \"train\"}, {\"elapsed_seconds\": 492.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 3300, \"type\": \"train\"}, {\"elapsed_seconds\": 493.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 3400, \"type\": \"train\"}, {\"elapsed_seconds\": 494.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 3500, \"type\": \"train\"}, {\"elapsed_seconds\": 495.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 3600, \"type\": \"train\"}, {\"elapsed_seconds\": 496.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 3700, \"type\": \"train\"}, {\"elapsed_seconds\": 497.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 3800, \"type\": \"train\"}, {\"elapsed_seconds\": 498.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 3900, \"type\": \"train\"}, {\"elapsed_seconds\": 500.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 4000, \"type\": \"train\"}, {\"elapsed_seconds\": 501.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 4100, \"type\": \"train\"}, {\"elapsed_seconds\": 502.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 4200, \"type\": \"train\"}, {\"elapsed_seconds\": 503.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 4300, \"type\": \"train\"}, {\"elapsed_seconds\": 504.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 4400, \"type\": \"train\"}, {\"elapsed_seconds\": 505.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 4500, \"type\": \"train\"}, {\"elapsed_seconds\": 506.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 4600, \"type\": \"train\"}, {\"elapsed_seconds\": 507.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 4700, \"type\": \"train\"}, {\"elapsed_seconds\": 508.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 4800, \"type\": \"train\"}, {\"elapsed_seconds\": 509.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 4900, \"type\": \"train\"}, {\"elapsed_seconds\": 510.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 5000, \"type\": \"train\"}, {\"elapsed_seconds\": 511.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 5100, \"type\": \"train\"}, {\"elapsed_seconds\": 512.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 5200, \"type\": \"train\"}, {\"elapsed_seconds\": 513.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 5300, \"type\": \"train\"}, {\"elapsed_seconds\": 515.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 5400, \"type\": \"train\"}, {\"elapsed_seconds\": 515.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 5500, \"type\": \"train\"}, {\"elapsed_seconds\": 517.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 5600, \"type\": \"train\"}, {\"elapsed_seconds\": 518.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 5700, \"type\": \"train\"}, {\"elapsed_seconds\": 519.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 5800, \"type\": \"train\"}, {\"elapsed_seconds\": 520.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 5900, \"type\": \"train\"}, {\"elapsed_seconds\": 521.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 6000, \"type\": \"train\"}, {\"elapsed_seconds\": 522.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 6100, \"type\": \"train\"}, {\"elapsed_seconds\": 523.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 6200, \"type\": \"train\"}, {\"elapsed_seconds\": 524.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 6300, \"type\": \"train\"}, {\"elapsed_seconds\": 525.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 6400, \"type\": \"train\"}, {\"elapsed_seconds\": 526.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 6500, \"type\": \"train\"}, {\"elapsed_seconds\": 527.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 6600, \"type\": \"train\"}, {\"elapsed_seconds\": 528.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 6700, \"type\": \"train\"}, {\"elapsed_seconds\": 530.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 6800, \"type\": \"train\"}, {\"elapsed_seconds\": 530.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 6900, \"type\": \"train\"}, {\"elapsed_seconds\": 532.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 7000, \"type\": \"train\"}, {\"elapsed_seconds\": 533.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 7100, \"type\": \"train\"}, {\"elapsed_seconds\": 534.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 7200, \"type\": \"train\"}, {\"elapsed_seconds\": 535.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 7300, \"type\": \"train\"}, {\"elapsed_seconds\": 536.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 7400, \"type\": \"train\"}, {\"elapsed_seconds\": 537.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 7500, \"type\": \"train\"}, {\"elapsed_seconds\": 538.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 7600, \"type\": \"train\"}, {\"elapsed_seconds\": 539.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 7700, \"type\": \"train\"}, {\"elapsed_seconds\": 540.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 7800, \"type\": \"train\"}, {\"elapsed_seconds\": 541.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 7900, \"type\": \"train\"}, {\"elapsed_seconds\": 542.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 8000, \"type\": \"train\"}, {\"elapsed_seconds\": 543.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 8100, \"type\": \"train\"}, {\"elapsed_seconds\": 544.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 8200, \"type\": \"train\"}, {\"elapsed_seconds\": 545.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 8300, \"type\": \"train\"}, {\"elapsed_seconds\": 546.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 8400, \"type\": \"train\"}, {\"elapsed_seconds\": 547.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 8500, \"type\": \"train\"}, {\"elapsed_seconds\": 549.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 8600, \"type\": \"train\"}, {\"elapsed_seconds\": 549.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 8700, \"type\": \"train\"}, {\"elapsed_seconds\": 551.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 8800, \"type\": \"train\"}, {\"elapsed_seconds\": 552.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 8900, \"type\": \"train\"}, {\"elapsed_seconds\": 553.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 9000, \"type\": \"train\"}, {\"elapsed_seconds\": 554.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 9100, \"type\": \"train\"}, {\"elapsed_seconds\": 555.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 9200, \"type\": \"train\"}, {\"elapsed_seconds\": 556.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 9300, \"type\": \"train\"}, {\"elapsed_seconds\": 557.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 9400, \"type\": \"train\"}, {\"elapsed_seconds\": 558.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 9500, \"type\": \"train\"}, {\"elapsed_seconds\": 559.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 9600, \"type\": \"train\"}, {\"elapsed_seconds\": 560.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 9700, \"type\": \"train\"}, {\"elapsed_seconds\": 561.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 9800, \"type\": \"train\"}, {\"elapsed_seconds\": 562.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 9900, \"type\": \"train\"}, {\"elapsed_seconds\": 563.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 10000, \"type\": \"train\"}, {\"elapsed_seconds\": 564.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 10100, \"type\": \"train\"}, {\"elapsed_seconds\": 565.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 10200, \"type\": \"train\"}, {\"elapsed_seconds\": 566.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 10300, \"type\": \"train\"}, {\"elapsed_seconds\": 567.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 10400, \"type\": \"train\"}, {\"elapsed_seconds\": 568.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 10500, \"type\": \"train\"}, {\"elapsed_seconds\": 569.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 10600, \"type\": \"train\"}, {\"elapsed_seconds\": 570.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 10700, \"type\": \"train\"}, {\"elapsed_seconds\": 571.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 10800, \"type\": \"train\"}, {\"elapsed_seconds\": 572.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 10900, \"type\": \"train\"}, {\"elapsed_seconds\": 573.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 11000, \"type\": \"train\"}, {\"elapsed_seconds\": 574.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 11100, \"type\": \"train\"}, {\"elapsed_seconds\": 575.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 11200, \"type\": \"train\"}, {\"elapsed_seconds\": 576.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 11300, \"type\": \"train\"}, {\"elapsed_seconds\": 577.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 11400, \"type\": \"train\"}, {\"elapsed_seconds\": 578.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 11500, \"type\": \"train\"}, {\"elapsed_seconds\": 579.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 11600, \"type\": \"train\"}, {\"elapsed_seconds\": 580.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 11700, \"type\": \"train\"}, {\"elapsed_seconds\": 581.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 11800, \"type\": \"train\"}, {\"elapsed_seconds\": 582.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 11900, \"type\": \"train\"}, {\"elapsed_seconds\": 584.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 12000, \"type\": \"train\"}, {\"elapsed_seconds\": 584.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 12100, \"type\": \"train\"}, {\"elapsed_seconds\": 586.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 12200, \"type\": \"train\"}, {\"elapsed_seconds\": 586.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 12300, \"type\": \"train\"}, {\"elapsed_seconds\": 588.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 12400, \"type\": \"train\"}, {\"elapsed_seconds\": 589.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 12500, \"type\": \"train\"}, {\"elapsed_seconds\": 590.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 12600, \"type\": \"train\"}, {\"elapsed_seconds\": 591.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 12700, \"type\": \"train\"}, {\"elapsed_seconds\": 592.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 12800, \"type\": \"train\"}, {\"elapsed_seconds\": 593.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 12900, \"type\": \"train\"}, {\"elapsed_seconds\": 594.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 13000, \"type\": \"train\"}, {\"elapsed_seconds\": 595.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 13100, \"type\": \"train\"}, {\"elapsed_seconds\": 596.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 13200, \"type\": \"train\"}, {\"elapsed_seconds\": 597.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 13300, \"type\": \"train\"}, {\"elapsed_seconds\": 598.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 13400, \"type\": \"train\"}, {\"elapsed_seconds\": 599.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 13500, \"type\": \"train\"}, {\"elapsed_seconds\": 600.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 13600, \"type\": \"train\"}, {\"elapsed_seconds\": 601.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 13700, \"type\": \"train\"}, {\"elapsed_seconds\": 602.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 13800, \"type\": \"train\"}, {\"elapsed_seconds\": 603.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 13900, \"type\": \"train\"}, {\"elapsed_seconds\": 604.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 14000, \"type\": \"train\"}, {\"elapsed_seconds\": 605.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 14100, \"type\": \"train\"}, {\"elapsed_seconds\": 606.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 14200, \"type\": \"train\"}, {\"elapsed_seconds\": 607.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 14300, \"type\": \"train\"}, {\"elapsed_seconds\": 608.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 14400, \"type\": \"train\"}, {\"elapsed_seconds\": 609.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 14500, \"type\": \"train\"}, {\"elapsed_seconds\": 610.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 14600, \"type\": \"train\"}, {\"elapsed_seconds\": 611.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 14700, \"type\": \"train\"}, {\"elapsed_seconds\": 612.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 14800, \"type\": \"train\"}, {\"elapsed_seconds\": 613.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 14900, \"type\": \"train\"}, {\"elapsed_seconds\": 614.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 15000, \"type\": \"train\"}, {\"elapsed_seconds\": 615.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 15100, \"type\": \"train\"}, {\"elapsed_seconds\": 616.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 15200, \"type\": \"train\"}, {\"elapsed_seconds\": 617.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 15300, \"type\": \"train\"}, {\"elapsed_seconds\": 618.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 15400, \"type\": \"train\"}, {\"elapsed_seconds\": 619.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 15500, \"type\": \"train\"}, {\"elapsed_seconds\": 621.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 15600, \"type\": \"train\"}, {\"elapsed_seconds\": 621.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 15700, \"type\": \"train\"}, {\"elapsed_seconds\": 623.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 15800, \"type\": \"train\"}, {\"elapsed_seconds\": 624.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 15900, \"type\": \"train\"}, {\"elapsed_seconds\": 625.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 16000, \"type\": \"train\"}, {\"elapsed_seconds\": 626.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 16100, \"type\": \"train\"}, {\"elapsed_seconds\": 627.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 16200, \"type\": \"train\"}, {\"elapsed_seconds\": 628.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 16300, \"type\": \"train\"}, {\"elapsed_seconds\": 629.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 16400, \"type\": \"train\"}, {\"elapsed_seconds\": 630.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 16500, \"type\": \"train\"}, {\"elapsed_seconds\": 631.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 16600, \"type\": \"train\"}, {\"elapsed_seconds\": 632.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 16700, \"type\": \"train\"}, {\"elapsed_seconds\": 633.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 16800, \"type\": \"train\"}, {\"elapsed_seconds\": 634.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 16900, \"type\": \"train\"}, {\"elapsed_seconds\": 635.7, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 17000, \"type\": \"train\"}, {\"elapsed_seconds\": 636.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 17100, \"type\": \"train\"}, {\"elapsed_seconds\": 637.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 17200, \"type\": \"train\"}, {\"elapsed_seconds\": 638.8, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 17300, \"type\": \"train\"}, {\"elapsed_seconds\": 640.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 17400, \"type\": \"train\"}, {\"elapsed_seconds\": 640.9, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 17500, \"type\": \"train\"}, {\"elapsed_seconds\": 642.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 17600, \"type\": \"train\"}, {\"elapsed_seconds\": 643.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 17700, \"type\": \"train\"}, {\"elapsed_seconds\": 644.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 17800, \"type\": \"train\"}, {\"elapsed_seconds\": 645.0, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 17900, \"type\": \"train\"}, {\"elapsed_seconds\": 646.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 18000, \"type\": \"train\"}, {\"elapsed_seconds\": 647.1, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 18100, \"type\": \"train\"}, {\"elapsed_seconds\": 648.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 18200, \"type\": \"train\"}, {\"elapsed_seconds\": 649.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 18300, \"type\": \"train\"}, {\"elapsed_seconds\": 650.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 18400, \"type\": \"train\"}, {\"elapsed_seconds\": 651.2, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 18500, \"type\": \"train\"}, {\"elapsed_seconds\": 652.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 18600, \"type\": \"train\"}, {\"elapsed_seconds\": 653.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 18700, \"type\": \"train\"}, {\"elapsed_seconds\": 654.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 18800, \"type\": \"train\"}, {\"elapsed_seconds\": 655.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 18900, \"type\": \"train\"}, {\"elapsed_seconds\": 656.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 19000, \"type\": \"train\"}, {\"elapsed_seconds\": 657.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 19100, \"type\": \"train\"}, {\"elapsed_seconds\": 658.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 19200, \"type\": \"train\"}, {\"elapsed_seconds\": 659.3, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 19300, \"type\": \"train\"}, {\"elapsed_seconds\": 660.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 19400, \"type\": \"train\"}, {\"elapsed_seconds\": 661.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 19500, \"type\": \"train\"}, {\"elapsed_seconds\": 662.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 19600, \"type\": \"train\"}, {\"elapsed_seconds\": 663.4, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 19700, \"type\": \"train\"}, {\"elapsed_seconds\": 664.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 19800, \"type\": \"train\"}, {\"elapsed_seconds\": 665.5, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 19900, \"type\": \"train\"}, {\"elapsed_seconds\": 666.6, \"exact_accuracy\": 0.0, \"loss\": -0.0, \"seed\": 74, \"step\": 20000, \"type\": \"train\"}, {\"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 74, \"split\": \"test\", \"type\": \"evaluation\"}, {\"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 74, \"split\": \"ood_t\", \"type\": \"evaluation\"}, {\"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 74, \"split\": \"ood_n_t\", \"type\": \"evaluation\"}, {\"completed_steps\": 20000, \"mean_exact_accuracy\": 1.0, \"training_seconds\": 666.6, \"type\": \"summary\"}]}\n",
+ "stderr": "",
+ "result": {
+  "depth_profile": {
+   "depth_factor": 64,
+   "ladder": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+   ],
+   "max_certified_time_steps": 64,
+   "ood_n_ladder": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+   ],
+   "ood_n_max_certified_time_steps": 64,
+   "ood_n_profile_available": true
+  },
+  "manifest": "squaring-mod-hard-h1",
+  "score": {
+   "mean_exact_accuracy": 1.0,
+   "mean_loss": 0.0,
+   "num_measurements": 3,
+   "primary_metric": "mean_exact_accuracy"
+  },
+  "seeds": [
+   {
+    "completed_training_steps": 20000,
+    "depth_profile": {
+     "depth_factor": 64,
+     "ladder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+     ],
+     "max_certified_time_steps": 64,
+     "ood_n_ladder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+     ],
+     "ood_n_max_certified_time_steps": 64,
+     "ood_n_rungs": [
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 1
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 2
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 4
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 8
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 16
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 32
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 64
+      }
+     ],
+     "rungs": [
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 1
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 2
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 4
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 8
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 16
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 32
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 64
+      }
+     ]
+    },
+    "evaluation": {
+     "ood_n_t": {
+      "correct_examples": 10002,
+      "exact_accuracy": 1.0,
+      "example_count": 10002,
+      "loss": 0.0
+     },
+     "ood_t": {
+      "correct_examples": 10002,
+      "exact_accuracy": 1.0,
+      "example_count": 10002,
+      "loss": 0.0
+     },
+     "test": {
+      "correct_examples": 9999,
+      "exact_accuracy": 1.0,
+      "example_count": 9999,
+      "loss": 0.0
+     }
+    },
+    "evaluation_batch_size": 16384,
+    "evaluation_budget_seconds": 1800.0,
+    "evaluation_seconds": 48.197497161,
+    "final_train_loss": -0.0,
+    "max_training_steps": 20000,
+    "model_state_elements": 5079,
+    "optimizer_state_elements_after_first_step": 6157,
+    "seed": 74,
+    "training_batch_size": 512,
+    "training_seconds": 666.641819225
+   }
+  ],
+  "structured_metrics": [
+   {
+    "elapsed_seconds": 4.0,
+    "exact_accuracy": 0.0,
+    "loss": 35.568,
+    "seed": 74,
+    "step": 1,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 14.5,
+    "exact_accuracy": 0.0,
+    "loss": 22.121,
+    "seed": 74,
+    "step": 100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 29.7,
+    "exact_accuracy": 0.0,
+    "loss": 1.799,
+    "seed": 74,
+    "step": 200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 52.3,
+    "exact_accuracy": 0.0,
+    "loss": 0.457,
+    "seed": 74,
+    "step": 300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 214.3,
+    "exact_accuracy": 0.0,
+    "loss": 7.126,
+    "seed": 74,
+    "step": 400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 434.5,
+    "exact_accuracy": 0.0,
+    "loss": 0.329,
+    "seed": 74,
+    "step": 500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 463.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 463.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 465.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 466.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 467.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 1000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 468.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 1100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 469.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 1200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 470.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 1300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 471.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 1400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 472.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 1500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 473.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 1600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 474.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 1700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 476.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 1800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 477.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 1900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 478.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 2000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 479.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 2100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 480.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 2200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 481.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 2300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 482.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 2400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 483.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 2500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 485.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 2600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 485.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 2700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 487.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 2800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 488.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 2900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 489.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 3000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 490.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 3100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 491.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 3200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 492.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 3300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 493.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 3400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 494.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 3500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 495.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 3600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 496.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 3700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 497.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 3800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 498.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 3900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 500.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 4000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 501.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 4100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 502.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 4200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 503.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 4300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 504.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 4400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 505.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 4500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 506.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 4600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 507.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 4700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 508.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 4800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 509.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 4900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 510.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 5000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 511.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 5100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 512.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 5200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 513.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 5300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 515.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 5400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 515.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 5500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 517.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 5600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 518.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 5700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 519.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 5800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 520.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 5900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 521.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 6000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 522.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 6100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 523.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 6200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 524.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 6300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 525.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 6400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 526.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 6500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 527.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 6600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 528.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 6700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 530.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 6800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 530.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 6900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 532.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 7000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 533.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 7100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 534.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 7200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 535.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 7300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 536.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 7400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 537.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 7500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 538.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 7600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 539.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 7700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 540.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 7800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 541.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 7900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 542.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 8000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 543.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 8100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 544.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 8200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 545.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 8300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 546.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 8400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 547.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 8500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 549.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 8600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 549.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 8700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 551.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 8800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 552.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 8900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 553.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 9000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 554.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 9100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 555.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 9200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 556.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 9300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 557.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 9400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 558.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 9500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 559.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 9600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 560.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 9700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 561.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 9800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 562.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 9900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 563.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 10000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 564.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 10100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 565.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 10200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 566.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 10300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 567.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 10400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 568.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 10500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 569.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 10600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 570.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 10700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 571.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 10800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 572.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 10900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 573.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 11000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 574.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 11100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 575.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 11200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 576.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 11300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 577.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 11400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 578.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 11500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 579.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 11600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 580.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 11700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 581.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 11800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 582.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 11900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 584.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 12000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 584.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 12100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 586.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 12200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 586.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 12300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 588.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 12400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 589.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 12500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 590.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 12600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 591.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 12700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 592.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 12800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 593.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 12900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 594.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 13000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 595.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 13100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 596.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 13200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 597.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 13300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 598.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 13400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 599.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 13500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 600.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 13600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 601.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 13700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 602.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 13800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 603.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 13900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 604.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 14000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 605.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 14100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 606.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 14200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 607.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 14300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 608.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 14400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 609.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 14500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 610.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 14600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 611.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 14700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 612.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 14800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 613.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 14900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 614.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 15000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 615.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 15100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 616.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 15200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 617.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 15300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 618.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 15400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 619.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 15500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 621.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 15600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 621.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 15700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 623.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 15800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 624.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 15900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 625.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 16000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 626.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 16100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 627.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 16200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 628.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 16300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 629.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 16400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 630.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 16500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 631.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 16600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 632.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 16700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 633.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 16800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 634.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 16900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 635.7,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 17000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 636.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 17100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 637.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 17200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 638.8,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 17300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 640.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 17400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 640.9,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 17500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 642.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 17600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 643.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 17700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 644.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 17800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 645.0,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 17900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 646.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 18000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 647.1,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 18100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 648.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 18200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 649.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 18300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 650.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 18400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 651.2,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 18500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 652.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 18600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 653.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 18700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 654.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 18800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 655.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 18900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 656.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 19000,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 657.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 19100,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 658.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 19200,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 659.3,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 19300,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 660.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 19400,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 661.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 19500,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 662.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 19600,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 663.4,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 19700,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 664.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 19800,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 665.5,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 19900,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 666.6,
+    "exact_accuracy": 0.0,
+    "loss": -0.0,
+    "seed": 74,
+    "step": 20000,
+    "type": "train"
+   },
+   {
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 74,
+    "split": "test",
+    "type": "evaluation"
+   },
+   {
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 74,
+    "split": "ood_t",
+    "type": "evaluation"
+   },
+   {
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 74,
+    "split": "ood_n_t",
+    "type": "evaluation"
+   },
+   {
+    "completed_steps": 20000,
+    "mean_exact_accuracy": 1.0,
+    "training_seconds": 666.6,
+    "type": "summary"
+   }
+  ]
+ },
+ "submission": "\"\"\"LearnedCombined: x^(2^T) mod N in which every part of the calculator that computes something is a learned table:\nthe prompt reader and the answer writer (IO.md), the schoolbook squaring's times table (SQUARE.md), the subtraction\ntable that does every addition and subtraction (CHAIN.md, ADDER.md), and the commit gate that runs the T countdown and\neach division step (CONTROL.md). One model, trained from a random start in one run.\n\nDatapath (designed wiring, the schoolbook algorithms in base 10); the state is digits from the prompt to the answer:\n  * read: three fields, N (8 slots), x (8 slots) and T (K = 2 slots), each by a learned pointer (anchor + one shared\n    step), with a learned digit-ness per token and a learned code (token -> digit) per reading hypothesis (IO.md);\n  * rounds: each round subtracts 1 from T's digits with the subtraction table, and the commit gate reads that\n    subtraction's final borrow. A committing round squares the state and reduces it mod N and takes T - 1; a holding\n    round keeps both (CONTROL.md). The rounds end when no row commits (at most 10^K);\n      - squaring (SQUARE.md): row j of s * s is the product cell's lo digits of (s_i, s_j) plus its hi digits shifted\n        by one place; the W rows, shifted by j, are summed one by one. Every sum is A - (0 - B) with the subtraction\n        table (ADDER.md's learned adder);\n      - reduction (CHAIN.md, CONTROL.md): restoring long division over the 2W digits of s^2. W steps, each a chain of\n        S - 1 subtractions of N's read digits from one register with the table, each committed or held by the gate on\n        its own final borrow;\n  * write: the state's slot j at the position the writer's pointer gives slot j, its token by the writer's code.\n\nLearned (MODE = \"learned\"): the subtraction table (r, m, borrow in) -> (digit, borrow out), 200 rows; the product\ncell (a, b) -> (lo, hi), 100 rows; the commit gate borrow -> (hold, commit), 2 rows; the reader's digit-ness, codes,\nanchors and steps and the writer's code (IO.md). MODE = \"designed\" starts every one of them at the truth and never\ntrains (the plumbing check).\n\nThe prediction path (PATH = \"ste\", rule 8): the digits are one-hot vectors and every table is applied to them as a\nmatrix, multilinearly, with a straight-through table: one-hot(argmax) + (softmax - softmax.detach()). The forward pass is\nexactly the snapped machine (every value is 0 or 1), and the gradient of the final logits reaches every table's\nlogits through every lookup. The same holds for the reader (pointer positions, steps, digit-ness, the code of the\nselected reading) and the writer. No integer value is formed anywhere: no int64 number, no integer T. The exact\nmachine's multilinear gradient grows about 5x per link, so the state's gradient is discounted by GRAD_DAMP after every\nlink, addition and round (the value is unchanged). PATH = \"index\" runs the same machine with the digits as integers\nindexing the argmax tables (the pieces' way; outside autograd).\n\nWhat teaches the tables (the pieces' lessons; COMBINED.md says what changed where they meet):\n  * the reader and writer: IO.md's stages (the answer round trip, the code round trips, Bradley-Terry on x < N, the\n    reading's normalized mixture, the tiling, T's direction by speculation once the machine is exact);\n  * the subtraction table, phase A: every link of the machine's own division of its own square of x checks itself,\n    (D - N) + N = D, complete (the final borrow against the adder's final carry), the lowest place weighted ID_PLACE0;\n    the adder is the designed one until the reading is chosen (and for at least ADDER_WARM steps), then the learned\n    one, (D - N) - (0 - N) = D. With it the anchors that hold for any numbers: R - 0 = R, R - R = 0, and after the\n    warm start 0 + N = N, R + N = N + R;\n  * once the reading is chosen (IO's stage 4): the facts about the rows' numbers, x - N borrows, N - x does not,\n    (x - N) - N does not (x < N), 0 - N borrows (N > 0); the learned adder takes over the check at the same step;\n  * phase B, once the reading is chosen and the checks pass on ID_SWITCH of the links: Adam reset;\n  * the product cell, once every check of the table has been exact for LADDER_WIN steps in a row in phase B: X * 0 = 0\n    and the ladder X * (b + 1) = X * b + X along the verified frontier (SQUARE.md), on the rows' x and N, with the\n    learned adder (the snapped table) for its targets, its checks and its soft rows (the soft rows' two ripples carried\n    as one chain over their joint borrows, add_soft_joint);\n  * phase C, once x - N borrows on CMP_SWITCH of the rows: the gate's facts \"x mod N = x\" and \"N mod N = 0\" on a\n    detached table, and the rows' answers (T <= REAL_MAX_T) along the own hard path with the soft gate at the hard\n    borrows, on the rows whose countdown, squarings and ladder check out (only learned arithmetic in the checks);\n  * freeze (learning rate 0) after FREEZE_WIN consecutive phase-C steps in which every check is exact on the hard\n    machine and T's direction is settled.\nThe schedule is Python-side state of the model (not model state). Everything runs in fp32 with autocast off.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport itertools\nfrom collections import deque\n\nimport torch\nfrom torch import Tensor, nn\nimport torch.nn.functional as F\n\nfrom benchmark import (\n    ModelSpec,\n    OptimizerBundle,\n    OptimizerSpec,\n    Submission,\n    TokenLossBatch,\n    assert_model_state,\n)\n\nMODE = \"learned\"       # \"learned\" | \"designed\" (every table, the gate and the I/O start at the truth, frozen: plumbing)\nPATH = \"ste\"           # the prediction path: \"ste\" (one-hot digits through straight-through tables, inside autograd) |\n                       # \"index\" (integer digits indexing the argmax tables, as the pieces)\nGRAD_DAMP = 0.1        # \"ste\": the state's gradient is multiplied by this after every link, addition and round (the\n                       # value is unchanged)\nW = 8                  # digits of the widest modulus (a 24-bit N is below 10^8); one reduction takes W steps\nP = W + 1              # register places: 10 R + v_t < 10 N < 10^9\nQ = W + 2              # places of a schoolbook row X * b (X * 9 < 10^9; one more keeps any table's row whole)\nS = 10                 # a step's chain has S - 1 links, enough for Rp - 9N\nK = 2                  # the countdown's places: T's field\nSLOTS = (W, W, K, W)   # the fields' slots: N, x, T; the writer\nINIT = 0.1             # std of the initial logits\nLR = 0.05              # Adam on the logits\n# the subtraction table (CHAIN.md, ADDER.md)\nID_SWITCH = 0.8        # phase B once this share of the table's checks passes, averaged ...\nSTAGE_WIN = 20         # ... over this many steps,\nID_STEPS = 300         # ... or after this many steps (and in both cases only once the reading is chosen)\nID_PLACE0 = 5.0        # weight of the lowest place in the check (the swapped borrow code fails it only there)\nID_BORROW = 1.0        # weight of the final borrow in the check: the complete identity (D - N) + N = D\nADDER_WARM = 70        # the designed adder in the check for at least the first ADDER_WARM steps, then the learned one ...\nWARM_TO_FACTS = True   # ... and (True) until the facts about x and N have joined: the learned adder needs them\n                       # (ADDER.md: without \"x - N borrows\", \"N - x does not\", \"(x - N) - N does not\" it drifts to a\n                       # consistent wrong table), and they need the reading (COMBINED.md section 2)\nFACTS_FROM = \"reading\"  # the facts about x and N join: \"reading\" (once the reading is chosen) | \"B\" (with phase B)\nANCHOR_ZERO = 1.0      # R - 0 = R on the registers\nANCHOR_SELF = 1.0      # R - R = 0 on the registers\nANCHOR_NEG2 = 1.0      # 0 + N = N with the learned adder: 0 - (0 - N) = N (after the warm start)\nANCHOR_COMM = 1.0      # R + N = N + R with the learned adder (after the warm start)\nANCHOR_LESS = 1.0      # x < N: x - N borrows (once the reading is chosen; CONTROL.md's \"x - N borrows\")\nANCHOR_MORE = 1.0      # x < N: N - x does not borrow (once the reading is chosen)\nANCHOR_WRAP = 1.0      # x - N wraps to 10^P + x - N >= N: (x - N) - N does not borrow (once the reading is chosen)\nANCHOR_NEG = 1.0       # N > 0: 0 - N borrows (once the reading is chosen, after the warm start)\n# the commit gate (CONTROL.md)\nCMP_SWITCH = 0.99      # phase C once x - N borrows on this share of the rows, averaged over STAGE_WIN steps, ...\nCMP_STEPS = 300        # ... or after this many steps of phase B\nSELF_LESSON = True     # phase C: \"x mod N = x\" (one step from the register x keeps trial 0)\nNMOD_LESSON = True     # phase C: \"N mod N = 0\" (one step from the register N keeps trial 1)\nFACT_TABLE = False     # the two facts also teach the table (False: a detached copy, so they teach only the gate)\nOWN_GATE = \"mix\"       # the own path's soft register keeps each trial with the soft gate at the hard borrows | \"off\"\n# the product cell (SQUARE.md)\nLADDER_W = 1.0         # weight of the ladder's loss\nLADDER_WIN = 20        # the ladder joins once every check of the table has been exact this many steps in a row ...\nLADDER_STEPS = 300     # ... or after this many steps of phase B\n# the reader and writer (IO.md)\nBT_TAU = 1.0           # Bradley-Terry temperature of the rank codes\nPICK_PASS = 0.999      # the reading is chosen once a hypothesis passes x < N on this share of the batch ...\nPICK_WIN = 20          # ... for this many steps in a row\nCHOSEN = 0.99          # then the tiling joins once the mixture puts this posterior on one reading\nT_AFTER = 20           # T's direction: speculate once the machine has been exact this many steps in a row ...\nT_ROWS = 64            # ... on at most this many rows whose two readings of T differ\nT_DONE = 0.999         # ... until the snapped reading reproduces their answers and carries this weight\nREAL_MAX_T = 2         # phase C also trains on the batch's real rows with T <= REAL_MAX_T (one digit)\nFREEZE_WIN = 200       # phase C: freeze after this many consecutive steps with every check exact\nBATCH = 512\nEVAL_BATCH = 16384\nMAX_STEPS = 20000\nLOG_EVERY = 250\nEPS = 1e-6\n\nPERMS = list(itertools.permutations(range(3)))\nHYP = [(rn, dn, rx, dx) for rn in range(3) for rx in range(3) if rn != rx for dn in range(2) for dx in range(2)]\nHIDX = {h: i for i, h in enumerate(HYP)}  # (N's run, N's direction, x's run, x's direction); direction 0: step +1\n\n\ndef tally(acc: Tensor | None, idx: Tensor, n: int) -> None:\n    \"\"\"Training / evaluation audits: how often each table row is used.\"\"\"\n    if acc is not None:\n        acc += torch.bincount(idx.flatten(), minlength=n)\n\n\ndef exact_tables(device) -> tuple[Tensor, Tensor]:\n    \"\"\"The true subtractor (the designed start only): digit and borrow of r - m - c, flat over (r, m, c).\"\"\"\n    r = torch.arange(10, device=device)[:, None, None]\n    m = torch.arange(10, device=device)[None, :, None]\n    c = torch.arange(2, device=device)[None, None, :]\n    x = r - m - c\n    return (x % 10).flatten(), (x < 0).long().flatten()\n\n\ndef exact_products(device) -> tuple[Tensor, Tensor]:\n    \"\"\"The true product cell (the designed start only): lo and hi digit of a * b, flat over (a, b).\"\"\"\n    v = torch.arange(10, device=device)[:, None] * torch.arange(10, device=device)[None, :]\n    return (v % 10).flatten(), (v // 10).flatten()\n\n\ndef ste(hard: Tensor, soft: Tensor) -> Tensor:\n    \"\"\"Straight-through: the value is exactly `hard` (soft - soft.detach() is exactly 0), the gradient is soft's.\"\"\"\n    return hard + (soft - soft.detach())\n\n\ndef damp(x: Tensor) -> Tensor:\n    \"\"\"The prediction path's state after a link, an addition or a round: the same value, its gradient times GRAD_DAMP.\n    The multilinear gradient of the exact machine grows several times per link (each gate decision gathers every\n    place's gradient into the borrow chain), so undamped it overflows within one division. (Without autograd, as at\n    evaluation, there is no gradient to scale.)\"\"\"\n    if GRAD_DAMP == 1.0 or not torch.is_grad_enabled():\n        return x\n    return x.detach() + GRAD_DAMP * (x - x.detach())\n\n\n# ------------------------------------------------------------------------------------------------ hard digits (integers)\ndef sub_hard(D: Tensor, M: Tensor, Td: Tensor, Tb: Tensor):\n    \"\"\"D - M place by place from the lowest with the snapped table (flat Td, Tb [200] indexed r * 20 + m * 2 + c), any\n    width and batch shape: digits [..., L], LSB first. Returns the digits, the final borrow and the table rows.\"\"\"\n    c = torch.zeros_like(D[..., 0])\n    outs, rows = [], []\n    for j in range(D.shape[-1]):\n        idx = (D[..., j] * 10 + M[..., j]) * 2 + c\n        outs.append(Td[idx])\n        c = Tb[idx]\n        rows.append(idx)\n    return torch.stack(outs, -1), c, torch.stack(rows, -1)\n\n\ndef add_learned(A: Tensor, B: Tensor, Td: Tensor, Tb: Tensor, visits: Tensor | None = None):\n    \"\"\"The learned adder (ADDER.md): A + B mod 10^L as A - (0 - B), both subtractions the table (in ten's complement\n    0 - B is 10^L - B), and the final carry borrow(0 - B) - borrow(A - (0 - B)).\"\"\"\n    C, bc, r1 = sub_hard(torch.zeros_like(B), B, Td, Tb)\n    Y, by, r2 = sub_hard(A, C, Td, Tb)\n    tally(visits, r1, 200)\n    tally(visits, r2, 200)\n    return Y, bc - by\n\n\ndef add_hard(D: Tensor, M: Tensor) -> tuple[Tensor, Tensor]:\n    \"\"\"The designed adder (the warm start's check only): digits D + M, mod 10^L, and the final carry.\"\"\"\n    c = torch.zeros_like(D[..., 0])\n    out = []\n    for j in range(D.shape[-1]):\n        x = D[..., j] + M[..., j] + c\n        out.append(x % 10)\n        c = x // 10\n    return torch.stack(out, -1), c\n\n\ndef row_hard(X: Tensor, b: Tensor, tabs, visits: Tensor | None = None, pvisits: Tensor | None = None) -> Tensor:\n    \"\"\"Schoolbook row X * b on digits: X [..., W] times the digits b [...] with the snapped product cell (flat lo and hi\n    tables [100] indexed a * 10 + b): lo at place i, hi at place i + 1, summed by the learned adder. Returns [..., Q].\"\"\"\n    Td, Tb, Plo, Phi = tabs[:4]\n    idx = X * 10 + b[..., None]\n    z = torch.zeros_like(X[..., :1])\n    tally(pvisits, idx, 100)\n    return add_learned(torch.cat([Plo[idx], z, z], -1), torch.cat([z, Phi[idx], z], -1), Td, Tb, visits)[0]\n\n\ndef square_hard(Sd: Tensor, tabs, visits: Tensor | None = None, pvisits: Tensor | None = None, check: bool = False):\n    \"\"\"s^2 by schoolbook on digits Sd [X, W] -> the 2W digits of s^2 [X, 2W]. The W rows s * s_j side by side, then\n    summed one by one, shifted by j, by the learned adder in 2W + 2 places (no table can wrap). With `check` also, per\n    row, whether every one of its additions passes its own subtraction check (A + B) - B = A with borrow = carry.\"\"\"\n    X, (Td, Tb) = Sd.shape[0], tabs[:2]\n    rows = row_hard(Sd[:, None, :].expand(X, W, W), Sd, tabs, visits, pvisits)       # [X, W (j), Q]\n    acc = torch.zeros(X, 2 * W + 2, dtype=Sd.dtype, device=Sd.device)\n    ok = torch.ones(X, dtype=torch.bool, device=Sd.device)\n    for j in range(W):\n        B = F.pad(rows[:, j], (j, 2 * W + 2 - Q - j))\n        Y, cy = add_learned(acc, B, Td, Tb, visits)\n        if check:\n            A2, b2, _ = sub_hard(Y, B, Td, Tb)\n            ok = ok & (A2 == acc).all(-1) & (b2 == cy)\n        acc = Y\n    return (acc[:, :2 * W], ok) if check else acc[:, :2 * W]\n\n\ndef ladder_hard(Xn: Tensor, tabs, visits: Tensor | None = None):\n    \"\"\"The ladder's hard rungs on the numbers Xn [n, W]: the machine's own rows X * b [n, 10, Q], the targets\n    X * b + X (b = 0..8, the learned adder) and whether rung c checks out [n, 10] (rung 0: X * 0 = 0).\"\"\"\n    n = Xn.shape[0]\n    bs = torch.arange(10, device=Xn.device)\n    hard = row_hard(Xn[:, None, :].expand(n, 10, W), bs[None].expand(n, 10), tabs, visits)\n    tgt = add_learned(hard[:, :9], F.pad(Xn, (0, Q - W))[:, None].expand(n, 9, Q), tabs[0], tabs[1], visits)[0]\n    ok = torch.cat([(hard[:, :1] == 0).all(-1), (hard[:, 1:] == tgt).all(-1)], 1)\n    return hard, tgt, ok\n\n\ndef square_ok(Sd: Tensor, tabs) -> Tensor:\n    \"\"\"Per row, whether the machine's square of Sd checks out with learned parts only: the ladder verifies every rung up\n    to its largest digit (the rows s * s_j), and every addition passes its subtraction check.\"\"\"\n    verified = ladder_hard(Sd, tabs)[2].long().cumprod(1).bool()\n    rows_ok = verified.gather(1, Sd.max(1).values[:, None])[:, 0]\n    return rows_ok & square_hard(Sd, tabs, check=True)[1]\n\n\ndef top(V: Tensor, steps: int) -> Tensor:\n    \"\"\"The digits of V // 10^steps in P places (V [X, L] digits): the division's starting register.\"\"\"\n    R = V[:, steps:steps + P]\n    return F.pad(R, (0, P - R.shape[1]))\n\n\ndef step_hard(Rp: Tensor, M: Tensor, Td: Tensor, Tb: Tensor, Gc: Tensor, visits: Tensor | None = None,\n              gvisits: Tensor | None = None):\n    \"\"\"One division step on digits: S - 1 links on one register, each D - N with the table, and the gate Gc [2]\n    (1 = commit) on the link's final borrow: the register takes the difference or keeps D. Returns the register [X, P],\n    every link's input [X, S - 1, P] and whether each link committed [X, S - 1].\"\"\"\n    D = Rp\n    ins, commits = [], []\n    for _ in range(1, S):\n        ins.append(D)\n        E, c, idx = sub_hard(D, M, Td, Tb)\n        k = Gc[c] == 1\n        D = torch.where(k[:, None], E, D)\n        tally(visits, idx, 200)\n        tally(gvisits, c, 2)\n        commits.append(k)\n    return D, torch.stack(ins, 1), torch.stack(commits, 1)\n\n\ndef divide_hard(V: Tensor, M: Tensor, Td: Tensor, Tb: Tensor, Gc: Tensor, visits: Tensor | None = None,\n                gvisits: Tensor | None = None) -> Tensor:\n    \"\"\"V mod N on digits V [X, 2W], from R = V // 10^W (below N) in W steps of the chain. Returns [X, P].\"\"\"\n    R = top(V, W)\n    for t in reversed(range(W)):\n        R = step_hard(torch.cat([V[:, t, None], R[:, :P - 1]], 1), M, Td, Tb, Gc, visits, gvisits)[0]\n    return R\n\n\ndef link_inputs(V: Tensor, M: Tensor, Td: Tensor, Tb: Tensor, Gc: Tensor) -> Tensor:\n    \"\"\"The hard division's link inputs at every step [X, W, S - 1, P]: the machine's own numbers, every link it\n    computes (a held register makes the next link recompute the same subtraction).\"\"\"\n    R = top(V, W)\n    out = []\n    for t in reversed(range(W)):\n        R, ins, _ = step_hard(torch.cat([V[:, t, None], R[:, :P - 1]], 1), M, Td, Tb, Gc)\n        out.append(ins)\n    return torch.stack(out, 1)\n\n\ndef count_round(C: Tensor, Td: Tensor, Tb: Tensor, Gc: Tensor):\n    \"\"\"One round of the countdown C [X, K]: C - 1 with the table and the gate on its final borrow. Returns the\n    difference, whether the round commits [X], the final borrow [X] and the table rows.\"\"\"\n    Cn, b, idx = sub_hard(C, F.one_hot(torch.zeros_like(C[:, 0]), C.shape[1]), Td, Tb)   # the digits of 1\n    return Cn, Gc[b] == 1, b, idx\n\n\ndef run_hard(Sd: Tensor, C: Tensor, M: Tensor, tabs, cap: int | None = None, visits: Tensor | None = None,\n             gvisits: Tensor | None = None, cvisits: Tensor | None = None, pvisits: Tensor | None = None):\n    \"\"\"The hard machine on digits: rounds until no row commits (at most `cap`, by default 10^K). A committing row\n    squares and reduces its state and takes the countdown's difference; a holding row keeps both. Returns the state\n    [X, W], the input of each row's last committed squaring [X, W] (x if none), the number of committed rounds [X]\n    and whether the row has held [X]. `visits` / `pvisits` / `gvisits` accumulate the table / product / gate rows of\n    the squarings and reductions, `cvisits` the table rows of the countdown.\"\"\"\n    Td, Tb, Plo, Phi, Gc = tabs\n    s, prev = Sd.clone(), Sd.clone()\n    rounds = torch.zeros_like(Sd[:, 0])\n    held = torch.zeros_like(Sd[:, 0], dtype=torch.bool)\n    for _ in range(10 ** C.shape[1] if cap is None else cap):\n        Cn, k, b, idx = count_round(C, Td, Tb, Gc)\n        tally(cvisits, idx, 200)\n        tally(gvisits, b, 2)\n        held = held | ~k\n        if not bool(k.any()):\n            break\n        prev = torch.where(k[:, None], s, prev)\n        R = divide_hard(square_hard(s, tabs, visits, pvisits), M, Td, Tb, Gc, visits, gvisits)\n        s = torch.where(k[:, None], R[:, :W], s)\n        C = torch.where(k[:, None], Cn, C)\n        rounds = rounds + k.long()\n    return s, prev, rounds, held\n\n\n# ------------------------------------------------------------------------------------------------ digit distributions\ndef onehot0(n: int, L: int, device, dtype=torch.float32) -> Tensor:\n    \"\"\"n numbers of L exact 0 digits [n, L, 10].\"\"\"\n    z = torch.zeros(n, L, 10, device=device, dtype=dtype)\n    z[..., 0] = 1\n    return z\n\n\ndef zpad(D: Tensor, low: int, high: int) -> Tensor:\n    \"\"\"Digit distributions [X, L, 10] padded with exact 0 digits below (low) and above (high).\"\"\"\n    return torch.cat([onehot0(D.shape[0], low, D.device, D.dtype), D, onehot0(D.shape[0], high, D.device, D.dtype)], 1)\n\n\ndef link_soft(D: Tensor, M: Tensor, TDC: Tensor):\n    \"\"\"D - M on digit distributions D [X, L, 10] minus exact digits M [X, L], the cell applied multilinearly. TDC\n    [20, 120]: rows (r, c), columns (m, 10 digit + 2 borrow probabilities). Returns the digits [X, L, 10] and the\n    borrow out of every place [X, L, 2] (the last is the final borrow).\"\"\"\n    X = D.shape[0]\n    c = torch.zeros(X, 2, device=D.device)\n    c[:, 0] = 1\n    out, borrows = [], []\n    for j in range(D.shape[1]):\n        joint = (D[:, j, :, None] * c[:, None, :]).reshape(X, 20)\n        Y = (joint @ TDC).view(X, 10, 12)                                       # every m at once\n        Y = Y.gather(1, M[:, j, None, None].expand(X, 1, 12)).squeeze(1)        # M's own digit\n        out.append(Y[:, :10])\n        c = Y[:, 10:]\n        borrows.append(c)\n    return torch.stack(out, 1), torch.stack(borrows, 1)\n\n\ndef sub_soft(D: Tensor, M: Tensor, TDC: Tensor, used: Tensor | None = None):\n    \"\"\"D - M with both operands digit distributions [X, L, 10] (multilinear). Returns the digits [X, L, 10] and the\n    borrow out of every place [X, L, 2]. With one-hot operands and a straight-through table this is the prediction\n    path's subtraction: every value is exactly the snapped table's. `used` accumulates the rows (r, m, c) met.\"\"\"\n    X = D.shape[0]\n    c = torch.zeros(X, 2, device=D.device, dtype=D.dtype)\n    c[:, 0] = 1\n    out, borrows = [], []\n    for j in range(D.shape[1]):\n        if used is not None:\n            used += torch.einsum(\"xr,xm,xc->rmc\", D[:, j], M[:, j], c).detach().flatten()\n        joint = (D[:, j, :, None] * c[:, None, :]).reshape(X, 20)\n        Y = torch.einsum(\"xmk,xm->xk\", (joint @ TDC).view(X, 10, 12), M[:, j])   # expected over the subtrahend's digit\n        out.append(Y[:, :10])\n        c = Y[:, 10:]\n        borrows.append(c)\n    return torch.stack(out, 1), torch.stack(borrows, 1)\n\n\ndef add_soft_learned(A: Tensor, B: Tensor, TDC: Tensor, used: Tensor | None = None):\n    \"\"\"The learned adder on digit distributions [X, L, 10]: A - (0 - B). Returns the sum's digits and P(carry = 1).\"\"\"\n    C, bc = sub_soft(onehot0(B.shape[0], B.shape[1], B.device, B.dtype), B, TDC, used)\n    Y, by = sub_soft(A, C, TDC, used)\n    return Y, bc[:, -1, 1] * by[:, -1, 0]\n\n\ndef add_soft_joint(A: Tensor, B: Tensor, TH: Tensor) -> Tensor:\n    \"\"\"The learned adder on digit distributions A, B [X, L, 10] for the ladder's soft rows: A - (0 - B) with the table\n    TH (soft_table's layout), the two ripples carried as one chain over their joint borrow state (the borrow of 0 - B,\n    the borrow of A - (0 - B)). The sum's digit marginals are then exact for independent digits; with the true table this\n    is the designed soft adder exactly. add_soft_learned's two separate ripples treat the digits of 0 - B as independent\n    although its borrow chain ties them: a soft hi digit then puts spurious errors on every place above it, which hold\n    the ladder near P(9) = 0.93 for a hi digit that should be 0 (COMBINED.md section 2). Returns [X, L, 10].\"\"\"\n    X = A.shape[0]\n    T = TH.view(10, 2, 10, 12)                                              # [r, borrow in, m, digit + borrow out]\n    Pd, Pb = T[..., :10], T[..., 10:]\n    T0 = (Pd[0][..., :, None] * Pb[0][..., None, :]).permute(1, 0, 2, 3).reshape(10, 40)   # m -> (bc, C, bc')\n    T1 = (Pd[..., :, None] * Pb[..., None, :]).reshape(10, 400)             # r -> (by, C, Y, by')\n    s = torch.zeros(X, 2, 2, device=A.device, dtype=A.dtype)                # P(bc, by): the two borrows in\n    s[:, 0, 0] = 1\n    out = []\n    for j in range(A.shape[1]):\n        P1 = (B[:, j] @ T0).view(X, 2, 10, 2)                               # 0 - B: [x, bc, C, bc']\n        P2 = (A[:, j] @ T1).view(X, 20, 20)                                 # A - C: [x, (by, C), (Y, by')]\n        Q1 = torch.einsum(\"xab,xacp->xpbc\", s, P1).reshape(X, 2, 20)        # [x, bc', (by, C)]\n        J = torch.bmm(Q1, P2).view(X, 2, 10, 2)                             # [x, bc', Y, by']\n        out.append(J.sum((1, 3)))\n        s = J.sum(2)\n    return torch.stack(out, 1)\n\n\ndef add_soft(D: Tensor, M: Tensor) -> tuple[Tensor, Tensor]:\n    \"\"\"The designed adder (the warm start's check only) on digit distributions D [..., L, 10] plus exact digits\n    M [..., L], mod 10^L (multilinear), and the probability of a final carry.\"\"\"\n    o = torch.arange(10, device=D.device)\n    c1 = torch.zeros(D.shape[:-2], device=D.device)                         # P(carry in = 1)\n    out = []\n    for j in range(D.shape[-2]):\n        d, m = D[..., j, :], M[..., j, None]\n        out.append((1 - c1)[..., None] * d.gather(-1, (o - m) % 10) + c1[..., None] * d.gather(-1, (o - m - 1) % 10))\n        below = torch.cat([torch.zeros_like(d[..., :1]), d.cumsum(-1)], -1)  # below[k] = P(d < k)\n        g0 = 1 - below.gather(-1, 10 - m)                                    # P(d + m >= 10)\n        g1 = 1 - below.gather(-1, 9 - m)                                     # P(d + m + 1 >= 10)\n        c1 = (1 - c1) * g0[..., 0] + c1 * g1[..., 0]\n    return torch.stack(out, -2), c1\n\n\ndef row_soft(X: Tensor, b: int, PLO: Tensor, PHI: Tensor, TH: Tensor) -> Tensor:\n    \"\"\"The row X * b on digit distributions: the soft product cell PLO, PHI [10, 10, 10] (a, b) -> digit\n    probabilities on the exact digits X [n, W], summed by the learned adder on the snapped table TH (one joint chain\n    over both ripples' borrows, add_soft_joint). Returns [n, Q, 10].\"\"\"\n    return add_soft_joint(zpad(PLO[X, b], 0, 2), zpad(PHI[X, b], 1, 1), TH)\n\n\ndef trials_soft(D: Tensor, M: Tensor, TDC: Tensor) -> tuple[Tensor, Tensor]:\n    \"\"\"A step's trials on digit distributions: trial 0 is the register D [X, P, 10], trial j is trial j - 1 minus N.\n    Returns the trials [X, S, P, 10] and each link's final borrow [X, S - 1, 2].\"\"\"\n    trials, borrows = [D], []\n    for _ in range(1, S):\n        E, c = link_soft(trials[-1], M, TDC)\n        trials.append(E)\n        borrows.append(c[:, -1])\n    return torch.stack(trials, 1), torch.stack(borrows, 1)\n\n\ndef keep_soft(trials: Tensor, pc: Tensor) -> Tensor:\n    \"\"\"The register after a step whose link j + 1 commits with probability pc[:, j] [X, S - 1]: trial j is kept with the\n    probability that links 1..j commit and link j + 1 holds (trial S - 1 when every link commits).\"\"\"\n    alive = torch.ones_like(pc[:, 0])\n    R = torch.zeros_like(trials[:, 0])\n    for j in range(S - 1):\n        R = R + (alive * (1 - pc[:, j]))[:, None, None] * trials[:, j]\n        alive = alive * pc[:, j]\n    return R + alive[:, None, None] * trials[:, S - 1]\n\n\ndef chain_soft(D: Tensor, M: Tensor, TDC: Tensor, GS: Tensor) -> Tensor:\n    \"\"\"One division step on digit distributions from the register D [X, P, 10], the gate GS [2] = P(commit | borrow 0,\n    1) on each link's soft borrow (CONTROL.md's trial mixture).\"\"\"\n    trials, b = trials_soft(D, M, TDC)\n    return keep_soft(trials, (b * GS).sum(-1))\n\n\ndef divide_path(V: Tensor, M: Tensor, TDC: Tensor, GS: Tensor, Td: Tensor, Tb: Tensor, Gc: Tensor,\n                visits: Tensor | None = None, gvisits: Tensor | None = None):\n    \"\"\"The model's own hard path, learned along (CONTROL.md): at each step the hard datapath computes the trials and\n    their borrows and keeps the trial before the gate's first hold; the soft cell computes the same trials from the soft\n    register and keeps them with the soft gate's probabilities at the hard borrows. V [X, 2W] digits (the machine's own\n    hard square). Returns the soft remainder [X, P, 10] and the hard one [X, P].\"\"\"\n    Rh = top(V, W)\n    Rs = F.one_hot(Rh, 10).float()\n    for t in reversed(range(W)):\n        vt = V[:, t]\n        Dh = torch.cat([vt[:, None], Rh[:, :P - 1]], 1)\n        hard, bh = [Dh], []\n        for _ in range(1, S):\n            Eh, c, idx = sub_hard(hard[-1], M, Td, Tb)\n            hard.append(Eh)\n            bh.append(c)\n            tally(visits, idx, 200)\n            tally(gvisits, c, 2)\n        bh = torch.stack(bh, 1)                                             # [X, S - 1]\n        q = (Gc[bh] == 1).long().cumprod(1).sum(1)                          # commits before the first hold\n        Rh = torch.stack(hard, 1).gather(1, q[:, None, None].expand(-1, 1, P)).squeeze(1)\n        trials = trials_soft(torch.cat([F.one_hot(vt, 10).float()[:, None], Rs[:, :P - 1]], 1), M, TDC)[0]\n        pc = GS[bh] if OWN_GATE == \"mix\" else (torch.arange(S - 1, device=V.device)[None] < q[:, None]).float()\n        Rs = keep_soft(trials, pc)\n    return Rs, Rh\n\n\ndef ce(R: Tensor, target: Tensor, width: Tensor) -> Tensor:\n    \"\"\"Cross-entropy of the remainder's digits below N's width (a remainder below N has `width` digits).\"\"\"\n    scored = (torch.arange(P, device=R.device)[None] < width[:, None]).float()\n    nll = -R.clamp_min(1e-12).log().gather(-1, target[..., None]).squeeze(-1)\n    return (nll * scored).sum() / scored.sum().clamp_min(1)\n\n\n# ------------------------------------------------------------------------------------------------ the prediction path\ndef square_ste(Sd: Tensor, TDC: Tensor, PROD: Tensor, used: Tensor | None = None, pused: Tensor | None = None):\n    \"\"\"s^2 by schoolbook on one-hot digits Sd [X, W, 10] with the straight-through product cell PROD [100, 20] and\n    subtraction table TDC: square_hard's wiring. Returns [X, 2W, 10].\"\"\"\n    X = Sd.shape[0]\n    cell = (Sd[:, None, :, :, None] * Sd[:, :, None, None, :]).reshape(X, W, W, 100)   # [x, j, i, (s_i, s_j)]\n    if pused is not None:\n        pused += cell.detach().sum((0, 1, 2))\n    lohi = cell @ PROD\n    lo, hi = lohi[..., :10].reshape(X * W, W, 10), lohi[..., 10:].reshape(X * W, W, 10)\n    rows = damp(add_soft_learned(zpad(lo, 0, 2), zpad(hi, 1, 1), TDC, used)[0]).view(X, W, Q, 10)\n    acc = onehot0(X, 2 * W + 2, Sd.device, Sd.dtype)\n    for j in range(W):\n        acc = damp(add_soft_learned(acc, zpad(rows[:, j], j, 2 * W + 2 - Q - j), TDC, used)[0])\n    return acc[:, :2 * W]\n\n\ndef divide_ste(V: Tensor, M: Tensor, TDC: Tensor, G: Tensor, used: Tensor | None = None,\n               gused: Tensor | None = None) -> Tensor:\n    \"\"\"V mod N on one-hot digits V [X, 2W, 10], M [X, P, 10] (divide_hard's wiring): each link's final borrow, read by\n    the straight-through gate G [2, 2], commits (the register takes the difference) or holds. Returns [X, P, 10].\"\"\"\n    R = zpad(V[:, W:], 0, P - W)\n    for t in reversed(range(W)):\n        D = torch.cat([V[:, t:t + 1], R[:, :P - 1]], 1)\n        for _ in range(1, S):\n            E, bor = sub_soft(D, M, TDC, used)\n            b = bor[:, -1]\n            if gused is not None:\n                gused += b.detach().sum(0)\n            k = (b * G[:, 1]).sum(-1)[:, None, None]                        # 1: commit, 0: hold\n            D = damp(k * E + (1 - k) * D)\n        R = D\n    return R\n\n\ndef run_ste(Sd: Tensor, C: Tensor, M: Tensor, TDC: Tensor, PROD: Tensor, G: Tensor, used: Tensor | None = None,\n            cused: Tensor | None = None, pused: Tensor | None = None, gused: Tensor | None = None) -> Tensor:\n    \"\"\"run_hard on one-hot digits: the countdown C [X, K, 10] takes C - 1 with the table each round and the gate on\n    its final borrow decides; a committing row squares and reduces its state. The rounds end when no row commits.\"\"\"\n    one = onehot0(C.shape[0], C.shape[1], C.device, C.dtype)                # the digits of 1\n    one[:, 0] = F.one_hot(torch.tensor(1, device=C.device), 10).to(C.dtype)\n    s = Sd\n    for _ in range(10 ** C.shape[1]):\n        Cn, bor = sub_soft(C, one, TDC, cused)\n        b = bor[:, -1]\n        if gused is not None:\n            gused += b.detach().sum(0)\n        k = (b * G[:, 1]).sum(-1)\n        if not bool((k > 0.5).any()):\n            break\n        R = divide_ste(square_ste(s, TDC, PROD, used, pused), M, TDC, G, used, gused)\n        kk = k[:, None, None]\n        s = damp(kk * R[:, :W] + (1 - kk) * s)\n        C = damp(kk * Cn + (1 - kk) * C)\n    return s\n\n\ndef shift(A: Tensor, d: int) -> Tensor:\n    \"\"\"Position distributions [X, Lp] moved by d places (mass at q goes to q + d; zero-filled).\"\"\"\n    if d >= 0:\n        return F.pad(A, (d, 0))[:, :A.shape[1]]\n    return F.pad(A, (0, -d))[:, -d:]\n\n\nclass Config:\n    def __init__(self, vocab_size: int, max_seq_len: int) -> None:\n        self.vocab_size = vocab_size\n        self.max_seq_len = max_seq_len\n\n\nclass Control:\n    \"\"\"The training schedule (Python-side, not model state): the I/O stages, the machine's phases A, B, C, frozen,\n    whether the ladder has joined; and the audits' counters.\"\"\"\n\n    def __init__(self) -> None:\n        designed = MODE == \"designed\"\n        self.step = 0\n        self.phase = \"frozen\" if designed else \"A\"\n        self.io = 5 if designed else 1        # 1 answers, 2 ranks, 3 reading, 4 tiling, 5 T's direction done\n        self.ladder = designed                # the product cell's ladder has joined\n        self.table_streak = 0                 # steps in a row with every check of the table exact (phase B on)\n        self.ladder_wait = 0\n        self.in_phase = 0\n        self.streak = 0\n        self.pick = 0                         # steps in a row with a hypothesis passing x < N\n        self.best = 0\n        self.rows3 = 0.0\n        self.chosen = 0.0                     # the mixture's mean posterior on its favourite reading\n        self.io_exact = False                 # the I/O's own hard checks, this step\n        self.reset = False                    # the scheduler clears Adam's state at the switch to phase B\n        self.reset_params: list = []          # ... or only these parameters' (the product cell when the ladder joins)\n        self.win: deque = deque(maxlen=STAGE_WIN)\n        self.visits: Tensor | None = None     # table rows used by training's hard checks and own path (the audit)\n        self.pvisits: Tensor | None = None    # product cells the ladder trained\n        self.gvisits: Tensor | None = None    # gate rows (borrow 0, 1) used by training\n        self.used: Tensor | None = None       # at evaluation: table rows of the squarings and reductions, ...\n        self.used_count: Tensor | None = None  # ... of the countdown, ...\n        self.pused: Tensor | None = None      # ... product cells, ...\n        self.used_gate: Tensor | None = None  # ... gate rows\n        self.reported = None\n        self.history: list = []\n        self.t_log = \"\"\n\n\nclass LearnedCombined(nn.Module):\n    def __init__(self, spec: ModelSpec) -> None:\n        super().__init__()\n        V = spec.vocab_size\n        self.config = Config(V, spec.max_seq_len)\n        self.V, self.END, self.OUT = V, V, V + 1                             # virtual tokens: the end, beyond it\n        self.a = nn.Parameter(INIT * torch.randn(10, 10, 2, 10))           # subtractor: (r, m, borrow in) -> digit\n        self.b = nn.Parameter(INIT * torch.randn(10, 10, 2, 2))            # ... -> borrow out\n        self.p_lo = nn.Parameter(INIT * torch.randn(10, 10, 10))           # product cell: (a, b) -> lo digit\n        self.p_hi = nn.Parameter(INIT * torch.randn(10, 10, 10))           # ... -> hi digit\n        self.g = nn.Parameter(INIT * torch.randn(2, 2))                    # commit gate: borrow -> (hold, commit)\n        self.dg = nn.Parameter(INIT * torch.randn(V))                      # token -> is a digit\n        self.u = nn.Parameter(INIT * torch.randn(len(HYP), V))             # per reading hypothesis: token scores\n        self.wc = nn.Parameter(INIT * torch.randn(10, V))                  # writer: value -> token\n        self.anc = nn.Parameter(INIT * torch.randn(4, V + 1))              # field anchor: a token id, or the end\n        self.strd = nn.Parameter(INIT * torch.randn(4, 2))                 # field step: +1 | -1\n        self.ctl = Control()\n        if MODE == \"designed\":\n            self.designed()\n\n    @torch.no_grad()\n    def designed(self) -> None:\n        \"\"\"Every table at the truth (the plumbing check only): the subtractor, the product cell, the gate (commit unless\n        the subtraction borrows); N read after its marker, x before T's marker, T and the answer at the end, reading\n        leftwards; digits 7..16 valued 0..9.\"\"\"\n        hot = lambda t, n: 10.0 * F.one_hot(t, n).float() - 5.0\n        Td, Tb = exact_tables(\"cpu\")\n        Plo, Phi = exact_products(\"cpu\")\n        self.a.copy_(hot(Td, 10).view(10, 10, 2, 10))\n        self.b.copy_(hot(Tb, 2).view(10, 10, 2, 2))\n        self.p_lo.copy_(hot(Plo, 10).view(10, 10, 10))\n        self.p_hi.copy_(hot(Phi, 10).view(10, 10, 10))\n        self.g.copy_(hot(torch.tensor([1, 0]), 2))\n        DIGIT, MARK_N, MARK_T = 7, 2, 4\n        self.dg.fill_(-5.0)\n        self.dg[DIGIT:DIGIT + 10] = 5.0\n        self.u.copy_(torch.arange(self.V, dtype=torch.float)[None].expand_as(self.u))\n        self.wc.fill_(-5.0)\n        self.wc[torch.arange(10), DIGIT + torch.arange(10)] = 5.0\n        self.anc.fill_(-5.0)\n        self.strd.fill_(-5.0)\n        for f, (tok, step) in enumerate([(MARK_N, 0), (MARK_T, 1), (self.END, 1), (self.END, 1)]):\n            self.anc[f, tok] = 5.0\n            self.strd[f, step] = 5.0\n\n    def zero(self) -> Tensor:\n        return sum(p.sum() for p in self.parameters()) * 0.0\n\n    # ------------------------------------------------------------------ the tables\n    def tables(self):\n        \"\"\"The snapped tables: subtractor digit and borrow [200], product lo and hi [100], gate [2] (1 = commit).\"\"\"\n        return (self.a.argmax(-1).flatten(), self.b.argmax(-1).flatten(), self.p_lo.argmax(-1).flatten(),\n                self.p_hi.argmax(-1).flatten(), self.g.argmax(-1))\n\n    def soft_table(self) -> Tensor:\n        \"\"\"The subtractor's softmax, laid out [20 (r, c), 120 (m, 10 digit + 2 borrow)].\"\"\"\n        T = torch.cat([self.a.float().softmax(-1), self.b.float().softmax(-1)], -1)\n        return T.permute(0, 2, 1, 3).reshape(20, 120)\n\n    def hard_table(self) -> Tensor:\n        \"\"\"The snapped subtractor as one-hot rows in soft_table's layout (no gradient): the learned adder of the\n        ladder's soft rows.\"\"\"\n        T = torch.cat([F.one_hot(self.a.argmax(-1), 10), F.one_hot(self.b.argmax(-1), 2)], -1).float()\n        return T.permute(0, 2, 1, 3).reshape(20, 120)\n\n    def gate_soft(self) -> Tensor:\n        \"\"\"P(commit | borrow 0, 1) [2].\"\"\"\n        return self.g.float().softmax(-1)[:, 1]\n\n    def ste_tables(self):\n        \"\"\"The straight-through tables of the prediction path: subtractor [20, 120] (soft_table's layout), product cell\n        [100, 20] (lo, hi), gate [2, 2] (borrow -> hold, commit). Values are the snapped tables exactly.\"\"\"\n        hot = lambda p: ste(F.one_hot(p.argmax(-1), p.shape[-1]).float(), p.float().softmax(-1))\n        T = torch.cat([hot(self.a), hot(self.b)], -1).permute(0, 2, 1, 3).reshape(20, 120)\n        return T, torch.cat([hot(self.p_lo), hot(self.p_hi)], -1).reshape(100, 20), hot(self.g)\n\n    # ------------------------------------------------------------------ the I/O pieces (IO.md)\n    def ext(self, ids: Tensor, mask: Tensor) -> tuple[Tensor, Tensor]:\n        \"\"\"Token ids with END at the prompt's end and OUT beyond, padded with OUT by W + 1 on each side (so every\n        pointer stays inside): [X, L + 1 + 2 (W + 1)], and the prompt's length [X].\"\"\"\n        end = mask.long().sum(1)\n        p = torch.arange(ids.shape[1] + 1, device=ids.device)[None]\n        e = torch.where(p < end[:, None], F.pad(ids, (0, 1)),\n                        torch.where(p == end[:, None], self.END, self.OUT))\n        return F.pad(e, (W + 1, W + 1), value=self.OUT), end\n\n    def isdig(self, e: Tensor) -> Tensor:\n        return (e < self.V) & (self.dg[e.clamp(max=self.V - 1)] > 0)\n\n    def ranks(self, k: Tensor) -> Tensor:\n        \"\"\"The code of hypothesis k [X] -> [X, V]: each digit token's rank among the digit tokens (others 0).\"\"\"\n        isd = self.dg > 0\n        u = self.u[k.clamp(min=0)]\n        below = ((u[..., None, :] < u[..., :, None]) & isd).sum(-1)\n        return torch.where(isd, below, 0).clamp(max=9)\n\n    def wsm(self) -> Tensor:\n        \"\"\"The writer's code P(token | value) [10, V]: only tokens believed to be digits can be written.\"\"\"\n        return (self.wc.float() + F.logsigmoid(self.dg.float())[None]).softmax(-1)\n\n    def valid_anchor(self, e: Tensor, end: Tensor) -> Tensor:\n        p = torch.arange(e.shape[1], device=e.device)[None]\n        return (p >= W + 1) & (p <= W + 1 + end[:, None])\n\n    def anchor_logits(self, f: int, e: Tensor, end: Tensor) -> Tensor:\n        return self.anc[f].float()[e.clamp(max=self.END)].masked_fill(~self.valid_anchor(e, end), -1e9)\n\n    def anchor(self, f: int, e: Tensor, end: Tensor) -> Tensor:\n        \"\"\"Field f's soft anchor over the prompt's positions and its end [X, Lp] (zero elsewhere).\"\"\"\n        return self.anchor_logits(f, e, end).softmax(-1)\n\n    def hard_pos(self, f: int, e: Tensor, end: Tensor):\n        \"\"\"Field f's snapped pointer: its slots' positions [X, n], its anchor [X] and its step.\"\"\"\n        q = self.anchor_logits(f, e, end).argmax(-1)\n        s = 1 if int(self.strd[f].argmax()) == 0 else -1\n        return q[:, None] + (torch.arange(SLOTS[f], device=e.device)[None] + 1) * s, q, s\n\n    def runs(self, e: Tensor, end: Tensor):\n        \"\"\"The snapped digit runs: rows with exactly three; each run's first and last position and its length.\"\"\"\n        p = torch.arange(e.shape[1], device=e.device)[None]\n        isd = (p >= W + 1) & (p < W + 1 + end[:, None]) & self.isdig(e)\n        start = isd & ~F.pad(isd[:, :-1], (1, 0))\n        stop = isd & ~F.pad(isd[:, 1:], (0, 1))\n        ok = start.sum(1) == 3\n        si = torch.where(start, p, e.shape[1] - 2).sort(1).values[:, :3]\n        ti = torch.where(stop, p, e.shape[1] - 2).sort(1).values[:, :3]\n        return ok, si, ti, ti - si + 1\n\n    def which_run(self, f: int, e: Tensor, end: Tensor, si: Tensor, ti: Tensor, ok: Tensor, length: Tensor):\n        \"\"\"The whole run field f's snapped pointer reads: its index, its direction (0: step +1) and whether it is one.\"\"\"\n        _, q, s = self.hard_pos(f, e, end)\n        first = q + s\n        inside = (first[:, None] >= si) & (first[:, None] <= ti)\n        r = inside.float().argmax(1)\n        edge = (si if s > 0 else ti).gather(1, r[:, None])[:, 0] - s\n        whole = inside.any(1) & (q == edge) & ok & (length.gather(1, r[:, None])[:, 0] <= SLOTS[f])\n        return r, int(s < 0), whole\n\n    def selected(self, e: Tensor, end: Tensor) -> Tensor:\n        \"\"\"Per row, the hypothesis the snapped N and x pointers make (-1: not a reading of two whole runs).\"\"\"\n        ok, si, ti, length = self.runs(e, end)\n        rn, dn, okn = self.which_run(0, e, end, si, ti, ok, length)\n        rx, dx, okx = self.which_run(1, e, end, si, ti, ok, length)\n        lut = torch.full((3, 2, 3, 2), -1, dtype=torch.long, device=e.device)\n        for h, i in HIDX.items():\n            lut[h] = i\n        return torch.where(okn & okx & (rn != rx), lut[rn, dn, rx, dx], -1)\n\n    def read(self, f: int, e: Tensor, end: Tensor, code: Tensor):\n        \"\"\"Field f read by its snapped pointer with the code [X, V]: digits [X, n] (LSB first, 0 after the first\n        non-digit) and the number of digits read [X].\"\"\"\n        pos, _, _ = self.hard_pos(f, e, end)\n        t = e.gather(1, pos)\n        live = self.isdig(t).long().cumprod(-1).bool()\n        return torch.where(live, code.gather(1, t.clamp(max=self.V - 1)), 0), live.sum(1)\n\n    def label_seq(self, e: Tensor, labels: Tensor, valid: Tensor, tpos: Tensor) -> Tensor:\n        \"\"\"The answer's tokens placed at their prompt positions (the evaluator's target positions), OUT elsewhere.\"\"\"\n        labe = torch.full_like(e, self.OUT)\n        labe.scatter_(1, torch.where(valid, tpos + W + 1, 0), torch.where(valid, labels, self.OUT))\n        labe[:, 0] = self.OUT\n        return labe\n\n    def read_answer(self, labe: Tensor, e: Tensor, end: Tensor, code: Tensor) -> Tensor:\n        \"\"\"The answer read at the writer's positions with the reader's code: its digits [X, W], LSB first.\"\"\"\n        pos, _, _ = self.hard_pos(3, e, end)\n        t = labe.gather(1, pos)\n        live = self.isdig(t).long().cumprod(-1).bool()\n        return torch.where(live, code.gather(1, t.clamp(max=self.V - 1)), 0)\n\n    def reading_weights(self, e: Tensor, end: Tensor) -> Tensor:\n        \"\"\"Per row, the soft weight of each reading hypothesis [X, H]: the N and x pointers' probabilities of reading\n        that hypothesis's whole runs (io_lessons' mixture), normalized. The gradient side of the selected reading.\"\"\"\n        X, Lp = e.shape\n        _, si, ti, length = self.runs(e, end)\n        A = torch.stack([self.anchor(f, e, end) for f in range(2)], 1)                     # [X, field, Lp]\n        sl = torch.stack([self.strd[f].float().softmax(-1) for f in range(2)])             # [field, dir]\n        fits = length[:, None, :] <= torch.tensor(SLOTS[:2], device=e.device)[None, :, None]\n        left = A.gather(2, (si - 1)[:, None].expand(X, 2, 3)) * sl[None, :, None, 0]\n        right = A.gather(2, (ti + 1).clamp(max=Lp - 1)[:, None].expand(X, 2, 3)) * sl[None, :, None, 1]\n        rho = torch.stack([left, right], -1) * fits[..., None]                             # [X, field, run, dir]\n        hyp = torch.tensor(HYP, device=e.device)\n        w = rho[:, 0, hyp[:, 0], hyp[:, 1]] * rho[:, 1, hyp[:, 2], hyp[:, 3]] + EPS\n        return w / w.sum(-1, keepdim=True)\n\n    def codes_ste(self) -> Tensor:\n        \"\"\"Every hypothesis's code as straight-through one-hots [H, V, 10]: the value is the rank among the digit tokens\n        (ranks), the gradient a soft rank's (each token's expected number of digit tokens scored below it).\"\"\"\n        u, isd = self.u.float(), self.dg > 0\n        below = ((u[:, None, :] < u[:, :, None]) & isd[None, None, :]).sum(-1)\n        hard = F.one_hot(torch.where(isd[None], below, 0).clamp(max=9), 10).float()\n        pd = torch.sigmoid(self.dg.float())\n        sr = (torch.sigmoid((u[:, :, None] - u[:, None, :]) / BT_TAU) * pd[None, None, :]).sum(-1) - 0.5 * pd[None]\n        soft = (-(torch.arange(10, device=u.device)[None, None] - sr[..., None]) ** 2).softmax(-1)\n        return ste(hard, soft)\n\n    # ------------------------------------------------------------------ the model\n    def forward(self, input_ids: Tensor, attention_mask: Tensor | None = None):\n        if attention_mask is None:\n            attention_mask = input_ids != 0\n        with torch.autocast(input_ids.device.type, enabled=False):\n            return self._forward(input_ids, attention_mask)\n\n    def _forward(self, input_ids: Tensor, attention_mask: Tensor):\n        dev = input_ids.device\n        e, end = self.ext(input_ids, attention_mask)\n        k = self.selected(e, end)\n        rows, L, V = input_ids.shape[0], input_ids.shape[1], self.config.vocab_size\n        if self.training:\n            code = self.ranks(k)                                             # [X, V] the selected reader's code\n            Nd, width = self.read(0, e, end, code)\n            Xd, _ = self.read(1, e, end, code)\n            Cd, tcount = self.read(2, e, end, code)                          # T's digits, LSB first: the countdown\n            M = F.pad(Nd, (0, P - W))                                        # N's digits as read, P places\n            small = (tcount == 1) & (Cd[:, 0] >= 1) & (Cd[:, 0] <= REAL_MAX_T)  # the rows whose answers are used\n            aux = self.lessons(Nd, Xd, Cd, small, width, M, self.tables(), e, end, k, code)\n            return torch.zeros(rows, L, V, device=dev), aux\n        ctl = self.ctl\n        if ctl.used is None:\n            ctl.used = torch.zeros(200, device=dev)\n            ctl.used_count = torch.zeros(200, device=dev)\n            ctl.pused = torch.zeros(100, device=dev)\n            ctl.used_gate = torch.zeros(2, device=dev)\n            self.report_tables(e, end)\n        if PATH == \"ste\":\n            logits = self.predict_ste(e, end, k, L)\n        else:\n            logits = self.predict_index(e, end, k, L)\n        self.audit()\n        return logits, None\n\n    def predict_index(self, e: Tensor, end: Tensor, k: Tensor, L: int) -> Tensor:\n        \"\"\"The machine on integer digits indexing the argmax tables (the pieces' prediction path).\"\"\"\n        ctl, dev, rows = self.ctl, e.device, e.shape[0]\n        code = self.ranks(k)\n        Nd, _ = self.read(0, e, end, code)\n        Xd, _ = self.read(1, e, end, code)\n        Cd, _ = self.read(2, e, end, code)\n        used, cused, pused, gused = [torch.zeros_like(t, dtype=torch.long) for t in\n                                     (ctl.used, ctl.used_count, ctl.pused, ctl.used_gate)]\n        s = run_hard(Xd, Cd, F.pad(Nd, (0, P - W)), self.tables(), None, used, gused, cused, pused)[0]\n        for acc, n in ((ctl.used, used), (ctl.used_count, cused), (ctl.pused, pused), (ctl.used_gate, gused)):\n            acc += n\n        pos, _, _ = self.hard_pos(3, e, end)\n        p = pos - (W + 1)\n        tok = self.wsm().argmax(-1)[s]\n        inside = (p >= 0) & (p < L)\n        logits = torch.full((rows, L, self.V), -20.0, device=dev)\n        r = torch.arange(rows, device=dev)[:, None].expand_as(p)\n        logits[r[inside], p[inside], tok[inside]] = 0.0\n        return logits\n\n    def predict_ste(self, e: Tensor, end: Tensor, k: Tensor, L: int) -> Tensor:\n        \"\"\"The prediction path inside autograd: the reader, the machine and the writer on one-hot digits with\n        straight-through tables. Every value equals predict_index's; the final logits' gradient reaches every table.\"\"\"\n        ctl, V = self.ctl, self.V\n        X, Lp = e.shape\n        E1 = F.one_hot(e, V + 2).float()                                     # the tokens, with END and OUT [X, Lp, V + 2]\n        DG = ste((self.dg > 0).float(), torch.sigmoid(self.dg.float()))     # digit-ness per token [V]\n        isdv = F.pad(DG, (0, 2))                                             # END and OUT are not digits\n        hot = lambda lg: ste(F.one_hot(lg.argmax(-1), lg.shape[-1]).float(), lg.softmax(-1))\n        anchors = [hot(self.anchor_logits(f, e, end)) for f in range(4)]     # [X, Lp] each\n        steps = [hot(self.strd[f].float()) for f in range(4)]               # [2] each: +1, -1\n        H = len(HYP)\n        Wh = ste(F.one_hot(k.clamp(min=0), H).float(), self.reading_weights(e, end))\n        code = torch.einsum(\"xh,hvk->xvk\", Wh, self.codes_ste())            # the selected reading's code [X, V, 10]\n\n        def slot(f: int, j: int) -> Tensor:                                   # field f's slot j: a position [X, Lp]\n            return steps[f][0] * shift(anchors[f], j + 1) + steps[f][1] * shift(anchors[f], -(j + 1))\n\n        def field(f: int) -> Tensor:                                          # field f's digits [X, n, 10], LSB first\n            live, out = torch.ones(X, device=e.device), []\n            zero = F.one_hot(torch.zeros(X, dtype=torch.long, device=e.device), 10).float()\n            for j in range(SLOTS[f]):\n                tok = torch.einsum(\"xp,xpv->xv\", slot(f, j), E1)\n                live = live * (tok @ isdv)\n                v = torch.einsum(\"xv,xvk->xk\", tok[:, :V], code)\n                out.append(live[:, None] * v + (1 - live)[:, None] * zero)\n            return torch.stack(out, 1)\n\n        M = zpad(field(0), 0, P - W)\n        TDC, PROD, G = self.ste_tables()\n        s = run_ste(field(1), field(2), M, TDC, PROD, G, ctl.used, ctl.used_count, ctl.pused, ctl.used_gate)\n        wcode = hot(self.wc.float() + F.logsigmoid(self.dg.float())[None])  # the writer's code [10, V]\n        out = torch.zeros(X, Lp, V, device=e.device)\n        for j in range(W):\n            out = out + slot(3, j)[:, :, None] * (s[:, j] @ wcode)[:, None, :]\n        return 20.0 * out[:, W + 1:W + 1 + L] - 20.0\n\n    # ------------------------------------------------------------------ lessons\n    def ladder(self, Xn: Tensor, tabs, train: bool):\n        \"\"\"The product cell's lessons on the numbers Xn [n, W] (the rows' x and N): X * 0 = 0, and the soft row\n        X * (b + 1) against the machine's own hard X * b + X where X's rungs 0..b all check out (the verified frontier).\n        The adder of the targets, the checks and the soft rows is the learned one (the snapped table). Returns the loss\n        (when `train`), the share of the hard rung checks that pass and which rungs are verified [n, 10].\"\"\"\n        n = Xn.shape[0]\n        with torch.no_grad():\n            _, tgt, ok = ladder_hard(Xn, tabs, self.ctl.visits)\n            verified = ok.long().cumprod(1).bool()\n            w = verified[:, :9].float()\n            if train:\n                trained = torch.cat([torch.ones_like(w[:, :1]), w], 1).bool()   # the rungs that get a lesson [n, 10]\n                cells = (Xn[:, None, :] * 10 + torch.arange(10, device=Xn.device)[None, :, None]).expand(n, 10, W)\n                tally(self.ctl.pvisits, cells[trained], 100)\n        lad_ok = float(ok.float().mean())\n        if not train:\n            return None, lad_ok, verified\n        PLO, PHI, TH = self.p_lo.float().softmax(-1), self.p_hi.float().softmax(-1), self.hard_table()\n        loss = -row_soft(Xn, 0, PLO, PHI, TH)[..., 0].clamp_min(1e-12).log().mean()\n        for b in range(9):\n            nll = -row_soft(Xn, b + 1, PLO, PHI, TH).clamp_min(1e-12).log().gather(-1, tgt[:, b, :, None]).squeeze(-1)\n            loss = loss + (nll.mean(-1) * w[:, b]).sum() / n\n        return loss / 10, lad_ok, verified\n\n    def lessons(self, Nd, Xd, Cd, small, width, M, tabs, e, end, k, code) -> dict:\n        \"\"\"The label-free lessons (the label-dependent ones run in token_training_loss on what this returns): see the\n        module docstring and COMBINED.md.\"\"\"\n        ctl = self.ctl\n        ctl.step += 1\n        dev = Xd.device\n        Td, Tb, Plo, Phi, Gc = tabs\n        if ctl.visits is None:\n            ctl.visits = torch.zeros(200, dtype=torch.long, device=dev)\n            ctl.pvisits = torch.zeros(100, dtype=torch.long, device=dev)\n            ctl.gvisits = torch.zeros(2, dtype=torch.long, device=dev)\n        common = {\"ctl\": ctl, \"model\": self, \"e\": e, \"end\": end, \"k\": k, \"code\": code, \"Xd\": Xd, \"M\": M,\n                  \"width\": width, \"tabs\": tabs, \"real\": None, \"exact\": 0.0, \"table_exact\": 0.0, \"cmp\": 0.0}\n        if ctl.phase == \"frozen\":\n            return {\"loss\": self.zero(), **common}\n        TDC, GS = self.soft_table(), self.gate_soft()\n        X, NL = Xd.shape[0], W * (S - 1)\n        hot = lambda v: F.one_hot(v, 10).float()\n        log = lambda p: p.clamp_min(1e-12).log()\n        digits_nll = lambda Y, target: -log(Y).gather(-1, target[..., None]).squeeze(-1).sum(-1)\n        with torch.no_grad():\n            V, sq_add = square_hard(Xd, tabs, check=True)                    # the machine's own square of x\n            D = link_inputs(V, M, Td, Tb, Gc)\n            D, Mr = D.reshape(X * NL, P), M.repeat_interleave(NL, 0)\n            Z = torch.zeros_like(M)\n        facts = ctl.phase in (\"B\", \"C\") or (FACTS_FROM == \"reading\" and ctl.io >= 4)   # x < N, N > 0 may be used\n        warm = ctl.step <= ADDER_WARM or (WARM_TO_FACTS and not facts)\n        gate_on = ctl.phase == \"C\"\n        # every link checks itself, (D - N) + N = D, complete\n        Es, be = link_soft(hot(D), Mr, TDC)\n        be = be[:, -1]\n        if not warm:\n            Cs, bc = link_soft(hot(Z), M, TDC)                               # 0 - N, once per row\n            bc = bc[:, -1]\n        if warm:                                                             # the designed adder\n            back, carry = add_soft(Es, Mr)\n            agree = carry * be[:, 1] + (1 - carry) * be[:, 0]\n        else:                                                                # (D - N) - (0 - N), the learned adder\n            back, bf = sub_soft(Es, Cs.repeat_interleave(NL, 0), TDC)\n            pe, pf, pc = be[:, 1], bf[:, -1, 1], bc[:, 1].repeat_interleave(NL, 0)\n            agree = (1 - pe) * (1 - pf) * (1 - pc) + pe * (1 - pf) * pc + (1 - pe) * pf * pc   # be = bc - bf\n        weight = torch.ones(P, device=dev)\n        weight[0] = ID_PLACE0                                               # the lowest place tells the swapped code\n        nll = (-log(back).gather(-1, D[..., None]).squeeze(-1) * weight).sum(-1) - ID_BORROW * log(agree)\n        loss = nll.mean() / (weight.sum() + ID_BORROW)\n        # the anchors (ADDER.md): on any numbers, then (phase B on) the facts about x and N\n        Rg = D.view(X, W, S - 1, P)[:, :, 0].reshape(X * W, P)               # the registers Rp (first links' inputs)\n        MW, xd, zero = M.repeat_interleave(W, 0), F.pad(Xd, (0, P - W)), torch.zeros_like(Rg)\n        checks = []                                                         # hard versions: (A, B, target, borrow)\n        for wgt, A, B, target in ((ANCHOR_ZERO, Rg, zero, Rg), (ANCHOR_SELF, Rg, Rg, zero)):\n            if wgt > 0:                                                     # R - 0 = R, R - R = 0, no final borrow\n                Y, b = link_soft(hot(A), B, TDC)\n                loss = loss + wgt * (digits_nll(Y, target) - log(b[:, -1, 0])).mean() / (P + 1)\n                checks.append((A, B, target, 0))\n        if not warm and ANCHOR_NEG2 > 0:                                    # 0 + N = N: 0 - (0 - N) = N, complete\n            Y2, b2 = sub_soft(hot(Z), Cs, TDC)\n            agree2 = bc[:, 1] * b2[:, -1, 1] + bc[:, 0] * b2[:, -1, 0]\n            loss = loss + ANCHOR_NEG2 * (digits_nll(Y2, M) - log(agree2)).mean() / (P + 1)\n        if not warm and ANCHOR_COMM > 0:                                    # R + N = N + R: R - (0 - N) = N - (0 - R)\n            A1, b1 = sub_soft(hot(Rg), Cs.repeat_interleave(W, 0), TDC)\n            CR, bcr = link_soft(hot(torch.zeros_like(Rg)), Rg, TDC)\n            A2, b2 = sub_soft(hot(MW), CR, TDC)\n            c1 = bc[:, 1].repeat_interleave(W, 0) * b1[:, -1, 0]             # P(carry = 1)\n            c2 = bcr[:, -1, 1] * b2[:, -1, 0]\n            agree = log((A1 * A2).sum(-1)).sum(-1) + log(c1 * c2 + (1 - c1) * (1 - c2))\n            loss = loss - ANCHOR_COMM * agree.mean() / (P + 1)\n        if facts and ANCHOR_LESS > 0:                                       # x < N: x - N borrows\n            loss = loss - ANCHOR_LESS * log(link_soft(hot(xd), M, TDC)[1][:, -1, 1]).mean()\n            checks.append((xd, M, None, 1))\n        if facts and ANCHOR_MORE > 0:                                       # x < N: N - x does not borrow\n            loss = loss - ANCHOR_MORE * log(link_soft(hot(M), xd, TDC)[1][:, -1, 0]).mean()\n            checks.append((M, xd, None, 0))\n        if facts and ANCHOR_WRAP > 0:                                       # (x - N) - N does not borrow\n            Ew = link_soft(hot(xd), M, TDC)[0]\n            loss = loss - ANCHOR_WRAP * log(link_soft(Ew, M, TDC)[1][:, -1, 0]).mean()\n        if facts and not warm and ANCHOR_NEG > 0:                           # N > 0: 0 - N borrows\n            loss = loss - ANCHOR_NEG * log(bc[:, 1]).mean()\n        # the product cell (SQUARE.md), once the table can be trusted\n        lad_loss, lad_ok, verified = self.ladder(torch.cat([Xd, Nd]), tabs, ctl.ladder)\n        if ctl.ladder:\n            loss = loss + LADDER_W * lad_loss\n        # the gate's facts (CONTROL.md), on a detached table\n        TF = TDC if FACT_TABLE else TDC.detach()\n        if gate_on and SELF_LESSON:\n            loss = loss + ce(chain_soft(hot(xd), M, TF, GS), xd, width)\n        if gate_on and NMOD_LESSON:\n            loss = loss + ce(chain_soft(hot(M), M, TF, GS), Z, width)\n        with torch.no_grad():                                               # the same checks on the hard machine\n            Eh, beh, idx = sub_hard(D, Mr, Td, Tb)\n            tally(ctl.visits, idx, 200)\n            if warm:\n                backh, carryh = add_hard(Eh, Mr)\n                ok = (backh == D).all(-1) & (carryh == beh)\n            else:\n                Ch, bch, idc = sub_hard(Z, M, Td, Tb)\n                backh, bfh, idf = sub_hard(Eh, Ch.repeat_interleave(NL, 0), Td, Tb)\n                tally(ctl.visits, idc, 200)\n                tally(ctl.visits, idf, 200)\n                ok = (backh == D).all(-1) & (beh == bch.repeat_interleave(NL, 0) - bfh)\n            table = float(ok.float().mean())\n            if not warm and ANCHOR_NEG2 > 0:\n                Y2h, b2h, id2 = sub_hard(Z, Ch, Td, Tb)\n                tally(ctl.visits, id2, 200)\n                table = min(table, float(((Y2h == M).all(-1) & (b2h == bch)).float().mean()))\n            if not warm and ANCHOR_COMM > 0:\n                A1h, c1h = add_learned(Rg, MW, Td, Tb, ctl.visits)\n                A2h, c2h = add_learned(MW, Rg, Td, Tb, ctl.visits)\n                table = min(table, float(((A1h == A2h).all(-1) & (c1h == c2h)).float().mean()))\n            for A, B, target, borrow in checks:\n                Yh, bh, ida = sub_hard(A, B, Td, Tb)\n                tally(ctl.visits, ida, 200)\n                okc = bh == borrow\n                if target is not None:\n                    okc = okc & (Yh == target).all(-1)\n                table = min(table, float(okc.float().mean()))\n            if facts and ANCHOR_WRAP > 0:\n                Ewh, _, idw = sub_hard(xd, M, Td, Tb)\n                table = min(table, float((sub_hard(Ewh, M, Td, Tb)[1] == 0).float().mean()))\n            if facts and not warm and ANCHOR_NEG > 0:\n                table = min(table, float((bch == 1).float().mean()))\n            cmp = float((sub_hard(xd, M, Td, Tb)[1] == 1).float().mean())\n            sq = verified[:X].gather(1, Xd.max(1).values[:, None])[:, 0] & sq_add   # the squares of x check out\n            exact = min(table, lad_ok, float(sq.float().mean()))\n            if gate_on:                                                     # the hard machine on the gate's facts\n                selfx = step_hard(xd, M, Td, Tb, Gc, ctl.visits, ctl.gvisits)[0]\n                selfn = step_hard(M, M, Td, Tb, Gc, ctl.visits, ctl.gvisits)[0]\n                exact = min(exact, cmp, float((selfx == xd).all(1).float().mean()),\n                            float((selfn == 0).all(1).float().mean()))\n        if gate_on and REAL_MAX_T > 0 and lad_ok == 1.0:                    # the rows' answers along the own path\n            sel = torch.nonzero(small).flatten()\n            if sel.numel():\n                with torch.no_grad():                                       # countdown, squarings and ladder check out\n                    _, sp, n, held = run_hard(Xd[sel], Cd[sel], M[sel], tabs, cap=REAL_MAX_T + 1)\n                    good = torch.nonzero((n > 0) & held & sq[sel] & square_ok(sp, tabs)).flatten()\n                    sel, sp = sel[good], sp[good]\n                    Vr = square_hard(sp, tabs)\n                if sel.numel():\n                    Rr, Rrh = divide_path(Vr, M[sel], TDC, GS, Td, Tb, Gc, ctl.visits, ctl.gvisits)\n                    common[\"real\"] = {\"sel\": sel, \"R\": Rr, \"Rh\": Rrh, \"width\": width[sel]}\n        if MODE == \"learned\":\n            loss = loss + self.io_lessons(e, end, k, code, V[:, :W])\n        common.update(exact=exact, table_exact=table, cmp=cmp, lad_ok=lad_ok)\n        return {\"loss\": loss, **common}\n\n    def io_lessons(self, e: Tensor, end: Tensor, k: Tensor, code: Tensor, vals: Tensor) -> Tensor:\n        \"\"\"The I/O's label-free lessons (IO.md): the rank codes (Bradley-Terry on x < N, every hypothesis, from stage\n        2), the reading (the normalized mixture over complete readings, from stage 3), the tiling (from stage 4) and the\n        writer's code round trip on the machine's own numbers `vals` [X, W] (from stage 3).\"\"\"\n        ctl = self.ctl\n        X, Lp = e.shape\n        dev = e.device\n        loss = self.u.sum() * 0.0\n        ok, si, ti, length = self.runs(e, end)\n        ctl.rows3 = float(ok.float().mean())\n        if ctl.io < 2 or not ok.any():\n            return loss\n        okf = ok.float()\n        j = torch.arange(W, device=dev)\n        # each run read in each direction: tokens [X, run, dir, P] (-1 after the run's end)\n        tokp = e.gather(1, (si[..., None] + j).clamp(max=Lp - 1).reshape(X, -1)).view(X, 3, W)\n        tokm = e.gather(1, (ti[..., None] - j).clamp(min=0).reshape(X, -1)).view(X, 3, W)\n        liv = j[None, None] < length[..., None]\n        R = F.pad(torch.stack([torch.where(liv, tokp, -1), torch.where(liv, tokm, -1)], 2), (0, P - W), value=-1)\n        hyp = torch.tensor(HYP, device=dev)\n        Tn, Tx = R[:, hyp[:, 0], hyp[:, 1]], R[:, hyp[:, 2], hyp[:, 3]]     # [X, H, P]: N's and x's readings\n        place = torch.where(Tx != Tn, torch.arange(P, device=dev), -1).max(-1).values   # the decisive place\n        ta = Tx.gather(2, place.clamp(min=0)[..., None])[..., 0]\n        tb = Tn.gather(2, place.clamp(min=0)[..., None])[..., 0]\n        u = self.u.float()\n        isd = (self.dg > 0).detach()\n        umin = u.masked_fill(~isd[None], 1e9).min(-1).values.detach()     # the score of each code's 0\n        ua = u[None].expand(X, -1, -1).gather(2, ta.clamp(min=0)[..., None])[..., 0]\n        ub = u[None].expand(X, -1, -1).gather(2, tb.clamp(min=0)[..., None])[..., 0]\n        both = (ta >= 0) & (tb >= 0) & (place >= 0)                       # two digits differ there\n        padx = (ta < 0) & (tb >= 0) & (place >= 0)                        # x' ended first: N's digit must not be 0\n        bt = -(F.logsigmoid((ub - ua) / BT_TAU) * both * okf[:, None]).sum() / (both * okf[:, None]).sum().clamp_min(1)\n        loss = loss + bt\n        hp = torch.where(both, ub > ua, torch.where(padx, ub > umin[None], torch.zeros_like(both)))  # exact verdicts\n        rest = 3 - hyp[:, 0] - hyp[:, 2]                                   # the run left for T's two slots\n        tfits = length.gather(1, rest[None].expand(X, -1)) <= SLOTS[2]\n        passes = ((hp & tfits).float() * okf[:, None]).sum(0) / okf.sum()  # [H]\n        ctl.pick = ctl.pick + 1 if float(passes.max()) >= PICK_PASS else 0\n        ctl.best = int(passes.argmax())\n        if ctl.io >= 3:\n            A = torch.stack([self.anchor(f, e, end) for f in range(3)], 1)                 # [X, field, Lp]\n            sl = torch.stack([self.strd[f].float().softmax(-1) for f in range(3)])         # [field, dir]\n            fits = length[:, None, :] <= torch.tensor(SLOTS[:3], device=dev)[None, :, None]\n            left = A.gather(2, (si - 1)[:, None].expand(X, 3, 3)) * sl[None, :, None, 0]\n            right = A.gather(2, (ti + 1).clamp(max=Lp - 1)[:, None].expand(X, 3, 3)) * sl[None, :, None, 1]\n            rho = torch.stack([left, right], -1) * fits[..., None]                         # [X, field, run, dir]\n            Lk = hp.float() + EPS\n            lik, norm = torch.zeros(X, device=dev), torch.zeros(X, device=dev)\n            post = torch.zeros(X, len(HYP), device=dev)\n            for sN, sx, sT in PERMS:\n                for dn in range(2):\n                    for dx in range(2):\n                        w = rho[:, 2, sT].sum(-1) * rho[:, 0, sN, dn] * rho[:, 1, sx, dx]\n                        h = HIDX[(sN, dn, sx, dx)]\n                        lik = lik + w * Lk[:, h]\n                        norm = norm + w\n                        post[:, h] = post[:, h] + w.detach()\n            loss = loss - ((lik.clamp_min(1e-30).log() - norm.clamp_min(1e-30).log()) * okf).sum() / okf.sum()\n            ctl.chosen = float((post / norm.detach()[:, None].clamp_min(1e-30)).max(1).values[ok].mean())\n            if ctl.io >= 4:                                                # whole runs, distinct fields\n                loss = loss - (norm.clamp_min(EPS).log() * okf).sum() / okf.sum()\n            # the writer's code: write the machine's own numbers, read them back\n            with torch.no_grad():\n                inv = torch.zeros(X, 10, dtype=torch.long, device=dev)\n                for t in torch.nonzero(isd).flatten().tolist():\n                    inv.scatter_(1, code[:, t:t + 1], t)                    # the token whose code is v\n            rv = self.wsm()[vals, inv.gather(1, vals)]\n            loss = loss - rv.clamp_min(EPS).log().mean()\n        return loss\n\n    def io_label_lessons(self, aux: dict, labels: Tensor, valid: Tensor, tpos: Tensor):\n        \"\"\"The I/O's label lessons (IO.md): the answer round trip (the writer's pointer, digit-ness), the token-side code\n        round trip (the writer's code) and, once the machine is exact, T's direction by speculation.\"\"\"\n        ctl = self.ctl\n        e, end, code = aux[\"e\"], aux[\"end\"], aux[\"code\"]\n        X, Lp = e.shape\n        dev = e.device\n        labe = self.label_seq(e, labels, valid, tpos)\n        wsm = self.wsm()\n        dl = torch.where(labe < self.V, torch.sigmoid(self.dg.float()[labe.clamp(max=self.V - 1)]),\n                         torch.zeros((), device=dev))\n        a = self.anchor(3, e, end)\n        q = torch.arange(Lp, device=dev)[None, :, None]\n        lps = []\n        for kk, s in enumerate((1, -1)):\n            pos = (q + (torch.arange(W, device=dev)[None, None] + 1) * s).clamp(0, Lp - 1).expand(X, Lp, W)\n            tok = labe.gather(1, pos.reshape(X, -1)).view(X, Lp, W)\n            live = dl.gather(1, pos.reshape(X, -1)).view(X, Lp, W).cumprod(-1)\n            tgt = tok < self.V\n            tc = tok.clamp(max=self.V - 1)\n            back = live * wsm.detach()[code.gather(1, tc.reshape(X, -1)).view(X, Lp, W), tc]   # read, write back\n            lp = ((tgt * back.clamp_min(EPS).log()).sum(-1)\n                  + (valid.sum(1)[:, None] - tgt.sum(-1)) * float(torch.log(torch.tensor(EPS))))\n            lps.append(lp + a.clamp_min(1e-30).log() + self.strd[3].float().log_softmax(-1)[kk])\n        loss = -torch.logsumexp(torch.stack(lps, -1).reshape(X, -1), -1).mean()\n        lv = labe < self.V\n        rows_l, tl = torch.nonzero(lv)[:, 0], labe[lv]\n        loss = loss - wsm[code[rows_l, tl], tl].clamp_min(EPS).log().mean()   # read an answer token, write it back\n        with torch.no_grad():                                               # the hard round trips\n            yd = self.read_answer(labe, e, end, code)\n            pos, _, _ = self.hard_pos(3, e, end)\n            back = self.wsm().argmax(-1)[yd]\n            o = torch.full_like(e, -1).scatter_(1, pos, back)\n            ans = (torch.where(valid, o.gather(1, torch.where(valid, tpos + W + 1, 0)), labels) == labels).all(1)\n            isd = self.dg > 0\n            inv_ok = bool((self.wsm().argmax(-1)[code[:, isd]] == torch.nonzero(isd).flatten()[None]).all())\n            ctl.io_exact = bool(ans.all()) and inv_ok and int(isd.sum()) == 10 and bool((aux[\"k\"] >= 0).all())\n        if ctl.io == 4 and ctl.phase == \"C\" and ctl.streak >= T_AFTER:\n            loss = loss + self.t_lesson(aux, yd)\n        return loss, yd\n\n    def t_lesson(self, aux: dict, yd: Tensor) -> Tensor:\n        \"\"\"T's direction by speculation (IO.md): on rows whose two readings of T differ, the exact machine runs its\n        countdown from both, and the answers keep the reading that reproduces them (a normalized mixture over T's two\n        whole-run programs).\"\"\"\n        ctl = self.ctl\n        e, end, code, Xd, M = aux[\"e\"], aux[\"end\"], aux[\"code\"], aux[\"Xd\"], aux[\"M\"]\n        X, Lp = e.shape\n        dev = e.device\n        ok, si, ti, length = self.runs(e, end)\n        rn, _, _ = self.which_run(0, e, end, si, ti, ok, length)\n        rx, _, _ = self.which_run(1, e, end, si, ti, ok, length)\n        rt = (3 - rn - rx).clamp(0, 2)                                      # T's run\n        a0, b0 = si.gather(1, rt[:, None])[:, 0], ti.gather(1, rt[:, None])[:, 0]\n        j = torch.arange(K, device=dev)\n        tp = e.gather(1, (a0[:, None] + j).clamp(max=Lp - 1))\n        tm = e.gather(1, (b0[:, None] - j).clamp(min=0))\n        lp = j[None] < (b0 - a0 + 1)[:, None]\n        Cp = torch.where(lp, code.gather(1, tp.clamp(max=self.V - 1)), 0)   # T read from its run's left end (step +1)\n        Cm = torch.where(lp, code.gather(1, tm.clamp(max=self.V - 1)), 0)   # ... from its right end (step -1)\n        rows = torch.nonzero(ok & (Cp != Cm).any(1)).flatten()[:T_ROWS]\n        if rows.numel() == 0:\n            return self.strd.sum() * 0.0\n        with torch.no_grad():\n            n = rows.numel()\n            s2 = run_hard(Xd[rows].repeat(2, 1), torch.cat([Cp[rows], Cm[rows]]), M[rows].repeat(2, 1), aux[\"tabs\"])[0]\n            Lpl, Lmi = (s2[:n] == yd[rows]).all(1).float(), (s2[n:] == yd[rows]).all(1).float()\n        A = self.anchor(2, e, end)[rows]\n        sl = self.strd[2].float().softmax(-1)\n        wp = A.gather(1, (a0[rows] - 1)[:, None])[:, 0] * sl[0]                # read from the run's left end, +1\n        wm = A.gather(1, (b0[rows] + 1)[:, None])[:, 0] * sl[1]                # read from its right end, -1\n        hit = (Lpl + Lmi) > 0\n        lt = -(((wp * Lpl + wm * Lmi).clamp_min(1e-30).log() - (wp + wm).clamp_min(1e-30).log()) * hit).sum()\n        lt = lt / hit.sum().clamp_min(1)\n        with torch.no_grad():\n            _, _, hs = self.hard_pos(2, e, end)\n            mine = Lpl if hs > 0 else Lmi                                      # the snapped reading's verdict\n            share = float(((wp if hs > 0 else wm) / (wp + wm).clamp_min(1e-30)).mean())\n            ctl.t_log = f\"rows={n} hits={int(hit.sum())} snapped_right={float(mine.mean()):.3f} share={share:.4f}\"\n            if bool(mine.all()) and share >= T_DONE:\n                ctl.io = 5\n                ctl.history.append((ctl.step, \"T_resolved\", n))\n                print(f\"LR io_stage=5 T_resolved step={ctl.step} {ctl.t_log}\", flush=True)\n        return lt\n\n    def control(self, aux: dict, loss: float) -> None:\n        \"\"\"The schedule, once per step (after the label lessons): the I/O stages, the machine's phases, the ladder, the\n        freeze.\"\"\"\n        ctl = self.ctl\n        exact, table, cmp = aux[\"exact\"], aux[\"table_exact\"], aux[\"cmp\"]\n        before = ctl.io\n        if ctl.io == 1 and ctl.rows3 >= 0.99:\n            ctl.io = 2                                                       # three digit runs: rank the codes\n            ctl.history.append((ctl.step, \"io2_digits\"))\n        elif ctl.io == 2 and ctl.pick >= PICK_WIN:\n            ctl.io = 3                                                       # a hypothesis passes: choose the reading\n            ctl.history.append((ctl.step, \"io3_ranked\", HYP[ctl.best]))\n        elif ctl.io == 3 and ctl.chosen >= CHOSEN:\n            ctl.io = 4                                                       # one reading carries the mixture: tiling\n            ctl.history.append((ctl.step, \"io4_reading\", round(ctl.chosen, 4)))\n        if ctl.io != before:\n            print(f\"LR io_stage={ctl.io} step={ctl.step} history={ctl.history[-1]}\", flush=True)\n        if not ctl.ladder and ctl.phase in (\"B\", \"C\"):\n            ctl.table_streak = ctl.table_streak + 1 if table == 1.0 else 0\n            ctl.ladder_wait += 1\n            if ctl.table_streak >= LADDER_WIN or ctl.ladder_wait >= LADDER_STEPS:\n                # the table passes every check: the learned adder can be trusted with the product cell's targets\n                ctl.ladder = True\n                ctl.reset_params = [self.p_lo, self.p_hi]\n                ctl.history.append((ctl.step, \"ladder\", ctl.table_streak))\n                print(f\"LR ladder_joins step={ctl.step} table_streak={ctl.table_streak}\", flush=True)\n        ctl.win.append(table if ctl.phase == \"A\" else cmp if ctl.phase == \"B\" else exact)\n        ctl.in_phase += 1\n        mean = sum(ctl.win) / len(ctl.win)\n        if ctl.step % LOG_EVERY == 0 or ctl.step == 1:\n            gate = \"\".join(str(int(g)) for g in self.g.argmax(-1).tolist())\n            print(f\"LR step={ctl.step} phase={ctl.phase} io={ctl.io} ladder={int(ctl.ladder)} in_phase={ctl.in_phase} \"\n                  f\"loss={loss:.4f} hard_exact={exact:.4f} table_exact={table:.4f} cmp={cmp:.4f} \"\n                  f\"ladder_ok={aux.get('lad_ok', 0.0):.4f} win={mean:.4f} gate={gate} io_exact={ctl.io_exact} \"\n                  f\"chosen={ctl.chosen:.4f} rows_visited={int((ctl.visits > 0).sum())}/200 \"\n                  f\"cells_visited={int((ctl.pvisits > 0).sum())}/100 {ctl.t_log}\", flush=True)\n        if ctl.phase == \"A\":\n            if ctl.io >= 4 and ((len(ctl.win) == STAGE_WIN and mean >= ID_SWITCH) or ctl.in_phase >= ID_STEPS):\n                # the checks pass on most links and the reading is chosen: the facts about x and N join, with a fresh\n                # optimizer (Adam's memory of phase A's gradients would slow the repairs)\n                ctl.history.append((ctl.step, \"switch\", ctl.in_phase, round(mean, 4)))\n                print(f\"LR switch_to_facts step={ctl.step} win={mean:.4f}\", flush=True)\n                ctl.phase, ctl.reset, ctl.in_phase = \"B\", True, 0\n                ctl.win.clear()\n        elif ctl.phase == \"B\":\n            if (len(ctl.win) == STAGE_WIN and mean >= CMP_SWITCH) or ctl.in_phase >= CMP_STEPS:\n                # the borrows say \"below N\" where they should: the gate can learn what to do with them\n                ctl.history.append((ctl.step, \"gate\", ctl.in_phase, round(mean, 4)))\n                print(f\"LR switch_to_gate step={ctl.step} win={mean:.4f}\", flush=True)\n                ctl.phase, ctl.in_phase = \"C\", 0\n                ctl.win.clear()\n        elif ctl.phase == \"C\":\n            ctl.streak = ctl.streak + 1 if exact == 1.0 and ctl.io_exact else 0\n            if ctl.streak >= FREEZE_WIN and ctl.io == 5:\n                ctl.history.append((ctl.step, \"frozen\", ctl.in_phase, 1.0))\n                print(f\"LR frozen step={ctl.step} history={ctl.history}\", flush=True)\n                ctl.phase = \"frozen\"\n\n    # ------------------------------------------------------------------ evaluation reports\n    def report_tables(self, e: Tensor, end: Tensor) -> None:\n        \"\"\"At the first evaluation batch: the snapped tables, the I/O, and how often training used each row.\"\"\"\n        ctl = self.ctl\n        Td, Tb, Plo, Phi, Gc = self.tables()\n        print(\"TABLE digit=\" + \"\".join(str(int(d)) for d in Td.tolist()), flush=True)\n        print(\"TABLE borrow=\" + \"\".join(str(int(d)) for d in Tb.tolist()), flush=True)\n        print(\"TABLE prod_lo=\" + \"\".join(str(int(d)) for d in Plo.tolist()), flush=True)\n        print(\"TABLE prod_hi=\" + \"\".join(str(int(d)) for d in Phi.tolist()), flush=True)\n        print(\"TABLE gate=\" + \"\".join(str(int(d)) for d in Gc.tolist())\n              + \" p_commit=\" + \",\".join(f\"{float(p):.4f}\" for p in self.gate_soft().tolist()), flush=True)\n        if ctl.visits is not None:\n            for name, v in ((\"train_visits\", ctl.visits), (\"prod_train_visits\", ctl.pvisits)):\n                print(f\"TABLE {name} min={int(v.min())} rows_never={int((v == 0).sum())} \"\n                      f\"counts={','.join(str(int(c)) for c in v.tolist())}\", flush=True)\n            print(f\"TABLE gate_train_visits={','.join(str(int(c)) for c in ctl.gvisits.tolist())}\", flush=True)\n        print(f\"TABLE schedule phase={ctl.phase} io={ctl.io} step={ctl.step} history={ctl.history}\", flush=True)\n        names = [\"N\", \"x\", \"T\", \"writer\"]\n        for f in range(4):\n            a = int(self.anc[f].argmax())\n            st = \"+1\" if int(self.strd[f].argmax()) == 0 else \"-1\"\n            print(f\"IO field={names[f]} anchor={'END' if a == self.END else a} step={st}\", flush=True)\n        k = self.selected(e, end)\n        kk = int(torch.mode(k).values)\n        code = self.ranks(torch.tensor([max(kk, 0)], device=e.device))[0]\n        isd = self.dg > 0\n        print(f\"IO digit_tokens={torch.nonzero(isd).flatten().tolist()} reading={HYP[kk] if kk >= 0 else None} \"\n              f\"rows_with_that_reading={float((k == kk).float().mean()):.4f}\", flush=True)\n        print(\"IO code=\" + \",\".join(f\"{t}:{int(code[t])}\" for t in torch.nonzero(isd).flatten().tolist()), flush=True)\n        print(\"IO writer=\" + \",\".join(f\"{v}:{int(t)}\" for v, t in enumerate(self.wsm().argmax(-1).tolist())), flush=True)\n        print(f\"IO path={PATH}\", flush=True)\n\n    def audit(self) -> None:\n        \"\"\"Rows used at evaluation so far (subtractor: all uses and the countdown's; product cells; gate) and how many\n        of them training never used.\"\"\"\n        ctl = self.ctl\n        used = (ctl.used + ctl.used_count) > 0\n        count, cells, gate = ctl.used_count > 0, ctl.pused > 0, ctl.used_gate > 0\n        key = (int(used.sum()), int(count.sum()), int(cells.sum()), int(gate.sum()))\n        if key == ctl.reported:\n            return\n        ctl.reported = key\n        if ctl.visits is None:\n            print(f\"AUDIT eval_rows_used={key[0]}/200 eval_product_cells_used={key[2]}/100 (no training ran)\", flush=True)\n            return\n        never = lambda u, v: int((u & (v == 0)).sum())\n        rows = [(i // 20, (i // 2) % 10, i % 2) for i in torch.nonzero(count).flatten().tolist()]\n        print(f\"AUDIT eval_rows_used={key[0]}/200 used_but_never_trained={never(used, ctl.visits)} \"\n              f\"eval_product_cells_used={key[2]}/100 product_used_but_never_trained={never(cells, ctl.pvisits)}\",\n              flush=True)\n        print(f\"AUDIT countdown_rows_used={key[1]} used_but_never_trained={never(count, ctl.visits)} \"\n              f\"min_train_visits={int(ctl.visits[count].min()) if key[1] else -1} rows={rows}\", flush=True)\n        print(f\"AUDIT gate_rows_used={key[3]}/2 used_but_never_trained={never(gate, ctl.gvisits)} \"\n              f\"train_visits={ctl.gvisits.tolist()}\", flush=True)\n\n\ndef token_training_loss(batch: TokenLossBatch) -> Tensor:\n    aux = batch.auxiliary\n    with torch.autocast(batch.labels.device.type, enabled=False):\n        loss = aux[\"loss\"]\n        ctl, model = aux[\"ctl\"], aux[\"model\"]\n        if ctl.phase == \"frozen\":\n            return loss\n        labels, valid = batch.labels, batch.valid_mask\n        tpos = batch.target_positions\n        if tpos is None:                                                    # right-aligned answers (the evaluator's)\n            cnt = valid.long().sum(1)\n            kk = torch.arange(labels.shape[1], device=labels.device)[None]\n            tpos = torch.where(kk < cnt[:, None], aux[\"end\"][:, None] - cnt[:, None] + kk, -1)\n        if MODE == \"learned\":\n            lio, yd = model.io_label_lessons(aux, labels, valid, tpos)\n            loss = loss + lio\n        else:\n            ctl.io_exact = True\n            yd = model.read_answer(model.label_seq(aux[\"e\"], labels, valid, tpos), aux[\"e\"], aux[\"end\"], aux[\"code\"])\n        real = aux[\"real\"]\n        if real is not None:\n            sel = real[\"sel\"]\n            ydr = F.pad(yd[sel], (0, P - W))                                 # the answers as the learned reader reads them\n            lesson = ce(real[\"R\"], ydr, real[\"width\"])\n            if ctl.step % LOG_EVERY == 0:\n                ex = float((real[\"Rh\"] == ydr).all(1).float().mean())\n                print(f\"LR step={ctl.step} real_rows={sel.numel()} real_hard_exact={ex:.4f}\", flush=True)\n            loss = loss + lesson\n        model.control(aux, float(loss.detach()))\n        return loss\n\n\nclass Schedule:\n    \"\"\"Scheduler: a fresh Adam state at the switch to phase B (and for the product cell when the ladder joins);\n    learning rate 0 once the model is frozen.\"\"\"\n\n    def __init__(self, optimizer: torch.optim.Optimizer, ctl: Control) -> None:\n        self.optimizer, self.ctl = optimizer, ctl\n\n    def step(self) -> None:\n        if self.ctl.reset:\n            self.optimizer.state.clear()\n            self.ctl.reset = False\n        for p in self.ctl.reset_params:\n            self.optimizer.state.pop(p, None)\n        self.ctl.reset_params = []\n        if self.ctl.phase == \"frozen\":\n            for group in self.optimizer.param_groups:\n                group[\"lr\"] = 0.0\n\n\ndef build_model(spec: ModelSpec) -> LearnedCombined:\n    model = LearnedCombined(spec)\n    assert_model_state(model, spec)\n    return model\n\n\ndef build_optimizer(model: nn.Module, spec: OptimizerSpec) -> OptimizerBundle:\n    # fused keeps Adam's step counter on the accelerator (the evaluator checks every optimizer state tensor)\n    opt = torch.optim.Adam(model.parameters(), lr=LR, fused=spec.device_type in (\"cuda\", \"mps\"))\n    return OptimizerBundle(opt, scheduler=Schedule(opt, model.ctl))\n\n\nSUBMISSION = Submission(\n    build_model=build_model,\n    build_optimizer=build_optimizer,\n    token_training_loss=token_training_loss,\n    batch_size=BATCH,\n    max_steps=MAX_STEPS,\n    eval_batch_size=EVAL_BATCH,\n)\n"
+}

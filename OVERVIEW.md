@@ -1,14 +1,16 @@
 # One Layer Deeper H1, from the CPU up: where everything stands
 
-*The entry point for `cpu_first/`, written 2026-10-21 at about 03:45 Pacific.*
-- *What was checked against the run records (`runs/`, `ablation/runs/`): every certification, run time, freeze step,
-  parameter count and CPU-seed count quoted here. The source embedded in each record was hashed and compared with the
-  file's md5.*
+*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific; refreshed at about 10:45, after the
+ablation, digit-anchor and learned-wiring work was committed.*
+- *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`): every certification, run
+  time, freeze step, parameter count and CPU-seed count quoted here. The source embedded in each record was hashed and
+  compared with the file's md5.*
 - *The data counts in §1–2 were computed from the released H1 files, and the commits come from `git log`.*
-- *The one-line findings of the timeline (§3) and of the ablation (§7) summarize their write-ups, which are linked;
-  they were not re-run.*
+- *The one-line findings of the timeline (§3) and the summaries of how each piece learns summarize their write-ups,
+  which are linked; they were not re-run.*
 - *The older write-ups are left as they were. §9 lists where a write-up and a record disagree.*
-- *Three sessions were still working when this was written (§7), so their folders may have moved on.*
+- *Nothing was running when this was refreshed, and all the work described is committed (the last commit is
+  `36fc156`, at 10:25).*
 
 **In one minute.**
 - The task is exact repeated modular squaring. Almost every entry on the leaderboard scored near 0%, because the
@@ -17,12 +19,17 @@
 - Designs built like a CPU certify: discrete digits, one small cell reused everywhere, and labels that choose between
   whole machines. Four lines of work certified through the official evaluator: SpecBit, UnfoldB, UnfoldS and the
   learned digit machine (§3).
-- The current best model is a paper-arithmetic calculator. Every part of it that computes is a small learned table,
-  5,079 numbers in all, and it certifies T = 64 on both ladders on the official H100 manifest and on 8 of 8 CPU seeds
-  (§4).
-- It got there by removing hand-written parts one at a time, with certification as the gate at each step (§5).
-- Still hand-written: the wiring, a short warm start, and the lessons. Work on the wiring and the warm start is under
-  way (§7).
+- The best models are versions of a paper-arithmetic calculator whose every computing part is a small learned table.
+  Two certified files each go one step past the first all-learned version (§4):
+  - one also learns the calculator's wiring, choosing each connection from a menu of options;
+  - the other trains with no hand-written arithmetic at any step: the digits' meanings come from the order of the
+    numbers.
+
+  Both certify T = 64 on both ladders on the official H100 manifest, and on 8 of 8 CPU seeds. No file does both yet.
+- They got there by removing hand-written parts one at a time, with certification as the gate at each step (§5).
+- Still hand-written in both: the sizes, the loop over T and the lessons. The wiring file also keeps the menus its
+  wiring is chosen from, and a 70-step warm start with a hand-written adder. The anchors file keeps the combined
+  model's fixed wiring (§4, §7).
 
 ## 1. The task, in plain words
 
@@ -113,14 +120,15 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | 22:16 `c0c86a2`, `c6c9597` | the times table (squaring); the countdown of T and the division's stop rule | [SQUARE.md](learned_remainder/SQUARE.md), [CONTROL.md](learned_remainder/CONTROL.md) |
 | 22:55 `550f60e`, `f342a91` | the adder in the self-check; the prompt reader and answer writer | [ADDER.md](learned_remainder/ADDER.md), [IO.md](learned_remainder/IO.md) |
 
-### Oct 21: one model, then simplification and learned wiring
+### Oct 21: one model, then a simpler recipe, digit anchors and learned wiring
 
-| when | what | write-up |
+| commit | what | write-up |
 |---|---|---|
 | 00:55 `9959997` | **every learned piece in one model**, with a prediction path inside autograd | [COMBINED.md](learned_remainder/COMBINED.md) |
 | 00:55 `9332360` | wiring and tables learned together in tiny machines | [tinyrouting/TINYROUTING.md](tinyrouting/TINYROUTING.md) |
-| overnight, not committed | an ablation of the training recipe; a simplified recipe certified | [ablation/ABLATION.md](ablation/ABLATION.md) |
-| overnight, not committed, still running | the division's wiring, then the squaring's layout, learned and certified | [learned_wiring/WIRING.md](learned_wiring/WIRING.md) |
+| 05:19 `f498805` | an ablation of the training recipe; a simplified recipe certified | [ablation/ABLATION.md](ablation/ABLATION.md) |
+| 05:35 `5d2b917` | **digit meanings from the order of the numbers**: the subtraction table learned with no hand-written adder at any step | [anchors/ANCHORS.md](anchors/ANCHORS.md) |
+| 10:25 `36fc156` | **the machine's wiring learned**, in three certified stages | [learned_wiring/WIRING.md](learned_wiring/WIRING.md) |
 
 ### The lessons that came out of the failures
 
@@ -128,17 +136,42 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 - **Soft mixtures of choices learn nothing here.** After the remainder, the loss stays flat until the wrong options
   hold almost no weight.
 - **Answers alone, pushed through a learned machine, do not teach it.** Untrained parts get bypassed, or trial slots
-  co-adapt into a lookup arrangement.
+  co-adapt into a lookup arrangement. Even with every training row answered, answers did not start the subtraction
+  table from random digits within that study's budget ([ANCHORS.md](anchors/ANCHORS.md) §4.3).
 - **A check made only of the learned table can be passed by whole families of wrong tables**: digits relabeled,
-  borrows swapped, "copy the first number". Meaning has to come from outside the table: a trusted adder for a short
-  while, and true facts about the row's numbers such as x < N ([ABLATION.md](ablation/ABLATION.md) §7).
+  borrows swapped, "copy the first number". Meaning has to come from outside the table. First that was a hand-written
+  adder for a short while ([ABLATION.md](ablation/ABLATION.md) §7). Now the order of the numbers does it alone:
+  x < N teaches every borrow, and two laws of subtraction, applied one digit at a time, leave only the true table
+  ([ANCHORS.md](anchors/ANCHORS.md)).
+- **Wiring is learned by trying whole options and scoring each pass or fail**, not by blending options' digits on the
+  wire. Blended switches settle on a machine that does nothing ([WIRING.md](learned_wiring/WIRING.md),
+  [TINYROUTING.md](tinyrouting/TINYROUTING.md)).
 - **What worked every time:** digits snapped to exact values, one shared cell, checks on each training row's own
   numbers that need no answer, and pass/fail scoring of whole choices.
 
-## 4. The current best model
+## 4. The current best models
 
-**[`learned_remainder/submission_combined.py`](learned_remainder/submission_combined.py)**: md5 `4f5cecc780894499a462499c3cd7d67f`,
-committed in `9959997`. Write-up: [COMBINED.md](learned_remainder/COMBINED.md).
+Two certified files share the top spot. Each starts from the combined model (§4.1) and removes a different
+hand-written piece. No file does both yet (§7).
+
+| | [`learned_wiring/submission_io3.py`](learned_wiring/submission_io3.py) | [`anchors/submission_combined_anchors.py`](anchors/submission_combined_anchors.py) |
+|---|---|---|
+| what it adds to the combined model | its wiring is learned too: the division's 7 switches, the squaring's layout, and the reader's and writer's shape, each chosen from a menu of options (§4.2) | no hand-written adder at any step: the subtraction table's digit meanings come from the order of the numbers (§4.3) |
+| still hand-written | the menus, the sizes, the loop over T, the adder's composition a − (0 − b), the lessons, and a 70-step warm start with a hand-written adder | the combined model's wiring (its paper layout), the reader's and writer's shape, the loop over T, the lessons |
+| learned numbers | 7,037 | 5,079 |
+| official run (H100, untouched manifest, the file byte for byte) | `io3v2_official`: T = 64 on both ladders, every rung 768/768, every split exact | `cmbanchors_official`: the same |
+| training s (frozen at step) / evaluation s | 728.6 (532) / 51.8 | 454.0 (553) / 40.6 |
+| CPU seeds certified | 8 of 8 | 8 of 8, and 4 of 4 with the old table lessons switched off |
+| md5, commit | `c2331362`, `36fc156` | `8887fdae`, `5d2b917` |
+
+In both official runs every learned table came out exact, and the audits say that every table entry used at
+evaluation was trained. In the wiring run every switch picked the true wiring: the division's switches, the squaring's
+layout (288 of 288 placements right) and the reader's shape.
+
+### 4.1 The calculator they share: the combined model
+
+**[`learned_remainder/submission_combined.py`](learned_remainder/submission_combined.py)**: md5
+`4f5cecc780894499a462499c3cd7d67f`, committed in `9959997`. Write-up: [COMBINED.md](learned_remainder/COMBINED.md).
 
 **What it is.** A small calculator, wired the way a person does this arithmetic on paper. All 5,079 learned numbers
 start random and are learned together, in one training run:
@@ -202,10 +235,61 @@ The answers of the T ≤ 2 rows join late, and only along the machine's own path
   straight-through one-hot matrix. So the logits are exactly the calculator's, while a gradient from the final logits
   reaches all 10 learned tensors (tested in [COMBINED.md](learned_remainder/COMBINED.md) §3).
 
-**Further along, but not committed.** The learned-wiring stages (§5, 6b–6c) learn the division's switches and the
-squaring's layout on top of this model. Both certified officially, and they may still change. The ablation's
-[`submission_simple.py`](ablation/submission_simple.py) certifies with a much shorter recipe, for the single-piece
-machine of ADDER.md, not for this one.
+### 4.2 The wiring, learned: `learned_wiring/submission_io3.py`
+
+Write-up: [WIRING.md](learned_wiring/WIRING.md). Every connection the combined model wired by hand is now a switch: a
+small menu of options, one of which is right. Each switch starts at random and is learned alongside the tables. The
+stages are cumulative, and each certified on its own (§5, steps 7a–7c):
+1. **The long division**, 7 switches, 864 wirings in all: which end of the square the division starts from; how the
+   register makes room for the next digit; what each subtraction subtracts from, and what it subtracts; what its
+   result does (always replace, replace when the gate says so, or never); whether N's digits are reversed; which
+   places are the answer.
+2. **The squaring's layout**: one placement rule for the products' low digits and one for their high digits, each
+   chosen from 24 rules, 576 layouts in all.
+3. **The reader's and writer's shape**, one switch for all four fields: an anchor and a shared step, an anchor and a
+   separate offset per digit, or a fixed position per digit.
+
+**How a switch learns.** Each is taught by a check that only the right wiring passes, run on the rows' own numbers:
+- one division step started from x + q·N must give back x;
+- dividing x by N must leave x, and N by N must leave 0;
+- the times-table ladder, row by row;
+- for the reader's shape, the reading under which x < N holds on every question.
+
+For the division, every combination of options is tried on the snapped machine, and the combinations that pass gain
+weight. The squaring's rules and the reader's shapes are weighed as a mixture of whole options, and training raises
+the mixture's chance of a right row or a right reading.
+
+**Two first versions failed CPU seeds and were fixed**, each kept with its records:
+- the division's first version (`submission_div_v1.py`) failed 1 of 8, because its untrained reader read every N as 0;
+- stage 3's first version (`submission_io3_v1.py`) failed 2 of 8, because T's lesson pulled the shared shape switch
+  off the right shape.
+
+### 4.3 No hand-written adder: `anchors/submission_combined_anchors.py`
+
+Write-up: [ANCHORS.md](anchors/ANCHORS.md). Until now the subtraction table learned what its digits mean from a
+hand-written adder, used for its first steps. The ablation showed that this warm start was load-bearing: without it,
+no run got past 39 of 200 table entries. This file replaces it with the order of the numbers:
+1. **The borrows, from x < N on every "top part".** Take x's digits from some place upward, and N's digits from the
+   same place. The first number is at most the second, and strictly smaller exactly when the two digit strings differ.
+   So taking N's part from x's part must borrow exactly then, and taking x's part from N's never borrows. That teaches
+   every borrow.
+2. **The digits, from two laws of subtraction**, applied to one digit at a time once the borrows are right:
+   - taking the same digit away from two digits keeps their order;
+   - taking more away from the same digit leaves less;
+   - except when exactly one of the two goes below zero: that one wraps round and comes out on top.
+
+   In each column the borrows say which entries go below zero, and the laws put the column's ten digits in one
+   strict order. Ten digits in a strict order can only be 0 to 9, so only the true table passes (ANCHORS.md §2.3).
+   The file also asks every row and column of the table to use each digit once.
+
+The table waits untouched until the reader has worked out the prompt (step 90 in the official run). Then the borrow
+facts run, and the digit laws join at step 127. The table is exact by step 171. The certified file's own table lessons
+join 100 steps after the digit laws, but they are not needed: with them switched off, 4 of 4 CPU seeds still
+certified. Everything else (the reader, the ladder, the gate, the answers, T's direction, the freeze) is the combined
+model's.
+
+The same idea certified first on the simpler single-piece machine: [`anchors/submission_anchors.py`](anchors/submission_anchors.py)
+uses no hand-written adder, no answer, no learned-adder check and no wrap-around fact (§5, step 6b).
 
 ## 5. The removal ladder
 
@@ -213,55 +297,64 @@ Each step removed one hand-written piece. To count, it had to certify on the unt
 with the file run byte for byte: T = 64 on both ladders, every rung 768/768. Then it was repeated on CPU seeds
 through the same evaluator.
 
-Steps 4a–4d each started from step 3's machine, separately. Step 5 put them together.
+The ladder branches. Steps 4a–4d each started from step 3's machine, and step 5 put them together. Steps 6a and 6b
+went back to 4c's single-piece machine, whose reading, squaring and loop are still designed. Steps 7a–7c stack on
+step 5, and so does step 8.
 
-| step | what became learned (the hand-written piece removed) | file (md5) | official record | training s (frozen at step) / evaluation s | CPU seeds certified | commit |
-|---|---|---|---|---|---|---|
-| 0 | nothing: the designed subtraction table, a plumbing check | an earlier `learned_remainder/submission.py` (`9732a11f`) | `s0_official` | 3.3 (100 steps) / 5.5 | 1 of 1 | `824d073` |
-| 1 | the 200-entry subtraction table, taught with made-up practice divisions (gray under rule 14) | `submission.py` with `LESSON = "madeup"` | `final_s1_official` | 154.5 (484) / 4.8 | 8 of 8 (`s1v2` recipe) | `824d073` |
-| 2 | no made-up numbers: the table checks itself on the rows' own numbers | [`submission.py`](learned_remainder/submission.py) (`bd477b9a`) | `final_s2_official` | 181.9 (499) / 4.9 | 8 of 8 (`s2v2` recipe), and 4 of 4 that never see an answer | `824d073` |
-| 3 | the multiples of N: repeated subtraction with the learned table | [`submission_chain.py`](learned_remainder/submission_chain.py) (`ed360cb1`) | `chain_v2_official` | 271.8 (417) / 15.4 | 8 of 8, and 4 of 4 | `e1dd000` |
-| 4a | integer squaring: a learned 100-entry times table, schoolbook | [`submission_square.py`](learned_remainder/submission_square.py) (`37765051`) | `square_official` | 270.5 (499) / 20.5 | 8 of 8, and 4 of 4 | `c0c86a2` |
-| 4b | the integer loop over T and the stop rule: a countdown on the learned table, and a learned 2 × 2 gate | [`submission_control.py`](learned_remainder/submission_control.py) (`ec79a312`) | `control_official` | 239.7 (469) / 12.8 | 8 of 8, and 4 of 4 | `c6c9597` |
-| 4c | the hand-written adder in the self-check, after a 70-step warm start | [`submission_adder.py`](learned_remainder/submission_adder.py) (`44e658ab`) | `adder_warm_official` | 77.8 (343) / 12.8 | 8 of 8, and 4 of 4 | `550f60e` |
-| 4d | hand-written prompt parsing and answer writing: a learned reader and writer | [`submission_io.py`](learned_remainder/submission_io.py) (`45cc6e1b`) | `io_official` | 220.0 (440) / 12.8 | 8 of 8 | `f342a91` |
-| 5 | all of 4a–4d in one model, predicting inside autograd | [`submission_combined.py`](learned_remainder/submission_combined.py) (`4f5cecc7`) | `combined_official` | 666.6 (545) / 48.2 | 8 of 8 | `9959997` |
-| 6a | most of 4c's training recipe: three facts and the check remain; no answers, phases or freeze | [`ablation/submission_simple.py`](ablation/submission_simple.py) (`f374ec70`) | `simple_official` | 300.7 (3,000 steps, no freeze) / 23.1 | 8 of 8 (a bit-identical twin), and the file itself 4 of 4 | not committed |
-| 6b | on top of 5: the division's wiring, 7 switches (864 wirings) | `learned_wiring/submission_div_v1.py` (`a0050a2f`); fixed version `submission_div.py` (`11cccf13`) | `div_official`; fixed: `div2_official` | 393.4 (640) / 48.5; fixed: 313.6 (615) / 36.8 | first version: 7 records, all certified (§9); fixed version: running | not committed |
-| 6c | plus the squaring's layout (576 layouts) | `learned_wiring/submission_sq.py` (`781928ea`) | `sq_official` | 377.7 (479) / 49.0 | 3 records so far (74, 3, 6), all certified | not committed |
+| step | builds on | what became learned (the hand-written piece removed) | file (md5) | official record | training s (frozen at step) / evaluation s | CPU seeds certified | commit |
+|---|---|---|---|---|---|---|---|
+| 0 | — | nothing: the designed subtraction table, a plumbing check | an earlier `learned_remainder/submission.py` (`9732a11f`) | `s0_official` | 3.3 (100 steps) / 5.5 | 1 of 1 | `824d073` |
+| 1 | 0 | the 200-entry subtraction table, taught with made-up practice divisions (gray under rule 14) | `submission.py` with `LESSON = "madeup"` | `final_s1_official` | 154.5 (484) / 4.8 | 8 of 8 (`s1v2` recipe) | `824d073` |
+| 2 | 1 | no made-up numbers: the table checks itself on the rows' own numbers | [`submission.py`](learned_remainder/submission.py) (`bd477b9a`) | `final_s2_official` | 181.9 (499) / 4.9 | 8 of 8 (`s2v2` recipe), and 4 of 4 that never see an answer | `824d073` |
+| 3 | 2 | the multiples of N: repeated subtraction with the learned table | [`submission_chain.py`](learned_remainder/submission_chain.py) (`ed360cb1`) | `chain_v2_official` | 271.8 (417) / 15.4 | 8 of 8, and 4 of 4 | `e1dd000` |
+| 4a | 3 | integer squaring: a learned 100-entry times table, schoolbook | [`submission_square.py`](learned_remainder/submission_square.py) (`37765051`) | `square_official` | 270.5 (499) / 20.5 | 8 of 8, and 4 of 4 | `c0c86a2` |
+| 4b | 3 | the integer loop over T and the stop rule: a countdown on the learned table, and a learned 2 × 2 gate | [`submission_control.py`](learned_remainder/submission_control.py) (`ec79a312`) | `control_official` | 239.7 (469) / 12.8 | 8 of 8, and 4 of 4 | `c6c9597` |
+| 4c | 3 | the hand-written adder in the self-check, after a 70-step warm start | [`submission_adder.py`](learned_remainder/submission_adder.py) (`44e658ab`) | `adder_warm_official` | 77.8 (343) / 12.8 | 8 of 8, and 4 of 4 | `550f60e` |
+| 4d | 3 | hand-written prompt parsing and answer writing: a learned reader and writer | [`submission_io.py`](learned_remainder/submission_io.py) (`45cc6e1b`) | `io_official` | 220.0 (440) / 12.8 | 8 of 8 | `f342a91` |
+| 5 | 4a–4d | all of 4a–4d in one model, predicting inside autograd | [`submission_combined.py`](learned_remainder/submission_combined.py) (`4f5cecc7`) | `combined_official` | 666.6 (545) / 48.2 | 8 of 8 | `9959997` |
+| 6a | 4c | most of the training recipe: three facts and the check remain; no answers, phases or freeze | [`ablation/submission_simple.py`](ablation/submission_simple.py) (`f374ec70`) | `simple_official` | 300.7 (3,000 steps, no freeze) / 23.1 | 8 of 8 (a bit-identical twin), and the file itself 4 of 4 | `f498805` |
+| 6b | 6a | the warm start: digit meanings from the order of the numbers; no hand-written adder, no answers | [`anchors/submission_anchors.py`](anchors/submission_anchors.py) (`a9e20f66`) | `anchors_official` | 207.7 (3,000 steps, no freeze) / 16.0 | 8 of 8 | `5d2b917` |
+| 7a | 5 | the division's wiring: 7 switches, 864 wirings | [`learned_wiring/submission_div.py`](learned_wiring/submission_div.py) (`11cccf13`); first version `submission_div_v1.py` (`a0050a2f`) | `div2_official`; first version: `div_official` | 313.6 (615) / 36.8; first version: 393.4 (640) / 48.5 | 8 of 8; first version: 7 of 8 | `36fc156` |
+| 7b | 7a | the squaring's layout: 576 layouts | [`learned_wiring/submission_sq.py`](learned_wiring/submission_sq.py) (`781928ea`) | `sq_official` | 377.7 (479) / 49.0 | 8 of 8 | `36fc156` |
+| 7c | 7b | the reader's and writer's shape | [`learned_wiring/submission_io3.py`](learned_wiring/submission_io3.py) (`c2331362`); first version `submission_io3_v1.py` (`070d2ee5`) | `io3v2_official`; first version: `io3_official` | 728.6 (532) / 51.8; first version: 729.4 (532) / 48.9 | 8 of 8; first version: 6 of 8 | `36fc156` |
+| 8 | 5 | the warm start in the combined model, with step 6b's lessons | [`anchors/submission_combined_anchors.py`](anchors/submission_combined_anchors.py) (`8887fdae`) | `cmbanchors_official` | 454.0 (553) / 40.6 | 8 of 8, and 4 of 4 with the old table lessons off | `5d2b917` |
 
 Notes:
 - Training time includes the steps after the freeze, when the learning rate is 0. "Never see an answer" means the same
   file with one constant changed (`REAL_MAX_T = 0`).
-- Official records live in `runs/learned_remainder/<name>.json`, `ablation/runs/` and `runs/learned_wiring/`. Each
-  holds the full log, the result and the exact source.
+- Records live in `runs/learned_remainder/`, `runs/learned_wiring/`, `ablation/runs/` and `anchors/records/`, one
+  `<name>.json` each. Each holds the full log, the result and the exact source.
 - Records of failures are kept too:
   - `s1_official`: Stage 1's first recipe, with 8 of 200 rows right and no rung certified;
-  - `adder_official`: a learned adder from a random start with no warm start, with no rung certified.
+  - `adder_official`: a learned adder from a random start with no warm start, with no rung certified;
+  - the first versions' failed CPU seeds: `div_cpu_seed7`, and `io3_cpu_seed2` and `io3_cpu_seed5`.
+
   `chain_official`, the chain's first recipe, certified, but one of its CPU seeds that never sees an answer did not.
 
-## 6. Rules 1–16 for the best model
+## 6. Rules 1–16 for the best models
 
 The rules are [one-layer-deeper/README.md §Rules](../one-layer-deeper/README.md#rules). "Gray" means a reasonable
-reader could object; the point is flagged, not argued away. This follows COMBINED.md's own table, with the imports,
-the initialization and the absence of backward calls re-checked in the source.
+reader could object; the point is flagged, not argued away. The table covers both best files, the wiring file
+(`submission_io3.py`) and the anchors file (`submission_combined_anchors.py`). It follows COMBINED.md's own table,
+WIRING.md's rules 7, 8 and 14, and ANCHORS.md §7. The imports, the initialization and the absence of backward calls
+were re-checked in both sources.
 
 | rule | status | why |
 |---|---|---|
-| 1. one `submission.py` exporting one `Submission` | yes | the runner sends the file as `submission.py`; it has one `SUBMISSION` with model, optimizer, loss, batch sizes and a step cap |
-| 2. self-contained | yes | it imports only `torch`, `itertools`, `collections` and the public `benchmark` API; no files, no network |
+| 1. one `submission.py` exporting one `Submission` | yes | each file is sent as `submission.py`; each has one `SUBMISSION` with model, optimizer, loss, batch sizes and a step cap |
+| 2. self-contained | yes | each imports only `torch`, `itertools`, `collections` and the public `benchmark` API; no files, no network |
 | 3. the participant defines model, optimizer, loss, batch sizes, steps | yes | Adam; the rounds run until no prompt wants another (adaptive computation, capped at 100) |
-| 4. the evaluator owns the loop, data order, backward, clipping, cadence, seeds, deadline | **gray** | the evaluator is untouched: one pass per step, no batch reuse. But the schedule lives in the model as Python state: the reader's stages, the phases, when each table joins, the Adam resets, and a freeze that sets the learning rate to 0 once every check has passed for 200 steps. That freeze is early stopping on the model's own checks |
-| 5. at most 500M parameters | yes | 5,079 |
-| 6. no hard-coded weights | yes | all 10 tensors start at 0.1 × random normal and are trained. The "designed" mode, with the tables at the truth, is only a plumbing check, never the submission |
-| 7. no hard-coded algorithm in the forward pass | **gray, the main one** | every product, difference, sum, borrow, count and keep-or-discard decision, and every symbol read or written, is a lookup in a learned table. But the forward pass is a designed CPU: the paper layouts, the countdown register and the number 1, the keep-or-discard select, "rounds until none commits", and the reader's grammar. The learned-wiring work moves the layouts into learned switches, but their menus are designed and contain the true wiring |
-| 8. final logits from the model inside autograd, with an unbroken gradient path | yes, with gray edges | the prediction path above. Gray: (a) in training the forward returns zero logits, and the tables learn through the lessons, not through the final logits; (b) the gradient is damped 10× per subtraction link, addition and round so it does not overflow, and on T = 64 prompts it underflows to 0 for T's anchor and step and for x's step; (c) which reading hypothesis a prompt uses is decided by designed run-detection logic, with a soft surrogate on the gradient side |
+| 4. the evaluator owns the loop, data order, backward, clipping, cadence, seeds, deadline | **gray** | the evaluator is untouched: one pass per step, no batch reuse. But the schedule lives in the model as Python state: the reader's stages, the phases, when each table, lesson and switch joins, the Adam resets, and a freeze that sets the learning rate to 0 once every check has passed for 200 steps. That freeze is early stopping on the model's own checks |
+| 5. at most 500M parameters | yes | 7,037 (wiring) and 5,079 (anchors) |
+| 6. no hard-coded weights | yes | every tensor starts at 0.1 × random normal. The "designed" mode, with every table at the truth, is only a plumbing check, never the submission |
+| 7. no hard-coded algorithm in the forward pass | **gray, the main one; less so for the wiring file** | in both, every product, difference, sum, borrow, count and keep-or-discard decision, and every symbol read or written, is a lookup in a learned table. **Anchors file:** the forward pass is still a designed CPU: the paper layouts, the countdown register and the number 1, the keep-or-discard select, "rounds until none commits", and the reader's grammar. **Wiring file:** which register feeds which port, the shift, the write-back, the readout, the squaring's placement and the reader's shape are learned switches. But the menus are designed and contain the true wiring, and the sizes, the T loop, a + b = a − (0 − b) and the order of the squaring's summation are fixed. A strict reader can say the algorithm moved into the grammar |
+| 8. final logits from the model inside autograd, with an unbroken gradient path | yes, with gray edges | at evaluation every digit is a one-hot vector and every table (and, in the wiring file, every switch) a straight-through one-hot. So the answer is exactly the machine's, and a gradient from the final logits reaches every learned tensor (tested at the truth and on trained models). Gray: (a) in training the forward returns zero logits, so the tables learn through the lessons, not through the final logits; (b) the gradient is damped 10× per subtraction link, addition and round so it does not overflow, and on deep paths it underflows to 0 (at T = 64, for T's anchor and step and x's step; in the wiring file, for a switch whose options differ only in deep places); (c) which reading hypothesis a prompt uses is decided by designed run-detection logic, with a soft surrogate on the gradient side |
 | 9. everything on the GPU | yes | state and computation stay on the device. The schedule reads a few scalars to Python per step, and evaluation syncs one boolean per round to end the loop |
 | 10. OOM or timeout fails | ok | neither happened |
-| 11. 3,600 s of training, compilation included | yes | 666.6 s, no compilation |
+| 11. 3,600 s of training, compilation included | yes | 728.6 s (wiring) and 454.0 s (anchors), no compilation |
 | 12. a custom loss returns one finite differentiable scalar | yes | `token_training_loss` |
-| 13. evaluation within 1,800 s; certification | yes | 48.2 s; T = 64 on both ladders |
-| 14. no data inspection, augmentation, task-specific solvers, custom loops or participant backward passes | **gray, the other main one** | there is no `backward` or `autograd.grad` call in the file, no custom autograd function, and no made-up numbers. But the lessons carry designed knowledge: the hand-written adder during the warm start; facts about the inputs (x < N, N > 0, and "a wrapped x − N is large", which assumes the register's width); the times-table ladder, which is the definition of multiplication; how decimal comparison works (the deciding digit), used to learn the digit order; the reading and T's direction, chosen inside the loss by trying every complete hypothesis; and only answers of T ≤ 2 rows whose own checks pass. The sizes (8, 8 and 2 digits in, 8 out) come from the task's spec |
+| 13. evaluation within 1,800 s; certification | yes | 51.8 s and 40.6 s; T = 64 on both ladders |
+| 14. no data inspection, augmentation, task-specific solvers, custom loops or participant backward passes | **gray, the other main one; less so for the anchors file** | neither file calls `backward` or `autograd.grad`, defines a custom autograd function, or makes up numbers. **Anchors file:** no hand-written arithmetic at any step of training; every comparison a lesson makes reads the learned borrow table. **Wiring file:** the hand-written adder still checks the table for 70 steps after the facts about x and N join. **Both** carry designed knowledge in their lessons: facts about the inputs (x < N, on every top part in the anchors file; N > 0; "a wrapped x − N is large", which assumes the register's width and which the anchors file does not need); laws of subtraction (the order laws; R − 0 = R and R − R = 0); the times-table ladder, which is the definition of multiplication; how decimal comparison works, used to learn the digit order; the reading and T's direction, chosen inside the loss by trying every complete hypothesis; and only answers of T ≤ 2 rows whose own checks pass. The wiring file adds the definition of division with remainder (x + q·N leaves x), "x mod N = x" and "N mod N = 0" through the whole division, and what a schoolbook row is. Its switches' pass/fail verdicts come from running the snapped machine on candidate wirings inside the loss: a search over the menu, done by gradient on mixture weights, not by an outer loop. The sizes (8, 8 and 2 digits in, 8 out) come from the task's spec |
 | 15. repeated rule-breaking | n/a | the write-ups flag their own gray areas, and nothing has been submitted to the hosted evaluator |
 | 16. do not exploit the Hard metric recorder | yes | not touched |
 
@@ -273,48 +366,34 @@ the initialization and the absence of backward calls re-checked in the source.
   Their notes discuss rules 7, 8 and 14 ([unfold_sub/NOTE.md](unfold_sub/NOTE.md),
   [unfold_small/NOTE.md](unfold_small/NOTE.md)).
 
-## 7. What is running now, and the open questions
+## 7. Status and open questions
 
-As of about 03:45 on Oct 21, none of this work is committed.
-
-**Ablation of the training recipe** ([ablation/ABLATION.md](ablation/ABLATION.md), complete as written at 03:24;
-262 run records in `ablation/runs/`).
-- In the single-piece recipe (step 4c), only 2 of 21 ingredients break training when removed alone:
-  - the 70-step warm start with the hand-written adder (0 of 4 seeds without it);
-  - the wrap-around fact, "(x − N) − N does not borrow" (0 of 4).
-- Two harmless-sounding lessons, R − 0 = R and R − R = 0, planted the very traps that later lessons had been added to
-  repair.
-- The simplified recipe certified (step 6a).
-- In the combined model the picture shifts:
-  - the wrap-around fact can go (4 of 4), because the warm start runs longer there;
-  - the learned-adder check becomes essential (0 of 2 without it).
-
-**Learned wiring** ([learned_wiring/WIRING.md](learned_wiring/WIRING.md), being written, with placeholders in ⟨ ⟩).
-- Stage 1 (the division's 7 switches) certified officially. The session reports that the first version failed one
-  CPU seed (seed 7, no record yet): its untrained reader read every N as 0. A fixed version certified officially too
-  (`div2_official`), and its CPU seeds were running.
-- Stage 2 (plus the squaring's layout) certified officially, and its CPU seeds were coming in.
-- Stage 3 (one shared shape switch for the reader and writer) had its official run going. WIRING.md lists two fixes
-  found on the way: a one-digit x has no reading direction, and a rewritten writer lesson had lost a side effect.
-
-**Digit anchors** (the session "Anchor digit meanings without the hand-written warm start"). It was running. At 03:41
-its folder [`anchors/`](anchors/) held only `core.py`, a tiny core of the digit-meaning problem (the chain machine in
-any base, with its lessons), and no write-up yet. Its target is the warm start: the ablation found it load-bearing,
-and it is the last hand-written arithmetic in training.
+**Nothing is running.** The three studies that were in progress when this file was first written have finished and
+are committed:
+- **Ablation** ([ABLATION.md](ablation/ABLATION.md), `f498805`; 262 run records in `ablation/runs/`).
+  - In the single-piece recipe (step 4c), only 2 of 21 ingredients broke training when removed alone: the 70-step
+    warm start with the hand-written adder, and the wrap-around fact, "(x − N) − N does not borrow" (0 of 4 seeds
+    without either).
+  - Two harmless-sounding lessons, R − 0 = R and R − R = 0, planted the very traps that later lessons had been added
+    to repair.
+  - A simplified recipe certified (step 6a).
+- **Digit anchors** ([ANCHORS.md](anchors/ANCHORS.md), `5d2b917`). The warm start is gone from both the single-piece
+  machine (step 6b) and the combined model (step 8).
+- **Learned wiring** ([WIRING.md](learned_wiring/WIRING.md), `36fc156`). All three stages certified (steps 7a–7c).
 
 **Open questions.**
-1. **The warm start.** Can digit meanings come from somewhere other than a hand-written adder? Checks made only of the
-   table cannot supply them (ABLATION.md §7, Rule 1).
-2. **The wrap-around fact.** Can it be replaced by something that does not assume the register's width? One
-   replacement, rippling two lessons with the machine's own borrows, did its job on 3 of 4 seeds inside the full
-   recipe, but not alone (ABLATION.md §8).
-3. **The wiring menus.** How large can they grow before the machine discovers the algorithm instead of confirming
-   it? Today they contain the true wiring, and the sizes, the T loop and the adder's composition a − (0 − b) are fixed.
-4. **Rule 8.** Training never sends the loss through the final logits, and the prediction path's gradient is damped
+1. **One file with both.** The wiring file still has the 70-step warm start, and it still carries the wrap-around
+   fact, which assumes the register's width. In the combined model the anchors lessons removed the warm start and
+   made the wrap fact unnecessary: with the old table lessons switched off, the wrap fact among them, 4 of 4 seeds
+   certified. Putting the anchors lessons into the wiring file has not been tried.
+2. **The menus.** How large can the wiring menus grow before the machine discovers the algorithm instead of
+   confirming it? Today they contain the true wiring. The sizes, the T loop and the adder's composition a − (0 − b)
+   are fixed.
+3. **Rule 8.** Training never sends the loss through the final logits, and the prediction path's gradient is damped
    and underflows deep in long runs. Is that "an unbroken gradient path"?
-5. **Rule 14.** Is a self-check on the rows' own numbers "data augmentation" or a "task-specific solver"? A strict
-   reviewer should decide before any real submission.
-6. **The hosted evaluator.** Submitting after the deadline, just to see a response, has not been done.
+4. **Rule 14.** Are facts like "x < N on every top part" and laws of subtraction allowed lessons, or are they a
+   "task-specific solver"? A strict reviewer should decide before any real submission.
+5. **The hosted evaluator.** Submitting after the deadline, just to see a response, has not been done.
 
 ## 8. Where everything is
 
@@ -324,9 +403,9 @@ and it is the last hand-written arithmetic in training.
 | [`README.md`](README.md) | one line for every file and folder |
 | [`REPORT.md`](REPORT.md) | the first-day report: the analysis (§0–8), SpecBit and the grammar search (§9–14) |
 | [`learned_remainder/`](learned_remainder/) | the removal ladder, steps 0–5: every `submission*.py`, its write-up (LEARNED_REMAINDER, CHAIN, SQUARE, CONTROL, ADDER, IO, COMBINED), the Modal launchers, plans and local checks |
-| [`ablation/`](ablation/) | which training ingredients matter, and `submission_simple.py` (another session's folder, not committed) |
-| [`learned_wiring/`](learned_wiring/) | the wiring learned in stages (another session's folder, not committed, still changing) |
-| [`anchors/`](anchors/) | digit meanings without the hand-written warm start (another session's folder, just started, not committed) |
+| [`ablation/`](ablation/) | which training ingredients matter ([ABLATION.md](ablation/ABLATION.md)), and `submission_simple.py` (step 6a) |
+| [`anchors/`](anchors/) | digit meanings from the order of the numbers ([ANCHORS.md](anchors/ANCHORS.md)): `submission_anchors.py` (step 6b), `submission_combined_anchors.py` (step 8), records in `anchors/records/` |
+| [`learned_wiring/`](learned_wiring/) | the wiring learned in three stages ([WIRING.md](learned_wiring/WIRING.md)): `submission_div.py`, `submission_sq.py`, `submission_io3.py` (steps 7a–7c), the first versions `*_v1.py`, and `tiny/` |
 | [`tinyrouting/`](tinyrouting/) | wiring and tables learned together in tiny machines |
 | [`tinycore/`](tinycore/) | the quotient-digit chicken-and-egg, computed exactly |
 | [`microlab/`](microlab/) | a small harness for one-minute experiments, and its findings ([microlab/README.md](microlab/README.md)) |
@@ -334,11 +413,11 @@ and it is the last hand-written arithmetic in training.
 | [`submission.py`](submission.py) | SpecBit |
 | [`panel/`](panel/), [`panel_synthesis.md`](panel_synthesis.md) | the five-design panel and its synthesis |
 | [`FINDINGS_substrate.md`](FINDINGS_substrate.md), [`RELAXED.md`](RELAXED.md), [`UNFOLD.md`](UNFOLD.md), [`UNFOLD_FAMILY.md`](UNFOLD_FAMILY.md) | the day-1 topic write-ups |
-| `runs/` | the run records. Official ones: `runs/learned_remainder/*_official.json`, `runs/learned_wiring/`, `runs/unfold_sub/official_h100.json`, `runs/unfold_small/official_h100.json`, `runs/h100_h1.json`; the ablation's are in `ablation/runs/` |
+| `runs/` | the run records. Official ones: `runs/learned_remainder/*_official.json`, `runs/learned_wiring/*_official.json`, `runs/unfold_sub/official_h100.json`, `runs/unfold_small/official_h100.json`, `runs/h100_h1.json`. The ablation's are in `ablation/runs/`, the anchors' in `anchors/records/` |
 | `../one-layer-deeper/` | the competition clone at `87e5c26` ("Releasing H1"), with the H1 data under `data/generated/` |
 | `~/github/handwired-lab/montgomery-search` | outside this repo: search over a Montgomery squaring program in the handwired project (branch `lab/montgomery-search`) |
 
-**The certified submissions, with their records.** Steps 0–6c are in the §5 table. The earlier three:
+**The certified submissions, with their records.** Steps 0–8 are in the §5 table. The earlier three:
 
 | model | file (md5) | official record | training s / evaluation s | learned numbers |
 |---|---|---|---|---|
@@ -348,9 +427,10 @@ and it is the last hand-written arithmetic in training.
 
 All three reached T = 64 on both ladders, with every rung 768/768 and every split exact.
 
-**How to rerun.** Each write-up ends with its commands. The official runs of the ladder go through
-`learned_remainder/modal_chain.py --file <submission>`, launched from the competition clone. It builds the
-competition's image, regenerates H1 with the official generator, and runs the untouched manifest.
+**How to rerun.** Each write-up ends with its commands. The ladder's official runs go through a Modal launcher
+started from the competition clone: `learned_remainder/modal_chain.py --file <submission>` for steps 0–5, and each
+later folder's own copy (`ablation/modal_ablate.py`, `anchors/modal_anchors.py`, `learned_wiring/modal_wiring.py`).
+Each builds the competition's image, regenerates H1 with the official generator, and runs the untouched manifest.
 
 ## 9. Where docs and records disagree
 
@@ -361,14 +441,14 @@ What was checked, for every number above:
   line the write-up names;
 - the CPU-seed claims, by tallying the records.
 
-The numbers checked this way all match their records in the committed write-ups. Those numbers are each piece's
-official training and evaluation times, freeze steps, parameter counts and CPU-seed counts, in LEARNED_REMAINDER,
-CHAIN, SQUARE, CONTROL, ADDER, IO and COMBINED. The same goes for the two Unfold notes and REPORT.md §9. The
+The numbers checked this way all match their records in the write-ups that cite them: each piece's official training
+and evaluation times, freeze steps, parameter counts and CPU-seed counts in LEARNED_REMAINDER, CHAIN, SQUARE, CONTROL,
+ADDER, IO, COMBINED, ABLATION, ANCHORS and WIRING. The same goes for the two Unfold notes and REPORT.md §9. The
 exceptions:
-- **WIRING.md contradicts itself on stage 1's CPU seeds.** Its prose says the first version failed one of 8 seeds
-  (seed 7), but its generated table says "7/7 (1 running)". `runs/learned_wiring/` holds 7 certified records (74 and
-  1–6) and none for seed 7, so the failure is the session's report, not yet a record. The write-up is in progress.
 - **COMBINED.md calls `combined_official` and `combined_index_official` "the same training run".** They are two runs
   with identical training: the same file apart from the `PATH` line, the same seed and data order, and both froze at
   step 545 with the same tables. They were launched together, and their training times differ (666.6 s and 566.5 s).
 - **The leaderboard count** (3 of 146 certified, REPORT.md §0) has no record behind it and was not re-checked.
+
+The first version of this file also flagged WIRING.md for contradicting itself on stage 1's CPU seeds. The finished
+WIRING.md says 7 of 8 throughout, and the record of the failed seed (`div_cpu_seed7`) is in `runs/learned_wiring/`.

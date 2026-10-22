@@ -1,0 +1,65 @@
+{
+ "record": "/Users/chenglou/github/one-layer/cpu_first/library/records/reference.jsonl",
+ "program": "LDA.X STA.Y CLA W[LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y] STA.X CLA P[BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]]",
+ "primitive": "LDA.X STA.Y CLA W[LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y] STA.X CLA P[BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]]",
+ "rungs": {
+  "depth_t_1": [
+   768,
+   768
+  ],
+  "depth_t_2": [
+   768,
+   768
+  ],
+  "depth_t_4": [
+   768,
+   768
+  ],
+  "depth_t_8": [
+   768,
+   768
+  ],
+  "depth_t_16": [
+   768,
+   768
+  ],
+  "depth_t_32": [
+   768,
+   768
+  ],
+  "depth_t_64": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_1": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_2": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_4": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_8": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_16": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_32": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_64": [
+   768,
+   768
+  ]
+ },
+ "certified_depth_t": 64,
+ "certified_depth_ood_n_t": 64
+}

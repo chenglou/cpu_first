@@ -1,0 +1,293 @@
+{
+ "bpe": {
+  "merges": [
+   {
+    "name": "B1",
+    "definition": "SBB.N INC",
+    "expands_to": "SBB.N INC"
+   },
+   {
+    "name": "B2",
+    "definition": "P[B1]",
+    "expands_to": "P[SBB.N INC]"
+   },
+   {
+    "name": "B3",
+    "definition": "CLC B2",
+    "expands_to": "CLC P[SBB.N INC]"
+   },
+   {
+    "name": "B4",
+    "definition": "STA.S B3",
+    "expands_to": "STA.S CLC P[SBB.N INC]"
+   },
+   {
+    "name": "B5",
+    "definition": "B4 SEL.S",
+    "expands_to": "STA.S CLC P[SBB.N INC] SEL.S"
+   },
+   {
+    "name": "B6",
+    "definition": "B[B5]",
+    "expands_to": "B[STA.S CLC P[SBB.N INC] SEL.S]"
+   },
+   {
+    "name": "B7",
+    "definition": "MUL.X INC",
+    "expands_to": "MUL.X INC"
+   },
+   {
+    "name": "B8",
+    "definition": "LDH.Y CLK",
+    "expands_to": "LDH.Y CLK"
+   },
+   {
+    "name": "B9",
+    "definition": "P[B7]",
+    "expands_to": "P[MUL.X INC]"
+   },
+   {
+    "name": "B10",
+    "definition": "B8 B9",
+    "expands_to": "LDH.Y CLK P[MUL.X INC]"
+   },
+   {
+    "name": "B11",
+    "definition": "LDA.X CLC",
+    "expands_to": "LDA.X CLC"
+   },
+   {
+    "name": "B12",
+    "definition": "BRG.X B6",
+    "expands_to": "BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]"
+   },
+   {
+    "name": "B13",
+    "definition": "SHL.X SHR.Y",
+    "expands_to": "SHL.X SHR.Y"
+   },
+   {
+    "name": "B14",
+    "definition": "B10 B13",
+    "expands_to": "LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y"
+   },
+   {
+    "name": "B15",
+    "definition": "W[B14]",
+    "expands_to": "W[LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y]"
+   },
+   {
+    "name": "B16",
+    "definition": "CLA B15",
+    "expands_to": "CLA W[LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y]"
+   },
+   {
+    "name": "B17",
+    "definition": "P[B12]",
+    "expands_to": "P[BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]]"
+   },
+   {
+    "name": "B18",
+    "definition": "CLA B17",
+    "expands_to": "CLA P[BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]]"
+   },
+   {
+    "name": "B19",
+    "definition": "STA.Y B16",
+    "expands_to": "STA.Y CLA W[LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y]"
+   },
+   {
+    "name": "B20",
+    "definition": "STA.X B18",
+    "expands_to": "STA.X CLA P[BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]]"
+   },
+   {
+    "name": "B21",
+    "definition": "SBB.Y INC",
+    "expands_to": "SBB.Y INC"
+   },
+   {
+    "name": "B22",
+    "definition": "LDA.X B3",
+    "expands_to": "LDA.X CLC P[SBB.N INC]"
+   },
+   {
+    "name": "B23",
+    "definition": "LDA.X B19",
+    "expands_to": "LDA.X STA.Y CLA W[LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y]"
+   },
+   {
+    "name": "B24",
+    "definition": "P[B21]",
+    "expands_to": "P[SBB.Y INC]"
+   },
+   {
+    "name": "B25",
+    "definition": "B11 B24",
+    "expands_to": "LDA.X CLC P[SBB.Y INC]"
+   }
+  ],
+  "rewritten": {
+   "copy": "LDA.X",
+   "shl": "LDA.X SHL.A",
+   "shr": "LDA.X SHR.A",
+   "sub": "B22",
+   "add": "B11 P[ADC.N INC]",
+   "lt": "B22",
+   "neg": "CLA CLC P[SBB.X INC]",
+   "dbl": "B11 P[ADC.X INC]",
+   "mrow": "CLA B10",
+   "mac": "LDA.N B10",
+   "csub": "LDA.X B5",
+   "modB": "LDA.X B6",
+   "step": "LDA.Y B12",
+   "reduce": "B18",
+   "mul": "B16",
+   "sq": "B23",
+   "sqmod": "B23 B20",
+   "subY": "B25",
+   "addY": "B11 P[ADC.Y INC]",
+   "ltY": "B25",
+   "negN": "CLA B3",
+   "mrowN": "CLA LDH.X CLK P[MUL.N INC]",
+   "csubY": "LDA.Y B5",
+   "modBY": "LDA.Y B6",
+   "step0": "CLA B12",
+   "mulmod": "B16 B20"
+  }
+ },
+ "mdl": {
+  "merges": [
+   {
+    "name": "M1",
+    "definition": "STA.S CLC P[SBB.N INC] SEL.S",
+    "expands_to": "STA.S CLC P[SBB.N INC] SEL.S"
+   },
+   {
+    "name": "M2",
+    "definition": "CLA W[LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y]",
+    "expands_to": "CLA W[LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y]"
+   },
+   {
+    "name": "M3",
+    "definition": "BRG.X B[M1]",
+    "expands_to": "BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]"
+   },
+   {
+    "name": "M4",
+    "definition": "CLC P[SBB.N INC]",
+    "expands_to": "CLC P[SBB.N INC]"
+   },
+   {
+    "name": "M5",
+    "definition": "CLA P[M3]",
+    "expands_to": "CLA P[BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]]"
+   },
+   {
+    "name": "M6",
+    "definition": "LDA.X CLC",
+    "expands_to": "LDA.X CLC"
+   },
+   {
+    "name": "M7",
+    "definition": "LDH.Y CLK P[MUL.X INC]",
+    "expands_to": "LDH.Y CLK P[MUL.X INC]"
+   },
+   {
+    "name": "M8",
+    "definition": "M6 P[SBB.Y INC]",
+    "expands_to": "LDA.X CLC P[SBB.Y INC]"
+   }
+  ],
+  "rewritten": {
+   "copy": "LDA.X",
+   "shl": "LDA.X SHL.A",
+   "shr": "LDA.X SHR.A",
+   "sub": "LDA.X M4",
+   "add": "M6 P[ADC.N INC]",
+   "lt": "LDA.X M4",
+   "neg": "CLA CLC P[SBB.X INC]",
+   "dbl": "M6 P[ADC.X INC]",
+   "mrow": "CLA M7",
+   "mac": "LDA.N M7",
+   "csub": "LDA.X M1",
+   "modB": "LDA.X B[M1]",
+   "step": "LDA.Y M3",
+   "reduce": "M5",
+   "mul": "M2",
+   "sq": "LDA.X STA.Y M2",
+   "sqmod": "LDA.X STA.Y M2 STA.X M5",
+   "subY": "M8",
+   "addY": "M6 P[ADC.Y INC]",
+   "ltY": "M8",
+   "negN": "CLA M4",
+   "mrowN": "CLA LDH.X CLK P[MUL.N INC]",
+   "csubY": "LDA.Y M1",
+   "modBY": "LDA.Y B[M1]",
+   "step0": "CLA M3",
+   "mulmod": "M2 STA.X M5"
+  }
+ },
+ "mdlh": {
+  "merges": [
+   {
+    "name": "M1",
+    "definition": "STA.S CLC P[SBB.N INC] SEL.S",
+    "expands_to": "STA.S CLC P[SBB.N INC] SEL.S"
+   },
+   {
+    "name": "M2",
+    "definition": "CLA W[LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y]",
+    "expands_to": "CLA W[LDH.Y CLK P[MUL.X INC] SHL.X SHR.Y]"
+   },
+   {
+    "name": "H1",
+    "definition": "LDA.X CLC P[_ INC]",
+    "expands_to": "LDA.X CLC P[_ INC]"
+   },
+   {
+    "name": "M3",
+    "definition": "BRG.X B[M1]",
+    "expands_to": "BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]"
+   },
+   {
+    "name": "M4",
+    "definition": "CLA P[M3]",
+    "expands_to": "CLA P[BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]]"
+   },
+   {
+    "name": "M5",
+    "definition": "LDH.Y CLK P[MUL.X INC]",
+    "expands_to": "LDH.Y CLK P[MUL.X INC]"
+   }
+  ],
+  "rewritten": {
+   "copy": "LDA.X",
+   "shl": "LDA.X SHL.A",
+   "shr": "LDA.X SHR.A",
+   "sub": "H1[SBB.N]",
+   "add": "H1[ADC.N]",
+   "lt": "H1[SBB.N]",
+   "neg": "CLA CLC P[SBB.X INC]",
+   "dbl": "H1[ADC.X]",
+   "mrow": "CLA M5",
+   "mac": "LDA.N M5",
+   "csub": "LDA.X M1",
+   "modB": "LDA.X B[M1]",
+   "step": "LDA.Y M3",
+   "reduce": "M4",
+   "mul": "M2",
+   "sq": "LDA.X STA.Y M2",
+   "sqmod": "LDA.X STA.Y M2 STA.X M4",
+   "subY": "H1[SBB.Y]",
+   "addY": "H1[ADC.Y]",
+   "ltY": "H1[SBB.Y]",
+   "negN": "CLA CLC P[SBB.N INC]",
+   "mrowN": "CLA LDH.X CLK P[MUL.N INC]",
+   "csubY": "LDA.Y M1",
+   "modBY": "LDA.Y B[M1]",
+   "step0": "CLA M3",
+   "mulmod": "M2 STA.X M4"
+  }
+ }
+}

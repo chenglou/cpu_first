@@ -1,0 +1,65 @@
+{
+ "record": "library/records/bpe_big_routines_r11.jsonl",
+ "program": "T.sqmod",
+ "primitive": "LDA.X STA.Y CLK CLA W[LDH.Y P[MUL.X INC] INC SHL.X] STA.X CLA P[CLC BRG.X B[STA.S P[SBB.N INC] SEL.S]]",
+ "rungs": {
+  "depth_t_1": [
+   768,
+   768
+  ],
+  "depth_t_2": [
+   768,
+   768
+  ],
+  "depth_t_4": [
+   768,
+   768
+  ],
+  "depth_t_8": [
+   768,
+   768
+  ],
+  "depth_t_16": [
+   768,
+   768
+  ],
+  "depth_t_32": [
+   768,
+   768
+  ],
+  "depth_t_64": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_1": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_2": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_4": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_8": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_16": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_32": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_64": [
+   768,
+   768
+  ]
+ },
+ "certified_depth_t": 64,
+ "certified_depth_ood_n_t": 64
+}

@@ -1,0 +1,63 @@
+{
+ "program": "T.mul STA.X T.reduce",
+ "primitive": "CLK CLA W[LDH.Y P[MUL.X INC] INC SHL.X] STA.X CLA P[CLC BRG.X B[STA.S P[SBB.N INC] SEL.S]]",
+ "rungs": {
+  "depth_t_1": [
+   768,
+   768
+  ],
+  "depth_t_2": [
+   768,
+   768
+  ],
+  "depth_t_4": [
+   768,
+   768
+  ],
+  "depth_t_8": [
+   768,
+   768
+  ],
+  "depth_t_16": [
+   768,
+   768
+  ],
+  "depth_t_32": [
+   768,
+   768
+  ],
+  "depth_t_64": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_1": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_2": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_4": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_8": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_16": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_32": [
+   768,
+   768
+  ],
+  "depth_ood_n_t_64": [
+   768,
+   768
+  ]
+ },
+ "note": "T.mul STA.X T.reduce from r11 level 5, fed x in X and Y"
+}

@@ -1,0 +1,55 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-FMJTXGaK52nWHUrOHDX2UI
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/tournament/local/modal_diag.py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+└── 🔨 Created function diag.
+spawned ['tdiag2_train_s74', 'tdiag2_train_s2']
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+tdiag2_train_s74 | step 697 loss 0.3025 phase frozen io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: op=sub flag=fin a=('D',0) b=('M',0) cin=j-1 cv=('E',0) hv=('D',0) keep=gated nread=given vread=given start=top order=down bring=(1,0,'rep') post=0 final=csub read=(0,'given') gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=0.9990 1604.6s
+tdiag2_train_s2 | step 660 loss 0.3050 phase frozen io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: op=sub flag=fin a=('D',0) b=('M',0) cin=j-1 cv=('E',0) hv=('D',0) keep=gated nread=given vread=given start=top order=down bring=(1,0,'rep') post=0 final=none read=(0,'given') gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=0.9990 2070.9s
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-FMJTXGaK52nWHUrOHDX2UI

@@ -1,0 +1,112 @@
+{
+ "rows": 256,
+ "ood_rows_8digit": 440,
+ "link_combinations": 29584,
+ "gate_combinations": 66564,
+ "link_pass": 16,
+ "plain": {
+  "pass_training": 88,
+  "right_on_8digit": 10,
+  "by_kind": {
+   "other|wrong on 8-digit N": 78,
+   "other|right": 5,
+   "trial multiples|right": 1,
+   "repeated subtraction|right": 4
+  },
+  "examples_wrong": [
+   "a=('Rp',3) b=('Mq',3) op=sub cin=j-1 nread=given flag=b7 keep=gated cv=('D',0) hv=('E',-3) gate=HC",
+   "a=('Rp',3) b=('Mq',3) op=sub cin=j-1 nread=given flag=b7 keep=gated cv=('E',-3) hv=('D',0) gate=CH",
+   "a=('Rp',3) b=('Mq',3) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('D',0) hv=('E',-3) gate=HC",
+   "a=('Rp',3) b=('Mq',3) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',-3) hv=('D',0) gate=CH",
+   "a=('Rp',2) b=('Mq',2) op=sub cin=j-1 nread=given flag=b6 keep=gated cv=('D',0) hv=('E',-2) gate=HC",
+   "a=('Rp',2) b=('Mq',2) op=sub cin=j-1 nread=given flag=b6 keep=gated cv=('E',-2) hv=('D',0) gate=CH",
+   "a=('Rp',2) b=('Mq',2) op=sub cin=j-1 nread=given flag=b7 keep=gated cv=('D',0) hv=('E',-2) gate=HC",
+   "a=('Rp',2) b=('Mq',2) op=sub cin=j-1 nread=given flag=b7 keep=gated cv=('E',-2) hv=('D',0) gate=CH",
+   "a=('Rp',2) b=('Mq',2) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('D',0) hv=('E',-2) gate=HC",
+   "a=('Rp',2) b=('Mq',2) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',-2) hv=('D',0) gate=CH",
+   "a=('Rp',1) b=('Mq',1) op=sub cin=j-1 nread=given flag=b5 keep=gated cv=('D',0) hv=('E',-1) gate=HC",
+   "a=('Rp',1) b=('Mq',1) op=sub cin=j-1 nread=given flag=b5 keep=gated cv=('E',-1) hv=('D',0) gate=CH"
+  ],
+  "examples_right": [
+   "a=('Rp',0) b=('Mq',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('D',0) hv=('E',0) gate=HC",
+   "a=('Rp',0) b=('Mq',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('D',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('A',0) hv=('E',0) gate=HC",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('D',0) hv=('E',0) gate=HC",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('E',0) hv=('A',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('E',0) hv=('D',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('A',0) hv=('E',0) gate=HC",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('D',0) hv=('E',0) gate=HC",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('A',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('D',0) gate=CH"
+  ]
+ },
+ "with_norm": {
+  "pass_training": 10,
+  "right_on_8digit": 10,
+  "by_kind": {
+   "other|right": 5,
+   "trial multiples|right": 1,
+   "repeated subtraction|right": 4
+  },
+  "examples_wrong": [],
+  "examples_right": [
+   "a=('Rp',0) b=('Mq',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('D',0) hv=('E',0) gate=HC",
+   "a=('Rp',0) b=('Mq',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('D',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('A',0) hv=('E',0) gate=HC",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('D',0) hv=('E',0) gate=HC",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('E',0) hv=('A',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('E',0) hv=('D',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('A',0) hv=('E',0) gate=HC",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('D',0) hv=('E',0) gate=HC",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('A',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('D',0) gate=CH"
+  ]
+ },
+ "with_loop": {
+  "pass_training": 44,
+  "right_on_8digit": 5,
+  "by_kind": {
+   "other|wrong on 8-digit N": 39,
+   "trial multiples|right": 1,
+   "repeated subtraction|right": 4
+  },
+  "examples_wrong": [
+   "a=('Rp',3) b=('Mq',3) op=sub cin=j-1 nread=given flag=b7 keep=gated cv=('E',-3) hv=('D',0) gate=CH",
+   "a=('Rp',3) b=('Mq',3) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',-3) hv=('D',0) gate=CH",
+   "a=('Rp',2) b=('Mq',2) op=sub cin=j-1 nread=given flag=b6 keep=gated cv=('E',-2) hv=('D',0) gate=CH",
+   "a=('Rp',2) b=('Mq',2) op=sub cin=j-1 nread=given flag=b7 keep=gated cv=('E',-2) hv=('D',0) gate=CH",
+   "a=('Rp',2) b=('Mq',2) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',-2) hv=('D',0) gate=CH",
+   "a=('Rp',1) b=('Mq',1) op=sub cin=j-1 nread=given flag=b5 keep=gated cv=('E',-1) hv=('D',0) gate=CH",
+   "a=('Rp',1) b=('Mq',1) op=sub cin=j-1 nread=given flag=b6 keep=gated cv=('E',-1) hv=('D',0) gate=CH",
+   "a=('Rp',1) b=('Mq',1) op=sub cin=j-1 nread=given flag=b7 keep=gated cv=('E',-1) hv=('D',0) gate=CH",
+   "a=('Rp',1) b=('Mq',1) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',-1) hv=('D',0) gate=CH",
+   "a=('Rp',0) b=('Mq',0) op=sub cin=j-1 nread=given flag=b4 keep=gated cv=('E',0) hv=('D',0) gate=CH",
+   "a=('Rp',0) b=('Mq',0) op=sub cin=j-1 nread=given flag=b5 keep=gated cv=('E',0) hv=('D',0) gate=CH",
+   "a=('Rp',0) b=('Mq',0) op=sub cin=j-1 nread=given flag=b6 keep=gated cv=('E',0) hv=('D',0) gate=CH"
+  ],
+  "examples_right": [
+   "a=('Rp',0) b=('Mq',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('D',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('E',0) hv=('A',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('E',0) hv=('D',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('A',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('D',0) gate=CH"
+  ]
+ },
+ "with_norm_loop": {
+  "pass_training": 5,
+  "right_on_8digit": 5,
+  "by_kind": {
+   "trial multiples|right": 1,
+   "repeated subtraction|right": 4
+  },
+  "examples_wrong": [],
+  "examples_right": [
+   "a=('Rp',0) b=('Mq',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('D',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('E',0) hv=('A',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=lt keep=gated cv=('E',0) hv=('D',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('A',0) gate=CH",
+   "a=('D',0) b=('M',0) op=sub cin=j-1 nread=given flag=fin keep=gated cv=('E',0) hv=('D',0) gate=CH"
+  ]
+ },
+ "seconds": 47.35143184661865
+}

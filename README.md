@@ -1,6 +1,6 @@
 # cpu_first — experiments for a CPU-first take on One Layer Deeper
 
-**Start with [OVERVIEW.md](OVERVIEW.md)**: where everything stands, the current best models, the removal ladder, the
+**Start with [OVERVIEW.md](OVERVIEW.md)**: where everything stands, the current best model, the removal ladder, the
 rules, and the open questions. This file indexes every file and folder.
 
 The early experiments run on a laptop CPU in seconds to minutes. Later ones, from the grammar search on, run on Modal
@@ -16,7 +16,7 @@ with the H1 data under `data/generated/`. Its virtualenv was left out of the cop
 
 | file | what it is |
 |---|---|
-| `OVERVIEW.md` | the current entry point: the task, why it is hard, the timeline, the best models, the removal ladder, rules 1–16, open questions, a map |
+| `OVERVIEW.md` | the current entry point: the task, why it is hard, the timeline, the best model, the removal ladder, rules 1–16, open questions, a map |
 | `README.md` | this index |
 | `REPORT.md` | the first day's write-up (§0–8) and the follow-ups on SpecBit and the grammar search (§9–14) |
 | `FINDINGS_substrate.md` | raw numbers for REPORT.md: the substrate experiments, SpecBit through the evaluator, and the grammar-search runs |
@@ -62,11 +62,12 @@ with the H1 data under `data/generated/`. Its virtualenv was left out of the cop
 | `learned_remainder/` | the removal ladder: H1 certified with the digit machine's parts learned one at a time, then all in one model. `submission*.py` (the certified files), their write-ups (`LEARNED_REMAINDER.md`, `CHAIN.md`, `SQUARE.md`, `CONTROL.md`, `ADDER.md`, `IO.md`, `COMBINED.md`), the Modal launchers (`modal_chain.py` runs any of them), `plans/` for CPU seeds, `*_local/` local checks and diagnostics |
 | `ablation/` | which ingredients of the learned machine's training recipe matter (`ABLATION.md`), and `submission_simple.py`, the simplified recipe, certified. Records in `ablation/runs/` |
 | `anchors/` | digit meanings from the order of the numbers: the subtraction table learned with no hand-written adder at any step (`ANCHORS.md`). `submission_anchors.py` (the single-piece machine) and `submission_combined_anchors.py` (the combined model) both certified; `core.py`, `tiny.py` and `exact.py` are the lab; records in `anchors/records/` |
-| `learned_wiring/` | the combined machine learns its own wiring in three certified stages (`WIRING.md`): `submission_div.py` (the division's switches), `submission_sq.py` (+ the squaring's layout), `submission_io3.py` (+ the reader's and writer's shape); the first versions `*_v1.py` are kept with their records; `tiny/` holds the small machines |
+| `learned_wiring/` | the combined machine learns its own wiring in three certified stages (`WIRING.md`): `submission_div.py` (the division's switches), `submission_sq.py` (+ the squaring's layout), `submission_io3.py` (+ the reader's and writer's shape); the first versions `*_v1.py` are kept with their records; `tiny/` holds the small machines. Then stage 3 with no hand-written adder (`ANCHORED.md`): `submission_anchored.py`, certified, with its diagnostics and variants in `anchored/` |
+| `wider_menus/` | the wiring chosen from very wide menus, about 4·10^17 whole machines (`MENUS.md`): `submission_wide.py`, certified; `wide.py` is the grammar, `tiny_wide.py` the tiny machine, `exact_wide.py` the exact counts and `check_grammar.py` the grammar's checks on exact arithmetic. Then the same with no hand-written adder (`WIDE_ANCHORED.md`): `submission_wide_anchored.py`, certified, the current best model. Records in `runs/wider_menus/` |
 | `tinyrouting/` | can a digit machine learn its wiring together with its tables? Tiny machines, computed exactly (`TINYROUTING.md`) |
 | `tinycore/` | the quotient-digit chicken-and-egg, shrunk until it can be computed exactly (`TINYCORE.md`) |
 | `microlab/` | a harness for one-minute experiments on small versions of the task, and its findings: the generic-network ladders, exact blocks, looping, learning before the remainder, the quotient digit (`README.md` there; `LADDER*.md`, `FINDINGS_*.md`) |
 | `unfold_sub/` | UnfoldB: UNFOLD.md's self-unfolding as a submission, certified on the official H100 manifest (`NOTE.md`) |
 | `unfold_small/` | UnfoldS: UnfoldB at the manifest's batch size of 512, certified on the official H100 manifest (`NOTE.md`) |
 | `panel/` | the design panel: brief, prior-art survey, 5 designs, 5 adversarial critiques (synthesis in `panel_synthesis.md`) |
-| `runs/` | logs and JSON records of the runs above (MPS, CPU, H100). Official records: `h100_h1.json` (SpecBit), `unfold_sub/`, `unfold_small/`, `learned_remainder/*_official.json`, `learned_wiring/`; each learned-machine record holds the full log, the result and the exact source. The ablation keeps its own in `ablation/runs/`, the anchors in `anchors/records/` |
+| `runs/` | logs and JSON records of the runs above (MPS, CPU, H100). Official records: `h100_h1.json` (SpecBit), `unfold_sub/`, `unfold_small/`, `learned_remainder/*_official.json`, `learned_wiring/`, `wider_menus/`; each learned-machine record holds the full log, the result and the exact source. The ablation keeps its own in `ablation/runs/`, the anchors in `anchors/records/` |

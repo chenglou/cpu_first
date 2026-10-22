@@ -1,8 +1,9 @@
 # One Layer Deeper, from the CPU up
 
 > **2026-10-21: the current entry point is [OVERVIEW.md](OVERVIEW.md).** It covers where everything stands: the best
-> models (every computing part learned), the removal ladder, rules 1–16, and the open questions. This report is the
-> first day's analysis (§0–8) and the follow-ups on SpecBit and the grammar search (§9–14), kept as written.
+> model (every computing part learned, and its wiring chosen from wide menus), the removal ladder, rules 1–16, and the
+> open questions. This report is the first day's analysis (§0–8) and the follow-ups on SpecBit and the grammar search
+> (§9–14), kept as written.
 
 **TL;DR.**
 - **Labels can check the arithmetic but can't teach it.** Inside a single squaring step, the mod-N reduction turns any

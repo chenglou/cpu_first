@@ -1,0 +1,116 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-6FbMzXDDrvHybg3vL2o8xh
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/handwired_bridge/h1/modal_diag_h1
+│   .py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+└── 🔨 Created function diag.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+spawned ['d_reglu', 'd_reglu_lr003', 'd_x4', 'd_x4_lr003']
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+Runner was terminated while exceeding its memory request. Consider setting a higher memory request: https://modal.com/docs/guide/resources
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+d_reglu | step 691 loss 0.3133 phase frozen io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: a=D b=M op=sub flag=borrow keep=gated nread=given vread=given start=top order=down bring=(1,0,'add') post=0 final=csub2 read=(0,'given') gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=1.0000 1345.3s
+d_reglu_lr003 | step 700 loss 0.3141 phase C io 5 ladder 1 rows_right 200/200 cells_right 100/100 gate [1, 0] io_exact True chosen 1.000 wiring: a=D b=M op=sub flag=borrow keep=gated nread=given vread=given start=top order=down bring=(1,0,'add') post=0 final=csub2 read=(0,'given') gate=CH wrong [] cells_wrong [] rows=64 hits=64 snapped_right=1.000 share=1.0000 1591.5s
+d_x4_lr003 | step 700 loss 1.8012 phase B io 4 ladder 1 rows_right 57/200 cells_right 19/100 gate [1, 1] io_exact True chosen 1.000 wiring: a=Rp b=M op=sub flag=zD keep=always nread=reversed vread=given start=N order=up bring=(-8,6,'rep') post=0 final=csub read=(1,'reversed') gate=CC wrong ['(0,0,1)', '(0,1,1)', '(0,2,0)', '(0,2,1)', '(0,3,0)', '(0,3,1)'] cells_wrong ['(1,1)', '(1,2)', '(1,3)', '(1,4)', '(1,5)
+d_x4 | step 700 loss 3.8776 phase B io 4 ladder 1 rows_right 76/200 cells_right 23/100 gate [1, 1] io_exact True chosen 1.000 wiring: a=Rp b=M op=sub flag=zD keep=always nread=reversed vread=given start=N order=up bring=(-8,6,'rep') post=0 final=csub read=(1,'reversed') gate=CC wrong ['(0,0,1)', '(0,1,1)', '(0,2,1)', '(0,3,1)', '(0,4,1)', '(0,5,1)'] cells_wrong ['(1,2)', '(1,3)', '(1,4)', '(1,5)', '(1,6)
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-6FbMzXDDrvHybg3vL2o8xh

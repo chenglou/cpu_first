@@ -1,0 +1,44 @@
+[
+ {
+  "name": "d_reglu",
+  "argv": [
+   "submission_wide_reglu.py",
+   "train",
+   "700",
+   "512",
+   "74"
+  ]
+ },
+ {
+  "name": "d_reglu_lr003",
+  "argv": [
+   "submission_wide_reglu.py",
+   "train",
+   "700",
+   "512",
+   "74",
+   "LR_CELL=0.003"
+  ]
+ },
+ {
+  "name": "d_x4",
+  "argv": [
+   "submission_wide_x4.py",
+   "train",
+   "700",
+   "512",
+   "74"
+  ]
+ },
+ {
+  "name": "d_x4_lr003",
+  "argv": [
+   "submission_wide_x4.py",
+   "train",
+   "700",
+   "512",
+   "74",
+   "LR_CELL=0.003"
+  ]
+ }
+]

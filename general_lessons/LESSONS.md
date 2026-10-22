@@ -47,24 +47,26 @@ nobody designed for, each on 2 of 2 seeds: 10·y² + 1 (two menu options combine
   tiny test shows that laws applied to every pair of numbers still leave the table wrong on one modulus, because algebra
   cannot say which of two digits is larger. Switched on from the start, before the facts, the laws even spoil the
   tables that facts alone get right with many moduli: lessons have an order, facts first.
-- **Practice data whose every training row has T = 8** (M4): 0.8%, where the best model certified. The answers that
-  choose the lesson set are read only on rows with T ≤ 2 (to keep that choice cheap), and M4 has none, so the choice
-  fell to the random start, which picked Montgomery's machine. A gap in the design, fixable in general (read the
-  answers at the smallest T present), not fixed here.
+- **Practice data whose every training row has T = 8** (M4): the file scored 0.8%, where the best model certified.
+  The answers that choose the lesson set were read only on rows with T ≤ 2 (to keep that choice cheap), and M4 has
+  none, so the choice fell to the random start, which picked Montgomery's machine. **Fixed in v2** (§11), which reads
+  the answers at the batch's smallest T: both M4 seeds certified, and wherever a batch has a row with T ≤ 2 v2 is the
+  same file as before (H1's official run came out step for step the same).
 - **T's direction on data whose T always has one digit** (M5, and E3 and M4): M5 certified on both seeds, but by luck.
   Nothing in such data tells "16" from "61", so the model keeps the reading direction it starts with: the best model
-  started backwards on 2 of its 4 M5 seeds, and this file started right on both M5 seeds but backwards on one E3 seed
-  (exact up to T = 8, wrong beyond). A designed prior fixes it (LITMUS.md); no general lesson can.
+  started backwards on 2 of its 4 M5 seeds, and this file started right on both M5 seeds (and, as v2, on both M4
+  seeds) but backwards on one E3 seed (exact up to T = 8, wrong beyond). A designed prior fixes it (LITMUS.md); no
+  general lesson can.
 - **Slower learning.** On one practice dataset the best model learned (E3, seed 74) this file ran out of its 1,500
   steps; with 3,000 it certified. The second lesson set costs time everywhere (next paragraph).
 
 **Does H1 still certify?** Yes, on the untouched official manifest on an H100: every one of 768 questions right at every
 T up to 64, on seen and unseen moduli, every split exact, in 1,856 s of training (the best model: 558 s; the second
 lesson set's lessons cost time, not correctness). The answers chose long division; the Montgomery set had learned its
-own exact machine alongside and lost. On CPU (8-CPU containers, not the official device) all 8 seeds certified as
-well, with little to spare: the second lesson set makes the slow phase about twice as slow per step as the best
-model's there, so two seeds reached the 3,600 s deadline before freezing and certified only because they were already
-exact.
+own exact machine alongside and lost. v2 (§11) certified on the same manifest too, in a run identical step for step.
+On CPU (8-CPU containers, not the official device) all 8 seeds certified as well, with little to spare: the second
+lesson set makes the slow phase about twice as slow per step as the best model's there, so two seeds reached the
+3,600 s deadline before freezing and certified only because they were already exact.
 
 **What this says.** Did general lessons turn "an engineered solution across families" into "a method"? For the formula
 failures, yes: the same file now learns every task the litmus test needed a designer for, and two more no one designed
@@ -77,8 +79,8 @@ it. That is a method in the ordinary sense of learning, with three limits the re
 - **facts cannot replace information the data lacks.** One modulus does not say what the digits mean, and one-digit T
   does not say which way T runs. The answers say the first, but only to a model that searches whole digit codes, which
   this design does not do;
-- **the answers must reach the choice.** The selector reads answers only at T ≤ 2; on M4, where every row has T = 8,
-  it never saw one, and the wrong machine answered.
+- **the answers must reach the choice.** v1's selector read answers only at T ≤ 2; on M4, where every row has T = 8,
+  it never saw one, and the wrong machine answered. v2 reads them at the batch's smallest T and chose right (§11).
 <!-- /PLAIN -->
 
 ## Every task at a glance
@@ -88,12 +90,13 @@ tiers). "The general file, unchanged" is `submission_general.py` byte for byte o
 official manifest (on an H100, and with the device set to cpu for its 8 CPU seeds), the litmus and held-out tasks
 through H1's manifest with their data (at most 1,500 steps, H100s), the tiers through their own manifests with the
 relaxed budget (3,600 s, 1,500 steps), on H100s or 8-CPU containers. E3 seed 74's 3,000-step run is left out of this
-table (another budget; §4).
+table (another budget; §4). Where v2 (§11, the answers at the batch's smallest T) ran, its runs follow v1's after
+"v2:".
 
 <!-- GLANCE -->
 | task | the best model unchanged (LITMUS.md) | the smallest change litmus found | the general file, unchanged: runs certified (T = 64 on both ladders) | its score, max T seen / unseen | lesson set and round options chosen |
 |---|---|---|---|---|---|
-| h1 | certified (WIDE_ANCHORED.md) | none needed | 9/9 | 100.0%, 64 / 64 (×9) | below (0.9986–0.9993), rmul=one radd=0 rcube=none |
+| h1 | certified (WIDE_ANCHORED.md) | none needed | 9/9; v2: 1/1 | 100.0%, 64 / 64 (×9); v2: 100.0%, 64 / 64 | below (0.9986–0.9993), rmul=one radd=0 rcube=none; v2: below (0.9986), rmul=one radd=0 rcube=none |
 | rho | 0.0%, max T 0 / 0 | one switch, +1 before the reduction (17 lines) | 2/2 | 100.0%, 64 / 64 (×2) | below (0.9980–0.9992), rmul=one radd=1 rcube=none |
 | ten | 0.0%, max T 0 / 0 | one switch, x10 before the reduction (13 lines) | 2/2 | 100.0%, 64 / 64 (×2) | below (0.9984–0.9992), rmul=ten radd=0 rcube=none |
 | cube | 0.1%, max T 0 / 0 | one round option, times the input, and a second multiply operand (21 lines) | 2/2 | 100.0%, 64 / 64 (×2) | below (0.9984–0.9993), rmul=one radd=0 rcube=times_x |
@@ -104,7 +107,7 @@ table (another budget; §4).
 | xfirst | 100.0%, max T 64 / 64 | none needed | 1/1 | 100.0%, 64 / 64 | below (0.9987), rmul=one radd=0 rcube=none |
 | m5 | 50.5%, max T 8 / 8 | one tie: T read the way the writer writes (4/4 seeds) | 2/2 | 100.0%, 64 / 64 (×2) | below (0.9991–0.9996), rmul=one radd=0 rcube=none |
 | e3 | 100.0%, max T 64 / 64 | none needed (learned unchanged) | 2/5 | 1.6%, 0 / 0; 100.0%, 64 / 64 (×2); 100.0%, 8 / 8 (×2) | - (no set's wiring lessons joined); below (0.9990–0.9999), rmul=one radd=0 rcube=none |
-| m4 | 100.0%, max T 64 / 64 | none needed (learned unchanged) | 0/1 | 0.8%, 0 / 0 | - (no set-and-round combination fits the answers) |
+| m4 | 100.0%, max T 64 / 64 | none needed (learned unchanged) | 0/1; v2: 2/2 | 0.8%, 0 / 0; v2: 100.0%, 64 / 64 (×2) | - (no set-and-round combination fits the answers); v2: below (0.9994–0.9997), rmul=one radd=0 rcube=none |
 | e1 | 1.7%, max T 0 / 0 | none found (LITMUS.md §4) | 0/1 | 0.0%, 0 / 0 | - (no set's wiring lessons joined) |
 | e2 | 0.1%, max T 0 / 0 | none found (LITMUS.md §4) | 0/1 | 1.2%, 0 / 0 | - (no set's wiring lessons joined) |
 | e6 | 0.7%, max T 0 / 0 | none found (LITMUS.md §4) | 0/1 | 0.0%, 0 / 0 | - (no set's wiring lessons joined) |
@@ -278,6 +281,9 @@ as written and reversed:
 <!-- MINED -->
 | run | task | facts in force at the end (the model's own miner) |
 |---|---|---|
+| gen2_h1_official | h1 | N != 0, N < 10^7, N mod 2 = 1, N mod 3 != 0, N mod 5 != 0, T != 0, T < 10^2, T < N, T mod 3 != 0, T mod 5 != 0, x != 0, x < 10^6, x < N, y != 0, y < 10^6, y < N |
+| gen2_m4_relaxed_h100 | m4 | N != 0, N < 10^7, N mod 2 = 1, N mod 3 != 0, N mod 5 != 0, T != 0, T < 10^1, T < N, T constant, T mod 2 = 0, T mod 3 = 2, T mod 5 = 3, x != 0, x < 10^7, x < N, y != 0, y < 10^7, y < N |
+| gen2_m4_relaxed_s1_h100 | m4 | N != 0, N < 10^7, N mod 2 = 1, N mod 3 != 0, N mod 5 != 0, T != 0, T < 10^1, T < N, T constant, T mod 2 = 0, T mod 3 = 2, T mod 5 = 3, x != 0, x < 10^7, x < N, y != 0, y < 10^7, y < N |
 | gen_cube_s1 | cube | N != 0, N < 10^7, N mod 2 = 1, N mod 3 != 0, N mod 5 != 0, T != 0, T < 10^2, T < N, T mod 3 != 0, T mod 5 != 0, x != 0, x < 10^6, x < N, y != 0, y < 10^6, y < N |
 | gen_cube_s74 | cube | N != 0, N < 10^7, N mod 2 = 1, N mod 3 != 0, N mod 5 != 0, T != 0, T < 10^2, T < N, T mod 3 != 0, T mod 5 != 0, x != 0, x < 10^6, x < N, y != 0, y < 10^6, y < N |
 | gen_e10_relaxed | e10 | N < 10^3, T < 10^1, x < 10^3, y < 10^3 |
@@ -398,7 +404,8 @@ the selector. This is the lever:
 
 All three need answers to reach the selector, and it reads only the rows with T ≤ 2 (`REAL_MAX_T`, the best model's
 rule for its reading lesson). On M4, whose training rows all have T = 8, none did, and the selector stayed at its random
-start (§4).
+start (§4). v2 (§11) reads the answers at the batch's smallest T instead; on M4 its selector chose long division by
+step 500 on both seeds run, and both certified.
 
 **A shared round menu.** The litmus variants each added one option. The general file has all of them, the same on every
 task: the square times 10 or not (`rmul`), plus a one-digit constant 0–9 (`radd`), and after the reduction times the
@@ -460,6 +467,9 @@ first matter (§3 of LITMUS.md).
 <!-- RUNS -->
 | run | task | file | device | score | splits | max T seen / unseen | steps | training s | evaluation s | where it stopped | lesson set chosen (selector) | round options | each set's chain |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| gen2_h1_official | h1 | v2 | H100 | 100.0% | ood_n_t 100.0%, ood_t 100.0%, test 100.0% | 64 / 64 | 20000 | 1291 | 48 | froze at step 645 | below (lowzero:0.0014,below:0.9986) | rmul=one radd=0 rcube=none | lowzero: montgomery, repeated addition; below: repeated subtraction |
+| gen2_m4_relaxed_h100 | m4 | v2 | H100 | 100.0% | ood 100.0%, test 100.0% | 64 / 64 | 829 | 3600 | 39 | certified without freezing | below (lowzero:0.0006,below:0.9994) | rmul=one radd=0 rcube=none | lowzero: montgomery, repeated addition; below: repeated subtraction |
+| gen2_m4_relaxed_s1_h100 | m4 | v2 | H100 | 100.0% | ood 100.0%, test 100.0% | 64 / 64 | 879 | 3602 | 39 | certified without freezing | below (lowzero:0.0003,below:0.9997) | rmul=one radd=0 rcube=none | lowzero: montgomery, trial multiples (the register's digit tested); below: repeated subtraction |
 | gen_cube_s1 | cube | the file | H100 | 100.0% | ood_n_t 100.0%, ood_t 100.0%, test 100.0% | 64 / 64 | 1500 | 1269 | 101 | froze at step 630 | below (lowzero:0.0007,below:0.9993) | rmul=one radd=0 rcube=times_x | lowzero: montgomery, trial multiples (the register's digit tested); below: repeated subtraction |
 | gen_cube_s74 | cube | the file | H100 | 100.0% | ood_n_t 100.0%, ood_t 100.0%, test 100.0% | 64 / 64 | 1500 | 1087 | 88 | froze at step 646 | below (lowzero:0.0016,below:0.9984) | rmul=one radd=0 rcube=times_x | lowzero: montgomery, repeated addition; below: repeated subtraction |
 | gen_e10_relaxed | e10 | the file | CPU | 1.3% | ood 1.6%, test 1.0% | 0 / 0 | 1500 | 2049 | 837 | subtraction table never exact (12/200 entries right) | - (no set's wiring lessons joined) | - | - |
@@ -613,8 +623,9 @@ data's T: E3, M4 and M5 train on one-digit T only (E3 always 2, M4 always 8, M5 
   of rows with T ≤ 2 (`REAL_MAX_T`, to keep the 80 machines cheap), and every M4 training row has T = 8. So no
   combination ever fit (0.000 for both sets), the selector and the round options stayed at their random start
   (Montgomery 0.575), and the file answered with Montgomery's machine: 0.8%, on an H100 like litmus's certified run.
-  The best model, with one lesson set, had nothing to choose. A general fix would let the selector use the smallest T
-  the batch offers; it was not built.
+  The best model, with one lesson set, had nothing to choose. v2 (§11) is the general fix: it reads the answers at
+  the batch's smallest T, and on M4 its selector chose long division by step 500 on both seeds run, every answer row
+  fitting, and both certified.
 
 **The frozen-reader diagnostic** (`variants/submission_general_reader_frozen.py`, not a submission: the reader set to
 the truth by hand): on E1 the digit lessons started at step 136 with every fact right, and after 1,500 steps the
@@ -687,6 +698,9 @@ step, from the evaluator's progress lines:
 | run | device | frozen at step | s to step 200 | 300 | 400 | 500 | 600 | 700 | training s | evaluation s |
 |---|---|---|---|---|---|---|---|---|---|---|
 | wide_anchored_official (the best model, H100) | H100 | 588 | 67 | 123 | 195 | 311 | 410 | 411 | 558 | 41 |
+| gen2_h1_official | H100 | 645 | 62 | 161 | 295 | 551 | 912 | 1070 | 1291 | 48 |
+| gen2_m4_relaxed_h100 | H100 | - | 90 | 212 | 408 | 1096 | 1825 | 2622 | 3600 | 39 |
+| gen2_m4_relaxed_s1_h100 | H100 | - | 49 | 136 | 252 | 783 | 1521 | 2258 | 3602 | 39 |
 | gen_cube_s1 | H100 | 630 | 92 | 201 | 332 | 709 | 1128 | 1260 | 1269 | 101 |
 | gen_cube_s74 | H100 | 646 | 54 | 145 | 267 | 527 | 906 | 1079 | 1087 | 88 |
 | gen_h1_cpu_seed1 | CPU | 629 | 59 | 160 | 341 | 1278 | 2325 | 2632 | 2857 | 525 |
@@ -751,13 +765,16 @@ the losing lesson set once the selector has decided (§8) would matter.
    facts have shaped the table. The general file keeps the best model's designed schedule (`LATE_AFTER`, and the
    stages before it); letting each law join when the table passes its own checks, or letting the answers choose among
    schedules as they choose among lesson sets, is untested.
-6. **Which answers the selector reads.** It reads the rows with T ≤ 2 only, inherited from the best model's reading
-   lesson (`REAL_MAX_T`), and so it is blind on M4, whose rows all have T = 8. Reading the rows at the smallest T the
-   batch offers would cover M4 at about four times the selector's cost there (8 squarings instead of 2); not built.
+6. **What the answers cost.** v1 read only the rows with T ≤ 2 (the best model's `REAL_MAX_T`) and was blind on M4;
+   v2 (§11) reads the rows at the batch's smallest T. That makes M4's phase C three to four times as slow as v1's
+   there (7.4–8.0 s a step against 2.1: every answer row at T = 8 runs 9 rounds, and v1 ran none); a cheaper reading
+   of long-T answers, such as fewer rows or the tournament's pruning once the selector has decided, is untested.
 
 ### 9. Reproduce
 
-The general file is built from the certified file, which is never modified (each patch must match exactly once):
+The general file is built from the certified file, which is never modified (each patch must match exactly once). The
+same run writes v2 (§11) and refuses to write the general file unless it comes out byte for byte as certified (md5
+`ddfdc065…`):
 
 ```bash
 cd ~/github/one-layer/cpu_first/general_lessons && ~/github/sotaku/venv/bin/python make_general.py
@@ -782,7 +799,8 @@ regression check, and the frozen-reader diagnostics, CPU; `wave5_m5_frozen.json`
 (E3 on seeds 1 and 2, CPU; its third run, E3 with 3,000 steps on CPU, never started and was stopped: on CPU the 3,600 s
 deadline would bind before the steps), `wave7_relaunch.json` (H1's CPU seeds 3, 4, 6 and 7 and M4 again, after Modal
 preempted them at about 04:40), `wave8_e3_h100.json` (E3 on seed 74 with 3,000 steps, H100) and
-`wave9_h100_regression.json` (E3 on seeds 1 and 2 and M4 on H100s, as litmus ran those tiers). At that preemption the
+`wave9_h100_regression.json` (E3 on seeds 1 and 2 and M4 on H100s, as litmus ran those tiers), then, for v2 (§11),
+`wave10_v2.json` (H1 official and M4 on seeds 74 and 1, on H100s pinned with `gpu="H100!"`). At that preemption the
 plan drivers of waves 3 and 4 were preempted too, and Modal restarted each with its input, so each spawned its whole plan
 again; those duplicate runs were stopped, and the driver now re-attaches to the calls it spawned (their ids kept on the
 Volume) instead. That was exercised once: wave 8's driver was preempted at 05:44 and re-attached to its running job
@@ -825,6 +843,7 @@ In `cpu_first/general_lessons/` (new; no other file was edited, and the certifie
 `logs/md5_at_start.txt`):
 - `LESSONS.md`: this write-up;
 - `submission_general.py`: the general file (built by `make_general.py` from `wider_menus/submission_wide_anchored.py`);
+- `submission_general_v2.py`: v2, the general file reading answers at the batch's smallest T (§11; md5 `30d15786…`);
 - `variants/submission_general_reader_frozen.py`: the diagnostic with the reader set to the truth (not a submission);
 - `tiny_general.py`, `tiny_table.py`: the tiny cores of §3 and §1; `modal_tiny.py` runs them; results in `tiny/`;
 - `mine_preview.py`, `preview.json`: §2's data-side facts and code counts; `code_search.py`, `codes.json`: §4's
@@ -838,3 +857,51 @@ In `cpu_first/general_lessons/` (new; no other file was edited, and the certifie
 One correction to the general file's own docstring, which is left as certified: it says the final logits' gradient
 reaches "the selector and both sets' switches"; the gradient test (§5) shows it reaches the selector and the selected
 set's switches, not the unselected set's.
+
+### 11. v2: the answers at the batch's smallest T (M4)
+
+**The change.** [`submission_general_v2.py`](submission_general_v2.py) is the general file with one change, made by
+`build_min_t` in `make_general.py`. The rows whose answers the lessons read (`answer_rows`: the lesson sets' selector,
+the round menu and the I/O lesson) are the rows with one-digit T up to max(REAL_MAX_T, the batch's smallest one-digit
+T); v1 read only T ≤ REAL_MAX_T = 2, so on M4, where every training row has T = 8, no answer reached the selector (§4).
+Past REAL_MAX_T the rows are capped at the work (rows × rounds) of IO_ROWS = 32 rows at 3 rounds: about 10 rows at
+T = 8, so data whose T is always large costs at most what 32 answer rows with T ≤ 2 would (H1's batches hold about 10,
+so on M4 the answer work is about three times H1's). Every machine run on those rows takes as many rounds as their
+largest T needs (`answer_cap`).
+
+**Where it changes nothing.** On a batch with a row of T ≤ 2, v2's rows, rounds and arithmetic are v1's. H1's training
+set has 2,000 such rows in 101,999, shuffled into batches of 512: about 10 per batch, and about one batch in 23,000
+with none. The litmus and held-out tasks use H1's prompts row for row, and E3 and M5 always have rows with T = 2, so v1's
+results on those tasks are v2's except for such a rare batch; the H1 official re-run below checks it.
+
+**Local check** (`local_check.py DATA selector`, the designed machines, under a minute and about 260 MB). On 64 rows of
+H1's depth_t_8 split, where every T is 8, v1 reads no answer row and its selector sees nothing; v2 reads 10 rows at 9
+rounds, and the long-division machine fits all of them while Montgomery's fits none. On depth_t_2, v2's rows are v1's.
+The designed check (both prediction paths) and every lesson set's hard checks pass on v2 as on v1.
+
+```bash
+cd ~/github/one-layer/cpu_first/general_lessons && GENERAL_FILE=$PWD/submission_general_v2.py ~/github/sotaku/venv/bin/python local_check.py ../../one-layer-deeper/data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2 selector N=64 depth_t_8 depth_t_2
+```
+
+**On Modal** (`wave10_v2.json`; H100s pinned with `gpu="H100!"`, since Modal had run one "H100" job on an H200):
+- **H1, through its untouched official manifest: certified.** T = 64 on both ladders, every rung 768/768; test
+  9,999/9,999, ood_t and ood_n_t 10,002/10,002 each; training 1,291 s, evaluation 48 s. It is v1's official run step for
+  step: the reading chosen at step 174, the digit lessons at 219, phase C at 410, the below set's wiring lessons at 432,
+  T resolved at 466, the lowzero set's wiring lessons at 471, frozen at 645, the selector at 0.9986 on long division,
+  and the audit identical down to its visit counts (the same table rows, cells and gate rows used, each trained exactly
+  as often). So no batch lacked a row with T ≤ 2, and the arithmetic is v1's; the shorter training time is the
+  container (v1's ran 1,856 s for the same steps).
+- **M4, relaxed budget (3,600 s, 1,500 steps): certified on both seeds run, 74 and 1.** T = 64 on both ladders, every
+  rung 768/768. By step 500 the selector stood at 0.998–0.999 on long division, whose machine fit every answer row at
+  T = 8 while Montgomery's fit none (v1: no answer rows, the selector at its random start, 0.575 on Montgomery, 0.8%).
+  Neither run froze (no run on one-digit T does): the deadline cut them at steps 829 and 879, every check exact, the
+  selector at 0.9994 and 0.9997, and both readers happened to read two-digit T the right way (the coin flip of §4,
+  which v2 does not touch). Seed 74's run is v1's step for step until long division's wiring lessons joined (step 390)
+  and the answers began to flow.
+- **Cost.** M4's phase C ran about 7.4–8.0 s a step under v2, against 2.1 under v1, which ran no answer work at all
+  there (H1's phase C, with its answers at T ≤ 2: 2.9–5.1). Both runs still had about 400 phase-C steps before the
+  deadline.
+
+**So v2 supersedes v1 as the general file**: it is v1 wherever v1 had answers to read (shown step for step on H1's
+official run), and it learns M4, where v1 could not. The litmus and held-out certifications of §4 ran on v1; on their
+data v2's code path is v1's.

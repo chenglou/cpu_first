@@ -23,7 +23,7 @@ _spec = importlib.util.spec_from_file_location("summarize_litmus", HERE.parent /
 SL = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(SL)
 FILES = {}                                                  # md5 -> short name, filled from the files on disk
-for p in [HERE / "submission_general.py", *sorted((HERE / "variants").glob("*.py"))]:
+for p in [HERE / "submission_general.py", HERE / "submission_general_v2.py", *sorted((HERE / "variants").glob("*.py"))]:
     if p.exists():
         import hashlib
         FILES[hashlib.md5(p.read_bytes()).hexdigest()] = "the file" if p.name == "submission_general.py" else \
@@ -201,11 +201,12 @@ def glance_table() -> str:
         f = SL.facts(json.loads(p.read_text()))
         if f["md5"] == SL.BEST_MD5 and (p.stem.endswith("_s74") or p.stem.endswith("_relaxed")):
             lit.setdefault(f["task"], f)
-    mine = {}
+    mine, mine2 = {}, {}
     for f in records():
-        if f.get("file") != "the file" or "steps3000" in f["name"]:   # another budget: §4 reports it
+        if "steps3000" in f["name"]:                       # another budget: §4 reports it
             continue
-        mine.setdefault(f["task"], []).append(f)
+        if f.get("file") in ("the file", "v2"):
+            (mine if f["file"] == "the file" else mine2).setdefault(f["task"], []).append(f)
     out = ["| task | the best model unchanged (LITMUS.md) | the smallest change litmus found | the general file, unchanged: "
            "runs certified (T = 64 on both ladders) | its score, max T seen / unseen | lesson set and round options chosen |",
            "|---|---|---|---|---|---|"]
@@ -213,37 +214,46 @@ def glance_table() -> str:
         L = lit.get(t)
         lt = (f"{L['score'] * 100:.1f}%, max T {L['max_t'] or 0} / {L['ood_max_t'] or 0}" if L and L.get("score") is not None
               else ("certified (WIDE_ANCHORED.md)" if t == "h1" else "-"))
-        fs = mine.get(t, [])
-        cert = sum(1 for f in fs if f.get("max_t") == 64 and f.get("ood_max_t") == 64)
-        from collections import Counter
-        cnt = Counter(f"{f['score'] * 100:.1f}%, {f.get('max_t') or 0} / {f.get('ood_max_t') or 0}"
-                      if f.get("score") is not None else f"failed (rc {f['rc']})" for f in fs)
-        sc = "; ".join(f"{k} (×{v})" if v > 1 else k for k, v in cnt.items())
-        def chose(f: dict) -> str:
-            ev = f.get("gl_events", {})
-            if not any(k.startswith("io_") for k in ev):
-                return "- (no set's wiring lessons joined)"
-            if f.get("fit") and all(float(v) == 0 for v in f["fit"].split(",")) and f.get("max_t") != 64:
-                return "- (no set-and-round combination fits the answers)"
-            sel = max(float(v.split(":")[1]) for v in (f.get("selector") or "x:0").split(","))
-            return f"{f.get('selected')} ({sel:.4f}), {f.get('round')}"
-        groups = {}
-        for f in fs:
-            c = chose(f)
-            m = re.match(r"(\S+) \(([\d.]+)\), (.*)", c)
-            if m:
-                groups.setdefault((m.group(1), m.group(3)), []).append(float(m.group(2)))
-            else:
-                groups.setdefault((c, ""), [])
-        ch = "; ".join(f"{k[0]} ({min(v):.4f}" + (f"–{max(v):.4f}" if max(v) > min(v) else "") + f"), {k[1]}" if v else k[0]
-                       for k, v in groups.items())
+        cert, sc, ch = glance_cells(mine.get(t, []))
+        if t in mine2:                                     # v2 (§11) after v1
+            cert2, sc2, ch2 = glance_cells(mine2[t])
+            cert, sc, ch = f"{cert}; v2: {cert2}", f"{sc}; v2: {sc2}", f"{ch}; v2: {ch2}"
         fix = LITMUS_FIX.get(t, "none needed" if t in ("h1", "xfirst") else
                              ("held out: not a litmus task" if t in ("tenrho", "plus3", "minus1") else
                               "none found (LITMUS.md §4)"))
         if t in ("e3", "m4"):
             fix = "none needed (learned unchanged)"
-        out.append(f"| {t} | {lt} | {fix} | {cert}/{len(fs) if fs else '-'} | {sc or '-'} | {ch or '-'} |")
+        out.append(f"| {t} | {lt} | {fix} | {cert} | {sc} | {ch} |")
     return "\n".join(out)
+
+
+def glance_cells(fs: list) -> tuple:
+    """One file's runs of one task: runs certified, the scores, the lesson set and round options chosen."""
+    from collections import Counter
+    cert = sum(1 for f in fs if f.get("max_t") == 64 and f.get("ood_max_t") == 64)
+    cnt = Counter(f"{f['score'] * 100:.1f}%, {f.get('max_t') or 0} / {f.get('ood_max_t') or 0}"
+                  if f.get("score") is not None else f"failed (rc {f['rc']})" for f in fs)
+    sc = "; ".join(f"{k} (×{v})" if v > 1 else k for k, v in cnt.items())
+
+    def chose(f: dict) -> str:
+        ev = f.get("gl_events", {})
+        if not any(k.startswith("io_") for k in ev):
+            return "- (no set's wiring lessons joined)"
+        if f.get("fit") and all(float(v) == 0 for v in f["fit"].split(",")) and f.get("max_t") != 64:
+            return "- (no set-and-round combination fits the answers)"
+        sel = max(float(v.split(":")[1]) for v in (f.get("selector") or "x:0").split(","))
+        return f"{f.get('selected')} ({sel:.4f}), {f.get('round')}"
+    groups = {}
+    for f in fs:
+        c = chose(f)
+        m = re.match(r"(\S+) \(([\d.]+)\), (.*)", c)
+        if m:
+            groups.setdefault((m.group(1), m.group(3)), []).append(float(m.group(2)))
+        else:
+            groups.setdefault((c, ""), [])
+    ch = "; ".join(f"{k[0]} ({min(v):.4f}" + (f"–{max(v):.4f}" if max(v) > min(v) else "") + f"), {k[1]}" if v else k[0]
+                   for k, v in groups.items())
+    return f"{cert}/{len(fs) if fs else '-'}", sc or "-", ch or "-"
 
 
 def codes_table() -> str:

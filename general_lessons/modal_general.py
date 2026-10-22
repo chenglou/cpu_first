@@ -115,7 +115,7 @@ def run_cpu(name: str, task: str, src: str, overrides: dict | None) -> dict:
     return _evaluate(name, task, src, overrides)
 
 
-@app.function(gpu="H100", timeout=4 * 3600, volumes={"/out": vol}, max_containers=3)
+@app.function(gpu="H100!", timeout=4 * 3600, volumes={"/out": vol}, max_containers=3)   # "!": never an H200
 def run_h100(name: str, task: str, src: str, overrides: dict | None) -> dict:
     return _evaluate(name, task, src, overrides)
 

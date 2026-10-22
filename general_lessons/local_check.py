@@ -5,12 +5,15 @@ the lesson sets and the round menu). learned_remainder/chain_local/stub stands i
                                                                   # the truth (MODE = "designed")
     python local_check.py DATA lessons [N=64] [K=V ...]           # every lesson set's hard checks at the truth
     python local_check.py DATA grad [N=16] [SPLIT ...] [K=V ...]  # the gradient test (rule 8)
+    python local_check.py DATA selector [N=64] [SPLIT ...]        # the selector's verdicts on the answer rows
 
 K=V sets the constant K to the Python source V, e.g. DESIGNED_SIGMA='"lowzero"' or
 DESIGNED_ROUND='{"rmul": "ten", "radd": 1, "rcube": "none"}' (the selected set and the round's options in designed
 mode). `lessons` runs, for each lesson set, the hard versions (train=False) of its division ladder (with csub), its step
 law and its whole-reduction laws on the first N training rows (the reader at the truth; the identity instances x and T),
-and the selected machine on the rows with T <= REAL_MAX_T against their answers.
+and the selected machine on the answer rows against their answers. `selector` runs round_lesson's verdicts (both lesson
+sets' designed machines under every round combination) on the answer rows of each split's first N rows, and says
+whether those rows are v1's (one-digit T <= REAL_MAX_T). GENERAL_FILE=PATH checks another build (submission_general_v2.py).
 """
 import json
 import os
@@ -25,7 +28,7 @@ sys.path[:0] = [os.path.join(ROOT, "learned_remainder", "chain_local", "stub")]
 import torch  # noqa: E402
 from benchmark import ModelSpec  # noqa: E402
 
-FILE = os.path.join(HERE, "submission_general.py")
+FILE = os.environ.get("GENERAL_FILE", os.path.join(HERE, "submission_general.py"))
 
 
 def load_module(sets=()):
@@ -63,6 +66,17 @@ def batch(rs):
     return ids, ids != 0, lab, tpos
 
 
+def answer_rows(sc, Cd, tcount):
+    """The rows whose answers the build reads: its answer_rows (v2), or v1's rule."""
+    if hasattr(sc, "answer_rows"):
+        return sc.answer_rows(Cd, tcount)
+    return (tcount == 1) & (Cd[:, 0] >= 1) & (Cd[:, 0] <= sc.REAL_MAX_T)
+
+
+def answer_cap(sc, Cs):
+    return sc.answer_cap(Cs) if hasattr(sc, "answer_cap") else sc.REAL_MAX_T + 1
+
+
 def designed_model(data, sets):
     sc = load_module(sets + [("MODE", '"designed"')])
     cfg = json.load(open(os.path.join(data, "dataset_config.json")))
@@ -82,7 +96,7 @@ def lessons(data, n, sets):
         Nd, _ = m.read(0, e, end, code)
         Xd, _ = m.read(1, e, end, code)
         Cd, tcount = m.read(2, e, end, code)
-        small = (tcount == 1) & (Cd[:, 0] >= 1) & (Cd[:, 0] <= sc.REAL_MAX_T)
+        small = answer_rows(sc, Cd, tcount)
         tabs = m.tables()
         X = Xd.shape[0]
         _, lad_ok, verified, lad_rows = m.ladder(torch.cat([Xd, Nd]), tabs, False)
@@ -98,8 +112,9 @@ def lessons(data, n, sets):
         sel = torch.nonzero(small).flatten()
         if sel.numel():
             yd = m.read_answer(m.label_seq(e, lab, lab != -100, tpos), e, end, code)
-            s_ = sc.run_hard(Xd[sel], Cd[sel], Nd[sel], tabs, m.wcodes(sel.numel(), sel.device), cap=sc.REAL_MAX_T + 1)[0]
-            print(f"  selected machine, answers of T <= {sc.REAL_MAX_T} ({sel.numel()} rows): "
+            s_ = sc.run_hard(Xd[sel], Cd[sel], Nd[sel], tabs, m.wcodes(sel.numel(), sel.device),
+                             cap=answer_cap(sc, Cd[sel]))[0]
+            print(f"  selected machine, answers of the answer rows ({sel.numel()} rows): "
                   f"{float((s_ == yd[sel]).all(1).float().mean()):.3f}", flush=True)
 
 
@@ -123,6 +138,31 @@ def grad(data, n, splits, sets):
           f"without={bad}", flush=True)
 
 
+def selector(data, n, splits, sets):
+    sc, m = designed_model(data, sets)
+    for split in splits or ["train", "depth_t_8"]:
+        ids, am, lab, tpos = batch(rows(data, split, n))
+        with torch.no_grad():
+            e, end = m.ext(ids, am)
+            k = m.selected(e, end)
+            code = m.ranks(k)
+            Nd, _ = m.read(0, e, end, code)
+            Xd, _ = m.read(1, e, end, code)
+            Cd, tcount = m.read(2, e, end, code)
+            small = answer_rows(sc, Cd, tcount)
+            v1 = (tcount == 1) & (Cd[:, 0] >= 1) & (Cd[:, 0] <= sc.REAL_MAX_T)
+            yd = m.read_answer(m.label_seq(e, lab, lab != -100, tpos), e, end, code)
+            m.ctl.wire_ios = [True] * len(sc.PREDICATES)
+            m.ctl.sel_fit = None
+            t0 = time.time()
+            m.round_lesson({"small": small, "Xd": Xd, "Cd": Cd, "Nd": Nd, "tabs": m.tables()}, yd)
+        sel = torch.nonzero(small).flatten()
+        fit = dict(zip(sc.PREDICATES, m.ctl.sel_fit)) if m.ctl.sel_fit else "no answer rows"
+        print(f"{split} rows={len(lab)} T={sorted(set(Cd[:, 0].tolist()))} answer_rows={sel.numel()} "
+              f"same_as_v1={bool(torch.equal(small, v1))} rounds={answer_cap(sc, Cd[sel]) if sel.numel() else '-'} "
+              f"fit={fit} t={time.time() - t0:.1f}s", flush=True)
+
+
 def main(argv):
     data, rest = argv[0], argv[1:]
     n = int(next((a.split("=")[1] for a in rest if a.startswith("N=")), 8))
@@ -132,6 +172,8 @@ def main(argv):
         return grad(data, n if any(a.startswith("N=") for a in rest) else 16, splits[1:], sets)
     if splits == ["lessons"]:
         return lessons(data, n if any(a.startswith("N=") for a in rest) else 64, sets)
+    if splits[:1] == ["selector"]:
+        return selector(data, n if any(a.startswith("N=") for a in rest) else 64, splits[1:], sets)
     sc, m = designed_model(data, sets)
     for split in splits:
         ids, am, lab, tpos = batch(rows(data, split, n))

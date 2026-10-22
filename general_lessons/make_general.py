@@ -1003,10 +1003,85 @@ def build_reader_frozen(src: str) -> str:
     return src
 
 
+V2_DOC = '''"""GeneralLessons v2 (cpu_first/general_lessons/LESSONS.md, section 11): submission_general.py (v1) with one change,
+the rows whose answers the lessons read (answer_rows below). v1 read the rows with one-digit T <= REAL_MAX_T only, so on
+data whose T is never that small (M4: every T is 8) no answer reached the lesson sets' selector, the round menu or the
+I/O lesson, and the selector stayed at its random start. v2 reads the rows with one-digit T up to max(REAL_MAX_T, the
+batch's smallest one-digit T), past REAL_MAX_T no more rows than hold the work (rows x rounds) of IO_ROWS rows at
+REAL_MAX_T + 1 rounds. On a batch with a row of T <= REAL_MAX_T the rows, the rounds and the arithmetic are v1's (H1's
+shuffled batches of 512 hold about 10 such rows; about one batch in 23,000 holds none).
+
+'''
+
+
+def build_min_t(src: str) -> str:
+    """v2: the answers at the batch's smallest T (V2_DOC)."""
+    src = sub1(src, '"""GeneralLessons (cpu_first/general_lessons/LESSONS.md):', V2_DOC.rstrip("\n") + "\n\n" +
+               "v1's description follows.\n\nGeneralLessons (cpu_first/general_lessons/LESSONS.md):")
+    src = sub1(src, 'options of "this set\'s argmax machine reproduces the rows with T <= REAL_MAX_T")',
+               'options of "this set\'s argmax machine reproduces the answer rows")')
+    src = sub1(src, """    combination of the I/O block by x mod N = x and N mod N = 0 through the whole division and the answers of the rows
+    with T <= REAL_MAX_T through the whole machine;""", """    combination of the I/O block by x mod N = x and N mod N = 0 through the whole division and the answers of the
+    answer rows (answer_rows) through the whole machine;""")
+    src = sub1(src, "REAL_MAX_T = 2         # the I/O lesson uses the answers of the batch's rows with T <= REAL_MAX_T (one digit)",
+               "REAL_MAX_T = 2         # the answers used: the rows with one-digit T <= max(REAL_MAX_T, the batch's smallest)")
+    src = sub1(src, '''def run_hard(Sd: Tensor, C: Tensor, Nd: Tensor, tabs, w: dict, cap: int | None = None,''', '''def answer_rows(Cd: Tensor, tcount: Tensor) -> Tensor:
+    """The rows whose answers the lessons read (T's digits Cd, LSB first, and their count): one-digit T from 1 up to
+    max(REAL_MAX_T, the batch's smallest one-digit T), so data whose T is never small still reaches the selector and the
+    I/O lesson. Past REAL_MAX_T only the first of those rows are kept, as many as hold the work (rows x rounds) of
+    IO_ROWS rows at REAL_MAX_T + 1 rounds."""
+    one = (tcount == 1) & (Cd[:, 0] >= 1)
+    if not bool(one.any()):
+        return one
+    top = max(REAL_MAX_T, int(Cd[one, 0].min()))
+    small = one & (Cd[:, 0] <= top)
+    if top > REAL_MAX_T:
+        small[torch.nonzero(small).flatten()[IO_ROWS * (REAL_MAX_T + 1) // (top + 1):]] = False
+    return small
+
+
+def answer_cap(Cs: Tensor) -> int:
+    """The rounds the hard machine needs on answer rows with T's digits Cs: their largest T (at least REAL_MAX_T) + 1."""
+    return max(REAL_MAX_T, int(Cs[:, 0].max())) + 1
+
+
+def run_hard(Sd: Tensor, C: Tensor, Nd: Tensor, tabs, w: dict, cap: int | None = None,''')
+    src = sub1(src, "        self.ans_ok = 0.0                     # the argmax machine on the rows' answers (T <= REAL_MAX_T), this step",
+               "        self.ans_ok = 0.0                     # the argmax machine on the answer rows' answers, this step")
+    src = sub1(src, "            small = (tcount == 1) & (Cd[:, 0] >= 1) & (Cd[:, 0] <= REAL_MAX_T)  # the rows whose answers are used",
+               "            small = answer_rows(Cd, tcount)                                   # the rows whose answers are used")
+    src = sub1(src, """        through the whole division, and the rows with T <= REAL_MAX_T through the whole machine (the round at its""",
+               """        through the whole division, and the answer rows (answer_rows) through the whole machine (the round at its""")
+    src = sub1(src, "                                tabs, wm, cap=REAL_MAX_T + 1)[0].view(Kc, mr, W)",
+               "                                tabs, wm, cap=answer_cap(Cd[sel_rows]))[0].view(Kc, mr, W)")
+    src = sub1(src, """        lessons have joined runs its argmax machine under every combination of the round's options on the rows with
+        T <= REAL_MAX_T; the loss is the factorized mixture's over (lesson set, round options).""",
+               """        lessons have joined runs its argmax machine under every combination of the round's options on the answer
+        rows (answer_rows); the loss is the factorized mixture's over (lesson set, round options).""")
+    src = sub1(src, """                               aux["tabs"], codes(wk), cap=REAL_MAX_T + 1)[0]""",
+               """                               aux["tabs"], codes(wk), cap=answer_cap(aux["Cd"][sel]))[0]""")
+    src = sub1(src, """        combinations on the laws' verdicts and on the answers of the rows with T <= REAL_MAX_T.\"\"\"""",
+               """        combinations on the laws' verdicts and on the answers of the answer rows (answer_rows).\"\"\"""")
+    src = sub1(src, """                             model.wcodes(sel.numel(), sel.device), cap=REAL_MAX_T + 1)[0]""",
+               """                             model.wcodes(sel.numel(), sel.device), cap=answer_cap(aux["Cd"][sel]))[0]""")
+    if "cap=REAL_MAX_T + 1" in src:
+        raise ValueError("a run with cap REAL_MAX_T + 1 left")
+    return src
+
+
+V1_MD5 = "ddfdc065329a9059acac48160f59a65f"   # the certified general file (gen_h1_official and every v1 record)
+
+
 def main() -> None:
     src = build()
+    md5 = hashlib.md5(src.encode()).hexdigest()
+    if md5 != V1_MD5:
+        raise ValueError(f"v1 rebuilt with md5 {md5}, not the certified {V1_MD5}: not written")
     OUT.write_text(src)
-    print(f"wrote {OUT} ({len(src.splitlines())} lines, md5 {hashlib.md5(src.encode()).hexdigest()})")
+    print(f"wrote {OUT} ({len(src.splitlines())} lines, md5 {md5})")
+    v2 = build_min_t(src)
+    (HERE / "submission_general_v2.py").write_text(v2)
+    print(f"wrote submission_general_v2.py ({len(v2.splitlines())} lines, md5 {hashlib.md5(v2.encode()).hexdigest()})")
     (HERE / "variants").mkdir(exist_ok=True)
     diag = build_reader_frozen(src)
     (HERE / "variants" / "submission_general_reader_frozen.py").write_text(diag)

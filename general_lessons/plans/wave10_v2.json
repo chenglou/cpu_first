@@ -1,0 +1,36 @@
+[
+ {
+  "name": "gen2_h1_official",
+  "task": "h1",
+  "manifest": null,
+  "gpu": true,
+  "file": "general_lessons/submission_general_v2.py"
+ },
+ {
+  "name": "gen2_m4_relaxed_h100",
+  "task": "m4",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500
+   }
+  },
+  "gpu": true,
+  "file": "general_lessons/submission_general_v2.py"
+ },
+ {
+  "name": "gen2_m4_relaxed_s1_h100",
+  "task": "m4",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": true,
+  "file": "general_lessons/submission_general_v2.py"
+ }
+]

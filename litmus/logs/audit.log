@@ -1,0 +1,150 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-ALUdX3GSkq6fVEoGUd6eQo
+Building image im-kcAvagzOGw3KBqdTEQnIfR
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.67s
+
+Built image im-kcAvagzOGw3KBqdTEQnIfR in 3.08s
+
+
+Building image im-XgKPwmSk6AZ2Ah8kaHW7iM
+
+=> Step 0: FROM base
+
+=> Step 1: RUN cd /workspace/one-layer-benchmark && PATH=/workspace/one-layer-benchmark/.venv/bin:$PATH bash scripts/generate_datasets.sh
+wrote 4700 examples to data/generated/squaring_mod_new11_easy_bidirectional_fixed_n_323_t123
+wrote 6564 examples to data/generated/squaring_mod_new11_easy_bidirectional_fixed_n_899_t124
+wrote 11968 examples to data/generated/squaring_mod_new11_easy_bidirectional_fixed_t_b1011_t2
+wrote 16368 examples to data/generated/squaring_mod_new11_easy_bidirectional_fixed_t_b1112_t2
+wrote 13768 examples to data/generated/squaring_mod_new11_easy_bidirectional_variable_b1011_t123
+wrote 2812 examples to data/generated/squaring_mod_granular_easy_e6_bidirectional_fixed_n_247_t1234
+wrote 2677 examples to data/generated/squaring_mod_granular_easy_e7_bidirectional_fixed_n_287_t123_ood4
+wrote 2677 examples to data/generated/squaring_mod_granular_easy_e8_bidirectional_fixed_n_287_t123
+wrote 2730 examples to data/generated/squaring_mod_granular_easy_e9_bidirectional_fixed_n_299_t123
+wrote 3117 examples to data/generated/squaring_mod_granular_easy_e10_bidirectional_fixed_n_403_t123
+wrote 37928 examples to data/generated/squaring_mod_new11_medium_bidirectional_fixed_n_10403_t4816
+wrote 103960 examples to data/generated/squaring_mod_new11_medium_bidirectional_fixed_n_38021_t4816
+wrote 37752 examples to data/generated/squaring_mod_new11_medium_bidirectional_fixed_t_b111315_t2
+wrote 109752 examples to data/generated/squaring_mod_new11_medium_bidirectional_fixed_t_b141822_t8
+wrote 103752 examples to data/generated/squaring_mod_new11_medium_bidirectional_variable_b121416_t248
+wrote 7172 examples to data/generated/squaring_mod_granular_medium_m6_bidirectional_fixed_n_1517_t124
+wrote 8152 examples to data/generated/squaring_mod_granular_medium_m7_bidirectional_fixed_n_1763_t124
+wrote 6637 examples to data/generated/squaring_mod_granular_medium_m8_bidirectional_fixed_n_1333_t124
+wrote 9072 examples to data/generated/squaring_mod_granular_medium_m9_bidirectional_fixed_n_1927_t124
+wrote 8334 examples to data/generated/squaring_mod_granular_medium_m10_bidirectional_fixed_n_1739_t124
+wrote 142754 examples to data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
+Saving image...
+Image saved, took 955.80ms
+
+Built image im-XgKPwmSk6AZ2Ah8kaHW7iM in 76.43s
+
+
+Building image im-xa8qXBgeCgLhHzypdG4pWU
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 518.23ms
+
+Built image im-xa8qXBgeCgLhHzypdG4pWU in 2.36s
+
+
+Building image im-1ndeoXTZVWSk0HegG6mDiO
+
+=> Step 0: FROM base
+
+=> Step 1: RUN cd /workspace/one-layer-benchmark && .venv/bin/python -m litmus_tasks data/generated
+xfirst: wrote 142754 examples, max_seq_len 21, splits {'depth_ood_n_t_1': 768, 'depth_ood_n_t_16': 768, 'depth_ood_n_t_2': 768, 'depth_ood_n_t_32': 768, 'depth_ood_n_t_4': 768, 'depth_ood_n_t_64': 768, 'depth_ood_n_t_8': 768, 'depth_t_1': 768, 'depth_t_16': 768, 'depth_t_2': 768, 'depth_t_32': 768, 'depth_t_4': 768, 'depth_t_64': 768, 'depth_t_8': 768, 'ood_n_t': 10002, 'ood_t': 10002, 'test': 9999, 'train': 101999}
+mont: wrote 142754 examples, max_seq_len 21, splits {'depth_ood_n_t_1': 768, 'depth_ood_n_t_16': 768, 'depth_ood_n_t_2': 768, 'depth_ood_n_t_32': 768, 'depth_ood_n_t_4': 768, 'depth_ood_n_t_64': 768, 'depth_ood_n_t_8': 768, 'depth_t_1': 768, 'depth_t_16': 768, 'depth_t_2': 768, 'depth_t_32': 768, 'depth_t_4': 768, 'depth_t_64': 768, 'depth_t_8': 768, 'ood_n_t': 10002, 'ood_t': 10002, 'test': 9999, 'train': 101999}
+ten: wrote 142754 examples, max_seq_len 19, splits {'depth_ood_n_t_1': 768, 'depth_ood_n_t_16': 768, 'depth_ood_n_t_2': 768, 'depth_ood_n_t_32': 768, 'depth_ood_n_t_4': 768, 'depth_ood_n_t_64': 768, 'depth_ood_n_t_8': 768, 'depth_t_1': 768, 'depth_t_16': 768, 'depth_t_2': 768, 'depth_t_32': 768, 'depth_t_4': 768, 'depth_t_64': 768, 'depth_t_8': 768, 'ood_n_t': 10002, 'ood_t': 10002, 'test': 9999, 'train': 101999}
+rho: wrote 142754 examples, max_seq_len 21, splits {'depth_ood_n_t_1': 768, 'depth_ood_n_t_16': 768, 'depth_ood_n_t_2': 768, 'depth_ood_n_t_32': 768, 'depth_ood_n_t_4': 768, 'depth_ood_n_t_64': 768, 'depth_ood_n_t_8': 768, 'depth_t_1': 768, 'depth_t_16': 768, 'depth_t_2': 768, 'depth_t_32': 768, 'depth_t_4': 768, 'depth_t_64': 768, 'depth_t_8': 768, 'ood_n_t': 10002, 'ood_t': 10002, 'test': 9999, 'train': 101999}
+cube: wrote 142754 examples, max_seq_len 21, splits {'depth_ood_n_t_1': 768, 'depth_ood_n_t_16': 768, 'depth_ood_n_t_2': 768, 'depth_ood_n_t_32': 768, 'depth_ood_n_t_4': 768, 'depth_ood_n_t_64': 768, 'depth_ood_n_t_8': 768, 'depth_t_1': 768, 'depth_t_16': 768, 'depth_t_2': 768, 'depth_t_32': 768, 'depth_t_4': 768, 'depth_t_64': 768, 'depth_t_8': 768, 'ood_n_t': 10002, 'ood_t': 10002, 'test': 9999, 'train': 101999}
+xy: wrote 142754 examples, max_seq_len 30, splits {'depth_ood_n_t_1': 768, 'depth_ood_n_t_16': 768, 'depth_ood_n_t_2': 768, 'depth_ood_n_t_32': 768, 'depth_ood_n_t_4': 768, 'depth_ood_n_t_64': 768, 'depth_ood_n_t_8': 768, 'depth_t_1': 768, 'depth_t_16': 768, 'depth_t_2': 768, 'depth_t_32': 768, 'depth_t_4': 768, 'depth_t_64': 768, 'depth_t_8': 768, 'ood_n_t': 10002, 'ood_t': 10002, 'test': 9999, 'train': 101999}
+Saving image...
+Image saved, took 3.69s
+
+Built image im-1ndeoXTZVWSk0HegG6mDiO in 25.92s
+
+
+Building image im-xYiHoWiIQGm2WaQXTkxawc
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 770.99ms
+
+Built image im-xYiHoWiIQGm2WaQXTkxawc in 2.06s
+
+
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/litmus/modal_litmus.py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+├── 🔨 Created mount scripts/generate_datasets.sh
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/litmus/tasks.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/litmus/audit_data.py
+├── 🔨 Created function run_cpu.
+├── 🔨 Created function run_h100.
+├── 🔨 Created function driver.
+└── 🔨 Created function audit.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+e1 {'train_rows': 600, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': True, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 5, 'answer_rows': 400, 't_two_way_rows': 0}
+e2 {'train_rows': 1920, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 16, 'answer_rows': 1280, 't_two_way_rows': 0}
+e3 {'train_rows': 3200, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 27, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 3200, 't_two_way_rows': 0}
+e4 {'train_rows': 6400, 'max_seq_len': 15, 'layout': 'NXT', 'n_reversed': False, 'moduli': 35, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 6400, 't_two_way_rows': 0}
+e5 {'train_rows': 4800, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 27, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 3200, 't_two_way_rows': 0}
+e6 {'train_rows': 588, 'max_seq_len': 11, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 11, 'answer_rows': 294, 't_two_way_rows': 0}
+e7 {'train_rows': 528, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 15, 'answer_rows': 352, 't_two_way_rows': 0}
+e8 {'train_rows': 528, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 15, 'answer_rows': 352, 't_two_way_rows': 0}
+e9 {'train_rows': 600, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 10, 'answer_rows': 400, 't_two_way_rows': 0}
+e10 {'train_rows': 792, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 6, 'answer_rows': 528, 't_two_way_rows': 0}
+m1 {'train_rows': 27000, 'max_seq_len': 15, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 7, 'answer_rows': 0, 't_two_way_rows': 9000}
+m2 {'train_rows': 81000, 'max_seq_len': 17, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 4, 'pairs': 14, 'answer_rows': 0, 't_two_way_rows': 27000}
+m3 {'train_rows': 21600, 'max_seq_len': 15, 'layout': 'NXT', 'n_reversed': False, 'moduli': 247, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 21600, 't_two_way_rows': 0}
+m4 {'train_rows': 81000, 'max_seq_len': 21, 'layout': 'NXT', 'n_reversed': False, 'moduli': 6074, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 0, 't_two_way_rows': 0}
+m5 {'train_rows': 81000, 'max_seq_len': 17, 'layout': 'NXT', 'n_reversed': False, 'moduli': 204, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 27000, 't_two_way_rows': 0}
+m6 {'train_rows': 3510, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 11, 'answer_rows': 2340, 't_two_way_rows': 0}
+m7 {'train_rows': 4050, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 16, 'answer_rows': 2700, 't_two_way_rows': 0}
+m8 {'train_rows': 2970, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 1, 'pairs': 3, 'answer_rows': 1980, 't_two_way_rows': 0}
+m9 {'train_rows': 4185, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 16, 'answer_rows': 2790, 't_two_way_rows': 0}
+m10 {'train_rows': 3780, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 18, 'answer_rows': 2520, 't_two_way_rows': 0}
+h1 {'train_rows': 101999, 'max_seq_len': 21, 'layout': 'NXT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 2000, 't_two_way_rows': 33333}
+xfirst {'train_rows': 101999, 'max_seq_len': 21, 'layout': 'XNT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 2000, 't_two_way_rows': 33333}
+mont {'train_rows': 101999, 'max_seq_len': 21, 'layout': 'NXT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 2000, 't_two_way_rows': 33333}
+ten {'train_rows': 101999, 'max_seq_len': 19, 'layout': 'NXT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 2000, 't_two_way_rows': 33333}
+rho {'train_rows': 101999, 'max_seq_len': 21, 'layout': 'NXT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 2000, 't_two_way_rows': 33333}
+cube {'train_rows': 101999, 'max_seq_len': 21, 'layout': 'NXT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 2000, 't_two_way_rows': 33333}
+xy {'train_rows': 101999, 'max_seq_len': 30, 'layout': 'NXYT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'answer_rows': 2000, 't_two_way_rows': 33333}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-ALUdX3GSkq6fVEoGUd6eQo
+exit 0

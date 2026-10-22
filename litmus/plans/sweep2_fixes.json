@@ -1,0 +1,79 @@
+[
+ {
+  "name": "rho_fix_s74",
+  "task": "rho",
+  "file": "litmus/variants/submission_rho.py",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "cube_fix_s74",
+  "task": "cube",
+  "file": "litmus/variants/submission_cube.py",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "mont_fix_s74",
+  "task": "mont",
+  "file": "litmus/variants/submission_mont.py",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "ten_fix_s74",
+  "task": "ten",
+  "file": "litmus/variants/submission_ten.py",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "rho_fix_on_h1",
+  "task": "h1",
+  "file": "litmus/variants/submission_rho.py",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "cube_fix_on_h1",
+  "task": "h1",
+  "file": "litmus/variants/submission_cube.py",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "ten_fix_on_h1",
+  "task": "h1",
+  "file": "litmus/variants/submission_ten.py",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ }
+]

@@ -1,0 +1,89 @@
+[
+ {
+  "name": "m5_relaxed_s1",
+  "task": "m5",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "m5_tie_s1",
+  "task": "m5",
+  "file": "litmus/variants/submission_tie.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "m5_relaxed_s2",
+  "task": "m5",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500,
+    "seeds": [
+     2
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "m5_tie_s2",
+  "task": "m5",
+  "file": "litmus/variants/submission_tie.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500,
+    "seeds": [
+     2
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "m5_relaxed_s3",
+  "task": "m5",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500,
+    "seeds": [
+     3
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "m5_tie_s3",
+  "task": "m5",
+  "file": "litmus/variants/submission_tie.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500,
+    "seeds": [
+     3
+    ]
+   }
+  },
+  "gpu": true
+ }
+]

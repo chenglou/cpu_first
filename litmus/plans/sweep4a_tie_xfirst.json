@@ -1,0 +1,53 @@
+[
+ {
+  "name": "m5_tie_s74",
+  "task": "m5",
+  "file": "litmus/variants/submission_tie.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "xfirst_s1",
+  "task": "xfirst",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "xfirst_s2",
+  "task": "xfirst",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     2
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "xfirst_s3",
+  "task": "xfirst",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     3
+    ]
+   }
+  },
+  "gpu": true
+ }
+]

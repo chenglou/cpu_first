@@ -1,0 +1,78 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-O1EoLhXdE0i9skBu8nYAO3
+Building image im-mfII2FdG3fzvzULitRtW1n
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 843.56ms
+
+Built image im-mfII2FdG3fzvzULitRtW1n in 1.87s
+
+
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/litmus/modal_litmus.py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+├── 🔨 Created mount scripts/generate_datasets.sh
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/litmus/tasks.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/litmus/audit_data.py
+├── 🔨 Created function run_cpu.
+├── 🔨 Created function run_h100.
+├── 🔨 Created function driver.
+└── 🔨 Created function audit.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+e1 {'train_rows': 600, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': True, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 5, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 271, 'answer_rows': 400, 't_two_way_rows': 0}
+e2 {'train_rows': 1920, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 16, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 170, 'answer_rows': 1280, 't_two_way_rows': 0}
+e3 {'train_rows': 3200, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 27, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 369, 'rows_rejecting_rev_x': 799, 'answer_rows': 3200, 't_two_way_rows': 0}
+e4 {'train_rows': 6400, 'max_seq_len': 15, 'layout': 'NXT', 'n_reversed': False, 'moduli': 35, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 226, 'rows_rejecting_rev_x': 2103, 'answer_rows': 6400, 't_two_way_rows': 0}
+e5 {'train_rows': 4800, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 27, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 554, 'rows_rejecting_rev_x': 1160, 'answer_rows': 3200, 't_two_way_rows': 0}
+e6 {'train_rows': 588, 'max_seq_len': 11, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 11, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 263, 'answer_rows': 294, 't_two_way_rows': 0}
+e7 {'train_rows': 528, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 15, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 248, 'answer_rows': 352, 't_two_way_rows': 0}
+e8 {'train_rows': 528, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 15, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 248, 'answer_rows': 352, 't_two_way_rows': 0}
+e9 {'train_rows': 600, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 10, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 282, 'answer_rows': 400, 't_two_way_rows': 0}
+e10 {'train_rows': 792, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 6, 'rows_rejecting_rev_n': 206, 'rows_rejecting_rev_x': 357, 'answer_rows': 528, 't_two_way_rows': 0}
+m1 {'train_rows': 27000, 'max_seq_len': 15, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 2, 'pairs': 7, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 932, 'answer_rows': 0, 't_two_way_rows': 9000}
+m2 {'train_rows': 81000, 'max_seq_len': 17, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 4, 'pairs': 14, 'rows_rejecting_rev_n': 55197, 'rows_rejecting_rev_x': 36910, 'answer_rows': 0, 't_two_way_rows': 27000}
+m3 {'train_rows': 21600, 'max_seq_len': 15, 'layout': 'NXT', 'n_reversed': False, 'moduli': 247, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 2456, 'rows_rejecting_rev_x': 7209, 'answer_rows': 21600, 't_two_way_rows': 0}
+m4 {'train_rows': 81000, 'max_seq_len': 21, 'layout': 'NXT', 'n_reversed': False, 'moduli': 6074, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 8882, 'rows_rejecting_rev_x': 23920, 'answer_rows': 0, 't_two_way_rows': 0}
+m5 {'train_rows': 81000, 'max_seq_len': 17, 'layout': 'NXT', 'n_reversed': False, 'moduli': 204, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 11478, 'rows_rejecting_rev_x': 26678, 'answer_rows': 27000, 't_two_way_rows': 0}
+m6 {'train_rows': 3510, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 11, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 1028, 'answer_rows': 2340, 't_two_way_rows': 0}
+m7 {'train_rows': 4050, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 16, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 1432, 'answer_rows': 2700, 't_two_way_rows': 0}
+m8 {'train_rows': 2970, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 1, 'pairs': 3, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 651, 'answer_rows': 1980, 't_two_way_rows': 0}
+m9 {'train_rows': 4185, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 16, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 1604, 'answer_rows': 2790, 't_two_way_rows': 0}
+m10 {'train_rows': 3780, 'max_seq_len': 13, 'layout': 'NXT', 'n_reversed': False, 'moduli': 1, 'adjacent_pairs': 3, 'pairs': 18, 'rows_rejecting_rev_n': 0, 'rows_rejecting_rev_x': 1329, 'answer_rows': 2520, 't_two_way_rows': 0}
+h1 {'train_rows': 101999, 'max_seq_len': 21, 'layout': 'NXT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 30184, 'rows_rejecting_rev_x': 35028, 'answer_rows': 2000, 't_two_way_rows': 33333}
+xfirst {'train_rows': 101999, 'max_seq_len': 21, 'layout': 'XNT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 30184, 'rows_rejecting_rev_x': 35028, 'answer_rows': 2000, 't_two_way_rows': 33333}
+mont {'train_rows': 101999, 'max_seq_len': 21, 'layout': 'NXT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 30184, 'rows_rejecting_rev_x': 35028, 'answer_rows': 2000, 't_two_way_rows': 33333}
+ten {'train_rows': 101999, 'max_seq_len': 19, 'layout': 'NXT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 30184, 'rows_rejecting_rev_x': 35028, 'answer_rows': 2000, 't_two_way_rows': 33333}
+rho {'train_rows': 101999, 'max_seq_len': 21, 'layout': 'NXT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 30184, 'rows_rejecting_rev_x': 35028, 'answer_rows': 2000, 't_two_way_rows': 33333}
+cube {'train_rows': 101999, 'max_seq_len': 21, 'layout': 'NXT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 30184, 'rows_rejecting_rev_x': 35028, 'answer_rows': 2000, 't_two_way_rows': 33333}
+xy {'train_rows': 101999, 'max_seq_len': 30, 'layout': 'NXYT', 'n_reversed': True, 'moduli': 430, 'adjacent_pairs': 9, 'pairs': 45, 'rows_rejecting_rev_n': 30184, 'rows_rejecting_rev_x': 35028, 'answer_rows': 2000, 't_two_way_rows': 33333}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-O1EoLhXdE0i9skBu8nYAO3

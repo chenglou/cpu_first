@@ -1,0 +1,50 @@
+[
+ {
+  "name": "e1_warm_frozen",
+  "task": "e1",
+  "file": "litmus/variants/submission_warm_frozen.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "e2_warm_frozen",
+  "task": "e2",
+  "file": "litmus/variants/submission_warm_frozen.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "m1_warm_frozen",
+  "task": "m1",
+  "file": "litmus/variants/submission_warm_frozen.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "m6_warm_frozen",
+  "task": "m6",
+  "file": "litmus/variants/submission_warm_frozen.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ }
+]

@@ -1,0 +1,187 @@
+{
+ "free attention + MLP, 4 head copies (mean), units x4": {
+  "3,2,1": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999999998128,
+   "hard_from_random_scratch": 1.0,
+   "params": 20309
+  },
+  "3,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999999998128,
+   "hard_from_random_scratch": 1.0,
+   "params": 20309
+  },
+  "4,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999999997193,
+   "hard_from_random_scratch": 1.0,
+   "params": 24822
+  }
+ },
+ "free attention + MLP, 4 head copies (side by side)": {
+  "3,2,1": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999999998128,
+   "hard_from_random_scratch": 1.0,
+   "params": 18365
+  },
+  "3,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999999998128,
+   "hard_from_random_scratch": 1.0,
+   "params": 18365
+  },
+  "4,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999999997193,
+   "hard_from_random_scratch": 1.0,
+   "params": 21078
+  }
+ },
+ "free attention + tables, 4 head copies": {
+  "3,2,1": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999998062515653,
+   "hard_from_random_scratch": 1.0,
+   "params": 15984
+  },
+  "3,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999980501505992,
+   "hard_from_random_scratch": 1.0,
+   "params": 15984
+  },
+  "4,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999827339379699,
+   "hard_from_random_scratch": 1.0,
+   "params": 15984
+  }
+ },
+ "menu + tables, 4 head copies": {
+  "3,2,1": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999999819035,
+   "hard_from_random_scratch": 1.0,
+   "params": 504
+  },
+  "3,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999998609133,
+   "hard_from_random_scratch": 1.0,
+   "params": 504
+  },
+  "4,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999988476522,
+   "hard_from_random_scratch": 1.0,
+   "params": 504
+  }
+ },
+ "free attention + tables, prompt at the first tick only": {
+  "3,2,1": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999997073160445,
+   "hard_from_random_scratch": 1.0,
+   "params": 3996
+  },
+  "3,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999970192831138,
+   "hard_from_random_scratch": 1.0,
+   "params": 3996
+  },
+  "4,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999580498484412,
+   "hard_from_random_scratch": 1.0,
+   "params": 3996
+  }
+ },
+ "free attention + MLP, prompt at the first tick only": {
+  "3,2,1": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999999998128,
+   "hard_from_random_scratch": 1.0,
+   "params": 5261
+  },
+  "3,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999999998128,
+   "hard_from_random_scratch": 1.0,
+   "params": 5261
+  },
+  "4,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999999997193,
+   "hard_from_random_scratch": 1.0,
+   "params": 6486
+  }
+ },
+ "free symbols, K = 6": {
+  "3,2,1": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999958773186,
+   "hard_from_random_scratch": 1.0,
+   "params": 5862
+  },
+  "3,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999958773186,
+   "hard_from_random_scratch": 1.0,
+   "params": 5862
+  },
+  "4,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999938159779,
+   "hard_from_random_scratch": 1.0,
+   "params": 8076
+  }
+ },
+ "free symbols, K = 24 (4 per meaning), 4 head copies side by side, units x4": {
+  "3,2,1": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999958744761,
+   "hard_from_random_scratch": 1.0,
+   "params": 92136
+  },
+  "3,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999958744761,
+   "hard_from_random_scratch": 1.0,
+   "params": 92136
+  },
+  "4,2,2": {
+   "hard": 1.0,
+   "soft": 1.0,
+   "min_p": 0.9999999938042182,
+   "hard_from_random_scratch": 1.0,
+   "params": 191280
+  }
+ },
+ "seconds": 37.48891305923462
+}

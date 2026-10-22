@@ -1,0 +1,35 @@
+{
+ "options": 7,
+ "menu": [
+  "up",
+  "up2",
+  "left",
+  "upleft",
+  "nrow",
+  "uptop",
+  "zero"
+ ],
+ "counts": {
+  "wirings": 823543,
+  "fit": 1,
+  "link": 4,
+  "both": 1,
+  "cert": 1
+ },
+ "passing_both": [
+  {
+   "wiring": {
+    "A.SHIFT": "upleft",
+    "A.SUB": "up",
+    "B.SUB": "nrow",
+    "C.SUB": "left",
+    "A.SEL": "up2",
+    "B.SEL": "up",
+    "C.SEL": "uptop"
+   },
+   "true": true,
+   "certified": true
+  }
+ ],
+ "seconds": 49.93210577964783
+}

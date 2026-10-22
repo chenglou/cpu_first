@@ -1,0 +1,33 @@
+The grid at (B, w, k) = (3, 2, 2): rows top to bottom, columns -1 .. P-1 (N0..: N's digits, v0..: v's)
+
+         N    .  N0  N1   .
+        R0   v1  v2  v3   .
+  SHIFT(0)    .  sh  sh  sh
+  SUB(0,1)    .  su  su  su
+  SEL(0,1)    .  se  se  se
+  SUB(0,2)    .  su  su  su
+  SEL(0,2)   v0  se  se  se
+  SHIFT(1)    .  sh  sh  sh
+  SUB(1,1)    .  su  su  su
+  SEL(1,1)    .  se  se  se
+  SUB(1,2)    .  su  su  su
+  SEL(1,2)    .  se  se  se
+
+48 cells, depth D = 18 ticks
+
+(3,2,1)     99 questions,  28 cells,  9 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(3,2,2)    297 questions,  48 cells, 18 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(3,2,3)    891 questions,  68 cells, 27 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(3,2,4)   2673 questions,  88 cells, 36 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(3,3,2)   2835 questions,  60 cells, 22 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(3,3,3)   8505 questions,  85 cells, 33 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(2,3,3)    176 questions,  55 cells, 18 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(2,4,4)   1472 questions,  84 cells, 28 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(4,2,2)   1824 questions,  64 cells, 26 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(4,2,3)   7296 questions,  92 cells, 39 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(5,2,2)   7250 questions,  80 cells, 34 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(4,3,2)  30336 questions,  80 cells, 32 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(5,3,2)  20000 questions, 100 cells, 42 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+(3,4,3)  20000 questions, 102 cells, 39 ticks | fixed: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | menu: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000 | free: hard 1.000 cells 1.000/1.000 soft 1.000 (min p 1.000000) rand-start 1.000
+
+free setting: 5081 parameters at B = 3 (MLP hidden 54); 266.4 s; wrote /Users/chenglou/github/one-layer/cpu_first/bridge/records/compile.json

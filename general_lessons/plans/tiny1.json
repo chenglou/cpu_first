@@ -1,0 +1,580 @@
+[
+ {
+  "name": "gen_mod_s0",
+  "cfg": {
+   "task": "mod",
+   "seed": 0
+  }
+ },
+ {
+  "name": "gen_mod_s1",
+  "cfg": {
+   "task": "mod",
+   "seed": 1
+  }
+ },
+ {
+  "name": "gen_mod_s2",
+  "cfg": {
+   "task": "mod",
+   "seed": 2
+  }
+ },
+ {
+  "name": "gen_mont_s0",
+  "cfg": {
+   "task": "mont",
+   "seed": 0
+  }
+ },
+ {
+  "name": "gen_mont_s1",
+  "cfg": {
+   "task": "mont",
+   "seed": 1
+  }
+ },
+ {
+  "name": "gen_mont_s2",
+  "cfg": {
+   "task": "mont",
+   "seed": 2
+  }
+ },
+ {
+  "name": "gen_rho_s0",
+  "cfg": {
+   "task": "rho",
+   "seed": 0
+  }
+ },
+ {
+  "name": "gen_rho_s1",
+  "cfg": {
+   "task": "rho",
+   "seed": 1
+  }
+ },
+ {
+  "name": "gen_rho_s2",
+  "cfg": {
+   "task": "rho",
+   "seed": 2
+  }
+ },
+ {
+  "name": "gen_ten_s0",
+  "cfg": {
+   "task": "ten",
+   "seed": 0
+  }
+ },
+ {
+  "name": "gen_ten_s1",
+  "cfg": {
+   "task": "ten",
+   "seed": 1
+  }
+ },
+ {
+  "name": "gen_ten_s2",
+  "cfg": {
+   "task": "ten",
+   "seed": 2
+  }
+ },
+ {
+  "name": "gen_cube_s0",
+  "cfg": {
+   "task": "cube",
+   "seed": 0
+  }
+ },
+ {
+  "name": "gen_cube_s1",
+  "cfg": {
+   "task": "cube",
+   "seed": 1
+  }
+ },
+ {
+  "name": "gen_cube_s2",
+  "cfg": {
+   "task": "cube",
+   "seed": 2
+  }
+ },
+ {
+  "name": "gen_tenrho_s0",
+  "cfg": {
+   "task": "tenrho",
+   "seed": 0
+  }
+ },
+ {
+  "name": "gen_tenrho_s1",
+  "cfg": {
+   "task": "tenrho",
+   "seed": 1
+  }
+ },
+ {
+  "name": "gen_tenrho_s2",
+  "cfg": {
+   "task": "tenrho",
+   "seed": 2
+  }
+ },
+ {
+  "name": "gen_plus2_s0",
+  "cfg": {
+   "task": "plus2",
+   "seed": 0
+  }
+ },
+ {
+  "name": "gen_plus2_s1",
+  "cfg": {
+   "task": "plus2",
+   "seed": 1
+  }
+ },
+ {
+  "name": "gen_plus2_s2",
+  "cfg": {
+   "task": "plus2",
+   "seed": 2
+  }
+ },
+ {
+  "name": "gen_montrho_s0",
+  "cfg": {
+   "task": "montrho",
+   "seed": 0
+  }
+ },
+ {
+  "name": "gen_montrho_s1",
+  "cfg": {
+   "task": "montrho",
+   "seed": 1
+  }
+ },
+ {
+  "name": "gen_montrho_s2",
+  "cfg": {
+   "task": "montrho",
+   "seed": 2
+  }
+ },
+ {
+  "name": "gen_mod_none_s0",
+  "cfg": {
+   "task": "mod",
+   "seed": 0,
+   "cands": "below,lowzero,none"
+  }
+ },
+ {
+  "name": "gen_mod_none_s1",
+  "cfg": {
+   "task": "mod",
+   "seed": 1,
+   "cands": "below,lowzero,none"
+  }
+ },
+ {
+  "name": "gen_mont_none_s0",
+  "cfg": {
+   "task": "mont",
+   "seed": 0,
+   "cands": "below,lowzero,none"
+  }
+ },
+ {
+  "name": "gen_mont_none_s1",
+  "cfg": {
+   "task": "mont",
+   "seed": 1,
+   "cands": "below,lowzero,none"
+  }
+ },
+ {
+  "name": "gen_mod_gateloss_s0",
+  "cfg": {
+   "task": "mod",
+   "seed": 0,
+   "gates": "loss"
+  }
+ },
+ {
+  "name": "gen_mod_gateloss_s1",
+  "cfg": {
+   "task": "mod",
+   "seed": 1,
+   "gates": "loss"
+  }
+ },
+ {
+  "name": "gen_mod_fewlab_s0",
+  "cfg": {
+   "task": "mod",
+   "seed": 0,
+   "label_frac": 0.002
+  }
+ },
+ {
+  "name": "gen_rho_fewlab_s0",
+  "cfg": {
+   "task": "rho",
+   "seed": 0,
+   "label_frac": 0.002
+  }
+ },
+ {
+  "name": "gen_ten_fewlab_s0",
+  "cfg": {
+   "task": "ten",
+   "seed": 0,
+   "label_frac": 0.002
+  }
+ },
+ {
+  "name": "gen_plus2_fewlab_s0",
+  "cfg": {
+   "task": "plus2",
+   "seed": 0,
+   "label_frac": 0.002
+  }
+ },
+ {
+  "name": "table_many_N_s0",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 0,
+   "pairs": "N",
+   "seed": 0,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_many_N_s1",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 0,
+   "pairs": "N",
+   "seed": 1,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_many_N_s2",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 0,
+   "pairs": "N",
+   "seed": 2,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_many_all_s0",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 0,
+   "pairs": "all",
+   "seed": 0,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_many_all_s1",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 0,
+   "pairs": "all",
+   "seed": 1,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_many_all_s2",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 0,
+   "pairs": "all",
+   "seed": 2,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_323_N_s0",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 323,
+   "pairs": "N",
+   "seed": 0,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_323_N_s1",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 323,
+   "pairs": "N",
+   "seed": 1,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_323_N_s2",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 323,
+   "pairs": "N",
+   "seed": 2,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_323_all_s0",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 323,
+   "pairs": "all",
+   "seed": 0,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_323_all_s1",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 323,
+   "pairs": "all",
+   "seed": 1,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_323_all_s2",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 323,
+   "pairs": "all",
+   "seed": 2,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_899_N_s0",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 899,
+   "pairs": "N",
+   "seed": 0,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_899_N_s1",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 899,
+   "pairs": "N",
+   "seed": 1,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_899_N_s2",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 899,
+   "pairs": "N",
+   "seed": 2,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_899_all_s0",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 899,
+   "pairs": "all",
+   "seed": 0,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_899_all_s1",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 899,
+   "pairs": "all",
+   "seed": 1,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_899_all_s2",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 899,
+   "pairs": "all",
+   "seed": 2,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_1517_N_s0",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 1517,
+   "pairs": "N",
+   "seed": 0,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_1517_N_s1",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 1517,
+   "pairs": "N",
+   "seed": 1,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_1517_N_s2",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 1517,
+   "pairs": "N",
+   "seed": 2,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_1517_all_s0",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 1517,
+   "pairs": "all",
+   "seed": 0,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_1517_all_s1",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 1517,
+   "pairs": "all",
+   "seed": 1,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_1517_all_s2",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 1517,
+   "pairs": "all",
+   "seed": 2,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_10403_N_s0",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 10403,
+   "pairs": "N",
+   "seed": 0,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_10403_N_s1",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 10403,
+   "pairs": "N",
+   "seed": 1,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_10403_N_s2",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 10403,
+   "pairs": "N",
+   "seed": 2,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_10403_all_s0",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 10403,
+   "pairs": "all",
+   "seed": 0,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_10403_all_s1",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 10403,
+   "pairs": "all",
+   "seed": 1,
+   "max_steps": 800,
+   "log": 50
+  }
+ },
+ {
+  "name": "table_10403_all_s2",
+  "script": "tiny_table",
+  "cfg": {
+   "fixed": 10403,
+   "pairs": "all",
+   "seed": 2,
+   "max_steps": 800,
+   "log": 50
+  }
+ }
+]

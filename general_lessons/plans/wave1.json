@@ -1,0 +1,88 @@
+[
+ {
+  "name": "gen_h1_official",
+  "task": "h1",
+  "manifest": null,
+  "gpu": true
+ },
+ {
+  "name": "gen_rho_s74",
+  "task": "rho",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_ten_s74",
+  "task": "ten",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_cube_s74",
+  "task": "cube",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_mont_s74",
+  "task": "mont",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_tenrho_s74",
+  "task": "tenrho",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_plus3_s74",
+  "task": "plus3",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_minus1_s74",
+  "task": "minus1",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_xfirst_s74",
+  "task": "xfirst",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ }
+]

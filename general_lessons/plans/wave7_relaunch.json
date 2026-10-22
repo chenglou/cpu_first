@@ -1,0 +1,61 @@
+[
+ {
+  "name": "gen_h1_cpu_seed3",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     3
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "gen_h1_cpu_seed4",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     4
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "gen_h1_cpu_seed6",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     6
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "gen_h1_cpu_seed7",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     7
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "gen_m4_relaxed",
+  "task": "m4",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500
+   }
+  },
+  "gpu": false
+ }
+]

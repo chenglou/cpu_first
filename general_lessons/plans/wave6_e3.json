@@ -1,0 +1,41 @@
+[
+ {
+  "name": "gen_e3_relaxed_s1",
+  "task": "e3",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "gen_e3_relaxed_s2",
+  "task": "e3",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500,
+    "seeds": [
+     2
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "gen_e3_steps3000",
+  "task": "e3",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 3000
+   }
+  },
+  "gpu": false
+ }
+]

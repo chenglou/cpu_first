@@ -1,0 +1,106 @@
+[
+ {
+  "name": "gen_mont_s1",
+  "task": "mont",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_mont_s2",
+  "task": "mont",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     2
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_mont_s3",
+  "task": "mont",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     3
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_rho_s1",
+  "task": "rho",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_ten_s1",
+  "task": "ten",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_cube_s1",
+  "task": "cube",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_tenrho_s1",
+  "task": "tenrho",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "gen_plus3_s1",
+  "task": "plus3",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": true
+ }
+]

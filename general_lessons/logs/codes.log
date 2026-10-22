@@ -1,0 +1,63 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-o63hj72VDqLS2Iy1UZSNif
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/general_lessons/modal_general.py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+├── 🔨 Created mount scripts/generate_datasets.sh
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/litmus/tasks.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/general_lessons/tasks_general.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/litmus/audit_data.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/general_lessons/mine_preview.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/general_lessons/code_search.py
+├── 🔨 Created function run_cpu.
+├── 🔨 Created function run_h100.
+├── 🔨 Created function driver.
+├── 🔨 Created function audit.
+├── 🔨 Created function agreement.
+├── 🔨 Created function preview.
+└── 🔨 Created function codes.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+e1 {'data': 'squaring_mod_new11_easy_bidirectional_fixed_n_323_t123', 'moduli': 1, 'answered_rows': 400, 'codes_passing_x_lt_n': 302400, 'codes_fitting_answers': 1, 'true_code_fits': True}
+e2 {'data': 'squaring_mod_new11_easy_bidirectional_fixed_n_899_t124', 'moduli': 1, 'answered_rows': 1280, 'codes_passing_x_lt_n': 40320, 'codes_fitting_answers': 1, 'true_code_fits': True}
+e6 {'data': 'squaring_mod_granular_easy_e6_bidirectional_fixed_n_247_t1234', 'moduli': 1, 'answered_rows': 294, 'codes_passing_x_lt_n': 34560, 'codes_fitting_answers': 1, 'true_code_fits': True}
+e7 {'data': 'squaring_mod_granular_easy_e7_bidirectional_fixed_n_287_t123_ood4', 'moduli': 1, 'answered_rows': 352, 'codes_passing_x_lt_n': 16800, 'codes_fitting_answers': 1, 'true_code_fits': True}
+e8 {'data': 'squaring_mod_granular_easy_e8_bidirectional_fixed_n_287_t123', 'moduli': 1, 'answered_rows': 352, 'codes_passing_x_lt_n': 16800, 'codes_fitting_answers': 1, 'true_code_fits': True}
+e9 {'data': 'squaring_mod_granular_easy_e9_bidirectional_fixed_n_299_t123', 'moduli': 1, 'answered_rows': 400, 'codes_passing_x_lt_n': 120960, 'codes_fitting_answers': 1, 'true_code_fits': True}
+e10 {'data': 'squaring_mod_granular_easy_e10_bidirectional_fixed_n_403_t123', 'moduli': 1, 'answered_rows': 528, 'codes_passing_x_lt_n': 241920, 'codes_fitting_answers': 1, 'true_code_fits': True}
+m1 {'data': 'squaring_mod_new11_medium_bidirectional_fixed_n_10403_t4816', 'moduli': 1, 'answered_rows': 0, 'codes_passing_x_lt_n': 90720, 'codes_fitting_answers': 0, 'true_code_fits': None}
+m2 {'data': 'squaring_mod_new11_medium_bidirectional_fixed_n_38021_t4816', 'moduli': 1, 'answered_rows': 0, 'codes_passing_x_lt_n': 16800, 'codes_fitting_answers': 0, 'true_code_fits': None}
+m6 {'data': 'squaring_mod_granular_medium_m6_bidirectional_fixed_n_1517_t124', 'moduli': 1, 'answered_rows': 2340, 'codes_passing_x_lt_n': 81000, 'codes_fitting_answers': 1, 'true_code_fits': True}
+m7 {'data': 'squaring_mod_granular_medium_m7_bidirectional_fixed_n_1763_t124', 'moduli': 1, 'answered_rows': 2700, 'codes_passing_x_lt_n': 8100, 'codes_fitting_answers': 1, 'true_code_fits': True}
+m8 {'data': 'squaring_mod_granular_medium_m8_bidirectional_fixed_n_1333_t124', 'moduli': 1, 'answered_rows': 1980, 'codes_passing_x_lt_n': 453600, 'codes_fitting_answers': 1, 'true_code_fits': True}
+m9 {'data': 'squaring_mod_granular_medium_m9_bidirectional_fixed_n_1927_t124', 'moduli': 1, 'answered_rows': 2790, 'codes_passing_x_lt_n': 10800, 'codes_fitting_answers': 1, 'true_code_fits': True}
+m10 {'data': 'squaring_mod_granular_medium_m10_bidirectional_fixed_n_1739_t124', 'moduli': 1, 'answered_rows': 2520, 'codes_passing_x_lt_n': 10710, 'codes_fitting_answers': 1, 'true_code_fits': True}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-o63hj72VDqLS2Iy1UZSNif

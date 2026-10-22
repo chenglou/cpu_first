@@ -1,0 +1,130 @@
+{
+ "cfg": {
+  "W": 3,
+  "widths": [
+   2
+  ],
+  "pool": 4000,
+  "batch": 128,
+  "label_frac": 0.02,
+  "seed": 2,
+  "init": 0.1,
+  "lr": 0.05,
+  "div": 3,
+  "task": "mont",
+  "cands": "below,lowzero",
+  "radd": 10,
+  "gates": "answers",
+  "win": 10,
+  "done": 30,
+  "max_steps": 1500,
+  "chain_rows": 16,
+  "io_rows": 16,
+  "cert_rows": 3000,
+  "log": 50,
+  "threads": 4,
+  "out": ""
+ },
+ "steps": 155,
+ "seconds": 124.6,
+ "events": {
+  "io_below": 46,
+  "io_lowzero": 49,
+  "all_ok": 71
+ },
+ "selected": "lowzero",
+ "selector": [
+  0.0283,
+  0.9717
+ ],
+ "round": {
+  "rmul": 1,
+  "radd": 0,
+  "rcube": "none"
+ },
+ "wirings": {
+  "below": {
+   "a": "D",
+   "b": "M",
+   "op": "sub",
+   "flag": "borrow",
+   "keep": "gated",
+   "nread": "given",
+   "g0": "commit",
+   "g1": "hold",
+   "vread": "given",
+   "start": "top",
+   "order": "down",
+   "bring": "(1, 0, 'add')",
+   "post": "0",
+   "final": "csub",
+   "read": "(0, 'given')"
+  },
+  "lowzero": {
+   "a": "Rp",
+   "b": "Mq",
+   "op": "add",
+   "flag": "zD",
+   "keep": "gated",
+   "nread": "given",
+   "g0": "commit",
+   "g1": "hold",
+   "vread": "given",
+   "start": "zero",
+   "order": "up",
+   "bring": "(0, 0, 'add')",
+   "post": "-1",
+   "final": "addhigh",
+   "read": "(0, 'given')"
+  }
+ },
+ "certified": true,
+ "cert_per_T": {
+  "1": 1.0,
+  "2": 1.0,
+  "4": 1.0,
+  "8": 1.0
+ },
+ "cert_per_width": {
+  "1": 1.0,
+  "2": 1.0,
+  "3": 1.0
+ },
+ "mined": {
+  "facts": [
+   "N != 0",
+   "N < 10^2",
+   "N mod 2 != 0",
+   "N mod 2 = 1",
+   "N mod 5 != 0",
+   "T != 0",
+   "T < 10^1",
+   "T < N",
+   "T mod 3 != 0",
+   "T mod 5 != 0",
+   "x < 10^2",
+   "x < N",
+   "y < 10^2",
+   "y < N"
+  ],
+  "batches": 155,
+  "never_failed": [
+   "N != 0",
+   "N < 10^2",
+   "N mod 2 != 0",
+   "N mod 2 = 1",
+   "N mod 5 != 0",
+   "T != 0",
+   "T < 10^1",
+   "T < N",
+   "T mod 3 != 0",
+   "T mod 5 != 0",
+   "x < 10^2",
+   "x < N",
+   "y < 10^2",
+   "y < N"
+  ]
+ },
+ "gates": null,
+ "name": "gen_mont_s2"
+}

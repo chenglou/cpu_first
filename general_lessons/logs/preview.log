@@ -1,0 +1,87 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-cspOYvtXS4xcpxAqGSNiC3
+Building image im-UNKnV8NmH3exmQUdn3qznR
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 808.14ms
+
+Built image im-UNKnV8NmH3exmQUdn3qznR in 1.89s
+
+
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/general_lessons/modal_general.py
+├── 🔨 Created mount pyproject.toml
+├── 🔨 Created mount uv.lock
+├── 🔨 Created mount submission_validation.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/benchmark
+├── 🔨 Created mount /Users/chenglou/github/one-layer/one-layer-deeper/data
+├── 🔨 Created mount scripts/generate_datasets.sh
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/litmus/tasks.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/general_lessons/tasks_general.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/litmus/audit_data.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/general_lessons/mine_preview.py
+├── 🔨 Created function run_cpu.
+├── 🔨 Created function run_h100.
+├── 🔨 Created function driver.
+├── 🔨 Created function audit.
+├── 🔨 Created function agreement.
+└── 🔨 Created function preview.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.9.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use the NVIDIA Container Toolkit to start this container with GPU support; see
+   https://docs.nvidia.com/datacenter/cloud-native/ .
+
+e1 1 {'codes': 302400, 'ordered_pairs': 5, 'adjacent_pinned': 2} {'codes': 302400, 'ordered_pairs': 5, 'adjacent_pinned': 2} ['N != 0', 'N < 10^3', 'N constant', 'N mod 2 = 1', 'N mod 3 = 2', 'N mod 5 = 3', 'T != 0', 'T < 10^1', 'T < N', 'T mod 5 != 0', 'x != 0', 'x < 10^3', 'x < N', 'y != 0', 'y < 10^3', 'y < N']
+e2 1 {'codes': 40320, 'ordered_pairs': 17, 'adjacent_pinned': 2} {'codes': 362880, 'ordered_pairs': 9, 'adjacent_pinned': 1} ['N != 0', 'N < 10^3', 'N constant', 'N mod 2 = 1', 'N mod 3 = 2', 'N mod 5 = 4', 'T != 0', 'T < 10^1', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^3', 'x < N', 'y != 0', 'y < 10^3', 'y < N']
+e3 27 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 45, 'adjacent_pinned': 6} ['N != 0', 'N < 10^4', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^1', 'T < N', 'T constant', 'T mod 2 = 0', 'T mod 3 = 2', 'T mod 5 = 2', 'x != 0', 'x < 10^4', 'x < N', 'y != 0', 'y < 10^4', 'y < N']
+e4 35 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 52, 'adjacent_pinned': 6} ['N != 0', 'N < 10^4', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^1', 'T < N', 'T constant', 'T mod 2 = 0', 'T mod 3 = 2', 'T mod 5 = 2', 'x != 0', 'x < 10^4', 'x < N', 'y != 0', 'y < 10^4', 'y < N']
+e5 27 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 45, 'adjacent_pinned': 5} ['N != 0', 'N < 10^4', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^1', 'T < N', 'T mod 5 != 0', 'x != 0', 'x < 10^4', 'x < N', 'y != 0', 'y < 10^4', 'y < N']
+e6 1 {'codes': 34560, 'ordered_pairs': 12, 'adjacent_pinned': 2} {'codes': 907200, 'ordered_pairs': 3, 'adjacent_pinned': 0} ['N != 0', 'N < 10^3', 'N constant', 'N mod 2 = 1', 'N mod 3 = 1', 'N mod 5 = 2', 'T != 0', 'T < 10^1', 'T < N', 'T mod 5 != 0', 'x != 0', 'x < 10^3', 'x < N', 'y != 0', 'y < 10^3', 'y < N']
+e7 1 {'codes': 16800, 'ordered_pairs': 15, 'adjacent_pinned': 3} {'codes': 907200, 'ordered_pairs': 3, 'adjacent_pinned': 0} ['N != 0', 'N < 10^3', 'N constant', 'N mod 2 = 1', 'N mod 3 = 2', 'N mod 5 = 2', 'T != 0', 'T < 10^1', 'T < N', 'T mod 5 != 0', 'x != 0', 'x < 10^3', 'x < N', 'y != 0', 'y < 10^3', 'y < N']
+e8 1 {'codes': 16800, 'ordered_pairs': 15, 'adjacent_pinned': 3} {'codes': 907200, 'ordered_pairs': 3, 'adjacent_pinned': 0} ['N != 0', 'N < 10^3', 'N constant', 'N mod 2 = 1', 'N mod 3 = 2', 'N mod 5 = 2', 'T != 0', 'T < 10^1', 'T < N', 'T mod 5 != 0', 'x != 0', 'x < 10^3', 'x < N', 'y != 0', 'y < 10^3', 'y < N']
+e9 1 {'codes': 120960, 'ordered_pairs': 11, 'adjacent_pinned': 2} {'codes': 907200, 'ordered_pairs': 3, 'adjacent_pinned': 0} ['N != 0', 'N < 10^3', 'N constant', 'N mod 2 = 1', 'N mod 3 = 2', 'N mod 5 = 4', 'T != 0', 'T < 10^1', 'T < N', 'T mod 5 != 0', 'x != 0', 'x < 10^3', 'x < N', 'y != 0', 'y < 10^3', 'y < N']
+e10 1 {'codes': 241920, 'ordered_pairs': 6, 'adjacent_pinned': 2} {'codes': 0, 'ordered_pairs': 22, 'adjacent_pinned': 2} ['N != 0', 'N < 10^3', 'N constant', 'N mod 2 = 1', 'N mod 3 = 1', 'N mod 5 = 3', 'T != 0', 'T < 10^1', 'T < N', 'T mod 5 != 0', 'x != 0', 'x < 10^3', 'x < N', 'y != 0', 'y < 10^3', 'y < N']
+m1 1 {'codes': 90720, 'ordered_pairs': 8, 'adjacent_pinned': 3} {'codes': 1209600, 'ordered_pairs': 2, 'adjacent_pinned': 0} ['N != 0', 'N < 10^5', 'N constant', 'N mod 2 = 1', 'N mod 3 = 2', 'N mod 5 = 3', 'T != 0', 'T < 10^2', 'T < N', 'T mod 2 = 0', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^5', 'x < N', 'y != 0', 'y < 10^5', 'y < N']
+m2 1 {'codes': 16800, 'ordered_pairs': 14, 'adjacent_pinned': 4} {'codes': 0, 'ordered_pairs': 38, 'adjacent_pinned': 4} ['N != 0', 'N < 10^5', 'N constant', 'N mod 2 = 1', 'N mod 3 = 2', 'N mod 5 = 1', 'T != 0', 'T < 10^2', 'T < N', 'T mod 2 = 0', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^5', 'x < N', 'y != 0', 'y < 10^5', 'y < N']
+m3 247 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^5', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^1', 'T < N', 'T constant', 'T mod 2 = 0', 'T mod 3 = 2', 'T mod 5 = 2', 'x != 0', 'x < 10^5', 'x < N', 'y != 0', 'y < 10^5', 'y < N']
+m4 6074 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^1', 'T < N', 'T constant', 'T mod 2 = 0', 'T mod 3 = 2', 'T mod 5 = 3', 'x != 0', 'x < 10^7', 'x < N', 'y != 0', 'y < 10^7', 'y < N']
+m5 204 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^5', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^1', 'T < N', 'T mod 2 = 0', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^5', 'x < N', 'y != 0', 'y < 10^5', 'y < N']
+m6 1 {'codes': 81000, 'ordered_pairs': 11, 'adjacent_pinned': 3} {'codes': 1209600, 'ordered_pairs': 2, 'adjacent_pinned': 0} ['N != 0', 'N < 10^4', 'N constant', 'N mod 2 = 1', 'N mod 3 = 2', 'N mod 5 = 2', 'T != 0', 'T < 10^1', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^4', 'x < N', 'y != 0', 'y < 10^4', 'y < N']
+m7 1 {'codes': 8100, 'ordered_pairs': 17, 'adjacent_pinned': 4} {'codes': 1209600, 'ordered_pairs': 2, 'adjacent_pinned': 0} ['N != 0', 'N < 10^4', 'N constant', 'N mod 2 = 1', 'N mod 3 = 2', 'N mod 5 = 3', 'T != 0', 'T < 10^1', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^4', 'x < N', 'y != 0', 'y < 10^4', 'y < N']
+m8 1 {'codes': 453600, 'ordered_pairs': 4, 'adjacent_pinned': 2} {'codes': 1209600, 'ordered_pairs': 2, 'adjacent_pinned': 0} ['N != 0', 'N < 10^4', 'N constant', 'N mod 2 = 1', 'N mod 3 = 1', 'N mod 5 = 3', 'T != 0', 'T < 10^1', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^4', 'x < N', 'y != 0', 'y < 10^4', 'y < N']
+m9 1 {'codes': 10800, 'ordered_pairs': 17, 'adjacent_pinned': 4} {'codes': 1209600, 'ordered_pairs': 2, 'adjacent_pinned': 0} ['N != 0', 'N < 10^4', 'N constant', 'N mod 2 = 1', 'N mod 3 = 1', 'N mod 5 = 2', 'T != 0', 'T < 10^1', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^4', 'x < N', 'y != 0', 'y < 10^4', 'y < N']
+m10 1 {'codes': 10710, 'ordered_pairs': 18, 'adjacent_pinned': 4} {'codes': 1209600, 'ordered_pairs': 2, 'adjacent_pinned': 0} ['N != 0', 'N < 10^4', 'N constant', 'N mod 2 = 1', 'N mod 3 = 2', 'N mod 5 = 4', 'T != 0', 'T < 10^1', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^4', 'x < N', 'y != 0', 'y < 10^4', 'y < N']
+h1 430 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^2', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^7', 'x < N', 'y != 0', 'y < 10^7', 'y < N']
+xfirst 430 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^2', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^7', 'x < N', 'y != 0', 'y < 10^7', 'y < N']
+mont 430 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^2', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^7', 'x < N', 'y != 0', 'y < 10^6', 'y < N']
+ten 430 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^2', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^7', 'x < N', 'y != 0', 'y < 10^7', 'y < N']
+rho 430 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^2', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^7', 'x < N', 'y != 0', 'y < 10^7', 'y < N']
+cube 430 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^2', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^7', 'x < N', 'y != 0', 'y < 10^7', 'y < N']
+xy 430 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^2', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^7', 'x < N', 'y != 0', 'y < 10^7', 'y < N']
+tenrho 430 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^2', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^7', 'x < N', 'y < 10^6', 'y < N']
+plus3 430 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^2', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^7', 'x < N', 'y < 10^7', 'y < N']
+minus1 430 {'codes': 1, 'ordered_pairs': 45, 'adjacent_pinned': 9} {'codes': 0, 'ordered_pairs': 90, 'adjacent_pinned': 9} ['N != 0', 'N < 10^7', 'N mod 2 = 1', 'N mod 3 != 0', 'N mod 5 != 0', 'T != 0', 'T < 10^2', 'T < N', 'T mod 3 != 0', 'T mod 5 != 0', 'x != 0', 'x < 10^7', 'x < N', 'y < 10^7', 'y < N']
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-cspOYvtXS4xcpxAqGSNiC3

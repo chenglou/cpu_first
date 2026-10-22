@@ -1,0 +1,39 @@
+[
+ {
+  "name": "gen_m5_relaxed_s1",
+  "task": "m5",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "gen_m4_relaxed",
+  "task": "m4",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "gen_m1_reader_frozen",
+  "task": "m1",
+  "file": "general_lessons/variants/submission_general_reader_frozen.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500
+   }
+  },
+  "gpu": false
+ }
+]

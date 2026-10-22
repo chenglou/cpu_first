@@ -1,0 +1,98 @@
+{
+  "data_format": "separate_input_output",
+  "dataset_kind": "squaring_mod",
+  "factor_congruence": {
+    "modulus": 4,
+    "remainder": 3
+  },
+  "generator_config": {
+    "depth_evaluation_examples_per_setting": 256,
+    "depth_evaluation_exhaustive_x": false,
+    "depth_evaluation_time_steps": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "examples_per_setting": 12222,
+    "extra_train_examples_by_time_step": {
+      "1": 1000,
+      "2": 1000
+    },
+    "factor_modulus": 4,
+    "factor_remainder": 3,
+    "fixed_p": null,
+    "fixed_q": null,
+    "fixed_time_steps": null,
+    "generator_family": "rsa_repeated_squaring_reversed_n",
+    "modulus_bits": [
+      13,
+      16,
+      20
+    ],
+    "ood_examples_per_setting": 3334,
+    "ood_n_depth_evaluation_examples_per_setting": 192,
+    "ood_n_depth_evaluation_modulus_bits": [
+      14,
+      18,
+      22,
+      24
+    ],
+    "ood_time_steps": [
+      32
+    ],
+    "output_dir": "data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2",
+    "seed": 45,
+    "separate_input_output": true,
+    "separate_ood_splits": true,
+    "split_group": "modulus",
+    "test_fraction": 0.09090909090909091,
+    "time_steps": [
+      4,
+      8,
+      16
+    ],
+    "train_fraction": 0.9090909090909091
+  },
+  "label_format": "tail_aligned_decimal_residue",
+  "label_method": "trapdoor_phi",
+  "max_modulus_bits": 24,
+  "max_seq_len": 21,
+  "max_time_steps": 64,
+  "num_examples": 142754,
+  "split_counts": {
+    "depth_ood_n_t_1": 768,
+    "depth_ood_n_t_16": 768,
+    "depth_ood_n_t_2": 768,
+    "depth_ood_n_t_32": 768,
+    "depth_ood_n_t_4": 768,
+    "depth_ood_n_t_64": 768,
+    "depth_ood_n_t_8": 768,
+    "depth_t_1": 768,
+    "depth_t_16": 768,
+    "depth_t_2": 768,
+    "depth_t_32": 768,
+    "depth_t_4": 768,
+    "depth_t_64": 768,
+    "depth_t_8": 768,
+    "ood_n_t": 10002,
+    "ood_t": 10002,
+    "test": 9999,
+    "train": 101999
+  },
+  "split_group": "modulus",
+  "token_ids": {
+    "ANS": 5,
+    "BOS": 1,
+    "DIGIT_OFFSET": 7,
+    "EOS": 6,
+    "N": 2,
+    "PAD": 0,
+    "T": 4,
+    "X": 3
+  },
+  "vocab_size": 17
+}

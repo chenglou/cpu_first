@@ -59,11 +59,12 @@ def n_symbols(lib, n_prims=len(dsl.PRIMS), n_kinds=len(dsl.LOOP_KINDS)):
     return n_prims + n_kinds + len(lib)
 
 
-def description_length(corpus, lib, lib_weight=1.0):
+def description_length(corpus, lib, lib_weight=1.0, n_prims=len(dsl.PRIMS), n_kinds=len(dsl.LOOP_KINDS)):
     """Bits: the shortest program of each task plus the library, at log2(#symbols) bits per token. lib_weight < 1
-    makes definitions cheaper (DreamCoder's structure penalty is the same kind of knob)."""
+    makes definitions cheaper (DreamCoder's structure penalty is the same kind of knob). n_prims, n_kinds: the base
+    instruction set's size (the digit DSL's by default; inventing/ passes the bare machine's)."""
     toks = sum(min(dsl.cost(p) for p in progs) for progs in corpus.values() if progs) + lib_weight * lib_cost(lib)
-    return toks * math.log2(n_symbols(lib))
+    return toks * math.log2(n_symbols(lib, n_prims, n_kinds))
 
 
 def _name(lib, prefix):
@@ -248,12 +249,13 @@ def _has_hole(items):
     return any((it == HOLE) or (is_loop(it) and _has_hole(it[2])) for it in items)
 
 
-def mdl(corpus, lib, holes=False, max_rounds=30, prefix="M", log=None, kinds=None, lib_weight=1.0):
+def mdl(corpus, lib, holes=False, max_rounds=30, prefix="M", log=None, kinds=None, lib_weight=1.0,
+        n_prims=len(dsl.PRIMS), n_kinds=len(dsl.LOOP_KINDS)):
     """Greedy MDL. kinds: the list of loop kinds, extended in place with every new abstraction's name."""
     lib = dict(lib)
     new = []
     for _ in range(max_rounds):
-        base = description_length(corpus, lib, lib_weight)
+        base = description_length(corpus, lib, lib_weight, n_prims, n_kinds)
         best = None
         for pat in candidates(corpus, holes):
             holed = _has_hole(pat)
@@ -262,7 +264,7 @@ def mdl(corpus, lib, holes=False, max_rounds=30, prefix="M", log=None, kinds=Non
             trial_lib[name] = pat
             fn = _apply_pattern(pat, name, holed)
             trial = {t: [rewrite(p, fn) for p in progs] for t, progs in corpus.items()}
-            dl = description_length(trial, trial_lib, lib_weight)
+            dl = description_length(trial, trial_lib, lib_weight, n_prims, n_kinds)
             if dl < base - 1e-9 and (best is None or dl < best[0] - 1e-9
                                      or (abs(dl - best[0]) < 1e-9 and str(pat) < str(best[1]))):
                 best = (dl, pat, name, trial, holed)

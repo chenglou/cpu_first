@@ -1,0 +1,35 @@
+device NVIDIA H100 80GB HBM3 level 4 routines ['T.add', 'T.add~', 'T.lt', 'T.lt~', 'T.modB', 'T.modB~', 'T.modx', 'T.modx~', 'T.mrow', 'T.mrow~']
+SEARCH {"task": "mac", "found_cost": 5, "level_sizes": [1, 40, 1137, 30319, 805079, 28501980], "seconds": 129.4, "stop": "budget: level 5 streamed (over 5800000 states)", "how": "routines", "programs": ["LDH.Y CLK P[MUL.X INC]", "CLK LDH.Y P[MUL.X INC]"], "runs": [{"how": "routines", "found_cost": 5, "level_sizes": [1, 40, 1137, 30319, 805079, 28501980], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 64.5}]}
+CALLS mac: 54 calls, 128.4s in apply_items
+   P=4 loops items~131072 rows~4194304 longest~65536: 1 calls, 34.2s, 2689488 rows, longest 36400
+   P=2 loops items~131072 rows~4194304 longest~32768: 1 calls, 17.0s, 2689488 rows, longest 28400
+   P=4 loops items~32768 rows~2097152 longest~32768: 1 calls, 14.4s, 1194080 rows, longest 18300
+   P=4 loops items~131072 rows~2097152 longest~32768: 1 calls, 14.4s, 1520602 rows, longest 18300
+   P=2 loops items~131072 rows~2097152 longest~16384: 1 calls, 8.8s, 1520602 rows, longest 14300
+   P=2 loops items~32768 rows~2097152 longest~16384: 1 calls, 8.6s, 1194080 rows, longest 14300
+   P=4 loops items~65536 rows~8388608 longest~32768: 1 calls, 8.5s, 8291231 rows, longest 18210
+   P=4 loops items~4096 rows~131072 longest~32768: 1 calls, 4.2s, 92376 rows, longest 18200
+   P=2 loops items~65536 rows~8388608 longest~16384: 1 calls, 4.0s, 8291231 rows, longest 14210
+   P=4 loops items~131072 rows~2097152 longest~4096: 1 calls, 3.1s, 1946424 rows, longest 3640
+   P=2 loops items~4096 rows~131072 longest~16384: 1 calls, 2.4s, 92376 rows, longest 14200
+   P=2 loops items~131072 rows~2097152 longest~4096: 1 calls, 2.2s, 1946424 rows, longest 2840
+   P=4 loops items~4096 rows~65536 longest~4096: 1 calls, 1.7s, 52479 rows, longest 3640
+   P=4 straight items~16 rows~8388608 longest~256: 1 calls, 1.2s, 8050790 rows, longest 182
+SEARCH {"task": "step~", "found_cost": null, "level_sizes": [1, 49, 1581, 47482, 1435988, 59859704], "seconds": 187.7, "stop": "budget: level 5 streamed (over 5800000 states)", "how": "library", "programs": [], "runs": [{"how": "routines", "found_cost": null, "level_sizes": [1, 41, 1105, 27394, 678412, 23856602], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 58.3}, {"how": "library", "found_cost": null, "level_sizes": [1, 49, 1581, 47482, 1435988, 59859704], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 81.6}, {"how": "primitives", "found_cost": null, "level_sizes": [1, 32, 736, 16621, 389818, 8937233, 290561290], "stop": "budget: level 6 streamed (over 27000000 states)", "seconds": 11.3}]}
+CALLS step~: 168 calls, 184.0s in apply_items
+   P=4 loops items~131072 rows~2097152 longest~32768: 2 calls, 33.1s, 3324589 rows, longest 18400
+   P=4 loops items~131072 rows~8388608 longest~32768: 2 calls, 28.2s, 12534125 rows, longest 18300
+   P=2 loops items~131072 rows~2097152 longest~16384: 2 calls, 19.7s, 3324589 rows, longest 14400
+   P=2 loops items~131072 rows~8388608 longest~16384: 2 calls, 16.5s, 12534125 rows, longest 14300
+   P=4 loops items~262144 rows~4194304 longest~32768: 1 calls, 16.5s, 2820225 rows, longest 18400
+   P=4 loops items~32768 rows~1048576 longest~32768: 1 calls, 14.7s, 831236 rows, longest 18400
+   P=2 loops items~262144 rows~4194304 longest~16384: 1 calls, 10.9s, 2820225 rows, longest 14400
+   P=2 loops items~32768 rows~1048576 longest~16384: 1 calls, 9.4s, 831236 rows, longest 14400
+   P=4 loops items~65536 rows~2097152 longest~2048: 1 calls, 2.8s, 1312392 rows, longest 1910
+   P=4 loops items~2048 rows~8388608 longest~2048: 1 calls, 2.4s, 7591145 rows, longest 1830
+   P=4 loops items~4096 rows~8388608 longest~2048: 1 calls, 2.3s, 7421588 rows, longest 1830
+   P=4 straight items~8 rows~8388608 longest~256: 1 calls, 1.9s, 7179940 rows, longest 182
+   P=4 loops items~4096 rows~131072 longest~4096: 1 calls, 1.8s, 86326 rows, longest 3640
+   P=4 loops items~4096 rows~65536 longest~4096: 1 calls, 1.6s, 51187 rows, longest 3640
+
+EXIT 0

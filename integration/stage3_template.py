@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import itertools
 import time
+from array import array
 from collections import Counter, deque
 
 import torch
@@ -97,11 +98,15 @@ CLIMB_MARGIN = 120.0   # the climb stops this many seconds before the training b
                        # as one batch of a search, cannot be cut and can take tens of seconds)
 PREREQ = True          # practice the pieces first: mul after mac (its row, the running sum's addend), reduce after
                        # modB (its chain); without it, both are searched (and fail) at every level before
+ROUND_RETRY = 10       # once the climb is done with no round, the round is searched again every this many steps, on
+                       # the answers kept by then (0: never)
+FUSE = 4               # a search runs up to this many chunks of its work in one batch (the same search; on a GPU
+                       # fewer, longer steps of the lockstep machine)
 CLIMB = dict(budget=SEARCH_STATES, fallback_budget=FALLBACK_STATES, max_body=MAX_BODY, max_cost=MAX_COST,
              min_count=MIN_COUNT, max_merges=MAX_MERGES, levels=LEVELS, NP=NP, round_budget=ROUND_STATES,
              round_cost=ROUND_COST, comp_first=COMP_FIRST, comp_body=COMP_BODY, skip_twins=SKIP_TWINS,
              stall_after=STALL_AFTER, search_s=SEARCH_S or None, listing=LISTING, occam_steps=OCCAM_STEPS,
-             merged_routines=MERGED_ROUTINES)
+             merged_routines=MERGED_ROUTINES, round_retry=ROUND_RETRY, fuse=FUSE)
 POOL = 4096            # read rows kept for the practice problems
 ANS_POOL = 512         # answer rows kept for the round's search (rows whose T is 1)
 ANS_MIN = 64           # the round is searched once this many answer rows are kept
@@ -659,7 +664,9 @@ class LibraryMachine(nn.Module):
             b_stop = sub_hard(torch.zeros_like(Cd), one, Td, Tb)[1]        # 0 - 1
             live = (Cd != 0).any(1)
         lg = self.g.float().log_softmax(-1)
-        loss = loss - lg[b_run[live], 1].mean() - lg[b_stop, 0].mean()
+        loss = loss - lg[b_stop, 0].mean()
+        if bool(live.any()):            # (a batch whose counts all read 0, as when T's reading turns, has no run row)
+            loss = loss - lg[b_run[live], 1].mean()
         ctl.gate_ok = bool((Gc[b_run[live]] == 1).all() and (Gc[b_stop] == 0).all())
         return loss
 
@@ -765,6 +772,40 @@ class LibraryMachine(nn.Module):
 
 #@STAGE1_METHODS: io_label_lessons@
 
+    def shape_logprobs(self, f: int, e: Tensor, end: Tensor, pos: Tensor, length: Tensor) -> Tensor:
+        """shape_probs in log space (the same three terms, no clamp): log P(field f reads pos as a whole number of
+        length digits) under each shape [X, K, 3]. T's direction lesson needs it: a confidently wrong reading leaves the
+        right one a weight far below float32's range, and the log of a clamped weight then has a gradient up to 1e30."""
+        X, K, _ = pos.shape
+        n, Lp = SLOTS[f], e.shape[1]
+        dev = e.device
+        lA = self.anchor_logits(f, e, end).log_softmax(-1)                   # [X, Lp]
+        j = torch.arange(n, device=dev)
+        use = (j[None, None] <= length[..., None]).float()                   # [X, K, n]
+        pos = pos[..., :n].clamp(0, Lp - 1)
+        d = (pos[..., 1] - pos[..., 0]) if n > 1 else torch.ones_like(pos[..., 0])
+        lsl = self.strd[f].float().log_softmax(-1)
+        step = lA.gather(1, (pos[..., 0] - d).clamp(0, Lp - 1)) + torch.where(d > 0, lsl[0], lsl[1])
+        lo = self.off[f, :n].float().log_softmax(-1)                         # [n, 2 OFF + 1]
+        rel = pos[..., None] - torch.arange(Lp, device=dev)                  # [X, K, n, Lp]: slot j relative to q
+        inr = (rel >= -OFF) & (rel <= OFF)
+        lp = lo[j[None, None, :, None].expand_as(rel), (rel + OFF).clamp(0, 2 * OFF)].masked_fill(~inr, -1e4)
+        offs = (lA[:, None] + (lp * use[..., None]).sum(2)).logsumexp(-1)
+        la = self.absp[f, :n, :Lp].float().log_softmax(-1)                   # [n, Lp]
+        absl = (la[j[None, None].expand(X, K, n), pos] * use).sum(-1)
+        return torch.stack([step, offs, absl], -1)
+
+    def shape_logrho(self, f: int, e: Tensor, end: Tensor, si: Tensor, ti: Tensor, length: Tensor) -> Tensor:
+        """log shape_rho of one field with the shape held fixed: log P(field f reads run r whole in direction d)
+        [X, 3 (runs), 2 (directions)], -inf where the run does not fit the field's slots."""
+        X = e.shape[0]
+        j = torch.arange(W + 1, device=e.device)
+        pos = torch.stack([si[..., None] + j, ti[..., None] - j], 2).view(X, 6, W + 1)
+        ln = length[..., None].expand(X, 3, 2).reshape(X, 6)
+        lw = self.shape_logp().detach()
+        lr = (self.shape_logprobs(f, e, end, pos, ln) + lw).logsumexp(-1).view(X, 3, 2)
+        return lr.masked_fill(~(length <= SLOTS[f])[..., None], float("-inf"))
+
     def t_lesson(self, aux: dict, yd: Tensor) -> Tensor:
         """T's direction by speculation (IO.md; stage 1's lesson with the round program's machine): on rows whose two
         readings of T differ, the countdown runs from both, and the answers keep the reading that reproduces them."""
@@ -791,17 +832,20 @@ class LibraryMachine(nn.Module):
             s2 = self.run_rounds(Xd[rows].repeat(2, 1), torch.cat([Cp[rows], Cm[rows]]), Nd[rows].repeat(2, 1),
                                  self.program())
             Lpl, Lmi = (s2[:n] == yd[rows]).all(1).float(), (s2[n:] == yd[rows]).all(1).float()
-        rhoT = self.shape_rho((2,), e[rows], end[rows], si[rows], ti[rows], length[rows], hold_shape=True)[:, 0]
-        wp = rhoT.gather(1, rt[rows][:, None, None].expand(-1, 1, 2))[:, 0, 0]
-        wm = rhoT.gather(1, rt[rows][:, None, None].expand(-1, 1, 2))[:, 0, 1]
-        hit = (Lpl + Lmi) > 0
-        lt = -(((wp * Lpl + wm * Lmi).clamp_min(1e-30).log() - (wp + wm).clamp_min(1e-30).log()) * hit).sum()
-        lt = lt / hit.sum().clamp_min(1)
+        # -log of the reproducing readings' share of the two weights, in log space: the weights' logs (shape_logrho)
+        # and logsumexp, so that a weight far below float32's range keeps a finite, bounded gradient
+        lw = self.shape_logrho(2, e[rows], end[rows], si[rows], ti[rows], length[rows])
+        lw = lw.gather(1, rt[rows][:, None, None].expand(-1, 1, 2))[:, 0]           # [n, 2]: from the left, the right
+        good = torch.stack([Lpl, Lmi], 1) > 0                                         # the readings that reproduce
+        hit = good.any(1)
+        keep = torch.nonzero((good & (lw > float("-inf"))).any(1)).flatten()
+        lk, gk = lw[keep], good[keep]
+        lt = -(lk.masked_fill(~gk, float("-inf")).logsumexp(1) - lk.logsumexp(1)).sum() / hit.sum().clamp_min(1)
         with torch.no_grad():
             pT = self.hard_pos(2, e, end)[rows]
             hs = int(((pT[:, 1] - pT[:, 0]) > 0).float().mean() > 0.5) * 2 - 1
             mine = Lpl if hs > 0 else Lmi
-            share = float(((wp if hs > 0 else wm) / (wp + wm).clamp_min(1e-30)).mean())
+            share = float((lw[:, 0 if hs > 0 else 1] - lw.logsumexp(1)).exp().nan_to_num(0.0).mean())
             ctl.t_log = f"rows={n} hits={int(hit.sum())} snapped_right={float(mine.mean()):.3f} share={share:.4f}"
             if bool(mine.all()) and share >= T_DONE:
                 ctl.io = 5

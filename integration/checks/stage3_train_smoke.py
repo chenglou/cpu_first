@@ -2,6 +2,7 @@
 scheduler) on real H1 rows: catches errors in the training path. Local: small batch, seconds.
 
     cd cpu_first && ~/github/sotaku/venv/bin/python integration/checks/stage3_train_smoke.py [STEPS=5] [B=32] [K=V ...]
+    (FILE=... or env S3_FILE: the stage-3 file to check, default submission_stage3.py; FROM_B=1 as the env var)
 """
 import os
 import sys
@@ -17,11 +18,12 @@ from benchmark import OptimizerSpec, TokenLossBatch
 argv = sys.argv[1:]
 steps = next((int(a[6:]) for a in argv if a.startswith("STEPS=")), 5)
 B = next((int(a[2:]) for a in argv if a.startswith("B=")), 32)
-sets = [a for a in argv if "=" in a and not a.startswith(("STEPS=", "B="))]
-sc = LW.sc = LW.load_module(os.path.join(INTEG, "submission_stage3.py"), ["LOG_EVERY=1"] + sets)
+sets = [a for a in argv if "=" in a and not a.startswith(("STEPS=", "B=", "FILE=", "SEED=", "FROM_B="))]
+file = next((a[5:] for a in argv if a.startswith("FILE=")), os.environ.get("S3_FILE", "submission_stage3.py"))
+sc = LW.sc = LW.load_module(os.path.join(INTEG, file), ["LOG_EVERY=1"] + sets)
 torch.manual_seed(0)
 m = sc.build_model(LW.spec())
-if os.environ.get("FROM_B"):                         # the reader and the cells at the truth, the schedule at phase B
+if os.environ.get("FROM_B") or "FROM_B=1" in argv:  # the reader and the cells at the truth, the schedule at phase B
     m.ctl.phase, m.ctl.io, m.ctl.gated_on = "B", 4, -1000
 m.train()
 bundle = sc.build_optimizer(m, OptimizerSpec(3600.0, "cpu"))

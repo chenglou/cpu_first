@@ -1,0 +1,35 @@
+device NVIDIA H100 80GB HBM3 level 4 routines ['T.add', 'T.add~', 'T.lt', 'T.lt~', 'T.modB', 'T.modB~', 'T.modx', 'T.modx~', 'T.mrow', 'T.mrow~']
+SEARCH {"task": "mac", "found_cost": 5, "level_sizes": [1, 40, 1137, 30319, 805079, 28501980], "seconds": 176.9, "stop": "budget: level 5 streamed (over 5800000 states)", "how": "routines", "programs": ["LDH.Y CLK P[MUL.X INC]", "CLK LDH.Y P[MUL.X INC]"], "runs": [{"how": "routines", "found_cost": 5, "level_sizes": [1, 40, 1137, 30319, 805079, 28501980], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 84.4}]}
+CALLS mac: 96 calls, 175.7s in apply_items
+   P=4 loops items~131072 rows~2097152 longest~32768: 2 calls, 34.6s, 3617746 rows, longest 18300, lockstep steps 81466, row-instructions 4.98e+08
+   P=4 loops items~32768 rows~1048576 longest~65536: 1 calls, 33.0s, 592344 rows, longest 36400, lockstep steps 95828, row-instructions 3.22e+08
+   P=2 loops items~131072 rows~2097152 longest~16384: 2 calls, 21.0s, 3617746 rows, longest 14300, lockstep steps 46567, row-instructions 3.04e+08
+   P=4 loops items~32768 rows~2097152 longest~32768: 1 calls, 17.1s, 1194080 rows, longest 18300, lockstep steps 48628, row-instructions 4.08e+08
+   P=2 loops items~32768 rows~1048576 longest~32768: 1 calls, 16.9s, 592344 rows, longest 28400, lockstep steps 56345, row-instructions 1.84e+08
+   P=2 loops items~32768 rows~2097152 longest~16384: 1 calls, 11.1s, 1194080 rows, longest 14300, lockstep steps 26625, row-instructions 2.38e+08
+   P=4 loops items~65536 rows~2097152 longest~32768: 1 calls, 9.0s, 2097120 rows, longest 18210, lockstep steps 32774, row-instructions 1.71e+08
+   P=4 loops items~4096 rows~131072 longest~32768: 1 calls, 5.7s, 92376 rows, longest 18200, lockstep steps 32774, row-instructions 1.25e+07
+   P=2 loops items~65536 rows~2097152 longest~16384: 1 calls, 4.1s, 2097120 rows, longest 14210, lockstep steps 19942, row-instructions 1.06e+08
+   P=2 loops items~4096 rows~131072 longest~16384: 1 calls, 3.5s, 92376 rows, longest 14200, lockstep steps 19881, row-instructions 7.63e+06
+   P=4 loops items~131072 rows~2097152 longest~4096: 1 calls, 2.9s, 1946424 rows, longest 3640, lockstep steps 7396, row-instructions 8.6e+07
+   P=4 loops items~1024 rows~1048576 longest~4096: 1 calls, 2.3s, 910737 rows, longest 3640, lockstep steps 7220, row-instructions 3.08e+08
+   P=4 loops items~4096 rows~65536 longest~4096: 1 calls, 2.1s, 52479 rows, longest 3640, lockstep steps 7230, row-instructions 6.94e+06
+   P=2 loops items~131072 rows~2097152 longest~4096: 1 calls, 1.9s, 1946424 rows, longest 2840, lockstep steps 5762, row-instructions 6.38e+07
+SEARCH {"task": "step~", "found_cost": null, "level_sizes": [1, 49, 1581, 47482, 1435988, 59859704], "seconds": 234.6, "stop": "budget: level 5 streamed (over 5800000 states)", "how": "library", "programs": [], "runs": [{"how": "routines", "found_cost": null, "level_sizes": [1, 41, 1105, 27394, 678412, 23856602], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 75.9}, {"how": "library", "found_cost": null, "level_sizes": [1, 49, 1581, 47482, 1435988, 59859704], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 107.0}, {"how": "primitives", "found_cost": null, "level_sizes": [1, 32, 736, 16621, 389818, 8937233, 290561290], "stop": "budget: level 6 streamed (over 27000000 states)", "seconds": 14.0}]}
+CALLS step~: 578 calls, 230.6s in apply_items
+   P=4 loops items~131072 rows~2097152 longest~32768: 2 calls, 36.0s, 3324589 rows, longest 18400, lockstep steps 91790, row-instructions 4.95e+08
+   P=2 loops items~131072 rows~2097152 longest~16384: 2 calls, 22.2s, 3324589 rows, longest 14400, lockstep steps 54029, row-instructions 2.85e+08
+   P=4 loops items~65536 rows~2097152 longest~32768: 3 calls, 20.9s, 6291452 rows, longest 18210, lockstep steps 99166, row-instructions 7.81e+08
+   P=4 loops items~262144 rows~1048576 longest~32768: 1 calls, 18.8s, 731017 rows, longest 18400, lockstep steps 48949, row-instructions 1.08e+08
+   P=4 loops items~32768 rows~1048576 longest~32768: 1 calls, 17.5s, 831236 rows, longest 18400, lockstep steps 48946, row-instructions 3.22e+08
+   P=4 loops items~32768 rows~2097152 longest~32768: 1 calls, 16.4s, 1276330 rows, longest 18300, lockstep steps 48628, row-instructions 4.24e+08
+   P=2 loops items~262144 rows~1048576 longest~16384: 1 calls, 11.9s, 731017 rows, longest 14400, lockstep steps 28082, row-instructions 6.27e+07
+   P=2 loops items~65536 rows~2097152 longest~16384: 3 calls, 11.3s, 6291452 rows, longest 14210, lockstep steps 65320, row-instructions 4.68e+08
+   P=2 loops items~32768 rows~1048576 longest~16384: 1 calls, 11.1s, 831236 rows, longest 14400, lockstep steps 28076, row-instructions 1.77e+08
+   P=2 loops items~32768 rows~2097152 longest~16384: 1 calls, 10.0s, 1276330 rows, longest 14300, lockstep steps 26625, row-instructions 2.48e+08
+   P=4 loops items~65536 rows~2097152 longest~8192: 1 calls, 4.2s, 2097151 rows, longest 7284, lockstep steps 14692, row-instructions 1.26e+08
+   P=4 loops items~2048 rows~2097152 longest~2048: 3 calls, 3.7s, 6288997 rows, longest 1830, lockstep steps 9914, row-instructions 2.9e+08
+   P=4 loops items~4096 rows~2097152 longest~128: 16 calls, 3.0s, 33549824 rows, longest 110, lockstep steps 3328, row-instructions 5.03e+08
+   P=2 loops items~65536 rows~2097152 longest~4096: 1 calls, 2.9s, 2097151 rows, longest 2850, lockstep steps 5945, row-instructions 7.54e+07
+
+EXIT 0

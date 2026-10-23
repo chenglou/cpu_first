@@ -1,0 +1,77 @@
+device NVIDIA H100 80GB HBM3 classes 50892 {1: 32, 2: 46, 3: 1781, 4: 49033} 2.9s
+cost-4 loops (level 2 sources) (10,1): 2600 items x 806 states = 2095600 rows, lockstep: 250.9 ms, 8.4M rows/s (sequences 1-200, mean 11.3)
+cost-4 loops (level 2 sources) (10,1): 2600 items x 806 states = 2095600 rows, grouped: 492.7 ms, 4.3M rows/s (sequences 1-200, mean 11.3)
+cost-4 loops (level 2 sources) (10,1): 2600 items x 806 states = 2095600 rows, auto: 187.5 ms, 11.2M rows/s (sequences 1-200, mean 11.3)
+   same: True
+cost-3 loops (level 3 sources) (10,1): 106 items x 19784 states = 2097104 rows, lockstep: 48.0 ms, 43.7M rows/s (sequences 1-20, mean 8.1)
+cost-3 loops (level 3 sources) (10,1): 106 items x 19784 states = 2097104 rows, grouped: 106.2 ms, 19.7M rows/s (sequences 1-20, mean 8.1)
+cost-3 loops (level 3 sources) (10,1): 106 items x 19784 states = 2097104 rows, auto: 48.1 ms, 43.6M rows/s (sequences 1-20, mean 8.1)
+   same: True
+cost-2 loops (level 4 sources) (10,1): 4 items x 524288 states = 2097152 rows, lockstep: 24.1 ms, 87.1M rows/s (sequences 1-10, mean 3.8)
+cost-2 loops (level 4 sources) (10,1): 4 items x 524288 states = 2097152 rows, grouped: 57.9 ms, 36.2M rows/s (sequences 1-10, mean 3.8)
+cost-2 loops (level 4 sources) (10,1): 4 items x 524288 states = 2097152 rows, auto: 57.9 ms, 36.2M rows/s (sequences 1-10, mean 3.8)
+   same: True
+cost-2 loops, one (10,1): 1 items x 2097152 states = 2097152 rows, lockstep: 5.2 ms, 402.3M rows/s (sequences 1-1, mean 1.0)
+cost-2 loops, one (10,1): 1 items x 2097152 states = 2097152 rows, grouped: 15.1 ms, 138.5M rows/s (sequences 1-1, mean 1.0)
+cost-2 loops, one (10,1): 1 items x 2097152 states = 2097152 rows, auto: 15.6 ms, 134.3M rows/s (sequences 1-1, mean 1.0)
+   same: True
+tokens, one (10,1): 1 items x 2097152 states = 2097152 rows, lockstep: 5.3 ms, 397.5M rows/s (sequences 1-1, mean 1.0)
+tokens, one (10,1): 1 items x 2097152 states = 2097152 rows, grouped: 14.9 ms, 140.5M rows/s (sequences 1-1, mean 1.0)
+tokens, one (10,1): 1 items x 2097152 states = 2097152 rows, auto: 14.8 ms, 141.5M rows/s (sequences 1-1, mean 1.0)
+   same: True
+cost-4 loops (level 2 sources) (10,2): 2600 items x 806 states = 2095600 rows, lockstep: 278.4 ms, 7.5M rows/s (sequences 6-200, mean 16.5)
+cost-4 loops (level 2 sources) (10,2): 2600 items x 806 states = 2095600 rows, grouped: 948.1 ms, 2.2M rows/s (sequences 6-200, mean 16.5)
+cost-4 loops (level 2 sources) (10,2): 2600 items x 806 states = 2095600 rows, auto: 266.0 ms, 7.9M rows/s (sequences 6-200, mean 16.5)
+   same: True
+cost-3 loops (level 3 sources) (10,2): 106 items x 19784 states = 2097104 rows, lockstep: 79.6 ms, 26.3M rows/s (sequences 4-40, mean 8.9)
+cost-3 loops (level 3 sources) (10,2): 106 items x 19784 states = 2097104 rows, grouped: 122.3 ms, 17.1M rows/s (sequences 4-40, mean 8.9)
+cost-3 loops (level 3 sources) (10,2): 106 items x 19784 states = 2097104 rows, auto: 67.5 ms, 31.1M rows/s (sequences 4-40, mean 8.9)
+   same: True
+cost-2 loops (level 4 sources) (10,2): 4 items x 524288 states = 2097152 rows, lockstep: 45.3 ms, 46.3M rows/s (sequences 4-10, mean 7.0)
+cost-2 loops (level 4 sources) (10,2): 4 items x 524288 states = 2097152 rows, grouped: 84.0 ms, 25.0M rows/s (sequences 4-10, mean 7.0)
+cost-2 loops (level 4 sources) (10,2): 4 items x 524288 states = 2097152 rows, auto: 84.1 ms, 24.9M rows/s (sequences 4-10, mean 7.0)
+   same: True
+cost-2 loops, one (10,2): 1 items x 2097152 states = 2097152 rows, lockstep: 23.8 ms, 87.9M rows/s (sequences 4-4, mean 4.0)
+cost-2 loops, one (10,2): 1 items x 2097152 states = 2097152 rows, grouped: 17.8 ms, 117.9M rows/s (sequences 4-4, mean 4.0)
+cost-2 loops, one (10,2): 1 items x 2097152 states = 2097152 rows, auto: 17.9 ms, 117.1M rows/s (sequences 4-4, mean 4.0)
+   same: True
+tokens, one (10,2): 1 items x 2097152 states = 2097152 rows, lockstep: 6.0 ms, 349.2M rows/s (sequences 1-1, mean 1.0)
+tokens, one (10,2): 1 items x 2097152 states = 2097152 rows, grouped: 15.7 ms, 133.6M rows/s (sequences 1-1, mean 1.0)
+tokens, one (10,2): 1 items x 2097152 states = 2097152 rows, auto: 15.7 ms, 133.7M rows/s (sequences 1-1, mean 1.0)
+   same: True
+USDT:2026-10-23 08:55:13 4:4 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-10-23 08:55:13 4:4 SyncActivityProfilerHandler.cpp:46] profiler_stop
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                            aten::index         6.84%      25.574ms        12.01%      44.918ms      18.025us      42.129ms        30.42%      42.129ms      16.906us          2492  
+void at::native::vectorized_gather_kernel<16, long>(...         0.00%       0.000us         0.00%       0.000us       0.000us      22.618ms        16.33%      22.618ms      54.502us           415  
+void at::native::index_elementwise_kernel<128, 4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      16.522ms        11.93%      16.522ms      10.013us          1650  
+                                            aten::copy_         3.75%      14.025ms        16.52%      61.792ms      16.755us      14.464ms        10.44%      14.464ms       3.922us          3688  
+                                            aten::where         5.55%      20.776ms        12.44%      46.544ms      16.297us      13.791ms         9.96%      13.791ms       4.829us          2856  
+                                              aten::add         6.05%      22.639ms        10.46%      39.117ms      10.653us      11.930ms         8.61%      11.930ms       3.249us          3672  
+                                               aten::eq         4.45%      16.650ms         7.03%      26.315ms      10.750us      11.400ms         8.23%      11.400ms       4.657us          2448  
+void at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us      11.398ms         8.23%      11.398ms       5.587us          2040  
+                                               aten::gt         5.70%      21.306ms         8.79%      32.896ms      11.518us      11.370ms         8.21%      11.370ms       3.981us          2856  
+                                               aten::to         0.88%       3.287ms        21.10%      78.947ms      21.441us       0.000us         0.00%      10.799ms       2.933us          3682  
+                                         aten::_to_copy         2.24%       8.364ms        20.23%      75.660ms      23.109us       0.000us         0.00%      10.799ms       3.298us          3274  
+void at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us      10.569ms         7.63%      10.569ms       4.317us          2448  
+void at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       8.744ms         6.31%       8.744ms       4.286us          2040  
+                                           aten::gather         1.16%       4.327ms         1.75%       6.535ms      16.017us       7.406ms         5.35%       7.406ms      18.152us           408  
+void at::native::_scatter_gather_elementwise_kernel<...         0.00%       0.000us         0.00%       0.000us       0.000us       7.406ms         5.35%       7.406ms      18.152us           408  
+                                     aten::masked_fill_         1.84%       6.880ms         3.56%      13.335ms      10.894us       6.930ms         5.00%       6.930ms       5.662us          1224  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us       6.853ms         4.95%       6.853ms       2.800us          2448  
+                                       aten::index_put_         0.22%     808.277us         2.05%       7.670ms      17.512us       0.000us         0.00%       6.037ms      13.782us           438  
+                                 aten::_index_put_impl_         1.04%       3.896ms         1.83%       6.862ms      15.667us       6.037ms         4.36%       6.037ms      13.782us           438  
+void at::native::index_elementwise_kernel<128, 4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       6.001ms         4.33%       6.001ms      13.892us           432  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       5.304ms         3.83%       5.304ms       3.250us          1632  
+                                              aten::mul         3.30%      12.340ms         5.48%      20.512ms      10.055us       4.736ms         3.42%       4.736ms       2.322us          2040  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us       4.736ms         3.42%       4.736ms       2.322us          2040  
+void at::native::vectorized_elementwise_kernel<2, at...         0.00%       0.000us         0.00%       0.000us       0.000us       3.960ms         2.86%       3.960ms       9.705us           408  
+                                            aten::clamp         0.98%       3.663ms         1.48%       5.535ms      13.565us       3.903ms         2.82%       3.903ms       9.567us           408  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 374.086ms
+Self CUDA time total: 138.503ms
+
+
+EXIT 0

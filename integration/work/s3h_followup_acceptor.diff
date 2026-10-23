@@ -1,0 +1,32 @@
+--- lib/libcore.py	2026-10-23 02:27:45
++++ lib/libcore.py (follow-up)	2026-10-23 02:44:46
+@@ -1326,9 +1326,9 @@
+         return self.cache[k]
+ 
+     def many(self, progs):
+-        """The same verdicts for many programs at once: one machine per program, the programs run in lockstep over
+-        their top-level items (each step one apply_items over every machine), setting by setting, a program leaving at
+-        its first failing setting."""
++        """The same verdicts for many programs at once: one machine per program, every program run whole as one item
++        (a body run once: ONE), all of them in one apply_items call per setting, a program leaving at its first failing
++        setting."""
+         keys = [show(p) for p in progs]
+         live = sorted({i for i, k in enumerate(keys) if k not in self.cache}, key=lambda i: keys[i])
+         live = [i for j, i in enumerate(live) if j == 0 or keys[i] != keys[live[j - 1]]]
+@@ -1337,14 +1337,8 @@
+                 break
+             dev = prob.roots[0].regs.device
+             b = prob.roots[0].take(torch.zeros(len(live), dtype=torch.long, device=dev))
+-            ps = [progs[i] for i in live]
+-            for t in range(max(len(p) for p in ps)):
+-                step_items = [p[t] if len(p) > t else ("REP", ONE, ()) for p in ps]
+-                index = {}
+-                for it in step_items:
+-                    index.setdefault(it, len(index))
+-                ids = torch.tensor([index[it] for it in step_items], dtype=torch.long, device=dev)
+-                b = apply_items(st, b, ids, list(index), self.lib)
++            b = apply_items(st, b, torch.arange(len(live), device=dev), [("REP", ONE, tuple(progs[i])) for i in live],
++                            self.lib)
+             ok = prob.goal([b]).tolist()
+             for i, o in zip(live, ok):
+                 if not o:

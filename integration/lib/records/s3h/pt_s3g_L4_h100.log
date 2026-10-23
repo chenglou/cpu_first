@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/root/cpu_first/integration/lib/profile_task.py", line 78, in <module>
+    spec.loader.exec_module(L2)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1159, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1217, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/root/cpu_first/integration/lib/libcore_s3g.py'
+
+EXIT 1

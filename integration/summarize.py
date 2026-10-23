@@ -83,6 +83,20 @@ def chosen(rec: dict) -> str:
     return "-"
 
 
+def device_of(rec: dict) -> str:
+    gpu = rec.get("gpu", "") or ""
+    return next((d for d in ("H100", "H200", "B200") if d in gpu), "cpu")
+
+
+def seed_in(rec: dict) -> int:
+    """The run's seed: the evaluator's result, else the manifest's runtime.seeds (a crashed run has no result)."""
+    sd = seed_of(rec)
+    if "seed" in sd:
+        return sd["seed"]
+    m = rec.get("manifest")
+    return ((m.get("runtime") or {}).get("seeds") or [74])[0] if isinstance(m, dict) else 74
+
+
 def md5_of(rec: dict) -> str:
     return hashlib.md5(rec.get("submission", "").encode()).hexdigest()[:8]
 
@@ -98,13 +112,11 @@ def table_runs(names: list) -> str:
             continue
         if rec.get("returncode"):
             err = (rec.get("stderr") or "").strip().splitlines()[-1:] or ["?"]
-            rows.append(f"| {n} | {rec.get('task')} | {'H100' if 'H100' in rec.get('gpu', '') else 'cpu'} | 74 | crashed at "
-                        f"load ({err[0][:90]}) | | | | | | {md5_of(rec)} |")
+            rows.append(f"| {n} | {rec.get('task')} | {device_of(rec)} | {seed_in(rec)} | crashed ({err[0][:90]}) "
+                        f"| | | | | | {md5_of(rec)} |")
             continue
         sd = seed_of(rec)
-        seeds = [sd.get("seed", 74)]
-        dev = "H100" if "H100" in rec.get("gpu", "") else "cpu"
-        rows.append(f"| {n} | {rec.get('task')} | {dev} | {seeds[0] if seeds else 74} | {maxT(rec)} | {rungs(rec)} | "
+        rows.append(f"| {n} | {rec.get('task')} | {device_of(rec)} | {seed_in(rec)} | {maxT(rec)} | {rungs(rec)} | "
                     f"{splits(rec)} | {sd.get('training_seconds', 0):.0f} ({frozen_step(rec)}) | "
                     f"{sd.get('evaluation_seconds', 0):.0f} | {chosen(rec)} | {md5_of(rec)} |")
     return head + "\n" + "\n".join(rows)
@@ -209,6 +221,7 @@ SECTIONS = {
     "ACCEPT": acceptance,
     "CLIMBS": climbs,
     "S3_RUNS": lambda: table_runs(sorted(p.stem for p in REC.glob("s3*.json"))),
+    "S3_B200": lambda: table_runs(sorted(f"b200/{p.stem}" for p in (REC / "b200").glob("s3*.json"))),
     "AB": ab,
 }
 

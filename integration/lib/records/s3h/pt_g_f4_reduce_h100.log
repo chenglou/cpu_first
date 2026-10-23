@@ -1,0 +1,20 @@
+device NVIDIA H100 80GB HBM3 level 4 routines ['T.add', 'T.add~', 'T.lt', 'T.lt~', 'T.modB', 'T.modB~', 'T.modx', 'T.modx~', 'T.mrow', 'T.mrow~']
+SEARCH {"task": "reduce", "found_cost": 5, "level_sizes": [1, 50, 1734, 56890, 1865832, 79803488], "seconds": 208.8, "stop": "budget: level 5 streamed (over 5800000 states)", "how": "library", "programs": ["B3.1 P[BRG.X STA.Y T.modB~]"], "runs": [{"how": "routines", "found_cost": null, "level_sizes": [1, 42, 1261, 35482, 987456, 35743389], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 111.4}, {"how": "library", "found_cost": 5, "level_sizes": [1, 50, 1734, 56890, 1865832, 79803488], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 51.0}]}
+PARTS reduce: bfs 162.4s, Acceptor.many 81.2s, enumerate_items 45.5s, programs 6.3s
+CALLS reduce: 468 calls, 198.1s in apply_items
+   P=4 loops items~131072 rows~4194304 longest~65536: 1 calls, 14.0s, 2689488 rows, longest 36400, lockstep steps 95848, row-instructions 5.55e+08
+   P=4 loops items~131072 rows~2097152 longest~32768: 2 calls, 11.2s, 3675042 rows, longest 18400, lockstep steps 91790, row-instructions 5.56e+08
+   P=4 loops items~262144 rows~8388608 longest~32768: 1 calls, 10.5s, 7268050 rows, longest 18400, lockstep steps 48946, row-instructions 1.08e+09
+   P=6 loops items~128 rows~256 longest~16384: 5 calls, 10.3s, 1269 rows, longest 15984, lockstep steps 144468, row-instructions 2.85e+06
+   P=2 loops items~131072 rows~4194304 longest~32768: 1 calls, 7.6s, 2689488 rows, longest 28400, lockstep steps 56345, row-instructions 3.3e+08
+   P=4 loops items~131072 rows~4194304 longest~32768: 1 calls, 7.3s, 3455760 rows, longest 18300, lockstep steps 48628, row-instructions 6.07e+08
+   P=2 loops items~131072 rows~2097152 longest~16384: 2 calls, 7.0s, 3675042 rows, longest 14400, lockstep steps 54029, row-instructions 3.22e+08
+   P=4 loops items~4096 rows~8388608 longest~4096: 2 calls, 6.9s, 13994217 rows, longest 3640, lockstep steps 14583, row-instructions 1.74e+09
+   P=2 loops items~262144 rows~8388608 longest~16384: 1 calls, 6.4s, 7268050 rows, longest 14400, lockstep steps 28082, row-instructions 6.27e+08
+   P=6 loops items~32 rows~256 longest~4096: 54 calls, 6.1s, 13781 rows, longest 2390, lockstep steps 122584, row-instructions 2.06e+06
+   P=4 loops items~262144 rows~4194304 longest~32768: 1 calls, 6.1s, 3304973 rows, longest 18400, lockstep steps 48950, row-instructions 4.88e+08
+   P=4 loops items~128 rows~256 longest~8192: 6 calls, 5.8s, 1536 rows, longest 5824, lockstep steps 75723, row-instructions 2.18e+06
+   P=6 loops items~64 rows~256 longest~8192: 8 calls, 5.7s, 2036 rows, longest 7998, lockstep steps 78541, row-instructions 2.28e+06
+   P=6 loops items~128 rows~256 longest~8192: 7 calls, 5.4s, 1791 rows, longest 6711, lockstep steps 76343, row-instructions 2.8e+06
+
+EXIT 0

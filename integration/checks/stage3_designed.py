@@ -2,6 +2,7 @@
 program x^2 mod N found offline, T.sqmod's composition): exact on H1's splits? Local, small (N rows per split).
 
     cd cpu_first && PYTHONPATH=. ~/github/sotaku/venv/bin/python integration/checks/stage3_designed.py [N=8] [SPLIT ...]
+    (env S3_FILE: the stage-3 file to check, default submission_stage3.py)
 """
 import json
 import os
@@ -16,7 +17,7 @@ import torch  # noqa: E402
 sys.path.insert(0, INTEG)
 import local_check as lc  # noqa: E402
 
-lc.glc.FILE = os.path.join(INTEG, "submission_stage3.py")
+lc.glc.FILE = os.path.join(INTEG, os.environ.get("S3_FILE", "submission_stage3.py"))
 argv = sys.argv[1:]
 n = next((int(a[2:]) for a in argv if a.startswith("N=")), 8)
 splits = [a for a in argv if "=" not in a] or ["depth_t_1", "depth_t_8", "depth_ood_n_t_2", "depth_ood_n_t_64"]

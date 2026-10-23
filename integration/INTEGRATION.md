@@ -52,19 +52,22 @@ answers of rows with T = 1); and the countdown over T.
   With those fixes and the review's rules (routines first, twins skipped, measured caps, stalls logged: variant C), the
   climb finds the multiply.
 - **Stage 3** (no skeleton, no menus): **certified on the untouched official manifest** on an H100: T = 64 on both
-  ladders, every rung 768/768, every split exact (the final file: 3,494 s of training, 220 s of evaluation). Over the
-  seeds on the official budget, 9 of 16 runs certify (5 of 8 with the final file). The others fail on a since-fixed
-  bug, slow hosts or one numerical edge (§3). In one training run the model reads, learns its digit tables from laws,
-  climbs its library, and discovers the round:
+  ladders, every rung 768/768, every split exact. The final file, s3h, **certifies on every seed** on the official
+  manifest on H100s (74 and 1-7: the round by 1,058-1,297 s, the freeze by 1,341-2,086 s, 1,499-2,229 s of
+  training). The file before it (s3g) certified 5 of 8; s3h fixes its three remaining failures (§3): an acceptance
+  test that rejected the right round for some pool sizes, a NaN in phase D, and a climb too slow for the slowest hosts
+  (s3h's runs reach the freeze 2.0-2.4 times sooner). In one training run the model reads, learns its digit tables
+  from laws, climbs its library, and discovers the round:
   - the multiply, as a loop of its own accumulating row;
   - the reduction, as a loop of its own long-division step;
-  - x^2 mod N as "copy x, multiply, reduce", found at step 671, 2,620-2,900 s in (s3f, s3g; the climb's speed is
-    the host's).
+  - x^2 mod N as "copy x, multiply, reduce", found at step 671 (seed 74), by 1,232 s (s3g: 2,620-2,900 s).
 
   Getting there took the A/B's variant C (test every candidate's result; pose the multiply's row as a practice problem
   of its own), two fixes found in-run (Occam's ties to the faster program; skip only the twins), and practising the
   pieces first (the multiply after its row, the reduction after its chain) with an exact cache across levels. The
   first in-run discovery, without the last two, needed 8,552 s of climbing and certified only on a relaxed budget.
+  Certifying every seed then took an exact acceptance test for the round, a guard in one lesson, and a search engine
+  that runs every candidate program's instructions in lockstep on the GPU (the same search, more than twice as fast).
 
 **Is Bar 2 cleared?** Partly (§6). No hand-written algorithm runs any more, and the model that answers was discovered
 in training and certifies on the official budget. But the algorithm's decomposition still lives in the instruction set
@@ -438,9 +441,10 @@ seven stage-3 acceptance runs (CPU, at level 3 of the same climb) with them; the
     should work in log space.
 
   s3g_official (the untouched manifest, seed 74): **certified**, T = 64 on both ladders, every rung 768/768, every
-  split exact, 3,494 s of training, 220 s of evaluation. This is the final file: [`submission_stage3.py`](submission_stage3.py)
-  (md5 70bac83c); s3f's is kept as `submission_stage3_s3f.py` (md5 31c9cab2). Its seed-74 run follows s3f's step for
-  step: the round at step 671 and the freeze at 870, but its climb takes 2,817 s against s3f's 2,543 s, so the freeze
+  split exact, 3,494 s of training, 220 s of evaluation. This was the final file before s3h:
+  [`submission_stage3.py`](submission_stage3.py) (md5 70bac83c); s3f's is kept as `submission_stage3_s3f.py` (md5
+  31c9cab2). Its seed-74 run follows s3f's step for step: the round at step 671 and the freeze at 870, but its climb
+  takes 2,817 s against s3f's 2,543 s, so the freeze
   comes at about 3,300 s.
 
   **Where stage 3 stands on the official budget.** The certifying runs are s3f_official and s3f's seeds 1, 4 and 7
@@ -454,7 +458,7 @@ seven stage-3 acceptance runs (CPU, at level 3 of the same climb) with them; the
   Certifying every seed needs the search to stop being host-bound (twice the speed would leave room on any host) and
   T's direction lesson in log space.
 
-  **The final file's seeds on B200s** (a research check, via the shared runner `tools/modal_runner.py --mode seeds`,
+  **s3g's seeds on B200s** (a research check, via the shared runner `tools/modal_runner.py --mode seeds`,
   run `s3g-b200-seeds`, records in `records/b200/`; the official claim stays the H100 runs above):
   - **6 of 8 certify**: seeds 74, 1, 2, 3, 4 and 7, with 1,707-3,286 s of training. Seed 74 trains in 1,707 s against
     3,494 s on the H100, and seed 7, out of time on the H100, certifies. B200 hosts vary too, though: seeds 2, 3, 4
@@ -468,14 +472,131 @@ seven stage-3 acceptance runs (CPU, at level 3 of the same climb) with them; the
 
   So a third fix belongs with the two above: while no round is found, search for it again on the growing answer pool
   instead of letting a finished climb end.
+
+  **s3g's seeds on CPUs** (a research check, relaxed to 18,000 s, one CPU core each; plan `s3g_all`):
+  - **6 of 8 certify**: seeds 74, 1, 2, 3, 5 and 7, with 4,951-9,579 s of training (1.4-3.0 times the H100's, on the
+    seeds that certify on both).
+  - **Seed 6** crashes at step 635 with the same non-finite loss as on the H100 and the B200.
+  - **Seed 4** runs out of the 18,000 s inside the climb. At level 4 it solves the mirrored reduction, which the H100
+    run of the same seed does not, as a loop of loops: `T.reduce~ = SBB.N B[MUL.Y B[T.modB~]]`, where `T.modB~` is
+    itself a loop over a routine with a loop. Every later search that runs this routine pays for it. The round's
+    search at level 5 takes 858 s (161 s on seed 3, whose library does not have it). The multiply's search, whose
+    items put it inside further loops, uses 4,048 s without finishing its first level. That is four and a half times
+    its 900 s limit: the limit is checked between batches of work, and the batch under way at 900 s ran for over
+    3,100 s more. s3h was not run on CPUs; its lockstep machine (below) targets exactly this cost, the loop bodies.
+- *s3h* ([`submission_stage3_s3h.py`](submission_stage3_s3h.py), built by `make_stage3.py` from the template and
+  libcore; `make_stage3.py s3g` checks the certified s3g file against its sources, kept in `work/s3g/`). Three causes,
+  each found by reproducing it, and their fixes. Each fix is exact (the same search results) or changes only what was
+  a defect. The reproductions are replays: a diagnostic copy of the file (`lib/debug_patch.py`) skips the climb and
+  sets the recorded run's library and round programs at the recorded step. The climb uses its own random generators
+  and changes no parameter, so the training before and after is the recorded run's (seed 5's climb joins at step 588
+  and seed 6's loss is 24.448063 at step 600, as recorded), and phase D comes after about 2 minutes instead of 25.
+  1. **The round-search miss was an acceptance test, not the search.** A replay of B200 seed 5 dumped the
+     round's answer pool at each in-run round search: 159 rows at level 6, every one consistent with x^2 mod N. Rerun
+     offline with that pool and that library, the search reaches `LDA.X STA.Y T.mul STA.X T.reduce` at cost 5 and
+     then rejects it: acceptance was `round_fit(...) == 1.0`, and round_fit is a float32 mean, which a GPU computes as
+     the sum times 1/n. For 137 of the first 1,024 pool sizes (41, 47, 55, 61, 82, ..., 121, 159, ...) that is
+     0.99999994 when every row is right. The offline reproductions used 512 rows, a power of two, so they never missed;
+     s3d's miss at level 6 and find at level 7, with the same first rows as probes (pools of roughly 200 and 215 rows,
+     not logged exactly), fit the same cause. On a CPU, torch's mean of an all-ones row is exactly 1.0 at every size up
+     to 1,024 (checked), consistent with s3g's relaxed CPU seed 5 certifying. Fix:
+     `libcore.round_ok`, an exact test (every row reproduced). Every certifying run found its round at a pool size that
+     rounds to exactly 1.0, so none of them changes. Also, as asked: a finished climb with no round searches again
+     every 10 steps on the answers kept by then (`ROUND_RETRY`).
+
+     A side finding while ruling out the search: `hash_rows`, the search's 64-bit state key, keeps only 8 bits of each
+     word's top byte (the last of 8 probes): 200,000 distinct rows that differ only there get 256 keys. Real round
+     searches merge 1-61 distinct states at their last stored level and 40-1,979 among the last level's streamed ones
+     through it (`lib/round_hash_diag.py`: the same level-6 searches with a key that mixes each word first, on 12
+     random answer sets for each of three recorded libraries). All 72 find the round at cost 5 and list the same first
+     programs under both keys, and the in-run miss happens with both keys. It is left as it is: a new key would reorder
+     the goal states' listing, so which spellings are accepted could change.
+  2. **Phase D's NaN was the gate lesson, not T's direction lesson.** A replay of seed 6 reproduces its training
+     exactly (loss 24.448063 at step 600 and a non-finite loss at step 635, as on the H100 and the B200). Every
+     gradient stayed finite, and the right T reading's weight was 2e-11 at step 600 and doubling each step. At step 635,
+     while T's reading turned (its anchor already on the prompt's end, its stride not yet), T's pointer read one place
+     past the prompt: every row's count read 0, and the gate's "a count of at least 1 runs its round" term took the
+     mean of an empty selection. Fix: that term only when some count is nonzero (`checks/stage3_nan_check.py`: the
+     designed model with T's pointer one past the end gives NaN under s3g and a finite loss under s3h). T's direction
+     lesson also works in log space now, as asked (`shape_logprobs`, `shape_logrho`): the same loss and gradients as
+     s3g's to within 7e-5 relative (`checks/stage3_tlesson_check.py`: the designed reading, every T logit at 0, and T
+     confidently wrong at four margins, where the right reading's weight bottoms out near e^-15.6), and with no clamp,
+     so a weight below 1e-30 keeps its gradient instead of losing it to s3g's clamp. The s3h replay of seed 6 passes
+     step 635, resolves T at step 652, freezes at 779 and certifies (T = 64 on both ladders, every split exact).
+  3. **The climb's speed.** `lib/profile_climb.py` (the climb alone with the template's settings, every unit's time
+     split) found loop items in `apply_items` taking 95-98% of every unit, on the H100 and the B200 alike: a loop's
+     body ran element by element, one gather, run and scatter per distinct element. s3h replaces that with a lockstep
+     machine:
+     - each item is traced into the primitive instructions `run_items` would execute (memoized; a routine between a
+       save and a restore of its pointer), and all rows of a call step together, one instruction each per step, in
+       about 40 kernels for every row at once (`_ustep`: register moves as one gather of 8-byte words of the probes'
+       digits, the three cells as one table lookup);
+     - rows are grouped by their sequence's length (powers of 2), so short sequences do not wait for long ones, and a
+       time model picks the old item-by-item path where it is cheaper;
+     - a long lockstep (192 steps or more) replays its steps from a captured CUDA graph of 32 steps (the same kernels,
+       one launch per graph);
+     - a search level's blocks are fused, up to 4 chunks of rows per call (`FUSE`), and the vocabulary's signatures
+       likewise.
+
+     The search's results are the same: `lib/test_lockstep.py` compares every state (registers, flags, pointer) with
+     the old path bit for bit on real vocabularies at every setting, and bfs's levels, goals, parents and accepted
+     programs for fuse 1, 2 and 4 (on a CPU and on an H100, graphs included); `test_libcore`, `test_climb_ab`,
+     `checks/stage3_designed.py` and `checks/stage3_train_smoke.py` print what they printed for s3g. And the whole
+     climb, run alone on the same rows with s3g's libcore and with s3h's (`lib/profile_climb.py`, records
+     `lib/records/s3h/pc_s3g_h100_nosync.log`, `pc_g_f4_h100_nosync.log`), gives the same 26 search records (task,
+     level, cost, level sizes, programs, stop) and the same 40-entry library, in 1,325 s to the round against 3,057 s
+     on an H100 (lt 49.7 to 4.6 s, mrow 251 to 59 s, mac 208 to 74 s, step~ 375 to 106 s, reduce 399 to 212 s, reduce~
+     465 to 259 s); peak GPU memory 29 GiB (fuse 8: 34 GiB, 2% faster). The reductions gain least: about 40% of
+     reduce's time is accepting candidates, a few hundred at a time with instruction sequences up to 16,000 long, which
+     the lockstep runs top-level item by item (a follow-up, not in the certified file: run each candidate whole, which
+     cuts that from 81 to 59 s, `work/s3h_followup_acceptor.diff`; and a time model that charges the item-by-item
+     path's per-row cost once per group, which would send single-item calls such as the round's search back to it).
+
+     Tried on the way, each measured once on an H100 (`lib/bench_apply.py`: ten 2M-row calls with 1 to 2,600
+     distinct loop items; `lib/profile_task.py`: level 4's mac and step~ from a recorded library; `lib/profile_climb.py`:
+     the whole climb; logs in `lib/records/s3h/`, times given new against old):
+     - dropped: the first lockstep step, with the three cells as three 64-bit table lookups: slower than the old path
+       on large calls (673 against 416 ms for 2,600 items), 79% of its GPU time in those lookups. One 8-bit lookup and
+       register moves by 8-byte words made it 1.5-3.4x faster than the old path on nine of the ten calls (on the
+       tenth, one item of 4 instructions, 24 against 18 ms; the time model keeps the old path there);
+     - kept without a measured gain: a leaner step (about 65 to 40 kernels; the step in the file). Its one benchmark
+       run, on another host, was 1.16-1.29x slower than the 65-kernel step on every call; that host's old path was as
+       fast on the GPU-bound calls (0.99-1.02x) and slower only on the host-bound ones (1.4-1.5x), so the leaner step
+       may be the slower one. Not rerun on one host (a follow-up: the 65-kernel step is in the intermediate build
+       8103f399, kept as the `submission` of `records/b200/s3h_b200_seed74.json`);
+     - not enough alone: the lockstep without fused blocks and CUDA graphs (the 65-kernel step, whole climb): levels
+       0-3 4.2x faster in all (153 against 648 s), level 4 only 1.08x (1,480 against 1,592 s; reduce slower, 430
+       against 399 s): its loops over routines run sequences of up to 36,400 instructions, so its steps are
+       launch-bound. Fused blocks and graphs brought mac from 177 to 72 s;
+     - dropped: fuse 8 instead of 4, 2% faster on the whole climb at 34 instead of 29 GiB of GPU memory.
+
+  **Results** (the final file, md5 3b9d9bcf; the S3_RUNS table below, `s3h_official` and `s3h_h100_seed1`-`7`):
+  - **On the official manifest on H100s, every seed certifies** (74 and 1-7): T = 64 on both ladders, every rung
+    768/768, ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999. Each run follows its s3g run step for step
+    as far as that run went (the same losses, the climb from the same step, the round at the same step: steps
+    580-679; the freeze at steps 779-878, the same as s3g's where it froze), about twice as fast: the
+    round by 1,058-1,297 s and the freeze by 1,341-2,086 s (the evaluator's elapsed time at the first logged
+    step after each), against 2,483-3,111 s and 2,749-3,379 s for s3g's five certifying H100 seeds. Training takes
+    1,499-2,229 s (most of what follows the freeze is the learning-rate-0 steps up to the file's 20,000),
+    evaluation 156-216 s.
+  - The three failures are gone. Seed 5 accepts its round at level 6 (step 619), the search s3g rejected on the B200;
+    seed 6 passes step 635 (T resolved at step 652, frozen at 779, by 2,086 s); seed 7, out of time under s3g,
+    freezes by 1,396 s.
+  - Seed 6 freezes last. While its T reading is still wrong (53 steps), its T lesson runs the countdown from both
+    readings, up to 61 rounds of the round program per step, on phase D's hard machine (`run_rounds`, plain
+    `run_items`, about 17 s a step on the H100: 900 s from step 600 to T's resolution at 652). That is phase D's cost,
+    not the climb's, and the one place left near the 2x margin: a follow-up could run that countdown on all rows at
+    once with a fixed shape and replay it from a CUDA graph.
+  - On B200s (research, `s3hf_b200_seed*`, the table after S3_RUNS): 8 of 8 certify, the freeze by 996-1,554 s
+    (s3g's: 6 of 8, by 1,588-3,037 s). Seeds 6 and 7 were each preempted once and rerun from the start.
 <!-- /STAGE3 -->
 
 <!-- S3_RUNS -->
 | record | task | device | seed | max T, seen / unseen moduli | rungs | splits | training s (frozen at step) | evaluation s | what it chose | md5 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | s3_official | h1 | H100 | 74 | None / None | not all (worst rung 0/768) | ood_n_t 5/10,002, ood_t 20/10,002, test 7/9,999 | 3681 (not frozen) | 5 | round programs (tournament weights): none | b0ef5238 |
-| s3_relaxed_h100 | h1 | H100 | 74 | crashed at load (AttributeError: 'NoneType' object has no attribute '__dict__'. Did you mean: '__dir__'?) | | | | | | 1fc2cf7c |
-| s3_smoke_cpu | h1 | cpu | 74 | crashed at load (AttributeError: 'NoneType' object has no attribute '__dict__'. Did you mean: '__dir__'?) | | | | | | 1fc2cf7c |
+| s3_relaxed_h100 | h1 | H100 | 74 | crashed (AttributeError: 'NoneType' object has no attribute '__dict__'. Did you mean: '__dir__'?) | | | | | | 1fc2cf7c |
+| s3_smoke_cpu | h1 | cpu | 74 | crashed (AttributeError: 'NoneType' object has no attribute '__dict__'. Did you mean: '__dir__'?) | | | | | | 1fc2cf7c |
 | s3b_smoke_cpu | h1 | cpu | 74 | None / None | not all (worst rung 0/768) | ood_n_t 5/10,002, ood_t 20/10,002, test 7/9,999 | 3001 (not frozen) | 8 | round programs (tournament weights): none | 3bb65b6c |
 | s3d_official | h1 | H100 | 74 | None / None | not all (worst rung 0/768) | ood_n_t 5/10,002, ood_t 20/10,002, test 7/9,999 | 3946 (not frozen) | 4 | round programs (tournament weights): none | 373ceb4e |
 | s3d_relaxed_h100 | h1 | H100 | 74 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 9142 (884) | 180 | round programs (tournament weights): LDA.X STA.Y T.mul~ STA.X T.reduce (0.173); LDA.X STA.Y T.mul~ STA.Y T.reduce~ (0.380); T.add STA.Y T.mul~ STA.X T.reduce (0.195); T.add STA.Y T.mul~ STA.Y T.reduce~ (0.252) | 373ceb4e |
@@ -488,15 +609,58 @@ seven stage-3 acceptance runs (CPU, at level 3 of the same climb) with them; the
 | s3f_seed5_h100 | h1 | H100 | 5 | None / None | not all (worst rung 0/768) | ood_n_t 5/10,002, ood_t 20/10,002, test 7/9,999 | 3600 (not frozen) | 4 | round programs (tournament weights): none | 31c9cab2 |
 | s3f_seed6_h100 | h1 | H100 | 6 | None / None | not all (worst rung 0/768) | ood_n_t 5/10,002, ood_t 20/10,002, test 7/9,999 | 3600 (not frozen) | 5 | round programs (tournament weights): none | 31c9cab2 |
 | s3f_seed7_h100 | h1 | H100 | 7 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 2973 (864) | 189 | round programs (tournament weights): LDA.X STA.Y T.mul~ STA.X T.reduce (0.231); T.add STA.Y T.mul~ STA.X T.reduce (0.248); T.modx STA.Y T.mul~ STA.X T.reduce (0.239); T.modB STA.Y T.mul~ STA.X T.reduce (0.282) | 31c9cab2 |
+| s3g_cpu_seed1 | h1 | cpu | 1 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 9579 (814) | 6213 | round programs (tournament weights): LDA.X STA.Y T.mrow STA.X T.reduce (0.158); LDA.X STA.Y T.mul~ STA.X T.reduce (0.294); T.add STA.Y T.mrow STA.X T.reduce (0.294); T.add STA.Y T.mul~ STA.X T.reduce (0.254) | 70bac83c |
+| s3g_cpu_seed2 | h1 | cpu | 2 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 7656 (862) | 3394 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.241); LDA.X STA.Y T.mul~ STA.X T.reduce (0.245); T.add STA.Y T.mul STA.X T.reduce (0.234); T.add STA.Y T.mul~ STA.X T.reduce (0.280) | 70bac83c |
+| s3g_cpu_seed3 | h1 | cpu | 3 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 5822 (783) | 998 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.251); LDA.X STA.Y T.mul~ STA.X T.reduce (0.220); T.add STA.Y T.mul STA.X T.reduce (0.263); T.add STA.Y T.mul~ STA.X T.reduce (0.266) | 70bac83c |
+| s3g_cpu_seed4 | h1 | cpu | 4 | None / None | not all (worst rung 0/768) | ood_n_t 5/10,002, ood_t 20/10,002, test 7/9,999 | 18000 (not frozen) | 9 | round programs (tournament weights): none | 70bac83c |
+| s3g_cpu_seed5 | h1 | cpu | 5 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 5399 (818) | 2557 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.273); LDA.X STA.Y T.mul~ STA.X T.reduce (0.251); T.add STA.Y T.mul STA.X T.reduce (0.242); T.add STA.Y T.mul~ STA.X T.reduce (0.235) | 70bac83c |
+| s3g_cpu_seed6 | h1 | cpu | 6 | crashed (FloatingPointError: non-finite training loss at step 635, pass 1) | | | | | | 70bac83c |
+| s3g_cpu_seed7 | h1 | cpu | 7 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 5360 (863) | 2835 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.240); LDA.X STA.Y T.mul~ STA.X T.reduce (0.274); T.add STA.Y T.mul STA.X T.reduce (0.055); T.add STA.Y T.mul~ STA.X T.reduce (0.431) | 70bac83c |
+| s3g_cpu_seed74 | h1 | cpu | 74 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 4951 (870) | 2678 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.430); LDA.X STA.Y T.mul~ STA.X T.reduce (0.197); T.add STA.Y T.mul STA.X T.reduce (0.257); T.add STA.Y T.mul~ STA.X T.reduce (0.116) | 70bac83c |
 | s3g_official | h1 | H100 | 74 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 3494 (870) | 220 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.219); LDA.X STA.Y T.mul~ STA.X T.reduce (0.470); T.add STA.Y T.mul STA.X T.reduce (0.163); T.add STA.Y T.mul~ STA.X T.reduce (0.149) | 70bac83c |
 | s3g_seed1_h100 | h1 | H100 | 1 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 3192 (812) | 179 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.210); LDA.X STA.Y T.mul~ STA.X T.reduce (0.254); T.add STA.Y T.mul STA.X T.reduce (0.313); T.add STA.Y T.mul~ STA.X T.reduce (0.223) | 70bac83c |
 | s3g_seed2_h100 | h1 | H100 | 2 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 3554 (862) | 199 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.241); T.add STA.Y T.mul STA.X T.reduce (0.245); T.modx STA.Y T.mul STA.X T.reduce (0.234); T.modB STA.Y T.mul STA.X T.reduce (0.280) | 70bac83c |
 | s3g_seed3_h100 | h1 | H100 | 3 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 3106 (783) | 203 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.251); T.add STA.Y T.mul STA.X T.reduce (0.220); T.modx STA.Y T.mul STA.X T.reduce (0.263); T.modB STA.Y T.mul STA.X T.reduce (0.266) | 70bac83c |
 | s3g_seed4_h100 | h1 | H100 | 4 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 2950 (878) | 184 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.383); LDA.X STA.Y T.mul~ STA.X T.reduce (0.227); T.add STA.Y T.mul STA.X T.reduce (0.207); T.add STA.Y T.mul~ STA.X T.reduce (0.184) | 70bac83c |
 | s3g_seed5_h100 | h1 | H100 | 5 | None / None | not all (worst rung 0/768) | ood_n_t 5/10,002, ood_t 20/10,002, test 7/9,999 | 3600 (not frozen) | 5 | round programs (tournament weights): none | 70bac83c |
-| s3g_seed6_h100 | h1 | H100 | 74 | crashed at load (FloatingPointError: non-finite training loss at step 635, pass 1) | | | | | | 70bac83c |
+| s3g_seed6_h100 | h1 | H100 | 6 | crashed (FloatingPointError: non-finite training loss at step 635, pass 1) | | | | | | 70bac83c |
 | s3g_seed7_h100 | h1 | H100 | 7 | None / None | not all (worst rung 0/768) | ood_n_t 5/10,002, ood_t 20/10,002, test 7/9,999 | 3600 (not frozen) | 5 | round programs (tournament weights): none | 70bac83c |
+| s3h_h100_seed1 | h1 | H100 | 1 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1499 (812) | 166 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.210); LDA.X STA.Y T.mul~ STA.X T.reduce (0.254); T.add STA.Y T.mul STA.X T.reduce (0.313); T.add STA.Y T.mul~ STA.X T.reduce (0.223) | 3b9d9bcf |
+| s3h_h100_seed2 | h1 | H100 | 2 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1578 (862) | 176 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.241); T.add STA.Y T.mul STA.X T.reduce (0.245); T.modx STA.Y T.mul STA.X T.reduce (0.234); T.modB STA.Y T.mul STA.X T.reduce (0.280) | 3b9d9bcf |
+| s3h_h100_seed3 | h1 | H100 | 3 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1646 (783) | 192 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.251); T.add STA.Y T.mul STA.X T.reduce (0.220); T.modx STA.Y T.mul STA.X T.reduce (0.263); T.modB STA.Y T.mul STA.X T.reduce (0.266) | 3b9d9bcf |
+| s3h_h100_seed4 | h1 | H100 | 4 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1516 (878) | 164 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.383); LDA.X STA.Y T.mul~ STA.X T.reduce (0.227); T.add STA.Y T.mul STA.X T.reduce (0.207); T.add STA.Y T.mul~ STA.X T.reduce (0.184) | 3b9d9bcf |
+| s3h_h100_seed5 | h1 | H100 | 5 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1640 (818) | 182 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.280); T.add STA.Y T.mul STA.X T.reduce (0.223); T.modx STA.Y T.mul STA.X T.reduce (0.256); T.modB STA.Y T.mul STA.X T.reduce (0.241) | 3b9d9bcf |
+| s3h_h100_seed6 | h1 | H100 | 6 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 2229 (779) | 156 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.267); T.add STA.Y T.mul STA.X T.reduce (0.264); T.modx STA.Y T.mul STA.X T.reduce (0.229); T.modB STA.Y T.mul STA.X T.reduce (0.240) | 3b9d9bcf |
+| s3h_h100_seed7 | h1 | H100 | 7 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1592 (864) | 166 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.231); LDA.X STA.Y T.mul~ STA.X T.reduce (0.248); T.add STA.Y T.mul STA.X T.reduce (0.239); T.add STA.Y T.mul~ STA.X T.reduce (0.282) | 3b9d9bcf |
+| s3h_official | h1 | H100 | 74 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1691 (870) | 216 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.219); LDA.X STA.Y T.mul~ STA.X T.reduce (0.470); T.add STA.Y T.mul STA.X T.reduce (0.163); T.add STA.Y T.mul~ STA.X T.reduce (0.149) | 3b9d9bcf |
 <!-- /S3_RUNS -->
+
+The research seeds on B200s (`records/b200/`; the official claims are the H100 runs above): s3g's
+(`s3g_b200_b200_seed*`), an intermediate s3h build's (`s3h_b200_seed*`, md5 8103f399: the three fixes with the first
+lockstep machine, stopped after two seeds to free GPUs for the H100 runs) and the final file's (`s3hf_b200_seed*`).
+
+<!-- S3_B200 -->
+| record | task | device | seed | max T, seen / unseen moduli | rungs | splits | training s (frozen at step) | evaluation s | what it chose | md5 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| b200/s3g_b200_b200_seed1 | h1 | B200 | 1 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1748 (812) | 98 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.210); LDA.X STA.Y T.mul~ STA.X T.reduce (0.254); T.add STA.Y T.mul STA.X T.reduce (0.313); T.add STA.Y T.mul~ STA.X T.reduce (0.223) | 70bac83c |
+| b200/s3g_b200_b200_seed2 | h1 | B200 | 2 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 2985 (862) | 166 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.241); T.add STA.Y T.mul STA.X T.reduce (0.245); T.modx STA.Y T.mul STA.X T.reduce (0.234); T.modB STA.Y T.mul STA.X T.reduce (0.280) | 70bac83c |
+| b200/s3g_b200_b200_seed3 | h1 | B200 | 3 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 3286 (783) | 190 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.251); T.add STA.Y T.mul STA.X T.reduce (0.220); T.modx STA.Y T.mul STA.X T.reduce (0.263); T.modB STA.Y T.mul STA.X T.reduce (0.266) | 70bac83c |
+| b200/s3g_b200_b200_seed4 | h1 | B200 | 4 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 3181 (878) | 171 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.383); LDA.X STA.Y T.mul~ STA.X T.reduce (0.227); T.add STA.Y T.mul STA.X T.reduce (0.207); T.add STA.Y T.mul~ STA.X T.reduce (0.184) | 70bac83c |
+| b200/s3g_b200_b200_seed5 | h1 | B200 | 5 | None / None | not all (worst rung 0/768) | ood_n_t 5/10,002, ood_t 20/10,002, test 7/9,999 | 3600 (not frozen) | 4 | round programs (tournament weights): none | 70bac83c |
+| b200/s3g_b200_b200_seed6 | h1 | B200 | 6 | crashed (FloatingPointError: non-finite training loss at step 635, pass 1) | | | | | | 70bac83c |
+| b200/s3g_b200_b200_seed7 | h1 | B200 | 7 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 3100 (863) | 171 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.231); LDA.X STA.Y T.mul~ STA.X T.reduce (0.248); T.add STA.Y T.mul STA.X T.reduce (0.239); T.add STA.Y T.mul~ STA.X T.reduce (0.282) | 70bac83c |
+| b200/s3g_b200_b200_seed74 | h1 | B200 | 74 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1707 (870) | 102 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.219); LDA.X STA.Y T.mul~ STA.X T.reduce (0.470); T.add STA.Y T.mul STA.X T.reduce (0.163); T.add STA.Y T.mul~ STA.X T.reduce (0.149) | 70bac83c |
+| b200/s3h_b200_seed4 | h1 | B200 | 4 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1695 (878) | 97 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.383); LDA.X STA.Y T.mul~ STA.X T.reduce (0.227); T.add STA.Y T.mul STA.X T.reduce (0.207); T.add STA.Y T.mul~ STA.X T.reduce (0.184) | 8103f399 |
+| b200/s3h_b200_seed74 | h1 | B200 | 74 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1665 (870) | 99 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.219); LDA.X STA.Y T.mul~ STA.X T.reduce (0.470); T.add STA.Y T.mul STA.X T.reduce (0.163); T.add STA.Y T.mul~ STA.X T.reduce (0.149) | 8103f399 |
+| b200/s3hf_b200_seed1 | h1 | B200 | 1 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1143 (812) | 93 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.210); LDA.X STA.Y T.mul~ STA.X T.reduce (0.254); T.add STA.Y T.mul STA.X T.reduce (0.313); T.add STA.Y T.mul~ STA.X T.reduce (0.223) | 3b9d9bcf |
+| b200/s3hf_b200_seed2 | h1 | B200 | 2 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1149 (862) | 105 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.241); T.add STA.Y T.mul STA.X T.reduce (0.245); T.modx STA.Y T.mul STA.X T.reduce (0.234); T.modB STA.Y T.mul STA.X T.reduce (0.280) | 3b9d9bcf |
+| b200/s3hf_b200_seed3 | h1 | B200 | 3 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1655 (783) | 178 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.251); T.add STA.Y T.mul STA.X T.reduce (0.220); T.modx STA.Y T.mul STA.X T.reduce (0.263); T.modB STA.Y T.mul STA.X T.reduce (0.266) | 3b9d9bcf |
+| b200/s3hf_b200_seed4 | h1 | B200 | 4 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1482 (878) | 153 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.383); LDA.X STA.Y T.mul~ STA.X T.reduce (0.227); T.add STA.Y T.mul STA.X T.reduce (0.207); T.add STA.Y T.mul~ STA.X T.reduce (0.184) | 3b9d9bcf |
+| b200/s3hf_b200_seed5 | h1 | B200 | 5 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1494 (818) | 154 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.280); T.add STA.Y T.mul STA.X T.reduce (0.223); T.modx STA.Y T.mul STA.X T.reduce (0.256); T.modB STA.Y T.mul STA.X T.reduce (0.241) | 3b9d9bcf |
+| b200/s3hf_b200_seed6 | h1 | B200 | 6 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1683 (779) | 98 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.267); T.add STA.Y T.mul STA.X T.reduce (0.264); T.modx STA.Y T.mul STA.X T.reduce (0.229); T.modB STA.Y T.mul STA.X T.reduce (0.240) | 3b9d9bcf |
+| b200/s3hf_b200_seed7 | h1 | B200 | 7 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1108 (863) | 92 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.231); LDA.X STA.Y T.mul~ STA.X T.reduce (0.248); T.add STA.Y T.mul STA.X T.reduce (0.239); T.add STA.Y T.mul~ STA.X T.reduce (0.282) | 3b9d9bcf |
+| b200/s3hf_b200_seed74 | h1 | B200 | 74 | 64 / 64 | 768/768 every rung | ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999 | 1506 (870) | 163 | round programs (tournament weights): LDA.X STA.Y T.mul STA.X T.reduce (0.219); LDA.X STA.Y T.mul~ STA.X T.reduce (0.470); T.add STA.Y T.mul STA.X T.reduce (0.163); T.add STA.Y T.mul~ STA.X T.reduce (0.149) | 3b9d9bcf |
+<!-- /S3_B200 -->
 
 ## 4. What is still hand-made
 
@@ -530,10 +694,10 @@ every parameter from a random start, the evaluator owning the loop.
 | rule | stage 1 | stage 3 |
 |---|---|---|
 | **7. no hard-coded algorithm in the forward pass** | **gray, as its parents**: the H1 datapath (one register, 8 steps of 9 links, bring-in, chain, move; the multiply as placed digit products; the countdown) is written by hand, and the menus that plug into it hold the right wirings (the division's at free attention's width, the multiply's 33M layouts, the reading's, the round's x10 / + one digit / x the input). What is chosen in training is which option, never the datapath | **much less gray**: the forward pass runs a program the training run found (search, merges, routines, composition against the answers) on learned tables; no datapath and no menu is in the file. Still gray: the instruction set leans toward digit arithmetic (cells at a pointer against a register, keep-on-borrow, bring the top digit in, loops by the number's length and the base); the practice problems walk the search up the same pieces the skeleton had (the ripple, the link, the chain, the step, the reduction; the row, the multiply), and two of them are the template's definitions of long division's step (red.step's ladder and step law), as in stage 1; the countdown is stage 1's. A strict reader can say the algorithm moved into the instruction set and the curriculum (LIBRARY.md §6 says the same of its in-run sketch) |
-| **8. final logits inside autograd, unbroken gradient path** | yes, with the parents' gray edges. Gradient test (Modal, `checks/gradtest.py`, 16 rows of depth_t_8 and depth_ood_n_t_4, every table and switch at the truth): with the below set selected every parameter tensor gets a gradient except the unselected lowzero set's four blocks; with lowzero selected, also the round's + constant switch (the damped gradient underflows at the first Montgomery step), as LESSONS.md §5 found for the general file. Training returns zero logits: the lessons teach, not the final logits | the prediction path is one-hot digits through straight-through tables (`SteMachine`) and stage 1's countdown and reader; the round program is a straight-through choice over the tournament's contestants. Gradient test on the certified file (`checks/stage3_gradtest.py`: submission_stage3.py with the library and the four contestants its official run discovered, `lib/s3f_lib.json`, reader and cells at the truth, depth_t_1): every one of the 16 parameter tensors is in the graph of the final logits. With the right tokens' logits as the objective, all 16 get a nonzero gradient. With cross-entropy at a perfect prediction (loss 0), two underflow to exactly zero in float32: the tournament's logits and the addition table's carry, which sits behind thousands of damped lookups, stage 1's lowzero edge again. Gray: the program itself is a discrete result of search, not a differentiable parameter; training returns zero logits |
+| **8. final logits inside autograd, unbroken gradient path** | yes, with the parents' gray edges. Gradient test (Modal, `checks/gradtest.py`, 16 rows of depth_t_8 and depth_ood_n_t_4, every table and switch at the truth): with the below set selected every parameter tensor gets a gradient except the unselected lowzero set's four blocks; with lowzero selected, also the round's + constant switch (the damped gradient underflows at the first Montgomery step), as LESSONS.md §5 found for the general file. Training returns zero logits: the lessons teach, not the final logits | the prediction path is one-hot digits through straight-through tables (`SteMachine`) and stage 1's countdown and reader; the round program is a straight-through choice over the tournament's contestants. Gradient test on the certified file (`checks/stage3_gradtest.py`: submission_stage3.py with the library and the four contestants its official run discovered, `lib/s3f_lib.json`, reader and cells at the truth, depth_t_1): every one of the 16 parameter tensors is in the graph of the final logits. With the right tokens' logits as the objective, all 16 get a nonzero gradient. With cross-entropy at a perfect prediction (loss 0), two underflow to exactly zero in float32: the tournament's logits and the addition table's carry, which sits behind thousands of damped lookups, stage 1's lowzero edge again. s3h's prediction path is s3g's, unchanged (its changes are in the search, the round's acceptance, the gate lesson and T's lesson). Gray: the program itself is a discrete result of search, not a differentiable parameter; training returns zero logits |
 | **14. no data inspection, augmentation, task-specific solvers, custom loops, participant backward** | gray as its parents: the lessons carry designed knowledge (the law library, the template's ladders and step laws, the link law, the loop law, csub); the miner computes statistics over the training batches inside the model; the moved-up rows (CHAIN_NORM) are numbers made from each row's own x and N; the answer rows are chosen by the batch's smallest T (a data-derived rule, no H1 constant) | gray in a new place: the climb is a program search inside the training forward pass, the same kind of thing as the tournament's scoring but over a much bigger space and over many steps; its practice problems are made from the batch rows' own digits (N's top digits and x's at the same places, another row's x, the digits 0-9 run over the probes: no data file is read and no number is made up) and the law library. The curriculum (which laws become practice problems, the register variants, mac) and the round's search space are designed: a strict reader could call the curriculum a task-specific solver written as lessons. No backward call, one optimizer step per evaluator step |
-| **9. everything on the GPU** | yes | the search, the probes and the machines are GPU tensors (generators on the device, no `.cpu()`); Python holds the bookkeeping (programs as tuples, BPE over program text, the schedule), as the schedule always did |
-| **11. 3,600 s of H100 training** | yes: 1,861 s | **yes**: 3,134 s (s3f_official); the round is found about 2,620 s in, the freeze about 2,950 s. The first certified build (s3d) needed a relaxed budget (9,142 s), and an earlier build overran the budget by 346 s inside one climb unit (the deadline was checked only between groups of item classes); the search now checks it inside every batch, acceptance batch and vocabulary build |
+| **9. everything on the GPU** | yes | the search, the probes and the machines are GPU tensors (generators on the device, no `.cpu()`); Python holds the bookkeeping (programs as tuples, BPE over program text, the schedule), as the schedule always did. s3h: each program's primitive instructions are traced on the host from its text (memoized) and copied to the GPU as opcode columns; the machines run them there, long runs replayed from CUDA graphs |
+| **11. 3,600 s of H100 training** | yes: 1,861 s | **yes, on every seed** (s3h): the freeze by 1,341-2,086 s on the eight H100 runs (s3g: about 2,950 s on seed 74, and out of time on two seeds). The first certified build (s3d) needed a relaxed budget (9,142 s), and an earlier build overran the budget by 346 s inside one climb unit (the deadline was checked only between groups of item classes); the search now checks it inside every batch, acceptance batch and vocabulary build |
 <!-- /RULES -->
 
 ## 6. Is Bar 2 cleared?
@@ -563,8 +727,10 @@ multiply, reduce"), and that run certifies at T = 64 on both ladders. Two things
 - *the training recipe*, where the algorithm's decomposition still lives: the instruction set, and a curriculum whose
   practice problems a person chose, including one (mac with the running sum as its addend) designed so that the
   multiply's row becomes a problem of its own;
-- *the official budget*: met (3,134 s of training), but it took practising the pieces in a designed order (the
-  multiply after its row, the reduction after its chain); without that order (s3e) the climb reaches level 5 at the deadline, about 500 s short of the round.
+- *the official budget*: met on every seed (s3h), but it took practising the pieces in a designed order (the
+  multiply after its row, the reduction after its chain); without that order (s3e) the climb reaches level 5 at the
+  deadline, about 500 s short of the round. s3h's speed is an engine change, the same search run faster, not a smaller
+  search.
 
 The acceptance tests say the same from the other side: with the routines the H1 run discovered, no other formula's
 round is a composition of cost <= 5 (§1.3's table). The curriculum, not the data, bounds what stage 3 can learn. Bar 3
@@ -578,7 +744,9 @@ without curated practice tasks the loop never invents x^2 mod N).
 From `cpu_first/` with the sotaku venv's Python. Local commands take seconds and stay well under 1 GB; every search with
 a real budget, every training run and the gradient tests run on Modal.
 
-Build the two files (each builder asserts the md5 of the certified files it reads):
+Build the two files (each builder asserts the md5 of the certified files it reads; `make_stage3.py` writes
+`submission_stage3_s3h.py` and refuses to replace a certified file with a different build, so a new build needs a
+new `OUT`):
 
 ```bash
 ~/github/sotaku/venv/bin/python integration/make_stage1.py
@@ -676,8 +844,78 @@ capped search, the reduction's diagnostic, then variants B and C (A is the c5 ru
 ~/github/sotaku/venv/bin/python ../cpu_first/integration/lib/peek_ab.py ab_B_exact_h100 ab_C_exact_h100
 ```
 
-Stage 3 as certified (`make_stage3.py` builds `submission_stage3.py`, md5 31c9cab2): the official run, then its seeds
-(1-7 on the official manifest on H100s; 74 and 1-7 on CPUs, relaxed to 18,000 s):
+Stage 3's final file, s3h (`make_stage3.py` builds `submission_stage3_s3h.py`; `make_stage3.py s3g` checks that the
+certified s3g file is still built by its sources in `work/s3g/`), from `cpu_first/`: the official run on an H100, its
+seeds 1-7 on the official manifest on H100s, and the eight seeds on B200s (research), through the shared runner:
+
+```bash
+~/github/sotaku/venv/bin/python integration/make_stage3.py
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode official --file integration/submission_stage3_s3h.py --name s3h_official --out integration/records --run s3h-official
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode seeds --file integration/submission_stage3_s3h.py --seeds 1,2,3,4,5,6,7 --hardware h100 --name s3h --out integration/records --run s3h-h100-seeds
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode seeds --file integration/submission_stage3_s3h.py --seeds 8 --hardware b200 --name s3hf --out integration/records/b200 --run s3hf-b200-seeds
+```
+
+s3h's checks, from `cpu_first/` (local, seconds; the training smoke check on Modal, since it takes about 2 GB): the
+lockstep machine against the item-by-item one, bfs for every fuse and the batched acceptance; T's direction lesson
+in log space against s3g's; the gate's NaN; the designed check and the smoke check on s3h:
+
+```bash
+PYTHONPATH=. ~/github/sotaku/venv/bin/python -m integration.lib.test_lockstep
+```
+
+```bash
+PYTHONPATH=. ~/github/sotaku/venv/bin/python integration/checks/stage3_tlesson_check.py
+```
+
+```bash
+PYTHONPATH=. ~/github/sotaku/venv/bin/python integration/checks/stage3_nan_check.py
+```
+
+```bash
+S3_FILE=submission_stage3_s3h.py PYTHONPATH=. ~/github/sotaku/venv/bin/python integration/checks/stage3_designed.py N=4
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run integration/checks/modal_checks.py --script stage3_train_smoke --file submission_stage3_s3h.py --seeds 0 --args "FROM_B=1 STEPS=60 B=64 MODE=\"designed\" SEARCH_STATES=40000 FALLBACK_STATES=40000 MAX_BODY=1 MAX_COST=4 LEVELS=3 ROUND_STATES=20000 ROUND_COST=3 ANS_MIN=8 CELL_WIN=3" --tag smoke_s3h
+```
+
+The diagnostics behind s3h's three fixes (app `integration-s3h`, `lib/modal_s3h.py`: a lib/ module on a GPU; logs in
+`lib/records/s3h/`), from `../one-layer-deeper`: the climb alone, every unit timed (`profile_climb`; `MODULE_FILE`
+loads another libcore, e.g. `lib/libcore_s3g.py`); one search with every apply_items call timed (`profile_task`); the
+round's search on seed 5's dumped pool (`round_pool_diag`); the state hash's merges (`round_hash_diag`):
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach ../cpu_first/integration/lib/modal_s3h.py --mode run --gpu H100 --env '{"MODULE": "integration.lib.profile_climb", "SYNC": "0", "FUSE": "4", "TAG": "pc_g_f4_h100_nosync"}'
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach ../cpu_first/integration/lib/modal_s3h.py --mode run --gpu B200 --env '{"MODULE": "integration.lib.round_pool_diag", "STEP": "619", "TAG": "rp_s3h_s3g5_619"}'
+```
+
+The replays (`lib/debug_patch.py` writes a diagnostic copy of a stage-3 file: REPLAY sets a recorded climb's library
+and round programs at its step instead of climbing, DUMP_STEPS prints the answer pool, GRAD_CHECK checks every
+gradient in phase D), through the shared runner (plans `plans/s3h_debug1.json`, `plans/s3h_debug2.json`, records
+`records/s3h_debug/`):
+
+```bash
+~/github/sotaku/venv/bin/python integration/lib/debug_patch.py integration/submission_stage3_s3h.py integration/work/s3h_debug.py
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode plan --plan integration/plans/s3h_debug2.json --out integration/records/s3h_debug --run s3h-debug2
+```
+
+s3f (`submission_stage3_s3f.py`, md5 31c9cab2; built when it was made by `make_stage3.py` as `submission_stage3.py`):
+the official run, then its seeds (1-7 on the official manifest on H100s; 74 and 1-7 on CPUs, relaxed to 18,000 s):
 
 ```bash
 ~/github/sotaku/venv/bin/python -m modal run --detach ../cpu_first/integration/modal_integration.py --mode plan --plan ../cpu_first/integration/plans/s3f_official.json
@@ -716,14 +954,22 @@ PYTHONPATH=. ~/github/sotaku/venv/bin/python -m integration.lib.test_climb_ab
 Then the tables: `cd integration && ~/github/sotaku/venv/bin/python summarize.py fill INTEGRATION.md`.
 
 **Files** (`cpu_first/integration/`): `make_stage1.py` and `submission_stage1.py`; `stage3_template.py`,
-`make_stage3.py` and `submission_stage3.py` (certified, official), `submission_stage3_s3d.py` (certified, relaxed);
-`lib/` (`libcore.py`, the core stage 3 inlines; `tdsl.py`, `tfast.py`,
+`make_stage3.py` and `submission_stage3_s3h.py` (s3h, the final file: every seed certified on the official manifest),
+`submission_stage3.py` (s3g, certified, official; its sources in `work/s3g/`), `submission_stage3_s3f.py` (certified,
+official), `submission_stage3_s3d.py` (certified, relaxed);
+`lib/` (`libcore.py`, the core stage 3 inlines (s3h's), `libcore_s3g.py` (s3g's, for A/B timing); s3h's tools:
+`test_lockstep.py`, `profile_climb.py`, `profile_task.py`, `bench_apply.py`, `modal_s3h.py`, `debug_patch.py`,
+`round_pool_diag.py`, `round_hash_diag.py`, `s3g5_pools.json` (seed 5's dumped answer pools), `s3g5_sleeps.txt`,
+`s3g6_sleeps.txt` (recorded libraries); `tdsl.py`, `tfast.py`,
 `inclimb.py`, `cells.py`, `round_search.py`, `round_proxy.py`, `dslste.py`, their tests, `modal_climb.py`,
 `r11_lib.json`: the library study's offline library, for the checks and the proxy; the A/B: `climb_ab.py`,
 `modal_ab.py`, `profile_search.py`, `debug_reduce.py`, `debug_round.py`, `peek_ab.py`, `test_climb_ab.py`;
 `s3d_lib.json`, `s3f_lib.json`: the libraries the certified runs discovered); `checks/` (the phase-C check, the
-gradient tests, stage 3's designed, smoke and answer-pool checks, `modal_checks.py`); `modal_integration.py`,
+gradient tests, stage 3's designed, smoke and answer-pool checks, s3h's `stage3_tlesson_check.py` and
+`stage3_nan_check.py`, `modal_checks.py`); `modal_integration.py`,
 `wait_fetch.py`, `wait_climbs.py`, `wait_vol.py`, `wait_log.py` (waiters on the Volume and a live log), `peek.py` (live
-progress of the runs), `summarize.py`; `plans/`, `records/` (`records/partial/`: the logs of the stopped stage-3 runs);
-`work/merged_raw.py` (the raw 3-way merge, for reading the conflicts).
+progress of the runs), `summarize.py`; `plans/`, `records/` (`records/partial/`: the logs of the stopped stage-3 runs;
+`records/b200/`: the research seeds on B200s; `records/s3h_debug/`: s3h's replays); `work/merged_raw.py` (the raw 3-way
+merge, for reading the conflicts), `work/s3g/` (s3g's template and libcore), `work/s3g_debug.py`, `work/s3h_debug.py`
+(the replays' diagnostic copies).
 <!-- /REPRO -->

@@ -1,0 +1,7 @@
+device NVIDIA H100 80GB HBM3 level 4 routines ['T.add', 'T.add~', 'T.lt', 'T.lt~', 'T.modB', 'T.modB~', 'T.modx', 'T.modx~', 'T.mrow', 'T.mrow~']
+SEARCH {"task": "mac", "found_cost": 5, "level_sizes": [1, 40, 1137, 30319, 805079, 28501980], "seconds": 187.9, "stop": "budget: level 5 streamed (over 5800000 states)", "how": "routines", "programs": ["LDH.Y CLK P[MUL.X INC]", "CLK LDH.Y P[MUL.X INC]"], "runs": [{"how": "routines", "found_cost": 5, "level_sizes": [1, 40, 1137, 30319, 805079, 28501980], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 72.5}]}
+CALLS mac: 0 calls, 0.0s in apply_items
+SEARCH {"task": "step~", "found_cost": null, "level_sizes": [1, 49, 1581, 47482, 1435988, 59859704], "seconds": 318.8, "stop": "budget: level 5 streamed (over 5800000 states)", "how": "library", "programs": [], "runs": [{"how": "routines", "found_cost": null, "level_sizes": [1, 41, 1105, 27394, 678412, 23856602], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 71.7}, {"how": "library", "found_cost": null, "level_sizes": [1, 49, 1581, 47482, 1435988, 59859704], "stop": "budget: level 5 streamed (over 5800000 states)", "seconds": 151.0}, {"how": "primitives", "found_cost": null, "level_sizes": [1, 32, 736, 16621, 389818, 8937233, 290561290], "stop": "budget: level 6 streamed (over 27000000 states)", "seconds": 38.4}]}
+CALLS step~: 0 calls, 0.0s in apply_items
+
+EXIT 0

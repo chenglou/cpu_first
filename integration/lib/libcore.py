@@ -18,6 +18,7 @@ Rows are digit tensors (LSB first), as the model's reader produces them; no numb
 from __future__ import annotations
 
 import time
+from array import array
 from collections import Counter
 import torch
 
@@ -241,6 +242,7 @@ class Cells:
         self.sbb = torch.stack([self.sbb_d, self.sbb_c], -1).reshape(B * B * 2, 2)
         self.adc = torch.stack([self.adc_d, self.adc_c], -1).reshape(B * B * 2, 2)
         self.mul = torch.stack([self.mul_lo, self.mul_hi], -1).reshape(B ** 4, 2)
+        self.alu = torch.cat([self.sbb, self.adc, self.mul]).to(torch.uint8)    # the lockstep machine's one lookup
 
 
 class Setting:
@@ -437,9 +439,9 @@ def _groups(ids):
     return out
 
 
-def apply_items(st, b, item_of_row, items, lib):
-    """A new batch: row r of b with items[item_of_row[r]] applied; tokens run once per distinct token, loops run their
-    iterations together with the body's elements grouped position by position."""
+def _apply_grouped(st, b, item_of_row, items, lib):
+    """apply_items item by item: tokens run once per distinct token, loops run their iterations together with the
+    body's elements grouped position by position."""
     out = b.copy()
     dev = b.regs.device
     loop = [is_loop(it) and it[1] not in lib for it in items]
@@ -471,6 +473,333 @@ def apply_items(st, b, item_of_row, items, lib):
                 sub = out.take(idx)
                 run_items(st, sub, (eid[u],), lib)
                 _put(out, idx, sub)
+    return out
+
+
+# the lockstep machine: every row runs its own primitive instructions, one per step, all rows in the same kernels
+OPCODE = {t: i for i, t in enumerate(PRIMS)}
+NOP = len(PRIMS)                 # no instruction (a sequence shorter than the others it runs with)
+SAVE = NOP + 1                   # a routine's entry at depth d (SAVE + 2 d) keeps the pointer, its exit (SAVE + 2 d + 1)
+MAX_DEPTH = 32                   #   restores it
+_TRACES = {}                     # (P, B, W, id(lib)) -> (lib, {item: (instructions, depth)})
+_OPS = {}                        # (P, device) -> _Ops
+# apply_items' time model (microseconds; measured on an H100, s3h): a lockstep step, plus per row; an instruction run on
+# one group of rows, plus per row; a group's split and merge
+LOCK_STEP, LOCK_ROW, PRIM_STEP, PRIM_ROW, GROUP_FIX = 200.0, 0.0025, 25.0, 0.004, 60.0
+LOCK_COST = 0.0                  # (tests: a large negative value forces the lockstep on every bucket)
+LOCK_ROWS = 1 << 22              # a lockstep runs at most this many rows at once (its step's temporaries: ~1 KB a row)
+
+
+def trace(st, items, lib, out, depth=0):
+    """The primitive instructions run_items executes for items at setting st, in order, as opcodes (a routine between
+    its pointer's save and restore); returns the deepest routine nesting."""
+    deep = depth
+    for it in items:
+        if is_loop(it):
+            _, kind, body = it
+            if kind in lib:
+                deep = max(deep, trace(st, fill(lib[kind], body[0]), lib, out, depth))
+            else:
+                for _ in range(st.count(kind)):
+                    deep = max(deep, trace(st, body, lib, out, depth))
+        elif it in lib:
+            if it.startswith("T."):
+                assert depth < MAX_DEPTH, it
+                out.append(SAVE + 2 * depth)
+                deep = max(deep, trace(st, lib[it], lib, out, depth + 1))
+                out.append(SAVE + 2 * depth + 1)
+            else:
+                deep = max(deep, trace(st, lib[it], lib, out, depth))
+        else:
+            out.append(OPCODE[it])
+    return deep
+
+
+TRACE_KEEP = 50_000_000         # instructions the trace memo holds before it starts over (int16: 100 MB)
+
+
+def _traces(st, lib):
+    """The memo of traces at st's sizes under lib, kept while lib is (a lib only ever gains names; a name's definition
+    never changes): {(item, depth): (instructions as array('h'), deepest nesting)}."""
+    key = (st.P, st.B, st.W, id(lib) if lib else 0)
+    ent = _TRACES.get(key)
+    if ent is None or (lib and ent[0] is not lib) or ent[2][0] > TRACE_KEEP:
+        while len(_TRACES) >= 6:
+            _TRACES.pop(next(iter(_TRACES)))
+        ent = _TRACES[key] = (lib, {}, [0])
+    return ent
+
+
+def _trace_of(st, it, lib, depth, ent):
+    """trace() of one item at a routine depth, memoized: array('h') of opcodes and the deepest nesting."""
+    memo = ent[1]
+    got = memo.get((it, depth))
+    if got is not None:
+        return got
+    if is_loop(it):
+        _, kind, body = it
+        if kind in lib:
+            got = _trace_seq(st, fill(lib[kind], body[0]), lib, depth, ent)
+        else:
+            ops, deep = _trace_seq(st, body, lib, depth, ent)
+            got = (ops * st.count(kind), deep)
+    elif it in lib:
+        if it.startswith("T."):
+            assert depth < MAX_DEPTH, it
+            ops, deep = _trace_seq(st, lib[it], lib, depth + 1, ent)
+            got = (array("h", [SAVE + 2 * depth]) + ops + array("h", [SAVE + 2 * depth + 1]), deep)
+        else:
+            got = _trace_seq(st, lib[it], lib, depth, ent)
+    else:
+        got = (array("h", [OPCODE[it]]), depth)
+    memo[(it, depth)] = got
+    ent[2][0] += len(got[0])
+    return got
+
+
+def _trace_seq(st, items, lib, depth, ent):
+    ops, deep = array("h"), depth
+    for it in items:
+        o, d = _trace_of(st, it, lib, depth, ent)
+        ops += o
+        deep = max(deep, d)
+    return ops, deep
+
+
+class _Ops:
+    """Every opcode's effect as table rows, for one register size P: where each register place comes from (rm; 5 P is
+    a zero), the cell family and its register (SBB 1, ADC 2, MUL 3), and the other instructions' flags."""
+
+    def __init__(self, P, device):
+        n, Z = SAVE + 2 * MAX_DEPTH, 5 * P
+        ar = torch.arange(P)
+        rm = torch.arange(5 * P).repeat(n, 1)
+        fam, ralu, rldh, dep = (torch.zeros(n, dtype=torch.long) for _ in range(4))
+        flag = {f: torch.zeros(n, dtype=torch.bool) for f in ("sel", "clc", "clk", "ldh", "inc", "save", "rest")}
+        for tok, o in OPCODE.items():
+            op, _, arg = tok.partition(".")
+            r = RI.get(arg, 0)
+            if op in ("SBB", "ADC", "MUL"):
+                fam[o], ralu[o] = {"SBB": 1, "ADC": 2, "MUL": 3}[op], r
+            elif op == "LDA":
+                rm[o, :P] = r * P + ar
+            elif op == "STA":
+                rm[o, r * P:(r + 1) * P] = ar
+            elif op == "CLA":
+                rm[o, :P] = Z
+            elif op == "LDH":
+                flag["ldh"][o], rldh[o] = True, r
+            elif op == "SHL":
+                rm[o, r * P] = Z
+                rm[o, r * P + 1:(r + 1) * P] = r * P + ar[:-1]
+            elif op == "SHR":
+                rm[o, (r + 1) * P - 1] = Z
+                rm[o, r * P:(r + 1) * P - 1] = r * P + ar[1:]
+            elif op == "BRG":
+                rm[o, 0] = X_ * P + P - 1
+                rm[o, 1:P] = ar[:-1]
+                rm[o, X_ * P] = Z
+                rm[o, X_ * P + 1:(X_ + 1) * P] = X_ * P + ar[:-1]
+            else:
+                flag[{"SEL": "sel", "CLC": "clc", "CLK": "clk", "INC": "inc"}[op]][o] = True
+        for d in range(MAX_DEPTH):
+            flag["save"][SAVE + 2 * d], flag["rest"][SAVE + 2 * d + 1] = True, True
+            dep[SAVE + 2 * d] = dep[SAVE + 2 * d + 1] = d
+        self.P, self.Z = P, Z
+        self.rm = rm.to(device)
+        self.ri = torch.stack([ralu * P, rldh * P], 1).to(device)       # the register a cell or LDH reads, as a place
+        self.dep = dep.to(device)
+        self.flags = torch.stack([flag[f] for f in ("sel", "clc", "clk", "ldh", "inc", "save", "rest")]
+                                 + [fam > 0, (fam == 1) | (fam == 2), fam == 3], 1).to(device)
+        # the cell table's row (Cells.alu: the subtraction's 2 B^2 rows, the addition's, then the multiply's B^4) as
+        # off + a ca + x cx + c cc + h ch + k ck over (a, x, c, h, k)
+        self.B = None
+
+    def coefs(self, B):
+        if self.B != B:
+            n = self.flags.shape[0]
+            co = torch.zeros(n, 6, dtype=torch.int32)
+            fam = torch.zeros(n, dtype=torch.long)
+            for tok, o in OPCODE.items():
+                op = tok.partition(".")[0]
+                if op in ("SBB", "ADC"):
+                    co[o] = torch.tensor([2 * B, 2, 1, 0, 0, 0 if op == "SBB" else 2 * B * B], dtype=torch.int32)
+                elif op == "MUL":
+                    co[o] = torch.tensor([B ** 3, B * B, 0, B, 1, 4 * B * B], dtype=torch.int32)
+            self.co, self.B = co.to(self.rm.device), B
+        return self.co
+
+
+def _ops(P, device):
+    key = (P, str(device))
+    if key not in _OPS:
+        _OPS[key] = _Ops(P, device)
+    return _OPS[key]
+
+
+def _ustep(o, alu, co, regs, c, h, k, p, ps, op, ar, ad):
+    """One instruction on every machine, each its own (op [S]), exactly as step() runs it: regs [S, 5 P, NP] uint8
+    (flat, contiguous), c, h, k [S, NP] uint8, p [S], ps [S, D] the routines' saved pointers (ar, ad: aranges of S and
+    D). Returns the new state. Register moves go by words of the probes' bytes (8, 4 or 2 at a time, as NP allows);
+    the three cells by one table (Cells.alu) at one row index per probe."""
+    S, P = op.shape[0], o.P
+    NP = regs.shape[2]
+    fl = o.flags[op]
+    m = o.rm[op]
+    wd = torch.int64 if NP % 8 == 0 else torch.int32 if NP % 4 == 0 else torch.int16 if NP % 2 == 0 else torch.uint8
+    w = regs.view(wd)
+    g = w.gather(1, m.clamp(max=o.Z - 1)[:, :, None].expand(S, o.Z, w.shape[2]))
+    g = g.masked_fill_((m == o.Z)[:, :, None], 0).view(torch.uint8)
+    sel = fl[:, 0:1] & (c > 0)
+    g[:, :P] = torch.where(sel[:, None, :], g[:, 4 * P:], g[:, :P])
+    ri = o.ri[op]
+    a = g[ar, p]
+    v = torch.stack([a, g[ar, ri[:, 0] + p], c, h, k], -1).int()
+    cf = co[op]
+    out = alu[((v * cf[:, None, :5]).sum(-1) + cf[:, 5:6]).long()]
+    g[ar, p] = torch.where(fl[:, 7:8], out[..., 0], a)
+    c = torch.where(fl[:, 8:9], out[..., 1], c).masked_fill_(fl[:, 1:2], 0)
+    k = torch.where(fl[:, 9:10], out[..., 1], k).masked_fill_(fl[:, 2:3], 0)
+    h = torch.where(fl[:, 3:4], g[ar, ri[:, 1] + p], h)
+    if ps.shape[1]:
+        d = o.dep[op].clamp(max=ps.shape[1] - 1)[:, None]
+        ps = torch.where(fl[:, 5:6] & (ad == d), p[:, None], ps)
+        p = torch.where(fl[:, 6], ps.gather(1, d)[:, 0], p)
+    p = torch.where(fl[:, 4], (p + 1) % P, p)
+    return g, c, h, k, p, ps
+
+
+def _columns(arrs, n, dev, block=512):
+    """The instructions of the sequences arrs (array('h') each, at most n long), NOP-padded, as columns on the device:
+    [n, len(arrs)] (built block by block of steps, so that no index tensor is larger than block x len(arrs))."""
+    flat = array("h")
+    offs = []
+    for a in arrs:
+        offs.append(len(flat))
+        flat += a
+    flat.append(NOP)
+    f = torch.frombuffer(flat, dtype=torch.int16).to(dev)
+    off = torch.tensor(offs, dtype=torch.long, device=dev)
+    ln = torch.tensor([len(a) for a in arrs], dtype=torch.long, device=dev)
+    out = torch.empty(n, len(arrs), dtype=torch.long, device=dev)
+    for t0 in range(0, n, block):
+        t = torch.arange(t0, min(n, t0 + block), device=dev)[:, None]
+        out[t0:t0 + block] = f[torch.where(t < ln[None], off[None] + t, len(flat) - 1)]
+    return out
+
+
+GRAPH_STEPS = 32                 # on a GPU, a long lockstep replays its steps from a captured CUDA graph of this many
+GRAPH_MIN = 192                  #   steps (0: never), from this many steps on (the same kernels, one launch per graph)
+
+
+def _lockstep(st, b, cols, lr, depth):
+    """b's rows (a Batch, in place) run their sequences, one step per column of cols [n, items] (opcodes, NOP-padded;
+    lr [S]: each row's column), all rows at once."""
+    S, _, P, NP = b.regs.shape
+    dev = b.regs.device
+    o = _ops(P, dev)
+    co = o.coefs(st.B)
+    state = [b.regs.reshape(S, 5 * P, NP).contiguous(), b.c, b.h, b.k, b.p,
+             torch.zeros(S, depth, dtype=torch.long, device=dev)]
+    ar, ad = torch.arange(S, device=dev), torch.arange(depth, device=dev)[None]
+    n = cols.shape[0]
+    t0 = 0
+    if dev.type == "cuda" and GRAPH_STEPS and n >= GRAPH_MIN:
+        state, t0 = _graph_steps(o, st.cells.alu, co, state, cols, lr, ar, ad)
+    for t in range(t0, n):
+        state = list(_ustep(o, st.cells.alu, co, *state, cols[t][lr], ar, ad))
+    regs, c, h, k, p, _ = state
+    b.regs, b.c, b.h, b.k, b.p = regs.view(S, 5, P, NP), c, h, k, p
+
+
+def _graph_steps(o, alu, co, state, cols, lr, ar, ad):
+    """As many whole blocks of GRAPH_STEPS steps as cols has, by one CUDA graph: the first block runs eagerly on static
+    buffers (it also warms up), the second is captured (capture records, it does not run), then the graph is replayed
+    for the rest. Returns the state and the steps done."""
+    with torch.no_grad():
+        return _graph_steps_(o, alu, co, state, cols, lr, ar, ad)
+
+
+def _graph_steps_(o, alu, co, state, cols, lr, ar, ad):
+    K = GRAPH_STEPS
+    nb = cols.shape[0] // K
+    buf = [x.clone() for x in state]
+    t = torch.zeros(1, dtype=torch.long, device=cols.device)
+
+    def block():
+        cur = buf
+        for _ in range(K):
+            cur = _ustep(o, alu, co, *cur, cols.index_select(0, t)[0][lr], ar, ad)
+            t.add_(1)
+        for x, y in zip(buf, cur):
+            x.copy_(y)
+    side = torch.cuda.Stream()
+    side.wait_stream(torch.cuda.current_stream())
+    with torch.cuda.stream(side):
+        block()
+    torch.cuda.current_stream().wait_stream(side)
+    if nb > 1:
+        g = torch.cuda.CUDAGraph()
+        with torch.cuda.graph(g):
+            block()
+        for _ in range(nb - 1):
+            g.replay()
+        del g
+    return buf, nb * K
+
+
+def apply_items(st, b, item_of_row, items, lib):
+    """A new batch: row r of b with items[item_of_row[r]] applied. Each distinct item is traced into the instructions
+    run_items would execute (trace); the rows then run their own instructions in lockstep, one per step, every row in
+    the same kernels (_ustep), grouped by the length of their sequences (powers of 2) so that short ones do not wait
+    for long ones. When few distinct items share the steps, item by item (_apply_grouped) launches fewer kernels and
+    is used instead. Both give exactly run_items' result."""
+    ent = _traces(st, lib)
+    seqs = [_trace_of(st, it, lib, 0, ent) for it in items]
+    lens = [len(s[0]) for s in seqs]
+    bk = [n.bit_length() if n else 0 for n in lens]                   # 0; 1; 2-3; 4-7; ...: one lockstep per bucket
+    nb = max(bk, default=0) + 1
+    mx, per = [0] * nb, [[] for _ in range(nb)]
+    loc = [0] * len(items)
+    for i, (j, n) in enumerate(zip(bk, lens)):
+        mx[j] = max(mx[j], n)
+        loc[i] = len(per[j])
+        per[j].append(i)
+    S, k = b.S, max(1, len(items))
+    rows_per = S / k
+    lock = {j for j in range(1, nb) if per[j] and LOCK_COST + mx[j] * (LOCK_STEP + len(per[j]) * rows_per * LOCK_ROW)
+            < sum(lens[i] * (PRIM_STEP + rows_per * PRIM_ROW) + GROUP_FIX for i in per[j])}
+    if b.S == 0 or not lock:
+        return _apply_grouped(st, b, item_of_row, items, lib)
+    out = b.copy()
+    dev = b.regs.device
+    loc_row = torch.tensor(loc, dtype=torch.long, device=dev)[item_of_row]
+    rest = [j for j in range(1, nb) if per[j] and j not in lock]
+    if len(lock) == 1 and not rest and not per[0]:
+        parts = [(next(iter(lock)), None)]
+    else:
+        bucket = torch.tensor(bk, dtype=torch.long, device=dev)[item_of_row]
+        order = torch.sort(bucket, stable=True).indices
+        counts = torch.bincount(bucket, minlength=nb).tolist()
+        starts = [sum(counts[:j]) for j in range(nb)]
+        parts = [(j, order[starts[j]:starts[j] + counts[j]]) for j in range(1, nb) if per[j] and counts[j]]
+    for j, idx in parts:
+        sub = out if idx is None else out.take(idx)
+        lr = loc_row if idx is None else loc_row[idx]
+        if j in lock:
+            cols = _columns([seqs[i][0] for i in per[j]], mx[j], dev)
+            depth = max(seqs[i][1] for i in per[j])
+            if sub.S <= LOCK_ROWS:
+                _lockstep(st, sub, cols, lr, depth)
+            else:                                    # in slices of rows: a step's temporaries stay bounded
+                for r0 in range(0, sub.S, LOCK_ROWS):
+                    part = sub.take(slice(r0, r0 + LOCK_ROWS)).copy()
+                    _lockstep(st, part, cols, lr[r0:r0 + LOCK_ROWS], depth)
+                    _put(sub, slice(r0, r0 + LOCK_ROWS), part)
+        else:
+            sub = _apply_grouped(st, sub, lr, [items[i] for i in per[j]], lib)
+        if idx is not None:
+            _put(out, idx, sub)
     return out
 
 
@@ -506,7 +835,7 @@ def _signatures(settings, tests, items, lib, chunk=1 << 21, deadline=None):
 
 
 def enumerate_items(tokens, lib, settings, device, max_body=2, max_arity=3, seed=7, S_test=24, NP_test=6,
-                    deadline=None, cache=None):
+                    deadline=None, cache=None, chunk=1 << 21):
     """Every distinct item (tokens, then loops over bodies of cost up to max_body built from the distinct items so
     far), the cheapest spelling first: items that agree on S_test random machines of every setting are one item.
     Raises Deadline if the deadline passes. cache: {item: signature} kept across calls with the same settings (the
@@ -516,10 +845,10 @@ def enumerate_items(tokens, lib, settings, device, max_body=2, max_arity=3, seed
 
     def sigs(items):
         if cache is None:
-            return _signatures(settings, tests, items, lib, deadline=deadline)
+            return _signatures(settings, tests, items, lib, chunk=chunk, deadline=deadline)
         miss = list(dict.fromkeys(it for it in items if it not in cache))
         if miss:
-            for it, sg in zip(miss, _signatures(settings, tests, miss, lib, deadline=deadline)):
+            for it, sg in zip(miss, _signatures(settings, tests, miss, lib, chunk=chunk, deadline=deadline)):
                 cache[it] = sg
         return [cache[it] for it in items]
     ident = sigs([("REP", ONE, ())])[0]
@@ -591,13 +920,15 @@ def _fresh(seen, keys):
 
 
 def bfs(prob, classes, lib, max_cost=8, max_states=400_000, accept=None, limit=200, deadline=None, chunk=1 << 21,
-        listing="spellings", max_goals=50_000, spell=8, batch=256):
+        listing="spellings", max_goals=50_000, spell=8, batch=256, fuse=1):
     """Breadth-first by cost, states merged over every probe of every setting, every minimal-cost parent kept. Stops
     at the first cost whose goal programs pass `accept`, when a level would pass max_states (that level is finished
     streaming goal states only), or at the deadline. The goal programs tested: the first `limit` spellings
     (listing "spellings"), or one spelling per goal state (listing "goals"), tested in batches, fewest top-level items
     first (then fewest primitives), until a batch has one that passes; the accepted goal states then give up to `spell`
-    spellings each that pass."""
+    spellings each that pass. A level's work is blocks of (items, source states) of at most `chunk` rows, taken in
+    order; up to `fuse` chunks' worth of consecutive blocks run in one apply_items call (fewer lockstep steps per row;
+    every block is then treated as alone, so the result is the same for any fuse)."""
     settings = prob.settings
     dev = prob.roots[0].regs.device
     levels = [prob.roots]
@@ -617,63 +948,82 @@ def bfs(prob, classes, lib, max_cost=8, max_states=400_000, accept=None, limit=2
         ck, cc, cs, ci_, chunks, gk = [], [], [], [], [], []
         n_cand = n_fresh = 0
         late = False
-        for c, cis in by_cost.items():
-            sl = d - c
-            if sl < 0 or levels[sl] is None or late:
-                continue
-            S_src = levels[sl][0].S
-            for s0 in range(0, S_src, chunk):
-                if late:
-                    break
-                srcs = [b.take(slice(s0, s0 + chunk)) for b in levels[sl]]
-                ns = srcs[0].S
-                i_step = max(1, chunk // ns)
-                for i0 in range(0, cis.numel(), i_step):
-                    if _late(deadline):
-                        late = True
-                        break
-                    ii = cis[i0:i0 + i_step]
-                    k = ii.numel()
-                    ri = torch.arange(k, device=dev).repeat_interleave(ns)
-                    rs = torch.arange(ns, device=dev).repeat(k)
-                    part = [classes[i].rep for i in ii.tolist()]
-                    outs = [apply_items(st, b.take(rs), ri, part, lib) for st, b in zip(settings, srcs)]
-                    keys = keys_of(outs)
-                    m = _fresh(seen, keys)
-                    if not bool(m.any()):
-                        continue
-                    idx = torch.nonzero(m).flatten()
-                    n_fresh += idx.numel()
-                    sub = [b.take(idx) for b in outs]
-                    del outs
-                    g = prob.goal(sub)
-                    if bool(g.any()):
-                        gk.append(keys[idx][g])
-                    if last:
-                        if not bool(g.any()):
-                            continue
-                        gi = torch.nonzero(g).flatten()
-                        idx, sub = idx[gi], [b.take(gi) for b in sub]
-                    ck.append(keys[idx])
-                    cc.append(ii[ri[idx]])
-                    cs.append(torch.full((idx.numel(),), sl, dtype=torch.long, device=dev))
-                    ci_.append(rs[idx] + s0)
-                    chunks.append(sub)
-                    n_cand += idx.numel()
-                    if not last and n_cand > 1.5 * max_states:
-                        last = True
-                        res.stop = f"budget: level {d} streamed (over {max_states} states)"
-                        new = [[], [], [], [], []]
-                        for j in range(len(chunks)):
-                            gm = torch.nonzero(prob.goal(chunks[j])).flatten()
-                            if gm.numel():
-                                for lst, t in zip(new, (ck[j], cc[j], cs[j], ci_[j])):
-                                    lst.append(t[gm])
-                                new[4].append([b.take(gm) for b in chunks[j]])
-                        ck, cc, cs, ci_, chunks = new
-            if late or _late(deadline):
-                res.stop = f"deadline at level {d}"
+        def blocks(d=d):
+            for c, cis in by_cost.items():
+                sl = d - c
+                if sl < 0 or levels[sl] is None:
+                    continue
+                for s0 in range(0, levels[sl][0].S, chunk):
+                    srcs = [b.take(slice(s0, s0 + chunk)) for b in levels[sl]]
+                    i_step = max(1, chunk // srcs[0].S)
+                    for i0 in range(0, cis.numel(), i_step):
+                        yield cis[i0:i0 + i_step], sl, s0, srcs
+        work = blocks()
+        nxt = next(work, None)
+        while nxt is not None:
+            if _late(deadline):
+                late = True
                 break
+            group, n_rows = [], 0
+            while nxt is not None and (not group or n_rows + nxt[0].numel() * nxt[3][0].S <= fuse * chunk):
+                group.append(nxt)
+                n_rows += nxt[0].numel() * nxt[3][0].S
+                nxt = next(work, None)
+            parts, its, srcrows = [], [], [[] for _ in settings]
+            for ii, sl, s0, srcs in group:
+                ns, k = srcs[0].S, ii.numel()
+                its.append(torch.arange(k, device=dev).repeat_interleave(ns) + len(parts))
+                parts.extend(classes[i].rep for i in ii.tolist())
+                rs = torch.arange(ns, device=dev).repeat(k)
+                for si, b in enumerate(srcs):
+                    srcrows[si].append(b.take(rs))
+            ri_all = its[0] if len(its) == 1 else torch.cat(its)
+            outs_all = [apply_items(st, r[0] if len(r) == 1 else Batch.concat(r), ri_all, parts, lib)
+                        for st, r in zip(settings, srcrows)]
+            del srcrows
+            off = 0
+            for ii, sl, s0, srcs in group:
+                ns, k = srcs[0].S, ii.numel()
+                outs = outs_all if len(group) == 1 else [o.take(slice(off, off + k * ns)) for o in outs_all]
+                off += k * ns
+                ri = torch.arange(k, device=dev).repeat_interleave(ns)
+                rs = torch.arange(ns, device=dev).repeat(k)
+                keys = keys_of(outs)
+                m = _fresh(seen, keys)
+                if not bool(m.any()):
+                    continue
+                idx = torch.nonzero(m).flatten()
+                n_fresh += idx.numel()
+                sub = [b.take(idx) for b in outs]
+                del outs
+                g = prob.goal(sub)
+                if bool(g.any()):
+                    gk.append(keys[idx][g])
+                if last:
+                    if not bool(g.any()):
+                        continue
+                    gi = torch.nonzero(g).flatten()
+                    idx, sub = idx[gi], [b.take(gi) for b in sub]
+                ck.append(keys[idx])
+                cc.append(ii[ri[idx]])
+                cs.append(torch.full((idx.numel(),), sl, dtype=torch.long, device=dev))
+                ci_.append(rs[idx] + s0)
+                chunks.append(sub)
+                n_cand += idx.numel()
+                if not last and n_cand > 1.5 * max_states:
+                    last = True
+                    res.stop = f"budget: level {d} streamed (over {max_states} states)"
+                    new = [[], [], [], [], []]
+                    for j in range(len(chunks)):
+                        gm = torch.nonzero(prob.goal(chunks[j])).flatten()
+                        if gm.numel():
+                            for lst, t in zip(new, (ck[j], cc[j], cs[j], ci_[j])):
+                                lst.append(t[gm])
+                            new[4].append([b.take(gm) for b in chunks[j]])
+                    ck, cc, cs, ci_, chunks = new
+            del outs_all
+        if late or _late(deadline):
+            res.stop = f"deadline at level {d}"
         if ck:
             allk = torch.cat(ck)
             uk, inv = torch.unique(allk, sorted=True, return_inverse=True)
@@ -1031,11 +1381,20 @@ def round_problem(cells, rows, NP, P, device, seed=0):
 
 
 def round_fit(prog, lib, cells, rows, P, device, seed=1):
-    """The share of answer rows (Nd, Xd, Yd) the program reproduces at the task's size."""
+    """The share of answer rows (Nd, Xd, Yd) the program reproduces at the task's size (a report: on a GPU the mean is
+    a float32 sum times 1/n, below 1.0 for some n although every row is right; round_ok is the exact test)."""
     Nd, Xd, Yd = rows
     st = round_settings(cells, P)
     A, _ = run_prog(st, prog, lib, {"X": pad(Xd, P), "N": pad(Nd, P)}, gen_on(device, seed), device)
     return float((A[:, :Yd.shape[1]] == Yd).all(1).float().mean())
+
+
+def round_ok(prog, lib, cells, rows, P, device, seed=1):
+    """Does the program reproduce every answer row (Nd, Xd, Yd) at the task's size? (round_fit's machine and seed.)"""
+    Nd, Xd, Yd = rows
+    st = round_settings(cells, P)
+    A, _ = run_prog(st, prog, lib, {"X": pad(Xd, P), "N": pad(Nd, P)}, gen_on(device, seed), device)
+    return bool((A[:, :Yd.shape[1]] == Yd).all())
 
 
 # ===================================================================================================== the climb
@@ -1079,13 +1438,17 @@ class Climb:
       listing="goals": every goal state is tested (bfs), with the acceptance probes built once per search;
       occam_steps: Occam's ties go to the program that executes fewer steps;
       merged_routines: a solved task whose whole program BPE merged into one item still becomes a routine (by its
-        expanded size; else the multiply can end up a merge the round's search does not see)."""
+        expanded size; else the multiply can end up a merge the round's search does not see);
+      round_retry: once the climb is done and no round was found, the round is searched again every round_retry calls,
+        on the answers as they are then (0: never);
+      fuse: bfs runs up to this many chunks' worth of consecutive blocks in one apply_items call (the same search, faster
+        on a GPU)."""
 
     def __init__(self, cells, device, P_round, budget=3_000_000, fallback_budget=16_000_000, max_body=3, max_cost=7,
                  min_count=2.0, max_merges=12, levels=12, NP=8, round_budget=4_000_000, round_cost=5,
                  settings=((10, 1), (10, 2)), verify=((10, 1), (10, 2), (10, 3)), chunk=1 << 21,
                  comp_first=False, comp_body=3, skip_twins=False, stall_after=0, search_s=None, listing="spellings",
-                 occam_steps=False, merged_routines=False):
+                 occam_steps=False, merged_routines=False, round_retry=0, fuse=1):
         self.cells, self.device, self.P_round = cells, device, P_round
         self.tasks = task_names()
         self.budget, self.fallback_budget, self.max_body, self.max_cost = budget, fallback_budget, max_body, max_cost
@@ -1103,6 +1466,7 @@ class Climb:
         self.comp_first, self.comp_body, self.skip_twins = comp_first, comp_body, skip_twins
         self.stall_after, self.search_s, self.listing = stall_after, search_s, listing
         self.occam_steps, self.merged_routines = occam_steps, merged_routines
+        self.round_retry, self._idle, self.fuse = round_retry, 0, fuse
         self._sig_cache = {}                  # item -> signature on the settings' test machines (enumerate_items)
         self.used_up = Counter()              # task -> searches that used up their caps without a program
         self.stalled, self.skipped = {}, {}   # task -> the level from which it is not searched (fully)
@@ -1142,7 +1506,7 @@ class Climb:
         if self._comp is None or self._comp[0] != routines:
             self._comp = (routines, enumerate_items(list(PRIMS) + list(routines), self.lib, self.settings,
                                                     self.device, max_body=self.comp_body, deadline=deadline,
-                                                    cache=self._sig_cache))
+                                                    cache=self._sig_cache, chunk=self.chunk * self.fuse))
         return self._comp[1]
 
     def classes(self, prims_only=False, deadline=None):
@@ -1150,7 +1514,8 @@ class Climb:
         if self._classes is None or self._classes[0] != key:
             tokens = list(PRIMS) + ([] if prims_only else [k for k in self.lib])
             self._classes = (key, enumerate_items(tokens, {} if prims_only else self.lib, self.settings, self.device,
-                                                  max_body=self.max_body, deadline=deadline, cache=self._sig_cache))
+                                                  max_body=self.max_body, deadline=deadline, cache=self._sig_cache,
+                                                  chunk=self.chunk * self.fuse))
         return self._classes[1]
 
     def search(self, task, rows, deadline=None):
@@ -1176,7 +1541,7 @@ class Climb:
             t1 = time.time()
             r = bfs(prob, classes, lib, max_cost=self.max_cost, max_states=cap,
                     accept=ok.many if self.listing == "goals" else (lambda ps: [ok(p) for p in ps]),
-                    deadline=deadline, chunk=self.chunk, listing=self.listing)
+                    deadline=deadline, chunk=self.chunk, listing=self.listing, fuse=self.fuse)
             runs.append(dict(how=how, found_cost=r.found_cost, level_sizes=r.level_sizes, stop=r.stop,
                              seconds=round(time.time() - t1, 1)))
             return r
@@ -1216,14 +1581,14 @@ class Climb:
             classes = enumerate_items(list(PRIMS) + routines, self.lib, prob.settings, self.device, max_body=0,
                                       deadline=deadline)
             res = bfs(prob, classes, self.lib, max_cost=self.round_cost, max_states=self.round_budget,
-                      accept=lambda ps: [round_fit(p, self.lib, self.cells, answers, self.P_round, self.device) == 1.0
-                                         for p in ps], deadline=deadline, chunk=max(1, self.chunk // 4))
+                      accept=lambda ps: [round_ok(p, self.lib, self.cells, answers, self.P_round, self.device)
+                                         for p in ps], deadline=deadline, chunk=max(1, self.chunk // 4), fuse=self.fuse)
         except Deadline:
             res = Result("round")
             res.stop = "deadline (building the vocabulary)"
         rec = dict(task="round", level=self.level, found_cost=res.found_cost, level_sizes=res.level_sizes,
                    seconds=round(time.time() - t0, 1), stop=res.stop, routines=len(routines),
-                   programs=[show(p) for p in (res.accepted or [])][:8])
+                   answers=int(answers[0].shape[0]), programs=[show(p) for p in (res.accepted or [])][:8])
         return res.accepted or [], rec
 
     def step(self, rows, answers=None, deadline=None):
@@ -1238,7 +1603,18 @@ class Climb:
 
     def _step(self, rows, answers=None, deadline=None):
         if self.done:
-            return None
+            if not (self.round_retry and answers is not None and not self.rounds and self.routines()):
+                return None
+            self._idle += 1
+            if self._idle < self.round_retry:
+                return None
+            self._idle = 0
+            progs, rec = self.search_round(answers, deadline)
+            rec["retry"] = True
+            self.records.append(rec)
+            self.rounds = progs
+            return (f"L{self.level} round again ({rec['answers']} answer rows): cost {rec['found_cost']} levels "
+                    f"{rec['level_sizes']} {rec['seconds']}s {rec['stop']} {rec['programs'][:3]}")
         if self.queue is None:
             routines = tuple(sorted(k for k in self.lib if k.startswith("T.")))
             if answers is not None and not self.rounds and routines and routines != self.round_tried:

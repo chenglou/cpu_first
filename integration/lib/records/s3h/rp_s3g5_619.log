@@ -1,0 +1,14 @@
+LIB s3d HASH weak device NVIDIA B200 {'T.lt': 'CLC LDA.X B0.2', 'T.lt~': 'CLC LDA.Y B0.2', 'T.modx': 'LDA.X STA.S T.lt SEL.S', 'T.modx~': 'LDA.Y STA.S T.lt~ SEL.S', 'T.add': 'B2.2 P[ADC.X INC]', 'T.add~': 'B2.2 P[ADC.Y INC]', 'T.modB': 'B[T.modx STA.X]', 'T.modB~': 'B[T.modx~ STA.Y]', 'T.mrow': 'LDH.Y B3.1 P[MUL.X INC]', 'T.mrow~': 'LDH.X B3.1 P[MUL.Y INC]', 'T.mac': 'LDH.Y CLK P[MUL.X INC]', 'T.mac~': 'LDH.X CLK P[MUL.Y INC]', 'T.step': 'LDA.Y BRG.X STA.Y T.modB~', 'T.mul~': 'CLA W[T.mac INC SHL.X]', 'T.reduce': 'LDA.N STA.Y MUL.Y P[T.step]'}
+DRAW {"lib": "s3d", "hash": "weak", "draw": 0, "found_cost": 5, "levels": [1, 46, 1425, 36819, 859925, 26101825], "stop": "", "programs": ["T.reduce STA.X T.mul~ STA.X T.reduce", "T.modx STA.Y T.mul~ STA.X T.reduce", "T.modB STA.Y T.mul~ STA.X T.reduce"], "good_fit": 1.0, "s": 19.1}
+DRAW {"lib": "s3d", "hash": "weak", "draw": 1, "found_cost": 5, "levels": [1, 46, 1421, 36809, 864422, 26289181], "stop": "", "programs": ["T.reduce STA.X T.mul~ STA.X T.reduce", "T.modx STA.Y T.mul~ STA.X T.reduce", "T.modB STA.Y T.mul~ STA.X T.reduce"], "good_fit": 1.0, "s": 19.1}
+DRAW {"lib": "s3d", "hash": "weak", "draw": 2, "found_cost": 5, "levels": [1, 46, 1426, 36828, 861818, 26180157], "stop": "", "programs": ["T.reduce STA.X T.mul~ STA.X T.reduce", "T.modx STA.Y T.mul~ STA.X T.reduce", "T.modB STA.Y T.mul~ STA.X T.reduce"], "good_fit": 1.0, "s": 18.7}
+DRAW {"lib": "s3d", "hash": "weak", "draw": 3, "found_cost": 5, "levels": [1, 46, 1424, 36821, 862214, 26196184], "stop": "", "programs": ["T.reduce STA.X T.mul~ STA.X T.reduce", "T.modx STA.Y T.mul~ STA.X T.reduce", "T.modB STA.Y T.mul~ STA.X T.reduce"], "good_fit": 1.0, "s": 18.8}
+pool step 619 159 rows; the program's fit: 0.9999999403953552
+weak prefix keys [-2156094658729977164, -4623831480482585774, -746864656808450925, 9027833223251557180, 4125568203965018812, -5703165338614426391] goal reached by the program: True
+weak ROUND None [1, 46, 1410, 36154, 843761, 25510119] exhausted cost 5 [] 18.2s
+weak prefix states met as candidates (prefix: [times, of them fresh]): {1: [421, 1], 0: [1, 0], 2: [113, 1], 3: [267, 1], 4: [11, 1], 5: [3, 3]}
+mixed prefix keys [-6010110022460988937, -3192192413503205704, -3336724213146704680, -1336781009670480612, 2357011879287861562, -2847687170436922063] goal reached by the program: True
+mixed ROUND None [1, 46, 1410, 36154, 843763, 25510193] exhausted cost 5 [] 18.3s
+mixed prefix states met as candidates (prefix: [times, of them fresh]): {1: [421, 1], 0: [1, 0], 2: [113, 1], 3: [267, 1], 4: [11, 1], 5: [3, 3]}
+
+EXIT 0

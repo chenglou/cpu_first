@@ -1,0 +1,20 @@
+[
+ {
+  "name": "s3e_official",
+  "task": "h1",
+  "file": "integration/submission_stage3.py",
+  "manifest": null,
+  "gpu": true
+ },
+ {
+  "name": "s3e_relaxed_h100",
+  "task": "h1",
+  "file": "integration/submission_stage3.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 18000
+   }
+  },
+  "gpu": true
+ }
+]

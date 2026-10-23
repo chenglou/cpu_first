@@ -1,0 +1,97 @@
+#FILE /tmp/s3_minus1_relaxed/stdout.log
+{
+  "manifest": "litmus-minus1",
+  "model_spec": {
+    "vocab_size": 17,
+    "max_seq_len": 21,
+    "maximum_model_state_elements": 500000000
+  },
+  "training_batch_size": 512,
+  "evaluation_batch_size": 2048,
+  "max_training_steps": 20000,
+  "total_training_time_seconds": 14400.0,
+  "training_time_seconds_per_seed": 14400.0,
+  "evaluation_time_seconds_per_seed": 7200.0,
+  "seeds": [
+    74
+  ]
+}
+LR step=1 phase=A io=1 loss=17.5615 exact=0.0000 table=0.0000 win=0.0000 cells_on=0 adc=0 mul=0 gate=0 io_exact=False chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=None rows_visited=179/200 pool=0 answers=0 climb_level=- solved=[] round: none fit=[]  facts=
+step=1 loss=17.561459 accuracy=0.000000 elapsed=3.4s budget=14400.0s
+LR io_stage=2 step=6 history=(6, 'io2_digits')
+LR step=50 phase=A io=2 loss=3.9090 exact=0.0000 table=0.0000 win=0.0000 cells_on=0 adc=0 mul=0 gate=0 io_exact=False chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=None rows_visited=200/200 pool=0 answers=0 climb_level=- solved=[] round: none fit=[]  facts=
+LR step=100 phase=A io=2 loss=1.0715 exact=0.0000 table=0.0000 win=0.0000 cells_on=0 adc=0 mul=0 gate=0 io_exact=False chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=None rows_visited=200/200 pool=0 answers=0 climb_level=- solved=[] round: none fit=[]  facts=
+step=100 loss=1.071514 accuracy=0.000000 elapsed=11.9s budget=14400.0s
+LR step=150 phase=A io=2 loss=0.6416 exact=0.0000 table=0.0000 win=0.0000 cells_on=0 adc=0 mul=0 gate=0 io_exact=False chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=None rows_visited=200/200 pool=0 answers=0 climb_level=- solved=[] round: none fit=[]  facts=
+LR io_stage=3 step=182 history=(182, 'io3_ranked', (0, 0, 1, 1))
+LR mined step=192 fact=N<10^6
+LR mined step=192 fact=N<10^7
+LR mined step=192 fact=N<10^8
+LR mined step=192 fact=x<10^7
+LR mined step=192 fact=x<10^8
+LR mined step=192 fact=T<10^2
+LR mined step=192 fact=T<10^3
+LR mined step=192 fact=T<10^4
+LR mined step=192 fact=T<10^5
+LR mined step=192 fact=T<10^6
+LR mined step=192 fact=T<10^7
+LR mined step=192 fact=T<10^8
+LR mined step=192 fact=y!=0
+LR mined step=192 fact=y<10^6
+LR mined step=192 fact=y<10^7
+LR mined step=192 fact=y<10^8
+LR mined step=193 fact=x<10^6
+LR mined step=199 fact=x<N
+LR mined step=199 fact=T<N
+LR mined step=199 fact=N!=0
+LR step=200 phase=A io=3 loss=8.7220 exact=0.0000 table=0.0000 win=0.0000 cells_on=0 adc=0 mul=0 gate=0 io_exact=False chosen=0.9899 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=None rows_visited=200/200 pool=0 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 199, fails 7);N < 10^7(since 192, fails 0);T < 10^2(since 192, fails 0);T < N(since 199, fails 7);x < 10^7(since 192, fails 0);x < N(since 199, fails 7);y < 10^7(since 192, fails 0)
+step=200 loss=8.721978 accuracy=0.000000 elapsed=21.4s budget=14400.0s
+LR mined step=201 fact=Nmod2!=0
+LR mined step=201 fact=Nmod2=1
+LR mined step=201 fact=Nmod5!=0
+LR mined step=201 fact=Nmod3!=0
+LR mined step=201 fact=x!=0
+LR mined step=201 fact=y<N
+LR io_stage=4 step=201 history=(201, 'io4_reading', 0.9908)
+LR mined step=202 fact=T<x
+LR mined step=203 fact=Tconstant
+LR mined step=203 fact=T<10^1
+LR mined step=203 fact=Tmod2=0
+LR mined step=203 fact=Tmod5=0
+LR mined step=203 fact=Tmod3=0
+LR mined step=213 fact=T!=0
+LR mined step=213 fact=Tmod5!=0
+LR mined step=213 fact=Tmod3!=0
+LR order_digits step=237
+LR step=250 phase=A io=4 loss=1.2811 exact=0.0000 table=0.0000 win=0.0000 cells_on=0 adc=0 mul=0 gate=0 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=23 order_digits=237 rows_visited=200/200 pool=0 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 199, fails 7);N < 10^7(since 192, fails 0);N mod 2 = 1(since 201, fails 9);N mod 3 != 0(since 201, fails 9);N mod 5 != 0(since 201, fails 9);T != 0(since 213, fails 21);T < 10^2(since 192, fails 0);T < N(since 199, fails 7);T mod 3 != 0(since 213, fails 21);T mod 5 != 0(since 213, fails 21);x != 0(since 201, fails 9);x < 10^6(since 193, fails 3);x < N(since 199, fails 7);y < 10^7(since 192, fails 0);y < N(since 201, fails 9)
+LR switch_to_facts step=277 win=0.8260
+LR cells_join step=297 (the subtraction passes its checks and is a bijection)
+LR mined step=298 fact=T<y
+LR step=300 phase=B io=4 loss=8.8996 exact=0.0000 table=1.0000 win=1.0000 cells_on=1 adc=0 mul=0 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=73 order_digits=237 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 199, fails 7);N < 10^7(since 192, fails 0);N mod 2 = 1(since 201, fails 9);N mod 3 != 0(since 201, fails 9);N mod 5 != 0(since 201, fails 9);T != 0(since 213, fails 21);T < 10^2(since 192, fails 0);T < N(since 199, fails 7);T mod 3 != 0(since 213, fails 21);T mod 5 != 0(since 213, fails 21);x != 0(since 201, fails 9);x < 10^6(since 193, fails 3);x < N(since 199, fails 7);y != 0(since 192, fails 23);y < 10^6(since 192, fails 3);y < N(since 201, fails 9)
+step=300 loss=8.899644 accuracy=0.000000 elapsed=46.6s budget=14400.0s
+LR step=350 phase=B io=4 loss=2.9840 exact=0.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=0 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=123 order_digits=237 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 199, fails 7);N < 10^7(since 192, fails 0);N mod 2 = 1(since 201, fails 9);N mod 3 != 0(since 201, fails 9);N mod 5 != 0(since 201, fails 9);T != 0(since 213, fails 21);T < 10^2(since 192, fails 0);T < N(since 199, fails 7);T mod 3 != 0(since 213, fails 21);T mod 5 != 0(since 213, fails 21);x != 0(since 201, fails 9);x < 10^6(since 193, fails 3);x < N(since 199, fails 7);y < 10^7(since 192, fails 0);y < N(since 201, fails 9)
+LR step=400 phase=B io=4 loss=2.2117 exact=0.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=0 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=173 order_digits=237 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 199, fails 7);N < 10^7(since 192, fails 0);N mod 2 = 1(since 201, fails 9);N mod 3 != 0(since 201, fails 9);N mod 5 != 0(since 201, fails 9);T != 0(since 213, fails 21);T < 10^2(since 192, fails 0);T < N(since 199, fails 7);T mod 3 != 0(since 213, fails 21);T mod 5 != 0(since 213, fails 21);x != 0(since 201, fails 9);x < 10^6(since 193, fails 4);x < N(since 199, fails 7);y < 10^6(since 192, fails 4);y < N(since 201, fails 9)
+step=400 loss=2.211717 accuracy=0.000000 elapsed=127.3s budget=14400.0s
+LR step=450 phase=B io=4 loss=1.6934 exact=0.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=0 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=223 order_digits=237 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 199, fails 7);N < 10^7(since 192, fails 0);N mod 2 = 1(since 201, fails 9);N mod 3 != 0(since 201, fails 9);N mod 5 != 0(since 201, fails 9);T != 0(since 213, fails 21);T < 10^2(since 192, fails 0);T < N(since 199, fails 7);T mod 3 != 0(since 213, fails 21);T mod 5 != 0(since 213, fails 21);x != 0(since 201, fails 9);x < 10^6(since 193, fails 5);x < N(since 199, fails 7);y < 10^6(since 192, fails 4);y < N(since 201, fails 9)
+LR step=500 phase=B io=4 loss=1.1845 exact=0.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=0 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=273 order_digits=237 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 199, fails 7);N < 10^7(since 192, fails 0);N mod 2 = 1(since 201, fails 9);N mod 3 != 0(since 201, fails 9);N mod 5 != 0(since 201, fails 9);T != 0(since 213, fails 21);T < 10^2(since 192, fails 0);T < N(since 199, fails 7);T mod 3 != 0(since 213, fails 21);T mod 5 != 0(since 213, fails 21);x != 0(since 201, fails 9);x < 10^6(since 193, fails 5);x < N(since 199, fails 7);y < 10^7(since 192, fails 0);y < N(since 201, fails 9)
+step=500 loss=1.184473 accuracy=0.000000 elapsed=228.4s budget=14400.0s
+LR step=550 phase=B io=4 loss=0.8059 exact=0.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=0 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=323 order_digits=237 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 199, fails 7);N < 10^7(since 192, fails 0);N mod 2 = 1(since 201, fails 9);N mod 3 != 0(since 201, fails 9);N mod 5 != 0(since 201, fails 9);T != 0(since 213, fails 21);T < 10^2(since 192, fails 0);T < N(since 199, fails 7);T mod 3 != 0(since 213, fails 21);T mod 5 != 0(since 213, fails 21);x != 0(since 201, fails 9);x < 10^6(since 193, fails 6);x < N(since 199, fails 7);y < 10^6(since 192, fails 6);y < N(since 201, fails 9)
+LR step=600 phase=B io=4 loss=0.4220 exact=0.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=0 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=373 order_digits=237 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 199, fails 7);N < 10^7(since 192, fails 0);N mod 2 = 1(since 201, fails 9);N mod 3 != 0(since 201, fails 9);N mod 5 != 0(since 201, fails 9);T != 0(since 213, fails 21);T < 10^2(since 192, fails 0);T < N(since 199, fails 7);T mod 3 != 0(since 213, fails 21);T mod 5 != 0(since 213, fails 21);x != 0(since 201, fails 9);x < 10^6(since 193, fails 6);x < N(since 199, fails 7);y < 10^6(since 192, fails 6);y < N(since 201, fails 9)
+step=600 loss=0.422003 accuracy=0.000000 elapsed=333.0s budget=14400.0s
+LR climb_joins step=640 cells right (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+LR climb_starts step=641 cells: subtraction/addition/multiply snapped, right vs the truth (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+LR climb step=641 L0 lt       cost 5 (library) levels [1, 32, 815, 20794, 552111, 18955964] 92.8s budget: level 5 streamed (over 3000000 states) ['CLC P[LDA.X SBB.N INC]', 'CLC LDA.X P[SBB.N INC]'] (92.8s)
+LR climb step=642 L0 lt~      cost 5 (library) levels [1, 32, 815, 20804, 552771, 19002180] 65.4s budget: level 5 streamed (over 3000000 states) ['CLC P[LDA.Y SBB.N INC]', 'CLC LDA.Y P[SBB.N INC]'] (65.4s)
+LR climb step=643 L0 modx     cost None (library) levels [1, 32, 814, 20609, 537059, 18250593] 44.7s budget: level 5 streamed (over 3000000 states) [] (44.7s)
+LR climb step=644 L0 modx~    cost None (library) levels [1, 32, 815, 20636, 536970, 18248985] 45.6s budget: level 5 streamed (over 3000000 states) [] (45.6s)
+LR climb step=645 L0 sleep: solved ['lt', 'lt~']; B0.1=SBB.N INC; B0.2=P[B0.1]; B0.3=CLC B0.2; T.lt=CLC P[LDA.X B0.1]; T.lt~=CLC P[LDA.Y B0.1] (0.0s)
+LR climb step=646 L1 modx     cost 4 (library) levels [1, 37, 1082, 31113, 917366] 82.3s  ['LDA.X STA.S B0.3 SEL.S'] (82.3s)
+LR climb step=647 L1 modx~    cost 4 (library) levels [1, 37, 1082, 31051, 914391] 22.0s  ['LDA.Y STA.S B0.3 SEL.S'] (22.0s)
+LR climb step=648 L1 sleep: solved ['modx', 'modx~']; B1.1=STA.S B0.3; B1.2=B1.1 SEL.S; T.modx=LDA.X B1.2; T.modx~=LDA.Y B1.2 (0.0s)
+LR climb step=649 L2 add      cost 5 (library) levels [1, 41, 1268, 37868, 1150797, 46058755] 300.4s budget: level 5 streamed (over 3000000 states) ['T.modx CLC P[ADC.N INC]', 'CLC LDA.N P[ADC.X INC]'] (300.4s)
+LR climb step=650 L2 add~     cost 5 (library) levels [1, 41, 1275, 38181, 1162514, 46564046] 216.6s budget: level 5 streamed (over 3000000 states) ['CLC LDA.N P[ADC.Y INC]', 'LDA.N CLC P[ADC.Y INC]'] (216.6s)
+LR step=650 phase=C io=4 loss=0.3496 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=423 order_digits=237 rows_visited=200/200 pool=4096 answers=43 climb_level=2 solved=['add', 'add~', 'lt', 'lt~', 'modx', 'modx~'] round: none fit=[]  facts=N != 0(since 199, fails 7);N < 10^7(since 192, fails 0);N mod 2 = 1(since 201, fails 9);N mod 3 != 0(since 201, fails 9);N mod 5 != 0(since 201, fails 9);T != 0(since 213, fails 21);T < 10^2(since 192, fails 0);T < N(since 199, fails 7);T mod 3 != 0(since 213, fails 21);T mod 5 != 0(since 213, fails 21);x != 0(since 201, fails 9);x < 10^6(since 193, fails 8);x < N(since 199, fails 7);y < 10^7(since 192, fails 0);y < N(since 201, fails 9)
+LR climb step=651 L2 sleep: solved ['add', 'add~']; B2.1=LDA.N CLC; B2.2=CLC LDA.N; B2.3=ADC.N INC; B2.4=P[B2.3]; B2.5=CLC B2.4; T.add=B2.2 P[ADC.X INC]; T.add~=B2.2 P[ADC.Y INC] (0.0s)
+LR climb step=652 L3 modB     cost 3 (library) levels [1, 47, 1628, 54169] 117.7s  ['B[T.modx STA.X]', 'LDA.X B[B1.2]'] (117.7s)
+LR climb step=653 L3 modB~    cost 3 (library) levels [1, 46, 1536, 50353] 1.5s  ['LDA.Y B[B1.2]', 'T.modx~ B[B1.2]'] (1.5s)
+LR climb step=654 L3 mrow     cost 6 (primitives) levels [1, 32, 799, 19775, 503556, 12422919, 407699946] 882.9s budget: level 6 streamed (over 16000000 states) ['LDH.Y CLK CLA P[MUL.X INC]', 'CLK LDH.Y CLA P[MUL.X INC]'] (882.9s)

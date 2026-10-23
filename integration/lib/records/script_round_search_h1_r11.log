@@ -1,0 +1,23 @@
+round: cost 5 levels [1, 50, 1543, 39203, 893943, 27602602] 227.6s budget: level 5 streamed (over 4000000 states) ['T.add STA.Y T.mul STA.X T.reduce', 'LDA.X STA.Y T.mul STA.X T.reduce', 'T.csub STA.Y T.mul STA.X T.reduce', 'T.modB STA.Y T.mul STA.X T.reduce']
+{
+ "found_cost": 5,
+ "level_sizes": [
+  1,
+  50,
+  1543,
+  39203,
+  893943,
+  27602602
+ ],
+ "seconds": 227.6,
+ "stop": "budget: level 5 streamed (over 4000000 states)",
+ "tokens": 51,
+ "classes": 51,
+ "programs": [
+  "T.add STA.Y T.mul STA.X T.reduce",
+  "LDA.X STA.Y T.mul STA.X T.reduce",
+  "T.csub STA.Y T.mul STA.X T.reduce",
+  "T.modB STA.Y T.mul STA.X T.reduce"
+ ],
+ "aliases": []
+}

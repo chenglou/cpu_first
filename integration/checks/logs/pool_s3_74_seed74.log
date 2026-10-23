@@ -1,0 +1,50 @@
+LR step=1 phase=A io=1 loss=17.0263 exact=0.0000 table=0.0000 win=0.0000 cells_on=0 adc=0 mul=0 gate=0 io_exact=False chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=None rows_visited=181/200 pool=0 answers=0 climb_level=- solved=[] round: none fit=[]  facts=
+LR io_stage=2 step=6 history=(6, 'io2_digits')
+LR step=100 phase=A io=2 loss=2.1836 exact=0.0000 table=0.0000 win=0.0000 cells_on=0 adc=0 mul=0 gate=0 io_exact=False chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=None rows_visited=200/200 pool=0 answers=0 climb_level=- solved=[] round: none fit=[]  facts=
+LR step=200 phase=A io=2 loss=0.8797 exact=0.0000 table=0.0000 win=0.0000 cells_on=0 adc=0 mul=0 gate=0 io_exact=False chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=None rows_visited=200/200 pool=0 answers=0 climb_level=- solved=[] round: none fit=[]  facts=
+LR io_stage=3 step=294 history=(294, 'io3_ranked', (0, 0, 1, 1))
+LR step=300 phase=A io=3 loss=1.2150 exact=0.0000 table=0.0000 win=0.0000 cells_on=0 adc=0 mul=0 gate=0 io_exact=False chosen=0.5608 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=None rows_visited=200/200 pool=0 answers=0 climb_level=- solved=[] round: none fit=[]  facts=
+LR mined step=304 fact=N<10^7
+LR mined step=304 fact=N<10^8
+LR mined step=304 fact=x<10^6
+LR mined step=304 fact=x<10^7
+LR mined step=304 fact=x<10^8
+LR mined step=304 fact=T<10^2
+LR mined step=304 fact=T<10^3
+LR mined step=304 fact=T<10^4
+LR mined step=304 fact=T<10^5
+LR mined step=304 fact=T<10^6
+LR mined step=304 fact=T<10^7
+LR mined step=304 fact=T<10^8
+LR mined step=304 fact=y<10^6
+LR mined step=304 fact=y<10^7
+LR mined step=304 fact=y<10^8
+LR mined step=309 fact=T!=0
+LR mined step=310 fact=x<N
+LR mined step=310 fact=T<N
+LR mined step=310 fact=N!=0
+LR io_stage=4 step=310 history=(310, 'io4_reading', 0.9947)
+LR switch_to_facts step=310 win=0.0000
+LR mined step=311 fact=y!=0
+LR mined step=313 fact=Nmod2!=0
+LR mined step=313 fact=Nmod2=1
+LR mined step=313 fact=Nmod5!=0
+LR mined step=313 fact=Nmod3!=0
+LR mined step=313 fact=x!=0
+LR mined step=313 fact=y<N
+LR mined step=323 fact=Tmod5!=0
+LR mined step=323 fact=Tmod3!=0
+LR order_digits step=360
+LR step=400 phase=B io=4 loss=1.1017 exact=0.4902 table=0.4902 win=0.1226 cells_on=0 adc=0 mul=0 gate=0 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=50 order_digits=360 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 310, fails 6);N < 10^7(since 304, fails 0);N mod 2 = 1(since 313, fails 9);N mod 3 != 0(since 313, fails 9);N mod 5 != 0(since 313, fails 9);T != 0(since 309, fails 5);T < 10^2(since 304, fails 0);T < N(since 310, fails 6);T mod 3 != 0(since 323, fails 19);T mod 5 != 0(since 323, fails 19);x != 0(since 313, fails 9);x < 10^6(since 304, fails 0);x < N(since 310, fails 6);y != 0(since 311, fails 2);y < 10^6(since 304, fails 1);y < N(since 313, fails 9)
+LR cells_join step=422 (the subtraction passes its checks and is a bijection)
+LR step=500 phase=B io=4 loss=2.5671 exact=0.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=0 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=150 order_digits=360 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 310, fails 6);N < 10^7(since 304, fails 0);N mod 2 = 1(since 313, fails 9);N mod 3 != 0(since 313, fails 9);N mod 5 != 0(since 313, fails 9);T != 0(since 309, fails 5);T < 10^2(since 304, fails 0);T < N(since 310, fails 6);T mod 3 != 0(since 323, fails 19);T mod 5 != 0(since 323, fails 19);x != 0(since 313, fails 9);x < 10^6(since 304, fails 1);x < N(since 310, fails 6);y != 0(since 311, fails 2);y < 10^6(since 304, fails 2);y < N(since 313, fails 9)
+LR step=600 phase=B io=4 loss=1.2843 exact=0.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=0 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=250 order_digits=360 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 310, fails 6);N < 10^7(since 304, fails 0);N mod 2 = 1(since 313, fails 9);N mod 3 != 0(since 313, fails 9);N mod 5 != 0(since 313, fails 9);T != 0(since 309, fails 5);T < 10^2(since 304, fails 0);T < N(since 310, fails 6);T mod 3 != 0(since 323, fails 19);T mod 5 != 0(since 323, fails 19);x != 0(since 313, fails 9);x < 10^6(since 304, fails 2);x < N(since 310, fails 6);y != 0(since 311, fails 2);y < 10^6(since 304, fails 2);y < N(since 313, fails 9)
+LR step=700 phase=B io=4 loss=0.4047 exact=0.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=0 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=350 order_digits=360 rows_visited=200/200 pool=4096 answers=0 climb_level=- solved=[] round: none fit=[]  facts=N != 0(since 310, fails 6);N < 10^7(since 304, fails 0);N mod 2 = 1(since 313, fails 9);N mod 3 != 0(since 313, fails 9);N mod 5 != 0(since 313, fails 9);T != 0(since 309, fails 5);T < 10^2(since 304, fails 0);T < N(since 310, fails 6);T mod 3 != 0(since 323, fails 19);T mod 5 != 0(since 323, fails 19);x != 0(since 313, fails 9);x < 10^6(since 304, fails 2);x < N(since 310, fails 6);y != 0(since 311, fails 2);y < 10^6(since 304, fails 2);y < N(since 313, fails 9)
+LR climb_joins step=728 cells right (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+LR climb_starts step=729 cells: subtraction/addition/multiply snapped, right vs the truth (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+LR climb step=729 climb done at level 0: solved [] (0.0s)
+LR step=800 phase=C io=4 loss=0.3429 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 gate=1 io_exact=True chosen=1.0000 ans_ok=0.0000 streak=0 facts_streak=450 order_digits=360 rows_visited=200/200 pool=4096 answers=374 climb_level=0 solved=[] round: none fit=[]  facts=N != 0(since 310, fails 6);N < 10^7(since 304, fails 0);N mod 2 = 1(since 313, fails 9);N mod 3 != 0(since 313, fails 9);N mod 5 != 0(since 313, fails 9);T != 0(since 309, fails 5);T < 10^2(since 304, fails 0);T < N(since 310, fails 6);T mod 3 != 0(since 323, fails 19);T mod 5 != 0(since 323, fails 19);x != 0(since 313, fails 9);x < 10^7(since 304, fails 0);x < N(since 310, fails 6);y != 0(since 311, fails 2);y < 10^6(since 304, fails 2);y < N(since 313, fails 9)
+after 830 steps (108s): phase C, pool 97 batches, 510 rows
+POOL rows 510 inconsistent 0
+ROUND on the model's own pool: 5 [1, 46, 1413, 36441, 851390, 25874710]  ['T.reduce STA.X T.mul~ STA.X T.reduce', 'T.modx STA.Y T.mul~ STA.X T.reduce', 'T.modB STA.Y T.mul~ STA.X T.reduce', 'LDA.X STA.Y T.mul~ STA.X T.reduce'] 21.8s
+fit of LDA.X STA.Y T.mul~ STA.X T.reduce on the pool: 1.0

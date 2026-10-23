@@ -1,0 +1,24 @@
+[
+ {
+  "name": "s3b_smoke_cpu",
+  "task": "h1",
+  "file": "integration/submission_stage3.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3000
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "s3b_relaxed_h100",
+  "task": "h1",
+  "file": "integration/submission_stage3.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 18000
+   }
+  },
+  "gpu": true
+ }
+]

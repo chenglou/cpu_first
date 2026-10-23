@@ -1,0 +1,623 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-fOYEy1aoT7Efu9jr1kcbCC
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/checks/modal_checks.p
+│   y
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/wider_menus/local/local_wide.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/learned_remainder/chain_local/stu
+│   b
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/integration
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/one-layer-deeper/data/generated/squaring_mo
+│   d_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
+└── 🔨 Created function check.
+[modal-client] 2026-10-22T12:58:19-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 174, in send_request
+    protocol = await self._channel.__connect__()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 748, in __connect__
+    self._protocol = await self._create_connection()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 725, in _create_connection
+    _, protocol = await self._loop.create_connection(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 1017, in create_connection
+    infos = await self._ensure_resolved(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 1396, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 329, in _call_unary
+    return await self._call_safely(coro, grpclib_method.name)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 290, in _call_safely
+    return await request_task
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 912, in __call__
+    await stream.send_message(message, end=True)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 242, in send_message
+    await self.send_request()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 214, in send_request
+    self._end_done = True
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/utils.py", line 70, in __exit__
+    raise self._error
+asyncio.exceptions.TimeoutError: Deadline exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 423, in _retry_transient_errors
+    process_exception_before_retry(exc, final_attempt, fn.name, n_retries, delay, idempotency_key)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 286, in process_exception_before_retry
+    raise ConnectionError(str(exc))
+modal.exception.ConnectionError: Deadline exceeded
+[modal-client] 2026-10-22T12:59:45-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 369, in recv_initial_metadata
+    headers = await self._stream.recv_headers()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/protocol.py", line 342, in recv_headers
+    await self.headers_received.wait()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/locks.py", line 226, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 423, in _retry_transient_errors
+    process_exception_before_retry(exc, final_attempt, fn.name, n_retries, delay, idempotency_key)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 288, in process_exception_before_retry
+    raise exc
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 329, in _call_unary
+    return await self._call_safely(coro, grpclib_method.name)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 290, in _call_safely
+    return await request_task
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 913, in __call__
+    reply = await stream.recv_message()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 426, in recv_message
+    await self.recv_initial_metadata()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 398, in recv_initial_metadata
+    self.initial_metadata = im
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/utils.py", line 70, in __exit__
+    raise self._error
+grpclib.exceptions.StreamTerminatedError: Connection lost
+== phase_c_check seed 0
+   STEP 139 loss 27.6964 phase C wire_ios [True, True] streak 100 selector 0.008,0.992 round rmul=one radd=0 rcube=none chain {'below': {'link_active': 14, 'link_pass': 14, 'gate_active': 4, 'pairs': 56, 'gates': 1, 'pairs_pass': 5}, 'lowzero': {'link_active': 8, 'link_pass': 8, 'gate_active': 6, 'pairs': 48, 'gates': 1, 'pairs_pass': 12}} active link=8,gate=6,step=2,read=1/link=14,gate=4,step=13,read=3 wiring lowzero: op=add flag=zE a=('Mq',0) b=('Rp',0) cin=j-1 cv=('D',0) hv=('E',0) keep=gated nread=given vread=given start=zero order=up bring=(0,0,'add') post=-1 final=addhigh read=(0,'given') g
+   STEP 140 loss 27.6958 phase C wire_ios [True, True] streak 101 selector 0.008,0.992 round rmul=one radd=0 rcube=none chain {'below': {'link_active': 14, 'link_pass': 14, 'gate_active': 4, 'pairs': 56, 'gates': 1, 'pairs_pass': 5}, 'lowzero': {'link_active': 8, 'link_pass': 8, 'gate_active': 6, 'pairs': 48, 'gates': 1, 'pairs_pass': 12}} active link=8,gate=6,step=2,read=1/link=14,gate=4,step=13,read=3 wiring lowzero: op=add flag=zE a=('Mq',0) b=('Rp',0) cin=j-1 cv=('D',0) hv=('E',0) keep=gated nread=given vread=given start=zero order=up bring=(0,0,'add') post=-1 final=addhigh read=(0,'given') g
+   history [(26, 'wire_io_below', 26), (44, 'wire_io_lowzero', 44)] 633s
+[modal-client] 2026-10-22T19:59:57+0000 Received a cancellation signal while processing input ('in-01M5JJCH18TY2E50884Y4TQHRH:1792698369065-0',)
+[modal-client] 2026-10-22T19:59:57+0000 Successfully canceled input ('in-01M5JJCH18TY2E50884Y4TQHRH:1792698369065-0',)
+[modal-client] 2026-10-22T19:59:59+0000 Received a cancellation signal while processing input ('in-01M5JJCH17W8H6TV0Z5HE4RCSD:1792698369063-0',)
+[modal-client] 2026-10-22T19:59:59+0000 Successfully canceled input ('in-01M5JJCH17W8H6TV0Z5HE4RCSD:1792698369063-0',)
+[modal-client] 2026-10-22T19:59:59+0000 Received a cancellation signal while processing input ('in-01M5JJCH14ND369M9K23WVW5H9:1792698369061-0',)
+[modal-client] 2026-10-22T19:59:59+0000 Successfully canceled input ('in-01M5JJCH14ND369M9K23WVW5H9:1792698369061-0',)
+[modal-client] 2026-10-22T13:01:33-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 369, in recv_initial_metadata
+    headers = await self._stream.recv_headers()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/protocol.py", line 342, in recv_headers
+    await self.headers_received.wait()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/locks.py", line 226, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 329, in _call_unary
+    return await self._call_safely(coro, grpclib_method.name)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 290, in _call_safely
+    return await request_task
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 913, in __call__
+    reply = await stream.recv_message()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 426, in recv_message
+    await self.recv_initial_metadata()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 398, in recv_initial_metadata
+    self.initial_metadata = im
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/utils.py", line 70, in __exit__
+    raise self._error
+asyncio.exceptions.TimeoutError: Deadline exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 423, in _retry_transient_errors
+    process_exception_before_retry(exc, final_attempt, fn.name, n_retries, delay, idempotency_key)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 286, in process_exception_before_retry
+    raise ConnectionError(str(exc))
+modal.exception.ConnectionError: Deadline exceeded
+[modal-client] 2026-10-22T13:02:49-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 369, in recv_initial_metadata
+    headers = await self._stream.recv_headers()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/protocol.py", line 342, in recv_headers
+    await self.headers_received.wait()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/locks.py", line 226, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 329, in _call_unary
+    return await self._call_safely(coro, grpclib_method.name)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 290, in _call_safely
+    return await request_task
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 913, in __call__
+    reply = await stream.recv_message()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 426, in recv_message
+    await self.recv_initial_metadata()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 398, in recv_initial_metadata
+    self.initial_metadata = im
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/utils.py", line 70, in __exit__
+    raise self._error
+asyncio.exceptions.TimeoutError: Deadline exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 423, in _retry_transient_errors
+    process_exception_before_retry(exc, final_attempt, fn.name, n_retries, delay, idempotency_key)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 286, in process_exception_before_retry
+    raise ConnectionError(str(exc))
+modal.exception.ConnectionError: Deadline exceeded
+[modal-client] 2026-10-22T13:04:05-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 174, in send_request
+    protocol = await self._channel.__connect__()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 748, in __connect__
+    self._protocol = await self._create_connection()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 725, in _create_connection
+    _, protocol = await self._loop.create_connection(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 1017, in create_connection
+    infos = await self._ensure_resolved(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 1396, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 329, in _call_unary
+    return await self._call_safely(coro, grpclib_method.name)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 290, in _call_safely
+    return await request_task
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 912, in __call__
+    await stream.send_message(message, end=True)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 242, in send_message
+    await self.send_request()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 214, in send_request
+    self._end_done = True
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/utils.py", line 70, in __exit__
+    raise self._error
+asyncio.exceptions.TimeoutError: Deadline exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 423, in _retry_transient_errors
+    process_exception_before_retry(exc, final_attempt, fn.name, n_retries, delay, idempotency_key)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 286, in process_exception_before_retry
+    raise ConnectionError(str(exc))
+modal.exception.ConnectionError: Deadline exceeded
+[modal-client] 2026-10-22T13:05:21-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 174, in send_request
+    protocol = await self._channel.__connect__()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 744, in __connect__
+    async with self._connect_lock:
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/locks.py", line 14, in __aenter__
+    await self.acquire()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/locks.py", line 120, in acquire
+    await fut
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 329, in _call_unary
+    return await self._call_safely(coro, grpclib_method.name)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 290, in _call_safely
+    return await request_task
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 912, in __call__
+    await stream.send_message(message, end=True)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 242, in send_message
+    await self.send_request()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 214, in send_request
+    self._end_done = True
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/utils.py", line 70, in __exit__
+    raise self._error
+asyncio.exceptions.TimeoutError: Deadline exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 423, in _retry_transient_errors
+    process_exception_before_retry(exc, final_attempt, fn.name, n_retries, delay, idempotency_key)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 286, in process_exception_before_retry
+    raise ConnectionError(str(exc))
+modal.exception.ConnectionError: Deadline exceeded
+[modal-client] 2026-10-22T13:06:37-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 174, in send_request
+    protocol = await self._channel.__connect__()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 748, in __connect__
+    self._protocol = await self._create_connection()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 725, in _create_connection
+    _, protocol = await self._loop.create_connection(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 1017, in create_connection
+    infos = await self._ensure_resolved(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 1396, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 329, in _call_unary
+    return await self._call_safely(coro, grpclib_method.name)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 290, in _call_safely
+    return await request_task
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 912, in __call__
+    await stream.send_message(message, end=True)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 242, in send_message
+    await self.send_request()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 214, in send_request
+    self._end_done = True
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/utils.py", line 70, in __exit__
+    raise self._error
+asyncio.exceptions.TimeoutError: Deadline exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 423, in _retry_transient_errors
+    process_exception_before_retry(exc, final_attempt, fn.name, n_retries, delay, idempotency_key)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 286, in process_exception_before_retry
+    raise ConnectionError(str(exc))
+modal.exception.ConnectionError: Deadline exceeded
+[modal-client] 2026-10-22T13:07:54-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 174, in send_request
+    protocol = await self._channel.__connect__()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 744, in __connect__
+    async with self._connect_lock:
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/locks.py", line 14, in __aenter__
+    await self.acquire()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/locks.py", line 120, in acquire
+    await fut
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 329, in _call_unary
+    return await self._call_safely(coro, grpclib_method.name)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 290, in _call_safely
+    return await request_task
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 912, in __call__
+    await stream.send_message(message, end=True)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 242, in send_message
+    await self.send_request()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 214, in send_request
+    self._end_done = True
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/utils.py", line 70, in __exit__
+    raise self._error
+asyncio.exceptions.TimeoutError: Deadline exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 423, in _retry_transient_errors
+    process_exception_before_retry(exc, final_attempt, fn.name, n_retries, delay, idempotency_key)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 286, in process_exception_before_retry
+    raise ConnectionError(str(exc))
+modal.exception.ConnectionError: Deadline exceeded
+[modal-client] 2026-10-22T13:09:10-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 174, in send_request
+    protocol = await self._channel.__connect__()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 748, in __connect__
+    self._protocol = await self._create_connection()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 725, in _create_connection
+    _, protocol = await self._loop.create_connection(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 1017, in create_connection
+    infos = await self._ensure_resolved(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 1396, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 329, in _call_unary
+    return await self._call_safely(coro, grpclib_method.name)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 290, in _call_safely
+    return await request_task
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 912, in __call__
+    await stream.send_message(message, end=True)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 242, in send_message
+    await self.send_request()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 214, in send_request
+    self._end_done = True
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/utils.py", line 70, in __exit__
+    raise self._error
+asyncio.exceptions.TimeoutError: Deadline exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 423, in _retry_transient_errors
+    process_exception_before_retry(exc, final_attempt, fn.name, n_retries, delay, idempotency_key)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 286, in process_exception_before_retry
+    raise ConnectionError(str(exc))
+modal.exception.ConnectionError: Deadline exceeded
+[modal-client] 2026-10-22T13:10:14-0700 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/async_utils.py", line 224, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/tasks.py", line 481, in wait_for
+    return fut.result()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/runner.py", line 57, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 414, in _retry_transient_errors
+    raise exc
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/grpc_utils.py", line 363, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 44, in __exit__
+    raise exc from None  # from None to skip the grpc-internal cause
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 346, in _raise_for_grpc_status
+    raise GRPCError(status, message, details)
+grpclib.exceptions.GRPCError: (<Status.FAILED_PRECONDITION: 9>, 'App state is APP_STATE_STOPPED', None)
+Stopping app - local client disconnected. Use `modal run --detach` to keep apps running even if your local client disconnects.
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /Users/chenglou/github/one-layer/cpu_first/integration/checks/modal_checks.p │
+│ y:40 in main                                                                 │
+│                                                                              │
+│   39 │   (HERE / "logs").mkdir(exist_ok=True)                                │
+│ ❱ 40 │   for (sc, s, _), out in zip(jobs, check.starmap(jobs)):              │
+│   41 │   │   (HERE / "logs" / f"{tag}_seed{s}.log").write_text(out)          │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/ │
+│ async_utils.py:493 in __iter__                                               │
+│                                                                              │
+│   492 │   │   │   with Runner() as runner:                                   │
+│ ❱ 493 │   │   │   │   yield from run_async_gen(runner, self._async_iterable) │
+│   494 │   │   except NestedEventLoops:                                       │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/ │
+│ async_utils.py:571 in run_async_gen                                          │
+│                                                                              │
+│   570 │   │   │   else:                                                      │
+│ ❱ 571 │   │   │   │   next_yield = runner.run(gen.asend(next_send))  # type: │
+│   572 │   │   except KeyboardInterrupt as e:                                 │
+│                                                                              │
+│ /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framew │
+│ ork/Versions/3.9/lib/python3.9/asyncio/base_events.py:642 in                 │
+│ run_until_complete                                                           │
+│                                                                              │
+│    641 │   │                                                                 │
+│ ❱  642 │   │   return future.result()                                        │
+│    643                                                                       │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/ │
+│ async_utils.py:403 in asend                                                  │
+│                                                                              │
+│   402 │   │   self.iterated = True                                           │
+│ ❱ 403 │   │   return await self.gen.asend(value)                             │
+│   404                                                                        │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/paralle │
+│ l_map.py:1097 in _starmap_async                                              │
+│                                                                              │
+│   1096 │   │   _maybe_warn_about_exceptions("starmap.aio", return_exceptions │
+│ ❱ 1097 │   async for output in _map_helper(                                  │
+│   1098 │   │   self,                                                         │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/paralle │
+│ l_map.py:1029 in _map_helper                                                 │
+│                                                                              │
+│   1028 │   ) as map_output_stream:                                           │
+│ ❱ 1029 │   │   async for output in map_output_stream:                        │
+│   1030 │   │   │   yield output                                              │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/ │
+│ async_utils.py:745 in async_merge                                            │
+│                                                                              │
+│   744 │   │   │   │   │   assert_type(item, ExceptionWrapper)                │
+│ ❱ 745 │   │   │   │   │   raise item.value                                   │
+│   746                                                                        │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/ │
+│ async_utils.py:724 in producer                                               │
+│                                                                              │
+│   723 │   │   │   async with aclosing(generator) as stream:                  │
+│ ❱ 724 │   │   │   │   async for item in stream:                              │
+│   725 │   │   │   │   │   await queue.put(ValueWrapper(item))                │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_object │
+│ .py:349 in wrapped                                                           │
+│                                                                              │
+│   348 │   │   async with aclosing(method(self, *args, **kwargs)) as stream:  │
+│ ❱ 349 │   │   │   async for item in stream:                                  │
+│   350 │   │   │   │   yield item                                             │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_functi │
+│ ons.py:1655 in _map                                                          │
+│                                                                              │
+│   1654 │   │   │   ) as stream:                                              │
+│ ❱ 1655 │   │   │   │   async for item in stream:                             │
+│   1656 │   │   │   │   │   yield item                                        │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/paralle │
+│ l_map.py:982 in _map_invocation_inputplane                                   │
+│                                                                              │
+│    981 │   ) as merged:                                                      │
+│ ❱  982 │   │   async for maybe_output in merged:                             │
+│    983 │   │   │   if maybe_output is not None:  # ignore None sentinels     │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/ │
+│ async_utils.py:745 in async_merge                                            │
+│                                                                              │
+│   744 │   │   │   │   │   assert_type(item, ExceptionWrapper)                │
+│ ❱ 745 │   │   │   │   │   raise item.value                                   │
+│   746                                                                        │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/ │
+│ async_utils.py:724 in producer                                               │
+│                                                                              │
+│   723 │   │   │   async with aclosing(generator) as stream:                  │
+│ ❱ 724 │   │   │   │   async for item in stream:                              │
+│   725 │   │   │   │   │   await queue.put(ValueWrapper(item))                │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/paralle │
+│ l_map.py:824 in check_lost_inputs                                            │
+│                                                                              │
+│    823 │   │   │   │   metadata = await client.get_input_plane_metadata(func │
+│ ❱  824 │   │   │   │   response: api_pb2.MapCheckInputsResponse = await inpu │
+│    825 │   │   │   │   │   request, metadata=metadata                        │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_c │
+│ lient.py:108 in __call__                                                     │
+│                                                                              │
+│   107 │   │   │                                                              │
+│ ❱ 108 │   │   │   return await _retry_transient_errors(                      │
+│   109 │   │   │   │   self,  # type: ignore                                  │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/ │
+│ grpc_utils.py:423 in _retry_transient_errors                                 │
+│                                                                              │
+│   422 │   │   │   with suppress_tb_frames(1):                                │
+│ ❱ 423 │   │   │   │   process_exception_before_retry(exc, final_attempt, fn. │
+│   424                                                                        │
+│                                                                              │
+│ /Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_utils/ │
+│ grpc_utils.py:284 in process_exception_before_retry                          │
+│                                                                              │
+│   283 │   │   │   if isinstance(exc, OSError):                               │
+│ ❱ 284 │   │   │   │   raise ConnectionError(str(exc))                        │
+│   285 │   │   │   elif isinstance(exc, asyncio.TimeoutError):                │
+╰──────────────────────────────────────────────────────────────────────────────╯
+ConnectionError: [Errno 8] nodename nor servname provided, or not known

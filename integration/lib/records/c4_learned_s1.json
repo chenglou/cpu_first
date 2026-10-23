@@ -1,0 +1,52 @@
+{
+ "name": "c4_learned_s1",
+ "config": {
+  "learned_cells": true,
+  "seed": 1,
+  "budget": 3000000,
+  "fallback_budget": 16000000,
+  "levels": 10,
+  "seconds": 30000,
+  "chunk": 1048576
+ },
+ "device": "cpu",
+ "seconds": 71.6,
+ "log": [
+  "   10.7s cells sbb step 50: own checks 0.000 bijective False streak 0, entries right 30/200 (report only)",
+  "   16.2s cells sbb step 100: own checks 0.141 bijective False streak 0, entries right 152/200 (report only)",
+  "   21.6s cells sbb step 150: own checks 0.281 bijective False streak 0, entries right 160/200 (report only)",
+  "   27.1s cells sbb step 200: own checks 0.268 bijective False streak 0, entries right 163/200 (report only)",
+  "   32.7s cells sbb step 250: own checks 0.260 bijective False streak 0, entries right 171/200 (report only)",
+  "   38.2s cells sbb step 300: own checks 0.232 bijective False streak 0, entries right 172/200 (report only)",
+  "   43.5s cells sbb step 350: own checks 0.987 bijective False streak 0, entries right 176/200 (report only)",
+  "   49.0s cells sbb step 400: own checks 0.987 bijective False streak 0, entries right 176/200 (report only)",
+  "   54.4s cells sbb step 450: own checks 0.988 bijective False streak 0, entries right 179/200 (report only)",
+  "   59.7s cells sbb step 500: own checks 0.990 bijective False streak 0, entries right 182/200 (report only)",
+  "   65.1s cells sbb step 550: own checks 0.990 bijective False streak 0, entries right 182/200 (report only)",
+  "   70.7s cells sbb step 600: own checks 0.991 bijective False streak 0, entries right 184/200 (report only)",
+  "   71.6s cells learned: {'seed': 1, 'sbb_steps': 600, 'sbb_ok_at': None, 'sbb_right': 184, 'sbb_gate': 44, 'adc_steps': 5, 'adc_own': True, 'mul_steps': 302, 'mul_own': True, 'right_report': {'sbb_d': '184/200', 'sbb_c': '200/200', 'adc_d': '184/200', 'adc_c': '200/200', 'mul_lo': '7624/10000', 'mul_hi': '9636/10000'}, 'seconds': 68.9}",
+  "   71.6s cells learned: exact=False (report only)",
+  "   71.6s cells did not pass their own checks: the climb does not start"
+ ],
+ "cells": {
+  "seed": 1,
+  "sbb_steps": 600,
+  "sbb_ok_at": null,
+  "sbb_right": 184,
+  "sbb_gate": 44,
+  "adc_steps": 5,
+  "adc_own": true,
+  "mul_steps": 302,
+  "mul_own": true,
+  "right_report": {
+   "sbb_d": "184/200",
+   "sbb_c": "200/200",
+   "adc_d": "184/200",
+   "adc_c": "200/200",
+   "mul_lo": "7624/10000",
+   "mul_hi": "9636/10000"
+  },
+  "seconds": 68.9
+ },
+ "climb": "not started"
+}

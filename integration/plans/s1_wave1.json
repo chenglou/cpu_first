@@ -1,0 +1,185 @@
+[
+ {
+  "name": "s1_official",
+  "task": "h1",
+  "manifest": null,
+  "gpu": true
+ },
+ {
+  "name": "s1_cpu_seed74",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     74
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "s1_cpu_seed1",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "s1_cpu_seed2",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     2
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "s1_cpu_seed3",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     3
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "s1_cpu_seed4",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     4
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "s1_cpu_seed5",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     5
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "s1_cpu_seed6",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     6
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "s1_cpu_seed7",
+  "task": "h1",
+  "manifest": {
+   "runtime": {
+    "seeds": [
+     7
+    ]
+   }
+  },
+  "gpu": false
+ },
+ {
+  "name": "s1_rho_s74",
+  "task": "rho",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "s1_ten_s74",
+  "task": "ten",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "s1_cube_s74",
+  "task": "cube",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "s1_mont_s74",
+  "task": "mont",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "s1_tenrho_s74",
+  "task": "tenrho",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "s1_plus3_s74",
+  "task": "plus3",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "s1_minus1_s74",
+  "task": "minus1",
+  "manifest": {
+   "runtime": {
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ },
+ {
+  "name": "s1_m4_relaxed_h100",
+  "task": "m4",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600,
+    "max_steps": 1500
+   }
+  },
+  "gpu": true
+ }
+]

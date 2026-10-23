@@ -1,0 +1,310 @@
+{
+ "name": "fallback_forced_1",
+ "task": "h1",
+ "gpu": "NVIDIA H200, 610.57.04",
+ "returncode": 0,
+ "wall_seconds": 16.16345238685608,
+ "manifest_file": "benchmark/manifests/h100_hard_h1.json",
+ "manifest": {
+  "name": "squaring-mod-hard-h1",
+  "data": {
+   "kind": "squaring_mod",
+   "data_root": "data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2",
+   "batch_size": 512,
+   "eval_batch_size": 512,
+   "shuffle_train": true,
+   "shuffle_eval": false,
+   "num_workers": 2,
+   "pin_memory": true,
+   "drop_last": true,
+   "seed": 45
+  },
+  "runtime": {
+   "device": "cuda:0",
+   "dtype": "bfloat16",
+   "amp": true,
+   "compile": false,
+   "total_training_time_seconds": 3600,
+   "max_steps": 1000000,
+   "seeds": [
+    74
+   ],
+   "grad_clip": 1,
+   "log_every": 100
+  },
+  "model_state": {
+   "maximum_elements": 500000000
+  }
+ },
+ "stdout": "{\n  \"manifest\": \"squaring-mod-hard-h1\",\n  \"model_spec\": {\n    \"vocab_size\": 17,\n    \"max_seq_len\": 21,\n    \"maximum_model_state_elements\": 500000000\n  },\n  \"training_batch_size\": 512,\n  \"evaluation_batch_size\": 16384,\n  \"max_training_steps\": 100,\n  \"total_training_time_seconds\": 3600.0,\n  \"training_time_seconds_per_seed\": 3600.0,\n  \"evaluation_time_seconds_per_seed\": 1800.0,\n  \"seeds\": [\n    74\n  ]\n}\nstep=1 loss=0.000000 accuracy=0.000000 elapsed=3.0s budget=3600.0s\nstep=100 loss=0.000000 accuracy=0.000000 elapsed=3.8s budget=3600.0s\nTABLE digit=09988776655443322110100998877665544332212110099887766554433232211009988776655443433221100998877665545443322110099887766565544332211009988776766554433221100998878776655443322110099898877665544332211009\nTABLE borrow=01111111111111111111000111111111111111110000011111111111111100000001111111111111000000000111111111110000000000011111111100000000000001111111000000000000000111110000000000000000011100000000000000000001\nTABLE train_visits min=0 rows_never=200 counts=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0\nTABLE schedule phase=frozen step=100 history=[]\nAUDIT eval_rows_used=200/200 used_but_never_trained=200\nseed=74 split=test loss=0.000000 exact_accuracy=1.000000\nseed=74 split=ood_t loss=0.000000 exact_accuracy=1.000000\nseed=74 split=ood_n_t loss=0.000000 exact_accuracy=1.000000\nseed=74 profile=seen_n depth_t=1 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=2 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=4 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=8 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=16 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=32 exact_accuracy=1.000000 certified=True\nseed=74 profile=seen_n depth_t=64 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=1 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=2 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=4 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=8 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=16 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=32 exact_accuracy=1.000000 certified=True\nseed=74 profile=ood_n depth_t=64 exact_accuracy=1.000000 certified=True\nRESULT_JSON={\"depth_profile\": {\"depth_factor\": 64, \"ladder\": [1, 2, 4, 8, 16, 32, 64], \"max_certified_time_steps\": 64, \"ood_n_ladder\": [1, 2, 4, 8, 16, 32, 64], \"ood_n_max_certified_time_steps\": 64, \"ood_n_profile_available\": true}, \"manifest\": \"squaring-mod-hard-h1\", \"score\": {\"mean_exact_accuracy\": 1.0, \"mean_loss\": 0.0, \"num_measurements\": 3, \"primary_metric\": \"mean_exact_accuracy\"}, \"seeds\": [{\"completed_training_steps\": 100, \"depth_profile\": {\"depth_factor\": 64, \"ladder\": [1, 2, 4, 8, 16, 32, 64], \"max_certified_time_steps\": 64, \"ood_n_ladder\": [1, 2, 4, 8, 16, 32, 64], \"ood_n_max_certified_time_steps\": 64, \"ood_n_rungs\": [{\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 1}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 2}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 4}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 8}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 16}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 32}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 64}], \"rungs\": [{\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 1}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 2}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 4}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 8}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 16}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 32}, {\"correct_examples\": 768, \"exact_accuracy\": 1.0, \"example_count\": 768, \"status\": \"certified\", \"time_steps\": 64}]}, \"evaluation\": {\"ood_n_t\": {\"correct_examples\": 10002, \"exact_accuracy\": 1.0, \"example_count\": 10002, \"loss\": 0.0}, \"ood_t\": {\"correct_examples\": 10002, \"exact_accuracy\": 1.0, \"example_count\": 10002, \"loss\": 0.0}, \"test\": {\"correct_examples\": 9999, \"exact_accuracy\": 1.0, \"example_count\": 9999, \"loss\": 0.0}}, \"evaluation_batch_size\": 16384, \"evaluation_budget_seconds\": 1800.0, \"evaluation_seconds\": 6.471607508, \"final_train_loss\": 0.0, \"max_training_steps\": 100, \"model_state_elements\": 1002400, \"optimizer_state_elements_after_first_step\": 4001, \"seed\": 74, \"training_batch_size\": 512, \"training_seconds\": 3.796515834000001}], \"structured_metrics\": [{\"elapsed_seconds\": 3.0, \"exact_accuracy\": 0.0, \"loss\": 0.0, \"seed\": 74, \"step\": 1, \"type\": \"train\"}, {\"elapsed_seconds\": 3.8, \"exact_accuracy\": 0.0, \"loss\": 0.0, \"seed\": 74, \"step\": 100, \"type\": \"train\"}, {\"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 74, \"split\": \"test\", \"type\": \"evaluation\"}, {\"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 74, \"split\": \"ood_t\", \"type\": \"evaluation\"}, {\"exact_accuracy\": 1.0, \"loss\": 0.0, \"seed\": 74, \"split\": \"ood_n_t\", \"type\": \"evaluation\"}, {\"completed_steps\": 100, \"mean_exact_accuracy\": 1.0, \"training_seconds\": 3.8, \"type\": \"summary\"}]}\n",
+ "stderr": "",
+ "result": {
+  "depth_profile": {
+   "depth_factor": 64,
+   "ladder": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+   ],
+   "max_certified_time_steps": 64,
+   "ood_n_ladder": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+   ],
+   "ood_n_max_certified_time_steps": 64,
+   "ood_n_profile_available": true
+  },
+  "manifest": "squaring-mod-hard-h1",
+  "score": {
+   "mean_exact_accuracy": 1.0,
+   "mean_loss": 0.0,
+   "num_measurements": 3,
+   "primary_metric": "mean_exact_accuracy"
+  },
+  "seeds": [
+   {
+    "completed_training_steps": 100,
+    "depth_profile": {
+     "depth_factor": 64,
+     "ladder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+     ],
+     "max_certified_time_steps": 64,
+     "ood_n_ladder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+     ],
+     "ood_n_max_certified_time_steps": 64,
+     "ood_n_rungs": [
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 1
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 2
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 4
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 8
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 16
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 32
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 64
+      }
+     ],
+     "rungs": [
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 1
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 2
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 4
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 8
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 16
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 32
+      },
+      {
+       "correct_examples": 768,
+       "exact_accuracy": 1.0,
+       "example_count": 768,
+       "status": "certified",
+       "time_steps": 64
+      }
+     ]
+    },
+    "evaluation": {
+     "ood_n_t": {
+      "correct_examples": 10002,
+      "exact_accuracy": 1.0,
+      "example_count": 10002,
+      "loss": 0.0
+     },
+     "ood_t": {
+      "correct_examples": 10002,
+      "exact_accuracy": 1.0,
+      "example_count": 10002,
+      "loss": 0.0
+     },
+     "test": {
+      "correct_examples": 9999,
+      "exact_accuracy": 1.0,
+      "example_count": 9999,
+      "loss": 0.0
+     }
+    },
+    "evaluation_batch_size": 16384,
+    "evaluation_budget_seconds": 1800.0,
+    "evaluation_seconds": 6.471607508,
+    "final_train_loss": 0.0,
+    "max_training_steps": 100,
+    "model_state_elements": 1002400,
+    "optimizer_state_elements_after_first_step": 4001,
+    "seed": 74,
+    "training_batch_size": 512,
+    "training_seconds": 3.796515834000001
+   }
+  ],
+  "structured_metrics": [
+   {
+    "elapsed_seconds": 3.0,
+    "exact_accuracy": 0.0,
+    "loss": 0.0,
+    "seed": 74,
+    "step": 1,
+    "type": "train"
+   },
+   {
+    "elapsed_seconds": 3.8,
+    "exact_accuracy": 0.0,
+    "loss": 0.0,
+    "seed": 74,
+    "step": 100,
+    "type": "train"
+   },
+   {
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 74,
+    "split": "test",
+    "type": "evaluation"
+   },
+   {
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 74,
+    "split": "ood_t",
+    "type": "evaluation"
+   },
+   {
+    "exact_accuracy": 1.0,
+    "loss": 0.0,
+    "seed": 74,
+    "split": "ood_n_t",
+    "type": "evaluation"
+   },
+   {
+    "completed_steps": 100,
+    "mean_exact_accuracy": 1.0,
+    "training_seconds": 3.8,
+    "type": "summary"
+   }
+  ]
+ },
+ "submission": "\"\"\"LearnedRemainder: x^(2^T) mod N whose mod-N reduction is a long division with a learned subtraction table.\n\nDatapath (designed wiring, the CPU's schoolbook algorithm in base 10):\n  * read N (its digits come LSB first), x and T from the prompt;\n  * loop T times: square the state (designed integer product), then reduce it mod N by long division:\n      - the running remainder R has P = W + 1 digit places (W = 8 digits of the widest 24-bit modulus); it starts at the\n        dividend's top digits v // 10^W (below N) and takes W steps, each shifting in the next dividend digit,\n        Rp = 10 R + v_t;\n      - every step tries all ten quotient digits at once: trial s subtracts the exact digits of s*N from Rp, place by\n        place from the lowest, with ONE shared subtractor cell (r, m, borrow in) -> (digit, borrow out);\n      - the choice keeps one trial: the largest s whose trial ends without a borrow (the subtraction's own borrow);\n  * write the state's digits right-aligned on the prompt.\nLearned (MODE = \"learned\"): the subtractor cell, a 200-row table of digit and borrow logits, and an estimator that only\nbootstraps it during training (a table over the top KR places of Rp and the top KN digits of N -> slot). Evaluation\nsnaps the cell to its argmax table and runs the datapath on integers. MODE = \"designed\" uses the exact subtraction\ntable instead (Stage 0: the pipeline with the remainder designed).\n\nTraining (the recipe of cpu_first/tinycore/TINYCORE.md, adjusted by cpu_first/microlab/FINDINGS_quotient_shared.md and\nby what broke here; see LEARNED_REMAINDER.md):\n  * lessons: GRAY AREA. Their dividends are made up inside the forward pass from each row's own N and x:\n    v = q*N + x with q a random k-digit number (designed product and sum). Since x < N the remainder is x, read from\n    the prompt (no label used). The datapath starts from v // 10^k and divides in k steps. Stage k = 1, 2, ..., W;\n  * phase A (bootstrap): the choice is soft and does not read the borrow: uniform for the first HOLD steps, then the\n    estimator. A stage ends after STAGE_MAX steps, and phase A ends as soon as the hard datapath (argmax table, own-borrow\n    choice) is STAGE_EXACT exact on the stage's lessons, averaged over STAGE_WIN steps;\n  * phase B (the own path): each step's trial is chosen by the hard datapath, and the soft cell is trained along the\n    chosen trials only (a soft choice, by estimator or own borrow, teaches wrong trials' lessons that are correlated\n    with the answer: it held row (0, 0, borrow 1) at digit 0). Fresh Adam state at the switch. Stages continue with\n    the same rule; at k = W the batch's real rows with T <= REAL_MAX_T join: the dividend is the machine's own\n    s_{T-1}^2 and the answer is the row's label;\n  * the model freezes (learning rate 0) after FREEZE_WIN consecutive steps in which every full-size lesson is exact on\n    the hard datapath. The schedule is Python-side state of the model (not model state); the loss only logs.\nLoss: cross-entropy of the soft remainder's digits below N's width against the lesson's x or the row's label.\nEverything runs in fp32 with autocast off; evaluation is integer arithmetic.\n\"\"\"\n\nfrom __future__ import annotations\n\nfrom collections import deque\n\nimport torch\nfrom torch import Tensor, nn\nimport torch.nn.functional as F\n\nfrom benchmark import (\n    ModelSpec,\n    OptimizerBundle,\n    OptimizerSpec,\n    Submission,\n    TokenLossBatch,\n    assert_model_state,\n)\n\nMODE = \"designed\"\nDIGIT, MARK_N, MARK_X, MARK_T = 7, 2, 3, 4  # token ids: digit d is DIGIT + d\nW = 8                  # digits of the widest modulus (a 24-bit N is below 10^8); one reduction takes W steps\nP = W + 1              # register places: 10 R + v_t < 10 N < 10^9\nS = 10                 # trials per step: trial s subtracts s*N\nKR, KN = 3, 2          # estimator window: top KR places of Rp, top KN digits of N, aligned on N's own width\nINIT = 0.1             # std of the initial logits\nLR = 0.05              # Adam on the logits\nHOLD = 400             # phase A: the first HOLD steps choose uniformly (the estimator is not consulted)\nSTAGE_EXACT = 0.99     # a stage ends once the hard datapath is this exact on its lessons, averaged ...\nSTAGE_WIN = 20         # ... over this many steps,\nSTAGE_MAX = 1500       # ... or after this many steps\nFREEZE_WIN = 200       # phase B: freeze after this many consecutive steps with every full-size lesson exact\nREAL_MAX_T = 2         # phase B also trains on the batch's real rows with T <= REAL_MAX_T\nLESSONS = 1            # lessons per row and step (each its own random q)\nBATCH = 512\nEVAL_BATCH = 16384\nMAX_STEPS = 100\nLOG_EVERY = 250\n\nPOW10 = [10 ** i for i in range(19)]\n\n\ndef to_digits(v: Tensor, n: int) -> Tensor:\n    \"\"\"Non-negative int64 values -> their n lowest decimal digits, LSB first (designed I/O).\"\"\"\n    return (v[..., None] // torch.tensor(POW10[:n], device=v.device)) % 10\n\n\ndef from_digits(d: Tensor) -> Tensor:\n    return (d * torch.tensor(POW10[:d.shape[-1]], device=d.device)).sum(-1)\n\n\ndef parse(input_ids: Tensor, attention_mask: Tensor):\n    \"\"\"Prompt `N <N digits, LSB first> X <x, MSB first> T <T, MSB first>` -> LSB-first digits [rows, W], N's width.\"\"\"\n    pos = lambda tok: (input_ids == tok).int().argmax(1)\n    i_n, i_x, i_t = pos(MARK_N), pos(MARK_X), pos(MARK_T)\n    end = attention_mask.long().sum(1)\n    k = torch.arange(W, device=input_ids.device)[None]\n\n    def field(start, step, count):\n        idx = (start[:, None] + step * k).clamp(0, input_ids.shape[1] - 1)\n        d = (input_ids.gather(1, idx) - DIGIT).clamp(0, 9)\n        return torch.where(k < count[:, None], d, 0)\n\n    width = i_x - i_n - 1\n    return field(i_n + 1, 1, width), field(i_t - 1, -1, i_t - i_x - 1), field(end - 1, -1, end - i_t - 1), end, width\n\n\ndef exact_tables(device) -> tuple[Tensor, Tensor]:\n    \"\"\"The designed subtractor (Stage 0 only): digit and borrow of r - m - c, flat over (r, m, c).\"\"\"\n    r = torch.arange(10, device=device)[:, None, None]\n    m = torch.arange(10, device=device)[None, :, None]\n    c = torch.arange(2, device=device)[None, None, :]\n    x = r - m - c\n    return (x % 10).flatten(), (x < 0).long().flatten()\n\n\ndef ripple_hard(Rp: Tensor, Md: Tensor, Td: Tensor, Tb: Tensor):\n    \"\"\"Every trial on integers: Rp [X, P] digits, Md [X, S, P] digits of s*N, flat tables Td, Tb [200] indexed\n    (r, m, c) -> r * 20 + m * 2 + c. Returns the trials' digits [X, S, P], final borrows [X, S], table rows [X, S, P].\"\"\"\n    c = torch.zeros(Md.shape[:2], dtype=torch.long, device=Md.device)\n    outs, rows = [], []\n    for j in range(P):\n        idx = (Rp[:, j, None] * 10 + Md[:, :, j]) * 2 + c\n        outs.append(Td[idx])\n        c = Tb[idx]\n        rows.append(idx)\n    return torch.stack(outs, 2), c, torch.stack(rows, 2)\n\n\ndef divide_hard(v: Tensor, steps: int, Md: Tensor, Td: Tensor, Tb: Tensor, visits: Tensor | None = None) -> Tensor:\n    \"\"\"v mod N on integers, from R = v // 10^steps (below N) in `steps` steps; the choice keeps the largest trial\n    that does not borrow. Returns the remainder's digits [X, P]. `visits` accumulates every table row used.\"\"\"\n    R = to_digits(v // POW10[steps], P)\n    slot = torch.arange(S, device=v.device)\n    row = torch.arange(v.shape[0], device=v.device)\n    for t in reversed(range(steps)):\n        Rp = torch.cat([((v // POW10[t]) % 10)[:, None], R[:, :P - 1]], 1)\n        D, c, idx = ripple_hard(Rp, Md, Td, Tb)\n        R = D[row, torch.where(c == 0, slot, -1).argmax(1)]\n        if visits is not None:\n            visits += torch.bincount(idx.flatten(), minlength=200)\n    return R\n\n\ndef ripple_soft(Rp: Tensor, Md: Tensor, TDC: Tensor):\n    \"\"\"Trials on digit distributions, the cell applied multilinearly. Rp [X, P, 10], Md [X, n, P] digits of the n trials,\n    TDC [20, 120]: rows (r, c), columns (m, 10 digit + 2 borrow probabilities). Returns D [X, n, P, 10], borrow [X, n, 2].\"\"\"\n    X, n = Md.shape[:2]\n    c = torch.zeros(X, n, 2, device=Rp.device)\n    c[..., 0] = 1\n    D = []\n    for j in range(P):\n        joint = (Rp[:, None, j, :, None] * c[:, :, None, :]).reshape(X * n, 20)\n        Y = (joint @ TDC).view(X, n, 10, 12)                                       # every m at once\n        Y = Y.gather(2, Md[:, :, j, None, None].expand(X, n, 1, 12)).squeeze(2)    # the trial's own m\n        D.append(Y[..., :10])\n        c = Y[..., 10:]\n    return torch.stack(D, 2), c\n\n\ndef divide_soft(v: Tensor, steps: int, Md: Tensor, TDC: Tensor, choice: str, est=None) -> Tensor:\n    \"\"\"The same division on digit distributions with a soft choice: \"uniform\", \"est\" (the estimator) or \"borrow\"\n    (the subtraction's own borrow). Returns the final remainder's digit distributions [X, P, 10].\"\"\"\n    X = v.shape[0]\n    R = F.one_hot(to_digits(v // POW10[steps], P), 10).float()\n    for t in reversed(range(steps)):\n        Rp = torch.cat([F.one_hot((v // POW10[t]) % 10, 10).float()[:, None], R[:, :P - 1]], 1)\n        D, c = ripple_soft(Rp, Md, TDC)\n        if choice == \"uniform\":\n            wq = torch.full((X, S), 1.0 / S, device=v.device)\n        elif choice == \"est\":\n            wq = est(Rp)\n        else:\n            valid = c[..., 0]\n            above = torch.flip(torch.cumprod(torch.flip(1 - valid, [1]), 1), [1])     # prod_{s' >= s} (1 - valid)\n            wq = valid * torch.cat([above[:, 1:], torch.ones(X, 1, device=v.device)], 1)\n            wq = wq / wq.sum(1, keepdim=True).clamp_min(1e-12)\n        R = torch.einsum(\"xs,xspo->xpo\", wq, D)\n    return R\n\n\ndef divide_path(v: Tensor, steps: int, Md: Tensor, TDC: Tensor, Td: Tensor, Tb: Tensor, visits: Tensor | None = None):\n    \"\"\"The model's own hard path, learned along: each step's trial is chosen by the hard datapath (argmax table, the\n    largest trial that does not borrow), and the soft cell computes that trial on digit distributions. Returns the\n    soft remainder [X, P, 10] (the gradient reaches the cell through the chosen trials only) and the hard one [X, P].\"\"\"\n    Rh = to_digits(v // POW10[steps], P)\n    Rs = F.one_hot(Rh, 10).float()\n    slot = torch.arange(S, device=v.device)\n    row = torch.arange(v.shape[0], device=v.device)\n    for t in reversed(range(steps)):\n        vt = (v // POW10[t]) % 10\n        D, c, idx = ripple_hard(torch.cat([vt[:, None], Rh[:, :P - 1]], 1), Md, Td, Tb)\n        best = torch.where(c == 0, slot, -1).argmax(1)\n        Rh = D[row, best]\n        if visits is not None:\n            visits += torch.bincount(idx.flatten(), minlength=200)\n        Rp = torch.cat([F.one_hot(vt, 10).float()[:, None], Rs[:, :P - 1]], 1)\n        Rs = ripple_soft(Rp, Md[row, best][:, None], TDC)[0][:, 0]\n    return Rs, Rh\n\n\ndef ce(R: Tensor, target: Tensor, width: Tensor) -> Tensor:\n    \"\"\"Cross-entropy of the remainder's digits below N's width (a remainder below N has `width` digits).\"\"\"\n    scored = (torch.arange(P, device=R.device)[None] < width[:, None]).float()\n    nll = -R.clamp_min(1e-12).log().gather(-1, target[..., None]).squeeze(-1)\n    return (nll * scored).sum() / scored.sum()\n\n\nclass Config:\n    def __init__(self, vocab_size: int, max_seq_len: int) -> None:\n        self.vocab_size = vocab_size\n        self.max_seq_len = max_seq_len\n\n\nclass Control:\n    \"\"\"The training schedule (Python-side, not model state): phase A stages, phase B, frozen.\"\"\"\n\n    def __init__(self) -> None:\n        self.step = 0\n        self.phase = \"frozen\" if MODE == \"designed\" else \"A\"\n        self.k = 1\n        self.in_stage = 0\n        self.streak = 0\n        self.reset = False                    # the scheduler clears Adam's state at the switch\n        self.win: deque = deque(maxlen=STAGE_WIN)\n        self.visits: Tensor | None = None     # table rows used by training's hard checks (the audit)\n        self.used: Tensor | None = None       # table rows used at evaluation\n        self.reported = -1\n        self.history: list = []\n\n\nclass LearnedRemainder(nn.Module):\n    def __init__(self, spec: ModelSpec) -> None:\n        super().__init__()\n        self.config = Config(spec.vocab_size, spec.max_seq_len)\n        self.a = nn.Parameter(INIT * torch.randn(10, 10, 2, 10))           # subtractor: (r, m, borrow in) -> digit\n        self.b = nn.Parameter(INIT * torch.randn(10, 10, 2, 2))            # ... -> borrow out\n        self.g = nn.Parameter(INIT * torch.randn(10 ** KN, 10 ** KR, S))   # estimator: (N window, Rp window) -> slot\n        self.ctl = Control()\n\n    def tables(self) -> tuple[Tensor, Tensor]:\n        if MODE == \"designed\":\n            return exact_tables(self.a.device)\n        return self.a.argmax(-1).flatten(), self.b.argmax(-1).flatten()\n\n    def forward(self, input_ids: Tensor, attention_mask: Tensor | None = None):\n        if attention_mask is None:\n            attention_mask = input_ids != 0\n        with torch.autocast(input_ids.device.type, enabled=False):\n            return self._forward(input_ids, attention_mask)\n\n    def _forward(self, input_ids: Tensor, attention_mask: Tensor):\n        dev = input_ids.device\n        Nd, Xd, Td_, end, width = parse(input_ids, attention_mask)\n        N, x, T = from_digits(Nd), from_digits(Xd), from_digits(Td_[:, :2])\n        Md = to_digits(N[:, None] * torch.arange(S, device=dev)[None], P)     # the exact multiples s*N (designed)\n        Td, Tb = self.tables()\n        rows, L, V = input_ids.shape[0], input_ids.shape[1], self.config.vocab_size\n        if self.training:\n            aux = self.lessons(N, x, T, Nd, width, Md, Td, Tb)\n            return torch.zeros(rows, L, V, device=dev), aux\n        ctl = self.ctl\n        if ctl.used is None:\n            ctl.used = torch.zeros(200, dtype=torch.long, device=dev)\n            self.report_tables(Td, Tb)\n        s = self.run(x, T, Md, Td, Tb, ctl.used)\n        n_used = int((ctl.used > 0).sum())\n        if n_used != ctl.reported:\n            ctl.reported = n_used\n            unvisited = int(((ctl.used > 0) & (ctl.visits == 0)).sum()) if ctl.visits is not None else -1\n            print(f\"AUDIT eval_rows_used={n_used}/200 used_but_never_trained={unvisited}\", flush=True)\n        place = end[:, None] - 1 - torch.arange(L, device=dev)[None]          # position p holds digit end - 1 - p\n        d = to_digits(s, W).gather(1, place.clamp(0, W - 1))\n        tok = torch.where((place >= 0) & (place < W), d + DIGIT, 0)\n        logits = torch.full((rows, L, V), -20.0, device=dev)\n        return logits.scatter_(2, tok[..., None], 0.0), None\n\n    def run(self, x: Tensor, T: Tensor, Md: Tensor, Td: Tensor, Tb: Tensor, visits: Tensor | None = None) -> Tensor:\n        \"\"\"The hard machine: T squarings, each reduced by the long division.\"\"\"\n        s = x.clone()\n        for t in range(int(T.max()) if T.numel() else 0):\n            R = divide_hard(s * s, W, Md, Td, Tb, visits)\n            s = torch.where(T > t, from_digits(R), s)\n        return s\n\n    def estimate(self, Rp: Tensor, nidx: Tensor, rpos: Tensor) -> Tensor:\n        top = Rp.gather(1, rpos[..., None].expand(-1, -1, 10))              # [X, KR, 10], the top place first\n        joint = top[:, 0]\n        for i in range(1, KR):\n            joint = (joint[:, :, None] * top[:, i, None, :]).flatten(1)\n        G = self.g.float().softmax(-1)[nidx]                                 # [X, 10^KR, S]\n        return torch.bmm(joint[:, None, :], G).squeeze(1)\n\n    def lessons(self, N, x, T, Nd, width, Md, Td, Tb) -> dict:\n        ctl = self.ctl\n        ctl.step += 1\n        dev = N.device\n        if ctl.visits is None:\n            ctl.visits = torch.zeros(200, dtype=torch.long, device=dev)\n        if ctl.phase == \"frozen\":\n            return {\"loss\": self.a.sum() * 0.0, \"real\": None, \"ctl\": ctl}\n        TDC = torch.cat([self.a.float().softmax(-1), self.b.float().softmax(-1)], -1)\n        TDC = TDC.permute(0, 2, 1, 3).reshape(20, 120)\n        k = ctl.k\n        rep = lambda t: t.repeat_interleave(LESSONS, 0)\n        Nl, xl, Ml, wl, Ndl = rep(N), rep(x), rep(Md), rep(width), rep(Nd)\n        v = torch.randint(0, POW10[k], Nl.shape, device=dev) * Nl + xl         # made-up dividend; remainder x\n        if ctl.phase == \"A\":\n            choice = \"uniform\" if ctl.step <= HOLD else \"est\"\n        else:\n            choice = \"borrow\"\n        rpos = wl[:, None] - torch.arange(KR, device=dev)[None]\n        nidx = sum(Ndl.gather(1, (wl - 1 - i)[:, None])[:, 0] * 10 ** (KN - 1 - i) for i in range(KN))\n        target = to_digits(xl, P)\n        if ctl.phase == \"A\":\n            R = divide_soft(v, k, Ml, TDC, choice, lambda Rp: self.estimate(Rp, nidx, rpos))\n            with torch.no_grad():\n                Rh = divide_hard(v, k, Ml, Td, Tb, ctl.visits)\n        else:\n            R, Rh = divide_path(v, k, Ml, TDC, Td, Tb, ctl.visits)\n        loss = ce(R, target, wl)\n        exact = float((Rh == target).all(1).float().mean())\n        real = None\n        if ctl.phase == \"B\" and k == W:\n            sel = torch.nonzero(T <= REAL_MAX_T).flatten()\n            if sel.numel():\n                with torch.no_grad():\n                    sp = self.run(x[sel], T[sel] - 1, Md[sel], Td, Tb)\n                Rr, Rrh = divide_path(sp * sp, W, Md[sel], TDC, Td, Tb, ctl.visits)\n                real = {\"sel\": sel, \"R\": Rr, \"Rh\": Rrh, \"width\": width[sel]}\n        self.control(exact, float(loss.detach()))\n        return {\"loss\": loss, \"real\": real, \"ctl\": ctl}\n\n    def control(self, exact: float, loss: float) -> None:\n        ctl = self.ctl\n        ctl.win.append(exact)\n        ctl.in_stage += 1\n        mean = sum(ctl.win) / len(ctl.win)\n        if ctl.step % LOG_EVERY == 0 or ctl.step == 1:\n            print(f\"LR step={ctl.step} phase={ctl.phase} k={ctl.k} in_stage={ctl.in_stage} loss={loss:.4f} \"\n                  f\"hard_exact={exact:.4f} win={mean:.4f} rows_visited={int((ctl.visits > 0).sum())}/200\", flush=True)\n        ready = len(ctl.win) == STAGE_WIN and mean >= STAGE_EXACT\n        timeout = ctl.in_stage >= STAGE_MAX\n        if ctl.phase == \"A\" and (ready or (ctl.k == W and timeout)):\n            # the hard datapath with the own-borrow choice is exact on this stage: from now on the soft choice is the\n            # own borrow, with a fresh optimizer (Adam's memory of phase A's lessons would slow the repairs)\n            ctl.history.append((ctl.step, \"switch\", ctl.k, ctl.in_stage, round(mean, 4)))\n            print(f\"LR switch_to_own_borrow step={ctl.step} k={ctl.k} win={mean:.4f}\", flush=True)\n            ctl.phase, ctl.reset = \"B\", True\n            if ctl.k < W:\n                self.advance(mean)\n            else:\n                ctl.in_stage = 0\n                ctl.win.clear()\n        elif ctl.k < W and (ready or timeout):\n            self.advance(mean)\n        elif ctl.phase == \"B\" and ctl.k == W:\n            ctl.streak = ctl.streak + 1 if exact == 1.0 else 0\n            if ctl.streak >= FREEZE_WIN:\n                ctl.history.append((ctl.step, \"frozen\", W, ctl.in_stage, 1.0))\n                print(f\"LR frozen step={ctl.step} history={ctl.history}\", flush=True)\n                ctl.phase = \"frozen\"\n\n    def advance(self, mean: float) -> None:\n        ctl = self.ctl\n        ctl.history.append((ctl.step, ctl.phase, ctl.k, ctl.in_stage, round(mean, 4)))\n        print(f\"LR stage_done step={ctl.step} phase={ctl.phase} k={ctl.k} steps={ctl.in_stage} win={mean:.4f}\",\n              flush=True)\n        ctl.k, ctl.in_stage = ctl.k + 1, 0\n        ctl.win.clear()\n\n    def report_tables(self, Td: Tensor, Tb: Tensor) -> None:\n        \"\"\"At the first evaluation batch: the snapped table and how often training's hard checks used each row.\"\"\"\n        ctl = self.ctl\n        print(\"TABLE digit=\" + \"\".join(str(int(d)) for d in Td.tolist()), flush=True)\n        print(\"TABLE borrow=\" + \"\".join(str(int(d)) for d in Tb.tolist()), flush=True)\n        if ctl.visits is not None:\n            v = ctl.visits\n            print(f\"TABLE train_visits min={int(v.min())} rows_never={int((v == 0).sum())} \"\n                  f\"counts={','.join(str(int(c)) for c in v.tolist())}\", flush=True)\n        print(f\"TABLE schedule phase={ctl.phase} step={ctl.step} history={ctl.history}\", flush=True)\n\n\ndef token_training_loss(batch: TokenLossBatch) -> Tensor:\n    aux = batch.auxiliary\n    with torch.autocast(batch.labels.device.type, enabled=False):\n        loss = aux[\"loss\"]\n        real = aux[\"real\"]\n        if real is None:\n            return loss\n        sel = real[\"sel\"]\n        labels, valid = batch.labels[sel], batch.valid_mask[sel]\n        cnt = valid.long().sum(1)\n        k = torch.arange(P, device=labels.device)[None]\n        yd = (labels.gather(1, (cnt[:, None] - 1 - k).clamp(0, labels.shape[1] - 1)) - DIGIT).clamp(0, 9)\n        yd = torch.where(k < cnt[:, None], yd, 0)                           # the label's digits, LSB first\n        ctl = aux[\"ctl\"]\n        if ctl.step % LOG_EVERY == 0:\n            ex = float((real[\"Rh\"] == yd).all(1).float().mean())\n            print(f\"LR step={ctl.step} real_rows={sel.numel()} real_hard_exact={ex:.4f}\", flush=True)\n        return loss + ce(real[\"R\"], yd, real[\"width\"])\n\n\nclass Schedule:\n    \"\"\"Scheduler: a fresh Adam state at the switch to the own borrow; learning rate 0 once the model is frozen.\"\"\"\n\n    def __init__(self, optimizer: torch.optim.Optimizer, ctl: Control) -> None:\n        self.optimizer, self.ctl = optimizer, ctl\n\n    def step(self) -> None:\n        if self.ctl.reset:\n            self.optimizer.state.clear()\n            self.ctl.reset = False\n        if self.ctl.phase == \"frozen\":\n            for group in self.optimizer.param_groups:\n                group[\"lr\"] = 0.0\n\n\ndef build_model(spec: ModelSpec) -> LearnedRemainder:\n    model = LearnedRemainder(spec)\n    assert_model_state(model, spec)\n    return model\n\n\ndef build_optimizer(model: nn.Module, spec: OptimizerSpec) -> OptimizerBundle:\n    # fused keeps Adam's step counter on the accelerator (the evaluator checks every optimizer state tensor)\n    opt = torch.optim.Adam(model.parameters(), lr=LR, fused=spec.device_type in (\"cuda\", \"mps\"))\n    return OptimizerBundle(opt, scheduler=Schedule(opt, model.ctl))\n\n\nSUBMISSION = Submission(\n    build_model=build_model,\n    build_optimizer=build_optimizer,\n    token_training_loss=token_training_loss,\n    batch_size=BATCH,\n    max_steps=MAX_STEPS,\n    eval_batch_size=EVAL_BATCH,\n)\n",
+ "submission_md5": "9732a11f95e1622fd9ceda2c76caf8e1",
+ "submission_file": "record:runs/learned_remainder/p1_s0_designed_cpu.json",
+ "file_md5": "9732a11f95e1622fd9ceda2c76caf8e1",
+ "set": {},
+ "hardware": "fast",
+ "runner": {
+  "tool": "cpu_first/tools/modal_runner.py",
+  "tool_md5": "d413900240170753cb387e99f0a4c950",
+  "run": "fallback-2",
+  "call_id": "fc-01M5KMFDGKKWP7X5Q5FE5C0VH0",
+  "container": "ta-01M5KMFDQ3BHR32K2RQHQ8XYZR",
+  "attempt": 1,
+  "data_md5": "a6414ec9fc6a5efce6414895b52d4eb7",
+  "started_at": 1792734121.3337219,
+  "timeout_seconds": 7200,
+  "timed_out": false,
+  "memory_cap_gb": 24.0,
+  "killed": null,
+  "leftover_processes": 0,
+  "fell_back_from": null
+ },
+ "usage": {
+  "child_cpu_seconds": 20.1,
+  "child_cpu_cores_mean": 1.25,
+  "child_max_rss_mb": 4382,
+  "nproc": 17,
+  "affinity": 17,
+  "cpu_model": "unknown",
+  "peak_session_rss_mb": 7884
+ }
+}

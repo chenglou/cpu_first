@@ -52,15 +52,17 @@ answers of rows with T = 1); and the countdown over T.
   With those fixes and the review's rules (routines first, twins skipped, measured caps, stalls logged: variant C), the
   climb finds the multiply.
 - **Stage 3** (no skeleton, no menus): **certified on the untouched official manifest** on an H100: T = 64 on both
-  ladders, every rung 768/768, every split exact. The final file, s3h, **certifies on every seed** on the official
-  manifest on H100s (74 and 1-7: the round by 1,058-1,297 s, the freeze by 1,341-2,086 s, 1,499-2,229 s of
-  training). The file before it (s3g) certified 5 of 8; s3h fixes its three remaining failures (§3): an acceptance
-  test that rejected the right round for some pool sizes, a NaN in phase D, and a climb too slow for the slowest hosts
-  (s3h's runs reach the freeze 2.0-2.4 times sooner). In one training run the model reads, learns its digit tables
-  from laws, climbs its library, and discovers the round:
+  ladders, every rung 768/768, every split exact. The final file, s3i, **certifies on every seed** on the official
+  manifest on H100s (74 and 1-7: the round by 948-1,099 s, the freeze by 982-1,149 s, under a third of the budget,
+  1,133-1,350 s of training). The file before it, s3h, certified every seed too, its freeze by 1,341-2,086 s; s3i
+  trains step for step as s3h does, with phase D's countdown and two parts of the search made faster (§3). s3g
+  certified 5 of 8; s3h fixed its three remaining failures (§3): an acceptance test that rejected the right round for
+  some pool sizes, a NaN in phase D, and a climb too slow for the slowest hosts (s3h's runs reach the freeze 2.0-2.4
+  times sooner than s3g's). In one training run the model reads, learns its digit tables from laws, climbs its
+  library, and discovers the round:
   - the multiply, as a loop of its own accumulating row;
   - the reduction, as a loop of its own long-division step;
-  - x^2 mod N as "copy x, multiply, reduce", found at step 671 (seed 74), by 1,232 s (s3g: 2,620-2,900 s).
+  - x^2 mod N as "copy x, multiply, reduce", found at step 671 (seed 74), by 1,095 s (s3h: 1,232 s; s3g: 2,989 s).
 
   Getting there took the A/B's variant C (test every candidate's result; pose the multiply's row as a practice problem
   of its own), two fixes found in-run (Occam's ties to the faster program; skip only the twins), and practising the
@@ -68,6 +70,10 @@ answers of rows with T = 1); and the countdown over T.
   first in-run discovery, without the last two, needed 8,552 s of climbing and certified only on a relaxed budget.
   Certifying every seed then took an exact acceptance test for the round, a guard in one lesson, and a search engine
   that runs every candidate program's instructions in lockstep on the GPU (the same search, more than twice as fast).
+  The final file's margin (every seed frozen by 1,149 s) came mostly from the countdown that checks the answers: its
+  round program now runs on all rows at once, replayed from a CUDA graph, with the same results (seed 6's steps
+  600-800: 95 s instead of 1,028 s); two refinements of the search reach the round sooner too (the climb alone, on
+  two H100s the same day: 964 s against 1,133 s).
 
 **Is Bar 2 cleared?** Partly (§6). No hand-written algorithm runs any more, and the model that answers was discovered
 in training and certifies on the official budget. But the algorithm's decomposition still lives in the instruction set
@@ -409,7 +415,7 @@ seven stage-3 acceptance runs (CPU, at level 3 of the same climb) with them; the
   across levels, since the test machines and an item's meaning never change): **certified on the untouched official
   manifest** (s3f_official, H100): T = 64 on both ladders, every rung 768/768, ood_n_t 10,002/10,002, ood_t
   10,002/10,002, test 9,999/9,999; 3,134 s of training (the 20,000-step limit, reached after the freeze), 190 s of
-  evaluation. The file is [`submission_stage3.py`](submission_stage3.py) (md5 31c9cab2). Its climb:
+  evaluation. The file is kept as [`submission_stage3_s3f.py`](submission_stage3_s3f.py) (md5 31c9cab2). Its climb:
   - levels 0-2 (lt, modx, add and twins), about 160 s;
   - level 3 (modB, mrow), 375 s, against s3e's 1,753 s, since mul and reduce now wait for their pieces;
   - level 4 (mac = the accumulating row, step, reduce = `CLK CLA P[BRG.X STA.Y T.modB~]`), about 1,330 s;
@@ -570,7 +576,8 @@ seven stage-3 acceptance runs (CPU, at level 3 of the same climb) with them; the
        launch-bound. Fused blocks and graphs brought mac from 177 to 72 s;
      - dropped: fuse 8 instead of 4, 2% faster on the whole climb at 34 instead of 29 GiB of GPU memory.
 
-  **Results** (the final file, md5 3b9d9bcf; the S3_RUNS table below, `s3h_official` and `s3h_h100_seed1`-`7`):
+  **Results** (md5 3b9d9bcf, the final file before s3i; the S3_RUNS table below, `s3h_official` and
+  `s3h_h100_seed1`-`7`):
   - **On the official manifest on H100s, every seed certifies** (74 and 1-7): T = 64 on both ladders, every rung
     768/768, ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999. Each run follows its s3g run step for step
     as far as that run went (the same losses, the climb from the same step, the round at the same step: steps
@@ -635,7 +642,7 @@ seven stage-3 acceptance runs (CPU, at level 3 of the same climb) with them; the
      file. `checks/stage3_train_smoke.py` prints s3h's log, but for one printed loss's last digit (step 31), which also
      flips between hosts for s3h itself.
 
-  **Results** (md5 0e813144; the S3_RUNS table, `s3i_official` and `s3i_h100_seed1`-`7`):
+  **Results** (the final file, md5 0e813144; the S3_RUNS table, `s3i_official` and `s3i_h100_seed1`-`7`):
   - **On the official manifest on H100s, every seed certifies again** (74 and 1-7): T = 64 on both ladders, every rung
     768/768, ood_n_t 10,002/10,002, ood_t 10,002/10,002, test 9,999/9,999. Each run follows its s3h run exactly: every
     search of the climb, the round and library, T's resolution, the freeze step, and the loss at every logged step.
@@ -702,7 +709,7 @@ seven stage-3 acceptance runs (CPU, at level 3 of the same climb) with them; the
 
 The research seeds on B200s (`records/b200/`; the official claims are the H100 runs above): s3g's
 (`s3g_b200_b200_seed*`), an intermediate s3h build's (`s3h_b200_seed*`, md5 8103f399: the three fixes with the first
-lockstep machine, stopped after two seeds to free GPUs for the H100 runs), s3h's final file's (`s3hf_b200_seed*`) and
+lockstep machine, stopped after two seeds to free GPUs for the H100 runs), s3h's certified file's (`s3hf_b200_seed*`) and
 s3i's (`s3i_b200_seed*`).
 
 <!-- S3_B200 -->
@@ -771,7 +778,7 @@ every parameter from a random start, the evaluator owning the loop.
 | **8. final logits inside autograd, unbroken gradient path** | yes, with the parents' gray edges. Gradient test (Modal, `checks/gradtest.py`, 16 rows of depth_t_8 and depth_ood_n_t_4, every table and switch at the truth): with the below set selected every parameter tensor gets a gradient except the unselected lowzero set's four blocks; with lowzero selected, also the round's + constant switch (the damped gradient underflows at the first Montgomery step), as LESSONS.md §5 found for the general file. Training returns zero logits: the lessons teach, not the final logits | the prediction path is one-hot digits through straight-through tables (`SteMachine`) and stage 1's countdown and reader; the round program is a straight-through choice over the tournament's contestants. Gradient test on the certified file (`checks/stage3_gradtest.py`: submission_stage3.py with the library and the four contestants its official run discovered, `lib/s3f_lib.json`, reader and cells at the truth, depth_t_1): every one of the 16 parameter tensors is in the graph of the final logits. With the right tokens' logits as the objective, all 16 get a nonzero gradient. With cross-entropy at a perfect prediction (loss 0), two underflow to exactly zero in float32: the tournament's logits and the addition table's carry, which sits behind thousands of damped lookups, stage 1's lowzero edge again. s3h's prediction path is s3g's, unchanged (its changes are in the search, the round's acceptance, the gate lesson and T's lesson). Gray: the program itself is a discrete result of search, not a differentiable parameter; training returns zero logits |
 | **14. no data inspection, augmentation, task-specific solvers, custom loops, participant backward** | gray as its parents: the lessons carry designed knowledge (the law library, the template's ladders and step laws, the link law, the loop law, csub); the miner computes statistics over the training batches inside the model; the moved-up rows (CHAIN_NORM) are numbers made from each row's own x and N; the answer rows are chosen by the batch's smallest T (a data-derived rule, no H1 constant) | gray in a new place: the climb is a program search inside the training forward pass, the same kind of thing as the tournament's scoring but over a much bigger space and over many steps; its practice problems are made from the batch rows' own digits (N's top digits and x's at the same places, another row's x, the digits 0-9 run over the probes: no data file is read and no number is made up) and the law library. The curriculum (which laws become practice problems, the register variants, mac) and the round's search space are designed: a strict reader could call the curriculum a task-specific solver written as lessons. No backward call, one optimizer step per evaluator step |
 | **9. everything on the GPU** | yes | the search, the probes and the machines are GPU tensors (generators on the device, no `.cpu()`); Python holds the bookkeeping (programs as tuples, BPE over program text, the schedule), as the schedule always did. s3h: each program's primitive instructions are traced on the host from its text (memoized) and copied to the GPU as opcode columns; the machines run them there, long runs replayed from CUDA graphs |
-| **11. 3,600 s of H100 training** | yes: 1,861 s | **yes, on every seed** (s3h): the freeze by 1,341-2,086 s on the eight H100 runs (s3g: about 2,950 s on seed 74, and out of time on two seeds). The first certified build (s3d) needed a relaxed budget (9,142 s), and an earlier build overran the budget by 346 s inside one climb unit (the deadline was checked only between groups of item classes); the search now checks it inside every batch, acceptance batch and vocabulary build |
+| **11. 3,600 s of H100 training** | yes: 1,861 s | **yes, on every seed** (s3i, the final file): the freeze by 982-1,149 s on the eight H100 runs, under a third of the budget (s3h: 1,341-2,086 s; s3g: by 3,298 s on seed 74, and out of time on two seeds). The first certified build (s3d) needed a relaxed budget (9,142 s), and an earlier build overran the budget by 346 s inside one climb unit (the deadline was checked only between groups of item classes); the search now checks it inside every batch, acceptance batch and vocabulary build |
 <!-- /RULES -->
 
 ## 6. Is Bar 2 cleared?
@@ -801,10 +808,10 @@ multiply, reduce"), and that run certifies at T = 64 on both ladders. Two things
 - *the training recipe*, where the algorithm's decomposition still lives: the instruction set, and a curriculum whose
   practice problems a person chose, including one (mac with the running sum as its addend) designed so that the
   multiply's row becomes a problem of its own;
-- *the official budget*: met on every seed (s3h), but it took practising the pieces in a designed order (the
-  multiply after its row, the reduction after its chain); without that order (s3e) the climb reaches level 5 at the
-  deadline, about 500 s short of the round. s3h's speed is an engine change, the same search run faster, not a smaller
-  search.
+- *the official budget*: met on every seed (s3i, the final file: the freeze by 1,149 s at the latest; s3h's by
+  2,086 s), but it took practising the pieces in a designed order (the multiply after its row, the reduction after
+  its chain); without that order (s3e) the climb reaches level 5 at the deadline, about 500 s short of the round.
+  s3h's and s3i's speed is an engine change, the same search and the same training run faster, not a smaller search.
 
 The acceptance tests say the same from the other side: with the routines the H1 run discovered, no other formula's
 round is a composition of cost <= 5 (§1.3's table). The curriculum, not the data, bounds what stage 3 can learn. Bar 3
@@ -1064,8 +1071,9 @@ PYTHONPATH=. ~/github/sotaku/venv/bin/python -m integration.lib.test_climb_ab
 Then the tables: `cd integration && ~/github/sotaku/venv/bin/python summarize.py fill INTEGRATION.md`.
 
 **Files** (`cpu_first/integration/`): `make_stage1.py` and `submission_stage1.py`; `stage3_template.py`,
-`make_stage3.py` and `submission_stage3_s3i.py` (s3i: s3h with phase D's round machine and the two search refinements),
-`submission_stage3_s3h.py` (s3h: every seed certified on the official manifest; its sources in `work/s3h/`),
+`make_stage3.py` and `submission_stage3_s3i.py` (s3i, the final file: every seed certified on the official manifest,
+the freeze by 1,149 s at the latest), `submission_stage3_s3h.py` (s3h, the file before it: every seed certified; its
+sources in `work/s3h/`),
 `submission_stage3.py` (s3g, certified, official; its sources in `work/s3g/`), `submission_stage3_s3f.py` (certified,
 official), `submission_stage3_s3d.py` (certified, relaxed);
 `lib/` (`libcore.py`, the core stage 3 inlines (s3i's), `libcore_s3h.py` and `libcore_s3g.py` (s3h's and s3g's, for A/B

@@ -1,19 +1,19 @@
 # One Layer Deeper H1, from the CPU up: where everything stands
 
-*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed three times: at about 10:45
-and 15:15 that day, as the ablation, digit-anchor, learned-wiring and wide-menu work was committed, and on 2026-10-22 at
-about 12:45, after the bridge, litmus, library, tournament, general-lessons, inventing and handwired-bridge studies
-were committed.*
+*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed four times as studies
+landed; this refresh, on 2026-10-23 at about 15:30, adds the integration's stage 3, general lessons v2 and v3, the NCA
+probe and the two bar-3 studies.*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
-  `tournament/h1_records/`, `general_lessons/records/`, `handwired_bridge/h1/records/`, `litmus/records/`,
-  `library/records/`): every certification, run time, freeze step, parameter count and CPU-seed count quoted here. The
-  source embedded in each record was hashed and compared with the file's md5.*
+  `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
+  `handwired_bridge/h1/records/`, `litmus/records/`, `library/records/`): every certification, run time, freeze step,
+  parameter count and seed count quoted here. The source embedded in each record was hashed and compared with the
+  file's md5.*
 - *The data counts in §1–2 were computed from the released H1 files, and the commits come from `git log`.*
-- *The one-line findings of the timeline (§3) and the summaries of how each piece learns summarize their write-ups,
-  which are linked; they were not re-run.*
+- *The one-line findings of the timeline (§3) and the summaries of how each piece learns, including the NCA and bar-3
+  studies, summarize their write-ups, which are linked; they were not re-run.*
 - *The older write-ups are left as they were. §9 lists where a write-up and a record disagree.*
-- *All the work described is committed (the last commit is `22df2de`, Oct 22 at 09:32). One new session started as
-  this was refreshed: the bar-2 integration (§7), which had written nothing but a first working file yet.*
+- *Everything described is committed (the last commit is `90dc084`, Oct 23 at 14:46), except a follow-up of the NCA
+  probe that was still running (§7).*
 
 **In one minute.**
 - The task is exact repeated modular squaring. Almost every entry on the leaderboard scored near 0%, because the
@@ -23,20 +23,17 @@ were committed.*
   whole machines. Four lines of work certified through the official evaluator: SpecBit, UnfoldB, UnfoldS and the
   learned digit machine (§3).
 - The project is measured against three bars (§4):
-  1. **Certify H1 with learned parts: done.** The certified models are paper-arithmetic calculators in which every part
-     that computes is learned, the wiring is chosen in training from menus, and no hand-written arithmetic runs
-     anywhere.
-  2. **Nothing a strict judge would call the hand-written algorithm: nearly there.** Every hand-written piece has now
-     been replaced somewhere, in separate files:
-     - generic MLP digit cells;
-     - the division's wiring chosen inside training at free attention's width;
-     - lessons general enough that one file also learns seven other formulas;
-     - and, outside a submission, a search-and-compress loop that rediscovers the skeleton itself.
-
-     What remains is putting these in one file, plus the instruction set and alphabet that the loop starts from.
-  3. **A general algorithm learner: open.** Across task families the method still needs a designer for some tasks.
-     The inventing test points at two missing ingredients: choosing its own practice problems, and the wrap-around
-     concept.
+  1. **Certify H1 with learned parts: done.**
+  2. **Nothing a strict judge would call the hand-written algorithm: partly cleared.** The stage-3 model
+     ([`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py)) has no hand-written skeleton
+     and no menus. In one training run it learns its digit tables from laws, builds a library of small programs on a
+     general digit machine, and discovers the round, "copy x, multiply, reduce". It certifies on all 8 seeds on the
+     official manifest, training in at most 1,350 s of the 3,600. But the algorithm's decomposition still lives in
+     its instruction set, and in the practice problems a person chose for it and their order.
+  3. **A general algorithm learner: results at a tiny size only.** A learner that picks its own practice problems
+     invents x² mod N for x < N ≤ 7, and, changed in nothing, four of nine other formulas, two more once its solved
+     formulas carry over. Within the task family, general lessons v3 now learns all 14 practice datasets that use one
+     fixed modulus.
 - It got there by removing hand-written parts one at a time, with certification as the gate at each step (§5).
 
 ## 1. The task, in plain words
@@ -153,6 +150,20 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 22, 06:15 `63f1613` | **inventing**: which of our inputs a search-and-compress learner cannot do without | [library/INVENTING.md](library/INVENTING.md) |
 | Oct 22, 09:32 `22df2de` | the machine compiled by handwired into affine + ReGLU layers, loosened the same way | [handwired_bridge/HANDWIRED_BRIDGE.md](handwired_bridge/HANDWIRED_BRIDGE.md) |
 
+### Oct 22 afternoon to Oct 23: integration, one fixed modulus, a shader, and bar 3
+
+| commit | what | write-up |
+|---|---|---|
+| Oct 22, 14:29 `6f6408d` | general lessons v2: the answers read at the batch's smallest T, which fixes M4 | [general_lessons/LESSONS.md](general_lessons/LESSONS.md) §11 |
+| Oct 22, 22:43 to Oct 23, 01:05 `893b8c0`, `d1c8490`, `83f364c` | one shared, preemption-safe Modal runner, and a measured seed policy | [tools/README.md](tools/README.md) |
+| Oct 23, 01:06 `b5f1740` | **integration**: the tournament and the general lessons in one file (stage 1); then **the round discovered inside training** with no skeleton or menus (stage 3), certified on the official budget | [integration/INTEGRATION.md](integration/INTEGRATION.md) |
+| Oct 23, 04:28 `5f39a31` | **bar 3, practice**: the learner picks its own practice problems and invents x² mod N, at a tiny size | [bar3/PRACTICE.md](bar3/PRACTICE.md) |
+| Oct 23, 12:08 `8e7422e` | stage 3 certifies on all 8 seeds within the hour (s3i) | [integration/INTEGRATION.md](integration/INTEGRATION.md) §3 |
+| Oct 23, 12:08 `66304ba` | **general lessons v3**: the answers choose whole digit codes, and all 14 fixed-modulus practice sets are learned | [general_lessons/fixed/FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md) |
+| Oct 23, 12:08 `3b7fd0f` | **the NCA shader probe**: identical local cells hold long division exactly but do not learn it from lessons | [nca/NCA.md](nca/NCA.md) |
+| Oct 23, 12:27 `5c31dd0` | s3i is the final stage-3 file | [integration/INTEGRATION.md](integration/INTEGRATION.md) |
+| Oct 23, 14:46 `90dc084` | **bar 3, breadth**: the unchanged learner invents 4 of 9 new formulas, 2 more by carry-over | [bar3/BREADTH.md](bar3/BREADTH.md) |
+
 ### The lessons that came out of the failures
 
 - **Generic networks memorize instead of computing the remainder**, and on a new modulus they are at chance.
@@ -165,10 +176,11 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
   borrows swapped, "copy the first number". Meaning has to come from outside the table. First that was a hand-written
   adder for a short while ([ABLATION.md](ablation/ABLATION.md) §7). Now the order of the numbers does it alone:
   x < N teaches every borrow, and two laws of subtraction, applied one digit at a time, leave only the true table
-  ([ANCHORS.md](anchors/ANCHORS.md)).
+  ([ANCHORS.md](anchors/ANCHORS.md)). With one fixed modulus that order is not enough; the answers then choose the
+  whole digit code ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md)).
 - **Wiring is learned by trying whole options and scoring each pass or fail**, not by blending options' digits on the
   wire. Blended switches settle on a machine that does nothing ([WIRING.md](learned_wiring/WIRING.md),
-  [TINYROUTING.md](tinyrouting/TINYROUTING.md)).
+  [TINYROUTING.md](tinyrouting/TINYROUTING.md)). The same held for whole digit codes and whole column rules.
 - **The traps of loosened wiring** ([BRIDGE.md](bridge/BRIDGE.md), [HANDWIRED_BRIDGE.md](handwired_bridge/HANDWIRED_BRIDGE.md)):
   - **the bypass**: free soft wiring reads the prompt's clean digits instead of the machine's computed ones. The pull
     comes from the data, not from attention's softmax: a handwired network with no attention felt the same pull;
@@ -177,99 +189,90 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
   - **the constant source**: wiring that cannot drift to the prompt settles on reading a constant zero;
   - **ties**: an MLP digit cell settles on two entries giving the same digit, until "every digit once per row and
     column" breaks the tie.
+- **Copies have no local check.** In a grid of identical local cells the arithmetic cells learn from their laws, but
+  the long chains of copies that carry N and the borrow never form: nothing checks a copy where it happens
+  ([NCA.md](nca/NCA.md)).
 - **With wide menus, the checks still identify; the search is what can fail.** In every menu counted exactly, every
   wiring that passes all the checks is a correct one. Learning failed only where the search could not see the right
   combination: shown only a few sampled combinations instead of every one, a switch was caught by impostors in 14 of
   16 runs ([MENUS.md](wider_menus/MENUS.md)). The tournament found the identified wiring among 5.3·10^10 inside
   training; where the checks let impostors through, it crowned one ([TOURNAMENT.md](tournament/TOURNAMENT.md)).
+- **Inventing needs good practice problems**: problems whose shortest solutions are the pieces of the answer. Without
+  curated ones the loop never invents x² mod N; a learner can pose them itself from a law book and from what its best
+  wrong attempts leave undone ([INVENTING.md](library/INVENTING.md), [PRACTICE.md](bar3/PRACTICE.md)).
 - **What worked every time:** digits snapped to exact values, one shared cell, checks on each training row's own
   numbers that need no answer, and pass/fail scoring of whole choices.
 
 ## 4. Where it stands: three bars, and the models at the frontier
 
 **Bar 1: certify H1 with learned parts. Done.** The first learned table certified on Oct 20 (§5, step 1). From step 11
-on, every certified model learns every part that computes, chooses its wiring in training from menus, and runs no
-hand-written arithmetic anywhere, in training or in the answer.
+on, every certified model learns every part that computes, and no hand-written arithmetic runs anywhere, in training or
+in the answer.
 
-**Bar 2: nothing a strict judge would call the hand-written algorithm. Nearly there.** Every piece that used to be
-hand-written is now learned or discovered somewhere, but not all in one file:
+**Bar 2: nothing a strict judge would call the hand-written algorithm. Partly cleared** (INTEGRATION.md §6).
+- **Cleared for the forward pass.** The stage-3 model, s3i, has no hand-written skeleton and no menus. The program that
+  answers was discovered inside one training run, and that run certifies on every seed within the official budget
+  (§4.1, §4.7).
+- **Not cleared for the training recipe**, where the algorithm's decomposition still lives:
+  - **the instruction set** is digit arithmetic: subtract-with-borrow, add-with-carry and multiply-accumulate at a
+    pointer, keep-or-discard on the borrow, bring the top digit in, and loops by the number's length. The instructions
+    are general, but they were chosen knowing the task family;
+  - **the curriculum** walks the search up the skeleton's pieces. Which laws become practice problems, and in which
+    order, is a designer's choice. Two of them are definitions of long division's step, and one (mac) was posed so
+    that the multiply's row becomes a problem of its own;
+  - **the rest**: the round's search space (short compositions of routines) and the countdown over T are designed;
+- **The official budget** is met only with the pieces practised in a designed order. Without that order (s3e) the climb
+  ran out of time about 500 s short of the round.
 
-| the piece | how it is learned or discovered now | in a certified H1 file? |
-|---|---|---|
-| the digit tables | learned tables (step 1 on), or generic ReLU MLPs (step 12) | yes |
-| what the digits mean | from the order of the numbers, with no hand-written adder (steps 6b, 8, 9, 11 on) | yes |
-| the division chain's wiring | chosen inside training among 7.9·10^9 wirings in which every connection reads any register at any nearby place (step 13) | yes |
-| the rest of the wiring | chosen from wide menus that hold several correct algorithms (step 10 on) | yes; the menus are hand-written |
-| the lessons | laws stated once, facts the model finds in the data, and lesson sets the answers choose (step 14) | yes, in a different file from step 13 |
-| the skeleton: one register, steps of links, loops, rows of products | rediscovered by search and compression from 32 digit instructions and 26 practice tasks ([LIBRARY.md](library/LIBRARY.md)) | no: done offline. A version inside one training run found the division's step and a multiply row, but not the whole multiply or x² mod N |
-| the instruction set and the alphabet | hand-written | no |
-
-So two kinds of work remain:
-- **integration**: one file with the tournament, the generic cells and the general lessons, whose skeleton comes from
-  the library's loop run inside training;
-- **the starting point**: the instruction set and the alphabet that the loop builds from.
-
-**Bar 3: a general algorithm learner. Open.**
-- **The litmus test** ([LITMUS.md](litmus/LITMUS.md)) ran the best H1 model unchanged on 26 other tasks.
-  - It learned H1 with a reordered prompt, and the practice datasets whose moduli vary (5 of those 6 certified).
-  - It failed on other formulas, on the 14 datasets with one fixed modulus, and on a four-number prompt.
-
-  Its verdict: "a method within its family; an engineered solution across families".
-- **General lessons** ([LESSONS.md](general_lessons/LESSONS.md)) fixed the formula failures with one unchanged file:
-  y² + 1, 10·y², cubing, Montgomery's squaring, and two formulas nobody designed for. Still failing: y² − 1, whose
-  step is not in its menu; the 14 one-modulus datasets, where one modulus cannot say what the digits mean; and M4,
-  whose rows all have T = 8.
-- **The inventing test** ([INVENTING.md](library/INVENTING.md)) took away our inputs from the search-and-compress loop
-  one at a time:
-  - without our instruction set, on bare counters, it still invented x² mod N, but only when given practice tasks
-    whose short solutions are the pieces;
-  - without the practice tasks it never did;
-  - given the single step "add one, wrap around at N", the search found x² mod N in about a second.
-
-  Choosing its own practice problems, and the wrap-around concept, are what it lacks.
+**Bar 3: a general algorithm learner. Results at a tiny size only.**
+- **Choosing its own practice** ([PRACTICE.md](bar3/PRACTICE.md)): with no task list from us, the learner poses
+  candidate problems from a general law book applied to the data, from parts of the target, and from its own best wrong
+  attempts. It chooses which to practise, most reliably by asking which pair of them, made into single instructions,
+  makes the target shortest. In its first round it invents x² mod N on every pair x < N ≤ 7, and again at N ≤ 26.
+  Choosing costs up to 10 times the search of our curated list (7 to 16 times at N ≤ 26).
+- **Breadth** ([BREADTH.md](bar3/BREADTH.md)): changed in nothing, it invents 4 of 9 new formulas from scratch
+  (x² + 1, x² − 1, x² + 3, 2x + 1), and 2 more once its solved formulas carry over as routines (x³ and Montgomery's
+  x²·2⁻¹). It misses 10·x², 10·x² + 1 and Fibonacci. Its limits are a search that reaches about 6 instructions, practice
+  problems with one answer from x and N, and a cost that grows with the library: about 520 search-hours in all.
+- **Within the task family** ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md)): general lessons v3 learned
+  all 14 practice datasets with one fixed modulus, which every earlier file failed, by letting the answers choose the
+  whole digit code. These are relaxed-budget runs, and a different sense of "general" from bar 3's: one file across
+  datasets, not a learner of new algorithms.
 
 ### 4.1 The models at the frontier
 
-Each certified on the untouched official manifest on an H100, the file run byte for byte: T = 64 on both ladders,
-every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002. Each also certified on 8 of 8 CPU seeds
-through the same evaluator.
+Each certified on the untouched official H1 manifest on an H100, with the file run byte for byte: T = 64 on both
+ladders, every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002.
 
-| file (md5) | builds on | what it adds | learned numbers | official record: training s (frozen at step) / evaluation s | what it chose |
+| file (md5) | what it is | learned numbers | official record: training s (frozen at step) / evaluation s | seeds | found or chose |
 |---|---|---|---|---|---|
-| [`wider_menus/submission_wide_anchored.py`](wider_menus/submission_wide_anchored.py) (`c82b11fa`) | the combined model (§4.2) | the wiring chosen from about 4·10^17 whole machines; no hand-written arithmetic (§4.3, §4.4) | 11,187 | `wide_anchored_official`: 558.0 (588) / 41.4 | repeated subtraction |
-| [`bridge/h1/submission_wide_mlp.py`](bridge/h1/submission_wide_mlp.py) (`22bd34d0`) | the wide model | both digit tables as generic ReLU MLPs (§4.5) | 26,275 | `wide_mlp_official`: 1,047.7 (743) / 98.0 | trial multiples |
-| [`tournament/submission_tournament.py`](tournament/submission_tournament.py) (`7ae547d9`) | the MLP model | the division chain's wiring at free attention's width, 7.9·10^9 chains and about 3·10^23 whole machines, chosen by tournaments inside training (§4.3) | 123,993 | `tourney2_official`: 2,114.0 (705) / 89.8 | repeated subtraction |
-| [`general_lessons/submission_general.py`](general_lessons/submission_general.py) (`ddfdc065`) | the wide model | task-general lessons; the same file learns seven other formulas (§4.6) | 11,589 | `gen_h1_official`: 1,855.6 (645) / 97.2 | long division, chosen by the answers over a Montgomery machine it also learned |
+| [`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py) (`0e813144`) | **stage 3**: no skeleton, no menus; the round discovered in training (§4.7) | 207,374 | `s3i_official`: 1,340.3 (870) / 209.9 | 8 of 8 on H100s, official manifest (74 and 1–7): trained in 1,133–1,350 s, frozen by 982–1,149 s | "copy x, multiply, reduce", at step 671 on seed 74 |
+| [`integration/submission_stage1.py`](integration/submission_stage1.py) (`cfd7b61d`) | **stage 1**: the tournament and the general lessons in one file | 222,113 | `s1_official`: 1,860.7 (716) / 56.1 | 8 of 8 on CPU | also learns y² + 1, 10·y², cubing, Montgomery's, 10·y² + 1, y² + 3 and M4 |
+| [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py) (`0805b7d3`) | **general lessons v3**: the answers choose whole digit codes (§4.6) | 11,589 | `v3k_h1_official`: 1,190.5 (645) / 42.3 | H1: 8 of 8 on B200s, run with an earlier v3 build (`v3f`) | also all 14 fixed-modulus practice sets, on relaxed budgets |
 
-For H1 alone the tournament file is the most learned, and the general file is the most general. No file combines
-them yet (§7).
+The earlier frontier files are now steps of the ladder (§5): the wide model (step 11), its MLP-cell version (12), the
+tournament (13), and general lessons v1 and v2 (14, 15).
 
-In every one of these official runs the learned tables came out exact, and the audits found no table entry used at
-evaluation that training never used. What every one of them still writes by hand:
-- **the skeleton** the switches plug into: one register of 9 places, 8 steps of 9 links each, in the order bring a
-  digit in → run the chain → move, then one final correction and one readout; the multiply as one product per digit
-  pair, placed and summed;
-- **the menus**: every option was written by hand, and the right wirings are among them. Some methods are not in them
-  at all, such as non-restoring division and Barrett reduction. The tournament's chain is chosen from relative
-  positions instead, but its window of offsets and its grouping into blocks are designed;
-- **the sizes**: 8, 8 and 2 digits read and 8 written, and a 2-digit countdown;
-- **the loop over T**: count down by subtracting the number 1, and run rounds until no prompt wants another, at most
-  100;
-- **a + b = a − (0 − b)**, both done with the subtraction table or cell;
-- **the reader's menus and grammar**: its menu of 24 readings (which digit run is N and which is x, and which way
-  each runs), its 3 shapes, and small rules such as "a slot reads 0 once a slot before it has met a non-digit";
-- **the lessons and their schedule.** Among them are the anchors' three statements ("x < N on every top part",
-  "subtraction keeps, reverses or wraps the order", "every row and column of the table uses each digit once"), and two
-  step laws that are definitions of long division's step ("one step from x + q·N gives back x", and how a step takes
-  its digit in). The general file states its laws once and lets the answers choose between two lesson sets; the
-  tournament file adds three lessons of its own (§6, rule 14).
+**What s3i still writes by hand** (INTEGRATION.md §4):
+- **the instruction set**: a general digit machine with 5 registers of digits, a shared pointer, a borrow or carry, and
+  32 instructions, plus loops that repeat their body by the number's length or the base;
+- **the alphabet and sizes**: base-10 digits, 8, 8 and 2 digits read and 8 written, 16-place registers for the round's
+  machine;
+- **the cells' shapes**: three tables of logits (subtraction, addition, and "a + x times h + k") and the countdown's gate;
+- **the reader and writer**: stage 1's, line for line (24 reading hypotheses, 3 pointer shapes);
+- **the lessons**: a subset of the law library, the template's step laws (now practice problems), and the curriculum:
+  which laws become practice problems, their order, and their variants;
+- **the search and its rules**: breadth-first search by cost with measured caps, BPE merges, Occam's ties, routines
+  for solved problems, and the round's search space;
+- **the countdown over T and the schedule** (phases A–D, then the freeze).
 
 ### 4.2 The calculator underneath: the combined model
 
 **[`learned_remainder/submission_combined.py`](learned_remainder/submission_combined.py)**: md5
 `4f5cecc780894499a462499c3cd7d67f`, committed in `9959997`. Write-up: [COMBINED.md](learned_remainder/COMBINED.md).
 It was the first model in which every computing part is learned. Its wiring and its warm start were still written by
-hand. Every model at the frontier is this calculator with more of it learned.
+hand. Every later model up to stage 1 is this calculator with more of it learned; stage 3 keeps its reader, its cells'
+idea and its countdown, and replaces its machine with programs found in training.
 
 **What it is.** A small calculator, wired the way a person does this arithmetic on paper. All 5,079 learned numbers
 start random and are learned together, in one training run:
@@ -322,38 +325,21 @@ The answers of the T ≤ 2 rows join late, and only along the machine's own path
 **Short menus** ([WIRING.md](learned_wiring/WIRING.md), steps 7a–7c in §5). Every connection the combined model wired
 by hand became a switch: a small menu of options, one of which is right. The division got 7 switches (864 wirings),
 the squaring's layout 2 placement rules of 24 each (576 layouts), and the reader and writer one shape switch of 3.
-Each switch is taught by a check that only the right wiring passes, run on the rows' own numbers: one division step
-started from x + q·N must give back x; dividing x by N must leave x, and N by N must leave 0; the times-table ladder;
-for the reader's shape, the reading under which x < N holds on every question. For the division, every combination of
-options is tried on the snapped machine, and the combinations that pass gain weight.
+Each switch is taught by a check that only the right wiring passes, run on the rows' own numbers. For the division,
+every combination of options is tried on the snapped machine, and the combinations that pass gain weight.
 
-**Wide menus** ([MENUS.md](wider_menus/MENUS.md), step 10). Each connection got many options: 4.1 billion division
-wirings instead of 3,456, and 33 million multiply layouts instead of 576, about 4·10^17 whole machines with the
-reader's 3 shapes. The menus now hold genuinely different algorithms, and the machine picks among those that work:
-- **two long divisions**: subtract N again and again until the result would go negative, or try the step's number
-  minus s·N for every s and keep the last that stays positive (trial multiples, as on paper);
-- **six groupings of the products**: rows by either digit, or diagonals, each in either order;
-- **a Montgomery reduction**, which runs exactly but computes a different number (the dividend times 10^−W, mod N),
-  so the checks reject it.
-
-A new law, x + Q·N mod N = x with Q another row's x, removes impostor wirings that never read the dividend's top half.
+**Wide menus** ([MENUS.md](wider_menus/MENUS.md), step 10). 4.1 billion division wirings instead of 3,456, and 33
+million multiply layouts instead of 576: about 4·10^17 whole machines with the reader's 3 shapes. The menus hold
+genuinely different algorithms, and the machine picks among those that work: two long divisions (repeated
+subtraction, and trial multiples as on paper), six groupings of the products, and a Montgomery reduction that the
+checks reject.
 
 **The tournament** ([TOURNAMENT.md](tournament/TOURNAMENT.md), step 13). The chain's connections stop being a menu of
-meaningful parts: each operand may be any of 7 registers moved up or down by up to 3 places, the borrow may come from
-1, 2 or 3 places below, the gate may read the borrow out of any place, and a link may write back any of 7 values at
-any offset. That is 7.9·10^9 chain wirings. Inside ordinary training the model holds one weight per whole combination
-of a block of connections. Each step it runs every combination still in the running, scores each pass or fail, and
-takes one gradient step on −log (the total weight of those that passed). Combinations far behind the leader stop
-being run.
-- **In tiny machines** it found the one right wiring among 5.3·10^10 in 8 of 8 runs, and among up to 3·10^12 with wider
-  windows, where soft attention never found it. Where the checks did not single out the wiring, it crowned an
-  impostor: with no answers, all 8 runs ended on the bypass.
-- **At H1** the wider menu exposed two gaps that the training data cannot see, and two lessons closed them:
-  - the register's top place is never used by 7-digit training moduli, so the chain's checks also run on each row's
-    numbers moved up until N fills 8 places;
-  - the gate's meaning could flip, so a loop law says every count's first round must run and a count of 0 must stop.
-
-  Without the first lesson 4 of 8 CPU seeds certified. A first version without the second certified on 3 of 8.
+meaningful parts: each operand may be any of 7 registers moved up or down by up to 3 places, and so on, 7.9·10^9 chain
+wirings. Inside ordinary training the model holds one weight per whole combination of a block of connections, scores
+each pass or fail every step, and takes one gradient step on −log (the total weight of those that passed). In tiny
+machines it found the one right wiring among 5.3·10^10 in 8 of 8 runs; at H1 two new lessons closed two gaps the
+training data cannot see (the register's unused top place, and a gate whose meaning could flip).
 
 ### 4.4 Digit meanings from the order of the numbers
 
@@ -369,83 +355,99 @@ replace it:
    digits in one strict order, and ten digits in a strict order can only be 0 to 9 (ANCHORS.md §2.3).
 
 This was certified on the single-piece machine (step 6b) and the combined model (step 8), then put into the wiring
-model (step 9) and the wide-menu model (step 11), and every later file inherits it. The files from step 9 on have no
-hand-written adder in their source at all.
+model (step 9) and the wide-menu model (step 11), and every later file inherits it.
 
-### 4.5 Generic cells: MLPs certify, ReGLU only sometimes
+### 4.5 Generic cells: MLPs certify, ReGLU only sometimes, local shader cells not from lessons
 
 **The bridge** ([BRIDGE.md](bridge/BRIDGE.md)). The calculator is one weight setting of a generic looped transformer:
-attention heads copy digits between the tokens of a worksheet (the wiring), one small MLP does the digit arithmetic
-(the tables), and the block runs until every token settles (the loop). Compiled that way, it is exact at 14 sizes.
-Then it was loosened one notch at a time and trained from random:
-- **the digit tables can be generic MLPs**, if the cell gets the anchors' lessons: 31 of 32 tiny runs certified;
-- **the plumbing is harder**: one MLP learning the subtraction, the copy and the keep-or-discard rules together
-  certified in 4 of 16 runs;
-- **the wiring learns only from short menus**: up to 10 options per connection with the tables given, 7 with the
-  tables learned, none at 13 or more, and never with free attention, which falls for the bypass.
-
-At H1, the wide model with both tables replaced by generic ReLU MLPs ([`bridge/h1/submission_wide_mlp.py`](bridge/h1/submission_wide_mlp.py),
-step 12) certified, and both MLPs came out computing exactly the true tables.
+attention heads copy digits between the tokens of a worksheet, one small MLP does the digit arithmetic, and the block
+runs until every token settles. Loosened one notch at a time and trained from random: the digit tables can be generic
+MLPs if the cell gets the anchors' lessons (31 of 32 tiny runs certified); one MLP doing all three rules certified in 4
+of 16; the wiring learns only from short menus (up to 10 options per connection), and never with free attention, which
+falls for the bypass. At H1, the wide model with both tables as generic ReLU MLPs (step 12) certified.
 
 **The handwired bridge** ([HANDWIRED_BRIDGE.md](handwired_bridge/HANDWIRED_BRIDGE.md)). The same machine compiled by
-the user's handwired project into weighted sums and ReGLU products, with no attention at all:
-- **its table rows train, its switches do not**;
-- **the wiring learns only from short menus**: 7, 10 or 13 options, depending on the kind of switchboard;
-- **the bypass is just as strong**, so its pull comes from the data, not from attention.
+the user's handwired project into weighted sums and ReGLU products, with no attention: its table rows train, its
+switches do not; the wiring learns only from short menus (7, 10 or 13 options, by switchboard); and the bypass is just
+as strong, so its pull comes from the data. At H1 the wide model with ReGLU cells did not certify on the official run
+(seed 74 fails deterministically); on CPU it certified on 1 of 4 seeds.
 
-At H1 the wide model with ReGLU cells did not certify on the official H100 run: seed 74 fails, deterministically.
-Through the same evaluator on CPU it certified on 1 of 4 seeds (seed 1).
+**The NCA: long division as a shader** ([NCA.md](nca/NCA.md)). A grid of identical tiny cells, each running the same
+small learned rule on its 3 × 3 neighbourhood, tick after tick, so that the loops come from repetition alone.
+- **The format can do it exactly**: one 56-unit rule at base 3 computes the division at every size checked, and 242
+  units do x² mod N.
+- **Taught by lessons, it memorizes**: 84 runs in 41 variants, with every lesson the format can express, and none
+  certifies. The cells' own arithmetic laws make their table exact, but the chains of copies that carry N, the old
+  register and the borrow through the grid never form: no local check reaches a copy.
+- **Told every move** (the exact rule's next state at every cell and tick), it learns the training grid in a few
+  hundred steps. With information flowing one way and a training grid that shows every local situation, it also
+  certifies on bigger sizes. That help is out of bounds for the contest: producing the moves needs the algorithm.
+- **The square** does not extrapolate even when told every move. The logic-gate arm and the all-to-all generator arm
+  fail from lessons, and the generator arm brings the bypass back.
 
-### 4.6 General lessons, and the litmus test that asked for them
+### 4.6 General lessons, the litmus test, and one fixed modulus
 
-**The litmus test** ([LITMUS.md](litmus/LITMUS.md)). The best H1 model, unchanged, on 26 other tasks:
-- **learned**: H1 with its prompt's fields reordered, and 5 of the 6 practice datasets whose moduli vary. The sixth,
-  M5, read a two-digit T backwards: its T always has one digit, so nothing tells 16 from 61;
-- **failed**: the 14 practice datasets with one fixed modulus (at most 2.4%); Montgomery's squaring, 10·y², y² + 1
-  and cubing, where it built a perfect x² mod N machine and ignored the answers; and a prompt with four numbers.
+**The litmus test** ([LITMUS.md](litmus/LITMUS.md)). The wide model, unchanged, on 26 other tasks: it learned H1 with
+its prompt's fields reordered and 5 of the 6 practice datasets whose moduli vary; it failed the 14 practice datasets
+with one fixed modulus, four other formulas, and a prompt with four numbers. Its verdict: "a method within its family;
+an engineered solution across families".
 
-Each failure needed a designer's change, and the one-modulus datasets had no small fix at all.
+**General lessons** ([LESSONS.md](general_lessons/LESSONS.md), steps 14–15). One file, unchanged on every task: laws
+stated once about an operation; facts the model finds in its own rows ("x < N" is found, not told); one template for a
+division step in two versions, long division and Montgomery's reduction, each training its own machine while the
+answers pick which one answers; and one menu of extra round steps. With zero per-task changes it learned y² + 1, 10·y²,
+cubing, Montgomery's squaring, 10·y² + 1 and y² + 3. v2 reads the answers at the batch's smallest T, which fixed M4,
+whose rows all have T = 8.
 
-**General lessons** ([LESSONS.md](general_lessons/LESSONS.md), step 14). One file, unchanged on every task:
-- **laws stated once**, about an operation, and applied to whatever numbers a row offers;
-- **facts the model finds**: relations between the numbers that hold on every row it has seen (which is smaller, how
-  many digits, divisibility). "x < N" is found, not told. Facts that can hold by accident ("N has at most 7 digits")
-  are never used;
-- **lesson sets the answers choose**: one template for a division step in two versions, long division and
-  Montgomery's reduction. Each trains its own machine, and the training answers pick which one answers;
-- **one menu of extra round steps** for every task: ×10, + a one-digit constant, × the round's input.
+**One fixed modulus** ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md), step 18). With one modulus the fact
+"x < N" only ever compares a digit with one of N's own, so 16,800 to 2,963,520 whole candidates (a reading and a digit
+code) fit every fact. The answers single out the true one in 13 of the 14 datasets; in E1, whose N = 323 reads the same
+both ways, they pin the code but not which way N is written. They do so only for a model that tries whole candidates.
+v3 does:
+- the reader's own ranking teaches the table's borrows on pairs from different rows, so the machine is exact under any
+  provisional code;
+- then a tournament over whole (reading, code) pairs, with every lesson set and round option, keeps only the
+  contestants that reproduce every answer of a batch;
+- choices made under the provisional code are kept revisable, and the multiply's column rules are scored whole.
 
-It learned, with zero per-task changes, y² + 1, 10·y², cubing and Montgomery's squaring, plus 10·y² + 1 and y² + 3,
-which nobody designed for, each on every seed run. It still certified H1, more slowly (1,856 s against 558 s).
+All 14 fixed-modulus datasets learned, on relaxed budgets, 17 of 17 runs: 100% on each dataset's own test and
+out-of-distribution splits. E1, E10, M1, M2, M7 and M8 also certify T = 64 on both depth ladders. The other eight
+reach T = 8: their training T always has one digit, so nothing tells "16" from "61". The README calls that ladder a
+diagnostic for the practice tiers, so it changes no score. On H1, v3 runs step for step as v2 does and certifies.
 
-### 4.7 Discovering the skeleton: library learning and the inventing test
+### 4.7 Discovering the skeleton: library learning, then stage 3
 
-Neither of these is a submission.
+**Library learning** ([LIBRARY.md](library/LIBRARY.md)). Offline, search for short programs over 32 digit instructions
+on 26 practice tasks, merge the groups of instructions that keep appearing in working programs into new instructions
+(BPE, or minimum description length), and search again. Level by level it rediscovered the skeleton's parts (the
+ripple, the restoring link, the chain, the division step, the reduction loop, the multiply rows), then x² mod N itself,
+22 primitives long, exact on every rung of both H1 ladders.
 
-**Library learning** ([LIBRARY.md](library/LIBRARY.md)). Search for short programs over 32 digit instructions on 26
-practice tasks, notice which groups of instructions keep appearing in the programs that work, make each group one new
-instruction (as BPE does for text, or by minimum description length), and search again. Level by level it rediscovered
-the skeleton's parts: the ripple subtraction, the restoring link, the chain, the division step, the reduction loop
-(token for token the hand-written reference), and the multiply rows. With solved tasks reused as routines, it then
-found x² mod N itself, 22 primitives long, in a 5-token search of 23 minutes. That program is exact on every rung of
-both H1 ladders up to T = 64. A version run inside one training run found the division's step and a multiply row, but
-not the whole multiply or x² mod N.
+**The integration** ([INTEGRATION.md](integration/INTEGRATION.md), steps 16–17).
+- **Stage 1** put the tournament and the general lessons in one file, and certified.
+- **Stage 2** ran the library inside one training run, with learned tables. As first built its climb never found the
+  multiply; two fixes (test every candidate's result, and pose the multiply's row as a problem of its own) did.
+- **Stage 3** has no skeleton and no menus. In one training run the model reads the prompt, learns three digit tables
+  from laws, climbs a library of programs on a general digit machine from practice problems made of its rows' own
+  digits, and finds the round among short combinations of its routines that reproduce the training answers:
+  - the multiply, as a loop of its own accumulating row;
+  - the reduction, as a loop of its own long-division step;
+  - x² mod N as "copy x, multiply, reduce", at step 671 on seed 74.
 
-**The inventing test** ([INVENTING.md](library/INVENTING.md)). It removed the three inputs the loop had from us, one at
-a time, on the tiniest x² mod N:
+  Then it runs that program T times. The first build to discover the round in-run (s3d) needed 9,142 s and certified
+  only on a relaxed budget. The final file, s3i, certifies on every seed within the hour, its freeze by 1,149 s at the
+  latest. How hard each build was pushed is in §5.
 
-| | with our practice tasks | with the target only, at growing sizes |
-|---|---|---|
-| our digit instructions | found | not found |
-| bare counters (add one, subtract one, clear, copy, repeat, if zero) | found, if solved tasks become routines | not found: shortcuts fit the smallest sizes, then the search runs out |
-
-The practice tasks did the inventing; the instruction set only decided which algorithm came out. Given the one step
-"add one, and wrap around to 0 at N", the same search found x² mod N in about a second.
+**The inventing test** ([INVENTING.md](library/INVENTING.md)) took our inputs away from the search-and-compress loop
+one at a time, on the tiniest x² mod N. Without our instruction set, on bare counters, it still invented x² mod N, but
+only with practice tasks whose short solutions are the pieces; without the practice tasks it never did. Given the one
+step "add one, wrap around at N", the search found x² mod N in about a second. Bar 3's two studies (§4, bar 3) start
+from there.
 
 ## 5. The removal ladder
 
 Each step removed one hand-written piece. To count, it had to certify on the untouched official manifest on an H100,
-with the file run byte for byte: T = 64 on both ladders, every rung 768/768. Then it was repeated on CPU seeds
+with the file run byte for byte: T = 64 on both ladders, every rung 768/768. Then it was repeated on other seeds
 through the same evaluator.
 
 The ladder branches:
@@ -453,9 +455,10 @@ The ladder branches:
 - steps 6a and 6b went back to 4c's single-piece machine, whose reading, squaring and loop are still designed;
 - steps 7a–7c stack on step 5, and so does step 8;
 - step 9 is 7c with step 8's lessons, step 10 widens 7c's menus, and step 11 is 10 with step 9's change;
-- steps 12–13 stack on 11, and step 14 starts again from 11.
+- steps 12–13 stack on 11; steps 14–15 start again from 11, and step 18 stacks on 15;
+- step 16 joins 13 and 15, and step 17 replaces 16's machine with programs found in training.
 
-| step | builds on | what became learned (the hand-written piece removed) | file (md5) | official record | training s (frozen at step) / evaluation s | CPU seeds certified | commit |
+| step | builds on | what became learned (the hand-written piece removed) | file (md5) | official record | training s (frozen at step) / evaluation s | other seeds certified | commit |
 |---|---|---|---|---|---|---|---|
 | 0 | — | nothing: the designed subtraction table, a plumbing check | an earlier `learned_remainder/submission.py` (`9732a11f`) | `s0_official` | 3.3 (100 steps) / 5.5 | 1 of 1 | `824d073` |
 | 1 | 0 | the 200-entry subtraction table, taught with made-up practice divisions (gray under rule 14) | `submission.py` with `LESSON = "madeup"` | `final_s1_official` | 154.5 (484) / 4.8 | 8 of 8 (`s1v2` recipe) | `824d073` |
@@ -478,19 +481,35 @@ The ladder branches:
 | 12 | 11 | the tables' form: both digit tables as generic ReLU MLPs | [`bridge/h1/submission_wide_mlp.py`](bridge/h1/submission_wide_mlp.py) (`22bd34d0`) | `wide_mlp_official` | 1,047.7 (743) / 98.0 | 8 of 8 | `16b66dd` |
 | 13 | 12 | the chain's menu: its wiring chosen inside training among 7.9·10^9 relative-position wirings | [`tournament/submission_tournament.py`](tournament/submission_tournament.py) (`7ae547d9`); first version `312d9422` (not kept as a file) | `tourney2_official` | 2,114.0 (705) / 89.8 | 8 of 8; first version: 3 of 8 | `90f245f` |
 | 14 | 11 | task-specific lessons: laws stated once, mined facts, lesson sets chosen by the answers | [`general_lessons/submission_general.py`](general_lessons/submission_general.py) (`ddfdc065`) | `gen_h1_official` | 1,855.6 (645) / 97.2 | 8 of 8 | `1613c28` |
+| 15 | 14 | the constant "answers from rows with T ≤ 2": the answers read at the batch's smallest T | [`general_lessons/submission_general_v2.py`](general_lessons/submission_general_v2.py) (`30d15786`) | `gen2_h1_official` | 1,290.5 (645) / 48.1 | M4 (relaxed budget): 2 of 2 | `6f6408d` |
+| 16 | 13 and 15 | separate files: the tournament and the general lessons in one model | [`integration/submission_stage1.py`](integration/submission_stage1.py) (`cfd7b61d`) | `s1_official` | 1,860.7 (716) / 56.1 | 8 of 8 on CPU | `b5f1740` |
+| **17** | 16, with the library inside training | **the skeleton and the menus: the machine that answers is a program found in training** | [`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py) (`0e813144`) | `s3i_official` | 1,340.3 (870) / 209.9 | 7 of 7 more H100 seeds, official manifest (1–7) | `8e7422e`, `5c31dd0` |
+| 18 | 15 | the digit code's dependence on many moduli: the answers choose whole digit codes | [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py) (`0805b7d3`) | `v3k_h1_official` | 1,190.5 (645) / 42.3 | H1 8 of 8 on B200s with build `v3f` (`32a1d154`); 14 of 14 fixed-modulus sets, 17 of 17 runs | `66304ba` |
+
+**How hard stage 3 was pushed** (INTEGRATION.md §3; every build's records are in `integration/records/`):
+
+| build | what changed | H100 runs | certified |
+|---|---|---|---|
+| s3 | the first stage-3 file, with the climb as first built (variant A) | `s3_official`; two relaxed runs of 18,000 s, stopped | 0: the climb never found the multiply, even with the relaxed budget |
+| s3c | the A/B's variant C rules | a relaxed run, stopped at level 3 | 0: two in-run bugs (an Occam tie took a slower spelling, and skipping twins killed a chain) |
+| s3d | those two fixes | `s3d_official`; `s3d_relaxed_h100` (18,000 s) | **the first in-run discovery of the round**, certified only on the relaxed budget, in 9,142 s; the official run ended inside the climb |
+| s3e | goal states tested fewest pieces first, the deadline checked inside the search | `s3e_official` | 0: the climb reached level 5 at the deadline |
+| s3f | the pieces practised first (the multiply after its row, the reduction after its step), with a cache across levels | official and seeds 1–7 | 4 of 8, the official run in 3,133.7 s |
+| s3g | every solved problem becomes a routine (`submission_stage3.py`, `70bac83c`) | official and seeds 1–7 | 5 of 8, frozen by 2,749–3,379 s: seed 5's acceptance test rejected the right round, seed 6 hit a NaN, seed 7 ran out of time |
+| s3h | an exact acceptance test, a guard in one lesson, the search run in lockstep on the GPU (`3b9d9bcf`) | official and seeds 1–7 | 8 of 8, frozen by 1,341–2,086 s |
+| **s3i** | the countdown's round program on all rows at once from a CUDA graph, and two faster search parts (`0e813144`) | official and seeds 1–7 | **8 of 8, frozen by 982–1,149 s** |
 
 Notes:
 - Training time includes the steps after the freeze, when the learning rate is 0. "Never see an answer" means the same
-  file with one constant changed (`REAL_MAX_T = 0`).
+  file with one constant changed (`REAL_MAX_T = 0`). Freeze times ("frozen by") are read from the evaluator's progress
+  line just after the freeze.
 - Records live in `runs/learned_remainder/`, `runs/learned_wiring/`, `runs/wider_menus/`, `ablation/runs/`,
-  `anchors/records/`, `bridge/h1/records/`, `tournament/h1_records/` and `general_lessons/records/`, one
-  `<name>.json` each. Each holds the full log, the result and the exact source.
-- MENUS.md's four variant H100 runs certified too: `wide_try2_h100` and `wide_d4m3_try1_h100` (earlier builds at
-  narrower and full width), `wide_enum_d3m2_h100` (without one of the step laws) and `wide_joint_d1m2_h100` (the
-  general laws alone, at the narrowest level, in 1,002.6 s).
-- The general file's other tasks (`general_lessons/records/gen_*`): every seed run certified on y² + 1, 10·y², cubing,
-  Montgomery's squaring (4 of 4), 10·y² + 1 and y² + 3 (2 of 2 each). It also certified on H1 with a reordered prompt
-  and on the practice set M5.
+  `anchors/records/`, `bridge/h1/records/`, `tournament/h1_records/`, `general_lessons/records/`,
+  `general_lessons/fixed/records/` and `integration/records/`, one `<name>.json` each. Each holds the full log, the
+  result and the exact source.
+- Other certified runs worth knowing: MENUS.md's four variant H100 runs; the general files' other formulas
+  (`general_lessons/records/gen_*`, `integration/records/s1_*_s74`); and the practice datasets of v3
+  (`general_lessons/fixed/records/v3k_*`).
 - Records of failures are kept too:
   - `s1_official`: Stage 1's first recipe, with 8 of 200 rows right and no rung certified;
   - `adder_official`: a learned adder from a random start with no warm start, with no rung certified;
@@ -499,38 +518,45 @@ Notes:
   - `tourney2_nonorm_cpu_seed*`: the tournament without the moved-up rows, 4 of 8 certified;
   - `wide_try1_h100`: a first wide-menu build that crashed on a bug when its chain lesson joined (MENUS.md §4.2);
   - `handwired_bridge/h1/records/wide_reglu_official` and `wide_reglu_official2`: the wide model with ReGLU cells,
-    nothing right on either official run, and 1 of 4 CPU seeds certified.
+    nothing right on either official run, and 1 of 4 CPU seeds certified;
+  - stage 3's early builds above, and `gen_minus1` and `s1_minus1_s74` (y² − 1, outside every round menu).
 
   `chain_official`, the chain's first recipe, certified, but one of its CPU seeds that never sees an answer did not.
 
-## 6. Rules 1–16 for the models at the frontier
+## 6. Rules 1–16 for the best model
 
 The rules are [one-layer-deeper/README.md §Rules](../one-layer-deeper/README.md#rules). "Gray" means a reasonable
-reader could object; the point is flagged, not argued away. This covers the two newest frontier files, the tournament
-file ([`tournament/submission_tournament.py`](tournament/submission_tournament.py)) and the general file
-([`general_lessons/submission_general.py`](general_lessons/submission_general.py)). Both build on
-[`wider_menus/submission_wide_anchored.py`](wider_menus/submission_wide_anchored.py), whose status they keep except
-where noted. It follows COMBINED.md's own table, the rules tables of WIRING.md, MENUS.md, TOURNAMENT.md and LESSONS.md,
-and ANCHORS.md §7. The imports, the initialization and the absence of backward calls were re-checked in both sources.
+reader could object; the point is flagged, not argued away. This covers the stage-3 file,
+[`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py). It follows INTEGRATION.md §5 for rules
+7, 8, 9, 11 and 14 and the parents' tables (COMBINED.md, WIRING.md, MENUS.md, TOURNAMENT.md, LESSONS.md) for the rest.
+The imports, the initialization, the host transfers and the absence of backward calls were re-checked in the source.
 
 | rule | status | why |
 |---|---|---|
-| 1. one `submission.py` exporting one `Submission` | yes | each file is sent as `submission.py`; each has one `SUBMISSION` with model, optimizer, loss, batch sizes and a step cap |
-| 2. self-contained | yes | each imports only `torch`, `itertools`, `collections` and the public `benchmark` API; no files, no network |
-| 3. the participant defines model, optimizer, loss, batch sizes, steps | yes | Adam; the rounds run until no prompt wants another (adaptive computation, capped at 100) |
-| 4. the evaluator owns the loop, data order, backward, clipping, cadence, seeds, deadline | **gray** | the evaluator is untouched: one pass per step, no batch reuse. But the schedule lives in the model as Python state: the reader's stages, the phases, when each table, lesson and switch joins, the Adam resets, and a freeze that sets the learning rate to 0 once every check has passed for 200 steps. That freeze is early stopping on the model's own checks. The general file's fact miner and lesson-set selector add more of that state |
-| 5. at most 500M parameters | yes | 123,993 (tournament: mostly one weight per wiring combination) and 11,589 (general) |
-| 6. no hard-coded weights | yes | every parameter starts random: 0.1 × random normal, and PyTorch's default random init for the tournament file's MLP layers, except those MLPs' output biases, which start at 0 and are trained. The "designed" mode, with every table and switch at the truth, is only a plumbing check, never the submission |
-| 7. no hard-coded algorithm in the forward pass | **gray, less than before** | every computation is a learned table lookup or, in the tournament file, a generic ReLU MLP, and every connection is a learned switch. **Tournament file:** the chain's connections are chosen from relative positions (any register at any offset), not from a menu of meaningful parts. **General file:** the wide model's menus, plus a menu of extra round steps and a second, Montgomery lesson set; the answers choose among them, not a designer per task. **Still gray in both:** the skeleton is designed (one register, 8 steps of 9 links, bring-in → chain → move; one product per digit pair, placed and summed; the T loop); the I/O and multiply menus are written by hand and contain the true wiring; so do the tournament's offset window and blocks. A strict reader can say the algorithm moved into the skeleton and the menus |
-| 8. final logits from the model inside autograd, with an unbroken gradient path | yes, with gray edges | at evaluation every digit is a one-hot vector and every table, cell and switch a straight-through one-hot, so the answer is exactly the machine's, and a gradient from the final logits reaches the learned tensors. Gray: (a) in training the forward returns zero logits, so the tables and switches learn through the lessons, not through the final logits; (b) the gradient is damped 10× per subtraction link, addition and round so it does not overflow, and on deep paths it underflows to 0; (c) some switches or combinations get exactly 0 gradient on a given batch: the wide menu's final correction on some trained models (aliases whose gradients cancel, MENUS.md §4.5), up to a few dozen of the tournament's 98,104 combinations, and in the general file the lesson set that was not selected; (d) which reading hypothesis a prompt uses is decided by designed run-detection logic, with a soft surrogate on the gradient side |
-| 9. everything on the GPU | yes | state and computation stay on the device. The schedule reads a few scalars to Python per step, and evaluation syncs one boolean per round to end the loop |
-| 10. OOM or timeout fails | ok | neither happened on the official runs |
-| 11. 3,600 s of training, compilation included | yes | 2,114.0 s (tournament) and 1,855.6 s (general), no compilation |
+| 1. one `submission.py` exporting one `Submission` | yes | the file is sent as `submission.py`; it has one `SUBMISSION` with model, optimizer, loss, batch sizes and a step cap |
+| 2. self-contained | yes | it imports only standard-library modules (`itertools`, `time`, `array`, `collections`), `torch` and the public `benchmark` API; no numpy, no files, no network |
+| 3. the participant defines model, optimizer, loss, batch sizes, steps | yes | Adam; the rounds run until no prompt wants another (adaptive computation, capped) |
+| 4. the evaluator owns the loop, data order, backward, clipping, cadence, seeds, deadline | **gray** | the evaluator is untouched: one pass per step, no batch reuse. But the schedule lives in the model as Python state: the reader's stages, phases A–D (cells, the climb, the round), and a freeze that sets the learning rate to 0 once every check has passed for 200 steps, which is early stopping on the model's own checks. The climb also reads the clock: each search stops after 900 s, and every search unit stops when the training deadline passes, so how far the climb gets depends on the host's speed (s3g's slowest host ran out of time) |
+| 5. at most 500M parameters | yes | 207,374 |
+| 6. no hard-coded weights | yes | all 16 parameter tensors start at 0.1 × random normal: the three digit tables, the countdown's gate, the round programs' tournament, and the reader's and writer's parameters. The "designed" mode is only a plumbing check, never the submission |
+| 7. no hard-coded algorithm in the forward pass | **gray, much less than before** | the forward pass runs a program the training run found (search, merges, routines, and composition against the answers) on learned tables; no datapath and no menu is in the file. Still gray: the instruction set leans toward digit arithmetic (cells at a pointer against a register, keep-on-borrow, bring the top digit in, loops by the number's length and the base); the practice problems walk the search up the same pieces the old skeleton had, and two of them are definitions of long division's step; the countdown over T is hand-written. A strict reader can say the algorithm moved into the instruction set and the curriculum |
+| 8. final logits from the model inside autograd, with an unbroken gradient path | yes, with gray edges | the prediction path is one-hot digits through straight-through tables, with the round program a straight-through choice over the tournament's contestants. In the gradient test every one of the 16 parameter tensors is in the graph of the final logits, and all 16 get a nonzero gradient with the right tokens' logits as the objective. Gray: (a) in training the forward returns zero logits, so the lessons teach, not the final logits; (b) the gradient is damped per lookup so it does not overflow, and on deep paths it underflows to 0: with cross-entropy at a perfect prediction, the tournament's logits and the addition table's carry get exactly 0; (c) the program itself is a discrete result of search, not a differentiable parameter; (d) which reading hypothesis a prompt uses is decided by designed run-detection logic |
+| 9. everything on the GPU | yes | the search, the probes and the machines run as GPU tensors, with no `.cpu()` or numpy in the file. Python holds the bookkeeping: programs as tuples, BPE over program text, and the schedule. Each program's instructions are traced on the host from its text and copied to the GPU as opcode columns; long runs are replayed from CUDA graphs |
+| 10. OOM or timeout fails | ok | neither happened on s3i's eight official-manifest runs |
+| 11. 3,600 s of training, compilation included | yes, on every seed | frozen by 982–1,149 s, trained 1,133–1,350 s. Earlier builds needed more: s3d a relaxed 9,142 s, s3g up to 3,379 s and out of time on one seed |
 | 12. a custom loss returns one finite differentiable scalar | yes | `token_training_loss` |
-| 13. evaluation within 1,800 s; certification | yes | 89.8 s and 97.2 s; T = 64 on both ladders |
-| 14. no data inspection, augmentation, task-specific solvers, custom loops or participant backward passes | **gray** | neither file calls `backward` or `autograd.grad`, defines a custom autograd function, or reads the data files, and no hand-written arithmetic runs at any step of training. But the lessons carry designed knowledge: the anchors' facts and laws; the two step laws, which are definitions of long division's step; "x mod N = x", "N mod N = 0" and "x + Q·N mod N = x" through the whole division; the times-table ladder; the old table lessons, which join late and include "a wrapped x − N is large", an assumption about the register's width; the reading and T's direction, chosen inside the loss by trying every complete hypothesis; and only answers of T ≤ 2 rows whose own checks pass. The switches' pass/fail verdicts come from running the snapped machine on candidate wirings inside the loss. **Tournament file, four new items:** the link law (what one link does); the moved-up rows, new numbers made from each row's own x and N, close to augmentation; the loop law (the loop's stop rule); and the pruning of combinations more than 12 nats behind. **General file, better and new:** no lesson states a fact about H1's data, and the step lessons are candidates the answers can reject; but the model computes statistics over its training batches to mine facts, and the template and the round menu are designed |
+| 13. evaluation within 1,800 s; certification | yes | 154.9–219.1 s on the eight runs; T = 64 on both ladders |
+| 14. no data inspection, augmentation, task-specific solvers, custom loops or participant backward passes | **gray, in a new place** | no backward or grad call, no custom autograd function, no data file read, no number made up, and no hand-written arithmetic at any step of training. But the climb is a program search inside the training forward pass, over many steps. Its practice problems are made from the batch rows' own digits and the law library, and the curriculum (which laws become practice problems, in which order, the register variants, mac) and the round's search space are designed: a strict reader could call the curriculum a task-specific solver written as lessons. The lessons also still carry the anchors' facts, the step laws, and the old table lessons (which join late and include "a wrapped x − N is large", an assumption about the register's width) |
 | 15. repeated rule-breaking | n/a | the write-ups flag their own gray areas, and nothing has been submitted to the hosted evaluator |
 | 16. do not exploit the Hard metric recorder | yes | not touched |
+
+**The other frontier files, where they differ.**
+- **Stage 1** (`integration/submission_stage1.py`): rule 7 is gray as for its parents. Its forward pass is the
+  hand-written H1 datapath, and the menus that plug into it, the tournament's included, hold the right wirings
+  (INTEGRATION.md §5).
+- **General lessons v3** (`general_lessons/submission_general_v3.py`): rule 7 as for the wide model, plus its round
+  menu and two lesson sets. Under rule 14 it adds a designer's decision about what a borrow means: the table's borrows
+  are tied to the reader's ranking, so that the answers can choose the whole digit code (FIXED_MODULUS.md).
 
 **The earlier certified models, in one line each.**
 - **SpecBit**: only one gate's truth table is learned, and the netlist around it is the algorithm. Under a strict
@@ -542,41 +568,38 @@ and ANCHORS.md §7. The imports, the initialization and the absence of backward 
 
 ## 7. Status and open questions
 
-**What is running.** Every study described here has finished and is committed. One new session, "Bar 2 integration:
-tournament + library + general lessons", started at 12:38 on Oct 22 and takes up open question 1 below. When this was
-refreshed, its folder [`integration/`](integration/) held a single working file, `work/merged_raw.py`, and nothing was
-committed.
+**What is running.** Every study described here has finished and is committed, except one: a follow-up of the NCA
+probe (long training with weight decay to trim the rules, per-weight learning speeds set by agreement, and both) was
+still in progress in `nca/`, uncommitted.
 
 **Open questions for bar 2** (nothing a strict judge would call the hand-written algorithm):
-1. **One file.** The tournament, the generic cells and the general lessons each certify H1 on their own. Combining
-   them has not been tried. The general file's lesson-set selector already chooses among whole candidates by their
-   answers, and LESSONS.md proposes the tournament's pruning to make the losing lesson set cheap.
-2. **The skeleton inside training.** Library learning rediscovers the skeleton offline, from curated practice tasks.
-   Inside one training run, with laws on the rows' own numbers as its practice, it found the division's step and a
-   multiply row, but not the whole multiply or x² mod N (LIBRARY.md §6). Which pieces it merges also comes down to
-   ties between programs' spellings.
-3. **The instruction set and the alphabet.** The loop starts from 32 hand-written digit instructions, and every
-   model's cells work on a hand-chosen alphabet of 10 decimal digits. The inventing test shows that bare counters
-   suffice in principle, at sizes far below H1.
+1. **The instruction set.** s3i's 32 digit instructions are general but chosen knowing the family. The inventing test
+   shows bare counters suffice in principle, at sizes far below H1; at H1 a counting algorithm would take about 10^16
+   steps.
+2. **The curriculum.** Which laws become practice problems, and in which order, is still a person's choice, and the
+   official budget is met only with that order. Bar 3's self-chosen practice (PRACTICE.md) is the obvious candidate to
+   replace it, but it has only been run on a bare counting machine at x < N ≤ 26, not on s3i's digit machine.
+3. **The round's search space and the countdown** are designed.
 4. **The late lessons.** Every frontier file still runs the old table lessons 100 steps after the digit laws start,
    and the width-dependent wrap-around fact is among them. Switching them off was tested only in the combined model,
    where 4 of 4 seeds certified without them.
-5. **Rules 8 and 14.** Training never sends the loss through the final logits, and the prediction path's gradient is
-   damped and can miss some switches. The lessons state facts and laws, and the tournament's moved-up rows are close to
-   augmentation. A strict reviewer should decide these before any real submission.
+5. **Rules 4, 8 and 14.** The climb reads the clock, training never sends the loss through the final logits, and the
+   climb is a search inside the forward pass. A strict reviewer should decide these before any real submission.
 
 **Open questions for bar 3** (a general algorithm learner):
 
-6. **Practice problems.** The inventing test found that the loop cannot invent without practice tasks whose short
-   solutions are the pieces. A learner would have to pose its own, for example from its near misses ("what does my
-   almost-right program get wrong?"). Untested.
-7. **The wrap-around concept.** Given the one step "add one, wrap around at N", the search finds x² mod N at once.
-   Where that concept should come from is open.
-8. **What the data cannot say.** With one fixed modulus, facts cannot tell the model what its digits mean; in 12 of
-   the 14 such datasets only the answers single out the true digit code, among 8,100 to 453,600, and nothing here
-   searches whole codes. With T always one digit, nothing says which way a two-digit T runs.
-9. **A step outside the menu.** y² − 1 fails because no menu option computes "subtract 1". The answers choose among
-   what the designer wrote; they cannot invent a missing step.
+6. **Scale.** Every bar-3 result is on a bare counting machine at x < N ≤ 7 (and ≤ 26 for x² mod N). Repeating it on
+   the digit machine, at H1's size, is untried.
+7. **What its sources cannot pose.** Practice problems have one answer computed from x and N, so a step that moves two
+   numbers at once (Fibonacci) is never posed, and a constant like 10 has to be counted up to (10·x²).
+8. **The cost of choosing.** Choosing tries a search per candidate problem, and rounds get dearer as the library grows:
+   9 to 28 search-hours a round with a 34-routine library, about 520 search-hours over the breadth study. A rule that
+   only pairs with the two hardest problems keeps the same choices at 6 to 14 times less search.
+9. **What the data cannot say.** On data whose T always has one digit, nothing tells "16" from "61" (eight of v3's
+   fixed-modulus sets stop at T = 8 for that reason). A prior, such as reading T the way the answer is written, would
+   settle it, but it is a designer's choice.
+10. **A step outside the menu.** The general files fail y² − 1, because no round option computes "subtract 1"; the
+    bar-3 learner invents x² − 1 from scratch at its tiny size.
 
 **And:** submitting to the hosted evaluator after the deadline, just to see a response, has not been done.
 
@@ -595,10 +618,13 @@ committed.
 | [`bridge/`](bridge/) | the machine inside a generic looped transformer, loosened notch by notch ([BRIDGE.md](bridge/BRIDGE.md)); `h1/submission_wide_mlp.py` (step 12) |
 | [`handwired_bridge/`](handwired_bridge/) | the machine compiled by handwired into affine + ReGLU layers, loosened the same way ([HANDWIRED_BRIDGE.md](handwired_bridge/HANDWIRED_BRIDGE.md)); `h1/submission_wide_reglu.py`, which did not certify officially |
 | [`tournament/`](tournament/) | the wiring chosen inside training by tournaments ([TOURNAMENT.md](tournament/TOURNAMENT.md)): `submission_tournament.py` (step 13), the tiny machine `tiny.py`, records in `tournament/h1_records/` |
-| [`general_lessons/`](general_lessons/) | a law library, mined facts and answer-chosen lessons ([LESSONS.md](general_lessons/LESSONS.md)): `submission_general.py` (step 14), run on every task, records in `general_lessons/records/` |
-| [`litmus/`](litmus/) | the best model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
+| [`general_lessons/`](general_lessons/) | a law library, mined facts and answer-chosen lessons ([LESSONS.md](general_lessons/LESSONS.md)): `submission_general.py`, `submission_general_v2.py` and `submission_general_v3.py` (steps 14, 15 and 18); one fixed modulus in `fixed/` ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md)); records in `records/` and `fixed/records/` |
+| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/` |
+| [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |
-| [`integration/`](integration/) | the bar-2 integration session's folder: just started, not committed |
+| [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/` |
+| [`nca/`](nca/) | long division as a shader: identical local cells ([NCA.md](nca/NCA.md)); a follow-up was still running |
+| [`tools/`](tools/) | the shared Modal runner and the measured seed policy ([tools/README.md](tools/README.md)) |
 | [`tinyrouting/`](tinyrouting/) | wiring and tables learned together in tiny machines |
 | [`tinycore/`](tinycore/) | the quotient-digit chicken-and-egg, computed exactly |
 | [`microlab/`](microlab/) | a small harness for one-minute experiments, and its findings ([microlab/README.md](microlab/README.md)) |
@@ -606,11 +632,11 @@ committed.
 | [`submission.py`](submission.py) | SpecBit |
 | [`panel/`](panel/), [`panel_synthesis.md`](panel_synthesis.md) | the five-design panel and its synthesis |
 | [`FINDINGS_substrate.md`](FINDINGS_substrate.md), [`RELAXED.md`](RELAXED.md), [`UNFOLD.md`](UNFOLD.md), [`UNFOLD_FAMILY.md`](UNFOLD_FAMILY.md) | the day-1 topic write-ups |
-| `runs/` | run records. Official ones: `runs/learned_remainder/*_official.json`, `runs/learned_wiring/*_official.json`, `runs/wider_menus/*_official.json`, `runs/unfold_sub/official_h100.json`, `runs/unfold_small/official_h100.json`, `runs/h100_h1.json`. Later folders keep their own: `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`, `tournament/h1_records/`, `general_lessons/records/`, `handwired_bridge/h1/records/`, `litmus/records/`, `library/records/` |
+| `runs/` | run records. Official ones: `runs/learned_remainder/*_official.json`, `runs/learned_wiring/*_official.json`, `runs/wider_menus/*_official.json`, `runs/unfold_sub/official_h100.json`, `runs/unfold_small/official_h100.json`, `runs/h100_h1.json`. Later folders keep their own: `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`, `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`, `handwired_bridge/h1/records/`, `litmus/records/`, `library/records/`, `bar3/records/` |
 | `../one-layer-deeper/` | the competition clone at `87e5c26` ("Releasing H1"), with the H1 data under `data/generated/` |
 | `~/github/handwired-lab/montgomery-search` | outside this repo: search over a Montgomery squaring program in the handwired project (branch `lab/montgomery-search`) |
 
-**The certified submissions, with their records.** Steps 0–14 are in the §5 table. The earlier three:
+**The certified submissions, with their records.** Steps 0–18 are in the §5 table. The earlier three:
 
 | model | file (md5) | official record | training s / evaluation s | learned numbers |
 |---|---|---|---|---|
@@ -620,12 +646,11 @@ committed.
 
 All three reached T = 64 on both ladders, with every rung 768/768 and every split exact.
 
-**How to rerun.** Each write-up ends with its commands. The ladder's official runs go through a Modal launcher
-started from the competition clone: `learned_remainder/modal_chain.py --file <submission>` for steps 0–5, and each
-later folder's own copy (`ablation/modal_ablate.py`, `anchors/modal_anchors.py`, `learned_wiring/modal_wiring.py`,
-`wider_menus/modal_wide.py`, `bridge/modal_bridge.py` and `bridge/h1/`, `tournament/modal_h1.py`,
-`general_lessons/modal_general.py`). Each builds the competition's image, regenerates H1 with the official generator,
-and runs the untouched manifest.
+**How to rerun.** Each write-up ends with its commands. New runs go through the shared runner
+[`tools/modal_runner.py`](tools/modal_runner.py) (its README has the commands and the seed policy); older folders keep
+their own launchers (`learned_remainder/modal_chain.py --file <submission>` for steps 0–5, and each later folder's
+copy). Each builds the competition's image, regenerates H1 with the official generator, and runs the untouched
+manifest.
 
 ## 9. Where docs and records disagree
 
@@ -634,25 +659,29 @@ What was checked, for every number above:
   freeze step, against the write-ups that cite them;
 - the md5 of the source each record embeds, against the files. Where they differ, the difference is the one `--set`
   line the write-up names, or a first version the write-up keeps by its md5;
-- the CPU-seed claims, by tallying the records;
-- for the models at the frontier, the final tables printed in the official logs, against true subtraction and
-  multiplication;
-- for the litmus and general-lessons tasks, the certified T and score of each record the write-ups' tables cite.
+- the seed claims, by tallying the records;
+- the "frozen by" times, from the evaluator's progress line just after each freeze;
+- for the frontier files up to step 15, the final tables printed in the official logs, against true subtraction and
+  multiplication (s3i's log prints no tables; its certification and its checks stand for them);
+- for the litmus, general-lessons and fixed-modulus tasks, the certified T and score of each record the write-ups'
+  tables cite.
 
-The numbers checked this way all match their records in the write-ups that cite them, in LEARNED_REMAINDER, CHAIN,
-SQUARE, CONTROL, ADDER, IO, COMBINED, ABLATION, ANCHORS, WIRING, ANCHORED, MENUS, WIDE_ANCHORED, BRIDGE, TOURNAMENT,
-LESSONS, LITMUS, LIBRARY and HANDWIRED_BRIDGE, and in the two Unfold notes and REPORT.md §9. The exceptions:
+The numbers checked this way all match their records in the write-ups that cite them, from LEARNED_REMAINDER through
+INTEGRATION and FIXED_MODULUS, and in the two Unfold notes and REPORT.md §9. The exceptions:
 - **COMBINED.md calls `combined_official` and `combined_index_official` "the same training run".** They are two runs
   with identical training: the same file apart from the `PATH` line, the same seed and data order, and both froze at
   step 545 with the same tables. They were launched together, and their training times differ (666.6 s and 566.5 s).
 - **The leaderboard count** (3 of 146 certified, REPORT.md §0) has no record behind it and was not re-checked.
 
-Two counts need a word, though neither is wrong:
-- **The tournament's machine count.** The official log prints a total of 2.8·10^22 machines. TOURNAMENT.md's
-  "about 3·10^23" also counts the gate table's 4 settings and the reader's 3 shapes; with them, the log's numbers
-  give 3.4·10^23.
-- **The practice tiers.** Their rungs have anywhere from 14 to 768 prompts, depending on the dataset, so their records
-  were checked by their certified T and score rather than against H1's 768 per rung.
+Counts that need a word, though none is wrong:
+- **v3's eight H1 seeds** ("8 of 8 seeds certified too", FIXED_MODULUS.md) ran an earlier v3 build, `v3f`
+  (md5 `32a1d154`), on B200s; the final file's own H1 record is the official one. FIXED_MODULUS.md's table says so.
+- **The fixed-modulus runs** used a relaxed budget (3,600 s) on B200s: their tiers' own budgets are 60 s (Easy) and
+  600 s (Medium). FIXED_MODULUS.md says so.
+- **The tournament's machine count.** Its official log prints 2.8·10^22 machines; TOURNAMENT.md's "about 3·10^23" also
+  counts the gate table's 4 settings and the reader's 3 shapes.
+- **The practice tiers' rungs** have anywhere from 14 to 768 prompts, so their records were checked by certified T and
+  score.
 
 The first version of this file also flagged WIRING.md for contradicting itself on stage 1's CPU seeds. The finished
 WIRING.md says 7 of 8 throughout, and the record of the failed seed (`div_cpu_seed7`) is in `runs/learned_wiring/`.

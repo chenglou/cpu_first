@@ -11,8 +11,8 @@ R=cpu_first/tools/modal_runner.py     # paths are relative to the current direct
 
 # Launches, in the tips-for-running-modal form (`$PY $R ...` with the same arguments does the same):
 $PY -m modal run --detach $R --mode official --file X/submission.py --out X/records   # untouched h100_hard_h1.json, H100
-$PY -m modal run --detach $R --mode seeds --file X/submission.py --seeds 4 --out X/records   # 74,1,2,3 on fast
-$PY -m modal run --detach $R --mode plan --plan X/plans/P.json --out X/records [--hardware t4] [--cap 20]
+$PY -m modal run --detach $R --mode seeds --file X/submission.py --seeds 4 --out X/records   # 74,1,2,3 on b200
+$PY -m modal run --detach $R --mode plan --plan X/plans/P.json --out X/records [--hardware cpu] [--cap 20]
 $PY -m modal run --detach $R --mode resume --run TAG       # a new driver for a run whose driver ended
 
 # Reads (no app):
@@ -43,11 +43,8 @@ A plan is a JSON list of jobs. Its keys are a superset of the existing plans' ke
 | `set` | `{CONSTANT: python source}` |
 | `manifest` | `{section: {key: value}}` overrides, or `null` for the official file |
 | `seed` | shorthand for `{"runtime": {"seeds": [seed]}}` |
-| `hardware` | `fast` (the default: a B200, else an H200, else an H100, whichever starts first; the record's `gpu` says which), `b200`, `h200`, `h100` (pinned `H100!`, never an H200), `a10`, `l4`, `t4`, `cpu` (8 cores: the earlier runners' CPU container), `cpu4`. The old `"gpu": true` means `h100` and `"gpu": false` means `cpu`. Without either key, a job whose own manifest sets `runtime.device` to `cpu` (the old plans' way to ask for CPU) runs on `cpu`; any other job takes the run's `--hardware`, else `fast`. `--mode official` always uses `h100`, the contest's one-H100 evaluation |
+| `hardware` | `b200` (the default), `h200`, `h100` (pinned `H100!`, never an H200) or `cpu` (8 cores: the earlier runners' CPU container); see the policy below. The old `"gpu": true` means `h100` and `"gpu": false` means `cpu`. Without either key, a job whose own manifest sets `runtime.device` to `cpu` (the old plans' way to ask for CPU) runs on `cpu`; any other job takes the run's `--hardware`, else `b200`. `--mode official` always uses `h100`, the contest's one-H100 evaluation |
 | `memory_gb`, `timeout_s` | this job's limits (below); default the run's `--memory-gb` (24) and `--timeout` |
-
-A run's GPU options: `--gpu-cap` (default 5) bounds its GPU calls at a time, and `--fallback-after` (default 10
-minutes) moves its `fast` jobs to `cpu` when no GPU starts them (see the seed policy).
 
 Manifests follow the earlier runners' rule, with one refinement. A job with no overrides runs the official file
 untouched, and the record says so in `manifest_file`. Overrides equal to the official value are dropped first, so an
@@ -92,12 +89,10 @@ H100 job with seed 74 is the official run. A CPU job sets `runtime.device` to `c
     `runner.leftover_processes` (0 in every test).
   - Every worker container also has a hard 64 GiB memory limit, `memory=(request, 65536)`. A bare `memory=16384`,
     which the earlier runners use, sets none.
-- **Container caps.** `--cap` (default 20) bounds this run's unfinished calls, `--gpu-cap` (default 5) its GPU calls
-  (the workspace has 10 GPUs; see the seed policy), and each function also stops at 20 containers. Before launching, the runner counts the workspace's running containers (the call behind
-  `modal container list`; a container's Modal client lacks the CLI itself). If the cap would not fit under 100
-  minus `--headroom` (default 10), it lowers the cap. If there is no room at all, it refuses unless you pass
-  `--force`. The driver repeats the count before every spawn and waits while the workspace is that full, so a long
-  plan yields to other sessions' official runs.
+- **One cap.** `--cap` (default 20) bounds a run's unfinished calls, GPUs included, and each function also stops at
+  20 containers. Since Oct 22 the workspace is on Modal's Team plan, with 50 GPUs and 5,000 containers, so a run
+  rarely waits for capacity. Starter's 10 GPUs and 100 containers needed a GPU cap, a CPU fallback and a workspace
+  check; those are gone.
 - **Records.** Each record keeps the keys of the litmus, general_lessons and integration records, in the same
   order: `name, task, gpu, returncode, wall_seconds, manifest_file, manifest, stdout, stderr (last 200k), result,
   submission`. After those come `submission_md5, submission_file, file_md5, set, hardware, runner` (run tag, call id,
@@ -173,46 +168,19 @@ B200, 1,331 s on the H200, 1,875 s on the H100, 2,356 s on the A10, 2,611 s on t
   1.1–1.7x from host to host. The H100's speed varies too: today's seed 74 trained in 699 s against 558 s for the
   official run.
 
-**Policy.** Official certification stays on `h100`, the contest's one-H100 evaluation; `--mode official` refuses
-other hardware. For robustness seeds:
-- **4 seeds (74, 1, 2, 3) at intermediate stages, 8 (74, 1–7) for finals.**
-- **Default: `fast`, the fastest GPU that starts** (the user's call on 2026-10-22: the iteration left is bounded, so
-  speed beats cost). The B200 was the fastest on both files: 7 and 14 minutes per seed, 1.4–2.6x the H100's speed.
-  Because it finishes so soon, it is also the cheapest big GPU per seed: about 2.5x a T4's price, and 0.6–0.85x an
-  H100's or H200's. `fast` asks Modal for a B200, else an H200, else an H100, whichever starts first. Pin
-  `--hardware b200` when every seed of a comparison must run on the same GPU type: B200 and H200 traces differ on
-  tourney2. Costs: about $0.9–1.6 per seed, so $7–13 for 8 final seeds. By the hour, a B200 lists at $6.25 (an H200
-  $4.54, an H100 $3.95, a T4 $0.59).
-- **The binding limit is the workspace's GPUs, not money.** Modal's Starter plan, which this workspace's 100-container
-  cap matches, allows **10 concurrent GPUs** for the whole workspace, every type counted (T4s too). CPU containers
-  don't count against it. So a run takes at most `--gpu-cap` GPUs at a time (default 5, half the workspace); the
-  rest wait their turn, and an 8-seed final runs in two waves. When other sessions hold the GPUs, GPU jobs queue: at
-  20:35–20:52 PT on Oct 22, no B200, H200 or H100 started at all, `fast` included, while another session ran 12
-  containers. So **a `fast` job that no GPU has started after 10 minutes moves to `cpu`** (`--fallback-after`
-  minutes; 0 waits instead), and the run's other unstarted `fast` jobs move with it, so later waves don't each wait
-  another 10 minutes. The record says `runner.fell_back_from: fast`. Jobs pinned to a GPU type never move:
-  official runs stay on the H100. Tested by forcing it (`validation/plans/fallback_e2e.json`): both jobs moved to
-  CPU at the driver's first check and matched their CPU record exactly.
-- **Starter or Team** (the user chose to stay on Starter on Oct 22). Take a checkpoint as one official H100 run plus
-  8 seeds, and use the measured times:
-  - On Starter, a session alone takes about 13–15 min (light file) or 37 min (heavy). `--gpu-cap 9` makes it one
-    wave when no other session uses GPUs.
-  - On Starter, when sessions compete for GPUs, it takes about 50+ min or 70+ min: the seeds fall back to CPU, and
-    the official run waits for a free H100.
-  - Modal's Team plan ($250 a month plus the same compute) allows 50 GPUs, so about 13 or 37 min either way: about
-    the same alone, 2–4x faster under contention.
-- **Cheapest: `t4`**, when cost matters more than turnaround. It was the cheapest per finished seed on wide_anchored and
-  within 16% of the cheapest on tourney2, at 3.4–3.9x a B200's time per seed. It was also 1.5x and 1.1x quicker than
-  the CPU containers. On files that freeze late in their H100 run (after about 1,500 s, like general_lessons v1), a
-  T4 seed could reach the deadline unfrozen: if one stops at the deadline without freezing (fewer than 20,000 steps
-  and no `LR frozen` line), rerun it on `fast`.
-- **To check what the H100 itself would compute: `h200`.** It replayed the H100 exactly on both files. It was 1.2x
-  as fast as the same day's H100 on wide_anchored and 1.36x the stored official run on tourney2, though 7% slower
-  than the stored official wide_anchored run.
-- **`cpu`** is the fallback when the workspace's GPUs are busy, since it never waits for one, and it saves about 14%
-  on launch-bound files like tourney2.
-- **Not** `l4` (slower and dearer than the T4), `cpu4` (8% cheaper than `cpu` but 1.2–1.7x slower), `a10` (between
-  the T4 and the B200 on both price and speed) or `h100` for seeds (slower and dearer per seed than the B200).
+**Policy** (the user's call on 2026-10-22: the iteration left is bounded, so speed beats cost):
+- **Everything on `b200`, the default, except official certification, which stays on `h100`**, the contest's
+  one-H100 evaluation; `--mode official` refuses other hardware. The B200 was the fastest on both files: 7 and 14
+  minutes per seed, 1.4–2.6x the H100's speed. Because it finishes so soon, it is also the cheapest big GPU per
+  seed, 0.6–0.85x an H100's or H200's.
+- **4 seeds (74, 1, 2, 3) at intermediate stages, 8 (74, 1–7) for finals.** On B200s that is about $0.9–1.6 per
+  seed, so $7–13 for 8 seeds, all running at once.
+- **`h200`** to check what the H100 itself would compute, faster: it replayed the official H100 runs exactly on
+  both files. The B200, like the other GPUs, diverged from the H100's trace on tourney2.
+- **`cpu`** for a CPU-numerics check, or for old plans that ask for it.
+- The T4, L4, A10 and 4-core CPU were retired from the runner; the table above keeps their numbers.
+- **Money:** the workspace's usage limit is $2,000 per billing period (set by the user; $877 used by Oct 22). A B200
+  lists at $6.25 an hour, so a full 20-container run of them bills about $125 an hour.
 
 **How many seeds.** The records give the basis for 4 and 8. Seven seed groups had a failure, counted as failed
 seeds out of seeds run: `wide_reglu` 3/4, `chain_c1_idonly` 1/4, `p1_s1` 2/5, `io3` 2/8, `tourney` 5/8,

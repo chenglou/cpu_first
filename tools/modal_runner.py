@@ -4,8 +4,8 @@ litmus/modal_litmus.py; those stay as they are.
 
     PY=~/github/sotaku/venv/bin/python   R=cpu_first/tools/modal_runner.py   # Modal client 1.2.6; any directory
     $PY -m modal run --detach $R --mode official --file learned_remainder/submission.py --out X/records   # H100 only
-    $PY -m modal run --detach $R --mode seeds --file X/submission.py --seeds 4 [--hardware t4] --out X/records   # fast
-    $PY -m modal run --detach $R --mode plan --plan X/plans/P.json --out X/records [--hardware t4] [--cap 20]
+    $PY -m modal run --detach $R --mode seeds --file X/submission.py --seeds 4 --out X/records   # on b200
+    $PY -m modal run --detach $R --mode plan --plan X/plans/P.json --out X/records [--hardware cpu] [--cap 20]
     $PY -m modal run --detach $R --mode resume --run TAG     # a new driver for a run whose driver ended
     $PY $R --mode peek --run TAG [--app-logs 15]             # early check-ins: latest lines and memory per live job
     $PY $R --mode status [--run TAG | --out X/records]
@@ -16,7 +16,8 @@ litmus/modal_litmus.py; those stay as they are.
 The launches follow ~/github/tips-for-running-modal: one spawn (the driver) per detached launch, refused under
 `modal run` without --detach; `$PY $R` with the same arguments does the same in a detached app of its own. Paths are
 relative to the current directory or to cpu_first/. Every job has a timeout and a memory cap (--timeout, --memory-gb;
-plan keys timeout_s, memory_gb), its evaluator runs in its own session, and every way out kills that whole session. The image is the competition's, built layer for layer
+plan keys timeout_s, memory_gb), its evaluator runs in its own session, and every way out kills that whole session.
+The image is the competition's, built layer for layer
 as general_lessons/modal_general.py and integration/modal_integration.py build it (Modal reuses the cached build):
 every dataset of scripts/generate_datasets.sh by the official generator with its official arguments (Easy e1-e10,
 Medium m1-m10 and H1), then the litmus and held-out tasks (litmus/tasks.py, general_lessons/tasks_general.py).
@@ -34,9 +35,8 @@ runs/TAG/records/NAME.json with the keys of the litmus / general_lessons / integ
 returncode, wall_seconds, manifest_file, manifest, stdout, stderr, result, submission), followed by submission_md5,
 submission_file, file_md5, set, hardware, runner (run tag, call id, attempt, data md5, timeout) and usage (CPU
 seconds, peak memory). Workers copy their log's tail and memory use to runs/TAG/live/ every minute for --mode peek
-and status. Hardware: cpu, cpu4, t4, l4, a10, h100 ("H100!"), h200, b200, and fast (B200, else H200, else H100,
-whichever starts first), the default for seeds and plan jobs; official runs only on the H100. Seed policy (measured):
-tools/README.md.
+and status. Hardware: b200 (the default for seeds and plan jobs, the fastest measured), h200 (replays the official
+H100 runs exactly, faster), h100 ("H100!", the only hardware for official runs) and cpu. Seed policy: tools/README.md.
 """
 
 from __future__ import annotations
@@ -64,14 +64,11 @@ TIER = {**{f"e{i}": f"benchmark/manifests/h100_easy_e{i}.json" for i in range(1,
 LITMUS = ("xfirst", "mont", "ten", "rho", "cube", "xy", "tenrho", "plus3", "minus1")
 SEED_ORDER = (74, 1, 2, 3, 4, 5, 6, 7)  # every session's robustness seeds: the official 74, then 1-7
 NAME = "cpu-first-runner"  # the app and the Volume
-WORKSPACE_LIMIT = int(os.environ.get("MODAL_WORKSPACE_LIMIT", "100"))
 EVAL_FRACTION = 0.5  # benchmark.runner: each seed's evaluation budget is half its training budget
 MEMORY_GB = 24  # default cap on the summed RSS of a job's evaluator processes (plan key memory_gb, --memory-gb)
 CONTAINER_MIB = 65536  # every worker container's hard memory limit, the cap's backstop (a bare memory=N sets none)
 LIVE_EVERY = 60  # seconds between copies of a running job's log tail to the Volume
-DEFAULT_HARDWARE = "fast"  # seeds and plan jobs: B200, else H200, else H100 (tools/README.md); official: always h100
-GPU_CAP = 5  # a run's unfinished GPU calls at a time: Modal's Starter plan allows 10 GPUs per workspace, all types
-FALLBACK_S = 600  # a `fast` job no GPU has started after this long moves to cpu, with the run's other unstarted ones
+DEFAULT_HARDWARE = "b200"  # seeds and plan jobs: the fastest measured (tools/README.md); official runs: always h100
 
 image = (
     modal.Image.from_registry("nvidia/cuda:12.9.1-devel-ubuntu24.04", add_python="3.13")
@@ -290,7 +287,7 @@ def _evaluate(tag: str, job: dict) -> dict:
                       "run": tag, "call_id": me, "container": os.environ.get("MODAL_TASK_ID"), "attempt": attempt,
                       "data_md5": data_md5, "started_at": t0, "timeout_seconds": limit,
                       "timed_out": bool(killed and killed.startswith("timeout")), "memory_cap_gb": cap / 2**30,
-                      "killed": killed, "leftover_processes": leftover, "fell_back_from": job.get("fell_back_from")},
+                      "killed": killed, "leftover_processes": leftover},
            "usage": dict(_usage(ru0, cg0, wall), peak_session_rss_mb=round(peak / 2**20))}
     record.parent.mkdir(parents=True, exist_ok=True)
     part = record.with_name(f".{name}.json.part")
@@ -304,13 +301,13 @@ _WORKER = dict(timeout=24 * 3600, volumes={"/out": vol}, max_containers=20)   # 
 _CPU_MEMORY, _GPU_MEMORY = (16384, CONTAINER_MIB), (4096, CONTAINER_MIB)   # (request, hard limit) in MiB
 
 
-@app.function(cpu=8, memory=_CPU_MEMORY, **_WORKER)   # the CPU container of every earlier runner's robustness seeds
-def run_cpu(tag: str, job: dict) -> dict:
+@app.function(gpu="B200", memory=_GPU_MEMORY, **_WORKER)   # the default: the fastest measured (tools/README.md)
+def run_b200(tag: str, job: dict) -> dict:
     return _evaluate(tag, job)
 
 
-@app.function(cpu=4, memory=_CPU_MEMORY, **_WORKER)
-def run_cpu4(tag: str, job: dict) -> dict:
+@app.function(gpu="H200", memory=_GPU_MEMORY, **_WORKER)   # replays the official H100 runs exactly, faster
+def run_h200(tag: str, job: dict) -> dict:
     return _evaluate(tag, job)
 
 
@@ -319,63 +316,13 @@ def run_h100(tag: str, job: dict) -> dict:
     return _evaluate(tag, job)
 
 
-@app.function(gpu="H200", memory=_GPU_MEMORY, **_WORKER)
-def run_h200(tag: str, job: dict) -> dict:
+@app.function(cpu=8, memory=_CPU_MEMORY, **_WORKER)   # the CPU container of every earlier runner's robustness seeds
+def run_cpu(tag: str, job: dict) -> dict:
     return _evaluate(tag, job)
 
 
-@app.function(gpu="B200", memory=_GPU_MEMORY, **_WORKER)
-def run_b200(tag: str, job: dict) -> dict:
-    return _evaluate(tag, job)
-
-
-@app.function(gpu=["B200", "H200", "H100"], memory=_GPU_MEMORY, **_WORKER)   # ranked: the first that starts
-def run_fast(tag: str, job: dict) -> dict:
-    return _evaluate(tag, job)
-
-
-@app.function(gpu="L4", memory=_GPU_MEMORY, **_WORKER)
-def run_l4(tag: str, job: dict) -> dict:
-    return _evaluate(tag, job)
-
-
-@app.function(gpu="A10G", memory=_GPU_MEMORY, **_WORKER)
-def run_a10(tag: str, job: dict) -> dict:
-    return _evaluate(tag, job)
-
-
-@app.function(gpu="T4", memory=_GPU_MEMORY, **_WORKER)
-def run_t4(tag: str, job: dict) -> dict:
-    return _evaluate(tag, job)
-
-
-HARDWARE = {"cpu": run_cpu, "cpu4": run_cpu4, "h100": run_h100, "h200": run_h200, "b200": run_b200,
-            "fast": run_fast, "l4": run_l4, "a10": run_a10, "t4": run_t4}
-GPUS = {"h100", "h200", "b200", "fast", "l4", "a10", "t4"}
-
-
-def _workspace() -> tuple[int, dict] | None:
-    """The environment's running containers, total and by app: the RPC behind `modal container list`, called directly
-    because a container's Modal client lacks the CLI's dependencies. None if it fails (client internals can change)."""
-    try:
-        from modal._object import _get_environment_name
-        from modal._utils.async_utils import synchronizer
-        from modal.client import _Client
-        from modal_proto import api_pb2
-
-        @synchronizer.create_blocking
-        async def tasks():
-            client = await _Client.from_env()
-            res = await client.stub.TaskList(api_pb2.TaskListRequest(environment_name=_get_environment_name(None)))
-            return [t.app_description or t.app_id for t in res.tasks]
-
-        apps = tasks()
-    except Exception:
-        return None
-    by_app: dict = {}
-    for a in apps:
-        by_app[a] = by_app.get(a, 0) + 1
-    return len(apps), by_app
+HARDWARE = {"b200": run_b200, "h200": run_h200, "h100": run_h100, "cpu": run_cpu}
+GPUS = {"b200", "h200", "h100"}
 
 
 def _poll(call) -> object:
@@ -397,79 +344,34 @@ def _poll(call) -> object:
         return f"failed: {exc!r}"[:500]
 
 
-def _to_cpu(j: dict) -> dict:
-    """A `fast` job moved to cpu because no GPU started it: device cpu added to its overrides, the move noted."""
-    over = {s: dict(v) for s, v in (j.get("overrides") or {}).items()}
-    over.setdefault("runtime", {})["device"] = "cpu"
-    return dict(j, hardware="cpu", overrides=over, fell_back_from=j["hardware"])
-
-
-def _fallback(jobs: list, pending: list, ages: dict, fallback_s: float, busy: bool) -> tuple:
-    """The CPU fallback's decision. `ages`: the seconds each spawned, unstarted `fast` job has waited for a GPU. Once
-    one has waited fallback_s, the run counts the workspace's GPUs as busy, and every unstarted `fast` job (waiting or
-    pending) moves to cpu. Returns (moved names, busy, jobs, pending), pending in plan order."""
-    busy = busy or any(age > fallback_s for age in ages.values())
-    todo = (set(ages) | {j["name"] for j in pending if j["hardware"] == "fast"}) if busy else set()
-    if not todo:
-        return todo, busy, jobs, pending
-    names = {j["name"] for j in pending} | todo
-    jobs = [_to_cpu(j) if j["name"] in todo else j for j in jobs]
-    return todo, busy, jobs, [j for j in jobs if j["name"] in names]
-
-
-def _next_fit(pending: list, live_hardware: list, gpu_cap: int) -> dict | None:
-    """The first pending job (plan order) that fits now: a GPU job only while fewer than gpu_cap of the run's live
-    calls hold GPUs, since the workspace's GPUs (10 on Modal's Starter plan, every type counted) are its scarcest."""
-    gpus = sum(h in GPUS for h in live_hardware)
-    return next((j for j in pending if j["hardware"] not in GPUS or gpus < gpu_cap), None)
-
-
 @app.function(cpu=0.25, memory=512, timeout=24 * 3600, volumes={"/out": vol}, nonpreemptible=True)
 def driver(tag: str) -> dict:
-    """One run's scheduler: spawns its jobs in plan order, at most `cap` unfinished at a time, and only while the
-    workspace has `headroom` containers to spare. Every call id is committed to runs/TAG/calls/ as soon as it is
-    spawned, so a restarted driver (same input) re-attaches to the calls it made instead of spawning them again."""
+    """One run's scheduler: spawns its jobs in plan order, at most `cap` unfinished at a time. Every call id is
+    committed to runs/TAG/calls/ as soon as it is spawned, so a restarted driver (same input) re-attaches to the calls
+    it made instead of spawning them again."""
     run = Path("/out/runs") / tag
     vol.reload()
     jobs = json.loads((run / "jobs.json").read_text())
     meta = json.loads((run / "run.json").read_text())
-    cap, headroom, gpu_cap = int(meta["cap"]), int(meta.get("headroom", 10)), int(meta.get("gpu_cap", GPU_CAP))
-    fallback_s = float(meta.get("fallback_after_s", FALLBACK_S))
-    hw_of = {j["name"]: j["hardware"] for j in jobs}
+    cap = int(meta["cap"])
     (run / "calls").mkdir(parents=True, exist_ok=True)
-    live, done, spawned_at = {}, {}, {}
+    live, done = {}, {}
     for j in jobs:
         f = run / "calls" / f"{j['name']}.id"
         if f.exists():
-            parts = f.read_text().split()                    # "<call id> <spawn time>"
-            live[j["name"]] = modal.FunctionCall.from_id(parts[0])
-            spawned_at[j["name"]] = float(parts[1]) if len(parts) > 1 else time.time()
+            live[j["name"]] = modal.FunctionCall.from_id(f.read_text().split()[0])   # older runs add a spawn time
     pending = [j for j in jobs if j["name"] not in live]
-    print(f"driver {tag}: {len(live)} calls re-attached, {len(pending)} to spawn, cap {cap}, GPU cap {gpu_cap}", flush=True)
-    status, last, check, full, busy = {}, None, True, False, False
+    print(f"driver {tag}: {len(live)} calls re-attached, {len(pending)} to spawn, cap {cap}", flush=True)
+    status, last = {}, None
     while pending or live:
         vol.reload()
         while pending and len(live) < cap:
-            j = _next_fit(pending, [hw_of[n] for n in live], gpu_cap)
-            if j is None:
-                break
-            ws = _workspace() if check else None
-            if ws is None and check:
-                check = False
-                print("the workspace's containers cannot be listed here: spawning under the cap alone", flush=True)
-            if ws is not None and ws[0] >= WORKSPACE_LIMIT - headroom:
-                if not full:
-                    print(f"workspace at {ws[0]} containers: waiting before spawning {j['name']}", flush=True)
-                full = True
-                break
-            full = False
-            pending.remove(j)
+            j = pending.pop(0)
             if (run / "records" / f"{j['name']}.json").exists():
                 done[j["name"]] = "record exists"
                 continue
             call = HARDWARE[j["hardware"]].spawn(tag, j)
-            spawned_at[j["name"]] = time.time()
-            (run / "calls" / f"{j['name']}.id").write_text(f"{call.object_id} {spawned_at[j['name']]:.0f}")
+            (run / "calls" / f"{j['name']}.id").write_text(call.object_id)
             vol.commit()
             live[j["name"]] = call
             print(f"spawned {j['name']} on {j['hardware']}: {call.object_id}", flush=True)
@@ -479,18 +381,6 @@ def driver(tag: str) -> dict:
                 done[name] = outcome
                 del live[name]
                 print(f"finished {name}: {outcome}", flush=True)
-        if fallback_s:                                        # `fast` jobs no GPU picked up: to cpu, all together
-            waiting = [n for n in live if hw_of[n] == "fast" and not (run / "started" / f"{n}.json").exists()]
-            ages = {n: time.time() - spawned_at[n] for n in waiting}
-            todo, busy, jobs, pending = _fallback(jobs, pending, ages, fallback_s, busy)
-            if todo:
-                for n in todo & set(live):
-                    live.pop(n).cancel()
-                    (run / "calls" / f"{n}.id").unlink(missing_ok=True)
-                hw_of.update({n: "cpu" for n in todo})
-                (run / "jobs.json").write_text(json.dumps(jobs))
-                vol.commit()
-                print(f"no GPU started within {fallback_s / 60:g} min: {sorted(todo)} moved to cpu", flush=True)
         status = {"live": sorted(live), "pending": [j["name"] for j in pending], "done": done}
         if status != last:
             (run / "status.json").write_text(json.dumps(dict(status, updated=time.time()), indent=1, default=str))
@@ -703,8 +593,7 @@ def _spawn_driver(tag: str):
             return spawn()
 
 
-def _launch(jobs: list, out: Path, cap: int, headroom: int, tag: str, label: str, force: bool,
-            gpu_cap: int = GPU_CAP, fallback_s: float = FALLBACK_S) -> None:
+def _launch(jobs: list, out: Path, cap: int, tag: str, label: str, force: bool) -> None:
     _check_launch_mode()
     names = [j["name"] for j in jobs]
     if len(set(names)) != len(names):
@@ -718,28 +607,15 @@ def _launch(jobs: list, out: Path, cap: int, headroom: int, tag: str, label: str
     if clash and not force:
         raise SystemExit(f"record names already used for {_rel(out)} (a local record or an earlier run): "
                          f"{sorted(set(clash))}; rename the jobs or pass --force")
-    ws = _workspace()
-    if ws is None:
-        print("warning: the workspace's containers could not be listed; launching without the check", flush=True)
-    else:
-        room = WORKSPACE_LIMIT - headroom - ws[0] - 1
-        print(f"workspace: {ws[0]} containers running {ws[1]}; room for {room} under {WORKSPACE_LIMIT} - {headroom}",
-              flush=True)
-        if room < 1 and not force:
-            raise SystemExit("the workspace is full; launch later or pass --force (the driver waits for room anyway)")
-        if room < min(cap, len(jobs)):
-            print(f"cap {cap} -> {max(1, room)} to fit the workspace", flush=True)
-            cap = max(1, room)
     meta = {"tag": tag, "label": label, "created": time.time(), "created_at": time.strftime("%Y-%m-%d %H:%M:%S %Z"),
-            "out": _rel(out), "cap": cap, "gpu_cap": gpu_cap, "fallback_after_s": fallback_s, "headroom": headroom,
-            "names": names,
+            "out": _rel(out), "cap": cap, "names": names,
             "jobs": [{k: v for k, v in j.items() if k != "source"} for j in jobs]}
     _put({f"runs/{tag}/jobs.json": json.dumps(jobs).encode(), f"runs/{tag}/run.json": json.dumps(meta, indent=1).encode()})
     app_id, call = _spawn_driver(tag)
     meta.update(app_id=app_id, driver_calls=[call.object_id])
     _put({f"runs/{tag}/run.json": json.dumps(meta, indent=1).encode()})
     me = f"{sys.executable} {os.path.relpath(__file__)}"
-    print(f"\nrun {tag}: {len(jobs)} jobs, cap {cap} (GPUs {gpu_cap}), app {app_id}, driver {call.object_id}\n"
+    print(f"\nrun {tag}: {len(jobs)} jobs, cap {cap}, app {app_id}, driver {call.object_id}\n"
           f"  check in: {me} --mode peek --run {tag}     (every few minutes at first)\n"
           f"  fetch:    {me} --mode fetch --run {tag} --wait     (records -> {_rel(out)})", flush=True)
 
@@ -880,13 +756,13 @@ def _resume(tag: str, force: bool) -> None:
 PRICE = {"cpu_core": 0.0000131, "memory_gib": 0.00000222, "b200": 0.001736, "h200": 0.001261, "h100": 0.001097,
          "a10": 0.000306, "l4": 0.000222, "t4": 0.000164}   # $/s, modal.com/pricing on 2026-10-22; CPU per physical
                                                              # core; CPU and memory billed at max(request, use)
-REQUEST = {"cpu": (8, 16), "cpu4": (4, 16)}   # (cores, GiB) requested by run_cpu / run_cpu4; GPU functions: 4 GiB
+REQUEST = {"cpu": (8, 16), "cpu4": (4, 16)}   # (cores, GiB) of run_cpu and the retired run_cpu4; GPU functions: 4 GiB
 
 
 def estimate(rec: dict) -> float:
     """List-price cost of a record's evaluation: GPU seconds, plus CPU and memory at max(request, mean use)."""
     hw, wall, u = rec.get("hardware"), rec.get("wall_seconds") or 0, rec.get("usage") or {}
-    if hw == "fast":                                          # priced as the GPU it got
+    if hw == "fast":                                          # older records: priced as the GPU it got
         hw = next((k for k in ("b200", "h200", "h100") if k.upper() in (rec.get("gpu") or "")), "b200")
     cores, gib = REQUEST.get(hw, (0.125, 4))
     cores = max(cores, (u.get("container_cpu_seconds") or u.get("child_cpu_seconds") or 0) / max(wall, 1e-9))
@@ -987,15 +863,10 @@ def main(argv: list) -> None:
     ap.add_argument("--manifest", default="null", help='seeds: extra overrides, JSON {section: {key: value}}')
     ap.add_argument("--seeds", default="4", help="seeds: a count (first N of 74,1..7) or a list like 74,3")
     ap.add_argument("--hardware", choices=sorted(HARDWARE), help=f"seeds, and plan jobs that name none: where they run "
-                    f"(default {DEFAULT_HARDWARE}: B200, else H200, else H100); official: always h100, the contest's")
+                    f"(default {DEFAULT_HARDWARE}, the fastest measured); official: always h100, the contest's hardware")
     ap.add_argument("--memory-gb", type=float, help=f"cap on a job's evaluator processes' summed RSS (default {MEMORY_GB})")
     ap.add_argument("--timeout", type=int, help="seconds before a job is killed (default 1.5 x budget per seed + 1800)")
-    ap.add_argument("--cap", type=int, default=20, help="most unfinished calls (containers) of this run at a time")
-    ap.add_argument("--gpu-cap", type=int, default=GPU_CAP, help="most unfinished GPU calls of this run at a time "
-                    "(the workspace has 10 GPUs on Modal's Starter plan, every type counted)")
-    ap.add_argument("--fallback-after", type=float, default=FALLBACK_S / 60, help="minutes a `fast` job may wait for "
-                    "a GPU before it, and the run's other unstarted `fast` jobs, move to cpu; 0: wait for a GPU")
-    ap.add_argument("--headroom", type=int, default=10, help="containers of the workspace's 100 left for others")
+    ap.add_argument("--cap", type=int, default=20, help="most unfinished calls (containers, GPUs) of this run at a time")
     ap.add_argument("--wait", action="store_true", help="fetch: poll until every record of the run(s) is in")
     ap.add_argument("--latest", type=int, default=0, help="status, peek: only the latest N runs")
     ap.add_argument("--lines", type=int, default=12, help="peek: log lines per job")
@@ -1043,9 +914,9 @@ def main(argv: list) -> None:
             print(f"job {j['name']}: {j['file']} md5 {j['submission_md5'][:8]} task {j['task']} on {j['hardware']}, "
                   f"manifest {desc}; limits {j['memory_gb']:g} GiB, {j['timeout_s'] or 'budget-based'} s")
         if a.dry:
-            print(f"(dry) run {tag} -> {_rel(out)}, cap {a.cap} (GPUs {a.gpu_cap}): nothing launched")
+            print(f"(dry) run {tag} -> {_rel(out)}, cap {a.cap}: nothing launched")
             return
-        _launch(jobs, out, a.cap, a.headroom, tag, label, a.force, a.gpu_cap, a.fallback_after * 60)
+        _launch(jobs, out, a.cap, tag, label, a.force)
     elif a.mode == "fetch":
         sel = _select(a.run, a.out if not a.run else None)
         if not sel:

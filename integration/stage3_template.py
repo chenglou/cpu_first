@@ -471,20 +471,24 @@ class LibraryMachine(nn.Module):
     def run_rounds(self, Sd: Tensor, C: Tensor, Nd: Tensor, prog, cap: int | None = None) -> Tensor:
         """The countdown and the round program on digits: rounds until no row commits (the snapped subtraction for
         C - 1, the gate on its borrow), each committing row running the program (libcore's machine at PR places, the
-        snapped cells); at most `cap` rounds (default 10^K). Returns the state [X, W]."""
+        snapped cells, a fresh machine as run_prog makes it); at most `cap` rounds (default 10^K). Every row runs every
+        round, with fixed shapes (a row that does not commit keeps its state), on the program's round machine (on a GPU
+        one CUDA graph, captured once per program and row count); its dirty starts are run_prog's own draws for the
+        committing rows. Returns the state [X, W]."""
         Td, Tb, Gc = self.tables()
         cells = self.ctl.cells or self.snapped_cells()
         st = round_settings(cells, PR)
         gen = gen_on(Sd.device, 0)
+        m = round_machine(st, prog, self.ctl.lib, Sd.shape[0], Sd.device)
         s = Sd.clone()
         one = F.one_hot(torch.zeros_like(C[:, 0]), C.shape[1])
         for _ in range(10 ** C.shape[1] if cap is None else cap):
             Cn, b, _ = sub_hard(C, one, Td, Tb)
             go = Gc[b] == 1
-            if not bool(go.any()):
+            n = int(go.sum())
+            if n == 0:
                 break
-            A, _ = run_prog(st, prog, self.ctl.lib, {"X": pad(s[go], PR), "N": pad(Nd[go], PR)}, gen, Sd.device)
-            s[go] = A[:, :W]
+            s = torch.where(go[:, None], m.run(s, Nd, go, n, gen)[:, :W].to(s.dtype), s)
             C = torch.where(go[:, None], Cn, C)
         return s
 

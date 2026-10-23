@@ -2,8 +2,9 @@
 every primitive alone, then real vocabularies (the c5 level-4 library's items and loops, the composition vocabulary of
 s3g seed 5's level-6 library, its round vocabulary at 16 places, the library study's r11 routines) on random machines
 at every setting the climb uses, with random rows per item; the whole state (registers, flags, pointer) compared
-exactly, with the lockstep forced on every bucket and with apply_items' own choice. Local, small (seconds, well under
-1 GB).
+exactly, with the lockstep forced on every bucket and with apply_items' own choice. Then bfs for every fuse,
+Acceptor.many, the round's retry, and the round machine (s3i) against run_prog's (every primitive, random programs, the
+recorded rounds, round after round on one generator). Local, small (about 30 s, under 1 GB).
 
     cd cpu_first && PYTHONPATH=. ~/github/sotaku/venv/bin/python -m integration.lib.test_lockstep
 """
@@ -139,3 +140,51 @@ lines = [c.step((Nd, Xd), answers=ans) for _ in range(7)]
 print("retry:", [None if x is None else x[:60] for x in lines], "| rounds:", [L.show(p) for p in c.rounds], flush=True)
 assert lines[:2] == [None, None] and lines[2] is not None and c.rounds and all(x is None for x in lines[3:])
 print(f"retry as specified ({time.time() - t0:.1f}s)", flush=True)
+# the round machine (s3i) against run_prog's machine (fresh, run_items), as stage 3's run_rounds uses both: rounds on one
+# generator, each on the rows of a random go mask; every go row's whole state (registers, c, h, k) compared after every
+# round, and the rows' digits carried from round to round (on a GPU: the first run eager, the rest graph replays)
+
+
+def rounds_check(name, st, prog, lib, m=37, rounds=5):
+    W = st.W
+    rnd = lambda shape: torch.randint(0, st.B, shape, generator=gen, device=dev)
+    s, Nd = rnd((m, W)), rnd((m, W))
+    gos = [torch.rand(m, generator=gen, device=dev) < f for f in (0.9, 0.7, 0.5, 0.3, 1.0)][:rounds]
+    g_old, g_new = L.gen_on(dev, 0), L.gen_on(dev, 0)
+    mach = L.round_machine(st, prog, lib, m, dev)
+    s_new, P = s.clone(), st.P
+    ok = True
+    for go in gos:
+        n = int(go.sum())
+        if n == 0:
+            continue
+        b = L.fresh(st, {"X": L.pad(s[go], P), "N": L.pad(Nd[go], P)}, g_old, n, dev)
+        L.run_items(st, b, prog, lib)
+        A = mach.run(s_new, Nd, go, n, g_new)
+        St = mach.St[:, :m][:, go]
+        ok &= bool(torch.equal(St[:5 * P].reshape(5, P, n), b.regs[0].long()))
+        ok &= bool(torch.equal(St[5 * P:5 * P + 3], torch.cat([b.c, b.h, b.k]).long()))
+        s[go] = b.regs[0, L.A_].T.long()[:, :W]
+        s_new = torch.where(go[:, None], A[:, :W], s_new)
+        ok &= bool(torch.equal(s, s_new))
+    print(f"round machine {name} {st} P={P}: {len(gos)} rounds of {m} rows: {'same' if ok else 'DIFFERENT'} "
+          f"({time.time() - t0:.1f}s)", flush=True)
+    assert ok, name
+
+
+r16 = L.Setting(10, 8, cells, 16)
+for st in [r16] + sets[:3] + small:                          # every primitive, then random straight-line programs
+    rounds_check("every primitive", st, tuple(L.PRIMS), {})
+    for i in range(3):
+        rounds_check(f"random program {i}", st, tuple(L.PRIMS[j] for j in torch.randint(
+            0, len(L.PRIMS), (300,), generator=gen, device=dev).tolist()), {})
+rounds_check("c5 L4 vocabulary (body <= 2) as one program", sets[1], tuple(items[:300]), lib4)
+for fname, m in (("s3h6_lib.json", 130), ("s3f_lib.json", 64), ("s3d_lib.json", 64)):    # recorded libraries, rounds
+    rec = json.load(open(os.path.join(here, fname)))
+    libr = {k: L.parse(v) for k, v in rec["lib"].items()}
+    for p in rec["round"]:
+        rounds_check(f"{fname} {p}", r16, L.parse(p), libr, m=m)
+for p in ("LDA.X STA.Y T.mul STA.X T.reduce", "T.sqmod", "T.mul", "T.reduce"):
+    if all(t in r11 or t in L.PRIMS for t in p.split()):
+        rounds_check(f"r11 {p}", r16, L.parse(p), r11)
+print(f"the round machine the same ({time.time() - t0:.1f}s)", flush=True)

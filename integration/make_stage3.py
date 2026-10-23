@@ -1,5 +1,6 @@
-"""Builds integration/submission_stage3_s3h.py (INTEGRATION.md, stage 3) from three sources, so that its provenance is
-exact (the certified s3g file, submission_stage3.py, from the same three as they were, kept in work/s3g/):
+"""Builds integration/submission_stage3_s3i.py (INTEGRATION.md, stage 3) from three sources, so that its provenance is
+exact (the certified s3g file, submission_stage3.py, and s3h's, submission_stage3_s3h.py, from the same three as they
+were, kept in work/s3g/ and work/s3h/):
   * integration/stage3_template.py: the new model (cells by laws, the climb's schedule, the round's tournament, the
     prediction path) with markers;
   * integration/lib/libcore.py: the library core (programs, BPE, the machine, the batched search, the practice tasks,
@@ -8,9 +9,10 @@ exact (the certified s3g file, submission_stage3.py, from the same three as they
     #@STAGE1_TOP: ...@ (top-level functions and classes) and #@STAGE1_METHODS: ...@ (methods), with one patch: the
     reader's label lessons start T's direction in phase D (stage 3's answer phase) instead of C.
 
-    ~/github/sotaku/venv/bin/python integration/make_stage3.py          (s3h: submission_stage3_s3h.py)
+    ~/github/sotaku/venv/bin/python integration/make_stage3.py          (s3i: submission_stage3_s3i.py)
     ~/github/sotaku/venv/bin/python integration/make_stage3.py s3g      (checks the certified s3g file, md5 70bac83c,
                                                                          against its sources kept in work/s3g/)
+    ~/github/sotaku/venv/bin/python integration/make_stage3.py s3h      (likewise s3h's, md5 3b9d9bcf, work/s3h/)
 """
 
 from __future__ import annotations
@@ -25,11 +27,14 @@ HERE = Path(__file__).resolve().parent
 TEMPLATE = HERE / "stage3_template.py"
 CORE = HERE / "lib" / "libcore.py"
 STAGE1 = HERE / "submission_stage1.py"
-OUT = HERE / "submission_stage3_s3h.py"
-S3G = (HERE / "work" / "s3g" / "stage3_template.py", HERE / "work" / "s3g" / "libcore.py",
-       HERE / "submission_stage3.py", "70bac83cca41109cde14a1ad2ac4ff4b")
+OUT = HERE / "submission_stage3_s3i.py"
+KEPT = {"s3g": (HERE / "work" / "s3g" / "stage3_template.py", HERE / "work" / "s3g" / "libcore.py",
+                HERE / "submission_stage3.py", "70bac83cca41109cde14a1ad2ac4ff4b"),
+        "s3h": (HERE / "work" / "s3h" / "stage3_template.py", HERE / "work" / "s3h" / "libcore.py",
+                HERE / "submission_stage3_s3h.py", "3b9d9bcfe183fb8b4df4bb3592c2895e")}
 CERTIFIED = {"submission_stage1.py": "cfd7b61d", "submission_stage3.py": "70bac83c", "submission_stage3_s3f.py": "31c9cab2",
-             "submission_stage3_s3d.py": "373ceb4e", "submission_stage3_s3h.py": "3b9d9bcf"}
+             "submission_stage3_s3d.py": "373ceb4e", "submission_stage3_s3h.py": "3b9d9bcf",
+             "submission_stage3_s3i.py": "0e813144"}
 
 
 def top_level(src: str, name: str) -> str:
@@ -89,8 +94,8 @@ def build(template: Path = TEMPLATE, core_file: Path = CORE) -> str:
 def main() -> None:
     for name, md5 in CERTIFIED.items():                                     # the certified files stay as they are
         assert hashlib.md5((HERE / name).read_bytes()).hexdigest().startswith(md5), name
-    if sys.argv[1:] == ["s3g"]:
-        tpl, core, out, md5 = S3G
+    if sys.argv[1:2] and sys.argv[1] in KEPT:
+        tpl, core, out, md5 = KEPT[sys.argv[1]]
         src = build(tpl, core)
         assert hashlib.md5(src.encode()).hexdigest() == md5 and out.read_text() == src
         print(f"{out.name} (md5 {md5[:8]}) is built from {tpl.relative_to(HERE)} and {core.relative_to(HERE)}")

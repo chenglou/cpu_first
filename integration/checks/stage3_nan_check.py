@@ -1,7 +1,7 @@
 """Seed 6's phase-D crash (s3g: a non-finite training loss at step 635), reproduced on a small model: the reader at the
 truth except T's pointer, which reads one place past the end of the prompt (where seed 6's T reading passed when its
 direction turned: the anchor already at the end, the stride not yet), so every row's count reads 0. One training
-step of the certified file (s3g) and of s3h, the lessons of phase D on, on real rows: is the loss finite?
+step of the certified file (s3g), of s3h and of s3i, the lessons of phase D on, on real rows: is the loss finite?
 
     cd cpu_first && PYTHONPATH=. ~/github/sotaku/venv/bin/python integration/checks/stage3_nan_check.py [N=32]
 """
@@ -22,7 +22,7 @@ data = os.environ.get("H1_DATA", os.path.join(os.path.dirname(os.path.dirname(IN
                                               "generated", "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2"))
 cfg = json.load(open(os.path.join(data, "dataset_config.json")))
 ids, am, lab, tpos = lc.glc.batch(lc.glc.rows(data, "depth_t_1", n))
-for tag, f in (("s3g", "submission_stage3.py"), ("s3h", "submission_stage3_s3h.py")):
+for tag, f in (("s3g", "submission_stage3.py"), ("s3h", "submission_stage3_s3h.py"), ("s3i", "submission_stage3_s3i.py")):
     lc.glc.FILE = os.path.join(INTEG, f)
     sc = lc.glc.load_module([("MODE", '"designed"')])
     torch.manual_seed(0)

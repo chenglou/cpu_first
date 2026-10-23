@@ -5,7 +5,9 @@ research runs only (never certified, never submitted).
     global one, and changes no parameter, so the training before and after is the recorded run's;
   * DUMP_STEPS (steps): at each, the round's answer pool (N, x, y as read, as integers) is printed (POOL_DUMP);
   * GRAD_CHECK: every parameter's gradient is checked in phase D (GRAD_BAD: the first steps with a non-finite one), and
-    T's direction lesson prints its weights (T_STATS).
+    T's direction lesson prints its weights (T_STATS);
+  * RR_CHECK (s3i on): every run_rounds call also runs s3h's run_rounds (run_prog on the committing rows, round by
+    round) and prints whether the two states are the same (RR_CHECK lines; RR_DIFF on a difference).
 
     python integration/lib/debug_patch.py SRC OUT
 """
@@ -22,7 +24,47 @@ def sub(old, new, count=1):
     s = s.replace(old, new)
 
 
-sub('LOG_EVERY = 50\n', 'LOG_EVERY = 50\nREPLAY = {}\nDUMP_STEPS = ()\nGRAD_CHECK = False\n')
+sub('LOG_EVERY = 50\n', 'LOG_EVERY = 50\nREPLAY = {}\nDUMP_STEPS = ()\nGRAD_CHECK = False\nRR_CHECK = False\n')
+if "m = round_machine(st, prog, self.ctl.lib, Sd.shape[0], Sd.device)\n" in s:     # s3i's run_rounds
+    sub('''            s = torch.where(go[:, None], m.run(s, Nd, go, n, gen)[:, :W].to(s.dtype), s)
+            C = torch.where(go[:, None], Cn, C)
+        return s
+''', '''            s = torch.where(go[:, None], m.run(s, Nd, go, n, gen)[:, :W].to(s.dtype), s)
+            C = torch.where(go[:, None], Cn, C)
+        if RR_CHECK:
+            old, rounds = self.run_rounds_s3h(Sd, C0, Nd, prog, cap)
+            same = bool(torch.equal(old, s))
+            print(f"RR_CHECK step={self.ctl.step} rows={Sd.shape[0]} rounds={rounds} prog={show(prog)} "
+                  f"same={int(same)}", flush=True)
+            if not same:
+                print(f"RR_DIFF step={self.ctl.step} rows_differ={int((old != s).any(1).sum())}", flush=True)
+        return s
+
+    def run_rounds_s3h(self, Sd, C, Nd, prog, cap=None):
+        """s3h's run_rounds, line for line (and the rounds run)."""
+        Td, Tb, Gc = self.tables()
+        cells = self.ctl.cells or self.snapped_cells()
+        st = round_settings(cells, PR)
+        gen = gen_on(Sd.device, 0)
+        s = Sd.clone()
+        one = F.one_hot(torch.zeros_like(C[:, 0]), C.shape[1])
+        rounds = 0
+        for _ in range(10 ** C.shape[1] if cap is None else cap):
+            Cn, b, _ = sub_hard(C, one, Td, Tb)
+            go = Gc[b] == 1
+            if not bool(go.any()):
+                break
+            A, _ = run_prog(st, prog, self.ctl.lib, {"X": pad(s[go], PR), "N": pad(Nd[go], PR)}, gen, Sd.device)
+            s[go] = A[:, :W]
+            C = torch.where(go[:, None], Cn, C)
+            rounds += 1
+        return s, rounds
+''')
+    sub('''        m = round_machine(st, prog, self.ctl.lib, Sd.shape[0], Sd.device)
+        s = Sd.clone()
+''', '''        m = round_machine(st, prog, self.ctl.lib, Sd.shape[0], Sd.device)
+        s, C0 = Sd.clone(), C
+''')
 sub('''    def climb_unit(self, Nd: Tensor, Xd: Tensor) -> None:
         """One unit of the climb (phase C): the read rows join the pool, then the next search or sleep."""
         ctl = self.ctl

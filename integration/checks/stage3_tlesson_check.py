@@ -1,7 +1,8 @@
 """T's direction lesson in log space (s3h) against the certified file's (s3g), on the same model and rows: the same loss
 and gradients where the weights are in float32's range, and a finite gradient where the right reading's weight is far
 below it (a confidently wrong T reading, as seed 6's phase D had). Local, small (32 rows of depth_t_16, T = 16, whose
-two readings differ: 16 and 61).
+two readings differ: 16 and 61). And s3i's (the countdown on the round machine) against s3h's: the same loss and
+gradients bit for bit.
 
     cd cpu_first && PYTHONPATH=. ~/github/sotaku/venv/bin/python integration/checks/stage3_tlesson_check.py [N=32]
 """
@@ -22,7 +23,7 @@ data = os.environ.get("H1_DATA", os.path.join(os.path.dirname(os.path.dirname(IN
                                               "generated", "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2"))
 cfg = json.load(open(os.path.join(data, "dataset_config.json")))
 mods = {}
-for tag, f in (("s3g", "submission_stage3.py"), ("s3h", "submission_stage3_s3h.py")):
+for tag, f in (("s3g", "submission_stage3.py"), ("s3h", "submission_stage3_s3h.py"), ("s3i", "submission_stage3_s3i.py")):
     lc.glc.FILE = os.path.join(INTEG, f)
     mods[tag] = lc.glc.load_module([("MODE", '"designed"')])
 ids, am, lab, tpos = lc.glc.batch(lc.glc.rows(data, "depth_t_16", n))
@@ -51,8 +52,10 @@ def lesson(tag, edit=None):
 
 
 def compare(title, edit=None):
-    (l0, g0, t0), (l1, g1, t1) = lesson("s3g", edit), lesson("s3h", edit)
+    (l0, g0, t0), (l1, g1, t1), (l2, g2, t2) = lesson("s3g", edit), lesson("s3h", edit), lesson("s3i", edit)
     print(f"{title}: loss s3g {l0:.6g} s3h {l1:.6g} | s3g: {t0} | s3h: {t1}", flush=True)
+    same = l2 == l1 and t2 == t1 and all((g1[k] is None and g2[k] is None) or torch.equal(g1[k], g2[k]) for k in NAMES)
+    print(f"   s3i the same as s3h (loss, log, every gradient bit for bit): {same}", flush=True)
     for k in NAMES:
         a, b = g0[k], g1[k]
         if a is None or b is None:

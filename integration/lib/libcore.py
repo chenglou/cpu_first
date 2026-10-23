@@ -483,8 +483,9 @@ SAVE = NOP + 1                   # a routine's entry at depth d (SAVE + 2 d) kee
 MAX_DEPTH = 32                   #   restores it
 _TRACES = {}                     # (P, B, W, id(lib)) -> (lib, {item: (instructions, depth)})
 _OPS = {}                        # (P, device) -> _Ops
-# apply_items' time model (microseconds; measured on an H100, s3h): a lockstep step, plus per row; an instruction run on
-# one group of rows, plus per row; a group's split and merge
+# apply_items' time model (microseconds; measured on an H100, s3h): a lockstep step, plus per row; on the item-by-item
+# path an instruction, a group's rows (taken and put back once per group: an item, or each element of a loop body at
+# each iteration), and a group's split and merge
 LOCK_STEP, LOCK_ROW, PRIM_STEP, PRIM_ROW, GROUP_FIX = 200.0, 0.0025, 25.0, 0.004, 60.0
 LOCK_COST = 0.0                  # (tests: a large negative value forces the lockstep on every bucket)
 LOCK_ROWS = 1 << 22              # a lockstep runs at most this many rows at once (its step's temporaries: ~1 KB a row)
@@ -767,8 +768,9 @@ def apply_items(st, b, item_of_row, items, lib):
         per[j].append(i)
     S, k = b.S, max(1, len(items))
     rows_per = S / k
+    groups = [st.count(it[1]) * len(it[2]) if is_loop(it) and it[1] not in lib else 1 for it in items]
     lock = {j for j in range(1, nb) if per[j] and LOCK_COST + mx[j] * (LOCK_STEP + len(per[j]) * rows_per * LOCK_ROW)
-            < sum(lens[i] * (PRIM_STEP + rows_per * PRIM_ROW) + GROUP_FIX for i in per[j])}
+            < sum(lens[i] * PRIM_STEP + groups[i] * rows_per * PRIM_ROW + GROUP_FIX for i in per[j])}
     if b.S == 0 or not lock:
         return _apply_grouped(st, b, item_of_row, items, lib)
     out = b.copy()
@@ -801,6 +803,129 @@ def apply_items(st, b, item_of_row, items, lib):
         if idx is not None:
             _put(out, idx, sub)
     return out
+
+
+# the round machine (s3i): one program on many rows from fresh machines, as run_prog runs it. Control never depends on
+# data, so the pointer is resolved once on the host (INC and the routines' saves and restores cost nothing) and every
+# other instruction becomes one or two fixed slice operations on one state tensor; on a GPU the whole program is one
+# CUDA graph, captured once and replayed
+ROUND_ROWS = 128                 # a round machine's rows: a multiple of this (fewer shapes, so fewer graphs)
+ROUND_KEEP = 8                   # round machines kept (each with its graph)
+ROUND_GRAPH = True               # on a GPU, replay the program from a CUDA graph (False: eagerly, as on a CPU)
+_ROUND = {}                      # (instructions, P, B, rows, device) -> RoundMachine
+
+
+class RoundMachine:
+    """One program's instructions (a trace) on `rows` machines at once: state St [5 P + 4, rows] int64, the registers'
+    places (A, X, Y, N, S), then c, h, k and a row that stays 0; the cells as tables [2 (digit, flag), inputs...]."""
+
+    def __init__(self, st, ops, rows, device):
+        P, B = st.P, st.B
+        self.st, self.P, self.dev = Setting(B, P // 2, None, P), P, torch.device(device)
+        St = self.St = torch.zeros(5 * P + 4, rows, dtype=torch.long, device=device)
+        self.sbb = torch.zeros(2, B, B, 2, dtype=torch.long, device=device)
+        self.adc = torch.zeros_like(self.sbb)
+        self.mul = torch.zeros(2, B, B, B, B, dtype=torch.long, device=device)
+        c, h, k, Z = St[5 * P], St[5 * P + 1], St[5 * P + 2], 5 * P + 3
+        A, S = St[:P], St[S_ * P:(S_ + 1) * P]
+        idx = {}
+
+        def rows_of(*ix):
+            if ix not in idx:
+                idx[ix] = torch.tensor(ix, dtype=torch.long, device=device)
+            return idx[ix]
+        fns, p, saved = [], 0, [0] * MAX_DEPTH
+        for o in ops:
+            if o >= SAVE:                                                   # a routine's entry or exit
+                d = (o - SAVE) // 2
+                if (o - SAVE) % 2 == 0:
+                    saved[d] = p
+                else:
+                    p = saved[d]
+                continue
+            op, _, arg = PRIMS[o].partition(".")
+            r = RI.get(arg, 0)
+            R = St[r * P:(r + 1) * P]
+            if op == "INC":
+                p = (p + 1) % P
+            elif op in ("SBB", "ADC"):                                      # A[p], c = the cell at (A[p], R[p], c)
+                fns.append(lambda tab=(self.sbb if op == "SBB" else self.adc), a=A[p], x=R[p], to=rows_of(p, 5 * P):
+                           St.index_copy_(0, to, tab[:, a, x, c]))
+            elif op == "MUL":                                               # A[p], k = the cell at (A[p], R[p], h, k)
+                fns.append(lambda a=A[p], x=R[p], to=rows_of(p, 5 * P + 2):
+                           St.index_copy_(0, to, self.mul[:, a, x, h, k]))
+            elif op == "SEL":
+                fns.append(lambda: torch.where(c != 0, S, A, out=A))
+            elif op == "LDA":
+                fns.append(lambda R=R: A.copy_(R))
+            elif op == "STA":
+                fns.append(lambda R=R: R.copy_(A))
+            elif op in ("CLA", "CLC", "CLK"):
+                fns.append({"CLA": A, "CLC": c, "CLK": k}[op].zero_)
+            elif op == "LDH":
+                fns.append(lambda x=R[p]: h.copy_(x))
+            else:                                    # SHL, SHR, BRG: places moved within registers (Z: a 0 place)
+                q = list(range(r * P, (r + 1) * P))
+                src = {"SHL": [Z] + q[:-1], "SHR": q[1:] + [Z],
+                       "BRG": [X_ * P + P - 1] + list(range(P - 1)) + [Z] + list(range(X_ * P, X_ * P + P - 1))}[op]
+                lo = 0 if op == "BRG" else r * P
+                fns.append(lambda dst=St[lo:lo + len(src)], src=rows_of(*src): dst.copy_(St.index_select(0, src)))
+        self.fns, self.graph = fns, None
+
+    def cells(self, cells):
+        """The cells the program reads (copied into the machine's tables, which a graph reads in place)."""
+        B = self.st.B
+        self.sbb.copy_(cells.sbb.T.reshape(2, B, B, 2))
+        self.adc.copy_(cells.adc.T.reshape(2, B, B, 2))
+        self.mul.copy_(cells.mul.T.reshape(2, B, B, B, B))
+
+    def run(self, Xd, Nd, go, n, gen):
+        """One run from fresh machines: x digits Xd in X and Nd in N (rows m <= rows [m, <= P]); everything else fresh's
+        random draws for the n rows of go [m] alone, in their order, exactly as run_prog draws them for those rows.
+        Every row runs; returns A's digits [m, P] (a view, until the next run; rows outside go: anything)."""
+        P, St, m = self.P, self.St, Xd.shape[0]
+        b = fresh(self.st, {}, gen, n, self.dev)
+        at = (go.long().cumsum(0) - 1).clamp(min=0)                          # each row's place among go's rows
+        St[:5 * P, :m] = b.regs[0].reshape(5 * P, n)[:, at]
+        St[X_ * P:(X_ + 1) * P, :m] = pad(Xd, P).T
+        St[N_ * P:(N_ + 1) * P, :m] = pad(Nd, P).T
+        St[5 * P:5 * P + 3, :m] = torch.cat([b.c, b.h, b.k])[:, at]
+        with torch.no_grad():
+            self._program()
+        return St[:P, :m].T
+
+    def _program(self):
+        if self.dev.type != "cuda" or not ROUND_GRAPH:
+            for f in self.fns:
+                f()
+        elif self.graph is None:                     # the first run eagerly on a side stream (it also warms up), then
+            side = torch.cuda.Stream()               # the program captured (capture records, it does not run)
+            side.wait_stream(torch.cuda.current_stream())
+            with torch.cuda.stream(side):
+                for f in self.fns:
+                    f()
+            torch.cuda.current_stream().wait_stream(side)
+            self.graph = torch.cuda.CUDAGraph()
+            with torch.cuda.graph(self.graph):
+                for f in self.fns:
+                    f()
+        else:
+            self.graph.replay()
+
+
+def round_machine(st, prog, lib, rows, device):
+    """prog's RoundMachine at setting st (its cells loaded) for rows machines (rounded up to a multiple of ROUND_ROWS),
+    made once per instruction sequence and size and kept (ROUND_KEEP at most)."""
+    ops, _ = _trace_seq(st, prog, lib, 0, _traces(st, lib))
+    R = -(-max(rows, 1) // ROUND_ROWS) * ROUND_ROWS
+    key = (ops.tobytes(), st.P, st.B, R, str(device))
+    m = _ROUND.get(key)
+    if m is None:
+        while len(_ROUND) >= ROUND_KEEP:
+            _ROUND.pop(next(iter(_ROUND)))
+        m = _ROUND[key] = RoundMachine(st, ops, R, device)
+    m.cells(st.cells)
+    return m
 
 
 class ItemClass:
@@ -1326,9 +1451,9 @@ class Acceptor:
         return self.cache[k]
 
     def many(self, progs):
-        """The same verdicts for many programs at once: one machine per program, the programs run in lockstep over
-        their top-level items (each step one apply_items over every machine), setting by setting, a program leaving at
-        its first failing setting."""
+        """The same verdicts for many programs at once: one machine per program, every program run whole as one item
+        (a body run once: ONE), all of them in one apply_items call per setting, a program leaving at its first failing
+        setting."""
         keys = [show(p) for p in progs]
         live = sorted({i for i, k in enumerate(keys) if k not in self.cache}, key=lambda i: keys[i])
         live = [i for j, i in enumerate(live) if j == 0 or keys[i] != keys[live[j - 1]]]
@@ -1337,14 +1462,8 @@ class Acceptor:
                 break
             dev = prob.roots[0].regs.device
             b = prob.roots[0].take(torch.zeros(len(live), dtype=torch.long, device=dev))
-            ps = [progs[i] for i in live]
-            for t in range(max(len(p) for p in ps)):
-                step_items = [p[t] if len(p) > t else ("REP", ONE, ()) for p in ps]
-                index = {}
-                for it in step_items:
-                    index.setdefault(it, len(index))
-                ids = torch.tensor([index[it] for it in step_items], dtype=torch.long, device=dev)
-                b = apply_items(st, b, ids, list(index), self.lib)
+            b = apply_items(st, b, torch.arange(len(live), device=dev), [("REP", ONE, tuple(progs[i])) for i in live],
+                            self.lib)
             ok = prob.goal([b]).tolist()
             for i, o in zip(live, ok):
                 if not o:

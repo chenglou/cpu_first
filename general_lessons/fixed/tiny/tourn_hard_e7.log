@@ -1,0 +1,8 @@
+set=below wiring: a=D b=M op=sub flag=borrow keep=gated nread=given vread=given start=top order=down bring=(1,0,'rep') post=0 final=none read=(0,'given') gate=CH round: rmul=one radd=0 rcube=none
+LR digit_codes ambiguous=True step=0 readings={'0011': 1209600, '0111': 28800}
+facts: ambiguous=True readings={'0011': 1209600, '0111': 28800}
+LR code_census step=1 contestants=1238400 readings={'0011': 1209600, '0111': 28800}
+LR code_survivors step=1 triples=1 contestants=1 readings=['0111'] machine_runs=30658
+LR code_chosen step=1 reading=(0, 1, 1, 1) code=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9] survivors=1 tie=none machine_runs=30658
+{"step": 1, "contestants_alive": 1, "triples": 1, "machine_runs": 30658, "s": 9.51, "selector": [0.521, 0.479], "sets_rounds_alive": [["below", ["one", 0, "none"]]], "round": "rmul=one radd=0 rcube=none"}
+RESULT {"data": "squaring_mod_granular_easy_e7_bidirectional_fixed_n_287_t123_ood4", "mode": "hard", "seed": 0, "steps": [{"step": 1, "contestants_alive": 1, "triples": 1, "machine_runs": 30658, "s": 9.51, "selector": [0.521, 0.479], "sets_rounds_alive": [["below", ["one", 0, "none"]]], "round": "rmul=one radd=0 rcube=none"}], "ambiguous": true, "readings": {"0011": 1209600, "0111": 28800}, "leader_reading": "0111", "leader_code": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "leader_true": true, "steps_to_choose": 1, "census": 1238400, "seconds": 9.7, "machine_runs": 30658, "history": [[0, "ambiguous", {"0011": 1209600, "0111": 28800}], [1, "census", {"0011": 1209600, "0111": 28800}], [1, "chosen", "0111", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1, "none", 30658]], "set": "lowzero", "round": "rmul=one radd=0 rcube=none"}

@@ -1,0 +1,92 @@
+{
+ "data": "squaring_mod_new11_easy_bidirectional_fixed_n_323_t123",
+ "mode": "hard",
+ "seed": 0,
+ "steps": [
+  {
+   "step": 1,
+   "contestants_alive": 2,
+   "triples": 2,
+   "machine_runs": 4754,
+   "s": 3.79,
+   "selector": [
+    0.521,
+    0.479
+   ],
+   "sets_rounds_alive": [
+    [
+     "below",
+     [
+      "one",
+      0,
+      "none"
+     ]
+    ]
+   ],
+   "round": "rmul=one radd=0 rcube=none"
+  }
+ ],
+ "ambiguous": true,
+ "readings": {
+  "0011": 302400,
+  "0111": 302400
+ },
+ "leader_reading": "0011",
+ "leader_code": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "leader_true": false,
+ "steps_to_choose": 1,
+ "census": 604800,
+ "seconds": 4.0,
+ "machine_runs": 4754,
+ "history": [
+  [
+   0,
+   "ambiguous",
+   {
+    "0011": 302400,
+    "0111": 302400
+   }
+  ],
+  [
+   1,
+   "census",
+   {
+    "0011": 302400,
+    "0111": 302400
+   }
+  ],
+  [
+   1,
+   "chosen",
+   "0011",
+   [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   2,
+   "readings",
+   4754
+  ]
+ ],
+ "set": "lowzero",
+ "round": "rmul=one radd=0 rcube=none"
+}

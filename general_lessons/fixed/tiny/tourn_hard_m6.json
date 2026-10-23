@@ -1,0 +1,92 @@
+{
+ "data": "squaring_mod_granular_medium_m6_bidirectional_fixed_n_1517_t124",
+ "mode": "hard",
+ "seed": 0,
+ "steps": [
+  {
+   "step": 1,
+   "contestants_alive": 1,
+   "triples": 1,
+   "machine_runs": 37026,
+   "s": 13.43,
+   "selector": [
+    0.521,
+    0.479
+   ],
+   "sets_rounds_alive": [
+    [
+     "below",
+     [
+      "one",
+      0,
+      "none"
+     ]
+    ]
+   ],
+   "round": "rmul=one radd=0 rcube=none"
+  }
+ ],
+ "ambiguous": true,
+ "readings": {
+  "0011": 1814400,
+  "0111": 81000
+ },
+ "leader_reading": "0111",
+ "leader_code": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "leader_true": true,
+ "steps_to_choose": 1,
+ "census": 1895400,
+ "seconds": 13.6,
+ "machine_runs": 37026,
+ "history": [
+  [
+   0,
+   "ambiguous",
+   {
+    "0011": 1814400,
+    "0111": 81000
+   }
+  ],
+  [
+   1,
+   "census",
+   {
+    "0011": 1814400,
+    "0111": 81000
+   }
+  ],
+  [
+   1,
+   "chosen",
+   "0111",
+   [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   1,
+   "none",
+   37026
+  ]
+ ],
+ "set": "lowzero",
+ "round": "rmul=one radd=0 rcube=none"
+}

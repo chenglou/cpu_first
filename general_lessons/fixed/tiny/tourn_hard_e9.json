@@ -1,0 +1,95 @@
+{
+ "data": "squaring_mod_granular_easy_e9_bidirectional_fixed_n_299_t123",
+ "mode": "hard",
+ "seed": 0,
+ "steps": [
+  {
+   "step": 1,
+   "contestants_alive": 1,
+   "triples": 1,
+   "machine_runs": 6849,
+   "s": 5.92,
+   "selector": [
+    0.521,
+    0.479
+   ],
+   "sets_rounds_alive": [
+    [
+     "below",
+     [
+      "one",
+      0,
+      "none"
+     ]
+    ]
+   ],
+   "round": "rmul=one radd=0 rcube=none"
+  }
+ ],
+ "ambiguous": true,
+ "readings": {
+  "0010": 181440,
+  "0011": 1209600,
+  "0111": 181440
+ },
+ "leader_reading": "0111",
+ "leader_code": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "leader_true": true,
+ "steps_to_choose": 1,
+ "census": 1572480,
+ "seconds": 6.1,
+ "machine_runs": 6849,
+ "history": [
+  [
+   0,
+   "ambiguous",
+   {
+    "0010": 181440,
+    "0011": 1209600,
+    "0111": 181440
+   }
+  ],
+  [
+   1,
+   "census",
+   {
+    "0010": 181440,
+    "0011": 1209600,
+    "0111": 181440
+   }
+  ],
+  [
+   1,
+   "chosen",
+   "0111",
+   [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   1,
+   "none",
+   6849
+  ]
+ ],
+ "set": "lowzero",
+ "round": "rmul=one radd=0 rcube=none"
+}

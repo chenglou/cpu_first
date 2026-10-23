@@ -404,6 +404,19 @@ def _to_cpu(j: dict) -> dict:
     return dict(j, hardware="cpu", overrides=over, fell_back_from=j["hardware"])
 
 
+def _fallback(jobs: list, pending: list, ages: dict, fallback_s: float, busy: bool) -> tuple:
+    """The CPU fallback's decision. `ages`: the seconds each spawned, unstarted `fast` job has waited for a GPU. Once
+    one has waited fallback_s, the run counts the workspace's GPUs as busy, and every unstarted `fast` job (waiting or
+    pending) moves to cpu. Returns (moved names, busy, jobs, pending), pending in plan order."""
+    busy = busy or any(age > fallback_s for age in ages.values())
+    todo = (set(ages) | {j["name"] for j in pending if j["hardware"] == "fast"}) if busy else set()
+    if not todo:
+        return todo, busy, jobs, pending
+    names = {j["name"] for j in pending} | todo
+    jobs = [_to_cpu(j) if j["name"] in todo else j for j in jobs]
+    return todo, busy, jobs, [j for j in jobs if j["name"] in names]
+
+
 def _next_fit(pending: list, live_hardware: list, gpu_cap: int) -> dict | None:
     """The first pending job (plan order) that fits now: a GPU job only while fewer than gpu_cap of the run's live
     calls hold GPUs, since the workspace's GPUs (10 on Modal's Starter plan, every type counted) are its scarcest."""
@@ -468,16 +481,13 @@ def driver(tag: str) -> dict:
                 print(f"finished {name}: {outcome}", flush=True)
         if fallback_s:                                        # `fast` jobs no GPU picked up: to cpu, all together
             waiting = [n for n in live if hw_of[n] == "fast" and not (run / "started" / f"{n}.json").exists()]
-            busy = busy or any(time.time() - spawned_at[n] > fallback_s for n in waiting)
-            todo = set(waiting if busy else []) | {j["name"] for j in pending if busy and j["hardware"] == "fast"}
+            ages = {n: time.time() - spawned_at[n] for n in waiting}
+            todo, busy, jobs, pending = _fallback(jobs, pending, ages, fallback_s, busy)
             if todo:
                 for n in todo & set(live):
                     live.pop(n).cancel()
                     (run / "calls" / f"{n}.id").unlink(missing_ok=True)
-                names = {j["name"] for j in pending} | todo
-                jobs = [_to_cpu(j) if j["name"] in todo else j for j in jobs]
                 hw_of.update({n: "cpu" for n in todo})
-                pending = [j for j in jobs if j["name"] in names]
                 (run / "jobs.json").write_text(json.dumps(jobs))
                 vol.commit()
                 print(f"no GPU started within {fallback_s / 60:g} min: {sorted(todo)} moved to cpu", flush=True)

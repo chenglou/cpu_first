@@ -46,6 +46,9 @@ A plan is a JSON list of jobs. Its keys are a superset of the existing plans' ke
 | `hardware` | `fast` (the default: a B200, else an H200, else an H100, whichever starts first; the record's `gpu` says which), `b200`, `h200`, `h100` (pinned `H100!`, never an H200), `a10`, `l4`, `t4`, `cpu` (8 cores: the earlier runners' CPU container), `cpu4`. The old `"gpu": true` means `h100` and `"gpu": false` means `cpu`. Without either key, a job whose own manifest sets `runtime.device` to `cpu` (the old plans' way to ask for CPU) runs on `cpu`; any other job takes the run's `--hardware`, else `fast`. `--mode official` always uses `h100`, the contest's one-H100 evaluation |
 | `memory_gb`, `timeout_s` | this job's limits (below); default the run's `--memory-gb` (24) and `--timeout` |
 
+A run's GPU options: `--gpu-cap` (default 5) bounds its GPU calls at a time, and `--fallback-after` (default 10
+minutes) moves its `fast` jobs to `cpu` when no GPU starts them (see the seed policy).
+
 Manifests follow the earlier runners' rule, with one refinement. A job with no overrides runs the official file
 untouched, and the record says so in `manifest_file`. Overrides equal to the official value are dropped first, so an
 H100 job with seed 74 is the official run. A CPU job sets `runtime.device` to `cpu`. A GPU job keeps the official
@@ -185,8 +188,19 @@ other hardware. For robustness seeds:
   don't count against it. So a run takes at most `--gpu-cap` GPUs at a time (default 5, half the workspace); the
   rest wait their turn, and an 8-seed final runs in two waves. When other sessions hold the GPUs, GPU jobs queue: at
   20:35–20:52 PT on Oct 22, no B200, H200 or H100 started at all, `fast` included, while another session ran 12
-  containers. `--mode status` then shows the jobs as `queued`, and `peek` shows "no log copied yet". Either wait, or
-  relaunch on `--hardware cpu`, which never waits for a GPU. Modal's Team plan raises the limit to 50 GPUs.
+  containers. So **a `fast` job that no GPU has started after 10 minutes moves to `cpu`** (`--fallback-after`
+  minutes; 0 waits instead), and the run's other unstarted `fast` jobs move with it, so later waves don't each wait
+  another 10 minutes. The record says `runner.fell_back_from: fast`. Jobs pinned to a GPU type never move:
+  official runs stay on the H100. Tested by forcing it (`validation/plans/fallback_e2e.json`): both jobs moved to
+  CPU at the driver's first check and matched their CPU record exactly.
+- **Starter or Team** (the user chose to stay on Starter on Oct 22). Take a checkpoint as one official H100 run plus
+  8 seeds, and use the measured times:
+  - On Starter, a session alone takes about 13–15 min (light file) or 37 min (heavy). `--gpu-cap 9` makes it one
+    wave when no other session uses GPUs.
+  - On Starter, when sessions compete for GPUs, it takes about 50+ min or 70+ min: the seeds fall back to CPU, and
+    the official run waits for a free H100.
+  - Modal's Team plan ($250 a month plus the same compute) allows 50 GPUs, so about 13 or 37 min either way: about
+    the same alone, 2–4x faster under contention.
 - **Cheapest: `t4`**, when cost matters more than turnaround. It was the cheapest per finished seed on wide_anchored and
   within 16% of the cheapest on tourney2, at 3.4–3.9x a B200's time per seed. It was also 1.5x and 1.1x quicker than
   the CPU containers. On files that freeze late in their H100 run (after about 1,500 s, like general_lessons v1), a

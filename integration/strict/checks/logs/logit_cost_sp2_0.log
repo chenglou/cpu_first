@@ -1,0 +1,6 @@
+device cuda, NVIDIA H100 80GB HBM3; programs 2, instructions [6602, 6602, 0, 0]
+48x1: rows 48, T 1, every program: forward 0.7s, backward 1.3s, peak 1.0 GiB, exact 1.000, 13/16 tensors with a nonzero gradient
+48x1a: rows 48, T 1, argmax program: forward 0.3s, backward 0.7s, peak 0.5 GiB, exact 1.000, 13/16 tensors with a nonzero gradient
+512x1a: rows 512, T 1, argmax program: forward 0.4s, backward 0.7s, peak 5.3 GiB, exact 1.000, 13/16 tensors with a nonzero gradient
+64x16a: rows 64, T 16, argmax program: forward 5.9s, backward 10.5s, peak 10.3 GiB, exact 1.000, 14/16 tensors with a nonzero gradient
+512x16a: rows 512, T 16: out of memory (CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 79.17 GiB of which 20.44 MiB is free. Pro)

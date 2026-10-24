@@ -340,6 +340,34 @@ later ones follow them as they land. None changes a certified file or record.
     and 2, and the learned loop then certifies both, seed 2 frozen by 1,062 s.
   - **Still designed:** the count loop itself (a strict judge can call it the countdown made into an instruction),
     T's place in the machine and its 2-digit field, the answer program's search space, and what sp2 designs.
+- **Strict builds of s3i and sp2** ([STRICT.md](integration/strict/STRICT.md), code and records in
+  [`integration/strict/`](integration/strict/)). The gray points of §5 that can go without changing what is learned
+  are removed, by exact edits to the certified sources:
+  - No decision reads the clock: each search, and the climb as a whole, gets a budget of machine work, counted by the
+    search's own cost model, the same on every host.
+  - The rows the climb remembers and the found round program are buffers: in the state dict, counted, on the GPU.
+    The forward pass runs the round from there.
+  - The optimizer resets itself at phase B instead of the scheduler doing it, and the late table lessons and the
+    wrap-around check in the table's gate are gone.
+  - Both strict files certify on the official H100 manifest and on every seed their originals ran (s3i: seeds 1–7 on
+    H100s; sp2: 74 and 1–7 on B200s), 17 runs. Each run's climb and schedule are the original's line for line.
+  - **Unchanged, and why:** zero logits in training (the real answer inside autograd on a training batch does not fit
+    in an H100's memory); the damped gradient; the reader; the climb, the instruction set and the curriculum, which
+    are the learning method. The strict files keep the old weak checks; adopting the fix is a rebuild and 17 reruns.
+- **Breadth at full size** ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md), code and records in
+  [`integration/sp_breadth/`](integration/sp_breadth/)). Does sp2 learn the family's other formulas at H1's size?
+  - Unchanged, 2 of 11 tasks: H1 and H1 with the prompt's fields reordered. The other formulas fail in the round's
+    search, which composes at most two routine calls and cannot make a constant.
+  - Three general changes, all in the round's search, none naming a formula: three calls instead of two; a constant
+    read off the answers when every answer differs from a program's result by the same amount mod N; and a round must
+    also reproduce the answers of the other one-digit T's.
+  - With all three (`submission_spb_g3.py`, md5 `30efec64d6e4f0a7417938e9370a363e`), 8 of 11 are learned, each in one
+    run on one H100 with every split exact: H1 (also on 8 of 8 B200 seeds), the reordered prompt, 10y², y² + 1,
+    y² + 3, 10y² + 1, y² − 1, and the competition's Medium data (H1's formula, every T = 8). Not learned: y³ (four
+    calls), Montgomery's y²·10⁻⁸ (no law poses its reduction), and a prompt with a fourth number (the reader takes
+    three).
+  - **How general:** more than before, less than bar 3 asks. Each change is stated without a formula, but each was
+    written after watching a formula fail, with the family in view.
 
 ## 8. About this checkout
 

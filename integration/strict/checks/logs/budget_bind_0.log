@@ -1,0 +1,17 @@
+certified: 59 lines in 181.2s; strict: 44 lines in 40.9s, work 1.226e+06; DIFFERENT
+  certified: LR climb step=2 L0 probe 12 roots _s solved {'lt/pair@AX': 4, 'sub/pair@AX': 4, 'lt/pair@AY': 4, 'sub/pair@AY': 4, 'lt/pair@AN': 4, 'sub/pair@AN': 4} [('routines', _)] (s)
+  strict:    LR climb step=2 L0 probe 12 roots _s solved {} [('routines', _)] (s)
+   LR climb_starts step=1 cells: subtraction/addition/multiply snapped, right vs the truth (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+   LR climb step=1 L0 pose: 70 candidates on 12 roots (s)
+   LR climb step=2 L0 probe 12 roots _s solved {} [('routines', _)] (s)
+   LR climb step=3 L0 choose (lpca): {'unsolved': 70}; picks [] (s)
+   LR climb step=4 L0 sleep: no new concept learnable; the next level poses practised ones' variants (s)
+   LR climb step=5 L0 target: no answers yet (s)
+   LR climb step=6 L1 pose: 70 candidates on 12 roots (s)
+   LR climb step=7 L1 probe 12 roots _s solved {} [('routines', _)] (s)
+   LR climb step=8 L1 choose (lpca): {'unsolved': 70}; picks [] (s)
+   LR climb step=9 L1 sleep: nothing learnable to practise; climb done (s)
+   STEP 29 loss 0.028421 phase C io 5 ans_ok 0.0 fit [] streak 0 t 
+   LR step=30 phase=C io=5 loss=0.0282 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 gate=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=21 order_digits=-1000 rows_visited=200/200 pool=1920 answers=13 climb_level=1 solved=[] round: none fit=[]  facts=N != 0(since 10, fa
+   STEP 30 loss 0.028185 phase C io 5 ans_ok 0.0 fit [] streak 0 t 
+buffers: pool 1920 answers 13 programs 0

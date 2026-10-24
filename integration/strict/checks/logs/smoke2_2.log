@@ -1,0 +1,11 @@
+certified: 51 lines in 10.8s; strict: 51 lines in 8.4s, work 1.213e+05; IDENTICAL
+   LR climb_starts step=1 cells: subtraction/addition/multiply snapped, right vs the truth (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+   LR climb step=1 L0 lt       cost None (library) levels [1, 32, 815, 19540, 594455] _s exhausted cost 4 [] (s)
+   LR climb step=2 L0 lt~      cost None (library) levels [1, 32, 815, 19534, 594170] _s exhausted cost 4 [] (s)
+   LR climb step=3 L0 modx     cost None (library) levels [1, 32, 812, 19288, 582847] _s exhausted cost 4 [] (s)
+   LR climb step=4 L0 modx~    cost None (library) levels [1, 32, 814, 19407, 586746] _s exhausted cost 4 [] (s)
+   LR climb step=5 L0 sleep: solved [];  (s)
+   STEP 39 loss 0.020588 phase C io 5 ans_ok 0.0 fit [] streak 0 t 
+   LR step=40 phase=C io=5 loss=0.0214 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 gate=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=31 order_digits=-1000 rows_visited=200/200 pool=2560 answers=17 climb_level=1 solved=[] round: none fit=[]  facts=N != 0(since 10, fa
+   STEP 40 loss 0.021386 phase C io 5 ans_ok 0.0 fit [] streak 0 t 
+buffers: pool 2560 answers 17 programs 0

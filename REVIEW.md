@@ -282,7 +282,8 @@ changes a certified file or record.
     among them; the step problem alone; the multiply's row problem (one seed); a round cost limit above 5 (at 4
     there is no round).
   - **How firm:** every failed arm searched its whole cost-5 reach without the missing piece, so more training time
-    would not rescue it. A wider search, every program up to cost 6, is running for six of the seven needed parts.
+    would not rescue it. A wider search, every program up to cost 6, found nothing for any of the six parts it
+    applies to; the seventh, Occam's tie-break, fails at any cost.
   - **A weak check in s3i.** Its reduction check can accept a repeated subtraction that is right only for small
     quotients, which slips through when none of the check's 60 three-digit probes has a quotient above 600: about 3%
     of runs on H1's rows ([`reduce_check.py`](integration/ablation_s3/reduce_check.py)). Such a run cannot certify.

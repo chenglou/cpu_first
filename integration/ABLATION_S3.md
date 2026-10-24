@@ -91,7 +91,8 @@ about 280-320 s, not the round.
 - *The kind of failure.* Every failure of the seven needed parts is the same kind. The climb ran out of things to try,
   between 2 and 34 minutes into training: a level found nothing new, and every search for the missing piece had
   covered every program up to its cost limit without one that passes. So more training time cannot rescue these
-  arms. Whether a wider search can is being tested now (§7).
+  arms. Nor could a search one cost level wider: for the six whose failure is the search's reach, the missing piece's
+  searches were widened to every program up to cost 6, up to 5.7 billion per search, and none found it (§7).
 <!-- /PLAIN -->
 
 ## 1. What was removed, and how
@@ -367,8 +368,9 @@ finding the real reduction at cost 5. A check probing larger quotients would clo
   - So a 3x training budget would end the same way, and the relaxed reruns the brief planned to separate discovery
     from budget were not needed.
   - no_step's run did run out of time, but its round was already out of reach (§3).
-  - What might change an outcome is a wider search: §7 tests that for the six arms whose failure is a search's
-    reach. "Needed" here means needed within s3i's search reach.
+  - What might change an outcome is a wider search. §7 widened the six arms whose failure is a search's reach to
+    every program up to cost 6, and none found its piece. "Needed" here means needed within s3i's search reach and
+    one cost level beyond it.
 - **Two seeds.** s3i's eight H100 seeds climb in the same shape (mac, step and reduce at level 4, mul at level 5, the
   round 31 or 32 units in). Seed 1 repeated seed 74 for every main arm: the same verdicts, the same problems solved
   at the same levels, and the speed-only costs within 52 s of each other. The second seed did change both later arms
@@ -443,51 +445,65 @@ new run tag (the evaluator keeps no checkpoints, so a job starts again from the 
 
 ## 7. A wider search for the needed parts
 
-*Running; this section will be completed when the runs end.*
+**The result.** For each of the six needed parts whose failure is a search's reach, the missing piece's search was
+widened to cover every program up to cost 6, one level past s3i's reach. None found the piece. Together these searches
+streamed 0.4 to 5.7 billion cost-6 programs each, and every climb ended where its arm's did. So within one more level
+of the search, these parts are still needed. The seventh needed part, Occam's tie-break, is not a search's reach (below).
 
 The seven needed parts fail on both seeds because the climb runs out of things to try within s3i's search reach. This
 asks whether a wider search finds the missing piece anyway. Each failed search stopped at the state cap (5.8M stored
 states per level), which streams level 5 and so covers every program up to cost 5. The cost limit (7) and the
 per-search time limit (900 s) were not what stopped them.
 
-**What was widened.** The runs below repeat a failed arm with one change on top of the arm's own. The missing piece's
-library searches (merges, routines and primitives together) may store up to 60M states per level (110M for the
-multiply), so level 5 is stored and level 6 streamed: every program up to cost 6. These searches also have no time
-limit of their own. Everything else, including every other task's searches and the stall rule, is the arm's. Two
-run settings change, neither inside the climb:
-- *The training budget* is relaxed to 21,600 s in case the searches are slow. The first ones streamed cost 6 (0.6-1.6
-  billion programs) in about 7 minutes.
+**What was widened.** Each run repeats a failed arm on seed 74 with one change on top of the arm's own. The missing
+piece's library searches (merges, routines and primitives together) may store up to 60M states per level (130M and
+110M for the multiply), so level 5 is stored and level 6 streamed: every program up to cost 6. These searches also
+have no time limit of their own. Everything else, including every other task's searches and the stall rule, is the
+arm's. Two run settings change, neither inside the climb:
+- *The training budget* is relaxed to 21,600 s in case the searches are slow; none needed more than 45 minutes.
 - *Training stops at 1,500 steps* (`--set MAX_STEPS=1500`; s3i's is 20,000, and nothing else reads it). The climb ends
   by about step 700, and a round found then is frozen 200 steps later, so the cap only cuts the round's retries after
   a climb that found nothing. At the relaxed budget those retries would have run for hours. A first launch without the
   cap was stopped after 55 minutes for that reason; it wrote no records.
 
-| run | the failed arm | widened | cap | hardware | variant md5 | md5 of what ran (with the sets) |
-|---|---|---|---|---|---|---|
-| no_sel_wide | no_sel | modx, modx~ | 60M | H100 | `11442559` | `243908fc` |
-| no_twins_wide | no_twins | reduce | 60M | H100 | `20e5bbcc` | `02fe4f76` |
-| no_redstep_wide | no_redstep | reduce | 60M | H100 | `12f5041b` | `bb0e2370` |
-| no_brg_wide | no_brg | step | 60M | H100 | `5061992c` | `a8dab894` |
-| mac_n_wide | mac_n | mul | 110M | H200 | `25c61944` | `803cce25` (with `MAC="N"`) |
-| no_routines_wide | no_routines | mul | 110M | H200 | `c4a59018` | `fe9848e4` |
-
 Widening only the missing piece keeps the rest of the climb as it was. Widening every search would also send the
 twins' failing searches (step~ and reduce~ at level 4, in every arm) to cost 6. A stored state takes 655 bytes
-(INTEGRATION.md §2.1): 60M take 39 GB, half an H100, and store every level 5 the first four arms' searches reached
-(up to 74M candidates). The multiply's level 5 holds 131-152M candidates (about 100 GB), so those two run on H200s
-(141 GB), which replay H100 runs exactly. `check_variants.py` checks that the widened task's library search gets the
-larger cap and no time limit, and that the arm's other tasks do not.
+(INTEGRATION.md §2.1): 60M take 39 GB, half an H100. The multiply's searches hold 97-117M states at cost 5, so those
+two ran on H200s (141 GB), which replay H100 runs exactly. `check_variants.py` checks that the widened task's library
+search gets the larger cap and no time limit, and that the arm's other tasks do not.
 
-**Not widened.** *occam_steps_off*: not a search's reach. The adder's check calls the learned modx, which returns 0 for
-every value at or above N, so no adder passes at any cost.
+| run | widened | its library searches with the wider cap | cost-6 programs streamed | found | md5 of what ran |
+|---|---|---|---|---|---|
+| no_sel_wide (H100) | modx, modx~ | levels 0 and 1, four searches | 383M-846M each | nothing; the climb ended after level 1 | `243908fc` |
+| no_twins_wide (H100) | reduce | levels 4 and 5, then stalled | 644M, 864M | nothing; ended after level 6 | `02fe4f76` |
+| no_redstep_wide (H100) | reduce | levels 3 and 4, then stalled | 1.83B, 2.28B | nothing; ended after level 6 | `bb0e2370` |
+| no_brg_wide (H100) | step | levels 4 and 5, then stalled | 1.56B, 1.86B | nothing; ended after level 6 | `a8dab894` |
+| mac_n_wide (H200, 110M) | mul | level 5 | 4.51B | nothing; ended after level 5 | `803cce25` (with `MAC="N"`) |
+| no_routines_wide130 (H200, 130M) | mul | level 5 | 5.69B | nothing; ended after level 5 | `676724cf` |
 
-Runs `abl-s3-wide2-s74` and `abl-s3-wide2-mul-s74`: seed 74; seed 1 only if a piece is found. To repeat them:
+- *The stall rule* is the arm's: after two searches that used up their caps, a task is searched by compositions only,
+  at s3i's cap. So the reduction (no_twins, no_redstep) and the step (no_brg) each got two cost-6 searches, at the
+  levels where the original arms searched them first. modx and the multiply got cost-6 searches at every level that
+  searched them before the climb ended.
+- *no_routines at 110M*: its first wide run stopped after cost 5, because the multiply's cost-5 level held 116.9M
+  distinct states, over the cap (`no_routines_wide_h200_r21600_seed74`, md5 `fe9848e4`). The 130M run is the one
+  that covered cost 6.
+- *What cost 6 cannot settle*: the program no_routines would need, mac's three items and two shifts in a loop, costs 7
+  with a loop body of 5. Covering cost 7 would stream about 50 times more programs than these searches did.
+
+**Not widened.** *occam_steps_off* is not a search's reach. The adder's check calls the learned modx, which returns 0
+for every value at or above N, so no adder passes at any cost.
+
+The variants are built by `make_variants.py` (`WIDE_ARMS`), and the runs cost about $42 in all, the stopped first
+launch's $19.60 included. To repeat them:
 
 ```bash
 $PY integration/ablation_s3/make_plan.py wide2_s74 --seeds 74 --hardware h100 --budget 21600 --set MAX_STEPS=1500 \
   --arms no_sel_wide,no_twins_wide,no_redstep_wide,no_brg_wide
 $PY integration/ablation_s3/make_plan.py wide2_mul_s74 --seeds 74 --hardware h200 --budget 21600 --set MAX_STEPS=1500 \
   --arms mac_n_wide,no_routines_wide
+$PY integration/ablation_s3/make_plan.py wide3_mul_s74 --seeds 74 --hardware h200 --budget 21600 --set MAX_STEPS=1500 \
+  --arms no_routines_wide130
 $PY -m modal run --detach tools/modal_runner.py --mode plan --plan integration/ablation_s3/plans/wide2_s74.json \
-  --out integration/ablation_s3/records --cap 4 --run abl-s3-wide2-s74       # likewise wide2_mul_s74 (--cap 2)
+  --out integration/ablation_s3/records --cap 4 --run abl-s3-wide2-s74   # likewise wide2_mul_s74, wide3_mul_s74
 ```

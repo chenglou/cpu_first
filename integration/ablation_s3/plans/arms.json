@@ -45,5 +45,7 @@
  "mac_n_wide": {"file": "integration/ablation_s3/variants/mac_n_wide.py", "set": {"MAC": "\"N\""},
   "what": "mac_n, with a wider search for mul: its library searches store up to 110M states per level (every program up to cost 6), no time limit of their own (on an H200)"},
  "no_routines_wide": {"file": "integration/ablation_s3/variants/no_routines_wide.py",
-  "what": "no_routines, with a wider search for mul: its library searches store up to 110M states per level (every program up to cost 6), no time limit of their own (on an H200)"}
+  "what": "no_routines, with a wider search for mul: its library searches store up to 110M states per level (every program up to cost 6), no time limit of their own (on an H200)"},
+ "no_routines_wide130": {"file": "integration/ablation_s3/variants/no_routines_wide.py", "set": {"WIDE_STATES": "130_000_000"},
+  "what": "no_routines_wide with a 130M cap: its first run stored 116.9M states at cost 5, over the 110M cap, and stopped there (on an H200)"}
 }

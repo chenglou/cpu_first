@@ -3,9 +3,9 @@
 **Reviewing or judging the project from outside? Start with [REVIEW.md](REVIEW.md)**: the claims, the file to judge,
 how to check its records, and the rules to rule on. It points back into this file.
 
-*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed six times as studies
-landed. This refresh, on 2026-10-24 at about 01:45, adds the NCA follow-up: the shader grid trained long with weight
-decay or with agreement.*
+*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed seven times as studies
+landed. This refresh, on 2026-10-24 at about 04:15, adds the s3i ablation's second batch: seed 1 of every arm, five
+more arms, and a weak check in s3i that they turned up.*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -14,12 +14,16 @@ decay or with agreement.*
 - *For the NCA follow-up (§4.5), the run, seed and step counts, the certifications, the best training and
   one-size-up shares and the weight norms quoted were checked against `nca/runs/trim1.jsonl`, `trim_cols.jsonl`,
   `trim_stab.jsonl` and `nca/records/sharpness.json`.*
+- *For the ablation's second batch (§4, §4.7), each run's verdict, seed and budget was read from its record (35
+  runs), and the rounds, freezes and speed costs come from rerunning ABLATION_S3.md's `analyze.py` on them; BPE's
+  host correction on seed 74 was redone by hand. The two controls were compared with s3i's own records by the shared
+  runner's `--mode compare`. The weak check's 3%, and the example in §4.7, were rerun locally with
+  `reduce_check.py`'s code.*
 - *The data counts in §1–2 were computed from the released H1 files, and the commits come from `git log`.*
 - *The one-line findings of the timeline (§3) and the summaries of how each piece learns, including the NCA and bar-3
   studies, summarize their write-ups, which are linked; they were not re-run.*
 - *The older write-ups are left as they were. §9 lists where a write-up and a record disagree.*
-- *Everything described is committed (the last commit is `d061820`, Oct 24 at 01:31). The runs still going are
-  listed in §7.*
+- *Everything described is committed. The runs still going are listed in §7.*
 
 **In one minute.**
 - The task is exact repeated modular squaring. Almost every entry on the leaderboard scored near 0%, because the
@@ -35,9 +39,9 @@ decay or with agreement.*
      and no menus. In one training run it learns its digit tables from laws, builds a library of small programs on a
      general digit machine, and discovers the round, "copy x, multiply, reduce". It certifies on all 8 seeds on the
      official manifest, training in at most 1,350 s of the 3,600. What is left is narrower than before:
-     - removing s3i's hand-made parts one at a time shows what the result rests on: two task-shaped instructions, the
-       practice problems that define long division's step, how the multiply's row and the registers are posed, and
-       two parts of the search;
+     - removing s3i's hand-made parts one at a time, on two seeds, shows what the result rests on: two task-shaped
+       instructions, the practice problems that define long division's step, how the multiply's row and the
+       registers are posed, and two parts of the search;
      - a variant that poses its own practice problems from a general law book, instead of the hand-picked list, also
        certifies on the official manifest.
 
@@ -179,6 +183,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 23, 20:45 `aad38c9` | **the s3i ablation**: each hand-made part removed in turn and retrained on the official manifest | [integration/ABLATION_S3.md](integration/ABLATION_S3.md) |
 | Oct 23, 20:45 `8f6b3e1` | **stage 3 with self-posed practice**: the hand-picked curriculum replaced by a law book, and it still certifies | [integration/SELF_PRACTICE.md](integration/SELF_PRACTICE.md) |
 | Oct 24, 01:27 `6e31164` | **the NCA follow-up**: trained long with weight decay, or moving weights only where the questions agree, the shader grid still memorizes | [nca/NCA.md](nca/NCA.md) §9 |
+| Oct 24, 03:18 `2cbbdf0` | **the s3i ablation, second batch**: seed 1 gives all 13 arms the same verdicts; five more arms; and a weak reduction check in s3i that about 3% of runs would draw | [integration/ABLATION_S3.md](integration/ABLATION_S3.md) |
 
 ### The lessons that came out of the failures
 
@@ -223,9 +228,13 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
   wrong attempts leave undone ([INVENTING.md](library/INVENTING.md), [PRACTICE.md](bar3/PRACTICE.md)).
 - **Some hand-made parts carry the result, others only save time.** Removed one at a time from s3i, two instructions,
   the practice problems that define long division's step, the posing of the multiply's row and of the registers,
-  routines, and Occam's tie-break each stopped the round from ever being found. The curriculum's order, BPE and two
-  search rules only cost time. Every failed arm had searched its whole reach, so more time would not have rescued it
-  ([ABLATION_S3.md](integration/ABLATION_S3.md)).
+  routines, and Occam's tie-break each stopped the round from ever being found, on both seeds tried; each of those
+  runs had searched its whole reach, so more time would not have rescued it. The curriculum's order, BPE and two
+  search rules only cost time ([ABLATION_S3.md](integration/ABLATION_S3.md)).
+- **A check on small numbers can pass a shortcut that fails at full size.** s3i checks a candidate reduction on
+  numbers of 1 to 3 digits. A program that just subtracts N over and over, 600 times at that size, passes whenever
+  none of the check's 60 three-digit numbers needs more. It is wrong on every full-size product, so about 3% of runs
+  would keep it and never certify ([ABLATION_S3.md](integration/ABLATION_S3.md) §3).
 - **What worked every time:** digits snapped to exact values, one shared cell, checks on each training row's own
   numbers that need no answer, and pass/fail scoring of whole choices.
 
@@ -237,8 +246,8 @@ in the answer.
 
 **Bar 2: nothing a strict judge would call the hand-written algorithm. Partly cleared** (INTEGRATION.md §6).
 - **Cleared for the forward pass.** The stage-3 model, s3i, has no hand-written skeleton and no menus. The program that
-  answers was discovered inside one training run, and that run certifies on every seed within the official budget
-  (§4.1, §4.7).
+  answers was discovered inside one training run, and that run certifies on all 8 seeds tried within the official
+  budget (§4.1, §4.7).
 - **Not cleared for the training recipe**, where the algorithm's decomposition still lives. s3i's recipe has:
   - **an instruction set of digit arithmetic**: subtract-with-borrow, add-with-carry and multiply-accumulate at a
     pointer, keep-or-discard on the borrow, bring the top digit in, and loops by the number's length. The instructions
@@ -247,17 +256,24 @@ in the answer.
     order, is a designer's choice. Two of them are definitions of long division's step, and one (mac) was posed so
     that the multiply's row becomes a problem of its own;
   - **the rest**: the round's search space (short compositions of routines) and the countdown over T.
-- **What the result rests on** ([ABLATION_S3.md](integration/ABLATION_S3.md); each part removed in turn, retrained
-  on the official manifest, seed 74, one H100 per arm; the unchanged file replays s3i's official run exactly):
-  - **needed**, since without it the round is never found: SEL.S (keep or discard on the borrow) and BRG.X (bring X's
-    next digit in), the two practice problems that define long division's step, mac posed with the running sum, the
-    register twins, routines, and Occam's tie-break toward the program that runs fewer steps;
-  - **speed only**, since it still certifies, frozen by 1,526 s at the latest: the curriculum's order (+270 s),
-    not searching solved twins again (+364 s), BPE merges (+546 s), and the T = 1 filter on the round's answers
-    (+82 steps);
-  - **not needed**: the search's routines-first order, and the late table lessons, the wrap-around fact among them;
-  - every failed arm had searched its whole cost-5 reach without the missing piece, so more time would not rescue it.
-    A wider search was not tried, and it is one seed per arm.
+- **What the result rests on** ([ABLATION_S3.md](integration/ABLATION_S3.md); each part removed in turn and retrained
+  on the official manifest, one H100 per arm, on seed 74 and on seed 1; the unchanged file replays s3i's own runs on
+  both seeds exactly):
+  - **needed on both seeds**, since without it the round is never found: SEL.S (keep or discard on the borrow) and
+    BRG.X (bring X's next digit in), the two practice problems that define long division's step, mac posed with the
+    running sum, the register twins, routines, and Occam's tie-break toward the program that runs fewer steps;
+  - **needed on one seed of two**: the chain problem alone. Without it the reduction depends on which of two equally
+    cheap programs the search lists first;
+  - **speed only**, since it still certifies on both seeds, frozen by 1,584 s at the latest: the curriculum's order
+    (+277 s and +321 s on seeds 74 and 1), not searching solved twins again (+364 s, +416 s), BPE merges (+282 s,
+    +291 s; an earlier +546 s came from a faulty host correction, §9), and the T = 1 filter on the round's answers
+    (+82 steps on seed 74, none on seed 1);
+  - **not needed**: the search's routines-first order; the late table lessons, the wrap-around fact among them; the
+    step problem alone (its seed-74 run failed on a weak check in s3i, §4.7); the multiply's row problem (one seed);
+    a cost limit above 5 on the round's search (at 4 there is no round: every round found costs 5);
+  - every failed run of a needed part had searched its whole cost-5 reach without the missing piece, so more time
+    would not rescue it. A wider search, every program up to cost 6, found nothing for any of the six it applies to
+    (ABLATION_S3.md §7).
 - **The curriculum itself can be posed by the learner** ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md)). The nine
   hand-picked problems, their order, the twins and mac's posing are replaced by a book of 11 laws on 8 patterns of the
   data's numbers, each posed in every binding of its operands to the registers, and one general rule picks what to
@@ -294,7 +310,9 @@ ladders, every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002.
 
 s3i stays the file to judge ([REVIEW.md](REVIEW.md) §2): it has the most evidence, with the official run, seven more
 H100 seeds on the official manifest, and the ablation. sp2 is the one to look at for how far bar 2 goes; its seeds ran
-on B200s, which count as research, not certification.
+on B200s, which count as research, not certification. One known weakness of s3i: in about 3% of runs its reduction
+check would accept a shortcut that fails at full size, and such a run cannot certify. None of its 8 seeds drew it
+(§4.7).
 
 The earlier frontier files are now steps of the ladder (§5): the wide model (step 11), its MLP-cell version (12), the
 tournament (13), and general lessons v1 and v2 (14, 15).
@@ -507,16 +525,34 @@ ripple, the restoring link, the chain, the division step, the reduction loop, th
   - x² mod N as "copy x, multiply, reduce", at step 671 on seed 74.
 
   Then it runs that program T times. The first build to discover the round in-run (s3d) needed 9,142 s and certified
-  only on a relaxed budget. The final file, s3i, certifies on every seed within the hour, its freeze by 1,149 s at the
-  latest. How hard each build was pushed is in §5.
+  only on a relaxed budget. The final file, s3i, certifies on all 8 seeds tried within the hour, its freeze by 1,149 s
+  at the latest. How hard each build was pushed is in §5.
 
 **The ablation** ([ABLATION_S3.md](integration/ABLATION_S3.md), records in `integration/ablation_s3/records/`). Each of
 s3i's hand-made parts was removed in turn, 13 arms and the unchanged control, each retrained on the official manifest
-(seed 74, one H100). Seven arms never found the round: without SEL.S or BRG.X; without the step's two practice
-problems; with mac posed as "x times a digit, plus N"; without the twins; without routines; without Occam's
-tie-break. Each failure is the climb running out of things to try, between 3 and 30 minutes into training, after
-every search for the missing piece had covered every program up to its cost limit. The other six certified, frozen by
-1,526 s at the latest. Seed 1 of every arm and five more arms have been running since 01:10 on Oct 24 (§7).
+on one H100, on seed 74 and again on seed 1. On all 13 the two seeds agree. Seven arms never found the round:
+without SEL.S or BRG.X; without the step's two practice problems; with mac posed as "x times a digit, plus N"; without
+the twins; without routines; without Occam's tie-break. Each failure is the climb running out of things to try,
+between 2 and 34 minutes into training, after every search for the missing piece had covered every program up to
+cost 5. The other six certified, frozen by 1,584 s at the latest. Five more arms followed on seed 74, two of them
+also on seed 1:
+- **without the chain problem alone**, the run certified on seed 1 but not on seed 74. The long-division step then
+  has two equally cheap spellings, one leaving its result in X and one in Y, and the search keeps whichever it lists
+  first. Only the one on Y lets the reduction loop over it, since X still holds the digits to bring in. With the
+  chain problem, the reduction does not depend on that tie;
+- **without the step problem alone**, it certified on seed 1, three steps early, and failed on seed 74 on the weak
+  check below;
+- **without the multiply's row problem**, it certified a step early;
+- **with the round's cost limit at 6**, nothing changed; **at 4**, there was no round, since every round program
+  found costs 5.
+
+**A weak check, found on the way.** s3i accepts a reduction once it is right on 60 numbers at each of 1, 2 and 3
+digits. A program that subtracts N over and over, 600 times at 3 digits, passes whenever none of those 60 three-digit
+numbers needs more. With N = 123 it brings 5 + 600 × 123 = 73,805 back to 5, but leaves 5 + 601 × 123 = 73,928 at
+128, and it is wrong on every full-size product. On H1's rows a run's check lets it through about 3% of the time
+([`reduce_check.py`](integration/ablation_s3/reduce_check.py)). Nothing can be built on it, so that run cannot
+certify. None of s3i's 8 seeds drew it. The step problem's arm did on seed 74: without the step problem, its
+reduction search ran earlier, on a different pool of rows. A minimal fix is in progress (§7).
 
 **Self-posed practice** ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), step 19). The learner poses its own
 practice problems: every law of an 11-law book (compare, equal, min, max, remainder, quotient, add, subtract, multiply,
@@ -615,9 +651,11 @@ Notes:
   - `handwired_bridge/h1/records/wide_reglu_official` and `wide_reglu_official2`: the wide model with ReGLU cells,
     nothing right on either official run, and 1 of 4 CPU seeds certified;
   - stage 3's early builds above, and `gen_minus1` and `s1_minus1_s74` (y² − 1, outside every round menu);
-  - the ablation's seven arms that never found the round (`integration/ablation_s3/records/`), self-practice's seed 7
-    of `sp`, and its eight runs on the other formulas (`integration/self_practice/records/runner/sp_*_h100`), none
-    learned.
+  - the ablation's 17 runs that never found the round (`integration/ablation_s3/records/`): the seven needed parts on
+    both seeds, and, on seed 74, the arms without the chain problem, without the step problem, and with the round's
+    cost limit at 4;
+  - self-practice's seed 7 of `sp`, and its eight runs on the other formulas
+    (`integration/self_practice/records/runner/sp_*_h100`), none learned.
 
   `chain_official`, the chain's first recipe, certified, but one of its CPU seeds that never sees an answer did not.
 
@@ -644,7 +682,7 @@ The imports, the initialization, the host transfers and the absence of backward 
 | 11. 3,600 s of training, compilation included | yes, on every seed | frozen by 982–1,149 s, trained 1,133–1,350 s. Earlier builds needed more: s3d a relaxed 9,142 s, s3g up to 3,379 s and out of time on one seed |
 | 12. a custom loss returns one finite differentiable scalar | yes | `token_training_loss` |
 | 13. evaluation within 1,800 s; certification | yes | 154.9–219.1 s on the eight runs; T = 64 on both ladders |
-| 14. no data inspection, augmentation, task-specific solvers, custom loops or participant backward passes | **gray, in a new place** | no backward or grad call, no custom autograd function, no data file read, no number made up, and no hand-written arithmetic at any step of training. But the climb is a program search inside the training forward pass, over many steps. Its practice problems are made from the batch rows' own digits and the law library, and the curriculum (which laws become practice problems, in which order, the register variants, mac) and the round's search space are designed: a strict reader could call the curriculum a task-specific solver written as lessons. The lessons also still carry the anchors' facts, the step laws, and the old table lessons (which join late and include "a wrapped x − N is large", an assumption about the register's width). The ablation shows the late table lessons are not needed: without them s3i certifies, its climb identical line for line |
+| 14. no data inspection, augmentation, task-specific solvers, custom loops or participant backward passes | **gray, in a new place** | no backward or grad call, no custom autograd function, no data file read, no number made up, and no hand-written arithmetic at any step of training. But the climb is a program search inside the training forward pass, over many steps. Its practice problems are made from the batch rows' own digits and the law library, and the curriculum (which laws become practice problems, in which order, the register variants, mac) and the round's search space are designed: a strict reader could call the curriculum a task-specific solver written as lessons. The lessons also still carry the anchors' facts, the step laws, and the old table lessons (which join late and include "a wrapped x − N is large", an assumption about the register's width). The ablation shows the late table lessons are not needed: without them s3i certifies on both seeds tried, its climb identical line for line |
 | 15. repeated rule-breaking | n/a | the write-ups flag their own gray areas, and nothing has been submitted to the hosted evaluator |
 | 16. do not exploit the Hard metric recorder | yes | not touched |
 
@@ -674,15 +712,21 @@ The imports, the initialization, the host transfers and the absence of backward 
 
 ## 7. Status and open questions
 
-**What is running.** Every study described here has finished and is committed; the NCA follow-up was the last
-(`6e31164`, §4.5). Since 01:10 on Oct 24, more of the s3i ablation has been running: seed 1 of the control and of
-all 13 arms, and five more arms at seed 74 (dropping only the step problem, only the chain, or only the multiply's
-row problem, and the round's cost limit at 4 and at 6). They will be folded in when they land.
+**What is running.** Every study described here has finished and is committed; the ablation's wider search was the
+last (ABLATION_S3.md §7): for six of the seven needed parts, every program up to cost 6 still held no missing piece.
+Still running:
+- **a minimal fix** for s3i's weak reduction check (§4.7), to be certified on the official manifest and on 8 seeds;
+- **seven newer studies**, not yet described here: generic instructions for long division's step, which laws
+  self-practice needs, learning the loop over T, the fixable gray rules, a cheaper and deeper bar-3 learner,
+  self-practice on the other formulas, and bar 3 inventing the digit instructions.
+
+They will be folded in when they land.
 
 **Answered on Oct 23 and 24.**
 - **Which hand-made parts carry the result** (ABLATION_S3.md): two instructions, the step's two practice problems,
-  the posing of the multiply's row and of the registers, routines, and Occam's tie-break are needed. The curriculum's
-  order, BPE and two search rules only cost time.
+  the posing of the multiply's row and of the registers, routines, and Occam's tie-break are needed on both seeds
+  tried, and the chain problem alone on one seed of two. The curriculum's order, BPE and two search rules only cost
+  time (§4, bar 2).
 - **Whether the curriculum can go** (SELF_PRACTICE.md): yes, for H1. With a law book and a general choosing rule in
   its place, stage 3 still certifies on the official manifest (step 19).
 - **Whether s3i needs the late table lessons**, the width-dependent wrap-around fact among them: no. Without them it
@@ -700,9 +744,9 @@ row problem, and the round's cost limit at 4 and at 6). They will be folded in w
 2. **The law book and the choosing rule.** Self-posed practice replaces the curriculum with a book of 11 laws on 8
    patterns and one choosing rule. Both are designed, and the rule was found by watching whether the round came.
    Whether a smaller or more generic book still yields the round is untested.
-3. **How firm the ablation is.** One seed per arm so far; seed 1 and five more arms are running (above). Every
-   failed arm had exhausted its cost-5 search, so more time would not help, but a wider search might, and was not
-   tried.
+3. **How firm the ablation is.** The two seeds agree on every main arm, and every failed run of a needed part had
+   exhausted its cost-5 search, so more time would not help; a search up to cost 6 found nothing either. Cost 7 is
+   untested (about 50 times more programs). The row problem's arm and the cost limits ran on seed 74 only.
 4. **The round's search space and the countdown** are designed. The other formulas are still not learned, by s3i or
    by self-practice: they need a constant, another reduction, more routine calls than the round's search allows, or
    answers at T = 8.
@@ -807,9 +851,12 @@ Counts that need a word, though none is wrong:
   600 s (Medium). FIXED_MODULUS.md says so.
 - **The tournament's machine count.** Its official log prints 2.8·10^22 machines; TOURNAMENT.md's "about 3·10^23" also
   counts the gate table's 4 settings and the reader's 3 shapes.
-- **The ablation's speed costs** (+270 s, +364 s, +546 s) compare round times corrected for host speed, which
-  ABLATION_S3.md's `analyze.py` computes. The uncorrected times, steps and freezes were checked against the records;
-  the correction itself was not recomputed. Its summary rounds two of them (+360 s, +550 s).
+- **The ablation's speed costs** compare round times corrected for host speed: ABLATION_S3.md's `analyze.py` times
+  the searches that match the control's and scales the climb by the ratio. Rerun on the records, it gives every cost
+  quoted, and BPE's on seed 74 was redone by hand. One is uncorrected, the order's +277 s on seed 74, whose run
+  shares too few searches with the control's. Earlier refreshes of this file quoted +546 s for BPE, from an earlier
+  correction that counted one search whose time swings from 0.5× to 5.5× the control's between runs
+  (ABLATION_S3.md §4); without that search the cost is +282 s.
 - **The practice tiers' rungs** have anywhere from 14 to 768 prompts, so their records were checked by certified T and
   score.
 

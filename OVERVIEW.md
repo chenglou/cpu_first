@@ -725,7 +725,8 @@ row problem, and the round's cost limit at 4 and at 6). They will be folded in w
 10. **A step outside the menu.** The general files fail y² − 1, because no round option computes "subtract 1"; the
     bar-3 learner invents x² − 1 from scratch at its tiny size.
 
-**And:** submitting to the hosted evaluator after the deadline, just to see a response, has not been done.
+**And:** submitting to the hosted evaluator after the deadline, just to see a response, was tried on Oct 24 with
+s3i: the service refused it ("Submissions are now closed"), so there is no hosted result.
 
 ## 8. Where everything is
 

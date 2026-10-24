@@ -396,6 +396,22 @@ later ones follow them as they land. None changes a certified file or record.
     three).
   - **How general:** more than before, less than bar 3 asks. Each change is stated without a formula, but each was
     written after watching a formula fail, with the family in view.
+- **Bar 3's learner, cheaper and deeper** ([SCALE.md](bar3/scale/SCALE.md), code and records in
+  [`bar3/scale/`](bar3/scale/)). The same learner on the bare counting machine, made cheaper and then given new kinds
+  of practice problems.
+  - **Cheaper, with the same choices:** a compiled search, searches shared between problems, and the cheaper
+    choosing rule cut the breadth study from 515 search-hours to 51. 50 of its 54 runs make the same choices in every
+    round; the other 4 differ only where the original had stopped a search at its time limit.
+  - **That buys about one instruction:** each extra instruction multiplies the distinct machine states by 9–10 (by
+    about 40 over a carried library), and the missed formulas need 13–22 instructions from the first pieces.
+  - **But what became affordable reached further.** Run along a sequence of formulas, each solved one kept as a
+    routine, the pairs rule invents 10·x², 10·x² + 1 and x³, each in the first round of its step: 10·x² is "x² mod N
+    (carried), then the rest of the way". A new practice source, steps that move two numbers at once, gives Fibonacci
+    from scratch. At N ≤ 26 and N ≤ 50 the unchanged learner finds the same programs as at N ≤ 7.
+  - **Not reached:** Montgomery's in the sequence (3–4 rounds), and 10·x², 10·x² + 1 and x³ from scratch.
+  - **Bounds on the search space:** fewer instances with counterexamples, merging symmetric registers, dead
+    registers, meet in the middle and a lower value cap each save at most 1.7×, against the 9–10× each instruction
+    costs. Some runs were cut off by Modal's spend limit (about $12–15 to finish).
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

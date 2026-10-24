@@ -354,25 +354,29 @@ later ones follow them as they land. None changes a certified file or record.
     T's place in the machine and its 2-digit field, the answer program's search space, and what sp2 designs.
 - **Which laws self-practice needs** ([SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md), code and records in
   [`integration/sp_ablation/`](integration/sp_ablation/)). sp2's law book and choosing rule taken apart one piece at
-  a time: 30 arms on the official manifest, seed 74, and 13 of them also on seed 1.
+  a time: 30 arms on the official manifest, each on seeds 74 and 1.
   - **Needed:** the multiply-add law and its pattern (without the accumulating row there is no multiply); compare,
     remainder, add and the pair pattern, which every other problem is built or checked with; the round's two
     routines, the multiply and the reduction; and, in the choosing rule, rating a law on a pattern by its cheapest
     placement. Two more parts of the rule, hardest concepts first and every placement tied for cleanest, failed on
     seed 74 and certified on seed 1: they make the result reliable rather than possible.
-  - **Speed only:** the x + dN pattern (+441 s), and choosing at all: practising everything certifies, at the edge of
-    the budget (frozen by 3,249 s). **Not needed:** six of the 11 laws, three of the 8 patterns, and preferring the
-    cleanest placements over the cheapest. Seed 1 agrees on every one.
+  - **Speed only on seed 74, needed on seed 1:** the x + dN pattern (+441 s on seed 74; on seed 1 the reduction never
+    comes, although the program seed 74 found is right there too), and choosing at all (practising everything
+    certifies on seed 74 at the edge of the budget, frozen by 3,249 s, and runs out of time a level short on seed 1).
+  - **Not needed:** six of the 11 laws, three of the 8 patterns, and preferring the cleanest placements over the
+    cheapest. Seed 1 agrees on every one.
   - **A smaller book**, 5 laws on 4 patterns ([`variants/book_min.py`](integration/sp_ablation/variants/book_min.py),
     md5 `e4732f09e8e5b46a8cfa5a1236771bd2`), certifies on the official manifest sooner than sp2 (the round by 571 s
-    against 977 s) and on 8 of 8 B200 seeds.
+    against 977 s) and on 8 of 8 B200 seeds. It leaves out x + dN too, and on seed 1 writes the chain inline, which
+    sp2's book without x + dN did not: what a removal costs depends on what else is in the book.
   - **A generated book** ([`variants/book_gen.py`](integration/sp_ablation/variants/book_gen.py), md5
     `8bbac4a1c631a08c8b72179de37fcb26`): a grammar instead of a list (numbers r + q·b from the division law, every
     composition of + and ×, one set of target rules). It holds sp2's book and 24 concepts more, and certifies on the
     official manifest (frozen by 2,228 s) and on 8 of 8 seeds.
   - **What it says:** the particular list of laws is not what the result rests on. Still designed: the grammar, the
-    target rules and the choosing rule. 17 seed-1 arms and one rerun at three times the budget were cut off by
-    Modal's spend limit (about $82 to finish).
+    target rules and the choosing rule. One rerun, an arm at three times the budget, is still running.
+  - **Found in passing:** sp2's searches can run past the training deadline. One failing arm trained 3,673 s of its
+    3,600; every certified run in the study trained inside the budget.
 - **Generic instructions in place of SEL.S and BRG.X** ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md),
   code and records in [`integration/generic_ops/`](integration/generic_ops/)). **Certified.**
   - SEL.S becomes an if block, `C[...]`, whose body's effects stay only where the borrow was set. BRG.X becomes

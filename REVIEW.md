@@ -45,7 +45,9 @@ Not claimed:
 256 KiB), 207,374 learned numbers in 16 parameter tensors, Adam. It is a generated file:
 [`make_stage3.py`](integration/make_stage3.py) builds it from [`stage3_template.py`](integration/stage3_template.py)
 (1,008 lines), [`lib/libcore.py`](integration/lib/libcore.py) (1,877 lines) and stage 1's reader, and rebuilding it
-from those sources gives the same bytes (§4.3). Its docstring (lines 1–35) is the best one-page summary.
+from those sources gives the same bytes (§4.3). Its docstring (lines 1–35) is the best one-page summary. One known
+weakness: about 3% of runs, none of its 8 certified seeds among them, its reduction check accepts a shortcut that
+fails at full size (§7).
 
 The other two frontier files ([OVERVIEW §4.1](OVERVIEW.md#41-the-models-at-the-frontier) compares all three):
 - [`integration/submission_stage1.py`](integration/submission_stage1.py), md5 `cfd7b61d7d3d4b76c606606ba8b8d9db`:
@@ -264,17 +266,28 @@ changes a certified file or record.
 
 - **The s3i ablation** ([ABLATION_S3.md](integration/ABLATION_S3.md), code and records in
   [`integration/ablation_s3/`](integration/ablation_s3/)). Each hand-made part was removed in turn and the model
-  retrained on the official manifest: seed 74, one H100 per arm. The unchanged file, run beside the arms, replays
-  `s3i_official` exactly.
-  - **Needed** (without it the round is never found): SEL.S (keep or discard on the borrow); BRG.X (bring X's next
-    digit in); the two practice problems that define long division's step; mac posed with the running sum; the
-    register twins; routines; Occam's tie-break toward fewer executed steps.
-  - **Speed only** (it still certifies, frozen by 1,526 s at the latest): the curriculum's order (+270 s); not
-    re-searching solved twins (+364 s); BPE merges (+546 s); the T = 1 filter on the round's answers (+82 steps).
-  - **Not needed:** the search's routines-first order; the late table lessons, the wrap-around fact
-    (`ANCHOR_WRAP`) among them.
+  retrained on the official manifest, one H100 per arm, on seed 74 and on seed 1. The unchanged file, run beside the
+  arms, replays s3i's own runs on both seeds exactly.
+  - **Needed on both seeds** (without it the round is never found, each time at the same level and missing the same
+    piece): SEL.S (keep or discard on the borrow); BRG.X (bring X's next digit in); the two practice problems that
+    define long division's step; mac posed with the running sum; the register twins; routines; Occam's tie-break
+    toward fewer executed steps.
+  - **Needed on one seed of two:** the chain problem alone. Without it the reduction depends on a tie between two
+    equal-cost spellings, which the search's listing order breaks.
+  - **Speed only** (it still certifies on both seeds, frozen by 1,584 s at the latest): the curriculum's order
+    (+277 s and +321 s on seeds 74 and 1); not re-searching solved twins (+364 s, +416 s); BPE merges (+282 s,
+    +291 s; an earlier +546 s had counted a search whose time swings 0.5× to 5.5× between runs); the T = 1 filter on
+    the round's answers (+82 steps on seed 74, none on seed 1).
+  - **Not needed:** the search's routines-first order; the late table lessons, the wrap-around fact (`ANCHOR_WRAP`)
+    among them; the step problem alone; the multiply's row problem (one seed); a round cost limit above 5 (at 4
+    there is no round).
   - **How firm:** every failed arm searched its whole cost-5 reach without the missing piece, so more training time
-    would not rescue it. A wider search was not tried. It is one seed per arm.
+    would not rescue it. A wider search, every program up to cost 6, is running for six of the seven needed parts.
+  - **A weak check in s3i.** Its reduction check can accept a repeated subtraction that is right only for small
+    quotients, which slips through when none of the check's 60 three-digit probes has a quotient above 600: about 3%
+    of runs on H1's rows ([`reduce_check.py`](integration/ablation_s3/reduce_check.py)). Such a run cannot certify.
+    None of s3i's 8 certified seeds drew it; one ablation arm did. A minimal fix, to be certified on the official
+    manifest and 8 seeds, is in progress.
 - **Stage-3 self-practice** ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), code and records in
   [`integration/self_practice/`](integration/self_practice/)). The nine hand-picked practice problems, their order,
   the twins and mac's posing are replaced by a book of 11 laws on 8 patterns of the data's numbers. Every law is posed

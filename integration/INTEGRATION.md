@@ -34,7 +34,13 @@ Stage 3 has no such machine. The machine it runs was put together in training ou
 the law library and which laws become practice problems, in which order, with each problem also posed with two input
 registers swapped, and one of them (mac) posed so that the multiply's row is a problem of its own; the search and
 merging rules (their state caps are measured); where the round is looked for (short combinations of routines, on the
-answers of rows with T = 1); and the countdown over T.
+answers of rows with T = 1); and the countdown over T. Removing each part in turn ([ABLATION_S3.md](ABLATION_S3.md))
+shows what the result needs: two of the instructions (keep-or-discard on the borrow, bring the next digit in), the
+problems that define long division's step, the swapped registers, mac's posing, routines, and the tie-break toward
+faster programs. The order, the merges, skipping solved twins and the T = 1 rows only save time. The hand-picked list
+itself is not needed: a learner that poses its own problems from a law book of 11 laws, picking by one general rule,
+finds the same nine pieces and certifies ([SELF_PRACTICE.md](SELF_PRACTICE.md)). The book and the rule are designed
+instead.
 
 **How each stage went.**
 - **Stage 1** (the tournament and the general lessons in one file): **certified** on the untouched official manifest on
@@ -67,7 +73,8 @@ answers of rows with T = 1); and the countdown over T.
   Getting there took the A/B's variant C (test every candidate's result; pose the multiply's row as a practice problem
   of its own), two fixes found in-run (Occam's ties to the faster program; skip only the twins), and practising the
   pieces first (the multiply after its row, the reduction after its chain) with an exact cache across levels. The
-  first in-run discovery, without the last two, needed 8,552 s of climbing and certified only on a relaxed budget.
+  first in-run discovery, without the last two, needed 8,552 s of climbing and certified only on a relaxed budget. (On
+  the final file's faster engine, the order alone saves only about 270 s: [ABLATION_S3.md](ABLATION_S3.md).)
   Certifying every seed then took an exact acceptance test for the round, a guard in one lesson, and a search engine
   that runs every candidate program's instructions in lockstep on the GPU (the same search, more than twice as fast).
   The final file's margin (every seed frozen by 1,149 s) came mostly from the countdown that checks the answers: its
@@ -76,8 +83,10 @@ answers of rows with T = 1); and the countdown over T.
   two H100s the same day: 964 s against 1,133 s).
 
 **Is Bar 2 cleared?** Partly (§6). No hand-written algorithm runs any more, and the model that answers was discovered
-in training and certifies on the official budget. But the algorithm's decomposition still lives in the instruction set
-and in the practice problems a person chose (and the order in which it practises them).
+in training and certifies on the official budget. But the algorithm's decomposition still lives in the training
+recipe: in two of the instructions, and in how the practice problems are posed (the step's definitions, the swapped
+registers, mac). Which problems, and in which order, matter less than it seemed: the order only saves time, and a
+designed law book with a general choosing rule can stand in for the hand-picked list.
 <!-- /PLAIN -->
 
 ## 1. Stage 1: the general lessons and the tournament
@@ -653,6 +662,18 @@ seven stage-3 acceptance runs (CPU, at level 3 of the same climb) with them; the
     now freezes within a third of the 3,600 s budget.
   - On B200s (research, `s3i_b200_seed*`, the table after S3_RUNS): 8 of 8 certify, each following its s3h B200 run
     exactly, the freeze by 809-1,076 s (s3h's: 996-1,554 s; seed 6 1,076 s against 1,554 s).
+
+**What the result rests on.** Two later studies of s3i have their own write-ups; §4 marks every hand-made part with
+their verdicts, and §6 draws the Bar 2 conclusion.
+- [ABLATION_S3.md](ABLATION_S3.md) removes each hand-made part in turn and retrains on the untouched official manifest
+  (seed 74, one H100 per arm; the unchanged file replays s3i_official exactly). Seven parts are needed (the round never
+  comes without them), four only save time, and two are not needed.
+- [SELF_PRACTICE.md](SELF_PRACTICE.md) swaps the nine designed practice problems and their order for a law book from
+  which the learner poses its own problems, and a general rule that picks what to practise.
+  [`self_practice/submission_stage3_sp.py`](self_practice/submission_stage3_sp.py) (md5 f0ef5b06) certifies on the
+  official manifest, the round by 746 s, and on 7 of 8 B200 seeds;
+  [`self_practice/submission_stage3_sp2.py`](self_practice/submission_stage3_sp2.py) (md5 afc70fe9) on the official
+  manifest, the round by 1,029 s, and on all 8.
 <!-- /STAGE3 -->
 
 <!-- S3_RUNS -->
@@ -749,20 +770,32 @@ s3i's (`s3i_b200_seed*`).
 Everything below was written by hand; nothing in it was chosen for H1 by looking at H1's answers, but all of it was
 written knowing the task family. "Gone" marks what stage 3 no longer has and stage 1 still does.
 
-| what | stage 1 (certified) | stage 3 |
-|---|---|---|
-| **the instruction set** | the H1 datapath: one register of 9 places, 8 steps of 9 links (bring a digit in, run the chain, move), a final correction and a readout; the multiply as one product per digit pair, placed and summed; the countdown | **gone**: a general digit machine instead (library/dsl.py's): 5 registers (A, X, Y, N, S), a shared pointer, a borrow/carry, a multiplier digit and a multiply carry; 32 primitive instructions (subtract-with-borrow, add-with-carry and multiply-accumulate at the pointer against any register; keep-or-discard on the borrow; load, store, clear; move the pointer; shift a register; bring X's top digit into A) and loops that repeat their body P, B or W times; a routine restores the pointer it was called with. The countdown stays (stage 1's) |
-| **the menus** | the division's menu at free attention's width (operands at offsets -3..3, borrow routes, flags, written values: 7.9e9 chains), the step's and the reading's menus, the multiply's 33M layouts, the round menu (x10, + one digit, x the input) | **gone**: what runs is a program found by search and composition; nothing lists the options |
-| **the alphabet and sizes** | base 10 digits; 8, 8 and 2 digits read and 8 written; P = 9 places | the same reading; the round machine's registers 16 places; the practice problems at widths 1 and 2 |
-| **the cells** | a subtraction MLP and a product MLP; a 2 x 2 gate | three tables of logits (subtraction, addition, multiply-accumulate (a, x, h, k)) and the gate: the cells' input shapes are designed |
-| **the reader and writer** | IO.md / WIRING.md stage 3: 24 reading hypotheses, 3 pointer shapes, the run rules | the same, line for line |
-| **the law library** | general_lessons' LAWS (+ red.link, loop.count) | a subset (sub.order, sub.bijective, sub.inverse, sub.identity, sub.zero_minus, add.commute, mul.zero, mul.ladder, mul.distribute, red.identity, red.step, red.invariant, loop.count) |
-| **lessons that define a step** | the ladder and the step law of each lesson set (red.step), the link law | the same laws become practice problems (modB, step) instead of checks on a menu; the template's predicates: below only (no Montgomery practice problems) |
-| **the curriculum** | - | which laws become practice problems, their helper order (in the final file the pieces first: mul after mac, reduce after modB), the register variants (X <-> Y), mac posed with the running sum as its addend (A + x d: designed, so that the multiply's row is a problem of its own), widths, settings, probe counts (§2); the round's answers are the rows with T = 1 (an H1-shaped constant: M4, whose every T is 8, gives the round's search no answers) |
-| **the search and the merges** | the tournament (one logit per whole combination, pass/fail per batch, pruning at 12 nats) | breadth-first search by cost (caps measured on the H100: 5.8M / 27M stored states for a 10-minute search; cost <= 7, loop bodies <= 3); the A/B's rules: compositions of the routines first, then the merges, then the primitives; twins skipped once their original is solved; a stall after two used-up searches (compositions only after that); every goal state tested, fewest pieces first; one search at most 900 s. BPE (two tasks, ties to the largest), Occam's simplest program (ties to the fewest executed steps), routines for solved tasks; the round's search space (the routines and the straight-line primitives, cost <= 5); the round programs' tournament (4 contestants, Occam's order) |
-| **the mined facts** | the miner's grammar (order, equality, range, nonzero, divisibility) | the same |
-| **the schedule** | phases A-C, the reader's stages, freeze after 200 exact steps | phases A-D (cells, then the climb, then the round), the same freeze |
-| **the answers** | choose the lesson set and the round options; the reading; T's direction | the round's goal and its tournament; the reading; T's direction |<!-- /HANDMADE -->
+Two later studies of the final file test the stage-3 column; the two right-hand columns give their verdicts, and the
+write-ups have the details:
+- [ABLATION_S3.md](ABLATION_S3.md) removes each part in turn and retrains on the untouched official manifest (seed 74,
+  one H100 per arm); the unchanged file, run beside the arms, replays s3i_official exactly. **Needed**: the round is
+  never found without it. **Speed only**: the run still certifies, frozen by 1,526 s at the latest. **Not needed**: it
+  certifies about as fast. **Not tested**: no arm removed it. Every failed arm used up its state cap (every program up
+  to cost 5) and none reached the 900 s search limit, so more training time would not rescue it; it is one seed per
+  arm.
+- [SELF_PRACTICE.md](SELF_PRACTICE.md) replaces the curriculum with a law book from which the learner poses its own
+  practice problems, and one general rule that picks what to practise. Its files certify (§6); its column says which
+  rows it replaces.
+
+| what | stage 1 (certified) | stage 3 | stage 3 without it ([ABLATION_S3.md](ABLATION_S3.md)) | self-practice ([SELF_PRACTICE.md](SELF_PRACTICE.md)) |
+|---|---|---|---|---|
+| **the instruction set** | the H1 datapath: one register of 9 places, 8 steps of 9 links (bring a digit in, run the chain, move), a final correction and a readout; the multiply as one product per digit pair, placed and summed; the countdown | **gone**: a general digit machine instead (library/dsl.py's): 5 registers (A, X, Y, N, S), a shared pointer, a borrow/carry, a multiplier digit and a multiply carry; 32 primitive instructions (subtract-with-borrow, add-with-carry and multiply-accumulate at the pointer against any register; keep-or-discard on the borrow; load, store, clear; move the pointer; shift a register; bring X's top digit into A) and loops that repeat their body P, B or W times; a routine restores the pointer it was called with. The countdown stays (stage 1's) | SEL.S (keep or discard on the borrow) and BRG.X (bring X's top digit in), each taken out of the searches' vocabulary: **needed** (without SEL.S no conditional subtraction, so nothing after it; without BRG.X no step and no reduction). The other instructions, the loops and the countdown: not tested | kept: the same machine |
+| **the menus** | the division's menu at free attention's width (operands at offsets -3..3, borrow routes, flags, written values: 7.9e9 chains), the step's and the reading's menus, the multiply's 33M layouts, the round menu (x10, + one digit, x the input) | **gone**: what runs is a program found by search and composition; nothing lists the options | - | - |
+| **the alphabet and sizes** | base 10 digits; 8, 8 and 2 digits read and 8 written; P = 9 places | the same reading; the round machine's registers 16 places; the practice problems at widths 1 and 2 | not tested | the practice problems' widths by one rule (the widest whose instance fits the registers); the rest kept |
+| **the cells** | a subtraction MLP and a product MLP; a 2 x 2 gate | three tables of logits (subtraction, addition, multiply-accumulate (a, x, h, k)) and the gate: the cells' input shapes are designed | not tested | kept |
+| **the reader and writer** | IO.md / WIRING.md stage 3: 24 reading hypotheses, 3 pointer shapes, the run rules | the same, line for line | not tested | kept |
+| **the law library** | general_lessons' LAWS (+ red.link, loop.count) | a subset (sub.order, sub.bijective, sub.inverse, sub.identity, sub.zero_minus, add.commute, mul.zero, mul.ladder, mul.distribute, red.identity, red.step, red.invariant, loop.count) | the late table lessons (sub.inverse, sub.identity, add.commute, the mined facts' borrows, the register-width wrap-around fact, sub.zero_minus; they join 100 steps after the digit lessons, `LATE_AFTER`): **not needed** (no_late: the tables pass their checks at the same steps and the climb is identical line for line; s3i's ANCHOR_* constants, the wrap fact's included, are never read). red.step: the next row. The rest: not tested | the table lessons kept; the practice problems come from its own law book instead (the curriculum row) |
+| **lessons that define a step** | the ladder and the step law of each lesson set (red.step), the link law | the same laws become practice problems (modB, step) instead of checks on a menu; the template's predicates: below only (no Montgomery practice problems) | red.step's two problems, the chain (modB) and the long-division step (step): **needed** (no_redstep: no reduction is found) | **replaced**: the law book's remainder law on x' + d N' and on 10 x' + d (patterns of the division law's form a + q b) poses the chain and the step among its candidates, unmarked |
+| **the curriculum** | - | which laws become practice problems, their helper order (in the final file the pieces first: mul after mac, reduce after modB), the register variants (X <-> Y), mac posed with the running sum as its addend (A + x d: designed, so that the multiply's row is a problem of its own), widths, settings, probe counts (§2); the round's answers are the rows with T = 1 (an H1-shaped constant: M4, whose every T is 8, gives the round's search no answers) | the order (`PREREQ`): **speed only**, +270 s to the round. The X/Y twins: **needed** (no reduction: s3i's runs the chain on Y, and only the chain's twin works on Y). mac with the running sum as its addend: **needed** (posed as x d + N, no multiply). The round's answers from rows with T = 1: **speed only** (the batch's smallest T also works, 82 steps later). Which laws: red.step's are needed (the row above); dropping only the step, the chain or the row is built, not run; lt, modx, add, mul and reduce cannot be dropped without redesigning the others' checks. Widths, settings, probe counts: not tested | **replaced** by a law book (11 laws on 8 patterns of the data's N and x, each posed in every binding of its operands to the registers, the X/Y twins among them) and one general choosing rule (`lpca`): a law is posed once the routines its construction needs exist (no order), a + b c is one law in its 24 bindings (nothing marks the accumulator), the answers come from the smallest T. All nine of s3i's problems appear among its candidates, unmarked. Settings and probe counts stay as search sizes. Designed in their place: the law book and the choosing rule |
+| **the search and the merges** | the tournament (one logit per whole combination, pass/fail per batch, pruning at 12 nats) | breadth-first search by cost (caps measured on the H100: 5.8M / 27M stored states for a 10-minute search; cost <= 7, loop bodies <= 3); the A/B's rules: compositions of the routines first, then the merges, then the primitives; twins skipped once their original is solved; a stall after two used-up searches (compositions only after that); every goal state tested, fewest pieces first; one search at most 900 s. BPE (two tasks, ties to the largest), Occam's simplest program (ties to the fewest executed steps), routines for solved tasks; the round's search space (the routines and the straight-line primitives, cost <= 5); the round programs' tournament (4 contestants, Occam's order) | compositions first (`COMP_FIRST`): **not needed**. Occam's ties to fewer executed steps (`OCCAM_STEPS`): **needed** (without it modx becomes "x if x < N, else 0", s3c's failure, and no adder follows). Routines: **needed** (no multiply: its loop holds the accumulating row only as one instruction). Twins skipped (`SKIP_TWINS`): **speed only**, +364 s. BPE: **speed only**, +546 s. The caps, the stall rule, the 900 s limit and the round's search space: not tested (the round's cost limit is built, not run) | kept, with its own sizes (probes, deep probes, the round's search by routine calls) |
+| **the mined facts** | the miner's grammar (order, equality, range, nonzero, divisibility) | the same | not tested (their late borrow lesson: not needed, the law library row) | kept |
+| **the schedule** | phases A-C, the reader's stages, freeze after 200 exact steps | phases A-D (cells, then the climb, then the round), the same freeze | not tested | kept |
+| **the answers** | choose the lesson set and the round options; the reading; T's direction | the round's goal and its tournament; the reading; T's direction | the round's goal from rows with T = 1: speed only (the curriculum row); the rest not tested | the round's answers from the smallest T (the curriculum row); the rest kept |<!-- /HANDMADE -->
 
 ## 5. Rules 7, 8 and 14
 
@@ -794,29 +827,52 @@ them against the answers.
 1. *The instruction set is digit arithmetic.* Subtract-with-borrow, add-with-carry and multiply-accumulate at a pointer,
    keep-or-discard on the borrow, a bring-in shift and loops by the number's length and the base are what long division
    and the schoolbook multiply are made of. The instructions are general (they compute many things the task never
-   needs), but they were chosen knowing the family.
+   needs), but they were chosen knowing the family. Two of them are needed: without keep-or-discard on the borrow
+   (SEL.S) or the bring-in (BRG.X), the round is never found ([ABLATION_S3.md](ABLATION_S3.md)).
 2. *The curriculum walks the search up the skeleton.* The practice problems are laws, applied to the rows' own
    numbers, but which laws, in which order, is a designer's choice, and two of them (the chain's ladder and the step
    law: red.step) are the definitions of long division's step that stage 1 also uses. LIBRARY.md said it of its own
-   in-run sketch: "the curriculum is where 'how' moved."
+   in-run sketch: "the curriculum is where 'how' moved." The two studies below narrow this: the step's definitions
+   and how the problems are posed are needed, but the hand-picked list and its order are not.
 3. *The round's search space* (routines plus straight-line primitives, cost at most 5) and the countdown are designed.
+   So is the learning machinery, and two parts of it are needed: routines, and Occam's ties to the program that runs
+   fewer steps.
 
 **The call.** Bar 2 is **partly cleared**, and further than before. For the forward pass it is cleared: no
 hand-written skeleton or menu runs. The program that answers was discovered inside one training run (the multiply as
 a loop of its own accumulating row, the reduction as a loop of its own long-division step, the round as "copy x,
-multiply, reduce"), and that run certifies at T = 64 on both ladders. Two things keep it partial:
-- *the training recipe*, where the algorithm's decomposition still lives: the instruction set, and a curriculum whose
-  practice problems a person chose, including one (mac with the running sum as its addend) designed so that the
-  multiply's row becomes a problem of its own;
-- *the official budget*: met on every seed (s3i, the final file: the freeze by 1,149 s at the latest; s3h's by
-  2,086 s), but it took practising the pieces in a designed order (the multiply after its row, the reduction after
-  its chain); without that order (s3e) the climb reaches level 5 at the deadline, about 500 s short of the round.
-  s3h's and s3i's speed is an engine change, the same search and the same training run faster, not a smaller search.
+multiply, reduce"), and that run certifies at T = 64 on both ladders, on every seed within the official budget. What
+keeps it partial is *the training recipe*, where the algorithm's decomposition still lives. Two studies of the final
+file say where (§4 marks every hand-made part with their verdicts):
+- **What the result needs** ([ABLATION_S3.md](ABLATION_S3.md): each part removed in turn, one official H100 run each,
+  seed 74). Two task-shaped instructions (SEL.S, BRG.X); the practice problems that define long division's step
+  (red.step's chain and step); how the multiply's row and the registers are posed (mac with the running sum as its
+  addend, designed so that the row becomes a problem of its own; every problem also posed with X and Y swapped); and
+  routines and Occam's tie-break. Without any one of them the round never comes. Every failed arm searched every
+  program up to cost 5 without the missing piece, and none reached the 900 s search limit, so more training time
+  would not rescue it (a wider search might; not tried). It is one seed per arm.
+- **What it does not need: the hand-picked list of problems and their order** ([SELF_PRACTICE.md](SELF_PRACTICE.md)).
+  The learner poses its own problems from a law book (11 laws on 8 patterns of the data's N and x, each posed in every
+  register binding), and one general rule picks what to practise. The round still comes:
+  [`self_practice/submission_stage3_sp.py`](self_practice/submission_stage3_sp.py) (md5 f0ef5b06) certifies on the
+  official manifest (the round by 746 s) and on 7 of 8 B200 seeds, and
+  [`self_practice/submission_stage3_sp2.py`](self_practice/submission_stage3_sp2.py) (md5 afc70fe9) on the official
+  manifest (the round by 1,029 s) and on all 8. All nine of s3i's problems appear among its candidates, unmarked.
+  What it needs in their place is designed too: the law book, and the choosing rule, picked after bar 3's rules failed
+  by watching whether the round came. So are the instruction set and the search sizes.
+
+The official budget no longer keeps it partial. s3i meets it on every seed: the freeze by 1,149 s at the latest
+(s3h's by 2,086 s). Practising the pieces in a designed order (the multiply after its row, the reduction after its
+chain) was needed on s3e's engine, where the climb without that order reached level 5 at the deadline, about 500 s
+short of the round. On s3i's engine, the same search and training run more than twice as fast, and dropping the order
+costs about 270 s: the run still certifies, frozen by 1,372 s (ABLATION_S3.md, prereq_off).
 
 The acceptance tests say the same from the other side: with the routines the H1 run discovered, no other formula's
-round is a composition of cost <= 5 (§1.3's table). The curriculum, not the data, bounds what stage 3 can learn. Bar 3
-(a general algorithm learner) is still open: it needs practice problems the learner poses itself (INVENTING.md:
-without curated practice tasks the loop never invents x^2 mod N).
+round is a composition of cost <= 5 (§1.3's table). The curriculum, not the data, bounds what stage 3 can learn.
+Self-practice moves that bound into the law book and the round's search: it learns none of the other formulas either
+(SELF_PRACTICE.md §4.5). Bar 3 (a general algorithm learner) is still open. INVENTING.md's loop never invents
+x^2 mod N without curated practice tasks. Self-practice gets there only with a designed law book, and a choosing rule
+picked by watching whether H1's round came.
 <!-- /BAR2 -->
 
 ## 7. Reproduce

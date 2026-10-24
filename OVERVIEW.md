@@ -3,19 +3,19 @@
 **Reviewing or judging the project from outside? Start with [REVIEW.md](REVIEW.md)**: the claims, the file to judge,
 how to check its records, and the rules to rule on. It points back into this file.
 
-*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed four times as studies
-landed; this refresh, on 2026-10-23 at about 15:30, adds the integration's stage 3, general lessons v2 and v3, the NCA
-probe and the two bar-3 studies.*
+*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed five times as studies
+landed. This refresh, on 2026-10-23 at about 21:15, adds the ablation of s3i's hand-made parts and stage 3 with
+self-posed practice.*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
-  `handwired_bridge/h1/records/`, `litmus/records/`, `library/records/`): every certification, run time, freeze step,
-  parameter count and seed count quoted here. The source embedded in each record was hashed and compared with the
-  file's md5.*
+  `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
+  `litmus/records/`, `library/records/`): every certification, run time, freeze step, parameter count and seed count
+  quoted here. The source embedded in each record was hashed and compared with the file's md5.*
 - *The data counts in §1–2 were computed from the released H1 files, and the commits come from `git log`.*
 - *The one-line findings of the timeline (§3) and the summaries of how each piece learns, including the NCA and bar-3
   studies, summarize their write-ups, which are linked; they were not re-run.*
 - *The older write-ups are left as they were. §9 lists where a write-up and a record disagree.*
-- *Everything described is committed (the last commit is `90dc084`, Oct 23 at 14:46), except a follow-up of the NCA
+- *Everything described is committed (the last commit is `40a399c`, Oct 23 at 20:47), except a follow-up of the NCA
   probe that was still running (§7).*
 
 **In one minute.**
@@ -31,8 +31,14 @@ probe and the two bar-3 studies.*
      ([`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py)) has no hand-written skeleton
      and no menus. In one training run it learns its digit tables from laws, builds a library of small programs on a
      general digit machine, and discovers the round, "copy x, multiply, reduce". It certifies on all 8 seeds on the
-     official manifest, training in at most 1,350 s of the 3,600. But the algorithm's decomposition still lives in
-     its instruction set, and in the practice problems a person chose for it and their order.
+     official manifest, training in at most 1,350 s of the 3,600. What is left is narrower than before:
+     - removing s3i's hand-made parts one at a time shows what the result rests on: two task-shaped instructions, the
+       practice problems that define long division's step, how the multiply's row and the registers are posed, and
+       two parts of the search;
+     - a variant that poses its own practice problems from a general law book, instead of the hand-picked list, also
+       certifies on the official manifest.
+
+     The law book, the choosing rule and the instruction set are still designed.
   3. **A general algorithm learner: results at a tiny size only.** A learner that picks its own practice problems
      invents x² mod N for x < N ≤ 7, and, changed in nothing, four of nine other formulas, two more once its solved
      formulas carry over. Within the task family, general lessons v3 now learns all 14 practice datasets that use one
@@ -166,6 +172,9 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 23, 12:08 `3b7fd0f` | **the NCA shader probe**: identical local cells hold long division exactly but do not learn it from lessons | [nca/NCA.md](nca/NCA.md) |
 | Oct 23, 12:27 `5c31dd0` | s3i is the final stage-3 file | [integration/INTEGRATION.md](integration/INTEGRATION.md) |
 | Oct 23, 14:46 `90dc084` | **bar 3, breadth**: the unchanged learner invents 4 of 9 new formulas, 2 more by carry-over | [bar3/BREADTH.md](bar3/BREADTH.md) |
+| Oct 23, 20:44 `d5e0bc5`, 20:47 `40a399c` | the handover for an outside judge: an entry point with the claims and the gray rules, a hygiene pass, and a record checker (`tools/verify_records.py`) | [REVIEW.md](REVIEW.md), [HANDOVER.md](HANDOVER.md) |
+| Oct 23, 20:45 `aad38c9` | **the s3i ablation**: each hand-made part removed in turn and retrained on the official manifest | [integration/ABLATION_S3.md](integration/ABLATION_S3.md) |
+| Oct 23, 20:45 `8f6b3e1` | **stage 3 with self-posed practice**: the hand-picked curriculum replaced by a law book, and it still certifies | [integration/SELF_PRACTICE.md](integration/SELF_PRACTICE.md) |
 
 ### The lessons that came out of the failures
 
@@ -203,6 +212,11 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 - **Inventing needs good practice problems**: problems whose shortest solutions are the pieces of the answer. Without
   curated ones the loop never invents x² mod N; a learner can pose them itself from a law book and from what its best
   wrong attempts leave undone ([INVENTING.md](library/INVENTING.md), [PRACTICE.md](bar3/PRACTICE.md)).
+- **Some hand-made parts carry the result, others only save time.** Removed one at a time from s3i, two instructions,
+  the practice problems that define long division's step, the posing of the multiply's row and of the registers,
+  routines, and Occam's tie-break each stopped the round from ever being found. The curriculum's order, BPE and two
+  search rules only cost time. Every failed arm had searched its whole reach, so more time would not have rescued it
+  ([ABLATION_S3.md](integration/ABLATION_S3.md)).
 - **What worked every time:** digits snapped to exact values, one shared cell, checks on each training row's own
   numbers that need no answer, and pass/fail scoring of whole choices.
 
@@ -216,16 +230,31 @@ in the answer.
 - **Cleared for the forward pass.** The stage-3 model, s3i, has no hand-written skeleton and no menus. The program that
   answers was discovered inside one training run, and that run certifies on every seed within the official budget
   (§4.1, §4.7).
-- **Not cleared for the training recipe**, where the algorithm's decomposition still lives:
-  - **the instruction set** is digit arithmetic: subtract-with-borrow, add-with-carry and multiply-accumulate at a
+- **Not cleared for the training recipe**, where the algorithm's decomposition still lives. s3i's recipe has:
+  - **an instruction set of digit arithmetic**: subtract-with-borrow, add-with-carry and multiply-accumulate at a
     pointer, keep-or-discard on the borrow, bring the top digit in, and loops by the number's length. The instructions
     are general, but they were chosen knowing the task family;
-  - **the curriculum** walks the search up the skeleton's pieces. Which laws become practice problems, and in which
+  - **a curriculum** that walks the search up the skeleton's pieces. Which laws become practice problems, and in which
     order, is a designer's choice. Two of them are definitions of long division's step, and one (mac) was posed so
     that the multiply's row becomes a problem of its own;
-  - **the rest**: the round's search space (short compositions of routines) and the countdown over T are designed;
-- **The official budget** is met only with the pieces practised in a designed order. Without that order (s3e) the climb
-  ran out of time about 500 s short of the round.
+  - **the rest**: the round's search space (short compositions of routines) and the countdown over T.
+- **What the result rests on** ([ABLATION_S3.md](integration/ABLATION_S3.md); each part removed in turn, retrained
+  on the official manifest, seed 74, one H100 per arm; the unchanged file replays s3i's official run exactly):
+  - **needed**, since without it the round is never found: SEL.S (keep or discard on the borrow) and BRG.X (bring X's
+    next digit in), the two practice problems that define long division's step, mac posed with the running sum, the
+    register twins, routines, and Occam's tie-break toward the program that runs fewer steps;
+  - **speed only**, since it still certifies, frozen by 1,526 s at the latest: the curriculum's order (+270 s),
+    not searching solved twins again (+364 s), BPE merges (+546 s), and the T = 1 filter on the round's answers
+    (+82 steps);
+  - **not needed**: the search's routines-first order, and the late table lessons, the wrap-around fact among them;
+  - every failed arm had searched its whole cost-5 reach without the missing piece, so more time would not rescue it.
+    A wider search was not tried, and it is one seed per arm.
+- **The curriculum itself can be posed by the learner** ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md)). The nine
+  hand-picked problems, their order, the twins and mac's posing are replaced by a book of 11 laws on 8 patterns of the
+  data's numbers, each posed in every binding of its operands to the registers, and one general rule picks what to
+  practise. The problems the ablation found needed come out of that book; nothing marks them. Stage 3 still finds its
+  round and certifies on the official manifest (§4.1, step 19). Still designed: the law book, the choosing rule (picked
+  after bar 3's own rules failed, by watching whether the round came), the instruction set and the search sizes.
 
 **Bar 3: a general algorithm learner. Results at a tiny size only.**
 - **Choosing its own practice** ([PRACTICE.md](bar3/PRACTICE.md)): with no task list from us, the learner poses
@@ -250,8 +279,13 @@ ladders, every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002.
 | file (md5) | what it is | learned numbers | official record: training s (frozen at step) / evaluation s | seeds | found or chose |
 |---|---|---|---|---|---|
 | [`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py) (`0e813144`) | **stage 3**: no skeleton, no menus; the round discovered in training (§4.7) | 207,374 | `s3i_official`: 1,340.3 (870) / 209.9 | 8 of 8 on H100s, official manifest (74 and 1–7): trained in 1,133–1,350 s, frozen by 982–1,149 s | "copy x, multiply, reduce", at step 671 on seed 74 |
+| [`integration/self_practice/submission_stage3_sp2.py`](integration/self_practice/submission_stage3_sp2.py) (`afc70fe9`) | **stage 3 with self-posed practice**: s3i with its curriculum replaced by a law book and a general choosing rule (§4.7) | 207,374 | `submission_stage3_sp2_official`: 1,276.7 (887) / 225.5 | 8 of 8 on B200s (74 and 1–7); its first version `submission_stage3_sp.py` (`f0ef5b06`) certified officially and on 7 of 8 | the same round, at step 688, by 1,029 s |
 | [`integration/submission_stage1.py`](integration/submission_stage1.py) (`cfd7b61d`) | **stage 1**: the tournament and the general lessons in one file | 222,113 | `s1_official`: 1,860.7 (716) / 56.1 | 8 of 8 on CPU | also learns y² + 1, 10·y², cubing, Montgomery's, 10·y² + 1, y² + 3 and M4 |
 | [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py) (`0805b7d3`) | **general lessons v3**: the answers choose whole digit codes (§4.6) | 11,589 | `v3k_h1_official`: 1,190.5 (645) / 42.3 | H1: 8 of 8 on B200s, run with an earlier v3 build (`v3f`) | also all 14 fixed-modulus practice sets, on relaxed budgets |
+
+s3i stays the file to judge ([REVIEW.md](REVIEW.md) §2): it has the most evidence, with the official run, seven more
+H100 seeds on the official manifest, and the ablation. sp2 is the one to look at for how far bar 2 goes; its seeds ran
+on B200s, which count as research, not certification.
 
 The earlier frontier files are now steps of the ladder (§5): the wide model (step 11), its MLP-cell version (12), the
 tournament (13), and general lessons v1 and v2 (14, 15).
@@ -441,6 +475,26 @@ ripple, the restoring link, the chain, the division step, the reduction loop, th
   only on a relaxed budget. The final file, s3i, certifies on every seed within the hour, its freeze by 1,149 s at the
   latest. How hard each build was pushed is in §5.
 
+**The ablation** ([ABLATION_S3.md](integration/ABLATION_S3.md), records in `integration/ablation_s3/records/`). Each of
+s3i's hand-made parts was removed in turn, 13 arms and the unchanged control, each retrained on the official manifest
+(seed 74, one H100). Seven arms never found the round: without SEL.S or BRG.X; without the step's two practice
+problems; with mac posed as "x times a digit, plus N"; without the twins; without routines; without Occam's
+tie-break. Each failure is the climb running out of things to try, between 3 and 30 minutes into training, after
+every search for the missing piece had covered every program up to its cost limit. The other six certified, frozen by
+1,526 s at the latest. Seed 1 and five more arms are built and wait.
+
+**Self-posed practice** ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), step 19). The learner poses its own
+practice problems: every law of an 11-law book (compare, equal, min, max, remainder, quotient, add, subtract, multiply,
+multiply-add, add three) applied to numbers built from the data's own N and x in 8 ways, with the inputs in every
+placement in the registers. That is about 70 problems at the start and 36–180 at each later level, most of them
+useless. The rule that works treats a law on one pattern as one concept, rates it by its cheapest placement, and
+practises it once in its cleanest placements. Bar 3's own choosing rules (hardest first, the cheaper pairs signal)
+climbed 7 to 13 levels without the round. The certified run practised all nine of s3i's problems by level 4, in the
+order their constructions allow, plus some s3i never had. It found its round sooner than s3i did on the same day:
+by 746 s (`sp`) and 1,029 s (`sp2`), against the control's 1,047 s. The other formulas are still not learned: the
+limit is in the round's search and the law book, not the practice. All told it took 43 tiny-core runs, 6 relaxed
+in-run attempts and 27 evaluator records, about 40 GPU-hours.
+
 **The inventing test** ([INVENTING.md](library/INVENTING.md)) took our inputs away from the search-and-compress loop
 one at a time, on the tiniest x² mod N. Without our instruction set, on bare counters, it still invented x² mod N, but
 only with practice tasks whose short solutions are the pieces; without the practice tasks it never did. Given the one
@@ -459,7 +513,8 @@ The ladder branches:
 - steps 7a–7c stack on step 5, and so does step 8;
 - step 9 is 7c with step 8's lessons, step 10 widens 7c's menus, and step 11 is 10 with step 9's change;
 - steps 12–13 stack on 11; steps 14–15 start again from 11, and step 18 stacks on 15;
-- step 16 joins 13 and 15, and step 17 replaces 16's machine with programs found in training.
+- step 16 joins 13 and 15, step 17 replaces 16's machine with programs found in training, and step 19 replaces 17's
+  curriculum with practice problems the learner poses itself.
 
 | step | builds on | what became learned (the hand-written piece removed) | file (md5) | official record | training s (frozen at step) / evaluation s | other seeds certified | commit |
 |---|---|---|---|---|---|---|---|
@@ -488,6 +543,7 @@ The ladder branches:
 | 16 | 13 and 15 | separate files: the tournament and the general lessons in one model | [`integration/submission_stage1.py`](integration/submission_stage1.py) (`cfd7b61d`) | `s1_official` | 1,860.7 (716) / 56.1 | 8 of 8 on CPU | `b5f1740` |
 | **17** | 16, with the library inside training | **the skeleton and the menus: the machine that answers is a program found in training** | [`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py) (`0e813144`) | `s3i_official` | 1,340.3 (870) / 209.9 | 7 of 7 more H100 seeds, official manifest (1–7) | `8e7422e`, `5c31dd0` |
 | 18 | 15 | the digit code's dependence on many moduli: the answers choose whole digit codes | [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py) (`0805b7d3`) | `v3k_h1_official` | 1,190.5 (645) / 42.3 | H1 8 of 8 on B200s with build `v3f` (`32a1d154`); 14 of 14 fixed-modulus sets, 17 of 17 runs | `66304ba` |
+| 19 | 17 | the curriculum: the practice problems, their order, the twins and mac's posing, replaced by a law book of 11 laws on 8 patterns posed in every register binding, and one general choosing rule | [`integration/self_practice/submission_stage3_sp2.py`](integration/self_practice/submission_stage3_sp2.py) (`afc70fe9`); first version `submission_stage3_sp.py` (`f0ef5b06`) | `submission_stage3_sp2_official`; first version: `submission_stage3_sp_official` | 1,276.7 (887) / 225.5; first version: 938.3 (883) / 154.0 | 8 of 8 on B200s; first version: 7 of 8 | `8f6b3e1` |
 
 **How hard stage 3 was pushed** (INTEGRATION.md §3; every build's records are in `integration/records/`):
 
@@ -508,8 +564,9 @@ Notes:
   line just after the freeze.
 - Records live in `runs/learned_remainder/`, `runs/learned_wiring/`, `runs/wider_menus/`, `ablation/runs/`,
   `anchors/records/`, `bridge/h1/records/`, `tournament/h1_records/`, `general_lessons/records/`,
-  `general_lessons/fixed/records/` and `integration/records/`, one `<name>.json` each. Each holds the full log, the
-  result and the exact source.
+  `general_lessons/fixed/records/`, `integration/records/`, `integration/ablation_s3/records/` and
+  `integration/self_practice/records/runner/`, one `<name>.json` each. Each holds the full log, the result and the
+  exact source. `tools/verify_records.py` checks the official records against the files they certify.
 - Other certified runs worth knowing: MENUS.md's four variant H100 runs; the general files' other formulas
   (`general_lessons/records/gen_*`, `integration/records/s1_*_s74`); and the practice datasets of v3
   (`general_lessons/fixed/records/v3k_*`).
@@ -522,7 +579,10 @@ Notes:
   - `wide_try1_h100`: a first wide-menu build that crashed on a bug when its chain lesson joined (MENUS.md §4.2);
   - `handwired_bridge/h1/records/wide_reglu_official` and `wide_reglu_official2`: the wide model with ReGLU cells,
     nothing right on either official run, and 1 of 4 CPU seeds certified;
-  - stage 3's early builds above, and `gen_minus1` and `s1_minus1_s74` (y² − 1, outside every round menu).
+  - stage 3's early builds above, and `gen_minus1` and `s1_minus1_s74` (y² − 1, outside every round menu);
+  - the ablation's seven arms that never found the round (`integration/ablation_s3/records/`), self-practice's seed 7
+    of `sp`, and its eight runs on the other formulas (`integration/self_practice/records/runner/sp_*_h100`), none
+    learned.
 
   `chain_official`, the chain's first recipe, certified, but one of its CPU seeds that never sees an answer did not.
 
@@ -539,21 +599,29 @@ The imports, the initialization, the host transfers and the absence of backward 
 | 1. one `submission.py` exporting one `Submission` | yes | the file is sent as `submission.py`; it has one `SUBMISSION` with model, optimizer, loss, batch sizes and a step cap |
 | 2. self-contained | yes | it imports only standard-library modules (`itertools`, `time`, `array`, `collections`), `torch` and the public `benchmark` API; no numpy, no files, no network |
 | 3. the participant defines model, optimizer, loss, batch sizes, steps | yes | Adam; the rounds run until no prompt wants another (adaptive computation, capped) |
-| 4. the evaluator owns the loop, data order, backward, clipping, cadence, seeds, deadline | **gray** | the evaluator is untouched: one pass per step, no batch reuse. But the schedule lives in the model as Python state: the reader's stages, phases A–D (cells, the climb, the round), and a freeze that sets the learning rate to 0 once every check has passed for 200 steps, which is early stopping on the model's own checks. The climb also reads the clock: each search stops after 900 s, and every search unit stops when the training deadline passes, so how far the climb gets depends on the host's speed (s3g's slowest host ran out of time) |
-| 5. at most 500M parameters | yes | 207,374 |
+| 4. the evaluator owns the loop, data order, backward, clipping, cadence, seeds, deadline | **gray** | the evaluator is untouched: one pass per step, no batch reuse. But the schedule lives in the model as Python state: the reader's stages, phases A–D (cells, the climb, the round), and a freeze that sets the learning rate to 0 once every check has passed for 200 steps, which is early stopping on the model's own checks. The climb also reads the clock: `build_optimizer` sets a deadline from the budget the evaluator passes in, each search stops after 900 s, and the climb stops 120 s before the budget ends, so how far the climb gets depends on the host's speed (s3g's slowest host ran out of time). And the model keeps rows across batches: up to 4,096 read rows for its practice problems and 512 answered rows for the round's search |
+| 5. at most 500M parameters | yes | 207,374 in 16 tensors. The library of found programs lives in Python, outside the state dict, so it is not counted; a strict reader may want that said explicitly |
 | 6. no hard-coded weights | yes | all 16 parameter tensors start at 0.1 × random normal: the three digit tables, the countdown's gate, the round programs' tournament, and the reader's and writer's parameters. The "designed" mode is only a plumbing check, never the submission |
 | 7. no hard-coded algorithm in the forward pass | **gray, much less than before** | the forward pass runs a program the training run found (search, merges, routines, and composition against the answers) on learned tables; no datapath and no menu is in the file. Still gray: the instruction set leans toward digit arithmetic (cells at a pointer against a register, keep-on-borrow, bring the top digit in, loops by the number's length and the base); the practice problems walk the search up the same pieces the old skeleton had, and two of them are definitions of long division's step; the countdown over T is hand-written. A strict reader can say the algorithm moved into the instruction set and the curriculum |
-| 8. final logits from the model inside autograd, with an unbroken gradient path | yes, with gray edges | the prediction path is one-hot digits through straight-through tables, with the round program a straight-through choice over the tournament's contestants. In the gradient test every one of the 16 parameter tensors is in the graph of the final logits, and all 16 get a nonzero gradient with the right tokens' logits as the objective. Gray: (a) in training the forward returns zero logits, so the lessons teach, not the final logits; (b) the gradient is damped per lookup so it does not overflow, and on deep paths it underflows to 0: with cross-entropy at a perfect prediction, the tournament's logits and the addition table's carry get exactly 0; (c) the program itself is a discrete result of search, not a differentiable parameter; (d) which reading hypothesis a prompt uses is decided by designed run-detection logic |
+| 8. final logits from the model inside autograd, with an unbroken gradient path | yes, with gray edges | the prediction path is one-hot digits through straight-through tables, with the round program a straight-through choice over the tournament's contestants. In the gradient test, run on the earlier build s3g, whose prediction path s3i keeps, every one of the 16 parameter tensors is in the graph of the final logits, and all 16 get a nonzero gradient with the right tokens' logits as the objective. Gray: (a) in training the forward returns zero logits, so the lessons teach, not the final logits; (b) the gradient is damped per lookup so it does not overflow, and on deep paths it underflows to 0: with cross-entropy at a perfect prediction, the tournament's logits and the addition table's carry get exactly 0; (c) the program itself is a discrete result of search, held in Python, and only the choice among the four found programs is a parameter (one logit each); (d) which reading hypothesis a prompt uses is decided by designed run-detection logic |
 | 9. everything on the GPU | yes | the search, the probes and the machines run as GPU tensors, with no `.cpu()` or numpy in the file. Python holds the bookkeeping: programs as tuples, BPE over program text, and the schedule. Each program's instructions are traced on the host from its text and copied to the GPU as opcode columns; long runs are replayed from CUDA graphs |
 | 10. OOM or timeout fails | ok | neither happened on s3i's eight official-manifest runs |
 | 11. 3,600 s of training, compilation included | yes, on every seed | frozen by 982–1,149 s, trained 1,133–1,350 s. Earlier builds needed more: s3d a relaxed 9,142 s, s3g up to 3,379 s and out of time on one seed |
 | 12. a custom loss returns one finite differentiable scalar | yes | `token_training_loss` |
 | 13. evaluation within 1,800 s; certification | yes | 154.9–219.1 s on the eight runs; T = 64 on both ladders |
-| 14. no data inspection, augmentation, task-specific solvers, custom loops or participant backward passes | **gray, in a new place** | no backward or grad call, no custom autograd function, no data file read, no number made up, and no hand-written arithmetic at any step of training. But the climb is a program search inside the training forward pass, over many steps. Its practice problems are made from the batch rows' own digits and the law library, and the curriculum (which laws become practice problems, in which order, the register variants, mac) and the round's search space are designed: a strict reader could call the curriculum a task-specific solver written as lessons. The lessons also still carry the anchors' facts, the step laws, and the old table lessons (which join late and include "a wrapped x − N is large", an assumption about the register's width) |
+| 14. no data inspection, augmentation, task-specific solvers, custom loops or participant backward passes | **gray, in a new place** | no backward or grad call, no custom autograd function, no data file read, no number made up, and no hand-written arithmetic at any step of training. But the climb is a program search inside the training forward pass, over many steps. Its practice problems are made from the batch rows' own digits and the law library, and the curriculum (which laws become practice problems, in which order, the register variants, mac) and the round's search space are designed: a strict reader could call the curriculum a task-specific solver written as lessons. The lessons also still carry the anchors' facts, the step laws, and the old table lessons (which join late and include "a wrapped x − N is large", an assumption about the register's width). The ablation shows the late table lessons are not needed: without them s3i certifies, its climb identical line for line |
 | 15. repeated rule-breaking | n/a | the write-ups flag their own gray areas, and nothing has been submitted to the hosted evaluator |
 | 16. do not exploit the Hard metric recorder | yes | not touched |
 
 **The other frontier files, where they differ.**
+- **Stage 3 with self-posed practice** (`integration/self_practice/submission_stage3_sp2.py`): s3i's status on every
+  rule, with two differences.
+  - Under rule 14, the hand-picked curriculum is gone. A law book (11 laws on 8 patterns of the data's numbers) and a
+    choosing rule take its place. Both are designed, and the rule was picked after bar 3's own rules failed, by
+    watching whether the round came.
+  - Under rule 1, the file is 250,643 bytes, within the 256 KiB limit (s3i: 173,817).
+
+  It imports two more standard-library modules (`math`, `zlib`). Its seeds ran on B200s, which count as research.
 - **Stage 1** (`integration/submission_stage1.py`): rule 7 is gray as for its parents. Its forward pass is the
   hand-written H1 datapath, and the menus that plug into it, the tournament's included, hold the right wirings
   (INTEGRATION.md §5).
@@ -573,26 +641,38 @@ The imports, the initialization, the host transfers and the absence of backward 
 
 **What is running.** Every study described here has finished and is committed, except one: a follow-up of the NCA
 probe (long training with weight decay to trim the rules, per-weight learning speeds set by agreement, and both) was
-still in progress in `nca/`, uncommitted.
+still running in `nca/`, uncommitted, and was expected to land around 22:30 on Oct 23.
+
+**Answered since the last refresh.**
+- **Which hand-made parts carry the result** (ABLATION_S3.md): two instructions, the step's two practice problems,
+  the posing of the multiply's row and of the registers, routines, and Occam's tie-break are needed. The curriculum's
+  order, BPE and two search rules only cost time.
+- **Whether the curriculum can go** (SELF_PRACTICE.md): yes, for H1. With a law book and a general choosing rule in
+  its place, stage 3 still certifies on the official manifest (step 19).
+- **Whether s3i needs the late table lessons**, the width-dependent wrap-around fact among them: no. Without them it
+  certifies, its climb identical line for line.
 
 **Open questions for bar 2** (nothing a strict judge would call the hand-written algorithm):
-1. **The instruction set.** s3i's 32 digit instructions are general but chosen knowing the family. The inventing test
-   shows bare counters suffice in principle, at sizes far below H1; at H1 a counting algorithm would take about 10^16
-   steps.
-2. **The curriculum.** Which laws become practice problems, and in which order, is still a person's choice, and the
-   official budget is met only with that order. Bar 3's self-chosen practice (PRACTICE.md) is the obvious candidate to
-   replace it, but it has only been run on a bare counting machine at x < N ≤ 26, not on s3i's digit machine.
-3. **The round's search space and the countdown** are designed.
-4. **The late lessons.** Every frontier file still runs the old table lessons 100 steps after the digit laws start,
-   and the width-dependent wrap-around fact is among them. Switching them off was tested only in the combined model,
-   where 4 of 4 seeds certified without them.
-5. **Rules 4, 8 and 14.** The climb reads the clock, training never sends the loss through the final logits, and the
-   climb is a search inside the forward pass. A strict reviewer should decide these before any real submission.
+1. **The instruction set.** s3i's 32 digit instructions are general but chosen knowing the family, and two of them,
+   SEL.S (keep or discard on the borrow) and BRG.X (bring the next digit in), are needed: without either the round is
+   never found. The inventing test shows bare counters suffice in principle, at sizes far below H1; at H1 a counting
+   algorithm would take about 10^16 steps.
+2. **The law book and the choosing rule.** Self-posed practice replaces the curriculum with a book of 11 laws on 8
+   patterns and one choosing rule. Both are designed, and the rule was found by watching whether the round came.
+   Whether a smaller or more generic book still yields the round is untested.
+3. **How firm the ablation is.** One seed per arm; seed 1 and five more arms are built and wait. Every failed arm had
+   exhausted its cost-5 search, so more time would not help, but a wider search might, and was not tried.
+4. **The round's search space and the countdown** are designed. The other formulas are still not learned, by s3i or
+   by self-practice: they need a constant, another reduction, more routine calls than the round's search allows, or
+   answers at T = 8.
+5. **Rules 4, 5, 8, 9 and 14** (REVIEW.md §5 states them as questions for a judge). The climb reads the clock and
+   keeps past rows; the library of found programs lives outside the state dict; training never sends the loss through
+   the final logits; and the climb is a search inside the forward pass.
 
 **Open questions for bar 3** (a general algorithm learner):
 
-6. **Scale.** Every bar-3 result is on a bare counting machine at x < N ≤ 7 (and ≤ 26 for x² mod N). Repeating it on
-   the digit machine, at H1's size, is untried.
+6. **Scale.** Every bar-3 result is on a bare counting machine at x < N ≤ 7 (and ≤ 26 for x² mod N). On the digit
+   machine at H1's size, only the narrower step has been taken: self-posed practice for the one target, H1.
 7. **What its sources cannot pose.** Practice problems have one answer computed from x and N, so a step that moves two
    numbers at once (Fibonacci) is never posed, and a constant like 10 has to be counted up to (10·x²).
 8. **The cost of choosing.** Choosing tries a search per candidate problem, and rounds get dearer as the library grows:
@@ -623,7 +703,8 @@ still in progress in `nca/`, uncommitted.
 | [`handwired_bridge/`](handwired_bridge/) | the machine compiled by handwired into affine + ReGLU layers, loosened the same way ([HANDWIRED_BRIDGE.md](handwired_bridge/HANDWIRED_BRIDGE.md)); `h1/submission_wide_reglu.py`, which did not certify officially |
 | [`tournament/`](tournament/) | the wiring chosen inside training by tournaments ([TOURNAMENT.md](tournament/TOURNAMENT.md)): `submission_tournament.py` (step 13), the tiny machine `tiny.py`, records in `tournament/h1_records/` |
 | [`general_lessons/`](general_lessons/) | a law library, mined facts and answer-chosen lessons ([LESSONS.md](general_lessons/LESSONS.md)): `submission_general.py`, `submission_general_v2.py` and `submission_general_v3.py` (steps 14, 15 and 18); one fixed modulus in `fixed/` ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md)); records in `records/` and `fixed/records/` |
-| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/` |
+| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/`. The ablation of s3i's hand-made parts ([ABLATION_S3.md](integration/ABLATION_S3.md), in `ablation_s3/`), and stage 3 with self-posed practice ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), in `self_practice/`: `submission_stage3_sp.py` and `submission_stage3_sp2.py`, step 19) |
+| [`HANDOVER.md`](HANDOVER.md) | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, what is tracked and what is on disk only |
 | [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |
 | [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/` |
@@ -640,7 +721,7 @@ still in progress in `nca/`, uncommitted.
 | `../one-layer-deeper/` | the competition clone at `87e5c26` ("Releasing H1"), with the H1 data under `data/generated/` |
 | `~/github/handwired-lab/montgomery-search` | outside this repo: search over a Montgomery squaring program in the handwired project (branch `lab/montgomery-search`) |
 
-**The certified submissions, with their records.** Steps 0–18 are in the §5 table. The earlier three:
+**The certified submissions, with their records.** Steps 0–19 are in the §5 table. The earlier three:
 
 | model | file (md5) | official record | training s / evaluation s | learned numbers |
 |---|---|---|---|---|
@@ -684,6 +765,9 @@ Counts that need a word, though none is wrong:
   600 s (Medium). FIXED_MODULUS.md says so.
 - **The tournament's machine count.** Its official log prints 2.8·10^22 machines; TOURNAMENT.md's "about 3·10^23" also
   counts the gate table's 4 settings and the reader's 3 shapes.
+- **The ablation's speed costs** (+270 s, +364 s, +546 s) compare round times corrected for host speed, which
+  ABLATION_S3.md's `analyze.py` computes. The uncorrected times, steps and freezes were checked against the records;
+  the correction itself was not recomputed. Its summary rounds two of them (+360 s, +550 s).
 - **The practice tiers' rungs** have anywhere from 14 to 768 prompts, so their records were checked by certified T and
   score.
 

@@ -1,0 +1,16 @@
+level 4: 75 names, 36 routines; composition vocabulary 352434 items (104s)
+  red/x+on@XA: STA.Y P[BRG.X T.red.x+dn.AY] accepted [True]; it is in the vocabulary as items: ['STA.Y', 'BRG.X', 'T.red.x+dn.AY', 'P[BRG.X T.red.x+dn.AY]']
+  red/x+on@XY: STA.Y P[BRG.X T.red.x+dn.AY] accepted [False]; it is in the vocabulary as items: ['STA.Y', 'BRG.X', 'T.red.x+dn.AY', 'P[BRG.X T.red.x+dn.AY]']
+  red/x+on@XN: STA.Y P[BRG.X T.red.x+dn.AY] accepted [False]; it is in the vocabulary as items: ['STA.Y', 'BRG.X', 'T.red.x+dn.AY', 'P[BRG.X T.red.x+dn.AY]']
+probe 156s; level sizes [[1, 65, 2962, 130255, 7295355], [1, 65, 2958, 129350, 7227845], [1, 65, 3011, 132992, 7470340]]; stops ['budget: level 4 streamed (over 1000000 states)', 'budget: level 4 streamed (over 1000000 states)', 'budget: level 4 streamed (over 1000000 states)']
+red/x+on@XA: found None accepted []
+  aliases [(3, ['T.sub.x+n.XA B[T.red.x+dn.AY]']), (4, ['T.sub.x+n.XA B[SHL.X T.red.x+dn.AY]', 'LDH.Y T.sub.x+n.XA B[T.red.x+dn.AY]', 'T.sub.x+n.XA B[T.red.x+dn.AY] STA.S', 'T.sub.x+n.XA B[T.red.x+dn.AY] INC', 'T.sub.x+n.XA B[T.red.x+dn.AY] CLK'])]
+  fits per level [0, 4, 10, 16, 16] of 16 (not goal states: [0, 4, 10, 14, 0]); closeness: SelfClimb's 0.000, without the goal states 0.833
+red/x+on@XY: found None accepted []
+  aliases [(3, ['LDA.X B[T.red.x+dn.AY]']), (4, ['P[BRG.X] B[T.red.x+dn.AY]', 'LDA.X B[T.red.x+dn.AY] SHL.Y', 'LDA.X STA.S B[T.red.x+dn.AY]', 'LDA.X B[T.red.x+dn.AY] STA.X', 'LDA.X B[T.red.x+dn.AY] CLK'])]
+  fits per level [0, 3, 10, 16, 16] of 16 (not goal states: [0, 3, 10, 13, 0]); closeness: SelfClimb's 0.000, without the goal states 0.769
+red/x+on@XN: found None accepted []
+  aliases [(3, ['LDA.X P[T.red.x+dn.AN]']), (4, ['LDA.X P[STA.S T.red.x+dn.AN]', 'P[BRG.X] P[T.red.x+dn.AN]', 'LDA.X P[STA.Y T.red.x+dn.AN]', 'LDA.X P[STA.X T.red.x+dn.AN]', 'LDA.X P[T.add.pair.AN T.red.x+dn.AN]'])]
+  fits per level [0, 4, 11, 16, 16] of 16 (not goal states: [0, 4, 11, 15, 0]); closeness: SelfClimb's 0.000, without the goal states 0.917
+
+EXIT 0

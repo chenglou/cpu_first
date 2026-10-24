@@ -1,0 +1,22 @@
+level 4: 49 names, 21 routines; composition vocabulary 334638 items (123s)
+probe 164s; level sizes [[1, 50, 2037, 84530, 4360243], [1, 50, 2071, 86374, 4466956], [1, 50, 2056, 85573, 4419547]]; stops ['budget: level 4 streamed (over 1000000 states)', 'budget: level 4 streamed (over 1000000 states)', 'budget: level 4 streamed (over 1000000 states)']
+red/x+on@XA: found None accepted []
+  aliases [(4, ['STA.Y LDA.X B[T.red.x+dn.AY]'])]
+  fits per level [0, 3, 3, 10, 16] of 16 (not goal states: [0, 3, 3, 10, 0]); closeness: SelfClimb's 0.000, without the goal states 0.538
+div/x+on@XA: found None accepted []
+  aliases []
+  fits per level [0, 3, 4, 5, 0] of 15 (not goal states: [0, 3, 4, 5, 0]); closeness: SelfClimb's 0.167, without the goal states 0.167
+red/x+on@XY: found None accepted []
+  aliases [(3, ['LDA.X B[T.red.x+dn.AY]']), (4, ['LDA.X B[SHR.X T.red.x+dn.AY]', 'LDA.X B[SHL.X T.red.x+dn.AY]', 'LDA.X STA.S B[T.red.x+dn.AY]', 'LDA.X B[T.red.x+dn.AY] SHL.X', 'SHL.A LDA.X B[T.red.x+dn.AY]'])]
+  fits per level [0, 3, 10, 16, 16] of 16 (not goal states: [0, 3, 10, 13, 0]); closeness: SelfClimb's 0.000, without the goal states 0.769
+div/x+on@XY: found None accepted []
+  aliases []
+  fits per level [0, 2, 3, 5, 1] of 16 (not goal states: [0, 2, 3, 5, 1]); closeness: SelfClimb's 0.214, without the goal states 0.214
+red/x+on@YX: found None accepted []
+  aliases [(4, ['B[B[T.red.pair.YX STA.Y]]'])]
+  fits per level [0, 3, 4, 10, 16] of 16 (not goal states: [0, 3, 4, 10, 0]); closeness: SelfClimb's 0.000, without the goal states 0.538
+div/x+on@YX: found None accepted []
+  aliases []
+  fits per level [0, 0, 4, 4, 1] of 15 (not goal states: [0, 0, 4, 4, 1]); closeness: SelfClimb's 0.267, without the goal states 0.267
+
+EXIT 0

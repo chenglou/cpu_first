@@ -368,6 +368,19 @@ later ones follow them as they land. None changes a certified file or record.
   - **What it says:** the particular list of laws is not what the result rests on. Still designed: the grammar, the
     target rules and the choosing rule. 17 seed-1 arms and one rerun at three times the budget were cut off by
     Modal's spend limit (about $82 to finish).
+- **Generic instructions in place of SEL.S and BRG.X** ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md),
+  code and records in [`integration/generic_ops/`](integration/generic_ops/)). **Not certified yet.**
+  - SEL.S becomes an if block, `C[...]`, whose body's effects stay only where the borrow was set. BRG.X becomes
+    shifts that pass the digit they move through the multiply's carry digit. No single instruction does either old
+    job, so the learner builds the conditional subtraction, the chain and long division's "bring down" itself.
+  - Replacing SEL.S alone needs no other change. Replacing BRG.X too makes long division one step longer, and it
+    took three rules, each stated for every law but found by watching whether the round came: the gate's closeness
+    counted without the reduction's fakes, with deep probes rotated; acceptance at four digits; and a preference for
+    routines that leave the other registers alone.
+  - `submission_stage3_g3.py` (md5 `e6bd2a1f9bfd9fd2119b0d44483c7100`) found its round in the official H100 run, at
+    about 2,370 s of training by its log. It was exact on every rung evaluated (seen moduli T = 1–64, unseen T = 1, 2
+    and 4) when Modal's spend limit stopped the workspace, and wrote no record; its 8 seeds were six minutes in. The
+    reruns cost about $50. Its acceptance at four digits also closes the weak reduction check.
 - **Strict builds of s3i and sp2** ([STRICT.md](integration/strict/STRICT.md), code and records in
   [`integration/strict/`](integration/strict/)). The gray points of §5 that can go without changing what is learned
   are removed, by exact edits to the certified sources:

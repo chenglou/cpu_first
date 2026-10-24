@@ -3,7 +3,7 @@
 *Written 2026-10-23/24 (PT) for a judge of the contest. Code, plans and records are in
 [`integration/ablation_s3/`](ablation_s3/). The model is stage 3's final file,
 [`submission_stage3_s3i.py`](submission_stage3_s3i.py) (s3i, md5 `0e8131440e1842546c67e7378caf472d`), which this
-study never edits.*
+study never edits; §8 fixes two of its checks in a new file.*
 
 ## In plain words
 
@@ -31,9 +31,11 @@ failed on both seeds, at the same level of the climb and missing the same piece:
    instead.
 6. **Routines**: each solved problem becomes one callable instruction. Without them, no multiply is found: its loop
    repeats the accumulating row, and that row fits in a loop body only as one instruction.
-7. **Occam's tie-break toward the program that runs fewer steps.** Without it, the comparison is kept in a slower
-   spelling. The search's routines-first pass then makes the conditional subtraction "x if x < N, else 0". That
-   passes its own practice problem but not the adder's check, so no adder is found and nothing after it.
+7. **Occam's tie-break toward the program that runs fewer steps**, but only because a check is weak. Without it, the
+   comparison is kept in a slower spelling. The search's routines-first pass then makes the conditional subtraction
+   "x if x < N, else 0". That passes its own practice problem, which never tests x between N and 2N, but not the
+   adder's check, so no adder is found and nothing after it. With that practice problem's check fixed (§8), the run
+   certifies without the tie-break on both seeds, at the control's steps.
 
 **What it needs on one seed of two: the chain problem alone** (modB, red.step's ladder). Without it, s3i's reduction
 can no longer call the chain on Y as one instruction, so the reduction has to be a loop of the long-division step.
@@ -59,24 +61,33 @@ want of identical searches to measure the host by.
 - *The late table lessons, the register-width wrap-around fact among them*: the climb is identical line for line on
   both seeds.
 - *The step problem alone*: s3i's reduction never calls the step. On seed 1 the run certified three steps early and
-  264 s faster, with fewer problems to search. Seed 74 failed by chance (next paragraph).
+  264 s faster, with fewer problems to search. Seed 74 failed by chance (next paragraph); with the fix of §8 it
+  certified three steps early too.
 - *The multiply's row problem* (mrow; one seed): the round comes a step earlier. The row's programs only supplied a
   merge that s3i's reduction starts with; without it the reduction comes a level later in another form.
 - *The round's cost limit above 5*: at 6 nothing changes (one seed), since the round's search stops after cost 5 at
   its state cap anyway. At 4 there is no round: every round program found costs 5.
 
-**A weak check, found on the way.** Without the step problem, seed 74's reduction search ran two units earlier, on a
+**Two weak checks, and a fix.** Without the step problem, seed 74's reduction search ran two units earlier, on a
 different pool of rows. Its check accepted a repeated subtraction that is right only while the quotient is small: up
 to 600 at the check's largest size (3 digits), wrong on every full-size product. Nothing can be built on it, so the
 run could not certify. s3i's check lets that program through when none of its 60 three-digit probes needs more than
 600 subtractions: about 3% of the time on H1's rows. The same chance applies to s3i's own reduction search on any
-seed; only that one run in this study drew it.
+seed; only that one run in this study drew it. The conditional subtraction's check is weak too: it never tests x
+between N and 2N, which is what Occam's tie-break makes up for (item 7).
+
+§8 fixes both by adding the probes each check lacked: full-size ones for the reduction, ones between N and 2N for the
+conditional subtraction. It does so in s3i and in sp2 (the self-practice build, SELF_PRACTICE.md), which shares both
+checks. Nothing else changes. The fixed files replay s3i's and sp2's official runs and seed runs exactly, 17 in all.
+The reduction check's 3% falls to about 10^-11. Without Occam's tie-break, the fixed s3i certifies on both seeds. And
+without the step problem, it certifies on seed 74, where s3i had failed.
 
 **What this says about Bar 2.** The parts the result needs are where INTEGRATION.md §6 said the decomposition lives:
 - two task-shaped instructions;
 - the practice problems that define long division's step;
 - how the multiply's row and the registers are posed;
-- two parts of the learning machinery (routines, and Occam's preference for faster programs).
+- the learning machinery's routines. Its other needed part, Occam's preference for faster programs, stands in for a
+  stronger check of the conditional subtraction: with that check fixed, the result does not need it (§8).
 
 The curriculum's order, the search's schedule, the late table lessons, the row problem and the step problem alone are
 not what the result rests on. The order was the main budget concern for s3e. On s3i's faster search engine it costs
@@ -87,7 +98,7 @@ about 280-320 s, not the round.
   the same problems at the same levels.
 - *The five later parts.* Of those, only the chain and the step problems ran on both seeds. The second seed changed
   both verdicts: the chain problem from needed to needed on one seed of two, and the step problem from needed to not
-  needed.
+  needed. With the reduction's check fixed, the step problem's seed 74 certifies too (§8).
 - *The kind of failure.* Every failure of the seven needed parts is the same kind. The climb ran out of things to try,
   between 2 and 34 minutes into training: a level found nothing new, and every search for the missing piece had
   covered every program up to its cost limit without one that passes. So more training time cannot rescue these
@@ -155,7 +166,8 @@ the numbers and the per-search detail come from [`analyze.py`](ablation_s3/analy
 | control (s3i) | round 671 / 1,047 s; frozen 870 / 1,092 s | round 613 / 1,096 s; frozen 812 / 1,128 s | - | replays s3i's runs exactly (§4) |
 | comp_first_off | round 671 / 1,032 s; frozen 870 / 1,090 s | round 613 / 1,029 s; frozen 812 / 1,068 s | - | **not needed** |
 | no_late | round 671 / 1,248 s (1,035); frozen 870 / 1,289 s; the climb identical | round 613 / 988 s (1,064); frozen 812 / 1,010 s; the climb identical | - | **not needed** |
-| no_step | no round: a size-limited reduction accepted at level 4; out of time at level 6 | round 610 / 798 s (832); frozen 809 / 827 s | - | **not needed**: seed 74 failed by chance (§3) |
+| no_step | no round: a size-limited reduction accepted at level 4; out of time at level 6 | round 610 / 798 s (832); frozen 809 / 827 s | - | **not needed**: seed 74 failed by chance (§3), and certifies with the fixed check (§8) |
+| no_step on the fixed file (§8) | round 668 / 832 s (844); frozen 867 / 879 s | not run | - | **not needed** |
 | no_mrow | round 670 / 1,209 s; frozen 869 / 1,248 s | not run | - | **not needed** (one seed) |
 | round_cost6 | round 671 / 976 s (1,030); frozen 870 / 1,015 s | not run | - | **no effect** (one seed) |
 | prereq_off | round 679 / 1,324 s; frozen 878 / 1,372 s | round 621 / 1,342 s (1,417); frozen 820 / 1,378 s | - | speed only: +277 s, +321 s |
@@ -169,7 +181,8 @@ the numbers and the per-search detail come from [`analyze.py`](ablation_s3/analy
 | no_twins | no round: ended after level 6 (step 661, ~630 s) | ended after level 6 (step 603, ~640 s) | reduce | **needed** |
 | no_redstep | no round: ended after level 6 (step 674, ~600 s) | ended after level 6 (step 616, ~470 s) | reduce | **needed** |
 | no_brg | no round: ended after level 6 (step 682, ~1,750 s) | ended after level 6 (step 624, ~2,010 s) | step, reduce | **needed** |
-| occam_steps_off | no round: ended after level 2 (step 651, ~190 s) | ended after level 2 (step 593, ~200 s) | add and every problem after it | **needed** |
+| occam_steps_off | no round: ended after level 2 (step 651, ~190 s) | ended after level 2 (step 593, ~200 s) | add and every problem after it | **needed**, because modx's check is weak (§8) |
+| occam_steps_off on the fixed file (§8) | round 671 / 894 s; frozen 870 / 932 s | round 613 / 950 s; frozen 812 / 978 s | - | **not needed** once modx's check is fixed |
 | no_sel | no round: ended after level 1 (step 648, ~170 s) | ended after level 1 (step 590, ~150 s) | modx and every problem after it | **needed** |
 <!-- /RESULTS -->
 
@@ -212,7 +225,8 @@ no_modB's outcome (below).
     ends.
 
   This is the failure INTEGRATION.md §3 met in s3c, which the tie-break was added to fix. So the tie-break is needed
-  together with routines-first, and modx's thin practice problem is part of the story.
+  together with routines-first, because modx's practice problem never tests x between N and 2N. With that tested
+  (§8), the run certifies without the tie-break on both seeds, at the control's steps.
 - **no_routines.** BPE alone carries the reduction half. The link on A (`STA.S CLC P[SBB.N INC] SEL.S`) and the chain
   over it become merges, and reduce comes at level 4 as `B3.2 P[BRG.X B3.1]`. That expands to
   `CLK CLA P[BRG.X B[STA.S CLC P[SBB.N INC] SEL.S]]`, the hand-written reduction LIBRARY.md's MDL run found, with a
@@ -316,6 +330,8 @@ no_modB's outcome (below).
   - The round's search at levels 5 and 6 then exhausted cost 5 with the multiply in hand. No round can use a
     reduction that fails at full size, and reduce, being solved, is never searched again. The training budget ran
     out at level 6.
+  - With the reduction's check fixed (§8), seed 74 rejects that program, finds s3i's reduction at cost 5 and
+    certifies, three steps early.
 
 **A weak check.** [`reduce_check.py`](ablation_s3/reduce_check.py) runs `B[P[T.modB~ T.modB]]` with exact cells:
 - It is right on every probe of 1 and 2 digits, right up to a quotient of 599 at 3 digits, and wrong on every
@@ -329,7 +345,7 @@ no_modB's outcome (below).
   changes Y.
 
 The same 3% applies to s3i's own reduction search on any seed, since it meets the same program at cost 4 before
-finding the real reduction at cost 5. A check probing larger quotients would close it.
+finding the real reduction at cost 5. §8 closes it with probes at full size.
 
 ## 4. How hard each arm was tried
 
@@ -443,12 +459,15 @@ $PY integration/ablation_s3/reduce_check.py         # no_step's reduction, and h
 A run that Modal stops part way is relaunched with `make_plan.py ... --only-missing` and `--mode plan --force` under a
 new run tag (the evaluator keeps no checkpoints, so a job starts again from the beginning).
 
+The wider search's runs are repeated as in §7, and the fix's as in §8.
+
 ## 7. A wider search for the needed parts
 
 **The result.** For each of the six needed parts whose failure is a search's reach, the missing piece's search was
 widened to cover every program up to cost 6, one level past s3i's reach. None found the piece. Together these searches
 streamed 0.4 to 5.7 billion cost-6 programs each, and every climb ended where its arm's did. So within one more level
-of the search, these parts are still needed. The seventh needed part, Occam's tie-break, is not a search's reach (below).
+of the search, these parts are still needed. The seventh needed part, Occam's tie-break, is not a search's reach
+(below).
 
 The seven needed parts fail on both seeds because the climb runs out of things to try within s3i's search reach. This
 asks whether a wider search finds the missing piece anyway. Each failed search stopped at the state cap (5.8M stored
@@ -492,7 +511,7 @@ search gets the larger cap and no time limit, and that the arm's other tasks do 
   with a loop body of 5. Covering cost 7 would stream about 50 times more programs than these searches did.
 
 **Not widened.** *occam_steps_off* is not a search's reach. The adder's check calls the learned modx, which returns 0
-for every value at or above N, so no adder passes at any cost.
+for every value at or above N, so no adder passes at any cost. The cause is modx's weak check, which §8 fixes.
 
 The variants are built by `make_variants.py` (`WIDE_ARMS`), and the runs cost about $42 in all, the stopped first
 launch's $19.60 included. To repeat them:
@@ -507,3 +526,143 @@ $PY integration/ablation_s3/make_plan.py wide3_mul_s74 --seeds 74 --hardware h20
 $PY -m modal run --detach tools/modal_runner.py --mode plan --plan integration/ablation_s3/plans/wide2_s74.json \
   --out integration/ablation_s3/records --cap 4 --run abl-s3-wide2-s74   # likewise wide2_mul_s74, wide3_mul_s74
 ```
+
+## 8. Fixing the two weak checks
+
+**The result.** Two of s3i's practice checks were weak: the reduction's (§3) and the conditional subtraction's. New
+files fix both, in s3i and in sp2 (the self-practice build, [SELF_PRACTICE.md](SELF_PRACTICE.md)), which shares them.
+The fix only adds probes to the two checks. Each fixed file certifies on the official manifest and on its original's
+seeds, 17 runs in all. Every record equals the original's field for field, with the same climb log apart from seconds.
+Locally, the fixed checks reject the two wrong programs and still accept s3i's, and the chance that a loop of
+subtractions passes the reduction's check falls from about 3% to about 10^-11. With the conditional subtraction's
+check fixed, Occam's tie-break is not needed: occam_steps_off certifies on both seeds. And the run the weak reduction
+check broke, no_step on seed 74, certifies with the fix, three steps before the control.
+
+**What was weak.**
+- *The reduction's check.* The practice problem draws X = x + q·N, with q another row's top W digits, and builds X
+  by q learned additions. The check tests 60 probes at each of 1, 2 and 3 digits. `B[P[T.modB~ T.modB]]`, a loop
+  that makes 600 conditional subtractions at 3 digits, passes when no three-digit probe's quotient is above 600: on
+  about 3% of pools of H1's rows (§3).
+- *The conditional subtraction's check* (modx). Its practice problem poses x < N (the answer x) and x = N (the
+  answer 0), never N < x < 2N, where the answer is x - N. So "x if x < N, else 0" passes it. In s3i, Occam's
+  tie-break keeps the search away from that program (§3, occam_steps_off). The bridge session's climb, with 61
+  instructions and the tie-break on, accepted another program of the kind, `T.lt P[BRG.X RSELC.X]`.
+- *sp2* poses both through its law book, red on x + o·N and red on a pair, with the same kinds of probes at the same
+  check sizes. So it shares both.
+
+**The fix.** [`fix/make_fix.py`](ablation_s3/fix/make_fix.py) writes each fixed file from its original by a few text
+edits, each asserted to occur exactly once (`--diff NAME` prints them).
+- *The reduction is also checked at full size*: 60 more probes at 8 digits, the round's size. There q is another
+  row's whole x, up to 10^8. On a third of H1's rows that is more subtractions than any loop within the search's
+  reach makes (below). Repeated addition would take up to 10^8 additions there, so at that size X = x + q·N is built
+  by doubling with the learner's own addition: the same sum in about 40 additions. The smaller sizes keep repeated
+  addition, so their probes, and the random machine starts drawn after them, stay s3i's.
+- *The conditional subtraction is also checked with N < X < 2N*, at each of its check sizes. X is N with one digit
+  raised by d, read from a single entry of the learned addition table, with no carry and below 2N; the answer is d at
+  that place. The conditional subtraction comes before the adder, so none is needed. A probe whose one draw would
+  carry or reach 2N keeps its old kind; 26-30% of the probes get a new one.
+- Both add probes on settings of their own. The searches' practice problems, whose machine states decide which
+  programs a search keeps, are built as before. So the climb is the original's wherever the original check gave the
+  right verdict.
+
+The files are `fix/submission_stage3_s3i_fix.py` (md5 `09a8263cf09321fef9ba3d4ffbc2aea6`) and
+`fix/submission_stage3_sp2_fix.py` (md5 `a92d62812e8445789e14c86e61b0164c`).
+
+**Checked locally.** [`fix/check_fix.py`](ablation_s3/fix/check_fix.py) takes 4 s and under 1 GB. It uses exact cells
+and s3i's own library and acceptance code:
+1. The fixed file's reduction machines equal s3i's, at the search's sizes and at each check size: inputs, targets,
+   and every register's random start.
+2. Of 3,000 pools of H1's training rows, 80 let `B[P[T.modB~ T.modB]]` through s3i's check (2.7%; 0.943^60 = 3.0%).
+   On them the fixed check rejects it and still accepts s3i's reduction, `B3.1 P[BRG.X STA.Y T.modB~]`.
+3. The residual risk. Within the search's reach, the program that makes the most conditional subtractions at full
+   size is `P[P[P[T.modB]]]`, nested as deep as the loop bodies' cost limit allows. P repeats once per place (16 at
+   8 digits) and T.modB subtracts 10 times: 40,960 in all. A loop of subtractions passes the full-size probes only
+   if all 60 quotients are within that. 66% of H1's rows are, so the chance is 0.660^60, about 10^-11.
+4. The new probes all have N < X < 2N with the answer X - N (54 drawn of 180 in s3i's fix, 47 of 180 in sp2's). On a
+   pool, s3i's check accepts both the alias `T.lt LDA.X STA.S CLA SEL.S` and s3i's modx. The fixed check rejects the
+   alias and accepts the modx. sp2's law target on these probes agrees.
+
+**Certified.** Each fixed file ran on the official manifest (one H100) and on the seeds its original ran on: s3i's
+H100 seeds 1-7, and sp2's B200 seeds 74 and 1-7 (48 GB, as SELF_PRACTICE.md ran them). Every run certified (T = 64
+on both ladders). [`fix/compare_fix.py`](ablation_s3/fix/compare_fix.py) compares each with its original. The
+runner's compare finds every field equal: the training trace, the loss at every logged step, every rung and split,
+and the freeze step. The climb's log lines are equal once their seconds are masked.
+
+| fixed file | runs | originals | frozen at, as the originals |
+|---|---|---|---|
+| s3i's | official manifest, H100 (seed 74) | `integration/records/s3i_official.json` | 870 |
+| s3i's | H100, seeds 1-7 | `integration/records/s3i_h100_seed<s>.json` | 812, 862, 783, 878, 818, 779, 864 |
+| sp2's | official manifest, H100 (seed 74) | `self_practice/records/runner/submission_stage3_sp2_official.json` | 887 |
+| sp2's | B200, seeds 74 and 1-7 | `self_practice/records/runner/submission_stage3_sp2_b200_seed<s>.json` | 887, 829, 882, 809, 895, 836, 799, 883 |
+
+The records are in `ablation_s3/records/fix/`. On these 17 runs the old checks never accepted a wrong program, so the
+fix changes nothing in them. It acts only where an old check would accept a wrong program, as in the two runs below.
+
+**Occam's tie-break, again.** occam_steps_off on the fixed file (`--set OCCAM_STEPS=False`, md5 `31a7e0f4` with the
+set) certifies on both seeds.
+- Without the tie-break, the cheapest program of the routines-first pass that passes s3i's modx check is the alias
+  (§3). The fixed check rejects it, so the library pass runs, as in comp_first_off. It finds `LDA.X STA.S B0.3
+  SEL.S` (cost 4), the right conditional subtraction.
+- From there the climb solves the same problems at the same levels as the control, with the same programs. The
+  library's merges differ with modx's spelling, so the round's searches hold 2-4% fewer states. The round comes at
+  the control's steps (671 and 613), and the model freezes at 870 and 812. Its 894 s and 950 s to the round (the
+  control's: 1,047 s and 1,096 s) are uncorrected, since its searches differ from the control's from level 1 on.
+- So in s3i the tie-break stands in for a stronger modx check. It was added when s3c met this alias (INTEGRATION.md
+  §3). With the check fixed, it is not needed.
+
+**The run the weak check broke, again.** no_step on the fixed file (`fix/no_step_fix.py`, md5 `2fab9c72`: the fixed
+s3i with no_step's edits from make_variants.py, built by make_fix.py) certifies on seed 74.
+- At level 4 the routines-first pass offers `B[P[T.modB~ T.modB]]` again, at cost 4. The fixed check rejects it. The
+  library pass then finds s3i's own reduction, `B3.1 P[BRG.X STA.Y T.modB~]`, at cost 5.
+- The multiply comes at level 5 and the round at level 6, as in the control. The round comes at step 668 (832 s;
+  844 s corrected for host speed) and the model freezes at 867: three steps before the control and about 200 s
+  sooner, as no_step did on seed 1 (§3).
+- So the step problem is not needed on either seed once the reduction's check is right.
+
+**What the fix does not cover.**
+- *Borrows.* X - N on the new probes needs no borrow, since X is N with one digit raised. A program with the right
+  comparison and a subtraction that drops borrows would pass them. None is known within reach. Probes with borrows
+  need X built with carries, that is an adder, which the conditional subtraction comes before.
+- *The sources and the other builds.* The fix is in the two new files only. The code s3i and sp2 are built from
+  keeps the old checks: `integration/lib/libcore.py` (make_stage3.py) and `self_practice/spcore.py` (make_sp.py). So
+  do the other files that carry them: sp, the earlier stage-3 files, and the bridge's `libcore_b.py` and
+  `submission_stage3_bridge.py`. The bridge also has its own diagnostic for modx (`strong_modx` in `climb_b.py`,
+  which adds N digit by digit, as no training run may).
+
+**Earlier versions.** Two versions came before these files; their records are in `records/fix/v1/` and
+`records/fix/v2/`.
+- *v1* built the reduction's probes by doubling at every size. Doubling takes fewer additions than repeated
+  addition, and each learned addition draws random machine starts, so every start drawn after the probes changed. Its
+  official runs certified with every field equal, but two of s3i's log lines differed: the state counts of the
+  level-4 reduction searches. That is not a replay, so v1 was set aside.
+- *v2* doubled only at full size and fixed only the reduction. It replayed all 17 runs exactly. The modx probes came
+  after the bridge session's finding, and v3 (the files above) adds them to v2.
+
+**Cost.** The fix's runs cost $74 at list price:
+- the official runs of v1, v2 and v3: $3.14, $3.29 and $3.33;
+- the seeds of v2 and v3: $27.95 and $31.90;
+- occam_steps_off and no_step on the fixed file: $2.94 and $1.45.
+
+**Reproduce.** From `cpu_first/`, as in §6:
+
+```bash
+$PY integration/ablation_s3/fix/make_fix.py         # writes fix/*.py from the originals (asserts their md5s)
+$PY integration/ablation_s3/fix/make_fix.py --diff submission_stage3_s3i_fix
+$PY integration/ablation_s3/fix/check_fix.py        # the four local checks above
+F=integration/ablation_s3/fix; R=integration/ablation_s3/records/fix
+$PY -m modal run --detach tools/modal_runner.py --mode official --file $F/submission_stage3_s3i_fix.py --out $R \
+  --run abl-s3-fix3-s3i-official
+$PY -m modal run --detach tools/modal_runner.py --mode official --file $F/submission_stage3_sp2_fix.py --out $R \
+  --memory-gb 48 --run abl-s3-fix3-sp2-official
+$PY -m modal run --detach tools/modal_runner.py --mode seeds --file $F/submission_stage3_s3i_fix.py \
+  --seeds 1,2,3,4,5,6,7 --hardware h100 --name s3i_fix --out $R --cap 4 --run abl-s3-fix3-s3i-seeds
+$PY -m modal run --detach tools/modal_runner.py --mode seeds --file $F/submission_stage3_sp2_fix.py \
+  --seeds 74,1,2,3,4,5,6,7 --hardware b200 --name sp2_fix --memory-gb 48 --out $R --cap 4 --run abl-s3-fix3-sp2-seeds
+$PY integration/ablation_s3/fix/compare_fix.py      # each fixed run against its original
+$PY integration/ablation_s3/make_plan.py occam_fix --seeds 74,1 --hardware h100 --arms occam_steps_off_fix
+$PY integration/ablation_s3/make_plan.py nostep_fix --seeds 74 --hardware h100 --arms no_step_fix
+$PY -m modal run --detach tools/modal_runner.py --mode plan --plan integration/ablation_s3/plans/occam_fix.json \
+  --out integration/ablation_s3/records --cap 2 --run abl-s3-occam-fix     # likewise nostep_fix (--cap 1)
+```
+
+v2 and v3 reused v1's record names, so their launches added `--force`.

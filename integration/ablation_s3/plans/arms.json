@@ -47,5 +47,9 @@
  "no_routines_wide": {"file": "integration/ablation_s3/variants/no_routines_wide.py",
   "what": "no_routines, with a wider search for mul: its library searches store up to 110M states per level (every program up to cost 6), no time limit of their own (on an H200)"},
  "no_routines_wide130": {"file": "integration/ablation_s3/variants/no_routines_wide.py", "set": {"WIDE_STATES": "130_000_000"},
-  "what": "no_routines_wide with a 130M cap: its first run stored 116.9M states at cost 5, over the 110M cap, and stopped there (on an H200)"}
+  "what": "no_routines_wide with a 130M cap: its first run stored 116.9M states at cost 5, over the 110M cap, and stopped there (on an H200)"},
+ "occam_steps_off_fix": {"file": "integration/ablation_s3/fix/submission_stage3_s3i_fix.py", "set": {"OCCAM_STEPS": "False"},
+  "what": "occam_steps_off on the fixed file (§8): does the stronger modx check rescue it?"},
+ "no_step_fix": {"file": "integration/ablation_s3/fix/no_step_fix.py",
+  "what": "no_step on the fixed file (§8): does the full-size reduction check rescue seed 74?"}
 }

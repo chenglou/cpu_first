@@ -24,7 +24,8 @@ TASK = re.compile(r"^(\S+)\s+cost (\S+) \((\w+)\) levels (\[[^\]]*\]) ([\d.]+)s 
 
 
 def tasks_of(arm):
-    arm = arm.removesuffix("_wide")              # a wider-search arm poses its failed arm's tasks
+    arm = arm.removesuffix("_wide").removesuffix("_fix")    # a wider-search arm, or an arm on the fixed file (§8),
+                                                            # poses its arm's tasks
     base = [t for t in ORIGINALS if t not in DROPPED.get(arm, set())]
     return base if arm == "no_twins" else [x for t in base for x in (t, t + "~")]
 

@@ -45,9 +45,12 @@ Not claimed:
 256 KiB), 207,374 learned numbers in 16 parameter tensors, Adam. It is a generated file:
 [`make_stage3.py`](integration/make_stage3.py) builds it from [`stage3_template.py`](integration/stage3_template.py)
 (1,008 lines), [`lib/libcore.py`](integration/lib/libcore.py) (1,877 lines) and stage 1's reader, and rebuilding it
-from those sources gives the same bytes (§4.3). Its docstring (lines 1–35) is the best one-page summary. One known
-weakness: about 3% of runs, none of its 8 certified seeds among them, its reduction check accepts a shortcut that
-fails at full size (§7).
+from those sources gives the same bytes (§4.3). Its docstring (lines 1–35) is the best one-page summary. Two of its
+practice checks are weak: on about 3% of runs, none of its 8 certified seeds among them, the reduction's accepts a
+shortcut that fails at full size, and the conditional subtraction's never tests x between N and 2N. A fixed copy,
+[`fix/submission_stage3_s3i_fix.py`](integration/ablation_s3/fix/submission_stage3_s3i_fix.py) (md5
+`09a8263cf09321fef9ba3d4ffbc2aea6`), only adds the missing probes and replays all 8 certified runs field for field
+(§7).
 
 The other two frontier files ([OVERVIEW §4.1](OVERVIEW.md#41-the-models-at-the-frontier) compares all three):
 - [`integration/submission_stage1.py`](integration/submission_stage1.py), md5 `cfd7b61d7d3d4b76c606606ba8b8d9db`:
@@ -270,8 +273,10 @@ later ones follow them as they land. None changes a certified file or record.
   arms, replays s3i's own runs on both seeds exactly.
   - **Needed on both seeds** (without it the round is never found, each time at the same level and missing the same
     piece): SEL.S (keep or discard on the borrow); BRG.X (bring X's next digit in); the two practice problems that
-    define long division's step; mac posed with the running sum; the register twins; routines; Occam's tie-break
-    toward fewer executed steps.
+    define long division's step; mac posed with the running sum; the register twins; routines.
+  - **Needed only because a check was weak:** Occam's tie-break toward fewer executed steps. It kept the search off
+    a wrong conditional subtraction that the weak check let through; with the check fixed, s3i certifies without it
+    on both seeds.
   - **Needed on one seed of two:** the chain problem alone. Without it the reduction depends on a tie between two
     equal-cost spellings, which the search's listing order breaks.
   - **Speed only** (it still certifies on both seeds, frozen by 1,584 s at the latest): the curriculum's order
@@ -283,12 +288,22 @@ later ones follow them as they land. None changes a certified file or record.
     there is no round).
   - **How firm:** every failed arm searched its whole cost-5 reach without the missing piece, so more training time
     would not rescue it. A wider search, every program up to cost 6, found nothing for any of the six parts it
-    applies to; the seventh, Occam's tie-break, fails at any cost.
-  - **A weak check in s3i.** Its reduction check can accept a repeated subtraction that is right only for small
-    quotients, which slips through when none of the check's 60 three-digit probes has a quotient above 600: about 3%
-    of runs on H1's rows ([`reduce_check.py`](integration/ablation_s3/reduce_check.py)). Such a run cannot certify.
-    None of s3i's 8 certified seeds drew it; one ablation arm did. A minimal fix, to be certified on the official
-    manifest and 8 seeds, is in progress.
+    applies to. Occam's tie-break was not a search's reach but the weak check below.
+  - **Two weak checks in s3i, and a fix** ([ABLATION_S3.md §8](integration/ABLATION_S3.md#8-fixing-the-two-weak-checks)).
+    - The reduction's check can accept a repeated subtraction that is right only for small quotients. It slips
+      through when none of the check's 60 three-digit probes has a quotient above 600: about 3% of runs on H1's rows
+      ([`reduce_check.py`](integration/ablation_s3/reduce_check.py)). Such a run cannot certify. None of s3i's 8
+      certified seeds drew it; the step problem's arm did, on seed 74.
+    - The conditional subtraction's check never tests x between N and 2N, so "x if x < N, else 0" passes it. Occam's
+      tie-break is what kept s3i off that program.
+    - The fix only adds the missing probes: full-size ones for the reduction, built by doubling with the learner's
+      own addition, and ones between N and 2N for the conditional subtraction. It is in new copies of s3i and sp2,
+      [`integration/ablation_s3/fix/`](integration/ablation_s3/fix/). Both copies certify on the official manifest
+      and on their originals' seeds, 17 runs in all, and every record equals the original's field for field. The
+      reduction check's 3% falls to about 10^-11. With the fix, s3i needs neither Occam's tie-break nor the step
+      problem: both arms certify.
+    - The fix is in the copies only. `lib/libcore.py` and `self_practice/spcore.py`, which s3i and sp2 are built
+      from, keep the old checks.
 - **Stage-3 self-practice** ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), code and records in
   [`integration/self_practice/`](integration/self_practice/)). The nine hand-picked practice problems, their order,
   the twins and mac's posing are replaced by a book of 11 laws on 8 patterns of the data's numbers. Every law is posed

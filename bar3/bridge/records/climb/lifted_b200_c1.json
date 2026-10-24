@@ -1,0 +1,318 @@
+{
+ "set": "lifted",
+ "spec": {
+  "cells": [
+   "sub(A,R)",
+   "sub(R,A)",
+   "lt(A,R)",
+   "lt(R,A)",
+   "add(A,R)",
+   "muld(A,H)",
+   "muld(R,H)",
+   "acc.mul(A,R,H)",
+   "acc.mul(R,A,H)",
+   "select(C,A,R)",
+   "select(C,R,A)"
+  ],
+  "sel": false,
+  "views": true
+ },
+ "instructions": [
+  "SUB.X",
+  "SUB.Y",
+  "SUB.N",
+  "SUB.S",
+  "RSUB.X",
+  "RSUB.Y",
+  "RSUB.N",
+  "RSUB.S",
+  "LT.X",
+  "LT.Y",
+  "LT.N",
+  "LT.S",
+  "RLT.X",
+  "RLT.Y",
+  "RLT.N",
+  "RLT.S",
+  "ADD.X",
+  "ADD.Y",
+  "ADD.N",
+  "ADD.S",
+  "MULD",
+  "RMULD.X",
+  "RMULD.Y",
+  "RMULD.N",
+  "RMULD.S",
+  "MAC.X",
+  "MAC.Y",
+  "MAC.N",
+  "MAC.S",
+  "RMAC.X",
+  "RMAC.Y",
+  "RMAC.N",
+  "RMAC.S",
+  "SELC.X",
+  "SELC.Y",
+  "SELC.N",
+  "SELC.S",
+  "RSELC.X",
+  "RSELC.Y",
+  "RSELC.N",
+  "RSELC.S",
+  "LDA.X",
+  "LDA.Y",
+  "LDA.N",
+  "LDA.S",
+  "STA.X",
+  "STA.Y",
+  "STA.S",
+  "CLA",
+  "CLC",
+  "CLK",
+  "LDH.X",
+  "LDH.Y",
+  "INC",
+  "SHL.A",
+  "SHL.X",
+  "SHL.Y",
+  "SHR.A",
+  "SHR.X",
+  "SHR.Y",
+  "BRG.X"
+ ],
+ "cells": [
+  {
+   "slice": "sub(A,R)",
+   "cell": "SUB(a,x,c -> A,c)",
+   "view": true,
+   "rows_checked": 200
+  },
+  {
+   "slice": "sub(R,A)",
+   "cell": "RSUB(a,x,c -> A,c)",
+   "view": true,
+   "rows_checked": 200
+  },
+  {
+   "slice": "lt(A,R)",
+   "cell": "LT(a,x,c -> c)",
+   "view": true,
+   "rows_checked": 200
+  },
+  {
+   "slice": "lt(R,A)",
+   "cell": "RLT(a,x,c -> c)",
+   "view": true,
+   "rows_checked": 200
+  },
+  {
+   "slice": "add(A,R)",
+   "cell": "ADD(a,x,c -> A,c)",
+   "view": true,
+   "rows_checked": 200
+  },
+  {
+   "slice": "muld(A,H)",
+   "cell": "MULD(a,h,k -> A,k)",
+   "view": true,
+   "rows_checked": 437
+  },
+  {
+   "slice": "muld(R,H)",
+   "cell": "RMULD(a,x,h,k -> A,k)",
+   "view": true,
+   "rows_checked": 437
+  },
+  {
+   "slice": "acc.mul(A,R,H)",
+   "cell": "MAC(a,x,h,k -> A,k)",
+   "view": true,
+   "rows_checked": 1788
+  },
+  {
+   "slice": "acc.mul(R,A,H)",
+   "cell": "RMAC(a,x,h,k -> A,k)",
+   "view": true,
+   "rows_checked": 1788
+  },
+  {
+   "slice": "select(C,A,R)",
+   "cell": "SELC(a,x,c -> A)",
+   "view": true,
+   "rows_checked": 200
+  },
+  {
+   "slice": "select(C,R,A)",
+   "cell": "RSELC(a,x,c -> A)",
+   "view": true,
+   "rows_checked": 200
+  }
+ ],
+ "device": "cuda",
+ "seconds": 34.9,
+ "rounds": [],
+ "rounds_primitive": [],
+ "log": [
+  {
+   "t": 20.4,
+   "dt": 20.4,
+   "line": "L0 lt       cost None (library) levels [1, 61, 3049, 150933, 9334278] 20.4s budget: level 4 streamed (over 5800000 states) []"
+  },
+  {
+   "t": 25.3,
+   "dt": 4.9,
+   "line": "L0 lt~      cost None (library) levels [1, 61, 3049, 151003, 9341079] 4.9s budget: level 4 streamed (over 5800000 states) []"
+  },
+  {
+   "t": 30.1,
+   "dt": 4.7,
+   "line": "L0 modx     cost None (library) levels [1, 61, 3029, 147254, 8986429] 4.7s budget: level 4 streamed (over 5800000 states) []"
+  },
+  {
+   "t": 34.9,
+   "dt": 4.9,
+   "line": "L0 modx~    cost None (library) levels [1, 61, 3031, 147141, 8981865] 4.9s budget: level 4 streamed (over 5800000 states) []"
+  },
+  {
+   "t": 34.9,
+   "dt": 0.0,
+   "line": "L0 sleep: solved []; "
+  }
+ ],
+ "records": [
+  {
+   "task": "lt",
+   "level": 0,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    61,
+    3049,
+    150933,
+    9334278
+   ],
+   "seconds": 20.4,
+   "stop": "budget: level 4 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [],
+   "runs": [
+    {
+     "how": "library",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      61,
+      3049,
+      150933,
+      9334278
+     ],
+     "stop": "budget: level 4 streamed (over 5800000 states)",
+     "seconds": 4.9
+    }
+   ]
+  },
+  {
+   "task": "lt~",
+   "level": 0,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    61,
+    3049,
+    151003,
+    9341079
+   ],
+   "seconds": 4.9,
+   "stop": "budget: level 4 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [],
+   "runs": [
+    {
+     "how": "library",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      61,
+      3049,
+      151003,
+      9341079
+     ],
+     "stop": "budget: level 4 streamed (over 5800000 states)",
+     "seconds": 4.9
+    }
+   ]
+  },
+  {
+   "task": "modx",
+   "level": 0,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    61,
+    3029,
+    147254,
+    8986429
+   ],
+   "seconds": 4.7,
+   "stop": "budget: level 4 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [],
+   "runs": [
+    {
+     "how": "library",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      61,
+      3029,
+      147254,
+      8986429
+     ],
+     "stop": "budget: level 4 streamed (over 5800000 states)",
+     "seconds": 4.7
+    }
+   ]
+  },
+  {
+   "task": "modx~",
+   "level": 0,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    61,
+    3031,
+    147141,
+    8981865
+   ],
+   "seconds": 4.9,
+   "stop": "budget: level 4 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [],
+   "runs": [
+    {
+     "how": "library",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      61,
+      3031,
+      147141,
+      8981865
+     ],
+     "stop": "budget: level 4 streamed (over 5800000 states)",
+     "seconds": 4.9
+    }
+   ]
+  }
+ ],
+ "history": [
+  {
+   "level": 0,
+   "solved": [],
+   "merges": [],
+   "lib": {}
+  }
+ ],
+ "lib": {},
+ "solved_at": {}
+}

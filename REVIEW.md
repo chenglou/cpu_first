@@ -368,6 +368,25 @@ later ones follow them as they land. None changes a certified file or record.
     three).
   - **How general:** more than before, less than bar 3 asks. Each change is stated without a formula, but each was
     written after watching a formula fail, with the family in view.
+- **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
+  [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
+  below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18
+  such slices, and 11 of them compose back into their law when looped over the places.
+  - Bar 3's learner, unchanged, on a counting machine with no digits, carries or wrap-around, invented the select
+    (what SEL.S does at one place) and subtract-with-borrow. It did not invent add-with-carry or multiply-accumulate:
+    their one missing piece takes 8 counting instructions, past its search. Each invented program, compiled to a
+    base-10 table, is exactly stage 3's cell.
+  - `submission_stage3_bridge.py` (md5 `85ff74c5faf902c1ede7a9f07d059026`) is s3i with 36 instructions: subtract, add
+    and multiply-accumulate at the pointer against each register, their tables learned as s3i learns them, and the
+    invented select in place of SEL.S. It certifies on the official H100 manifest (training 1,839 s, against s3i's
+    1,340 s) and on 8 B200 seeds (74 and 1–7). The ablation found SEL.S needed; here the learner's own select takes
+    its place.
+  - With all 11 slices (61 instructions) there is no round. At s3i's budgets the search runs out of states; at 4
+    times them, wrong programs pass the two weak checks. The run that would confirm the second explanation was
+    refused by Modal's spend limit.
+  - **Still designed:** the law book, the frame (moves, the pointer, shifts, BRG.X, the loops), which slices become
+    instructions, and add and multiply-accumulate, which the learner did not invent. The instruction list is made
+    before training; the run does not invent its cells.
 
 ## 8. About this checkout
 

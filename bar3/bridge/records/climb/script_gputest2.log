@@ -1,0 +1,26 @@
+every primitive (defaults) W=1: 32 items, 3000 rows: same (0.8s)
+every primitive (defaults) W=2: 32 items, 3000 rows: same (0.8s)
+a vocabulary with loops (defaults) W=1: 2047 items, 3000 rows: same (1.7s)
+a vocabulary with loops (defaults) W=2: 2047 items, 3000 rows: same (2.5s)
+libcore round machine LDA.X STA.Y T.mul STA.X T.reduce: same
+libcore round machine T.add SHL.X T.lt SEL.S: same
+libcore round machine T.mac BRG.X: same
+libcore_b (defaults) round machine LDA.X STA.Y T.mul STA.X T.reduce: same
+libcore_b (defaults) round machine T.add SHL.X T.lt SEL.S: same
+libcore_b (defaults) round machine T.mac BRG.X: same
+libcore_b (defaults) one-hot machine LDA.X STA.Y T.mul STA.X T.reduce: same
+instruction set: 40 ['SUB.X', 'SUB.Y', 'SUB.N', 'SUB.S', 'ADD.X', 'ADD.Y', 'ADD.N', 'ADD.S', 'MAC.X', 'MAC.Y', 'MAC.N', 'MAC.S', 'SELC.X', 'SELC.Y', 'SELC.N', 'SELC.S', 'LT.X', 'LT.Y', 'LT.N', 'LT.S', 'LDA.X', 'LDA.Y', 'LDA.N', 'LDA.S', 'STA.X', 'STA.Y', 'STA.S', 'CLA', 'CLC', 'CLK', 'LDH.X', 'LDH.Y', 'INC', 'SHL.A', 'SHL.X', 'SHL.Y', 'SHR.A', 'SHR.X', 'SHR.Y', 'BRG.X']
+every primitive (invented names) W=1: 40 items: same (4.4s)
+every primitive (invented names) W=2: 40 items: same (4.4s)
+every primitive (invented names) W=3: 40 items: same (4.4s)
+a vocabulary with loops (invented names) W=1: 3000 items: same (4.9s)
+a vocabulary with loops (invented names) W=2: 3000 items: same (5.2s)
+a vocabulary with loops (invented names) W=3: 3000 items: same (5.6s)
+libcore_b (invented names) round machine LDA.X STA.Y T.mul STA.X T.reduce: same
+libcore_b (invented names) round machine CLC P[LT.N INC] P[SELC.X INC]: same
+libcore_b (invented names) round machine T.mac BRG.X: same
+libcore_b (invented names) one-hot machine LDA.X STA.Y T.mul STA.X T.reduce: same
+x^2 mod N's round on s3i's instructions and on the renamed ones: same
+all checks passed (9.1s)
+
+--- stderr ---

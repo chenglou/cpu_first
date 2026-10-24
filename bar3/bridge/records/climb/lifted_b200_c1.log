@@ -1,0 +1,21 @@
+device NVIDIA B200; set lifted: 61 instructions ['SUB.X', 'SUB.Y', 'SUB.N', 'SUB.S', 'RSUB.X', 'RSUB.Y', 'RSUB.N', 'RSUB.S', 'LT.X', 'LT.Y', 'LT.N', 'LT.S', 'RLT.X', 'RLT.Y', 'RLT.N', 'RLT.S', 'ADD.X', 'ADD.Y', 'ADD.N', 'ADD.S', 'MULD', 'RMULD.X', 'RMULD.Y', 'RMULD.N', 'RMULD.S', 'MAC.X', 'MAC.Y', 'MAC.N', 'MAC.S', 'RMAC.X', 'RMAC.Y', 'RMAC.N', 'RMAC.S', 'SELC.X', 'SELC.Y', 'SELC.N', 'SELC.S', 'RSELC.X', 'RSELC.Y', 'RSELC.N', 'RSELC.S', 'LDA.X', 'LDA.Y', 'LDA.N', 'LDA.S', 'STA.X', 'STA.Y', 'STA.S', 'CLA', 'CLC', 'CLK', 'LDH.X', 'LDH.Y', 'INC', 'SHL.A', 'SHL.X', 'SHL.Y', 'SHR.A', 'SHR.X', 'SHR.Y', 'BRG.X']
+cell {'slice': 'sub(A,R)', 'cell': 'SUB(a,x,c -> A,c)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'sub(R,A)', 'cell': 'RSUB(a,x,c -> A,c)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'lt(A,R)', 'cell': 'LT(a,x,c -> c)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'lt(R,A)', 'cell': 'RLT(a,x,c -> c)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'add(A,R)', 'cell': 'ADD(a,x,c -> A,c)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'muld(A,H)', 'cell': 'MULD(a,h,k -> A,k)', 'view': True, 'rows_checked': 437}
+cell {'slice': 'muld(R,H)', 'cell': 'RMULD(a,x,h,k -> A,k)', 'view': True, 'rows_checked': 437}
+cell {'slice': 'acc.mul(A,R,H)', 'cell': 'MAC(a,x,h,k -> A,k)', 'view': True, 'rows_checked': 1788}
+cell {'slice': 'acc.mul(R,A,H)', 'cell': 'RMAC(a,x,h,k -> A,k)', 'view': True, 'rows_checked': 1788}
+cell {'slice': 'select(C,A,R)', 'cell': 'SELC(a,x,c -> A)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'select(C,R,A)', 'cell': 'RSELC(a,x,c -> A)', 'view': True, 'rows_checked': 200}
+UNIT    20.4s +  20.4s L0 lt       cost None (library) levels [1, 61, 3049, 150933, 9334278] 20.4s budget: level 4 streamed (over 5800000 states) []
+UNIT    25.3s +   4.9s L0 lt~      cost None (library) levels [1, 61, 3049, 151003, 9341079] 4.9s budget: level 4 streamed (over 5800000 states) []
+UNIT    30.1s +   4.7s L0 modx     cost None (library) levels [1, 61, 3029, 147254, 8986429] 4.7s budget: level 4 streamed (over 5800000 states) []
+UNIT    34.9s +   4.9s L0 modx~    cost None (library) levels [1, 61, 3031, 147141, 8981865] 4.9s budget: level 4 streamed (over 5800000 states) []
+UNIT    34.9s +   0.0s L0 sleep: solved []; 
+ROUNDS [] after 34.9 s
+wrote /out/climb/lifted_b200_c1.json
+
+--- stderr ---

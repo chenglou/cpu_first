@@ -1,0 +1,1717 @@
+{
+ "set": "inv4",
+ "spec": {
+  "cells": [
+   "sub(A,R)",
+   "add(A,R)",
+   "acc.mul(A,R,H)",
+   "select(C,A,R)"
+  ],
+  "sel": false
+ },
+ "instructions": [
+  "SUB.X",
+  "SUB.Y",
+  "SUB.N",
+  "SUB.S",
+  "ADD.X",
+  "ADD.Y",
+  "ADD.N",
+  "ADD.S",
+  "MAC.X",
+  "MAC.Y",
+  "MAC.N",
+  "MAC.S",
+  "SELC.X",
+  "SELC.Y",
+  "SELC.N",
+  "SELC.S",
+  "LDA.X",
+  "LDA.Y",
+  "LDA.N",
+  "LDA.S",
+  "STA.X",
+  "STA.Y",
+  "STA.S",
+  "CLA",
+  "CLC",
+  "CLK",
+  "LDH.X",
+  "LDH.Y",
+  "INC",
+  "SHL.A",
+  "SHL.X",
+  "SHL.Y",
+  "SHR.A",
+  "SHR.X",
+  "SHR.Y",
+  "BRG.X"
+ ],
+ "cells": [
+  {
+   "slice": "sub(A,R)",
+   "cell": "SUB(a,x,c -> A,c)",
+   "program": "L.C[INC.R] CLR.C L.R[T.v]",
+   "lib": {
+    "T.v": "Z.A[MOV.A.N INC.C] DEC.A"
+   },
+   "lift": 1.0,
+   "s3i": {
+    "rows": 200,
+    "equal": 200
+   }
+  },
+  {
+   "slice": "add(A,R)",
+   "cell": "ADD(a,x,c -> A,c)",
+   "program": "L.C[INC.R] CLR.C L.R[T.w]",
+   "lib": {
+    "T.w": "INC.A MOV.T.N L.A[DEC.T] Z.T[CLR.A INC.C]"
+   },
+   "lift": 1.0,
+   "s3i": {
+    "rows": 200,
+    "equal": 200
+   }
+  },
+  {
+   "slice": "acc.mul(A,R,H)",
+   "cell": "MAC(a,x,h,k -> A,k)",
+   "program": "MOV.T.C CLR.C L.T[T.w] L.H[L.R[T.w]]",
+   "lib": {
+    "T.w": "INC.A MOV.T.N L.A[DEC.T] Z.T[CLR.A INC.C]"
+   },
+   "lift": 1.0,
+   "s3i": {
+    "rows": 10000,
+    "equal": 10000
+   }
+  },
+  {
+   "slice": "select(C,A,R)",
+   "cell": "SELC(a,x,c -> A)",
+   "program": "L.C[MOV.A.R]",
+   "lib": {},
+   "lift": 1.0,
+   "s3i": {
+    "rows": 200,
+    "equal": 200
+   }
+  }
+ ],
+ "device": "cuda",
+ "seconds": 1606.0,
+ "rounds": [
+  "T.reduce STA.X T.mul STA.X T.reduce",
+  "T.modx STA.Y T.mul STA.X T.reduce",
+  "T.modB STA.Y T.mul STA.X T.reduce",
+  "LDA.X STA.Y T.mul STA.X T.reduce",
+  "T.add STA.Y T.mul STA.X T.reduce",
+  "T.reduce STA.X T.mul~ STA.X T.reduce",
+  "T.modx STA.Y T.mul~ STA.X T.reduce",
+  "T.modB STA.Y T.mul~ STA.X T.reduce",
+  "LDA.X STA.Y T.mul~ STA.X T.reduce",
+  "T.add STA.Y T.mul~ STA.X T.reduce"
+ ],
+ "rounds_primitive": [
+  "CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]] STA.X CLA W[LDH.X CLK P[MAC.Y INC] SHL.Y SHR.X] STA.X CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]]",
+  "CLC LDA.X P[SUB.N INC] P[SELC.X INC] STA.Y CLA W[LDH.X CLK P[MAC.Y INC] SHL.Y SHR.X] STA.X CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]]",
+  "B[CLC LDA.X P[SUB.N INC] P[SELC.X INC] STA.X] STA.Y CLA W[LDH.X CLK P[MAC.Y INC] SHL.Y SHR.X] STA.X CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]]",
+  "LDA.X STA.Y CLA W[LDH.X CLK P[MAC.Y INC] SHL.Y SHR.X] STA.X CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]]",
+  "CLC LDA.N P[ADD.X INC] STA.Y CLA W[LDH.X CLK P[MAC.Y INC] SHL.Y SHR.X] STA.X CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]]",
+  "CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]] STA.X CLA W[LDH.Y CLK P[MAC.X INC] INC SHL.X] STA.X CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]]",
+  "CLC LDA.X P[SUB.N INC] P[SELC.X INC] STA.Y CLA W[LDH.Y CLK P[MAC.X INC] INC SHL.X] STA.X CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]]",
+  "B[CLC LDA.X P[SUB.N INC] P[SELC.X INC] STA.X] STA.Y CLA W[LDH.Y CLK P[MAC.X INC] INC SHL.X] STA.X CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]]",
+  "LDA.X STA.Y CLA W[LDH.Y CLK P[MAC.X INC] INC SHL.X] STA.X CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]]",
+  "CLC LDA.N P[ADD.X INC] STA.Y CLA W[LDH.Y CLK P[MAC.X INC] INC SHL.X] STA.X CLK CLA P[BRG.X STA.Y B[CLC LDA.Y P[SUB.N INC] P[SELC.Y INC] STA.Y]]"
+ ],
+ "log": [
+  {
+   "t": 5.5,
+   "dt": 5.5,
+   "line": "L0 lt       cost 5 (library) levels [1, 36, 1027, 29716, 894754, 33639436] 5.5s budget: level 5 streamed (over 5800000 states) ['CLC P[LDA.X SUB.N INC]', 'CLC LDA.X P[SUB.N INC]']"
+  },
+  {
+   "t": 8.3,
+   "dt": 2.7,
+   "line": "L0 lt~      cost 5 (library) levels [1, 36, 1027, 29678, 892686, 33547514] 2.7s budget: level 5 streamed (over 5800000 states) ['CLC P[LDA.Y SUB.N INC]', 'CLC LDA.Y P[SUB.N INC]']"
+  },
+  {
+   "t": 10.2,
+   "dt": 1.9,
+   "line": "L0 modx     cost None (library) levels [1, 36, 1027, 29378, 865578, 32211873] 1.9s budget: level 5 streamed (over 5800000 states) []"
+  },
+  {
+   "t": 12.2,
+   "dt": 2.0,
+   "line": "L0 modx~    cost None (library) levels [1, 36, 1027, 29327, 862865, 32097082] 2.0s budget: level 5 streamed (over 5800000 states) []"
+  },
+  {
+   "t": 12.2,
+   "dt": 0.0,
+   "line": "L0 sleep: solved ['lt', 'lt~']; B0.1=SUB.N INC; B0.2=P[B0.1]; B0.3=CLC B0.2; T.lt=CLC LDA.X B0.2; T.lt~=CLC LDA.Y B0.2"
+  },
+  {
+   "t": 12.8,
+   "dt": 0.6,
+   "line": "L1 round: cost None levels [1, 38, 1051, 26338, 623060, 18909352] 0.6s exhausted cost 5 []"
+  },
+  {
+   "t": 16.5,
+   "dt": 3.7,
+   "line": "L1 modx     cost 4 (routines) levels [1, 38, 1119, 32665, 975958] 3.6s  ['T.lt B[SELC.X INC]', 'T.lt P[SELC.X INC]']"
+  },
+  {
+   "t": 17.7,
+   "dt": 1.3,
+   "line": "L1 modx~    cost 4 (routines) levels [1, 38, 1119, 32615, 973078] 1.3s  ['T.lt~ B[SELC.Y INC]', 'T.lt~ P[SELC.Y INC]']"
+  },
+  {
+   "t": 17.7,
+   "dt": 0.0,
+   "line": "L1 sleep: solved ['modx', 'modx~']; T.modx=T.lt P[SELC.X INC]; T.modx~=T.lt~ P[SELC.Y INC]"
+  },
+  {
+   "t": 18.7,
+   "dt": 0.9,
+   "line": "L2 round: cost None levels [1, 39, 1088, 27413, 650880, 19990735] 0.9s exhausted cost 5 []"
+  },
+  {
+   "t": 29.4,
+   "dt": 10.7,
+   "line": "L2 add      cost 5 (routines) levels [1, 39, 1138, 32813, 963925, 36438326] 10.7s budget: level 5 streamed (over 5800000 states) ['CLC LDA.N P[ADD.X INC]', 'LDA.N CLC P[ADD.X INC]']"
+  },
+  {
+   "t": 37.3,
+   "dt": 7.9,
+   "line": "L2 add~     cost 5 (routines) levels [1, 40, 1188, 34675, 1026568, 38864284] 7.9s budget: level 5 streamed (over 5800000 states) ['CLC LDA.N P[ADD.Y INC]', 'LDA.N CLC P[ADD.Y INC]']"
+  },
+  {
+   "t": 37.3,
+   "dt": 0.0,
+   "line": "L2 sleep: solved ['add', 'add~']; B2.1=LDA.N CLC; B2.2=CLC LDA.N; B2.3=ADD.N INC; B2.4=P[B2.3]; B2.5=CLC B2.4; T.add=B2.2 P[ADD.X INC]; T.add~=B2.2 P[ADD.Y INC]"
+  },
+  {
+   "t": 38.6,
+   "dt": 1.3,
+   "line": "L3 round: cost None levels [1, 41, 1160, 29603, 709963, 22016943] 1.3s exhausted cost 5 []"
+  },
+  {
+   "t": 41.0,
+   "dt": 2.4,
+   "line": "L3 modB     cost 3 (routines) levels [1, 42, 1274, 38094] 2.4s  ['B[T.modx STA.X]']"
+  },
+  {
+   "t": 41.5,
+   "dt": 0.5,
+   "line": "L3 modB~    cost 3 (routines) levels [1, 42, 1265, 37847] 0.5s  ['B[T.modx~ STA.Y]']"
+  },
+  {
+   "t": 112.7,
+   "dt": 71.2,
+   "line": "L3 mrow     cost 6 (primitives) levels [1, 36, 1006, 28135, 810568, 22703784, 815892794] 71.2s budget: level 6 streamed (over 27000000 states) ['LDH.Y CLK CLA P[MAC.X INC]', 'CLK LDH.Y CLA P[MAC.X INC]']"
+  },
+  {
+   "t": 172.0,
+   "dt": 59.3,
+   "line": "L3 mrow~    cost 6 (primitives) levels [1, 36, 1004, 28024, 806076, 22557191, 811382562] 59.3s budget: level 6 streamed (over 27000000 states) ['LDH.X CLK CLA P[MAC.Y INC]', 'CLK LDH.X CLA P[MAC.Y INC]']"
+  },
+  {
+   "t": 172.0,
+   "dt": 0.0,
+   "line": "L3 sleep: solved ['modB', 'modB~', 'mrow', 'mrow~']; B3.1=CLK CLA; B3.2=CLA CLK; T.modB=B[T.modx STA.X]; T.modB~=B[T.modx~ STA.Y]; T.mrow=LDH.Y B3.1 P[MAC.X INC]; T.mrow~=LDH.X B3.1 P[MAC.Y INC]"
+  },
+  {
+   "t": 177.4,
+   "dt": 5.4,
+   "line": "L4 round: cost None levels [1, 44, 1324, 35226, 870443, 27612776] 5.4s exhausted cost 5 []"
+  },
+  {
+   "t": 266.9,
+   "dt": 89.5,
+   "line": "L4 mac      cost 5 (routines) levels [1, 44, 1374, 40976, 1223829, 47290800] 89.5s budget: level 5 streamed (over 5800000 states) ['LDH.Y CLK P[MAC.X INC]', 'CLK LDH.Y P[MAC.X INC]']"
+  },
+  {
+   "t": 306.0,
+   "dt": 39.1,
+   "line": "L4 mac~     cost 5 (routines) levels [1, 44, 1372, 40861, 1219281, 47153004] 39.1s budget: level 5 streamed (over 5800000 states) ['LDH.X CLK P[MAC.Y INC]', 'CLK LDH.X P[MAC.Y INC]']"
+  },
+  {
+   "t": 319.2,
+   "dt": 13.2,
+   "line": "L4 step     cost 4 (routines) levels [1, 45, 1329, 37316, 1054820] 13.2s  ['LDA.Y BRG.X STA.X T.modB', 'LDA.Y BRG.X STA.Y T.modB~']"
+  },
+  {
+   "t": 446.1,
+   "dt": 126.8,
+   "line": "L4 step~    cost None (library) levels [1, 53, 1841, 61120, 2048586, 91756702] 126.8s budget: level 5 streamed (over 5800000 states) []"
+  },
+  {
+   "t": 691.7,
+   "dt": 245.6,
+   "line": "L4 reduce   cost 5 (library) levels [1, 53, 1974, 70894, 2559264, 117333603] 245.6s budget: level 5 streamed (over 5800000 states) ['B3.1 P[BRG.X STA.Y T.modB~]']"
+  },
+  {
+   "t": 1006.4,
+   "dt": 314.8,
+   "line": "L4 reduce~  cost None (library) levels [1, 53, 1956, 70122, 2531476, 116122130] 314.8s budget: level 5 streamed (over 5800000 states) []"
+  },
+  {
+   "t": 1006.4,
+   "dt": 0.0,
+   "line": "L4 sleep: solved ['mac', 'mac~', 'step', 'reduce']; B4.1=STA.Y T.modB~; B4.2=BRG.X B4.1; T.mac=LDH.Y CLK P[MAC.X INC]; T.mac~=LDH.X CLK P[MAC.Y INC]; T.step=LDA.Y BRG.X STA.X T.modB; T.reduce=B3.1 P[B4.2]"
+  },
+  {
+   "t": 1056.2,
+   "dt": 49.8,
+   "line": "L5 round: cost None levels [1, 48, 1568, 44654, 1178015, 39192441] 49.8s exhausted cost 5 []"
+  },
+  {
+   "t": 1355.5,
+   "dt": 299.2,
+   "line": "L5 TWIN step~: not searched again (its original step is solved; its own search used up its cap)"
+  },
+  {
+   "t": 1355.5,
+   "dt": 0.0,
+   "line": "L5 TWIN reduce~: not searched again (its original reduce is solved; its own search used up its cap)"
+  },
+  {
+   "t": 1355.5,
+   "dt": 0.0,
+   "line": "L5 mul      cost 5 (routines) levels [1, 48, 1611, 51474, 1647502, 66985936] 299.2s budget: level 5 streamed (over 5800000 states) ['CLA W[T.mac~ SHL.Y SHR.X]', 'CLA W[T.mac INC SHL.X]']"
+  },
+  {
+   "t": 1541.2,
+   "dt": 185.7,
+   "line": "L5 mul~     cost 5 (routines) levels [1, 48, 1611, 51462, 1646364, 66913830] 185.7s budget: level 5 streamed (over 5800000 states) ['CLA B[T.mac INC SHL.X]', 'CLA W[T.mac INC SHL.X]']"
+  },
+  {
+   "t": 1541.2,
+   "dt": 0.0,
+   "line": "L5 sleep: solved ['mul', 'mul~']; B5.1=T.mac~ SHL.Y; B5.2=B5.1 SHR.X; B5.3=W[B5.2]; B5.4=CLA B5.3; B5.5=P[B5.2]; B5.6=CLA B5.5; B5.7=B[B5.2]; B5.8=CLA B5.7; B5.9=T.mac~ INC; B5.10=B5.9 SHL.Y; B5.11=W[B5.10]; B5.12=CLA B5.11; T.mul=B5.4; T.mul~=CLA W[T.mac INC SHL.X]"
+  },
+  {
+   "t": 1606.0,
+   "dt": 64.8,
+   "line": "L6 round: cost 5 levels [1, 50, 1683, 48309, 1275371, 42616335] 64.8s  ['T.reduce STA.X T.mul STA.X T.reduce', 'T.modx STA.Y T.mul STA.X T.reduce', 'T.modB STA.Y T.mul STA.X T.reduce']"
+  }
+ ],
+ "records": [
+  {
+   "task": "lt",
+   "level": 0,
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    36,
+    1027,
+    29716,
+    894754,
+    33639436
+   ],
+   "seconds": 5.5,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [
+    "CLC P[LDA.X SUB.N INC]",
+    "CLC LDA.X P[SUB.N INC]",
+    "LDA.X CLC P[SUB.N INC]"
+   ],
+   "runs": [
+    {
+     "how": "library",
+     "found_cost": 5,
+     "level_sizes": [
+      1,
+      36,
+      1027,
+      29716,
+      894754,
+      33639436
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 2.8
+    }
+   ]
+  },
+  {
+   "task": "lt~",
+   "level": 0,
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    36,
+    1027,
+    29678,
+    892686,
+    33547514
+   ],
+   "seconds": 2.7,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [
+    "CLC P[LDA.Y SUB.N INC]",
+    "CLC LDA.Y P[SUB.N INC]",
+    "LDA.Y CLC P[SUB.N INC]"
+   ],
+   "runs": [
+    {
+     "how": "library",
+     "found_cost": 5,
+     "level_sizes": [
+      1,
+      36,
+      1027,
+      29678,
+      892686,
+      33547514
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 2.7
+    }
+   ]
+  },
+  {
+   "task": "modx",
+   "level": 0,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    36,
+    1027,
+    29378,
+    865578,
+    32211873
+   ],
+   "seconds": 1.9,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [],
+   "runs": [
+    {
+     "how": "library",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      36,
+      1027,
+      29378,
+      865578,
+      32211873
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 1.9
+    }
+   ]
+  },
+  {
+   "task": "modx~",
+   "level": 0,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    36,
+    1027,
+    29327,
+    862865,
+    32097082
+   ],
+   "seconds": 2.0,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [],
+   "runs": [
+    {
+     "how": "library",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      36,
+      1027,
+      29327,
+      862865,
+      32097082
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 2.0
+    }
+   ]
+  },
+  {
+   "task": "round",
+   "level": 1,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    38,
+    1051,
+    26338,
+    623060,
+    18909352
+   ],
+   "seconds": 0.6,
+   "stop": "exhausted cost 5",
+   "routines": 2,
+   "answers": 400,
+   "programs": []
+  },
+  {
+   "task": "modx",
+   "level": 1,
+   "found_cost": 4,
+   "level_sizes": [
+    1,
+    38,
+    1119,
+    32665,
+    975958
+   ],
+   "seconds": 3.6,
+   "stop": "",
+   "how": "routines",
+   "programs": [
+    "T.lt B[SELC.X INC]",
+    "T.lt P[SELC.X INC]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 4,
+     "level_sizes": [
+      1,
+      38,
+      1119,
+      32665,
+      975958
+     ],
+     "stop": "",
+     "seconds": 1.9
+    }
+   ]
+  },
+  {
+   "task": "modx~",
+   "level": 1,
+   "found_cost": 4,
+   "level_sizes": [
+    1,
+    38,
+    1119,
+    32615,
+    973078
+   ],
+   "seconds": 1.3,
+   "stop": "",
+   "how": "routines",
+   "programs": [
+    "T.lt~ B[SELC.Y INC]",
+    "T.lt~ P[SELC.Y INC]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 4,
+     "level_sizes": [
+      1,
+      38,
+      1119,
+      32615,
+      973078
+     ],
+     "stop": "",
+     "seconds": 1.3
+    }
+   ]
+  },
+  {
+   "task": "round",
+   "level": 2,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    39,
+    1088,
+    27413,
+    650880,
+    19990735
+   ],
+   "seconds": 0.9,
+   "stop": "exhausted cost 5",
+   "routines": 4,
+   "answers": 400,
+   "programs": []
+  },
+  {
+   "task": "add",
+   "level": 2,
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    39,
+    1138,
+    32813,
+    963925,
+    36438326
+   ],
+   "seconds": 10.7,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "routines",
+   "programs": [
+    "CLC LDA.N P[ADD.X INC]",
+    "LDA.N CLC P[ADD.X INC]",
+    "CLC LDA.X P[ADD.N INC]",
+    "LDA.X CLC P[ADD.N INC]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 5,
+     "level_sizes": [
+      1,
+      39,
+      1138,
+      32813,
+      963925,
+      36438326
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 8.5
+    }
+   ]
+  },
+  {
+   "task": "add~",
+   "level": 2,
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    40,
+    1188,
+    34675,
+    1026568,
+    38864284
+   ],
+   "seconds": 7.9,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "routines",
+   "programs": [
+    "CLC LDA.N P[ADD.Y INC]",
+    "LDA.N CLC P[ADD.Y INC]",
+    "CLC LDA.Y P[ADD.N INC]",
+    "LDA.Y CLC P[ADD.N INC]",
+    "T.modx~ CLC P[ADD.N INC]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 5,
+     "level_sizes": [
+      1,
+      40,
+      1188,
+      34675,
+      1026568,
+      38864284
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 7.9
+    }
+   ]
+  },
+  {
+   "task": "round",
+   "level": 3,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    41,
+    1160,
+    29603,
+    709963,
+    22016943
+   ],
+   "seconds": 1.3,
+   "stop": "exhausted cost 5",
+   "routines": 6,
+   "answers": 400,
+   "programs": []
+  },
+  {
+   "task": "modB",
+   "level": 3,
+   "found_cost": 3,
+   "level_sizes": [
+    1,
+    42,
+    1274,
+    38094
+   ],
+   "seconds": 2.4,
+   "stop": "",
+   "how": "routines",
+   "programs": [
+    "B[T.modx STA.X]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 3,
+     "level_sizes": [
+      1,
+      42,
+      1274,
+      38094
+     ],
+     "stop": "",
+     "seconds": 0.4
+    }
+   ]
+  },
+  {
+   "task": "modB~",
+   "level": 3,
+   "found_cost": 3,
+   "level_sizes": [
+    1,
+    42,
+    1265,
+    37847
+   ],
+   "seconds": 0.5,
+   "stop": "",
+   "how": "routines",
+   "programs": [
+    "B[T.modx~ STA.Y]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 3,
+     "level_sizes": [
+      1,
+      42,
+      1265,
+      37847
+     ],
+     "stop": "",
+     "seconds": 0.4
+    }
+   ]
+  },
+  {
+   "task": "mrow",
+   "level": 3,
+   "found_cost": 6,
+   "level_sizes": [
+    1,
+    36,
+    1006,
+    28135,
+    810568,
+    22703784,
+    815892794
+   ],
+   "seconds": 71.2,
+   "stop": "budget: level 6 streamed (over 27000000 states)",
+   "how": "primitives",
+   "programs": [
+    "LDH.Y CLK CLA P[MAC.X INC]",
+    "CLK LDH.Y CLA P[MAC.X INC]",
+    "LDH.Y CLA CLK P[MAC.X INC]",
+    "CLA LDH.Y CLK P[MAC.X INC]",
+    "CLK CLA LDH.Y P[MAC.X INC]",
+    "CLA CLK LDH.Y P[MAC.X INC]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      42,
+      1256,
+      36775,
+      1094364,
+      41638800
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 8.6
+    },
+    {
+     "how": "library",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      49,
+      1735,
+      60434,
+      2146422,
+      95881579
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 22.6
+    },
+    {
+     "how": "primitives",
+     "found_cost": 6,
+     "level_sizes": [
+      1,
+      36,
+      1006,
+      28135,
+      810568,
+      22703784,
+      815892794
+     ],
+     "stop": "budget: level 6 streamed (over 27000000 states)",
+     "seconds": 28.2
+    }
+   ]
+  },
+  {
+   "task": "mrow~",
+   "level": 3,
+   "found_cost": 6,
+   "level_sizes": [
+    1,
+    36,
+    1004,
+    28024,
+    806076,
+    22557191,
+    811382562
+   ],
+   "seconds": 59.3,
+   "stop": "budget: level 6 streamed (over 27000000 states)",
+   "how": "primitives",
+   "programs": [
+    "LDH.X CLK CLA P[MAC.Y INC]",
+    "CLK LDH.X CLA P[MAC.Y INC]",
+    "LDH.X CLA CLK P[MAC.Y INC]",
+    "CLA LDH.X CLK P[MAC.Y INC]",
+    "CLK CLA LDH.X P[MAC.Y INC]",
+    "CLA CLK LDH.X P[MAC.Y INC]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      42,
+      1254,
+      36642,
+      1088657,
+      41454493
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 7.7
+    },
+    {
+     "how": "library",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      49,
+      1733,
+      60283,
+      2139044,
+      95605145
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 22.9
+    },
+    {
+     "how": "primitives",
+     "found_cost": 6,
+     "level_sizes": [
+      1,
+      36,
+      1004,
+      28024,
+      806076,
+      22557191,
+      811382562
+     ],
+     "stop": "budget: level 6 streamed (over 27000000 states)",
+     "seconds": 27.7
+    }
+   ]
+  },
+  {
+   "task": "round",
+   "level": 4,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    44,
+    1324,
+    35226,
+    870443,
+    27612776
+   ],
+   "seconds": 5.4,
+   "stop": "exhausted cost 5",
+   "routines": 10,
+   "answers": 400,
+   "programs": []
+  },
+  {
+   "task": "mac",
+   "level": 4,
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    44,
+    1374,
+    40976,
+    1223829,
+    47290800
+   ],
+   "seconds": 89.5,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "routines",
+   "programs": [
+    "LDH.Y CLK P[MAC.X INC]",
+    "CLK LDH.Y P[MAC.X INC]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 5,
+     "level_sizes": [
+      1,
+      44,
+      1374,
+      40976,
+      1223829,
+      47290800
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 39.5
+    }
+   ]
+  },
+  {
+   "task": "mac~",
+   "level": 4,
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    44,
+    1372,
+    40861,
+    1219281,
+    47153004
+   ],
+   "seconds": 39.1,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "routines",
+   "programs": [
+    "LDH.X CLK P[MAC.Y INC]",
+    "CLK LDH.X P[MAC.Y INC]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 5,
+     "level_sizes": [
+      1,
+      44,
+      1372,
+      40861,
+      1219281,
+      47153004
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 39.1
+    }
+   ]
+  },
+  {
+   "task": "step",
+   "level": 4,
+   "found_cost": 4,
+   "level_sizes": [
+    1,
+    45,
+    1329,
+    37316,
+    1054820
+   ],
+   "seconds": 13.2,
+   "stop": "",
+   "how": "routines",
+   "programs": [
+    "LDA.Y BRG.X STA.X T.modB",
+    "LDA.Y BRG.X STA.Y T.modB~",
+    "T.modB~ BRG.X STA.X T.modB",
+    "T.modx~ BRG.X STA.X T.modB",
+    "T.modB~ BRG.X STA.Y T.modB~",
+    "T.modx~ BRG.X STA.Y T.modB~"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 4,
+     "level_sizes": [
+      1,
+      45,
+      1329,
+      37316,
+      1054820
+     ],
+     "stop": "",
+     "seconds": 13.2
+    }
+   ]
+  },
+  {
+   "task": "step~",
+   "level": 4,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    53,
+    1841,
+    61120,
+    2048586,
+    91756702
+   ],
+   "seconds": 126.8,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      45,
+      1323,
+      36880,
+      1034068,
+      39606677
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 39.1
+    },
+    {
+     "how": "library",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      53,
+      1841,
+      61120,
+      2048586,
+      91756702
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 53.5
+    },
+    {
+     "how": "primitives",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      36,
+      934,
+      24000,
+      638880,
+      16634644,
+      591154163
+     ],
+     "stop": "budget: level 6 streamed (over 27000000 states)",
+     "seconds": 21.0
+    }
+   ]
+  },
+  {
+   "task": "reduce",
+   "level": 4,
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    53,
+    1974,
+    70894,
+    2559264,
+    117333603
+   ],
+   "seconds": 245.6,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [
+    "B3.1 P[BRG.X STA.Y T.modB~]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      45,
+      1465,
+      45729,
+      1423096,
+      56119761
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 166.7
+    },
+    {
+     "how": "library",
+     "found_cost": 5,
+     "level_sizes": [
+      1,
+      53,
+      1974,
+      70894,
+      2559264,
+      117333603
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 77.3
+    }
+   ]
+  },
+  {
+   "task": "reduce~",
+   "level": 4,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    53,
+    1956,
+    70122,
+    2531476,
+    116122130
+   ],
+   "seconds": 314.8,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "library",
+   "programs": [],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      45,
+      1450,
+      45170,
+      1406720,
+      55497875
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 185.3
+    },
+    {
+     "how": "library",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      53,
+      1956,
+      70122,
+      2531476,
+      116122130
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 98.7
+    },
+    {
+     "how": "primitives",
+     "found_cost": null,
+     "level_sizes": [
+      1,
+      36,
+      1027,
+      29244,
+      856979,
+      24453194,
+      888234775
+     ],
+     "stop": "budget: level 6 streamed (over 27000000 states)",
+     "seconds": 29.8
+    }
+   ]
+  },
+  {
+   "task": "round",
+   "level": 5,
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    48,
+    1568,
+    44654,
+    1178015,
+    39192441
+   ],
+   "seconds": 49.8,
+   "stop": "exhausted cost 5",
+   "routines": 14,
+   "answers": 400,
+   "programs": []
+  },
+  {
+   "task": "mul",
+   "level": 5,
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    48,
+    1611,
+    51474,
+    1647502,
+    66985936
+   ],
+   "seconds": 299.2,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "routines",
+   "programs": [
+    "CLA W[T.mac~ SHL.Y SHR.X]",
+    "CLA W[T.mac INC SHL.X]",
+    "CLA W[T.mac SHL.X SHR.Y]",
+    "CLA W[T.mac~ INC SHL.Y]",
+    "CLA B[T.mac INC SHL.X]",
+    "CLA B[T.mac~ INC SHL.Y]",
+    "T.mrow P[INC SHL.X T.mac]",
+    "T.mrow P[SHL.X SHR.Y T.mac]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 5,
+     "level_sizes": [
+      1,
+      48,
+      1611,
+      51474,
+      1647502,
+      66985936
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 187.0
+    }
+   ]
+  },
+  {
+   "task": "mul~",
+   "level": 5,
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    48,
+    1611,
+    51462,
+    1646364,
+    66913830
+   ],
+   "seconds": 185.7,
+   "stop": "budget: level 5 streamed (over 5800000 states)",
+   "how": "routines",
+   "programs": [
+    "CLA B[T.mac INC SHL.X]",
+    "CLA W[T.mac INC SHL.X]",
+    "CLA W[T.mac~ INC SHL.Y]",
+    "CLA W[T.mac~ SHL.Y SHR.X]",
+    "CLA W[T.mac SHL.X SHR.Y]",
+    "CLA B[T.mac~ INC SHL.Y]",
+    "T.mrow~ W[SHL.Y SHR.X T.mac~]",
+    "T.mrow W[INC SHL.X T.mac]"
+   ],
+   "runs": [
+    {
+     "how": "routines",
+     "found_cost": 5,
+     "level_sizes": [
+      1,
+      48,
+      1611,
+      51462,
+      1646364,
+      66913830
+     ],
+     "stop": "budget: level 5 streamed (over 5800000 states)",
+     "seconds": 184.8
+    }
+   ]
+  },
+  {
+   "task": "round",
+   "level": 6,
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    50,
+    1683,
+    48309,
+    1275371,
+    42616335
+   ],
+   "seconds": 64.8,
+   "stop": "",
+   "routines": 16,
+   "answers": 400,
+   "programs": [
+    "T.reduce STA.X T.mul STA.X T.reduce",
+    "T.modx STA.Y T.mul STA.X T.reduce",
+    "T.modB STA.Y T.mul STA.X T.reduce",
+    "LDA.X STA.Y T.mul STA.X T.reduce",
+    "T.add STA.Y T.mul STA.X T.reduce",
+    "T.reduce STA.X T.mul~ STA.X T.reduce",
+    "T.modx STA.Y T.mul~ STA.X T.reduce",
+    "T.modB STA.Y T.mul~ STA.X T.reduce"
+   ]
+  }
+ ],
+ "history": [
+  {
+   "level": 0,
+   "solved": [
+    "lt",
+    "lt~"
+   ],
+   "merges": [
+    {
+     "name": "B0.1",
+     "def": "SUB.N INC",
+     "weight": 2
+    },
+    {
+     "name": "B0.2",
+     "def": "P[B0.1]",
+     "weight": 2
+    },
+    {
+     "name": "B0.3",
+     "def": "CLC B0.2",
+     "weight": 2
+    },
+    {
+     "name": "T.lt",
+     "def": "CLC LDA.X B0.2",
+     "routine": true
+    },
+    {
+     "name": "T.lt~",
+     "def": "CLC LDA.Y B0.2",
+     "routine": true
+    }
+   ],
+   "lib": {
+    "B0.1": "SUB.N INC",
+    "B0.2": "P[B0.1]",
+    "B0.3": "CLC B0.2",
+    "T.lt": "CLC LDA.X B0.2",
+    "T.lt~": "CLC LDA.Y B0.2"
+   }
+  },
+  {
+   "level": 1,
+   "solved": [
+    "modx",
+    "modx~"
+   ],
+   "merges": [
+    {
+     "name": "T.modx",
+     "def": "T.lt P[SELC.X INC]",
+     "routine": true
+    },
+    {
+     "name": "T.modx~",
+     "def": "T.lt~ P[SELC.Y INC]",
+     "routine": true
+    }
+   ],
+   "lib": {
+    "B0.1": "SUB.N INC",
+    "B0.2": "P[B0.1]",
+    "B0.3": "CLC B0.2",
+    "T.lt": "CLC LDA.X B0.2",
+    "T.lt~": "CLC LDA.Y B0.2",
+    "T.modx": "T.lt P[SELC.X INC]",
+    "T.modx~": "T.lt~ P[SELC.Y INC]"
+   }
+  },
+  {
+   "level": 2,
+   "solved": [
+    "add",
+    "add~"
+   ],
+   "merges": [
+    {
+     "name": "B2.1",
+     "def": "LDA.N CLC",
+     "weight": 2
+    },
+    {
+     "name": "B2.2",
+     "def": "CLC LDA.N",
+     "weight": 2
+    },
+    {
+     "name": "B2.3",
+     "def": "ADD.N INC",
+     "weight": 2
+    },
+    {
+     "name": "B2.4",
+     "def": "P[B2.3]",
+     "weight": 2
+    },
+    {
+     "name": "B2.5",
+     "def": "CLC B2.4",
+     "weight": 2
+    },
+    {
+     "name": "T.add",
+     "def": "B2.2 P[ADD.X INC]",
+     "routine": true
+    },
+    {
+     "name": "T.add~",
+     "def": "B2.2 P[ADD.Y INC]",
+     "routine": true
+    }
+   ],
+   "lib": {
+    "B0.1": "SUB.N INC",
+    "B0.2": "P[B0.1]",
+    "B0.3": "CLC B0.2",
+    "T.lt": "CLC LDA.X B0.2",
+    "T.lt~": "CLC LDA.Y B0.2",
+    "T.modx": "T.lt P[SELC.X INC]",
+    "T.modx~": "T.lt~ P[SELC.Y INC]",
+    "B2.1": "LDA.N CLC",
+    "B2.2": "CLC LDA.N",
+    "B2.3": "ADD.N INC",
+    "B2.4": "P[B2.3]",
+    "B2.5": "CLC B2.4",
+    "T.add": "B2.2 P[ADD.X INC]",
+    "T.add~": "B2.2 P[ADD.Y INC]"
+   }
+  },
+  {
+   "level": 3,
+   "solved": [
+    "modB",
+    "modB~",
+    "mrow",
+    "mrow~"
+   ],
+   "merges": [
+    {
+     "name": "B3.1",
+     "def": "CLK CLA",
+     "weight": 2
+    },
+    {
+     "name": "B3.2",
+     "def": "CLA CLK",
+     "weight": 2
+    },
+    {
+     "name": "T.modB",
+     "def": "B[T.modx STA.X]",
+     "routine": true
+    },
+    {
+     "name": "T.modB~",
+     "def": "B[T.modx~ STA.Y]",
+     "routine": true
+    },
+    {
+     "name": "T.mrow",
+     "def": "LDH.Y B3.1 P[MAC.X INC]",
+     "routine": true
+    },
+    {
+     "name": "T.mrow~",
+     "def": "LDH.X B3.1 P[MAC.Y INC]",
+     "routine": true
+    }
+   ],
+   "lib": {
+    "B0.1": "SUB.N INC",
+    "B0.2": "P[B0.1]",
+    "B0.3": "CLC B0.2",
+    "T.lt": "CLC LDA.X B0.2",
+    "T.lt~": "CLC LDA.Y B0.2",
+    "T.modx": "T.lt P[SELC.X INC]",
+    "T.modx~": "T.lt~ P[SELC.Y INC]",
+    "B2.1": "LDA.N CLC",
+    "B2.2": "CLC LDA.N",
+    "B2.3": "ADD.N INC",
+    "B2.4": "P[B2.3]",
+    "B2.5": "CLC B2.4",
+    "T.add": "B2.2 P[ADD.X INC]",
+    "T.add~": "B2.2 P[ADD.Y INC]",
+    "B3.1": "CLK CLA",
+    "B3.2": "CLA CLK",
+    "T.modB": "B[T.modx STA.X]",
+    "T.modB~": "B[T.modx~ STA.Y]",
+    "T.mrow": "LDH.Y B3.1 P[MAC.X INC]",
+    "T.mrow~": "LDH.X B3.1 P[MAC.Y INC]"
+   }
+  },
+  {
+   "level": 4,
+   "solved": [
+    "mac",
+    "mac~",
+    "step",
+    "reduce"
+   ],
+   "merges": [
+    {
+     "name": "B4.1",
+     "def": "STA.Y T.modB~",
+     "weight": 2
+    },
+    {
+     "name": "B4.2",
+     "def": "BRG.X B4.1",
+     "weight": 2
+    },
+    {
+     "name": "T.mac",
+     "def": "LDH.Y CLK P[MAC.X INC]",
+     "routine": true
+    },
+    {
+     "name": "T.mac~",
+     "def": "LDH.X CLK P[MAC.Y INC]",
+     "routine": true
+    },
+    {
+     "name": "T.step",
+     "def": "LDA.Y BRG.X STA.X T.modB",
+     "routine": true
+    },
+    {
+     "name": "T.reduce",
+     "def": "B3.1 P[B4.2]",
+     "routine": true
+    }
+   ],
+   "lib": {
+    "B0.1": "SUB.N INC",
+    "B0.2": "P[B0.1]",
+    "B0.3": "CLC B0.2",
+    "T.lt": "CLC LDA.X B0.2",
+    "T.lt~": "CLC LDA.Y B0.2",
+    "T.modx": "T.lt P[SELC.X INC]",
+    "T.modx~": "T.lt~ P[SELC.Y INC]",
+    "B2.1": "LDA.N CLC",
+    "B2.2": "CLC LDA.N",
+    "B2.3": "ADD.N INC",
+    "B2.4": "P[B2.3]",
+    "B2.5": "CLC B2.4",
+    "T.add": "B2.2 P[ADD.X INC]",
+    "T.add~": "B2.2 P[ADD.Y INC]",
+    "B3.1": "CLK CLA",
+    "B3.2": "CLA CLK",
+    "T.modB": "B[T.modx STA.X]",
+    "T.modB~": "B[T.modx~ STA.Y]",
+    "T.mrow": "LDH.Y B3.1 P[MAC.X INC]",
+    "T.mrow~": "LDH.X B3.1 P[MAC.Y INC]",
+    "B4.1": "STA.Y T.modB~",
+    "B4.2": "BRG.X B4.1",
+    "T.mac": "LDH.Y CLK P[MAC.X INC]",
+    "T.mac~": "LDH.X CLK P[MAC.Y INC]",
+    "T.step": "LDA.Y BRG.X STA.X T.modB",
+    "T.reduce": "B3.1 P[B4.2]"
+   }
+  },
+  {
+   "level": 5,
+   "solved": [
+    "mul",
+    "mul~"
+   ],
+   "merges": [
+    {
+     "name": "B5.1",
+     "def": "T.mac~ SHL.Y",
+     "weight": 2
+    },
+    {
+     "name": "B5.2",
+     "def": "B5.1 SHR.X",
+     "weight": 2
+    },
+    {
+     "name": "B5.3",
+     "def": "W[B5.2]",
+     "weight": 2
+    },
+    {
+     "name": "B5.4",
+     "def": "CLA B5.3",
+     "weight": 2
+    },
+    {
+     "name": "B5.5",
+     "def": "P[B5.2]",
+     "weight": 2
+    },
+    {
+     "name": "B5.6",
+     "def": "CLA B5.5",
+     "weight": 2
+    },
+    {
+     "name": "B5.7",
+     "def": "B[B5.2]",
+     "weight": 2
+    },
+    {
+     "name": "B5.8",
+     "def": "CLA B5.7",
+     "weight": 2
+    },
+    {
+     "name": "B5.9",
+     "def": "T.mac~ INC",
+     "weight": 2
+    },
+    {
+     "name": "B5.10",
+     "def": "B5.9 SHL.Y",
+     "weight": 2
+    },
+    {
+     "name": "B5.11",
+     "def": "W[B5.10]",
+     "weight": 2
+    },
+    {
+     "name": "B5.12",
+     "def": "CLA B5.11",
+     "weight": 2
+    },
+    {
+     "name": "T.mul",
+     "def": "B5.4",
+     "routine": true
+    },
+    {
+     "name": "T.mul~",
+     "def": "CLA W[T.mac INC SHL.X]",
+     "routine": true
+    }
+   ],
+   "lib": {
+    "B0.1": "SUB.N INC",
+    "B0.2": "P[B0.1]",
+    "B0.3": "CLC B0.2",
+    "T.lt": "CLC LDA.X B0.2",
+    "T.lt~": "CLC LDA.Y B0.2",
+    "T.modx": "T.lt P[SELC.X INC]",
+    "T.modx~": "T.lt~ P[SELC.Y INC]",
+    "B2.1": "LDA.N CLC",
+    "B2.2": "CLC LDA.N",
+    "B2.3": "ADD.N INC",
+    "B2.4": "P[B2.3]",
+    "B2.5": "CLC B2.4",
+    "T.add": "B2.2 P[ADD.X INC]",
+    "T.add~": "B2.2 P[ADD.Y INC]",
+    "B3.1": "CLK CLA",
+    "B3.2": "CLA CLK",
+    "T.modB": "B[T.modx STA.X]",
+    "T.modB~": "B[T.modx~ STA.Y]",
+    "T.mrow": "LDH.Y B3.1 P[MAC.X INC]",
+    "T.mrow~": "LDH.X B3.1 P[MAC.Y INC]",
+    "B4.1": "STA.Y T.modB~",
+    "B4.2": "BRG.X B4.1",
+    "T.mac": "LDH.Y CLK P[MAC.X INC]",
+    "T.mac~": "LDH.X CLK P[MAC.Y INC]",
+    "T.step": "LDA.Y BRG.X STA.X T.modB",
+    "T.reduce": "B3.1 P[B4.2]",
+    "B5.1": "T.mac~ SHL.Y",
+    "B5.2": "B5.1 SHR.X",
+    "B5.3": "W[B5.2]",
+    "B5.4": "CLA B5.3",
+    "B5.5": "P[B5.2]",
+    "B5.6": "CLA B5.5",
+    "B5.7": "B[B5.2]",
+    "B5.8": "CLA B5.7",
+    "B5.9": "T.mac~ INC",
+    "B5.10": "B5.9 SHL.Y",
+    "B5.11": "W[B5.10]",
+    "B5.12": "CLA B5.11",
+    "T.mul": "B5.4",
+    "T.mul~": "CLA W[T.mac INC SHL.X]"
+   }
+  }
+ ],
+ "lib": {
+  "B0.1": "SUB.N INC",
+  "B0.2": "P[B0.1]",
+  "B0.3": "CLC B0.2",
+  "T.lt": "CLC LDA.X B0.2",
+  "T.lt~": "CLC LDA.Y B0.2",
+  "T.modx": "T.lt P[SELC.X INC]",
+  "T.modx~": "T.lt~ P[SELC.Y INC]",
+  "B2.1": "LDA.N CLC",
+  "B2.2": "CLC LDA.N",
+  "B2.3": "ADD.N INC",
+  "B2.4": "P[B2.3]",
+  "B2.5": "CLC B2.4",
+  "T.add": "B2.2 P[ADD.X INC]",
+  "T.add~": "B2.2 P[ADD.Y INC]",
+  "B3.1": "CLK CLA",
+  "B3.2": "CLA CLK",
+  "T.modB": "B[T.modx STA.X]",
+  "T.modB~": "B[T.modx~ STA.Y]",
+  "T.mrow": "LDH.Y B3.1 P[MAC.X INC]",
+  "T.mrow~": "LDH.X B3.1 P[MAC.Y INC]",
+  "B4.1": "STA.Y T.modB~",
+  "B4.2": "BRG.X B4.1",
+  "T.mac": "LDH.Y CLK P[MAC.X INC]",
+  "T.mac~": "LDH.X CLK P[MAC.Y INC]",
+  "T.step": "LDA.Y BRG.X STA.X T.modB",
+  "T.reduce": "B3.1 P[B4.2]",
+  "B5.1": "T.mac~ SHL.Y",
+  "B5.2": "B5.1 SHR.X",
+  "B5.3": "W[B5.2]",
+  "B5.4": "CLA B5.3",
+  "B5.5": "P[B5.2]",
+  "B5.6": "CLA B5.5",
+  "B5.7": "B[B5.2]",
+  "B5.8": "CLA B5.7",
+  "B5.9": "T.mac~ INC",
+  "B5.10": "B5.9 SHL.Y",
+  "B5.11": "W[B5.10]",
+  "B5.12": "CLA B5.11",
+  "T.mul": "B5.4",
+  "T.mul~": "CLA W[T.mac INC SHL.X]"
+ },
+ "solved_at": {
+  "lt": 0,
+  "lt~": 0,
+  "modx": 1,
+  "modx~": 1,
+  "add": 2,
+  "add~": 2,
+  "modB": 3,
+  "modB~": 3,
+  "mrow": 3,
+  "mrow~": 3,
+  "mac": 4,
+  "mac~": 4,
+  "step": 4,
+  "reduce": 4,
+  "mul": 5,
+  "mul~": 5
+ }
+}

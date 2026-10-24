@@ -1,0 +1,29 @@
+device NVIDIA B200; set lifted: 61 instructions ['SUB.X', 'SUB.Y', 'SUB.N', 'SUB.S', 'RSUB.X', 'RSUB.Y', 'RSUB.N', 'RSUB.S', 'LT.X', 'LT.Y', 'LT.N', 'LT.S', 'RLT.X', 'RLT.Y', 'RLT.N', 'RLT.S', 'ADD.X', 'ADD.Y', 'ADD.N', 'ADD.S', 'MULD', 'RMULD.X', 'RMULD.Y', 'RMULD.N', 'RMULD.S', 'MAC.X', 'MAC.Y', 'MAC.N', 'MAC.S', 'RMAC.X', 'RMAC.Y', 'RMAC.N', 'RMAC.S', 'SELC.X', 'SELC.Y', 'SELC.N', 'SELC.S', 'RSELC.X', 'RSELC.Y', 'RSELC.N', 'RSELC.S', 'LDA.X', 'LDA.Y', 'LDA.N', 'LDA.S', 'STA.X', 'STA.Y', 'STA.S', 'CLA', 'CLC', 'CLK', 'LDH.X', 'LDH.Y', 'INC', 'SHL.A', 'SHL.X', 'SHL.Y', 'SHR.A', 'SHR.X', 'SHR.Y', 'BRG.X']
+cell {'slice': 'sub(A,R)', 'cell': 'SUB(a,x,c -> A,c)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'sub(R,A)', 'cell': 'RSUB(a,x,c -> A,c)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'lt(A,R)', 'cell': 'LT(a,x,c -> c)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'lt(R,A)', 'cell': 'RLT(a,x,c -> c)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'add(A,R)', 'cell': 'ADD(a,x,c -> A,c)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'muld(A,H)', 'cell': 'MULD(a,h,k -> A,k)', 'view': True, 'rows_checked': 437}
+cell {'slice': 'muld(R,H)', 'cell': 'RMULD(a,x,h,k -> A,k)', 'view': True, 'rows_checked': 437}
+cell {'slice': 'acc.mul(A,R,H)', 'cell': 'MAC(a,x,h,k -> A,k)', 'view': True, 'rows_checked': 1788}
+cell {'slice': 'acc.mul(R,A,H)', 'cell': 'RMAC(a,x,h,k -> A,k)', 'view': True, 'rows_checked': 1788}
+cell {'slice': 'select(C,A,R)', 'cell': 'SELC(a,x,c -> A)', 'view': True, 'rows_checked': 200}
+cell {'slice': 'select(C,R,A)', 'cell': 'RSELC(a,x,c -> A)', 'view': True, 'rows_checked': 200}
+UNIT    30.6s +  30.6s L0 lt       cost 5 (library) levels [1, 61, 3049, 150933, 7637635, 468432551] 30.6s budget: level 5 streamed (over 23200000 states) ['CLC P[LDA.N RSUB.X INC]', 'CLC P[LDA.X SUB.N INC]']
+UNIT    52.0s +  21.4s L0 lt~      cost 5 (library) levels [1, 61, 3049, 151003, 7637080, 468301090] 21.4s budget: level 5 streamed (over 23200000 states) ['CLC P[LDA.Y SUB.N INC]', 'CLC P[LDA.N RSUB.Y INC]']
+UNIT    65.7s +  13.7s L0 modx     cost None (library) levels [1, 61, 3029, 147254, 7237365, 435904039] 13.7s budget: level 5 streamed (over 23200000 states) []
+UNIT    79.5s +  13.8s L0 modx~    cost None (library) levels [1, 61, 3031, 147141, 7224200, 435116703] 13.8s budget: level 5 streamed (over 23200000 states) []
+UNIT    79.5s +   0.0s L0 sleep: solved ['lt', 'lt~']; B0.1=SUB.N INC; B0.2=P[B0.1]; B0.3=CLC B0.2; B0.4=LT.N INC; B0.5=P[B0.4]; B0.6=CLC B0.5; B0.7=LDA.N CLC; B0.8=CLC LDA.N; T.lt=CLC LDA.X B0.5; T.lt~=CLC LDA.Y B0.5
+UNIT    84.6s +   5.1s L1 round: cost None levels [1, 63, 2990, 129499, 5318225, 272003658] 5.1s exhausted cost 5 []
+UNIT    91.4s +   6.9s L1 modx     cost 4 (routines) levels [1, 63, 3166, 154691, 7624913] 6.9s  ['T.lt P[BRG.X RSELC.X]']
+UNIT   106.9s +  15.5s L1 modx~    cost 5 (routines) levels [1, 63, 3166, 154458, 7605541, 460809054] 15.5s budget: level 5 streamed (over 23200000 states) ['T.lt~ P[SHL.Y RSELC.Y INC]', 'T.lt~ P[STA.X BRG.X RSELC.X]']
+UNIT   106.9s +   0.0s L1 sleep: solved ['modx', 'modx~']; B1.1=BRG.X RSELC.X; B1.2=P[B1.1]; T.modx=T.lt B1.2; T.modx~=T.lt~ CLA P[SELC.Y INC]
+UNIT   114.2s +   7.3s L2 round: cost None levels [1, 65, 3102, 134475, 5519704, 283188757] 7.3s exhausted cost 5 []
+UNIT   225.8s + 111.5s L2 add      cost None (library) levels [1, 71, 3890, 204871, 10835808, 731773974] 111.5s budget: level 5 streamed (over 23200000 states) []
+UNIT   328.5s + 102.7s L2 add~     cost None (library) levels [1, 73, 4104, 219766, 11763942, 794748040] 102.7s budget: level 5 streamed (over 23200000 states) []
+UNIT   328.5s +   0.0s L2 sleep: solved []; 
+ROUNDS [] after 328.5 s
+wrote /out/climb/lifted_b200_x4.json
+
+--- stderr ---

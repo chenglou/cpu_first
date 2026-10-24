@@ -1,0 +1,43 @@
+device NVIDIA H100 80GB HBM3; set inv4: 36 instructions ['SUB.X', 'SUB.Y', 'SUB.N', 'SUB.S', 'ADD.X', 'ADD.Y', 'ADD.N', 'ADD.S', 'MAC.X', 'MAC.Y', 'MAC.N', 'MAC.S', 'SELC.X', 'SELC.Y', 'SELC.N', 'SELC.S', 'LDA.X', 'LDA.Y', 'LDA.N', 'LDA.S', 'STA.X', 'STA.Y', 'STA.S', 'CLA', 'CLC', 'CLK', 'LDH.X', 'LDH.Y', 'INC', 'SHL.A', 'SHL.X', 'SHL.Y', 'SHR.A', 'SHR.X', 'SHR.Y', 'BRG.X']
+cell {'slice': 'sub(A,R)', 'cell': 'SUB(a,x,c -> A,c)', 'program': 'L.C[INC.R] CLR.C L.R[T.v]', 'lib': {'T.v': 'Z.A[MOV.A.N INC.C] DEC.A'}, 'lift': 1.0, 's3i': {'rows': 200, 'equal': 200}}
+cell {'slice': 'add(A,R)', 'cell': 'ADD(a,x,c -> A,c)', 'program': 'L.C[INC.R] CLR.C L.R[T.w]', 'lib': {'T.w': 'INC.A MOV.T.N L.A[DEC.T] Z.T[CLR.A INC.C]'}, 'lift': 1.0, 's3i': {'rows': 200, 'equal': 200}}
+cell {'slice': 'acc.mul(A,R,H)', 'cell': 'MAC(a,x,h,k -> A,k)', 'program': 'MOV.T.C CLR.C L.T[T.w] L.H[L.R[T.w]]', 'lib': {'T.w': 'INC.A MOV.T.N L.A[DEC.T] Z.T[CLR.A INC.C]'}, 'lift': 1.0, 's3i': {'rows': 10000, 'equal': 10000}}
+cell {'slice': 'select(C,A,R)', 'cell': 'SELC(a,x,c -> A)', 'program': 'L.C[MOV.A.R]', 'lib': {}, 'lift': 1.0, 's3i': {'rows': 200, 'equal': 200}}
+UNIT     5.5s +   5.5s L0 lt       cost 5 (library) levels [1, 36, 1027, 29716, 894754, 33639436] 5.5s budget: level 5 streamed (over 5800000 states) ['CLC P[LDA.X SUB.N INC]', 'CLC LDA.X P[SUB.N INC]']
+UNIT     8.3s +   2.7s L0 lt~      cost 5 (library) levels [1, 36, 1027, 29678, 892686, 33547514] 2.7s budget: level 5 streamed (over 5800000 states) ['CLC P[LDA.Y SUB.N INC]', 'CLC LDA.Y P[SUB.N INC]']
+UNIT    10.2s +   1.9s L0 modx     cost None (library) levels [1, 36, 1027, 29378, 865578, 32211873] 1.9s budget: level 5 streamed (over 5800000 states) []
+UNIT    12.2s +   2.0s L0 modx~    cost None (library) levels [1, 36, 1027, 29327, 862865, 32097082] 2.0s budget: level 5 streamed (over 5800000 states) []
+UNIT    12.2s +   0.0s L0 sleep: solved ['lt', 'lt~']; B0.1=SUB.N INC; B0.2=P[B0.1]; B0.3=CLC B0.2; T.lt=CLC LDA.X B0.2; T.lt~=CLC LDA.Y B0.2
+UNIT    12.8s +   0.6s L1 round: cost None levels [1, 38, 1051, 26338, 623060, 18909352] 0.6s exhausted cost 5 []
+UNIT    16.5s +   3.7s L1 modx     cost 4 (routines) levels [1, 38, 1119, 32665, 975958] 3.6s  ['T.lt B[SELC.X INC]', 'T.lt P[SELC.X INC]']
+UNIT    17.7s +   1.3s L1 modx~    cost 4 (routines) levels [1, 38, 1119, 32615, 973078] 1.3s  ['T.lt~ B[SELC.Y INC]', 'T.lt~ P[SELC.Y INC]']
+UNIT    17.7s +   0.0s L1 sleep: solved ['modx', 'modx~']; T.modx=T.lt P[SELC.X INC]; T.modx~=T.lt~ P[SELC.Y INC]
+UNIT    18.7s +   0.9s L2 round: cost None levels [1, 39, 1088, 27413, 650880, 19990735] 0.9s exhausted cost 5 []
+UNIT    29.4s +  10.7s L2 add      cost 5 (routines) levels [1, 39, 1138, 32813, 963925, 36438326] 10.7s budget: level 5 streamed (over 5800000 states) ['CLC LDA.N P[ADD.X INC]', 'LDA.N CLC P[ADD.X INC]']
+UNIT    37.3s +   7.9s L2 add~     cost 5 (routines) levels [1, 40, 1188, 34675, 1026568, 38864284] 7.9s budget: level 5 streamed (over 5800000 states) ['CLC LDA.N P[ADD.Y INC]', 'LDA.N CLC P[ADD.Y INC]']
+UNIT    37.3s +   0.0s L2 sleep: solved ['add', 'add~']; B2.1=LDA.N CLC; B2.2=CLC LDA.N; B2.3=ADD.N INC; B2.4=P[B2.3]; B2.5=CLC B2.4; T.add=B2.2 P[ADD.X INC]; T.add~=B2.2 P[ADD.Y INC]
+UNIT    38.6s +   1.3s L3 round: cost None levels [1, 41, 1160, 29603, 709963, 22016943] 1.3s exhausted cost 5 []
+UNIT    41.0s +   2.4s L3 modB     cost 3 (routines) levels [1, 42, 1274, 38094] 2.4s  ['B[T.modx STA.X]']
+UNIT    41.5s +   0.5s L3 modB~    cost 3 (routines) levels [1, 42, 1265, 37847] 0.5s  ['B[T.modx~ STA.Y]']
+UNIT   112.7s +  71.2s L3 mrow     cost 6 (primitives) levels [1, 36, 1006, 28135, 810568, 22703784, 815892794] 71.2s budget: level 6 streamed (over 27000000 states) ['LDH.Y CLK CLA P[MAC.X INC]', 'CLK LDH.Y CLA P[MAC.X INC]']
+UNIT   172.0s +  59.3s L3 mrow~    cost 6 (primitives) levels [1, 36, 1004, 28024, 806076, 22557191, 811382562] 59.3s budget: level 6 streamed (over 27000000 states) ['LDH.X CLK CLA P[MAC.Y INC]', 'CLK LDH.X CLA P[MAC.Y INC]']
+UNIT   172.0s +   0.0s L3 sleep: solved ['modB', 'modB~', 'mrow', 'mrow~']; B3.1=CLK CLA; B3.2=CLA CLK; T.modB=B[T.modx STA.X]; T.modB~=B[T.modx~ STA.Y]; T.mrow=LDH.Y B3.1 P[MAC.X INC]; T.mrow~=LDH.X B3.1 P[MAC.Y INC]
+UNIT   177.4s +   5.4s L4 round: cost None levels [1, 44, 1324, 35226, 870443, 27612776] 5.4s exhausted cost 5 []
+UNIT   266.9s +  89.5s L4 mac      cost 5 (routines) levels [1, 44, 1374, 40976, 1223829, 47290800] 89.5s budget: level 5 streamed (over 5800000 states) ['LDH.Y CLK P[MAC.X INC]', 'CLK LDH.Y P[MAC.X INC]']
+UNIT   306.0s +  39.1s L4 mac~     cost 5 (routines) levels [1, 44, 1372, 40861, 1219281, 47153004] 39.1s budget: level 5 streamed (over 5800000 states) ['LDH.X CLK P[MAC.Y INC]', 'CLK LDH.X P[MAC.Y INC]']
+UNIT   319.2s +  13.2s L4 step     cost 4 (routines) levels [1, 45, 1329, 37316, 1054820] 13.2s  ['LDA.Y BRG.X STA.X T.modB', 'LDA.Y BRG.X STA.Y T.modB~']
+UNIT   446.1s + 126.8s L4 step~    cost None (library) levels [1, 53, 1841, 61120, 2048586, 91756702] 126.8s budget: level 5 streamed (over 5800000 states) []
+UNIT   691.7s + 245.6s L4 reduce   cost 5 (library) levels [1, 53, 1974, 70894, 2559264, 117333603] 245.6s budget: level 5 streamed (over 5800000 states) ['B3.1 P[BRG.X STA.Y T.modB~]']
+UNIT  1006.4s + 314.8s L4 reduce~  cost None (library) levels [1, 53, 1956, 70122, 2531476, 116122130] 314.8s budget: level 5 streamed (over 5800000 states) []
+UNIT  1006.4s +   0.0s L4 sleep: solved ['mac', 'mac~', 'step', 'reduce']; B4.1=STA.Y T.modB~; B4.2=BRG.X B4.1; T.mac=LDH.Y CLK P[MAC.X INC]; T.mac~=LDH.X CLK P[MAC.Y INC]; T.step=LDA.Y BRG.X STA.X T.modB; T.reduce=B3.1 P[B4.2]
+UNIT  1056.2s +  49.8s L5 round: cost None levels [1, 48, 1568, 44654, 1178015, 39192441] 49.8s exhausted cost 5 []
+UNIT  1355.5s + 299.2s L5 TWIN step~: not searched again (its original step is solved; its own search used up its cap)
+UNIT  1355.5s +   0.0s L5 TWIN reduce~: not searched again (its original reduce is solved; its own search used up its cap)
+UNIT  1355.5s +   0.0s L5 mul      cost 5 (routines) levels [1, 48, 1611, 51474, 1647502, 66985936] 299.2s budget: level 5 streamed (over 5800000 states) ['CLA W[T.mac~ SHL.Y SHR.X]', 'CLA W[T.mac INC SHL.X]']
+UNIT  1541.2s + 185.7s L5 mul~     cost 5 (routines) levels [1, 48, 1611, 51462, 1646364, 66913830] 185.7s budget: level 5 streamed (over 5800000 states) ['CLA B[T.mac INC SHL.X]', 'CLA W[T.mac INC SHL.X]']
+UNIT  1541.2s +   0.0s L5 sleep: solved ['mul', 'mul~']; B5.1=T.mac~ SHL.Y; B5.2=B5.1 SHR.X; B5.3=W[B5.2]; B5.4=CLA B5.3; B5.5=P[B5.2]; B5.6=CLA B5.5; B5.7=B[B5.2]; B5.8=CLA B5.7; B5.9=T.mac~ INC; B5.10=B5.9 SHL.Y; B5.11=W[B5.10]; B5.12=CLA B5
+UNIT  1606.0s +  64.8s L6 round: cost 5 levels [1, 50, 1683, 48309, 1275371, 42616335] 64.8s  ['T.reduce STA.X T.mul STA.X T.reduce', 'T.modx STA.Y T.mul STA.X T.reduce', 'T.modB STA.Y T.mul STA.X T.reduce']
+ROUNDS ['T.reduce STA.X T.mul STA.X T.reduce', 'T.modx STA.Y T.mul STA.X T.reduce', 'T.modB STA.Y T.mul STA.X T.reduce', 'LDA.X STA.Y T.mul STA.X T.reduce'] after 1606.0 s
+wrote /out/climb/inv4_h100_c1.json
+
+--- stderr ---

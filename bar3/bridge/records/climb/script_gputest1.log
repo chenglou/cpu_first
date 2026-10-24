@@ -1,0 +1,14 @@
+
+--- stderr ---
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/root/cpu_first/bar3/bridge/test_libcore_b.py", line 125, in <module>
+    cross("every primitive (defaults)", list(LB.PRIMS), {})
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/cpu_first/bar3/bridge/test_libcore_b.py", line 38, in cross
+    ref = L._apply_grouped(st, b.take(src), ior, items, lib)
+  File "/root/cpu_first/integration/lib/libcore.py", line 449, in _apply_grouped
+    for u, idx in _groups(torch.where(~is_l, item_of_row, torch.full_like(item_of_row, -1))):
+                          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!

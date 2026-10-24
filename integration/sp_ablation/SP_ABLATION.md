@@ -17,7 +17,7 @@ every rule bar 3 tried and for two that take `lpca` apart, and every arm was tra
 H100, 3,600 s, the untouched official manifest, seed 74, then seed 1. The unchanged file, run beside them, replays
 sp2's official record exactly.
 
-**What the result needs** (on seed 74; seed 1 of these arms was cut off, §6).
+**What the result needs** (on both seeds, 74 and 1).
 - **The multiply-add law, a + b c, and its pattern (another row's x, x, a digit).** Without either there is no row
   that adds x times a digit into a running sum, and the multiply is a loop over that row, so there is no multiply. A
   plain row ("x times a digit", which clears the sum first) is still posed and practised, and does not stand in.
@@ -36,20 +36,23 @@ sp2's official record exactly.
   reduction lands in registers the round can use is chance (on seed 1 the learner found a long division sp2 never
   had, one that shifts the divisor instead of the dividend).
 
-**What only makes it slower.**
-- **The x + d N pattern** (the chain's practice problem): without it the reduction writes the chain inline, a loop of
-  subtractions inside the loop over x's digits, found a level later (+441 s).
-- **Choosing at all**: practising every learnable candidate (bar 3's `all`) certifies, at the edge of the budget (the
-  round by 3,211 s, frozen by 3,249 s of the 3,600).
+**What made it slower on seed 74 and failed on seed 1.** Nothing in the book or the rule costs only time on both
+seeds.
+- **The x + d N pattern** (the chain's practice problem): without it the reduction must write the chain inline, a
+  loop of subtractions inside the loop over x's digits, at the deep search's last level. On seed 74 it was found a
+  level later (+441 s); on seed 1 never, although the program is right there too.
+- **Choosing at all**: practising every learnable candidate (bar 3's `all`) certifies on seed 74 at the edge of the
+  budget (the round by 3,211 s, frozen by 3,249 s of the 3,600). On seed 1 it runs out of time a level short.
 
 **What it doesn't need**, each on its own: six of the 11 laws (equal, min, max, quotient, subtract, add three), three
 of the 8 patterns (x + N, 10 x + d, x with a digit), and the choice of the cleanest placements over the cheapest. Seed 1
 agrees on every one of them.
 
-**A smaller book.** All of those removed at once, x + d N too: 5 laws on 4 patterns, 6 concepts. It certifies on the
-official manifest sooner than sp2 (the round by 571 s against 977 s) and on all 8 seeds (443-579 s on a B200), and its
-climb is nothing but the round's pieces, one a level: compare, subtract-if-it-fits, add, the multiply-add row, the
-multiply, the reduction.
+**A smaller book.** All of those removed at once, and x + d N too (picked on seed 74, where it only cost time): 5
+laws on 4 patterns, 6 concepts. It certifies on the official manifest sooner than sp2 (the round by 571 s against
+977 s) and on all 8 seeds (443-579 s on a B200). That includes seed 1: there it writes the chain inline, which sp2's
+book without x + d N did not. Its climb is nothing but the round's pieces, one a level: compare,
+subtract-if-it-fits, add, the multiply-add row, the multiply, the reduction.
 
 **A generated book.** The book written as a grammar instead of a list: numbers r + q b from the division law (x and N,
 a digit and the base; q one, a digit, another row's x, or x), the machine's binary arithmetic and every composition of
@@ -175,25 +178,25 @@ the table comes from [`analyze.py`](analyze.py) `--both`.
 | no_pat_bxd | the pattern 10 x + d | yes: 687 (L4), 830 (942) s | yes: 629 (L4), 877 (827) s | not needed |
 | no_pat_xd | the pattern (x, d) | yes: 686 (L4), 850 (912) s | yes: 628 (L4), 857 (777) s | not needed |
 | rule_lpcc | lpca's cleanest placements (cheapest instead) | yes: 688 (L4), 1,063 (1,008) s | yes: 630 (L4), 926 (841) s | not needed |
-| no_pat_xdn | the pattern x + d N | yes: 694 (L5), 1,302 (1,418) s | not run (§6) | speed only: +441 s |
-| rule_all | choosing at all (every learnable practised) | yes: 687 (L4), 3,211 s | not run (§6) | speed only: +2,234 s, at the budget's edge |
+| no_pat_xdn | the pattern x + d N | yes: 694 (L5), 1,302 (1,418) s | no: cut by the training deadline in L9 (of L0-L10) | speed only on seed 74 (+441 s); needed on seed 1 |
+| rule_all | choosing at all (every learnable practised) | yes: 687 (L4), 3,211 s | no: cut by the training deadline in L4 (of L0-L14) | speed only on seed 74 (+2,234 s, at the budget's edge); needed on seed 1 (out of time) |
 | rule_rca | lpca's hardest first (random order) | no: cut by the training deadline in L7 (of L0-L8) | yes: 629 (L4), 858 (962) s | needed on seed 74; not needed on seed 1 |
 | rule_lpc | lpca's every tied placement (one each) | no: cut by the training deadline in L11 (of L0-L12) | yes: 640 (L5), 1,078 s | needed on seed 74; speed only on seed 1 (+244 s) |
-| no_law_accmul | the law a + b c | no: cut by the training deadline in L8 (of L0-L10) | not run (§6) | needed |
-| no_pat_oxd | the pattern (o, x, d) | no: cut by the training deadline in L8 (of L0-L10) | not run (§6) | needed |
-| no_law_lt | the law lt | no: ended in L16: the level cap (step 737, 1,530 s) | not run (§6) | needed |
-| no_law_red | the law red | no: ended in L16: the level cap (step 735, 1,450 s) | not run (§6) | needed |
-| no_law_add | the law add | no: ended in L16: the level cap (step 735, 1,669 s) | not run (§6) | needed |
-| no_pat_pair | the pattern pair | no: ended in L1: nothing learnable (step 647, 80 s) | not run (§6) | needed |
-| no_law_mul | the law mul | no: cut by the training deadline in L9 (of L0-L10) | not run (§6) | needed |
-| no_pat_xo | the pattern (x, o) | no: cut by the training deadline in L9 (of L0-L10) | not run (§6) | needed |
-| no_pat_xon | the pattern x + o N | no: cut by the training deadline in L10 (of L0-L12) | not run (§6) | needed |
-| rule_lp | lpca (bar 3's hardest first) | no: cut by the training deadline in L10 (of L0-L16) | not run (§6) | needed |
-| rule_ct2a2 | lpca (bar 3's cheaper pairs) | no: cut by the training deadline in L12 (of L0-L16) | not run (§6) | needed |
-| rule_lpu | lpca (unlock first) | no: cut by the training deadline in L9 (of L0-L16) | not run (§6) | needed |
-| rule_random_ok | lpca (bar 3's random_ok) | no: cut by the training deadline in L12 (of L0-L16) | not run (§6) | needed |
-| rule_ct1 | lpca (bar 3's ct1) | no: cut by the training deadline in L8 (of L0-L16) | not run (§6) | needed |
-| rule_nov | lpca (bar 3's novelty) | no: cut by the training deadline in L8 (of L0-L16) | not run (§6) | needed |
+| no_law_accmul | the law a + b c | no: cut by the training deadline in L8 (of L0-L10) | no: cut by the training deadline in L6 (of L0-L8) | needed |
+| no_pat_oxd | the pattern (o, x, d) | no: cut by the training deadline in L8 (of L0-L10) | no: cut by the training deadline in L6 (of L0-L8) | needed |
+| no_law_lt | the law lt | no: ended in L16: the level cap (step 737, 1,530 s) | no: ended in L16: the level cap (step 679, 890 s) | needed |
+| no_law_red | the law red | no: ended in L16: the level cap (step 735, 1,450 s) | no: ended in L16: the level cap (step 676, 1,719 s) | needed |
+| no_law_add | the law add | no: ended in L16: the level cap (step 735, 1,669 s) | no: ended in L16: the level cap (step 677, 1,198 s) | needed |
+| no_pat_pair | the pattern pair | no: ended in L1: nothing learnable (step 647, 80 s) | no: ended in L1: nothing learnable (step 589, 75 s) | needed |
+| no_law_mul | the law mul | no: cut by the training deadline in L9 (of L0-L10) | no: cut by the training deadline in L7 (of L0-L8) | needed |
+| no_pat_xo | the pattern (x, o) | no: cut by the training deadline in L9 (of L0-L10) | no: cut by the training deadline in L7 (of L0-L8) | needed |
+| no_pat_xon | the pattern x + o N | no: cut by the training deadline in L10 (of L0-L12) | no: cut by the training deadline in L8 (of L0-L10) | needed |
+| rule_lp | lpca (bar 3's hardest first) | no: cut by the training deadline in L10 (of L0-L16) | no: cut by the budget's end in L9 (training 3,673 s) | needed |
+| rule_ct2a2 | lpca (bar 3's cheaper pairs) | no: cut by the training deadline in L12 (of L0-L16) | no: cut by the training deadline in L8 (of L0-L16) | needed |
+| rule_lpu | lpca (unlock first) | no: cut by the training deadline in L9 (of L0-L16) | no: cut by the training deadline in L8 (of L0-L16) | needed |
+| rule_random_ok | lpca (bar 3's random_ok) | no: cut by the training deadline in L12 (of L0-L16) | no: cut by the training deadline in L8 (of L0-L16) | needed |
+| rule_ct1 | lpca (bar 3's ct1) | no: cut by the training deadline in L8 (of L0-L16) | no: cut by the training deadline in L9 (of L0-L16) | needed |
+| rule_nov | lpca (bar 3's novelty) | no: cut by the training deadline in L8 (of L0-L16) | no: cut by the training deadline in L6 (of L0-L16) | needed |
 <!-- /RESULTS -->
 
 ## 3. Arm by arm
@@ -229,17 +232,32 @@ what the control would have practised a level later, or to other laws:
 - **The cheapest placements instead of the cleanest** (rule_lpcc): the same concepts at the same levels; on this seed
   the cleanest placements of the round's pieces are also their cheapest.
 
-**Speed only.**
-- **x + d N** (no_pat_xdn, the chain's pattern): the round at step 694 (level 5), 441 s later (host-corrected). With
-  no chain to practise, the reduction comes as `STA.Y P[BRG.X B[T.red.pair.AY]]`: long division with the chain written
-  inline, a loop of links inside the loop over X's digits (cost 5). The deep probe of level 5 finds it (193 s).
-- **bar 3's all** (every learnable candidate practised, no choice at all): it certifies, the round at step 687 (level
-  4) by 3,211 s, frozen by 3,249 s, with 3,412 s of training: the round 269 s before the climb's deadline (3,480 s,
-  120 s before the budget's end). It practises 112 candidates in 5 levels (the control 47), so level 4 alone takes
-  2,450 s, one of its probes stopped by the 900 s search limit. Its round is 5 items,
+**Speed only on seed 74, failed on seed 1.**
+- **x + d N** (no_pat_xdn, the chain's pattern). On seed 74 the round comes at step 694 (level 5), 441 s later
+  (host-corrected). With no chain to practise, the reduction comes as `STA.Y P[BRG.X B[T.red.pair.AY]]`: long
+  division with the chain written inline, a loop of links inside the loop over X's digits (cost 5). The deep probe of
+  level 5 finds it (193 s). On seed 1 it never comes. The climb has every other piece by level 4 (the link, the row,
+  the multiply). Levels 5 and 7 pose only the two concepts not yet practised, red and the quotient on x + o N (24
+  candidates), and deep-probe all 12 placements to cost 5 in full (337 s and 480 s): nothing is learnable. Level 8
+  tries again, and the training deadline cuts level 9's deep probes. The program itself is not at fault: it is right
+  with seed 1's own routines at every size tested ([`reduce_check.py`](reduce_check.py)). It was not among the
+  programs those searches could build. Their vocabulary is the routines the probes' closest attempts used (20-23 at
+  seed 74's level 5, 15-20 on seed 1). The search also merges items that agree on its random test machines, so the
+  loops it holds depend on that vocabulary. Why this one was missing was not looked into further. With the chain
+  practised as a routine of its own, the reduction costs 4 and comes at level 4 on both seeds; written inline, it
+  sits at the deep search's last level and comes on one seed of two. The smaller book (§5.1) also leaves x + d N
+  out, and there the inline chain came on all 8 seeds. So what one removal costs depends on what else is in the book.
+- **bar 3's all** (every learnable candidate practised, no choice at all). On seed 74 it certifies: the round at step
+  687 (level 4) by 3,211 s, frozen by 3,249 s, with 3,412 s of training. That is 269 s before the climb's deadline
+  (3,480 s, 120 s before the budget's end). It practises 112 candidates in 5 levels (the control 47), so level 4 alone
+  takes 2,450 s, one of its probes stopped by the 900 s search limit. Its round is 5 items,
   `LDA.X STA.Y T.mul.x,o.XY STA.X T.red.x+on.XN`: having practised every placement, it has the reduction with the
-  modulus in N, where sp2 has it in A and loads it. So a rule that chooses is needed for time, not for discovery: the
-  rules that fail are the ones that choose badly.
+  modulus in N, where sp2 has it in A and loads it. On seed 1 it runs out of time. Levels 0-2 leave a larger library
+  (level 3's round search has 118 one-token items, against 105 on seed 74), and level 3's probes take 1,337 s
+  (seed 74: 471 s). The training deadline then cuts the climb in level 4, after one of its probes had used the whole
+  900 s search limit. That is the level whose round came at 3,211 s on seed 74. So a rule that chooses is needed for
+  time, not for discovery, and on one seed of two practising everything does not fit the hour. The rules that fail
+  on both seeds are the ones that choose badly.
 
 **Needed: the multiply-accumulate row.**
 - **a + b c** (no_law_accmul) and **its pattern (o, x, d)** (no_pat_oxd): no multiply-accumulate row, so no multiply.
@@ -249,7 +267,11 @@ what the control would have practised a level later, or to other laws:
   learnable; the levels between practise other placements of what they have (eq, the reduction). The multiply loops
   over a row that adds into a running sum, and only a + b c poses that row; a row that clears A first (the plain row,
   mul on (x, d)) cannot accumulate within a loop body of 3. s3i's ablation found the same (mac_n). The training
-  deadline cut both climbs in level 8, practising placements.
+  deadline cut both climbs in level 8, practising placements. On seed 1 the same, with one level of new concepts
+  instead of two. The reduction comes at level 4 in another placement, `CLA P[BRG.X T.add.pair.AN T.red.x+dn.AN]`
+  with the modulus in N, which is right at every size tested ([`reduce_check.py`](reduce_check.py)). Level 5 (the
+  same 48 candidates) is probed and deep-probed in full (912-963 s) and nothing is learnable. The deadline cuts both
+  climbs in level 6, before level 7 can pose them again.
 
 **Needed: the parts every other problem is built or checked with.** Without them nothing past the pair pattern is posed.
 - **lt** (no_law_lt): the learner does not lack a comparison: it practises sub on the pair, whose program
@@ -266,6 +288,8 @@ what the control would have practised a level later, or to other laws:
   placements, levels 3, 5 and 7 posing nothing, to the level cap (by 1,669 s).
 - **the pair pattern** (no_pat_pair): lt, red and add are posed only there, and every other pattern is built with
   the addition, so level 0 poses nothing, and the climb ends by its own rule after 80 s (nothing learnable).
+- **Seed 1 the same**: the lt, red and add arms run dry to the level cap (by 890-1,719 s), and the pair arm ends by
+  its own rule after 75 s.
 
 **Needed: the round's own two routines.** Without them nothing can be the round.
 - **mul** (no_law_mul): the climb practises every other piece of the round by level 4 (the row, the chain, the
@@ -280,19 +304,24 @@ what the control would have practised a level later, or to other laws:
   no round at any budget.
 - **(x, o)** (no_pat_xo, the multiply's own practice problem): the same course as no_law_mul. The plain row (mul on
   (x, d)) is still posed and practised, but nothing multiplies two numbers, so there is no round at any budget.
+- **Seed 1 the same.** mul and (x, o): the reduction at level 4 (in N, as under a + b c above), the 24 quotients of
+  levels 5 and 7 unsolved, the deadline in level 7. x + o N: the multiply at level 4, the 12 quotients of levels 5
+  and 7 unsolved, the deadline in level 8.
 
 **Needed, in the rule.** lpca has four parts: concepts rated by their cheapest placement (against bar 3's
 hardest-first on candidates, `lp`), hardest first among them (against a random order, `rca`), every placement tied
 for cleanest (against one, `lpc`), and cleanest rather than cheapest (`lpcc`: not needed, above). The first is needed
-on seed 74 (seed 1 not run); the second and third failed on seed 74 and certified on seed 1, so they are needed for a
-reliable result rather than a possible one. And choosing well matters: every other rule bar 3 tried fails on seed 74,
-except practising everything, which only costs time.
+on both seeds. The second and third failed on seed 74 and certified on seed 1, so they are needed for a reliable
+result rather than a possible one. And choosing well matters: every other rule bar 3 tried fails on both seeds. The
+exception is practising everything, which certifies on seed 74 at the budget's edge and runs out of time on seed 1.
 - **bar 3's hardest learnable first** (rule_lp): the costliest candidates are costly placements of easy laws (the
   comparison and subtraction at cost 5 with their operands in X, Y or N, then min, max and the link), so levels 0-3
   go to the pair pattern, the addition comes at level 4, the multiply-accumulate row at 5, and the multiply and a
   chain at 7, but no reduction; 10 levels of real work (3,480 s), then the deadline. The same course as
   SELF_PRACTICE.md's tiny core, where at 16 probes a setting it had no reduction by level 10 either (3,976 s on a
-  B200).
+  B200). Seed 1 the same: the addition at level 3, the row at 4, the multiply at 6, and chains at 7 that read or
+  write X, where sp2's long division keeps the dividend. No reduction by the end (level 9, whose last search ran past
+  the budget's end: §4).
 - **Hardest first among the concepts** (rule_rca: lpca's concepts in a random order): the multiply-accumulate row is
   learnable only at level 3, where its roots get their one search over the primitives alone (cost 5 at 1M states).
   Taken in a random order, level 3 practises the chain, red on x + N, lt on x + d N and a + b + c instead. From level
@@ -323,40 +352,53 @@ except practising everything, which only costs time.
   with each pair that includes one of the two hardest, and none reaches the round (at full size it is reached or not,
   so no lookahead tells candidates apart until both the multiply and the reduction exist). With every gain zero it
   takes the two hardest and their first partners: levels 2-9 go to placements of the pair's laws, the addition comes
-  at level 10, the row at 11, the multiply at 12; no chain, no reduction.
+  at level 10, the row at 11, the multiply at 12; no chain, no reduction. On seed 1 it gets further, and still has
+  no reduction. The addition comes at level 3, the row at 4, the multiply at 5. Chains come at 7, but they load the
+  number from X or Y (`LDA.X B[T.max.pair.AY T.lt.pair.XY SEL.S]`). The deadline then cuts the climb in level 8.
 - **bar 3's random_ok** (K learnable candidates at random): 12 levels of random placements of the pair's laws. Its
   first links are the alias "x if x < N, else 0" (`T.lt.pair.YX LDA.Y STA.S CLA SEL.S`), which cannot confirm an
   adder; a true link comes at level 6, but the addition is never among its random picks, so nothing past the pair
-  pattern is ever posed.
+  pattern is ever posed. On seed 1 its draws include the addition (levels 3-4) and chains (levels 4-7). They never
+  include the row, so there is no multiply and no reduction when the deadline cuts it in level 8.
 - **SELF_PRACTICE.md's unlock first** (rule_lpu): the costliest link is the alias again (level 1), the addition comes
   at level 4, a chain at level 5 that uses X as scratch (`B[T.min.pair.AY T.lt.pair.XY SEL.S]`), the multiply at
-  level 7, and no reduction by the deadline (level 9): SELF_PRACTICE.md §3.4's result again.
+  level 7, and no reduction by the deadline (level 9): SELF_PRACTICE.md §3.4's result again. Seed 1 the same. The
+  addition comes at level 2, the row and a chain against X (`B[T.max.pair.AX T.lt.pair.YX SEL.S]`) at 3, and the
+  multiply at 5. At 8 come chains that read the number from X. There is no reduction by the deadline (level 8).
 - **bar 3's ct1** (the K candidates whose routine alone shortens the round's search most): 281 lookaheads, none of
   which reaches the round, so every gain is zero and the ties go by pool order: 8 levels of placements of the pair's
-  laws, the addition at level 4, no row, no multiply, no chain, no reduction.
+  laws, the addition at level 4, no row, no multiply, no chain, no reduction. Seed 1 the same: the addition at level
+  4, and nothing past it in 9 levels.
 - **bar 3's novelty** (on the target's own inputs, the K candidates whose answers differ most from every instruction's
   and routine's): it prefers comparisons and subtractions in new placements, the addition at level 3, red on x + N,
   a chain at level 7. The multiply-accumulate row is learnable at level 4 only (its problems' one search over the
   primitives alone, as under rca), where four other candidates rank as more novel, so it is lost: no multiply and no
-  reduction in 8 levels.
+  reduction in 8 levels. On seed 1 it gets less far: the addition at levels 3-4, then no row, no chain, no multiply
+  and no reduction in 6 levels (level 6 alone takes 1,884 s).
 <!-- /ARM_BY_ARM -->
 
 ## 4. How hard each arm was tried
 
 <!-- HOW_HARD -->
-- **One run per arm and seed**, the untouched official manifest on one H100: seed 74 for all 30 arms, seed 1 for 13
-  of them (the other 17 were cut off by Modal's spend limit, below). A certifying arm's run takes 1,000-1,600 s of
-  wall time (practising everything, 3,573 s); a failing arm takes the whole 3,600 s (its climb, then the round
-  searched again every 10 steps until the deadline).
+- **One run per arm and seed**, the untouched official manifest on one H100: seeds 74 and 1 for all 30 arms. 17 of
+  the seed-1 runs were cut off by Modal's spend limit and run again from the start once it was raised (below). A
+  certifying arm's run takes 1,000-1,600 s of wall time (practising everything, 3,573 s). A failing arm takes the
+  whole 3,600 s: its climb, then the round searched again every 10 steps until the deadline. One failing run went
+  past the budget: rule_lp on seed 1 trained 3,673 s. Its last search, building level 9's vocabulary, took 239 s and
+  ended 73 s after the budget's end. It fails either way, but sp2's searches can run past the training deadline.
 - **The control is exact.** `tools/modal_runner.py --mode compare` finds every field equal to sp2's official record
   (`records/runner/submission_stage3_sp2_official.json`): the training trace (201 points), the loss at every logged
   step, every rung and split, the freeze at step 887. The climb's 48 units equal the official run's line for line once
   their seconds are removed. Only the seconds differ (the round by 977 s against 1,029 s: another host). The seed-1
   control has no earlier H100 record to replay (sp2's seed 1 ran on a B200); it certifies, the round at step 630.
-- **Seed 1 agrees with seed 74 on every arm it ran but two.** All nine book arms not needed on seed 74 certify on seed
-  1, the round at step 627-637 (the control's 630), and so does rule_lpcc. rule_rca and rule_lpc failed on seed 74 and
-  certify on seed 1 (§3): both take apart lpca, and both turn a sure thing into a chance (whether a random draw keeps
-  the multiply-accumulate row, whether the one practised placement is one the round can use).
+- **Seed 1 agrees with seed 74 on every arm but four.** All nine book arms not needed on seed 74 certify on seed 1,
+  the round at step 627-637 (the control's 630), and so does rule_lpcc. The 15 arms needed on seed 74 fail on seed 1
+  too. The four that differ (§3):
+  - rule_rca and rule_lpc failed on seed 74 and certify on seed 1. Both take apart lpca, and both turn a sure thing
+    into a chance: whether a random draw keeps the multiply-accumulate row, and whether the one practised placement
+    is one the round can use.
+  - no_pat_xdn and rule_all certified on seed 74 and fail on seed 1. The first needs a cost-5 program at the deep
+    search's last level; the second needs the time to practise everything.
 - **Host speed.** The climb is host-bound (INTEGRATION.md §3), and H100 hosts differ: on the probe and deep-probe
   units identical to the control's (same level, same line once seconds are removed), the arms' hosts ran at 0.71 to
   1.06 times the control's seconds on seed 74. `analyze.py` divides the climb's part of the round time by that factor
@@ -367,15 +409,22 @@ except practising everything, which only costs time.
   budget's end; a level cut by it returns from its searches at once, so the climb then rushes through empty levels).
   The reason is sp2's rule: when no new concept is learnable, the next level poses the practised concepts' other
   placements, so the climb rarely runs dry. The exceptions are the four arms whose book can pose nothing past the pair
-  (lt, red, add, the pair): their climbs ran dry by their own rule, at the level cap by 1,450-1,669 s, or after 80 s.
-  So for each failure cut by the clock, the question is whether the missing piece was still within reach when the
-  clock stopped. No search hit sp2's 900 s per-search limit in a failed run.
+  (lt, red, add, the pair). Their climbs ran dry by their own rule on both seeds: at the level cap by 890-1,719 s, or
+  after 75-80 s. So for each failure cut by the clock, the question is whether the missing piece was still within
+  reach when the clock stopped. One failed run had a search stopped by sp2's 900 s per-search limit: rule_all on seed
+  1, at level 4 (1,371 s with its vocabulary build).
   - mul, (x, o), x + o N: no, by construction. The round's search composes routine calls and straight-line moves, no
     loops, so it needs a routine that multiplies two numbers and one that reduces a 16-place number; with these out of
     the book, no law's routine does either.
   - a + b c and (o, x, d): no. Two levels that posed only concepts not yet practised (levels 5 and 7: 48 candidates,
-    the multiply's in every placement among them) were probed and deep-probed in full, and nothing was learnable.
-    The multiply needs an accumulating row as one instruction of its loop's body, and only a + b c poses one.
+    the multiply's in every placement among them) were probed and deep-probed in full, and nothing was learnable (on
+    seed 1, one such level: level 5). The multiply needs an accumulating row as one instruction of its loop's body,
+    and only a + b c poses one.
+  - x + d N, on seed 1: not within reach of the search it had. The inline chain it needs is right with seed 1's
+    routines, but levels 5, 7 and 8 searched every placement of x + o N to cost 5 in full without finding it (§3).
+    Whether more levels, with a few more routines each, would have found it is not known.
+  - `all`, on seed 1: out of time, not out of reach. The deadline cut the climb in level 4, the level whose round came
+    on seed 74.
   - `rca`: no, on seed 74. The multiply-accumulate row's only search that reaches it (the primitives alone, once per
     root) was at level 3; afterwards every level's deep probes go to the same unsolved near miss (the quotient on
     x + d N).
@@ -383,30 +432,37 @@ except practising everything, which only costs time.
     (4,275 s), the divisor-shifting one seed 1 used (§3), but with its dividend in N, which no instruction writes; the
     round searches of levels 11-14 found nothing, and Modal's spend limit stopped the run in level 15 (6,229 s). Its
     last log lines are in [`partial/`](partial/); there is no record.
-  - `lp`, `ct2a2`: no reduction in 10-12 levels of real work on seed 74; SELF_PRACTICE.md's tiny core ran them longer
-    (`lp` at 16 probes: 10 levels, 3,976 s on a B200; `ct2a2`: 7 levels, 1,799 s) without one.
-  - `random_ok`, `lpu`, `ct1`, `nov`: no progress toward the missing pieces in their last levels (random_ok never posed
-    past the pair; lpu had the multiply but its chains use X; ct1 and nov lost or never reached the row).
+  - `lp`, `ct2a2`: no reduction in 10-12 levels of real work on seed 74, or in 8-9 on seed 1 (where both had the
+    multiply and chains, chains that read or write X). SELF_PRACTICE.md's tiny core ran them longer (`lp` at 16
+    probes: 10 levels, 3,976 s on a B200; `ct2a2`: 7 levels, 1,799 s), also without one.
+  - `random_ok`, `lpu`, `ct1`, `nov`: no progress toward the missing pieces in their last levels, on either seed.
+    random_ok never posed past the pair on seed 74 and never drew the row on seed 1. lpu had the multiply, but its
+    chains use X. ct1 and nov lost or never reached the row.
 - **The reduction check's weakness** (found by s3i's ablation: stage 3's check of a reduction can pass a repeated
   subtraction that is right only for small quotients) decides no verdict here. Every certified run's round was checked
-  at full size by the evaluator. No failed arm practised both a multiply and a reduction, and every multiply and
-  reduction a failed arm practised is the control's own program or calls it, so each failure lacks a piece outright
-  rather than holding a wrong one.
+  at full size by the evaluator. No failed arm practised both a multiply and a reduction, on either seed. Every
+  multiply a failed arm practised is the control's own program, and so is every reduction on seed 74. On seed 1 four
+  book arms practised another reduction, `CLA P[BRG.X T.add.pair.AN T.red.x+dn.AN]` with the modulus in N. It is
+  right at every size [`reduce_check.py`](reduce_check.py) tries (W = 1 to 8, quotients up to 10^W), and those arms
+  lack the multiply anyway. So each failure lacks a piece outright rather than holding a wrong one.
 - **Cost.** Billed by Modal: $119.41 for the ablation's run (`sp-abl-s74`: seed 74, the 13 seed-1 records and the
   cut-off work), $3.08 and $49.00 for the books' runs (`sp-books-gen`, `sp-books-2`), all through 13:00 UTC; the last
   half hour before the stop adds about $14. About $185 in all, of a $300 soft budget.
 - **The stop.** At 07:25 PDT (14:27 UTC) on Oct 24, Modal stopped every container in the workspace, every session's:
   the workspace reached its spend limit (about $3,000 for the month, set in Modal below the $5,000 this study was
-  planned around). Seven seed-1 runs were cut off mid-run (no record) and ten never started; their calls wait in the
-  queue (PENDING), and the 3x rerun of `lpc` was ended (its call failed). What it takes to finish is in §6.
+  planned around). Seven seed-1 runs were cut off mid-run (no record), ten never started, and the 3x rerun of `lpc`
+  was ended. The queued calls stayed PENDING but never resumed. When the limit was raised to $4,000 (14:40 PDT), they
+  were ended first by stopping their apps, so none could run twice. Then the 17 seed-1 arms and the 3x rerun were run
+  again from the start (runs `sp-abl-s1-rest` and `sp-abl-relaxed`, 18 H100s at once).
 <!-- /HOW_HARD -->
 
 ## 5. A smaller book, and a generated one
 
 ### 5.1 The smallest book the arms allow (`book_min`)
 
-Every law and every pattern whose own arm certified without it is dropped together, the x + d N pattern too (it only
-cost time). What is left is 5 laws (lt, red, add, mul, acc.mul) on 4 patterns (the pair, x + o N, (x, o) and
+Every law and every pattern whose own arm certified without it on seed 74 is dropped together, the x + d N pattern
+too (on seed 74 it only cost time; its seed-1 run, which came later, fails, §3, but this book certifies on seed 1).
+What is left is 5 laws (lt, red, add, mul, acc.mul) on 4 patterns (the pair, x + o N, (x, o) and
 (o, x, d)): 6 concepts (lt and red on the pair, add on the pair, red on x + o N, mul on (x, o), acc.mul on
 (o, x, d)), 84 candidates with the constructions' routines given, against sp2's 19 concepts and 250 candidates
 (sp2's book has 20 cells; the quotient of x + N by N is always 1, so that one is never posed).
@@ -531,45 +587,25 @@ every seed, inside the budget on every one.
 
 ## 6. What was not run, and why
 
-- **Cut off by Modal's spend limit** (§4, the stop), so not run yet:
-  - **seed 1 of 17 arms**: rule_lp, rule_ct2a2, rule_all, rule_lpu, no_law_lt, no_law_red, no_law_add, no_law_mul,
-    no_law_accmul, no_pat_pair, no_pat_xdn, no_pat_xon, no_pat_xo, no_pat_oxd, rule_random_ok, rule_ct1 and rule_nov
-    (seven of them were mid-run, ten not started; none left a record). Their calls still wait in run `sp-abl-s74`'s
-    queue and resume by themselves once the limit is raised (each from the beginning: the evaluator keeps no
-    checkpoints). About $70: 15 of them are expected to fail and take the whole hour (about $4.30 each on an H100).
-  - **rule_lpc at 3 times the budget** on seed 74 (`rule_lpc_h100_r10800_seed74`): stopped in level 15 at 6,229 s of
-    10,800, no record; its call ended (failed), so it does not resume. About $12 to run again.
-
-  To finish, from `cpu_first/` (`PY=~/github/sotaku/venv/bin/python`): first see whether the queued calls resumed,
-  and fetch what lands.
-
-  ```bash
-  $PY tools/modal_runner.py --mode status --run sp-abl-s74
-  $PY tools/modal_runner.py --mode fetch --run sp-abl-s74 --out integration/sp_ablation/records --wait
-  ```
-
-  If they no longer wait in the queue (expired or failed, not running), relaunch the missing seed-1 arms
-  ([`plans/stage1_s1_rest.json`](plans/stage1_s1_rest.json): exactly the 17, written with
-  `make_plan.py --only-missing`) and the rerun ([`plans/relaxed.json`](plans/relaxed.json)). `--force` is needed
-  because the names are registered to `sp-abl-s74`; use it only after the status shows none of them still queued or
-  running, so that no job runs twice.
-
-  ```bash
-  $PY integration/sp_ablation/spend.py 4750
-  $PY -m modal run --detach tools/modal_runner.py --mode plan --plan integration/sp_ablation/plans/stage1_s1_rest.json \
-    --out integration/sp_ablation/records --cap 8 --run sp-abl-s1-rest --force
-  $PY -m modal run --detach tools/modal_runner.py --mode plan --plan integration/sp_ablation/plans/relaxed.json \
-    --out integration/sp_ablation/records --cap 1 --run sp-abl-relaxed --force
-  ```
-
-  Then `analyze.py --both` fills seed 1's column of §2's table.
+- **More seeds for the four parts that differ by seed** (lpca's order and its tied placements, x + d N, choosing at
+  all): two seeds show that each can go either way, not how often. A failing run takes the whole hour, about $4.30 on
+  an H100.
+- **Why the inline chain was not built on seed 1** (no_pat_xdn, §3). The program is right with seed 1's routines and
+  cost 5 was searched in full, so the cause lies in which items the deep search's vocabulary held. Finding it means
+  rebuilding that vocabulary with seed 1's routines, a run for Modal: the search is too big for a laptop.
+- **Found in passing** (not fixed; no verdict rests on it): sp2's searches can run past the training deadline.
+  rule_lp's seed-1 run trained 3,673 s of its 3,600, because its last search, building level 9's vocabulary, took
+  239 s. A certifying run that did this would be over budget.
 - **bar 3's `random`** (no probes; each random pick given a full practice search) has no counterpart: sp2's only
   searches are its probes, so a random pick the probes did not solve has no program to practise. `random_ok` (K
   learnable candidates at random) is the nearest arm.
-- **Relaxed-budget reruns** were run only where a failure could plausibly be the clock's (§4). The other failures are
-  structural, and §4 says why for each: the book cannot pose the piece, or no practised routine can make it, or the
-  climb's own gate keeps its deep searches elsewhere. bar 3's own rules (`lp`, `ct2a2`, `all`, `lpu`) also had long
-  tiny-core runs in SELF_PRACTICE.md §3.2: 7 to 10 levels and up to 6,693 s on a B200 each, without the round.
+- **Relaxed-budget reruns** were run only where a failure could plausibly be the clock's (§4): `lpc` on seed 74.
+  Two seed-1 failures that came later were not rerun. One is `all`, a level short of where seed 74's round came, so
+  more time would likely make it speed only on both seeds. The other is x + d N, where whether more levels would
+  find the inline chain is not known. The other failures are structural, and §4 says why for each: the book cannot
+  pose the piece, or no practised routine can make it, or the climb's own gate keeps its deep searches elsewhere.
+  bar 3's own rules (`lp`, `ct2a2`, `all`, `lpu`) also had long tiny-core runs in SELF_PRACTICE.md §3.2: 7 to 10
+  levels and up to 6,693 s on a B200 each, without the round.
 - **Single cells of the book** (one law on one pattern, such as lt on x + d N alone) were not removed one at a time.
   The arms remove a whole law or a whole pattern; the smallest book (§5.1) removes cells by combining both.
 - **The search sizes and the rest of sp2** (the probe and deep-probe budgets, K, the probes per setting, the round's
@@ -591,15 +627,21 @@ $PY integration/sp_ablation/check_books.py
 $PY integration/sp_ablation/make_variants.py --diff no_pat_xdn        # one arm's edits
 ```
 
-Write a plan, check the bill (no launch at $4,750 or more), launch, fetch:
+Write a plan, check the bill (no launch at the stop or above: $3,750 since the limit went to $4,000), launch, fetch:
 
 ```bash
 $PY integration/sp_ablation/make_plan.py stage1_s74 --seeds 74 --hardware h100 --arms control,no_law_eq,...
-$PY integration/sp_ablation/spend.py 4750
+$PY integration/sp_ablation/spend.py 3750
 $PY -m modal run --detach tools/modal_runner.py --mode plan --plan integration/sp_ablation/plans/stage1_s74.json \
   --out integration/sp_ablation/records --cap 8 --run sp-abl-s74
 $PY tools/modal_runner.py --mode fetch --run sp-abl-s74 --out integration/sp_ablation/records --wait
 ```
+
+The 17 seed-1 runs and the 3x rerun cut off by the stop went the same way:
+[`plans/stage1_s1_rest.json`](plans/stage1_s1_rest.json) (exactly the 17, written with `make_plan.py --only-missing`)
+as run `sp-abl-s1-rest` (`--cap 17`), and [`plans/relaxed.json`](plans/relaxed.json) as `sp-abl-relaxed`
+(`--cap 1`). Both took `--force`, because their names were registered to `sp-abl-s74`, and only after its queued
+calls had ended, so no job ran twice.
 
 Read the records:
 
@@ -607,6 +649,16 @@ Read the records:
 $PY integration/sp_ablation/analyze.py              # one line per run (host factor, corrected round time, pieces)
 $PY integration/sp_ablation/analyze.py --results    # this file's results table, with each arm's verdict
 $PY integration/sp_ablation/analyze.py --levels     # every level's searches and picks, per run
+$PY integration/sp_ablation/analyze.py --both       # §2's table: every arm on seeds 74 and 1
 $PY tools/modal_runner.py --mode compare integration/self_practice/records/runner/submission_stage3_sp2_official.json \
   integration/sp_ablation/records/control_h100_seed74.json
+```
+
+Check a reduction a run practised against the truth, with that run's own routines (seconds, under 1 GB):
+
+```bash
+$PY integration/sp_ablation/reduce_check.py integration/sp_ablation/records/no_law_mul_h100_seed1.json \
+  "CLA P[BRG.X T.add.pair.AN T.red.x+dn.AN]" X N
+$PY integration/sp_ablation/reduce_check.py integration/sp_ablation/records/no_pat_xdn_h100_seed1.json \
+  "STA.Y P[BRG.X B[T.red.pair.AY]]" X A
 ```

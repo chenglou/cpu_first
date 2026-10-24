@@ -265,6 +265,8 @@ def ends(f):
     if f["deadline_units"] and (not f["ended"] or f["deadline_units"][0]["step"] <= f["ended"][1]):
         return f"cut by the training deadline in L{f['deadline_units'][0]['level']} (of L0-L{f['last_level']})"
     if not f["ended"]:
+        if f["train_s"] is not None and f["train_s"] >= f["budget_s"]:     # a search ran past the deadline
+            return f"cut by the budget's end in L{f['last_level']} (training {fmt_s(f['train_s'])} s)"
         return f"no end logged (last L{f['last_level']})"
     kind, step, lv = f["ended"]
     return f"ended in L{lv}: {kind} (step {step}, {fmt_s(f['ended_s'])} s)"

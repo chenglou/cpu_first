@@ -1,0 +1,145 @@
+{
+ "control": {
+  "file": "integration/self_practice/submission_stage3_sp2.py",
+  "what": "sp2 unchanged"
+ },
+ "rule_lp": {
+  "file": "integration/self_practice/submission_stage3_sp2.py",
+  "set": {
+   "SP_RULE": "\"lp\""
+  },
+  "what": "the choosing rule: bar 3's hardest learnable first instead of lpca"
+ },
+ "rule_ct2a2": {
+  "file": "integration/self_practice/submission_stage3_sp2.py",
+  "set": {
+   "SP_RULE": "\"ct2a2\""
+  },
+  "what": "the choosing rule: bar 3's cheaper pairs signal instead of lpca"
+ },
+ "rule_all": {
+  "file": "integration/self_practice/submission_stage3_sp2.py",
+  "set": {
+   "SP_RULE": "\"all\""
+  },
+  "what": "the choosing rule: bar 3's reference: every learnable candidate instead of lpca"
+ },
+ "rule_lpu": {
+  "file": "integration/self_practice/submission_stage3_sp2.py",
+  "set": {
+   "SP_RULE": "\"lpu\""
+  },
+  "what": "the choosing rule: SELF_PRACTICE.md's unlock first, then hardest first instead of lpca"
+ },
+ "rule_lpc": {
+  "file": "integration/self_practice/submission_stage3_sp2.py",
+  "set": {
+   "SP_RULE": "\"lpc\""
+  },
+  "what": "the choosing rule: lpca with each concept in its one cleanest binding, not every tied one instead of lpca"
+ },
+ "no_law_lt": {
+  "file": "integration/sp_ablation/variants/no_law_lt.py",
+  "what": "the law lt out of the book (on every pattern)"
+ },
+ "no_law_eq": {
+  "file": "integration/sp_ablation/variants/no_law_eq.py",
+  "what": "the law eq out of the book (on every pattern)"
+ },
+ "no_law_min": {
+  "file": "integration/sp_ablation/variants/no_law_min.py",
+  "what": "the law min out of the book (on every pattern)"
+ },
+ "no_law_max": {
+  "file": "integration/sp_ablation/variants/no_law_max.py",
+  "what": "the law max out of the book (on every pattern)"
+ },
+ "no_law_red": {
+  "file": "integration/sp_ablation/variants/no_law_red.py",
+  "what": "the law red out of the book (on every pattern)"
+ },
+ "no_law_div": {
+  "file": "integration/sp_ablation/variants/no_law_div.py",
+  "what": "the law div out of the book (on every pattern)"
+ },
+ "no_law_add": {
+  "file": "integration/sp_ablation/variants/no_law_add.py",
+  "what": "the law add out of the book (on every pattern)"
+ },
+ "no_law_sub": {
+  "file": "integration/sp_ablation/variants/no_law_sub.py",
+  "what": "the law sub out of the book (on every pattern)"
+ },
+ "no_law_mul": {
+  "file": "integration/sp_ablation/variants/no_law_mul.py",
+  "what": "the law mul out of the book (on every pattern)"
+ },
+ "no_law_accmul": {
+  "file": "integration/sp_ablation/variants/no_law_accmul.py",
+  "what": "the law acc.mul out of the book (on every pattern)"
+ },
+ "no_law_accadd": {
+  "file": "integration/sp_ablation/variants/no_law_accadd.py",
+  "what": "the law acc.add out of the book (on every pattern)"
+ },
+ "no_pat_pair": {
+  "file": "integration/sp_ablation/variants/no_pat_pair.py",
+  "what": "the pattern pair out of the book (every law on it)"
+ },
+ "no_pat_xn": {
+  "file": "integration/sp_ablation/variants/no_pat_xn.py",
+  "what": "the pattern x+n out of the book (every law on it)"
+ },
+ "no_pat_xdn": {
+  "file": "integration/sp_ablation/variants/no_pat_xdn.py",
+  "what": "the pattern x+dn out of the book (every law on it)"
+ },
+ "no_pat_xon": {
+  "file": "integration/sp_ablation/variants/no_pat_xon.py",
+  "what": "the pattern x+on out of the book (every law on it)"
+ },
+ "no_pat_bxd": {
+  "file": "integration/sp_ablation/variants/no_pat_bxd.py",
+  "what": "the pattern Bx+d out of the book (every law on it)"
+ },
+ "no_pat_xd": {
+  "file": "integration/sp_ablation/variants/no_pat_xd.py",
+  "what": "the pattern x,d out of the book (every law on it)"
+ },
+ "no_pat_xo": {
+  "file": "integration/sp_ablation/variants/no_pat_xo.py",
+  "what": "the pattern x,o out of the book (every law on it)"
+ },
+ "no_pat_oxd": {
+  "file": "integration/sp_ablation/variants/no_pat_oxd.py",
+  "what": "the pattern o,x,d out of the book (every law on it)"
+ },
+ "rule_random_ok": {
+  "file": "integration/sp_ablation/variants/rule_random_ok.py",
+  "what": "the choosing rule: bar 3's random_ok (K learnable candidates at random, seeded by the run's seed and the level) instead of lpca"
+ },
+ "rule_rca": {
+  "file": "integration/sp_ablation/variants/rule_rca.py",
+  "what": "the choosing rule: lpca's concepts and bindings, the concepts taken in a random order (seeded by the run's seed and the level) instead of hardest first"
+ },
+ "rule_lpcc": {
+  "file": "integration/sp_ablation/variants/rule_lpcc.py",
+  "what": "the choosing rule: lpca's concepts, hardest first, each practised in every binding tied for cheapest instead of cleanest"
+ },
+ "rule_ct1": {
+  "file": "integration/sp_ablation/variants/rule_ct1.py",
+  "what": "the choosing rule: bar 3's ct1 (the round searched with each learnable candidate alone as a routine; the K that shorten it most, ties in pool order) instead of lpca"
+ },
+ "rule_nov": {
+  "file": "integration/sp_ablation/variants/rule_nov.py",
+  "what": "the choosing rule: bar 3's novelty (on the target's inputs, the rows' N and x at full size as the round starts: the rows where a candidate's A differs from every token's; the K most novel, ties in pool order) instead of lpca"
+ },
+ "book_min": {
+  "file": "integration/sp_ablation/variants/book_min.py",
+  "what": "the smallest book the leave-one-out arms allow: laws lt, red, add, mul, acc.mul on patterns pair, x+on, x,o, o,x,d"
+ },
+ "book_gen": {
+  "file": "integration/sp_ablation/variants/book_gen.py",
+  "what": "the book generated by a grammar (integration/sp_ablation/genbook.py): numbers by the division law's form, every operation on every pattern, one set of target rules"
+ }
+}

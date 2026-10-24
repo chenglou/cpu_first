@@ -57,20 +57,20 @@ ARMS = {
     "split_GCL": ("LESSONS", "noself, one MLP block per channel", "GCL"),
     "k1_sheet": ("LESSONS", "noself", "answers + the worksheet's visible digits"),
     "k2_A": ("LESSONS", "noself, trained at (3, 2, 2)", "answers"),
-    "k2_GCL": ("LESSONS", "noself, trained at (3, 2, 2)", "GCL + the step law"),
-    "k2_GCL_ste": ("LESSONS", "noself, STE, trained at (3, 2, 2)", "GCL + the step law"),
+    "k2_GCL": ("LESSONS", "noself, trained at (3, 2, 2)", "GCL (step law off)"),
+    "k2_GCL_ste": ("LESSONS", "noself, STE, trained at (3, 2, 2)", "GCL (step law off)"),
     "k2_sheet": ("LESSONS", "noself, trained at (3, 2, 2)", "answers + the worksheet's visible digits"),
     "ncol_GCL": ("LESSONS", "noself + N's column", "GCL"),
     "ports_A": ("LESSONS", "noself + the bridge's ports, digit-and-borrow cells", "answers"),
     "ports_GCL": ("LESSONS", "noself + the bridge's ports, digit-and-borrow cells", "GCL"),
     "ports_GCL_ste": ("LESSONS", "the same, STE", "GCL"),
     "ports_GCL_tf": ("LESSONS", "noself + the bridge's ports, digit-and-borrow cells", "GCL, the cell's lessons first"),
-    "k2_ports_GCL": ("LESSONS", "the same, trained at (3, 2, 2)", "GCL + the step law"),
+    "k2_ports_GCL": ("LESSONS", "the same, trained at (3, 2, 2)", "GCL (step law off)"),
     "causal_A": ("LESSONS", "causal", "answers"),
     "causal_GCL": ("LESSONS", "causal", "GCL"),
     "causal_GCL_ste": ("LESSONS", "causal, STE", "GCL"),
-    "causal_k2_GCL": ("LESSONS", "causal, trained at (3, 2, 2)", "GCL + the step law"),
-    "w3_causal_GCL": ("LESSONS", "causal, trained at (3, 3, 2)", "GCL + the step law"),
+    "causal_k2_GCL": ("LESSONS", "causal, trained at (3, 2, 2)", "GCL (step law off)"),
+    "w3_causal_GCL": ("LESSONS", "causal, trained at (3, 3, 2)", "GCL (step law off)"),
     "causal_GCL_l1_1.0": ("LESSONS", "causal, L1 1.0 on the input weights", "GCL"),
     "causal_GCL_ste_l1_1.0": ("LESSONS", "causal, STE, L1 1.0", "GCL"),
     "free_A": ("LESSONS", "free format, noself", "answers"),
@@ -340,6 +340,141 @@ def hyper_swaps_table():
     return "\n".join(out)
 
 
+TRIM_ARMS = {"ctl": "plain Adam (the control)", "wd0.1": "AdamW, weight decay 0.1", "wd0.3": "AdamW, weight decay 0.3",
+             "wd1": "AdamW, weight decay 1", "and": "AND-mask over 8 groups", "dbd": "delta-bar-delta speeds",
+             "and_wd0.3": "AND-mask + weight decay 0.3", "dbd_wd0.3": "delta-bar-delta + weight decay 0.3",
+             "and_cols": "AND-mask over the 4 columns",
+             "and_cols_wd0.3": "AND-mask over the columns + weight decay 0.3"}
+
+
+def trim_rows():
+    return [json.loads(l) for s in ("trim1", "trim_cols") if (HERE / "runs" / f"{s}.jsonl").exists()
+            for l in open(HERE / "runs" / f"{s}.jsonl")]
+
+
+def trim_table():
+    """trim1 (§9), one row per size and arm, medians over seeds: training share snapped / soft at the end and its best
+    over the run; one size up at the end and the best any curve point reached (a late jump would show there); the
+    weight norm at the first and last curve points; the sub table and the plumbing probe at the end."""
+    by = defaultdict(list)
+    for r in trim_rows():
+        by[r["cfg"]["tag"]].append(r)
+    out = ["| trained at | arm | certified | training, snapped / soft | best training, snapped | one size up (k + 1 / "
+           "w + 1, k + 1) | its best over the run | weight norm | sub table | plumbing: N's digit / old register / "
+           "final borrow |", "|---|---|---|---|---|---|---|---|---|---|"]
+    for size in ("w3", "w2"):
+        for arm, lab in TRIM_ARMS.items():
+            rs = by.get(f"{size}_{arm}")
+            if not rs:
+                continue
+            c = rs[0]["cfg"]
+            where = f"({c['B']}, {c['w']}, {c['k']}), {rs[0]['steps']:,} steps"
+            cert = f"{sum(bool(r.get('certified')) for r in rs)}/{len(rs)}"
+            tr = f"{f2(med([r['train_hard'] for r in rs]))} / {f2(med([r['train_soft'] for r in rs]))}"
+            best = f2(med([max(x["exact"] for x in r["log"]) for r in rs]))
+            up = [k for k in rs[0]["curve"][0] if k.count(",") == 2]
+            end = " / ".join(f2(med([r["bigger"][k] for r in rs])) for k in rs[0]["bigger"])
+            peak = " / ".join(f2(med([max(x[k] for x in r["curve"]) for r in rs])) for k in up)
+            wn = f"{med([r['curve'][0]['wnorm'] for r in rs]):.0f} → {med([r['curve'][-1]['wnorm'] for r in rs]):.0f}"
+            p = [r["probe"] for r in rs]
+            sub = f"{int(med([x['sub_digits_right'] for x in p]))} + {int(med([x['sub_borrows_right'] for x in p]))}"
+            pl = " / ".join(f2(med([r["curve"][-1]["plumbing"][k] for r in rs]))
+                            for k in ("n_digit", "old_register", "final_borrow"))
+            out.append(f"| {where} | {lab} | {cert} | {tr} | {best} | {end} | {peak} | {wn} | {sub} | {pl} |")
+    return "\n".join(out)
+
+
+def trim_curve_table():
+    """trim1 (§9) over training, medians over seeds at a few curve points: training share snapped / soft, and one
+    size up ((B, w + 1, k + 1), on the curve's 500-question sample)."""
+    by = defaultdict(list)
+    for r in trim_rows():
+        by[r["cfg"]["tag"]].append(r)
+    out = []
+    for size, points in (("w3", (1000, 5000, 10000, 20000)), ("w2", (1000, 10000, 25000, 50000))):
+        rows = [(arm, lab, by[f"{size}_{arm}"]) for arm, lab in TRIM_ARMS.items() if by.get(f"{size}_{arm}")]
+        if not rows:
+            continue
+        c = rows[0][2][0]["cfg"]
+        up = f"{c['B']},{c['w'] + 1},{c['k'] + 1}"
+        if out:
+            out.append("")
+        out.append(f"| trained at ({c['B']}, {c['w']}, {c['k']}); one size up is ({up.replace(',', ', ')}) | " +
+                   " | ".join(f"step {p:,}" for p in points) + " |")
+        out.append("|---|" + "---|" * len(points))
+        for arm, lab, rs in rows:
+            cells = []
+            for p in points:
+                at = [next((x for x in r["curve"] if x["step"] == p), None) for r in rs]
+                at = [x for x in at if x]
+                cells.append("·" if not at else f"{f2(med([x['train_hard'] for x in at]))} / "
+                             f"{f2(med([x['train_soft'] for x in at]))} / {f2(med([x[up] for x in at]))}")
+            out.append(f"| {lab} | " + " | ".join(cells) + " |")
+    return "\n".join(out)
+
+
+def trim_stab_table():
+    """trim_stab (§9): each arm started at the compiled rule. Per arm, over its seeds: the step at which the training
+    share first fell below 1, snapped (the log, every 100 steps) and soft (the curve, every 500); the shares at the
+    end; the weight norm at the first and last curve points; one size up and certification at the end."""
+    p = HERE / "runs" / "trim_stab.jsonl"
+    by = defaultdict(list)
+    for l in (open(p) if p.exists() else []):
+        r = json.loads(l)
+        by[r["cfg"]["tag"].removeprefix("w2_")].append(r)
+    first = lambda xs, key: next((f"{x['step']:,}" for x in xs if x[key] < 1.0), "never")
+    out = ["| arm | first step below exact, snapped (each seed) | the same, soft | training at the end, snapped / soft "
+           "| weight norm | one size up at the end (k + 1 / w + 1, k + 1) | certified | sub table |",
+           "|---|---|---|---|---|---|---|---|"]
+    for arm, lab in TRIM_ARMS.items():
+        rs = sorted(by.get(arm, []), key=lambda r: r["cfg"]["seed"])
+        if not rs:
+            continue
+        hard = " and ".join(first(r["log"], "exact") for r in rs)
+        soft = " and ".join(first(r["curve"], "train_soft") for r in rs)
+        tr = f"{f2(med([r['train_hard'] for r in rs]))} / {f2(med([r['train_soft'] for r in rs]))}"
+        wn = f"{med([r['curve'][0]['wnorm'] for r in rs]):.0f} → {med([r['curve'][-1]['wnorm'] for r in rs]):.0f}"
+        up = " / ".join(f2(med([r["bigger"][k] for r in rs])) for k in rs[0]["bigger"])
+        pr = [r["probe"] for r in rs]
+        sub = f"{int(med([x['sub_digits_right'] for x in pr]))} + {int(med([x['sub_borrows_right'] for x in pr]))}"
+        out.append(f"| {lab} | {hard} | {soft} | {tr} | {wn} | {up} | "
+                   f"{sum(bool(r.get('certified')) for r in rs)}/{len(rs)} | {sub} |")
+    return "\n".join(out)
+
+
+def sharp_table():
+    """records/sharpness.json (§9): the compiled rule at output scales 4 and 20, then every trim arm at (3, 2, 1)
+    (medians over its seeds, random starts only): the weight norm, the training share snapped / soft, and per channel
+    the median of a state's largest probability over every tick and written cell (the share above 0.9)."""
+    p = HERE / "records" / "sharpness.json"
+    if not p.exists():
+        return ""
+    rec = json.loads(p.read_text())
+    chans = list(next(iter(rec["runs"].values()))["sharpness"]) if rec["runs"] else ["d", "n", "b", "m", "g"]
+    out = ["| rule | weight norm | training, snapped / soft | " + " | ".join(chans) + " |",
+           "|---|---|---|" + "---|" * len(chans)]
+    for beta in ("4", "20"):
+        c = rec["compiled"][beta]
+        out.append(f"| the compiled rule, output scale {beta} | {c['norm']:.0f} | {f2(c['exact 3,2,1'][0])} / "
+                   f"{f2(c['exact 3,2,1'][1])} | " +
+                   " | ".join(f"{m:.2f} ({s:.0%})" for m, s in c["sharpness"].values()) + " |")
+    by = defaultdict(list)
+    for name, r in rec["runs"].items():
+        suite, run = name.split("/")
+        if suite != "trim_stab":
+            by[run.rsplit("_s", 1)[0].removeprefix("w2_")].append(r)
+    for arm, lab in TRIM_ARMS.items():
+        rs = by.get(arm)
+        if not rs:
+            continue
+        cells = [f"{med([r['sharpness'][c][0] for r in rs]):.2f} ({med([r['sharpness'][c][1] for r in rs]):.0%})"
+                 for c in chans]
+        out.append(f"| {lab} ({len(rs)} seed{'s' if len(rs) > 1 else ''}) | {med([r['norm'] for r in rs]):.0f} | "
+                   f"{f2(med([r['exact'][0] for r in rs]))} / {f2(med([r['exact'][1] for r in rs]))} | " +
+                   " | ".join(cells) + " |")
+    return "\n".join(out)
+
+
 def verify_table():
     """The certified setting's saved rules (cover2, cover3) checked further out (records/verify.json): right / asked,
     on every question where marked, else a sample of 3,000."""
@@ -368,7 +503,8 @@ def main():
     doc = (HERE / "NCA.md").read_text()
     tables = {"COMPILE": compile_table, "SITUATIONS": situations_table, "VERIFY": verify_table,
               "HYPER": lambda: hyper_table(rows), "HYPER_STAB": lambda: hyper_stab_table(rows),
-              "HYPER_SWAPS": hyper_swaps_table,
+              "HYPER_SWAPS": hyper_swaps_table, "TRIM": trim_table, "TRIM_CURVE": trim_curve_table,
+              "TRIM_STAB": trim_stab_table, "SHARP": sharp_table,
               **{t: (lambda t=t: run_table(rows, t)) for t in ("LESSONS", "TRACE", "SQUARE", "LOGIC")}}
     for name, fn in tables.items():
         pat = re.compile(rf"(<!-- {name} -->\n).*?(<!-- /{name} -->)", re.S)

@@ -63,7 +63,7 @@ class NCA(nn.Module):
     def __init__(self, fmt: G.Fmt, cfg: Cfg, seed: int = 0, dtype=torch.float32):
         super().__init__()
         self.fmt, self.cfg, self.dtype = fmt, cfg, dtype
-        g = torch.Generator().manual_seed(seed)
+        g = torch.Generator(device=torch.get_default_device()).manual_seed(seed)
         self.nk = NK = G.NK_SQ if cfg.kindset == "sq" else G.NK
         nin = NK + fmt.D
         H = cfg.hidden
@@ -73,6 +73,8 @@ class NCA(nn.Module):
         self.W2 = nn.Parameter(torch.randn(fmt.D, H, generator=g, dtype=dtype) * s * math.sqrt(1 / H))
         self.b2 = nn.Parameter(torch.zeros(fmt.D, dtype=dtype))
         self._kinds = {}
+        self.groups = None                      # ((W1, b1, W2, b2) stacked per group, "rows" | "cols", G): the
+                                                # AND-mask's pass over groups of questions or of grid columns
         self.nextra = {"": 0, "ncol": 1, "ports": 3}[cfg.extra]
         if self.nextra:
             ne = self.nextra * nin
@@ -113,7 +115,7 @@ class NCA(nn.Module):
                 inner[np.isin(inner, SCRATCH)] = SUB
             assert inner.max() < self.nk, "this grid has kinds the rule was not built for (kindset)"
             kd[1:-1, 1:-1] = inner
-            oh = F.one_hot(torch.from_numpy(kd), self.nk).to(self.dtype).permute(2, 0, 1)[None]
+            oh = F.one_hot(torch.as_tensor(kd), self.nk).to(self.dtype).permute(2, 0, 1)[None]
             self._kinds[key] = oh.contiguous()
         return self._kinds[key]
 
@@ -197,6 +199,29 @@ class NCA(nn.Module):
                 u = torch.cat([u, extra.reshape(X, extra.shape[1], R * C)], 1)
             z = self.logic(u.permute(0, 2, 1).reshape(X * R * C, -1), hard)
             return z.view(X, R, C, -1).permute(0, 3, 1, 2)
+        if self.groups is not None and self.groups[1] == "cols":   # the cells of column block g on copy g
+            (W1, b1, W2, b2), _, G_ = self.groups
+            assert extra is None
+            C = inp.shape[3] - 2
+            blk = np.arange(C) * G_ // C
+            outs = []
+            for g in range(G_):
+                cs = np.flatnonzero(blk == g)
+                if len(cs):
+                    pre = F.conv2d(inp[..., cs[0]:cs[-1] + 3], W1[g] * self.mask, b1[g])
+                    outs.append(torch.einsum("xhrc,dh->xdrc", F.relu(pre), W2[g] * self.W2mask)
+                                + b2[g][None, :, None, None])
+            return torch.cat(outs, 3)
+        if self.groups is not None:                     # rows in G equal blocks, block g on copy g of the weights
+            (W1, b1, W2, b2), _, G_ = self.groups
+            assert extra is None
+            X, nin, R2, C2 = inp.shape
+            n = X // G_
+            x = inp.view(G_, n, nin, R2, C2).transpose(0, 1).reshape(n, G_ * nin, R2, C2)
+            pre = F.conv2d(x, (W1 * self.mask).flatten(0, 1), b1.flatten(), groups=G_)
+            h = F.relu(pre).view(n, G_, -1, R2 - 2, C2 - 2)
+            out = torch.einsum("nghrc,gdh->ngdrc", h, W2 * self.W2mask) + b2[None, :, :, None, None]
+            return out.transpose(0, 1).reshape(X, -1, R2 - 2, C2 - 2)
         pre = F.conv2d(inp, self.W1 * self.mask, self.b1)
         if extra is not None:
             pre = pre + torch.einsum("xerc,he->xhrc", extra, self.Wx)
@@ -221,7 +246,7 @@ class NCA(nn.Module):
         """`ticks` ticks from S0. Returns the final state and the last tick's soft distributions (the answer loss
         reads these, so that a snapped forward pass still has a likelihood), and every tick's state if `record`."""
         clamp = self.cfg.clamp
-        pm = torch.from_numpy(lay.prompt)[None, None]
+        pm = torch.as_tensor(lay.prompt)[None, None]
         S = S0
         hist = []
         P = S0

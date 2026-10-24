@@ -6,11 +6,33 @@ Suites:
 
 from __future__ import annotations
 
+import json
+
 from nca import train as T
 
 GCL = {"ans": 1.0, "xmodn": 1.0, "link": 1.0, "pref": 1.0, "colall": 1.0, "rowall": 1.0, "bij": 1.0}
 GL = {"ans": 1.0, "xmodn": 1.0, "link": 1.0}
 C = {"pref": 1.0, "colall": 1.0, "rowall": 1.0, "bij": 1.0}
+
+
+def run_record(job: dict, path: str, threads: int = 4) -> dict:
+    """Run a job and write its record to `path` (through a temporary file, so that the record is whole or absent);
+    for nca/modal_nca.py's containers. Returns a summary."""
+    import os
+    import time
+    import torch
+    torch.set_num_threads(threads)
+    t = time.time()
+    r = execute(job)
+    r["wall"] = time.time() - t
+    r["suite"] = job["suite"]
+    if torch.cuda.is_available():
+        r["gpu_mem_gb"] = round(torch.cuda.max_memory_allocated() / 2 ** 30, 2)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path + ".tmp", "w") as f:
+        f.write(json.dumps(r) + "\n")
+    os.replace(path + ".tmp", path)
+    return {"name": r["name"], "suite": r["suite"], "hit": r.get("hit"), "certified": r.get("certified")}
 
 
 def execute(job: dict) -> dict:
@@ -430,6 +452,81 @@ def hyper_diag():
         {"kind": "hyper_pull", "name": f"hyper_pull_s{s}", "seed": s} for s in range(4)]
 
 
+TRIM_SIZES = {"w3": dict(B=3, w=3, k=2, batch=256, cert_sample=3000, extra_sizes=((0, 2), (1, 1)), gpu=True),
+              "w2": dict(B=3, w=2, k=1)}
+TRIM_ARMS = {"ctl": {}, "wd0.1": dict(optim="adamw", wd=0.1), "wd0.3": dict(optim="adamw", wd=0.3),
+             "wd1": dict(optim="adamw", wd=1.0), "and": dict(agree="and"), "dbd": dict(agree="dbd"),
+             "and_wd0.3": dict(agree="and", optim="adamw", wd=0.3), "dbd_wd0.3": dict(agree="dbd", optim="adamw", wd=0.3)}
+TRIM = dict(lessons=dict(GCL, step=1.0), net=dict(hidden=128, hood="causal"), lr=0.003, ctx_mode="blank", nostop=True,
+            every=100, curve_every=500, curve_sample=500, save_weights=True)
+
+
+def trim_time():
+    """How long a step takes, per size and arm, on the hardware trim1 uses: the log's clock at steps 40 and 60 (no
+    curve point between them), and a curve point's cost at step 60. (trim_time, the first launch, also tried (3, 3, 2)
+    on CPU: 8 GB was not enough.)"""
+    return [dict(TRIM, **size, **TRIM_ARMS[aname], steps=60, every=10, curve_every=30, cert=False, save_weights=False,
+                 tag=f"{sname}_{aname}", name=f"{sname}_{aname}")
+            for sname, size in TRIM_SIZES.items() for aname in ("ctl", "and", "dbd")]
+
+
+def trim_time3():
+    """The one-pass AND-mask's step on GPU, alone; and how much jobs slow each other when 2 or 3 share a GPU, each in
+    its own process (the "pack" key); with checkpoints (curve points at 30 and 60)."""
+    one = lambda aname, name, pack="": dict(TRIM, **TRIM_SIZES["w3"], **TRIM_ARMS[aname], steps=60, every=10,
+                                            curve_every=30, cert=False, save_weights=False, tag=f"w3_{aname}",
+                                            name=name, pack=pack)
+    return [one("and", "w3_and_alone"), one("ctl", "w3_ctl_p2", "p2"), one("and", "w3_and_p2", "p2"),
+            one("ctl", "w3_ctl_p3", "p3"), one("dbd", "w3_dbd_p3", "p3"), one("wd0.3", "w3_wd0.3_p3", "p3")]
+
+
+def trim_time4():
+    """The AND-mask's step on GPU with the groups as one grouped convolution: alone, and three to a GPU."""
+    one = lambda aname, name, pack="": dict(TRIM, **TRIM_SIZES["w3"], **TRIM_ARMS[aname], steps=60, every=10,
+                                            curve_every=30, cert=False, save_weights=False, tag=f"w3_{aname}",
+                                            name=name, pack=pack)
+    return [one("and", "w3_and_alone"), one("and", "w3_and_p3", "p3"), one("and_wd0.3", "w3_and_wd0.3_p3", "p3"),
+            one("ctl", "w3_ctl_p3", "p3")]
+
+
+def trim1(seeds=range(4), pack=3):
+    """Trimming and agreement, taught by lessons only (GCL and the step law; nothing from the compiled rule), causal,
+    a long budget and no early stop, a curve point every 500 steps: plain Adam (the control); AdamW at three weight
+    decays; the AND-mask over 8 groups of questions; delta-bar-delta speeds; each of the two with weight decay 0.3.
+    (3, 3, 2) in batches of 256 on GPU, up to `pack` runs to a GPU (each in its own process; one AND-mask run, the
+    slowest, per pack), and (3, 2, 1) on every question on CPU; 4 seeds."""
+    steps = {"w3": 20000, "w2": 50000}
+    jobs = [dict(TRIM, **size, **arm, steps=steps[sname], seed=seed, tag=f"{sname}_{aname}",
+                 name=f"{sname}_{aname}_s{seed}")
+            for sname, size in TRIM_SIZES.items() for aname, arm in TRIM_ARMS.items() for seed in seeds]
+    gpu = [j for j in jobs if j.get("gpu")]
+    order = [j for j in gpu if j.get("agree") == "and"] + [j for j in gpu if j.get("agree") != "and"]
+    npacks = -(-len(gpu) // pack)
+    for i, j in enumerate(order):
+        j["pack"] = f"p{i % npacks}"
+    return jobs
+
+
+def trim_cols():
+    """The optional variant of trim1's agreement: the AND-mask across cell positions (the grid's 4 columns, each its
+    own block, must agree on the sign of a component), alone and with weight decay 0.3; at (3, 2, 1) on CPU, as in
+    trim1; 4 seeds."""
+    arms = {"and_cols": dict(agree="and_cols"), "and_cols_wd0.3": dict(agree="and_cols", optim="adamw", wd=0.3)}
+    return [dict(TRIM, **TRIM_SIZES["w2"], **arm, steps=50000, seed=seed, tag=f"w2_{aname}", name=f"w2_{aname}_s{seed}")
+            for aname, arm in arms.items() for seed in range(4)]
+
+
+def trim_stab():
+    """Does each trim arm keep the machine's rule once it has it? trim1's and trim_cols' arms at (3, 2, 1), started at
+    the compiled rule (output scale 4: exact at (3, 2, 1) on the snapped and the soft path) instead of at random, the
+    same lessons, 10,000 steps; 2 seeds."""
+    arms = dict(TRIM_ARMS, and_cols=dict(agree="and_cols"),
+                **{"and_cols_wd0.3": dict(agree="and_cols", optim="adamw", wd=0.3)})
+    return [dict(TRIM, **TRIM_SIZES["w2"], **arm, init="compiled", init_beta=4.0, steps=10000, seed=seed,
+                 tag=f"w2_{aname}", name=f"w2_{aname}_s{seed}")
+            for aname, arm in arms.items() for seed in range(2)]
+
+
 def compile_all():
     """The compile check (compile.py), one job per size: the division at every size of compile.SIZES with the
     prompt re-injected and written only at tick 0; the square at every size of compile.SIZES_SQ; and both at a few
@@ -455,4 +552,4 @@ SUITES = {"explore": explore, "ladder2": ladder2, "square1": square1, "diag1": d
           "causal2": causal2, "logic3": logic3,
           "partial1": partial1, "cover1": cover1,
           "cover2": cover2, "selfcopy2": selfcopy2, "cover3": cover3,
-          "hyper1": hyper1, "hyper2": hyper2, "hyper3": hyper3, "hyper_stab": hyper_stab, "hyper_diag": hyper_diag, "verify": lambda: __import__("nca.verify", fromlist=["jobs"]).jobs()}
+          "hyper1": hyper1, "hyper2": hyper2, "hyper3": hyper3, "hyper_stab": hyper_stab, "hyper_diag": hyper_diag, "trim_time": trim_time, "trim_time2": trim_time, "trim_time3": trim_time3, "trim_time4": trim_time4, "trim1": trim1, "trim_cols": trim_cols, "trim_stab": trim_stab, "verify": lambda: __import__("nca.verify", fromlist=["jobs"]).jobs()}

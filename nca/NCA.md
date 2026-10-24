@@ -93,6 +93,27 @@ the fixed-neighbourhood rule certified, it does not fit at all. A nearly right w
 connection keeps a third of the training answers, two keep none. Only very near the right wiring does the gradient lead
 back to it.
 
+**7. Trained long with weight decay, or letting weights move only where the questions agree, it still memorizes.**
+Two known cures for memorization were tried on the lessons-only grid, far longer than it takes to fit (50,000 steps at
+(3, 2, 1), 20,000 at (3, 3, 2), 4 seeds, no early stop): *trimming*, weight decay over a long run, the setting in which
+networks that had memorized modular arithmetic later found the general rule ("grokking"); and *agreement*, letting a
+weight move only where groups of questions (or of grid columns) push it the same way, or speeding up the weights
+whose gradient keeps its sign. None certifies, none fits training on snapped digits, and one size up every run stays at
+chance from start to end: no late jump. Two measurements say why, for every arm:
+- decay keeps the weights small, and with small weights the cells pass blurred digits; a blurred code fits the training
+  answers (at (3, 2, 1), a median of 91–99% of them at the end) without being the machine. The machine's digits must
+  stay sharp tick after tick, which takes large weights: the exact rule needs about 37 in norm at (3, 2, 1), and decay
+  holds the runs there at 6–19. In grokking the general rule was the smaller one; here it is the larger one, so decay
+  pushes away from it;
+- started at the machine's own rule, every arm loses it within a few hundred steps, the plain control included. The
+  lessons, which only see blurred digits, are met as well by blurred neighbours of the rule, and Adam, the optimizer
+  under every arm, keeps taking full-size steps even where every lesson is already met. A rule the training cannot
+  hold is not one it can find.
+
+Agreement does not help either: the AND-mask lets a few percent of the gradient through, and delta-bar-delta ends
+with most weights near its slowest speed. Neither builds the copies: N's digit, the old register and the final borrow
+never reach the cells that read them.
+
 **Against the bridge.** The bridge's attention fell for the bypass (reading the prompt's clean digits instead of the
 computed ones) and learned its wiring only from menus of about 10 options, or by trying whole options and keeping
 those that pass. The NCA has no bypass, since no cell near the answer can see the prompt, and no menu: its wiring is
@@ -117,6 +138,10 @@ every move, it learns the exact machine.
   g meets the bridge's traps: the clean prompt pulls the heads to it, and many descriptions agree with the right one
   on a small training grid. Symmetry in the description helps once the description is right; it does not help find
   it.
+- **The usual cures for memorization assume the general rule is the small one.** Weight decay favours small weights,
+  agreement favours what every question shares. The machine's rule is shared by every question, but it is not small:
+  its digits must stay sharp through every tick, which takes large weights, while a blurred code that fits the
+  training answers is cheap. So decay favours the memorizer here, and agreement alone only slows the fit.
 - **Steering works when it is as uniform and local as the units.** The trace is exactly the pattern's "clean, uniform
   way of directing the units": the same signal at every cell and every tick. With it the grid learns quickly and
   exactly. The task does not supply it; where such a per-cell signal could come from without the answers spelling it
@@ -132,9 +157,10 @@ every move, it learns the exact machine.
 6. The square
 7. The bit-level arm
 8. Wiring from a generator: every cell connected to every other
-9. The traps, and the project's fixes, against the bridge
-10. Caveats
-11. Reproduce
+9. Trained long, with trimming or agreement: lessons only
+10. The traps, and the project's fixes, against the bridge
+11. Caveats
+12. Reproduce
 
 ## 1. The grid and the compiled rule
 
@@ -240,7 +266,9 @@ The compiled square rule has 242 hidden units at base 3.
 | x² mod N (2, 5) | 376 | 242 | 125 / 51 | 85 | yes | · | · | · | 0.999999998 |
 | x² mod N (3, 2) | 33 | 70 | 46 / 27 | 242 | yes | · | yes (227) | yes (217) | 0.999999996 |
 | x² mod N (3, 3) | 315 | 140 | 93 / 43 | 242 | yes | · | yes (227) | yes (217) | 0.999999996 |
+| x² mod N (3, 4) | 2,889 | 234 | 156 / 59 | 242 | yes | · | · | · | 0.999999996 |
 | x² mod N (4, 2) | 114 | 90 | 66 / 35 | 623 | yes | · | · | · | 0.999999994 |
+| x² mod N (4, 3) | 1,896 | 182 | 135 / 61 | 623 | yes | · | · | · | 0.999999994 |
 | x² mod N (5, 2) | 290 | 110 | 86 / 43 | 1396 | yes | · | · | · | 0.999999992 |
 <!-- /COMPILE -->
 
@@ -279,8 +307,10 @@ trained at (3, 2, 2) and (3, 3, 2), and every question in `cover2`).
 | sheet | the worksheet's visible digits: d at every scratch cell is the machine's | the machine's worksheet (labels) |
 | trace | along the compiled NCA's own run (from random and from blank scratch cells, alternately), every tick of the learned rule gives the compiled rule's next state, in every channel of every cell (`trace_chans`: some channels only; `trace_ticks`: a few sampled ticks per step) | the compiled rule itself: an upper bound, not a lesson |
 
-G is ans + xmodn, plus step when k ≥ 2; GL adds link; GCL adds the cell's lessons. The cell's lessons fix more design
-than in the bridge: there, the subtraction cell's ports were fixed, so querying it fixed only the format. Here the query
+G is ans + xmodn; GL adds link; GCL adds the cell's lessons. The step law (k ≥ 2) is implemented, but none of the
+runs in §3–§8 turned it on: the rows trained at k = 2 say "step law off". §9 is the first to use it. The cell's
+lessons fix more design than in the bridge: there, the subtraction cell's ports were fixed, so querying it fixed only
+the format. Here the query
 also says where the cell reads its minuend, subtrahend and borrow (U.d, U.n, L.b): it is the compiled wiring, stated as
 a lesson.
 
@@ -312,20 +342,20 @@ answered 0.
 | noself, one MLP block per channel | GCL | 0/2 | 0.33 / 0.51 | 0.12 / 0.05 | 18 + 18 | 0.16 |
 | noself | answers + the worksheet's visible digits | 0/2 | 0.24 / 0.35 | 0.14 / 0.05 | 5 + 7 | 0.23 |
 | noself, trained at (3, 2, 2) | answers | 0/2 | 0.18 / 0.18 | 0.19 / 0.05 | 6 + 9 | 0.61 |
-| noself, trained at (3, 2, 2) | GCL + the step law | 0/2 | 0.19 / 0.19 | 0.17 / 0.06 | 18 + 18 | 0.52 |
-| noself, STE, trained at (3, 2, 2) | GCL + the step law | 0/2 | 0.18 / 0.18 | 0.18 / 0.06 | 18 + 18 | 1.00 |
+| noself, trained at (3, 2, 2) | GCL (step law off) | 0/2 | 0.19 / 0.19 | 0.17 / 0.06 | 18 + 18 | 0.52 |
+| noself, STE, trained at (3, 2, 2) | GCL (step law off) | 0/2 | 0.18 / 0.18 | 0.18 / 0.06 | 18 + 18 | 1.00 |
 | noself, trained at (3, 2, 2) | answers + the worksheet's visible digits | 0/2 | 0.18 / 0.62 | 0.14 / 0.04 | 7 + 6 | 0.19 |
 | noself + N's column | GCL | 0/2 | 0.65 / 0.88 | 0.15 / 0.05 | 18 + 18 | 0.20 |
 | noself + the bridge's ports, digit-and-borrow cells | answers | 0/2 | 0.52 / 0.83 | 0.16 / 0.05 | 4 + 8 | 0.27 |
 | noself + the bridge's ports, digit-and-borrow cells | GCL | 0/2 | 0.56 / 0.76 | 0.22 / 0.07 | 18 + 18 | 0.24 |
 | the same, STE | GCL | 0/2 | 0.87 / 0.86 | 0.19 / 0.06 | 18 + 18 | 0.19 |
 | noself + the bridge's ports, digit-and-borrow cells | GCL, the cell's lessons first | 0/2 | 0.55 / 0.85 | 0.14 / 0.05 | 18 + 18 | 0.18 |
-| the same, trained at (3, 2, 2) | GCL + the step law | 0/2 | 0.25 / 0.34 | 0.18 / 0.06 | 18 + 18 | 0.24 |
+| the same, trained at (3, 2, 2) | GCL (step law off) | 0/2 | 0.25 / 0.34 | 0.18 / 0.06 | 18 + 18 | 0.24 |
 | causal | answers | 0/2 | 0.41 / 1.00 | 0.12 / 0.04 | 5 + 9 | 0.15 |
 | causal | GCL | 0/2 | 0.31 / 0.71 | 0.17 / 0.05 | 18 + 18 | 0.17 |
 | causal, STE | GCL | 0/2 | 0.79 / 0.80 | 0.19 / 0.05 | 18 + 18 | 0.19 |
-| causal, trained at (3, 2, 2) | GCL + the step law | 0/2 | 0.15 / 0.25 | 0.16 / 0.05 | 18 + 18 | 0.51 |
-| causal, trained at (3, 3, 2) | GCL + the step law | 0/1 | 0.07 / 0.19 | 0.03 / 0.01 | 18 + 18 | 0.06 |
+| causal, trained at (3, 2, 2) | GCL (step law off) | 0/2 | 0.15 / 0.25 | 0.16 / 0.05 | 18 + 18 | 0.51 |
+| causal, trained at (3, 3, 2) | GCL (step law off) | 0/2 | 0.07 / 0.18 | 0.04 / 0.01 | 18 + 18 | 0.05 |
 | causal, L1 1.0 on the input weights | GCL | 0/2 | 0.49 / 0.93 | 0.17 / 0.06 | 18 + 18 | 0.16 |
 | causal, STE, L1 1.0 | GCL | 0/2 | 0.84 / 0.84 | 0.18 / 0.06 | 18 + 18 | 0.19 |
 | free format, noself | answers | 0/2 | 0.42 / 1.00 | 0.13 / 0.05 | · | 0.16 |
@@ -532,7 +562,7 @@ same base and width, with one quotient digit.
 | noself | the compiled trace | 0/2 | 1.00 / 1.00 | 0.28 / 0.08 | 0.18 |
 | causal | the compiled trace | 0/2 | 1.00 / 1.00 | 0.31 / 0.09 | 0.19 |
 | noself + the bridge's ports | the compiled trace | 0/2 | 1.00 / 1.00 | 0.20 / 0.08 | 0.18 |
-| causal, trained at (3, 3), batches of 64 | the compiled trace (12 ticks a step) | 0/1 | 1.00 / 0.99 | 0.52 / 0.18 | 0.06 |
+| causal, trained at (3, 3), batches of 64 | the compiled trace (12 ticks a step) | 0/2 | 1.00 / 0.99 | 0.49 / 0.19 | 0.10 |
 <!-- /SQUARE -->
 
 What the table says:
@@ -547,8 +577,8 @@ What the table says:
 - **Trained where its grid shows more situations, it still does not extrapolate.** With the causal neighbourhood and the
   trace, trained at (3, 3) (315 questions, 140 cells, 93 ticks, in batches of 64 with 12 traced ticks a step; the
   setting in which the division certified), the square's grid is learned: every cell right one tick from the machine's
-  state, and the training answers exact at step 950 (one of 315 had slipped by the run's end, 300 steps later). One size
-  up it gets about half: 0.52 at (3, 4), 0.18 at (3, 5) (one seed; the second was still running when this was written).
+  state, and the training answers exact at step 950 and 1,025 in its two seeds (in one, one of 315 had slipped by the
+  run's end, 300 steps later). One size up it gets about half: 0.46–0.52 at (3, 4), 0.18–0.21 at (3, 5).
   Its grid shows far fewer of a bigger grid's situations than the division's did (SITUATIONS table, §4): trained at (3,
   3), 24% of the cells of (3, 4) and 33% of (3, 5) see a neighbourhood it never saw, and 1.3–2.1% something new even
   among the few inputs the exact rule reads, against 8.5% and 0% for the division trained at (3, 3, 2). Every extra
@@ -580,7 +610,7 @@ Randazzo and Mordvintsev, 2025, who learned the Game of Life this way):
 | 256 x 4 gates, noself | GCL, the cell's lessons first | 0/2 | 0.21 / 0.25 | 0.19 / 0.06 | 1128 |
 | 256 x 4 gates, causal, 10,000 steps | trace (6 ticks a step) at (3, 2, 1) | 0/2 | 0.19 / 0.18 | 0.18 / 0.06 | 1128 |
 | 512-512-512-256 gates, causal, 10,000 steps | trace (6 ticks a step) at (3, 2, 1) | 0/2 | 0.19 / 0.18 | 0.18 / 0.06 | 2000 |
-| 512-512-512-256 gates, causal, 10,000 steps | trace (6 ticks a step) at (3, 2, 2), batches of 64 | 0/1 | 0.18 / 0.18 | 0.18 / 0.06 | 2000 |
+| 512-512-512-256 gates, causal, 10,000 steps | trace (6 ticks a step) at (3, 2, 2), batches of 64 | 0/2 | 0.18 / 0.18 | 0.18 / 0.06 | 2000 |
 <!-- /LOGIC -->
 
 What the table says:
@@ -721,7 +751,258 @@ answers alone bring back 0.94 of the ports and 0.41 of the answers. From noise 0
 of ports right), and from 1.0 nothing is recovered. The basin around the generated machine is narrow: the bridge's
 7-option menu, on the answers alone, came back from noise 3.
 
-## 9. The traps, and the project's fixes, against the bridge
+## 9. Trained long, with trimming or agreement: lessons only
+
+`suites.py` (`trim1`, `trim_cols`, `trim_stab`; the timing suites `trim_time` to `trim_time4`), records in
+`runs/trim1.jsonl`, `runs/trim_cols.jsonl` and `runs/trim_stab.jsonl`, 4 seeds per arm (2 in `trim_stab`).
+
+**The question.** §3's grid memorizes: with blurred digits it fits the training answers through an analog code, with
+snapped ones through a lookup, and one size up it is at chance. Two known remedies for memorization were tried on it.
+*Trimming*: train far past the fit with weight decay. In grokking (Power et al. 2022), networks that had memorized
+modular arithmetic found the general rule thousands of steps later; one account (Nanda et al. 2023) is that the
+general circuit needs smaller weights than a lookup, so the decay wears the lookup away. *Agreement*: let a weight
+move only where the questions agree. A memorized answer helps one question and the machine's rule helps them all, so
+an update that every group of questions pushes the same way should build the rule. The AND-mask (Parascandolo et al.
+2021) keeps only the gradient components on whose sign the groups agree; delta-bar-delta (Jacobs 1988; Sutton's IDBD
+makes the idea incremental) gives every weight its own speed, which grows while its gradient keeps its sign from step
+to step and shrinks when it flips.
+
+**The setting.** Lessons only: GCL and, for the first time here, the step law (§2; it needs two links, so it acts in the
+(3, 3, 2) runs only); nothing from the compiled rule
+(no trace, no worksheet). The causal neighbourhood (§4: the setting in which the trace certified). Trained at (3, 3,
+2), where every local situation occurs, in batches of 256 for 20,000 steps on a GPU; and at (3, 2, 1) on all 99
+questions for 50,000 steps. §3's runs stopped after 3,000 steps, or 1,500 without progress; their best came at step
+250 at (3, 3, 2) and between 900 and 1,850 at (3, 2, 1), so these budgets are 80× and 25–55× that. No early stop.
+Every 500 steps a curve point records: the training share, snapped and soft; the snapped share one size up, (B, w,
+k + 1) and (B, w + 1, k + 1), on a fixed sample of 500 questions, to catch a late jump; the rule's weight norm; the
+sub table; and the plumbing probe below. The learning rate is 0.003 throughout. The arms:
+
+- control: plain Adam, no weight decay;
+- AdamW with decoupled weight decay 0.1, 0.3 and 1 (at this learning rate, 0.3 takes the same 0.1% off every weight
+  per step as grokking's decay of 1 at a learning rate of 0.001);
+- the AND-mask: the step's questions in 8 random groups; a gradient component is kept if at least 7 of the 8 groups
+  agree on its sign (|mean sign| ≥ 0.75), and is then the mean gradient, zero elsewhere. The cell's table laws, which
+  do not depend on the questions, join every group's gradient;
+- delta-bar-delta speeds on top of Adam: a weight's speed scales its whole update; it grows by 0.02 while the weight's
+  gradient has the sign of the trace of its past gradients (decay 0.9) and shrinks by 10% when it does not, within
+  [0.1, 10];
+- each of the last two with weight decay 0.3;
+- at (3, 2, 1) only (`trim_cols`), the AND-mask across cell positions instead of questions: the grid's 4 columns are
+  the groups, each column's cells run on their own copy of the rule, and a component is kept if the copies agree on
+  its sign by the same threshold (|mean sign| ≥ 0.75: with 4 groups, all four, or three with the fourth at zero);
+  alone and with weight decay 0.3. The cell's laws, which run on no grid, join every column's gradient.
+
+Each arm was also started at the compiled rule instead of at random (`trim_stab`: (3, 2, 1), the rule's output
+scale softened to 4, where it is still exact on the snapped and the soft path; the same lessons; 10,000 steps): an
+arm that cannot keep the machine's rule once it has it cannot be expected to find it.
+
+**The plumbing probe** (read only: it trains nothing). §3 put the grid's failure in the copies the machine needs. On
+the snapped grid at the training size, the probe asks whether three of them arrive where the compiled rule reads them,
+in whatever code: N's digit at a SUB cell (from the cell above), the old register at a SEL cell (from the cell above,
+which in the machine holds the minuend its link started from), and the final borrow at a SEL cell (from the cell to
+its right, or the cell above at the top place). For each, a lookup from the source cell's whole state to the
+machine's value, fitted on half the questions and scored on the other half, as a lift over the most common value: 1
+means the value can be read off the source, 0 that it is not there. On the compiled rule all three are 1.
+
+**What happened, in plain words.** No arm certifies, and none fits the training grid on snapped digits: the best any
+(3, 2, 1) run reaches at any point is 62 of its 99 questions (most peak at 40–60% of them), and the best at (3, 3, 2)
+about a seventh. One size up every run stays at chance from the first curve point to the last (the best any point
+reached is at most 0.07 above "always answer 0"), so there is no late jump. What the arms change is the code the grid
+memorizes with:
+- **Weight decay** brings the weights to a size the decay sets (a norm of about 17–20, 10–13 and 6–7 at decays 0.1,
+  0.3 and 1): from step 3,000 on they stay within a fifth of where they end. At that size the cells pass blurred
+  digits, and at (3, 2, 1) the blurred code fits the training answers on the soft path, though not steadily: over the
+  second half of the run, decays 0.1 and 0.3 are at 0.99 or better at 41–76% of the curve points and dip as low as
+  0.3–0.5 between, and decay 1 stays near 0.8 (at the last point, medians of 0.91–0.99). The snapped grid gets about
+  a quarter of the answers. At decay 1 even the subtraction cell's table breaks (at (3, 2, 1), half of its 18 digit
+  entries wrong in every seed); the other arms keep it whole in 58 of their 64 runs, and the worst gets 12 of the 18
+  digits right.
+- **The control**, without decay, fits the soft path early too (every seed by step 5,500, at a norm of 26–34), but its
+  weights keep growing (to 68), its digits sharpen, and the soft fit goes: no seed is at 0.99 after step 12,000, and
+  the control ends at 0.20 snapped and 0.33 soft.
+- **The AND-mask** over 8 groups of questions lets a few percent of the gradient's components through (a median over
+  the run of 4–8% at (3, 2, 1), 3–4% there with decay, 10–19% at (3, 3, 2)). It learns more slowly, never fits the
+  soft path (0.77–0.96 at best), and ends like the control, its weights growing (to 70) and fitting neither path.
+  With decay 0.3 its weights settle where decay alone puts them (a norm of 9–12), but the soft fit does not hold:
+  three of four seeds reach 0.99 at some point, and they end at 0.60–0.93.
+- **The AND-mask over the 4 columns** (at (3, 2, 1)) lets about as much through (6–9%). Alone, three of four seeds
+  fit the soft path by step 3,000 and none holds it past step 4,000; its weights grow faster than the control's (a
+  norm of 86 at the end, one seed 160), and it ends at 0.12 snapped and 0.17 soft. With decay 0.3 it ends like decay
+  alone (a norm of 12–14, 0.95 soft) with fewer snapped answers (0.18).
+- **Delta-bar-delta**: within the first 500 steps most weights' gradients change sign from step to step, so their
+  speeds fall toward the floor (a median of 0.10–0.16 of the base rate) while a few weights speed up (the fastest at
+  1–10 at the end). On most weights it is a slower Adam. Alone, its weights grow more slowly than the control's (to
+  58) and it keeps the soft fit longer (to step 32,000–48,000; a median of 0.88 at the end); with decay 0.3 it ends
+  like decay alone (0.27 snapped, 1.00 soft).
+- **The plumbing probe** finds the three copies faintly at best: a lift of 0.0–0.3 at the end, and at most about 0.6 at
+  any curve point, against 1 for the compiled rule. N's digit does not ride down to the SUB cells, the old register does
+  not reach the SEL cells, and the final borrow does not come back along the row.
+- **At (3, 3, 2)**, where every local situation occurs, no run fits even the soft path in 20,000 steps (0.26 at best),
+  so trimming's premise, fit first and then decay, never arises there. The arms differ in their weight norms, which
+  behave as at (3, 2, 1), and not in what they fit: every run ends at 0.04–0.10 snapped, about the 0.06 that "always
+  answer 0" gets at that size.
+
+At the end of the run, medians over the seeds; "its best over the run" is the best median any curve point reached:
+
+<!-- TRIM -->
+| trained at | arm | certified | training, snapped / soft | best training, snapped | one size up (k + 1 / w + 1, k + 1) | its best over the run | weight norm | sub table | plumbing: N's digit / old register / final borrow |
+|---|---|---|---|---|---|---|---|---|---|
+| (3, 3, 2), 20,000 steps | plain Adam (the control) | 0/4 | 0.05 / 0.06 | 0.11 | 0.06 / 0.02 | 0.07 / 0.03 | 22 → 48 | 18 + 18 | 0.03 / 0.09 / 0.16 |
+| (3, 3, 2), 20,000 steps | AdamW, weight decay 0.1 | 0/4 | 0.08 / 0.22 | 0.11 | 0.05 / 0.02 | 0.07 / 0.04 | 19 → 20 | 18 + 18 | 0.09 / 0.02 / 0.16 |
+| (3, 3, 2), 20,000 steps | AdamW, weight decay 0.3 | 0/4 | 0.07 / 0.24 | 0.10 | 0.05 / 0.02 | 0.07 / 0.03 | 16 → 13 | 18 + 18 | 0.06 / 0.06 / 0.15 |
+| (3, 3, 2), 20,000 steps | AdamW, weight decay 1 | 0/4 | 0.06 / 0.19 | 0.08 | 0.05 / 0.02 | 0.07 / 0.03 | 10 → 7 | 11 + 16 | 0.07 / 0.03 / 0.13 |
+| (3, 3, 2), 20,000 steps | AND-mask over 8 groups | 0/4 | 0.06 / 0.06 | 0.10 | 0.06 / 0.02 | 0.07 / 0.03 | 21 → 52 | 18 + 18 | 0.10 / 0.04 / 0.22 |
+| (3, 3, 2), 20,000 steps | delta-bar-delta speeds | 0/4 | 0.06 / 0.14 | 0.09 | 0.05 / 0.02 | 0.07 / 0.03 | 21 → 38 | 18 + 18 | 0.04 / 0.03 / 0.20 |
+| (3, 3, 2), 20,000 steps | AND-mask + weight decay 0.3 | 0/4 | 0.07 / 0.22 | 0.09 | 0.04 / 0.02 | 0.07 / 0.03 | 15 → 13 | 18 + 18 | 0.05 / 0.04 / 0.19 |
+| (3, 3, 2), 20,000 steps | delta-bar-delta + weight decay 0.3 | 0/4 | 0.06 / 0.24 | 0.08 | 0.05 / 0.01 | 0.06 / 0.03 | 18 → 12 | 18 + 18 | 0.05 / 0.04 / 0.16 |
+| (3, 2, 1), 50,000 steps | plain Adam (the control) | 0/4 | 0.20 / 0.33 | 0.56 | 0.12 / 0.05 | 0.21 / 0.08 | 21 → 68 | 18 + 18 | 0.29 / 0.04 / 0.28 |
+| (3, 2, 1), 50,000 steps | AdamW, weight decay 0.1 | 0/4 | 0.26 / 0.96 | 0.51 | 0.13 / 0.04 | 0.22 / 0.08 | 19 → 17 | 18 + 18 | 0.14 / 0.09 / 0.28 |
+| (3, 2, 1), 50,000 steps | AdamW, weight decay 0.3 | 0/4 | 0.29 / 0.99 | 0.44 | 0.14 / 0.05 | 0.19 / 0.07 | 15 → 11 | 18 + 18 | 0.11 / 0.07 / 0.11 |
+| (3, 2, 1), 50,000 steps | AdamW, weight decay 1 | 0/4 | 0.25 / 0.91 | 0.38 | 0.11 / 0.04 | 0.20 / 0.08 | 9 → 7 | 9 + 16 | 0.11 / 0.01 / 0.17 |
+| (3, 2, 1), 50,000 steps | AND-mask over 8 groups | 0/4 | 0.19 / 0.24 | 0.53 | 0.15 / 0.05 | 0.21 / 0.08 | 21 → 70 | 18 + 18 | 0.32 / 0.06 / 0.20 |
+| (3, 2, 1), 50,000 steps | delta-bar-delta speeds | 0/4 | 0.28 / 0.88 | 0.53 | 0.14 / 0.04 | 0.21 / 0.08 | 21 → 58 | 18 + 18 | 0.29 / 0.10 / 0.25 |
+| (3, 2, 1), 50,000 steps | AND-mask + weight decay 0.3 | 0/4 | 0.34 / 0.76 | 0.45 | 0.15 / 0.05 | 0.21 / 0.08 | 15 → 12 | 17 + 18 | 0.10 / 0.04 / 0.23 |
+| (3, 2, 1), 50,000 steps | delta-bar-delta + weight decay 0.3 | 0/4 | 0.27 / 1.00 | 0.37 | 0.13 / 0.05 | 0.20 / 0.07 | 20 → 12 | 18 + 18 | 0.12 / -0.01 / 0.25 |
+| (3, 2, 1), 50,000 steps | AND-mask over the 4 columns | 0/4 | 0.12 / 0.17 | 0.50 | 0.17 / 0.05 | 0.21 / 0.08 | 22 → 86 | 18 + 18 | 0.15 / 0.01 / 0.17 |
+| (3, 2, 1), 50,000 steps | AND-mask over the columns + weight decay 0.3 | 0/4 | 0.18 / 0.95 | 0.40 | 0.14 / 0.04 | 0.21 / 0.08 | 16 → 13 | 18 + 18 | 0.11 / 0.08 / 0.22 |
+<!-- /TRIM -->
+
+Over training: the training share snapped / soft / one size up ((B, w + 1, k + 1), on the curve's 500-question
+sample), medians over the seeds:
+
+<!-- TRIM_CURVE -->
+| trained at (3, 3, 2); one size up is (3, 4, 3) | step 1,000 | step 5,000 | step 10,000 | step 20,000 |
+|---|---|---|---|---|
+| plain Adam (the control) | 0.07 / 0.18 / 0.02 | 0.08 / 0.18 / 0.01 | 0.05 / 0.08 / 0.02 | 0.05 / 0.06 / 0.03 |
+| AdamW, weight decay 0.1 | 0.08 / 0.18 / 0.02 | 0.07 / 0.19 / 0.02 | 0.08 / 0.23 / 0.02 | 0.08 / 0.22 / 0.03 |
+| AdamW, weight decay 0.3 | 0.08 / 0.19 / 0.02 | 0.07 / 0.21 / 0.02 | 0.08 / 0.22 / 0.02 | 0.07 / 0.24 / 0.02 |
+| AdamW, weight decay 1 | 0.06 / 0.18 / 0.02 | 0.05 / 0.19 / 0.01 | 0.06 / 0.19 / 0.02 | 0.06 / 0.19 / 0.02 |
+| AND-mask over 8 groups | 0.07 / 0.18 / 0.01 | 0.07 / 0.12 / 0.01 | 0.07 / 0.17 / 0.01 | 0.06 / 0.06 / 0.02 |
+| delta-bar-delta speeds | 0.07 / 0.18 / 0.02 | 0.07 / 0.20 / 0.02 | 0.06 / 0.19 / 0.01 | 0.06 / 0.14 / 0.02 |
+| AND-mask + weight decay 0.3 | 0.06 / 0.18 / 0.02 | 0.07 / 0.22 / 0.01 | 0.06 / 0.23 / 0.02 | 0.07 / 0.22 / 0.02 |
+| delta-bar-delta + weight decay 0.3 | 0.07 / 0.18 / 0.02 | 0.06 / 0.21 / 0.02 | 0.06 / 0.21 / 0.02 | 0.06 / 0.24 / 0.02 |
+
+| trained at (3, 2, 1); one size up is (3, 3, 2) | step 1,000 | step 10,000 | step 25,000 | step 50,000 |
+|---|---|---|---|---|
+| plain Adam (the control) | 0.37 / 0.73 / 0.05 | 0.36 / 0.83 / 0.04 | 0.26 / 0.56 / 0.04 | 0.20 / 0.33 / 0.06 |
+| AdamW, weight decay 0.1 | 0.38 / 0.91 / 0.05 | 0.31 / 0.98 / 0.04 | 0.36 / 0.98 / 0.04 | 0.26 / 0.96 / 0.03 |
+| AdamW, weight decay 0.3 | 0.29 / 0.72 / 0.05 | 0.34 / 0.99 / 0.03 | 0.25 / 1.00 / 0.03 | 0.29 / 0.99 / 0.04 |
+| AdamW, weight decay 1 | 0.24 / 0.56 / 0.07 | 0.28 / 0.71 / 0.05 | 0.14 / 0.91 / 0.04 | 0.25 / 0.91 / 0.04 |
+| AND-mask over 8 groups | 0.29 / 0.47 / 0.05 | 0.33 / 0.71 / 0.06 | 0.38 / 0.50 / 0.06 | 0.19 / 0.24 / 0.04 |
+| delta-bar-delta speeds | 0.27 / 0.96 / 0.06 | 0.33 / 0.99 / 0.05 | 0.31 / 0.96 / 0.05 | 0.28 / 0.88 / 0.04 |
+| AND-mask + weight decay 0.3 | 0.30 / 0.58 / 0.06 | 0.25 / 0.70 / 0.05 | 0.27 / 0.75 / 0.04 | 0.34 / 0.76 / 0.04 |
+| delta-bar-delta + weight decay 0.3 | 0.29 / 0.90 / 0.07 | 0.21 / 1.00 / 0.05 | 0.22 / 1.00 / 0.06 | 0.27 / 1.00 / 0.04 |
+| AND-mask over the 4 columns | 0.35 / 0.86 / 0.05 | 0.30 / 0.45 / 0.05 | 0.18 / 0.18 / 0.05 | 0.12 / 0.17 / 0.05 |
+| AND-mask over the columns + weight decay 0.3 | 0.30 / 0.66 / 0.06 | 0.27 / 0.74 / 0.05 | 0.20 / 0.88 / 0.05 | 0.18 / 0.95 / 0.04 |
+<!-- /TRIM_CURVE -->
+
+**Why trimming does not work here.** In grokking's account the general rule is the cheaper one in weight: decay wears
+down a lookup that needs larger weights than the rule, until the rule is what is left. Here it is the other way round.
+The machine's digits must stay sharp through every tick (17 at (3, 2, 1), 50 at (3, 3, 2)), and on the soft path, the
+one the lessons train through, that takes large weights. The compiled rule written into the trim runs' network
+(`sharpness.py`) is exact on both paths at (3, 2, 1) only from an output scale of 3, a weight norm of 37 (from 4, a
+norm of 45, at (3, 3, 2)); at smaller scales it is still exact when snapped, but its states blur and the soft path gets
+0.18 of training right. The decayed runs at (3, 2, 1) end at norms of 6–19, and their cells pass blurred states. Per
+channel, the
+median over every tick and written cell of a state's largest probability, and the share of states above 0.9, at
+(3, 2, 1) at the end of the run:
+
+<!-- SHARP -->
+| rule | weight norm | training, snapped / soft | d | n | b | m | g |
+|---|---|---|---|---|---|---|---|
+| the compiled rule, output scale 4 | 45 | 1.00 / 1.00 | 0.95 (100%) | 0.95 (100%) | 0.98 (100%) | 0.96 (100%) | 0.98 (100%) |
+| the compiled rule, output scale 20 | 198 | 1.00 / 1.00 | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) |
+| plain Adam (the control) (4 seeds) | 68 | 0.20 / 0.33 | 1.00 (89%) | 1.00 (96%) | 1.00 (97%) | 1.00 (93%) | 1.00 (96%) |
+| AdamW, weight decay 0.1 (4 seeds) | 17 | 0.26 / 0.96 | 0.92 (55%) | 0.60 (7%) | 0.87 (43%) | 0.69 (12%) | 0.80 (32%) |
+| AdamW, weight decay 0.3 (4 seeds) | 12 | 0.29 / 0.99 | 0.84 (39%) | 0.54 (0%) | 0.84 (39%) | 0.65 (4%) | 0.71 (9%) |
+| AdamW, weight decay 1 (4 seeds) | 6 | 0.25 / 0.91 | 0.62 (16%) | 0.54 (4%) | 0.82 (33%) | 0.63 (8%) | 0.64 (13%) |
+| AND-mask over 8 groups (4 seeds) | 70 | 0.19 / 0.24 | 1.00 (88%) | 1.00 (100%) | 1.00 (99%) | 1.00 (96%) | 1.00 (99%) |
+| delta-bar-delta speeds (4 seeds) | 58 | 0.28 / 0.88 | 1.00 (91%) | 0.99 (78%) | 1.00 (93%) | 0.99 (76%) | 1.00 (88%) |
+| AND-mask + weight decay 0.3 (4 seeds) | 12 | 0.34 / 0.76 | 0.77 (27%) | 0.54 (2%) | 0.89 (48%) | 0.68 (4%) | 0.74 (9%) |
+| delta-bar-delta + weight decay 0.3 (4 seeds) | 12 | 0.27 / 1.00 | 0.80 (34%) | 0.49 (0%) | 0.91 (52%) | 0.60 (2%) | 0.66 (0%) |
+| AND-mask over the 4 columns (4 seeds) | 86 | 0.12 / 0.17 | 1.00 (91%) | 1.00 (100%) | 1.00 (99%) | 1.00 (100%) | 1.00 (100%) |
+| AND-mask over the columns + weight decay 0.3 (4 seeds) | 13 | 0.18 / 0.95 | 0.80 (32%) | 0.49 (0%) | 0.95 (65%) | 0.56 (0%) | 0.68 (5%) |
+<!-- /SHARP -->
+
+With decay, N's digit and the memo pass as blurs (a median largest probability of 0.5–0.7; at most 12% of states above
+0.9), and that is the code that fits the training answers. Without decay the weights grow (to 58–86 in norm), the
+states sharpen nearly to the compiled rule's, and the soft fit goes: the control and both AND-masks end fitting
+neither path, and delta-bar-delta, whose weights grow the slowest and whose states stay a little blurrier, keeps most
+of it.
+The control shows the same over time: it fits the soft path while its norm is 26–39 and loses the fit as the norm
+grows. So decay does not wear the lookup away: it makes the blurred code the cheap solution and the machine the
+expensive one.
+
+**Started at the machine's rule, no arm keeps it.** `trim_stab` started every arm at the compiled rule (output scale
+4, a norm of 45, exact on both paths) with the same lessons, for 10,000 steps:
+
+<!-- TRIM_STAB -->
+| arm | first step below exact, snapped (each seed) | the same, soft | training at the end, snapped / soft | weight norm | one size up at the end (k + 1 / w + 1, k + 1) | certified | sub table |
+|---|---|---|---|---|---|---|---|
+| plain Adam (the control) | 200 and 200 | 500 and 1,000 | 0.23 / 0.42 | 47 → 54 | 0.12 / 0.05 | 0/2 | 18 + 18 |
+| AdamW, weight decay 0.1 | 100 and 100 | 1,500 and 500 | 0.26 / 0.84 | 41 → 20 | 0.10 / 0.04 | 0/2 | 18 + 18 |
+| AdamW, weight decay 0.3 | 200 and 100 | 1,500 and 500 | 0.19 / 0.88 | 32 → 14 | 0.16 / 0.05 | 0/2 | 18 + 18 |
+| AdamW, weight decay 1 | 100 and 200 | 500 and 500 | 0.23 / 0.67 | 15 → 6 | 0.15 / 0.04 | 0/2 | 7 + 16 |
+| AND-mask over 8 groups | 100 and 100 | 1,000 and 7,500 | 0.21 / 0.24 | 47 → 53 | 0.18 / 0.06 | 0/2 | 18 + 18 |
+| delta-bar-delta speeds | 300 and 100 | 2,500 and 6,000 | 0.21 / 0.54 | 49 → 63 | 0.12 / 0.04 | 0/2 | 18 + 18 |
+| AND-mask + weight decay 0.3 | 100 and 100 | 2,000 and 1,500 | 0.13 / 0.46 | 32 → 12 | 0.07 / 0.03 | 0/2 | 15 + 16 |
+| delta-bar-delta + weight decay 0.3 | 200 and 200 | 500 and 3,000 | 0.27 / 1.00 | 34 → 15 | 0.14 / 0.05 | 0/2 | 18 + 18 |
+| AND-mask over the 4 columns | 100 and 100 | 500 and 4,000 | 0.17 / 0.31 | 48 → 57 | 0.17 / 0.06 | 0/2 | 18 + 18 |
+| AND-mask over the columns + weight decay 0.3 | 100 and 100 | 1,500 and 1,000 | 0.20 / 0.81 | 32 → 14 | 0.12 / 0.04 | 0/2 | 18 + 18 |
+<!-- /TRIM_STAB -->
+
+Every arm, the control included, is below exact on the snapped path within 100–300 steps, and none comes back (0.13–0.27
+at the end). The soft fit lasts longer in some runs (to step 7,500 in one AND-mask run), so for a while the grid is
+exact on blurred digits and not on snapped ones: the lessons, which only see the soft path, are met as well by blurred
+neighbours of the rule. Then the runs end where the random starts do: with decay the weights shrink to the size decay
+sets (a norm of 6–20) and the grid keeps a soft fit on blurred digits (0.46–1.00 of training), and without decay the
+weights grow and the soft fit goes too (0.24–0.54). Two causes push the rule off, and `rest.py` separates them:
+- at output scale 4 the lessons are met but not perfectly (each lesson's loss is 0.04–0.08), and their gradient leads
+  off the rule as well as along it;
+- at output scale 20 every lesson's loss is 0 and its gradient about 1e-8, and plain Adam still leaves the rule: 0.86
+  of training right at step 75, 0.61 at step 100. Adam divides each weight's step by the size of that weight's recent
+  gradients, so a gradient of 1e-8 moves every weight by about half the learning rate, and the compiled rule's
+  thresholds sit exactly at the edge (one unmet condition puts a unit at 0, the edge of its ReLU). With Adam's eps
+  raised from 1e-8 to 1e-4 the same run stays exact.
+
+A rule the training cannot hold is not one it can be expected to find. The arms tested here all sit on top of Adam at
+a learning rate of 0.003, and none of them changes that.
+
+**What was tried, and how hard** (dead ends):
+- Weight decay at 0.1, 0.3 and 1, 4 seeds each at both sizes: 50,000 steps at (3, 2, 1) is 9–33 times the steps the
+  soft fit took (in the runs that reached 0.99), and from step 3,000 on the weight norm stayed within a fifth of where
+  it ended.
+- The AND-mask over 8 random groups of questions (threshold 7 of 8), alone and with decay 0.3, 4 seeds each at both
+  sizes; over the grid's 4 columns, alone and with decay 0.3, 4 seeds each at (3, 2, 1).
+- Delta-bar-delta speeds, alone and with decay 0.3, 4 seeds each at both sizes.
+- Every arm from the compiled rule, 2 seeds each, 10,000 steps.
+- In all, 72 runs from random (40 at (3, 2, 1), 32 at (3, 3, 2)) and 20 from the compiled rule.
+- Not tried: another optimizer than Adam (plain SGD, or Adam with a larger eps, which `rest.py` shows can rest at the
+  rule), another learning rate, more seeds (no arm certified, so none got the 8 the plan held for one that did),
+  agreement across seeds or sizes rather than question groups or columns, and training on the snapped path (STE) with
+  decay.
+
+**Budget notes.**
+- At (3, 3, 2) no arm fit training even on the soft path in 20,000 steps (the best curve point: 0.26 soft): trimming's
+  premise, fit first and then decay, never happened at that size. How long the fit would take is open.
+- (3, 3, 2) does not fit in 8 GB on CPU with the step law (it ran out of memory in the timing suite), so it ran on L4
+  GPUs, three runs to a GPU, each in its own process: 0.8–0.9 s a step, or 1.1 s beside an AND-mask run, which itself
+  took 1.4 s (4.5–6.1 hours a run, 7.6–8.0 for an AND-mask run). The AND-mask is 8 forward-backward passes per step;
+  done as one grouped convolution over the 8 copies of the rule it costs 1.0 s a step on an L4 alone (6.2 s group by
+  group).
+- (3, 2, 1) ran on 4-core CPU containers: 0.23–0.28 s a step plain, 0.4 s with the AND-mask, about 0.6 s over the
+  columns. In the sweep a run took 3.1–4.3 hours (8.1 for one resumed on a container four times slower), 4.6–6.6 with
+  the AND-mask, 7.1–8.5 over the columns.
+- Modal preempted CPU containers often (up to four times in an eight-hour run). Every run saved itself every 500
+  steps and resumed exactly where it stopped (a resumed run equals an uninterrupted one). A start guard meant to stop
+  crash loops counted those restarts and ended 10 runs; they were relaunched and resumed from their checkpoints, and
+  the guard now counts only starts that made no progress.
+- One more run, decay 0.1 seed 1 at (3, 2, 1), was then on its second start. It saved its checkpoint at step 47,500
+  and wrote nothing after, most likely ended by the same guard on a third start; its curve to there is kept in
+  `records/trim_cut.json` (from `cut.py`). Once the other runs had ended it was resumed from that checkpoint in a
+  launch of its own and finished: its record's curve up to step 47,500 equals the kept one.
+
+## 10. The traps, and the project's fixes, against the bridge
 
 The project's named traps ([OVERVIEW.md](../OVERVIEW.md) §3, [BRIDGE.md](../bridge/BRIDGE.md) §6), as they show up
 here:
@@ -742,8 +1023,8 @@ The fixes, in their most generic forms:
   what it learns is a lookup;
 - **per-rule local checks**: the subtraction cell's lessons make its table exact, as in the bridge, and nothing
   follows. The plumbing (copies, the memo, the gate chain) has no local check: a copy is only checked at the far end;
-- **staged lessons** (the cell's lessons first) and **one step at a time** (the one-link grid first, the step law at
-  k = 2): no effect;
+- **staged lessons** (the cell's lessons first) and **one step at a time** (the one-link grid first; training at
+  k = 2, though with the step law off): no effect;
 - the NCA's own: hiding the cell's own state (no self-copy), hiding the row below (no feedback between rows, so no
   second resting state of the whole grid), and training on a grid where every situation occurs (almost no never-met
   situations). These three
@@ -758,11 +1039,14 @@ fixed or chosen from about 10 options, and taught by lessons on cells and sub-gr
 moving a digit from where it is to where it is needed is a chain of learned copies through every cell in between, the
 lessons say nothing about a copy, and the soft search finds a memorizing code first.
 
-## 10. Caveats
+## 11. Caveats
 
 - **Tiny sizes, few seeds.** Base 3, two- and three-digit moduli for training, 2 seeds per arm (6 for the causal
-  trace at (3, 2, 1), 14 for the certified setting), one learning rate per family. "0/2" means no seed of 2, not
-  never.
+  trace at (3, 2, 1), 14 for the certified setting, 4 per arm in §9 and 2 per arm from the compiled rule), one
+  learning rate per family. "0/2" means no seed of 2, not never.
+- **One optimizer.** Every run is Adam (AdamW with decay) at its default eps. §9 shows that Adam does not rest at the
+  compiled rule, so its arms were tested on top of an optimizer that drifts off an exact rule; an optimizer that can
+  rest there was not tried.
 - **The grid is designed.** The rows' kinds (SHIFT, SUB, SEL; SPLIT, MUL), the number of ticks, where the prompt is
   written and where the answer is read are all given, as the bridge gave its notches the grid. Nothing here asks the
   cells to discover the worksheet's layout. A cell knows its own kind and its neighbours' kinds.
@@ -773,14 +1057,14 @@ lessons say nothing about a copy, and the soft search finds a memorizing code fi
   bridge's cell lessons carried.
 - **The trace is not a lesson the task offers.** It tells every cell its next state at every tick. It is here to
   separate what the format can learn from what the lessons can teach.
-- **Budgets are small.** 3,000 steps for the MLP rules; the bit-level arm, which usually needs far longer, got 10,000
-  in its last suite. The first bit-level trace suite ran out of memory (8 GB per container) and was stopped; its
+- **Budgets are small, except in §9.** 3,000 steps for the MLP rules in §3–§8; the bit-level arm, which usually needs
+  far longer, got 10,000 in its last suite. §9 trains 20,000 steps at (3, 3, 2) and 50,000 at (3, 2, 1), without
+  early stopping. The first bit-level trace suite ran out of memory (8 GB per container) and was stopped; its
   successor samples 6 ticks of the trace per step. The gates' wiring was random and fixed throughout: DiffLogic CA's
   structured perception stage, or wiring chosen by whole-option search, was not tried.
-- **Still running when this was written** (their records land on the Volume; `--fetch` and `python -m nca.fill`
-  fold them in): the square at (3, 3)'s second seed, one lessons run at (3, 3, 2), one bit-level run at (3, 2, 2)
-  and the compile check of the four biggest squares ((3, 4), (3, 5), (4, 3), (5, 3)). The compile table has every
-  other size.
+- **The compile check of the two biggest squares, (3, 5) and (5, 3), ran out of memory** (8 GB per container) on
+  every try and was stopped; the compile table has every other size. (The runs that were still going when §3–§8
+  were first written have since been folded in.)
 - **The generator-wired arm's description of a pair is designed**: row and column offsets, both kinds, edge distances,
   chosen so that the compiled wiring is expressible and nothing depends on the grid's size. Its heads have fixed roles
   only through the cell's lessons, which query head A as the minuend, B as N's digit and C as the borrow; the trace it
@@ -792,11 +1076,12 @@ lessons say nothing about a copy, and the soft search finds a memorizing code fi
   misses of that size (a 0.03% miss rate escapes a sample of 3,000 about half the time). It is not H1's
   certification, and nothing here was run on H1.
 
-## 11. Reproduce
+## 12. Reproduce
 
 Run from `cpu_first/` with the sotaku venv's Python (`~/github/sotaku/venv/bin/python`, torch 2.8.0). Local commands
-take seconds to a minute and stay under 1 GB; the sweeps run on Modal (app and Volume `nca`, at most 20 CPU containers
-per launch, launched through a remote driver so that the sweep does not depend on the laptop staying connected).
+take seconds to a minute and stay under 1 GB; the sweeps run on Modal (app and Volume `nca`, launched through a remote
+driver so that the sweep does not depend on the laptop staying connected; at most 32 CPU containers and 11 L4 GPUs per
+launch, the GPU runs a few to a GPU, each in its own process).
 
 The compile check, every size (about 45 minutes locally), or from the per-size Modal jobs:
 
@@ -847,6 +1132,54 @@ The generator-wired arm's compile check (seconds), its suites (`hyper1`, `hyper2
 ~/github/sotaku/venv/bin/python -m nca.hyper
 ```
 
+Trimming and agreement (§9): its suite, then a look at every run's latest curve point while it trains (each run saves
+itself every 500 steps and resumes from there when its container is restarted), then the records:
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach nca/modal_nca.py --suite trim1
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run nca/modal_nca.py --suite trim1 --peek
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run nca/modal_nca.py --suite trim1 --fetch
+```
+
+The AND-mask across columns and the start at the compiled rule, launched, watched and fetched the same way:
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach nca/modal_nca.py --suite trim_cols,trim_stab
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run nca/modal_nca.py --suite trim_cols,trim_stab --fetch
+```
+
+The run that stopped without a record (§9's budget notes): its last checkpoint's curve, read from the Volume before
+it was resumed (seconds, written to `records/trim_cut.json`; now that every run has a record, a rerun keeps the file
+as it is), then its resume from that checkpoint, fetched as above:
+
+```bash
+~/github/sotaku/venv/bin/python -m nca.cut
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach nca/modal_nca.py --suite trim1 --only w2_wd0.1_s1
+```
+
+The weight norm the compiled rule needs and the sharpness of the trained runs' states (seconds, written to
+`records/sharpness.json`), and whether Adam rests at the compiled rule (under a minute):
+
+```bash
+~/github/sotaku/venv/bin/python -m nca.sharpness
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m nca.rest
+```
+
 The situations count (seconds) and the tables:
 
 ```bash
@@ -866,11 +1199,16 @@ Files:
 - `hyper.py`: the generator-wired NCA (all-to-all heads weighted by g), its compiled point and check
   (`records/compile_hyper.json`), the wiring probes, the one-port census and the first pull;
 - `compile.py`: the compile check;
-- `train.py`: the lessons, training, certification, the probes and the per-cell diagnosis;
+- `train.py`: the lessons, training (Adam or AdamW; the AND-mask and delta-bar-delta speeds; checkpoints),
+  certification, the probes (the plumbing probe among them) and the per-cell diagnosis;
 - `suites.py`, `modal_nca.py`: the sweeps and their launcher;
 - `situations.py`: how many of a bigger grid's local situations are new;
 - `verify.py`: the certified rules checked further out from their saved weights;
 - `where.py`: where a saved rule misses on every question of a size (its records: `records/where_*.json`);
+- `sharpness.py`: the weight norm the compiled rule needs on the soft path, and how sharp the trim runs' states are;
+- `rest.py`: whether Adam rests at the compiled rule;
+- `cut.py`: the curve of the trim run that stopped without a record, saved before it was resumed;
 - `summarize.py`, `fill.py`: the tables;
-- `records/`: compile.json, situations.json, verify.json, where_*.json; `runs/`: one jsonl per suite, each record
-  holding its config, its training log and its probes (and, in cover2 and cover3, the trained rule's weights).
+- `records/`: compile.json, situations.json, verify.json, where_*.json, sharpness.json, trim_cut.json; `runs/`: one
+  jsonl per suite, each record holding its config, its training log and its probes (and, in cover2, cover3 and the
+  trim suites, the trained rule's weights; in the trim suites also its curve).

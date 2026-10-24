@@ -1,12 +1,17 @@
-"""Run NCA sweeps on Modal: one CPU container per job (job lists in suites.py), at most 20 at once.
+"""Run NCA sweeps on Modal: one container per job (job lists in suites.py): CPU (at most 32 at once), or an L4 GPU
+for jobs marked "gpu" (at most 11 at once; jobs with the same "pack" share one, each in its own process).
 
     ~/github/sotaku/venv/bin/python -m modal run --detach nca/modal_nca.py --suite explore
     ~/github/sotaku/venv/bin/python -m modal run nca/modal_nca.py --suite explore --fetch
+    ~/github/sotaku/venv/bin/python -m modal run nca/modal_nca.py --suite trim1 --peek
 
-The launch spawns one driver inside the app and returns; the driver maps the jobs (so the sweep does not depend on
+The launch spawns one driver inside the app and returns; the driver spawns the jobs (so the sweep does not depend on
 the laptop staying connected). Each job writes its record to the Volume `nca` under <VERSION>/<suite>/<name>.json;
 `--fetch` appends the Volume's records that are not in nca/runs/<suite>.jsonl yet. A launch skips jobs whose record
-is already on the Volume or in the local file.
+is already on the Volume or in the local file. Modal restarts a killed container's input on its own (out of memory,
+preemption); a job that starts twice in a row (per launch) without writing a new checkpoint is reported failed
+instead of starting again: the starts are counted on the Volume. A run with a curve (`curve_every`) saves itself at every curve point under
+<VERSION>/.ckpt/<suite>/ and resumes from there when restarted; `--peek` prints each such run's latest curve point.
 """
 
 from __future__ import annotations
@@ -27,39 +32,112 @@ VERSION = "v1"
 app = modal.App("nca", image=image)
 
 
-@app.function(cpu=4, memory=(2048, 8192), timeout=4 * 3600, volumes={"/out": vol},
-              retries=modal.Retries(max_retries=1), max_containers=20)
-def run_job(job: dict) -> dict:
+def _prepare(job: dict, device: str):
+    """In the container's own process: skip a finished job, count this start (committed at once, so that a container
+    that dies still counts it; a new checkpoint since the last start resets the count), give a train job its device
+    and checkpoint path. Returns (job, None) to run, or (None, result) when there is nothing to run."""
     import os
-    import sys
-    import time
-    sys.path.insert(0, "/root")
-    import torch
-    torch.set_num_threads(4)
-    path = f"/out/{VERSION}/{job['suite']}/{job['name']}.json"
-    if os.path.exists(path):                                   # a restarted input never redoes a finished job
-        return {"name": job["name"], "suite": job["suite"], "skipped": True}
-    from nca.suites import execute
-    t = time.time()
-    r = execute(job)
-    r["wall"] = time.time() - t
-    r["suite"] = job["suite"]
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w") as f:
-        f.write(json.dumps(r) + "\n")
+    job = dict(job)
+    launch = job.pop("launch", "")
+    job.pop("gpu", None)
+    job.pop("pack", None)
+    if os.path.exists(f"/out/{VERSION}/{job['suite']}/{job['name']}.json"):   # a restarted input never redoes a job
+        return None, {"name": job["name"], "suite": job["suite"], "skipped": True}
+    tries = f"/out/{VERSION}/.tries/{job['suite']}/{job['name']}.{launch}"
+    peek = f"/out/{VERSION}/.ckpt/{job['suite']}/{job['name']}.pt.json"
+    step = json.load(open(peek))["step"] if os.path.exists(peek) else 0
+    last = json.load(open(tries)) if os.path.exists(tries) else {"n": 0, "step": -1}
+    n = 1 if step > last["step"] else last["n"] + 1           # starts in a row without a new checkpoint
+    os.makedirs(os.path.dirname(tries), exist_ok=True)
+    with open(tries, "w") as f:
+        json.dump({"n": n, "step": step}, f)
     vol.commit()
-    return {"name": r["name"], "suite": r["suite"], "hit": r.get("hit"), "certified": r.get("certified")}
+    if n > 2:
+        return None, {"name": job["name"], "suite": job["suite"], "failed": f"{n} starts without a new checkpoint"}
+    if job.get("kind", "train") == "train":
+        if device != "cpu":
+            job["device"] = device
+        if job.get("curve_every"):
+            job["ckpt"] = f"/out/{VERSION}/.ckpt/{job['suite']}/{job['name']}.pt"
+    return job, None
 
 
-@app.function(cpu=0.25, memory=512, timeout=12 * 3600, nonpreemptible=True)
+def _run(job: dict, device: str) -> dict:
+    """One job in this process."""
+    import sys
+    sys.path.insert(0, "/root")
+    job, done = _prepare(job, device)
+    if done:
+        return done
+    from nca import suites, train as T
+    T.CKPT_HOOK = vol.commit
+    out = suites.run_record(job, f"/out/{VERSION}/{job['suite']}/{job['name']}.json", threads=4)
+    vol.commit()
+    return out
+
+
+def _run_many(jobs: list, device: str) -> list:
+    """Several jobs in one container, each in its own process (on a GPU a job's Python is the bottleneck, not the
+    GPU); the children die with this process. They never commit the Volume: this process commits every 5 minutes
+    (their checkpoints) and when they are done."""
+    import multiprocessing as mp
+    import sys
+    import threading
+    sys.path.insert(0, "/root")
+    from nca import suites
+    todo, out = [], []
+    for j in jobs:
+        job, done = _prepare(j, device)
+        (out.append(done) if done else todo.append(job))
+    if not todo:
+        return out
+    stop = threading.Event()
+
+    def commits():
+        while not stop.wait(300):
+            vol.commit()
+    threading.Thread(target=commits, daemon=True).start()
+    try:
+        with mp.get_context("spawn").Pool(len(todo)) as pool:
+            calls = [pool.apply_async(suites.run_record, (j, f"/out/{VERSION}/{j['suite']}/{j['name']}.json", 2))
+                     for j in todo]
+            for j, call in zip(todo, calls):
+                try:
+                    out.append(call.get())
+                except Exception as e:
+                    out.append({"name": j["name"], "suite": j["suite"], "failed": repr(e)[:300]})
+    finally:
+        stop.set()
+        vol.commit()
+    return out
+
+
+@app.function(cpu=4, memory=(2048, 8192), timeout=20 * 3600, volumes={"/out": vol},
+              retries=modal.Retries(max_retries=1), max_containers=32)
+def run_job(job: dict) -> dict:
+    return _run(job, "cpu")
+
+
+@app.function(gpu="L4", cpu=4, memory=(4096, 24576), timeout=20 * 3600, volumes={"/out": vol},
+              retries=modal.Retries(max_retries=1), max_containers=11)
+def run_jobs_gpu(jobs: list) -> list:
+    """The jobs of one pack (the same "pack" key) on one GPU."""
+    return [_run(jobs[0], "cuda")] if len(jobs) == 1 else _run_many(jobs, "cuda")
+
+
+@app.function(cpu=0.25, memory=512, timeout=24 * 3600, nonpreemptible=True)
 def driver(jobs: list) -> None:
-    n = 0
-    for r in run_job.map(jobs, order_outputs=False, return_exceptions=True, wrap_returned_exceptions=False):
-        n += 1
-        if isinstance(r, Exception):
-            print("job failed:", repr(r)[:300], flush=True)
-        else:
-            print(n, r, flush=True)
+    packs = {}
+    for j in jobs:
+        if j.get("gpu"):
+            packs.setdefault(j.get("pack") or j["name"], []).append(j)
+    calls = ([(j["name"], run_job.spawn(j)) for j in jobs if not j.get("gpu")] +
+             [("+".join(x["name"] for x in pk), run_jobs_gpu.spawn(pk)) for pk in packs.values()])
+    for n, (name, call) in enumerate(calls, 1):
+        try:
+            print(n, call.get(), flush=True)
+        except Exception as e:
+            print("job failed:", name, repr(e)[:300], flush=True)
 
 
 def rows_path(suite):
@@ -79,12 +157,26 @@ def volume_names(suite):
 
 
 @app.local_entrypoint()
-def main(suite: str = "explore", fetch: bool = False, limit: int = 0, only: str = "", dry: bool = False) -> None:
+def main(suite: str = "explore", fetch: bool = False, limit: int = 0, only: str = "", dry: bool = False,
+         peek: bool = False) -> None:
     """--suite takes one suite or several separated by commas. --only keeps jobs whose name contains one of the
     comma-separated strings."""
     import sys
     sys.path.insert(0, str(HERE.parent))
     suites = suite.split(",")
+    if peek:
+        for s in suites:
+            try:
+                entries = sorted(e.path for e in vol.listdir(f"{VERSION}/.ckpt/{s}") if e.path.endswith(".json"))
+            except Exception as e:
+                print(s, "no checkpoints yet:", repr(e)[:200])
+                continue
+            for path in entries:
+                pk = json.loads(b"".join(vol.read_file(path)))
+                last = dict(pk["curve"][-1]) if pk["curve"] else {}
+                last.pop("step", None)
+                print(f"{Path(path).name[:-8]:24s} step {pk['step']:>6}/{pk['steps']} {pk['t'] / 3600:5.1f} h", last)
+        return
     rows_path(suites[0]).parent.mkdir(exist_ok=True)
     have = {s: have_names(s) for s in suites}
     if fetch:
@@ -112,8 +204,10 @@ def main(suite: str = "explore", fetch: bool = False, limit: int = 0, only: str 
         jobs = [j for j in jobs if any(k_ in j["name"] for k_ in keys)]
     if limit:
         jobs = jobs[:limit]
-    print(f"{len(jobs)} jobs", flush=True)
+    print(f"{len(jobs)} jobs ({sum(bool(j.get('gpu')) for j in jobs)} on GPU)", flush=True)
     if dry or not jobs:
         return
-    call = driver.spawn(jobs)
+    import time
+    launch = time.strftime("%Y%m%d-%H%M%S")
+    call = driver.spawn([dict(j, launch=launch) for j in jobs])
     print("driver", call.object_id, flush=True)

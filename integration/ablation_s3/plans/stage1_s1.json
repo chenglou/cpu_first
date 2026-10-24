@@ -1,0 +1,107 @@
+[
+ {
+  "name": "control_h100_seed1",
+  "file": "integration/submission_stage3_s3i.py",
+  "seed": 1,
+  "hardware": "h100"
+ },
+ {
+  "name": "prereq_off_h100_seed1",
+  "file": "integration/submission_stage3_s3i.py",
+  "seed": 1,
+  "hardware": "h100",
+  "set": {
+   "PREREQ": "False"
+  }
+ },
+ {
+  "name": "mac_n_h100_seed1",
+  "file": "integration/submission_stage3_s3i.py",
+  "seed": 1,
+  "hardware": "h100",
+  "set": {
+   "MAC": "\"N\""
+  }
+ },
+ {
+  "name": "no_twins_h100_seed1",
+  "file": "integration/ablation_s3/variants/no_twins.py",
+  "seed": 1,
+  "hardware": "h100"
+ },
+ {
+  "name": "no_bpe_h100_seed1",
+  "file": "integration/submission_stage3_s3i.py",
+  "seed": 1,
+  "hardware": "h100",
+  "set": {
+   "MAX_MERGES": "0"
+  }
+ },
+ {
+  "name": "no_routines_h100_seed1",
+  "file": "integration/ablation_s3/variants/no_routines.py",
+  "seed": 1,
+  "hardware": "h100"
+ },
+ {
+  "name": "comp_first_off_h100_seed1",
+  "file": "integration/submission_stage3_s3i.py",
+  "seed": 1,
+  "hardware": "h100",
+  "set": {
+   "COMP_FIRST": "False"
+  }
+ },
+ {
+  "name": "occam_steps_off_h100_seed1",
+  "file": "integration/submission_stage3_s3i.py",
+  "seed": 1,
+  "hardware": "h100",
+  "set": {
+   "OCCAM_STEPS": "False"
+  }
+ },
+ {
+  "name": "skip_twins_off_h100_seed1",
+  "file": "integration/submission_stage3_s3i.py",
+  "seed": 1,
+  "hardware": "h100",
+  "set": {
+   "SKIP_TWINS": "False"
+  }
+ },
+ {
+  "name": "no_late_h100_seed1",
+  "file": "integration/submission_stage3_s3i.py",
+  "seed": 1,
+  "hardware": "h100",
+  "set": {
+   "LATE_AFTER": "10**9"
+  }
+ },
+ {
+  "name": "no_redstep_h100_seed1",
+  "file": "integration/ablation_s3/variants/no_redstep.py",
+  "seed": 1,
+  "hardware": "h100"
+ },
+ {
+  "name": "no_brg_h100_seed1",
+  "file": "integration/ablation_s3/variants/no_brg.py",
+  "seed": 1,
+  "hardware": "h100"
+ },
+ {
+  "name": "no_sel_h100_seed1",
+  "file": "integration/ablation_s3/variants/no_sel.py",
+  "seed": 1,
+  "hardware": "h100"
+ },
+ {
+  "name": "ans_smallest_t_h100_seed1",
+  "file": "integration/ablation_s3/variants/ans_smallest_t.py",
+  "seed": 1,
+  "hardware": "h100"
+ }
+]

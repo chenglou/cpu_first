@@ -104,9 +104,45 @@ ARMS = {
 }
 
 
+# The wider search (ABLATION_S3.md §7): a failed arm again, with the missing piece's library searches (merges, routines
+# and primitives) storing up to WIDE_STATES states per level, so level 5 is stored and level 6 streamed (every program
+# up to cost 6, against cost 5 at s3i's cap), and with no time limit of their own. Everything else is the arm's.
+WIDE_STATES = 60_000_000      # 655 bytes a stored state on the H100 (INTEGRATION.md §2.1): 39 GB of its 80
+WIDE_MUL = 110_000_000        # the multiply's level 5 holds 131-152M candidates: 72 GB, on an H200 (141 GB)
+SET_ARMS = {"mac_n": 'mac posed as x d + N, by the runner\'s --set MAC="N"'}   # a failed arm made by --set, not edits
+WIDE = [
+    ("        if self.search_s:\n",
+     "        wide = task in WIDE_TASKS                # ablation (wider search): a bigger cap, no time limit of its own\n"
+     "        if self.search_s and not wide:\n"),
+    ('res, how = run("library", self.classes(deadline=deadline), self.lib, self.budget), "library"',
+     'res, how = run("library", self.classes(deadline=deadline), self.lib,\n'
+     '                                WIDE_STATES if wide else self.budget), "library"'),
+]
+WIDE_ARMS = {      # arm: (the failed arm, the missing piece's tasks, the cap)
+    "no_sel_wide": ("no_sel", ("modx", "modx~"), WIDE_STATES),
+    "no_twins_wide": ("no_twins", ("reduce",), WIDE_STATES),
+    "no_redstep_wide": ("no_redstep", ("reduce",), WIDE_STATES),
+    "no_brg_wide": ("no_brg", ("step",), WIDE_STATES),
+    "mac_n_wide": ("mac_n", ("mul",), WIDE_MUL),
+    "no_routines_wide": ("no_routines", ("mul",), WIDE_MUL),
+}
+
+
+def wide_arm(arm: str) -> tuple[str, list]:
+    base, tasks, states = WIDE_ARMS[arm]
+    what, edits = ARMS[base] if base in ARMS else (SET_ARMS[base], [])
+    return (f"{base} ({what}), and a wider search for {', '.join(tasks)}: its library searches store up to "
+            f"{states:,} states per level (every program up to cost 6) with no time limit of their own", edits + [
+        const(f"WIDE_TASKS = {tasks!r}  # ablation (wider search): these tasks' library searches store up to ..."),
+        const(f"WIDE_STATES = {states:_}  # ... this many states per level (every program up to cost 6)"),
+    ] + WIDE)
+
+
 def build(arm: str, src: str) -> str:
-    what, edits = ARMS[arm]
-    out = f"# Ablation arm {arm} (integration/ABLATION_S3.md): s3i (md5 {S3I_MD5[:8]}) with one change: {what}.\n" + src
+    what, edits = wide_arm(arm) if arm in WIDE_ARMS else ARMS[arm]
+    kind = "wider-search arm" if arm in WIDE_ARMS else "arm"
+    out = f"# Ablation {kind} {arm} (integration/ABLATION_S3.md): s3i (md5 {S3I_MD5[:8]}) with one change: {what}.\n"
+    out = (out.replace("with one change: ", "with ") if arm in WIDE_ARMS else out) + src
     for old, new in edits:
         n = out.count(old)
         if n != 1:
@@ -128,7 +164,8 @@ def main(argv):
         return
     OUT.mkdir(exist_ok=True)
     sums = {}
-    for arm, (what, _) in ARMS.items():
+    for arm in [*ARMS, *WIDE_ARMS]:
+        what = (wide_arm(arm) if arm in WIDE_ARMS else ARMS[arm])[0]
         out = build(arm, src)
         path = OUT / f"{arm}.py"
         if path.exists() and path.read_text() != out and "--force" not in argv:

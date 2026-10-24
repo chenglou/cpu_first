@@ -1,0 +1,58 @@
+[
+ {
+  "name": "no_sel_wide_h100_r21600_seed74",
+  "file": "integration/ablation_s3/variants/no_sel_wide.py",
+  "seed": 74,
+  "hardware": "h100",
+  "set": {
+   "MAX_STEPS": "1500"
+  },
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 21600
+   }
+  }
+ },
+ {
+  "name": "no_twins_wide_h100_r21600_seed74",
+  "file": "integration/ablation_s3/variants/no_twins_wide.py",
+  "seed": 74,
+  "hardware": "h100",
+  "set": {
+   "MAX_STEPS": "1500"
+  },
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 21600
+   }
+  }
+ },
+ {
+  "name": "no_redstep_wide_h100_r21600_seed74",
+  "file": "integration/ablation_s3/variants/no_redstep_wide.py",
+  "seed": 74,
+  "hardware": "h100",
+  "set": {
+   "MAX_STEPS": "1500"
+  },
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 21600
+   }
+  }
+ },
+ {
+  "name": "no_brg_wide_h100_r21600_seed74",
+  "file": "integration/ablation_s3/variants/no_brg_wide.py",
+  "seed": 74,
+  "hardware": "h100",
+  "set": {
+   "MAX_STEPS": "1500"
+  },
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 21600
+   }
+  }
+ }
+]

@@ -2,8 +2,9 @@
 budget or a relaxed one. Job names: <arm>_<hardware>[_r<budget>]_seed<seed>.
 
     cd cpu_first && ~/github/sotaku/venv/bin/python integration/ablation_s3/make_plan.py NAME --arms a,b --seeds 74 \
-        [--hardware h100] [--budget 10800] [--only-missing]
-    (--only-missing: leave out jobs whose record is already in records/, to relaunch what a stopped run lost)
+        [--hardware h100] [--budget 10800] [--set KEY=VALUE ...] [--only-missing]
+    (--set: a constant rewritten in every job, on top of the arm's own; --only-missing: leave out jobs whose record is
+    already in records/, to relaunch what a stopped run lost)
 """
 
 import argparse
@@ -20,8 +21,10 @@ def main():
     ap.add_argument("--seeds", default="74")
     ap.add_argument("--hardware", default="h100")
     ap.add_argument("--budget", type=int, default=0, help="training seconds (0: the official 3,600, untouched)")
+    ap.add_argument("--set", action="append", default=[], help="KEY=VALUE, a constant rewritten in every job")
     ap.add_argument("--only-missing", action="store_true")
     a = ap.parse_args()
+    extra = dict(kv.split("=", 1) for kv in a.set)
     arms = json.loads((HERE / "plans" / "arms.json").read_text())
     jobs = []
     for arm in a.arms.split(","):
@@ -31,8 +34,8 @@ def main():
             if a.only_missing and (HERE / "records" / f"{name}.json").exists():
                 continue
             job = {"name": name, "file": spec["file"], "seed": seed, "hardware": a.hardware}
-            if spec.get("set"):
-                job["set"] = spec["set"]
+            if spec.get("set") or extra:
+                job["set"] = {**spec.get("set", {}), **extra}
             if a.budget:
                 job["manifest"] = {"runtime": {"total_training_time_seconds": a.budget}}
             jobs.append(job)

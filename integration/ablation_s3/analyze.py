@@ -24,6 +24,7 @@ TASK = re.compile(r"^(\S+)\s+cost (\S+) \((\w+)\) levels (\[[^\]]*\]) ([\d.]+)s 
 
 
 def tasks_of(arm):
+    arm = arm.removesuffix("_wide")              # a wider-search arm poses its failed arm's tasks
     base = [t for t in ORIGINALS if t not in DROPPED.get(arm, set())]
     return base if arm == "no_twins" else [x for t in base for x in (t, t + "~")]
 
@@ -110,6 +111,8 @@ def facts(path):
         f["ended_step"] = f["ended_level"] = None
     f["ended_s"] = at(f["ended_step"])
     f["retries"] = len(retries)
+    # the climb's log without its seconds, to tell a climb identical to the control's (same_climb)
+    f["climb_lines"] = [re.sub(r" \(?\d+\.\d+s\)?", "", l) for l in lines if l.startswith("LR climb step=")]
     f.update(level_s=dict(level_s), last_level=last_level, solved=solved, done=done, searches=searches,
              events=events, round_searches=rounds)
     expected = tasks_of(arm)
@@ -138,27 +141,40 @@ def facts(path):
 _CONTROL = {}
 
 
-def host_factor(f):
-    """How much slower this run's host searched than the control's (same seed, hardware and budget): the summed seconds
-    of the searches identical to the control's (same level, task, vocabulary and level sizes) over the control's, and
-    how many there were; None without a control or with under 30 s of identical searches. The climb is host-bound
-    (INTEGRATION.md §3), so single-seed times differ by host; dividing the climb's time by this factor compares the
-    work."""
+def control_of(f):
+    """The control's facts for this run's seed, hardware and budget, or None (for the control itself, or none run)."""
     suffix = "" if f["budget"] in (None, 3600) else f"_r{f['budget']}"
     ref = HERE / "records" / f"control_{f['hardware']}{suffix}_seed{f['seed']}.json"
     if f["arm"] == "control" or not ref.exists():
         return None
     if ref not in _CONTROL:
         _CONTROL[ref] = facts(ref)
+    return _CONTROL[ref]
+
+
+def host_factor(f):
+    """How much slower this run's host searched than the control's (same seed, hardware and budget): the summed seconds
+    of the searches identical to the control's (same level, task, vocabulary and level sizes) over the control's, and
+    how many there were; None without a control or with under 30 s of identical searches. The climb is host-bound
+    (INTEGRATION.md §3), so single-seed times differ by host; dividing the climb's time by this factor compares the
+    work. The primitives-alone fallback is left out: it streams 300-400M programs of single instructions, bound by the
+    GPU rather than the host, and its time varied from 0.5x to 5.5x the control's between runs whose other identical
+    searches agreed within 30% (ABLATION_S3.md §4)."""
+    c = control_of(f)
+    if c is None:
+        return None
     key = lambda s: (s["level"], s["task"], s["how"], s["sizes"])
     mine = {key(s): s["seconds"] for s in f["searches"]}
-    pairs = [(mine[key(s)], s["seconds"]) for s in _CONTROL[ref]["searches"] if key(s) in mine]
+    pairs = [(mine[key(s)], s["seconds"]) for s in c["searches"] if key(s) in mine and s["how"] != "primitives"]
     a, b = sum(x for x, _ in pairs), sum(y for _, y in pairs)
     return (a / b, len(pairs)) if b >= 30 else None
 
 
 def adjust(f):
-    """The host factor, and the round's time with the climb's part divided by it."""
+    """The host factor, the round's time with the climb's part divided by it, and whether the climb's log equals the
+    control's once its seconds are removed."""
+    c = control_of(f)
+    f["same_climb"] = None if c is None else f["climb_lines"] == c["climb_lines"]
     f["host"] = host_factor(f)
     f["round_adj_s"] = None
     if f["host"] and f["round_s"] is not None and f["climb_s"] is not None:
@@ -205,12 +221,14 @@ def main(argv):
     elif mode == "--levels":
         levels(rows)
     elif mode == "--json":
-        print(json.dumps([{k: v for k, v in f.items() if k != "searches"} for f in rows], indent=1, default=str))
+        print(json.dumps([{k: v for k, v in f.items() if k not in ("searches", "climb_lines")} for f in rows], indent=1,
+                         default=str))
     else:
         for f in rows:
             un = [t for t in f["unsolved"] if not t.endswith("~")]
             host = f"host x{f['host'][0]:.2f} ({f['host'][1]} searches) round adj {fmt_s(f['round_adj_s'])}s " \
                 if f["host"] else ""
+            host += "climb = control's " if f["same_climb"] else ""
             print(f"{f['name']:34s} {'CERTIFIED' if f['certified'] else 'no':9s} T={f['T']} climb@{f['climb_step']} "
                   f"({fmt_s(f['climb_s'])}s) round@{f['round_step']} ({fmt_s(f['round_s'])}s) {host}"
                   f"frozen@{f['frozen_step']} ({fmt_s(f['frozen_s'])}s) last L{f['last_level']} "

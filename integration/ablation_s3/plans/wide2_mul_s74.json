@@ -1,0 +1,31 @@
+[
+ {
+  "name": "mac_n_wide_h200_r21600_seed74",
+  "file": "integration/ablation_s3/variants/mac_n_wide.py",
+  "seed": 74,
+  "hardware": "h200",
+  "set": {
+   "MAC": "\"N\"",
+   "MAX_STEPS": "1500"
+  },
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 21600
+   }
+  }
+ },
+ {
+  "name": "no_routines_wide_h200_r21600_seed74",
+  "file": "integration/ablation_s3/variants/no_routines_wide.py",
+  "seed": 74,
+  "hardware": "h200",
+  "set": {
+   "MAX_STEPS": "1500"
+  },
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 21600
+   }
+  }
+ }
+]

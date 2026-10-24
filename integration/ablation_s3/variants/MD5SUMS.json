@@ -36,6 +36,30 @@
   "ans_smallest_t": {
    "md5": "ca9d80cfddad2903af8554d7a0e47bc7",
    "what": "the round's answers: the batch's smallest-T rows (answer_rows) whatever their T, no T = 1 filter"
+  },
+  "no_sel_wide": {
+   "md5": "1144255940ce12bf32b2b82efefa3c67",
+   "what": "no_sel (SEL.S (keep or discard on the borrow) removed from every search's primitives), and a wider search for modx, modx~: its library searches store up to 60,000,000 states per level (every program up to cost 6) with no time limit of their own"
+  },
+  "no_twins_wide": {
+   "md5": "20e5bbcc65576d827234a07ec544bbfa",
+   "what": "no_twins (no register twins: no task is also posed with X and Y swapped (lt~, modx~, ..., reduce~)), and a wider search for reduce: its library searches store up to 60,000,000 states per level (every program up to cost 6) with no time limit of their own"
+  },
+  "no_redstep_wide": {
+   "md5": "12f5041ba46e7e17b822879b98dcb7c5",
+   "what": "no_redstep (the two step-definition laws (red.step) dropped: no modB (the chain) and no step practice problems; reduce waits for add only), and a wider search for reduce: its library searches store up to 60,000,000 states per level (every program up to cost 6) with no time limit of their own"
+  },
+  "no_brg_wide": {
+   "md5": "5061992c18ee79b6fac7b59b653f84fa",
+   "what": "no_brg (BRG.X (bring X's top digit into A) removed from every search's primitives), and a wider search for step: its library searches store up to 60,000,000 states per level (every program up to cost 6) with no time limit of their own"
+  },
+  "mac_n_wide": {
+   "md5": "25c61944f3da8baf2657ab10d25c214c",
+   "what": "mac_n (mac posed as x d + N, by the runner's --set MAC=\"N\"), and a wider search for mul: its library searches store up to 110,000,000 states per level (every program up to cost 6) with no time limit of their own"
+  },
+  "no_routines_wide": {
+   "md5": "c4a59018ff08d77d692c40977317f4b8",
+   "what": "no_routines (routines off: a solved task's program never becomes a routine T.<task>; the round's search composes the library's merges instead of routines), and a wider search for mul: its library searches store up to 110,000,000 states per level (every program up to cost 6) with no time limit of their own"
   }
  }
 }

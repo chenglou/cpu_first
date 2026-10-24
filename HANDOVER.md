@@ -140,9 +140,8 @@ the user chose, §6):
    ```
 
 2. **A zip of a fresh clone**: about 150 MB (the snapshot plus the bundle; not built this time), the files plus a
-   packed `.git`. `--no-local` packs the objects instead of
-   hard-linking them. Removing `origin` drops the laptop's path from `.git/config`; the clone's reflog still notes
-   where it came from.
+   packed `.git`. `--no-local` packs the objects instead of hard-linking them. Removing `origin` drops the laptop's
+   path from `.git/config`; the clone's reflog still notes where it came from.
 
    ```bash
    cd ~/Desktop && git clone --no-local ~/github/one-layer/cpu_first cpu_first && git -C cpu_first remote remove origin

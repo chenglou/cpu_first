@@ -1,0 +1,41 @@
+{
+ "s3i": "0e8131440e1842546c67e7378caf472d",
+ "variants": {
+  "no_twins": {
+   "md5": "0c3c62fe3c56ad00d9d1e69df07b0bd6",
+   "what": "no register twins: no task is also posed with X and Y swapped (lt~, modx~, ..., reduce~)"
+  },
+  "no_routines": {
+   "md5": "0979021d141e8832de36803d962608cc",
+   "what": "routines off: a solved task's program never becomes a routine T.<task>; the round's search composes the library's merges instead of routines"
+  },
+  "no_redstep": {
+   "md5": "766e665334216f91560800862c09a781",
+   "what": "the two step-definition laws (red.step) dropped: no modB (the chain) and no step practice problems; reduce waits for add only"
+  },
+  "no_step": {
+   "md5": "7ee6e0c680bdeb9b1c2fbdde47a0ed2d",
+   "what": "the step practice problem dropped (red.step's step law); modB kept"
+  },
+  "no_modB": {
+   "md5": "29543773a1ef45ce11bfbee574ac9aec",
+   "what": "the chain practice problem dropped (red.step's ladder); step kept, its target computed by B conditional subtractions (modx) instead of the chain"
+  },
+  "no_mrow": {
+   "md5": "90d6c792c0f6f41ba5bec48146d58620",
+   "what": "the multiply row practice problem dropped (mul.ladder's row); mac's target computes the row by repeated addition instead of the mrow helper"
+  },
+  "no_brg": {
+   "md5": "304eff005197a1a356e942523d9649e1",
+   "what": "BRG.X (bring X's top digit into A) removed from every search's primitives"
+  },
+  "no_sel": {
+   "md5": "ec3f4d7d6f6c6e48a43e870be20ed721",
+   "what": "SEL.S (keep or discard on the borrow) removed from every search's primitives"
+  },
+  "ans_smallest_t": {
+   "md5": "ca9d80cfddad2903af8554d7a0e47bc7",
+   "what": "the round's answers: the batch's smallest-T rows (answer_rows) whatever their T, no T = 1 filter"
+  }
+ }
+}

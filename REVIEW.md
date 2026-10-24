@@ -261,8 +261,8 @@ build, including the failures), and bar 3's [PRACTICE.md](bar3/PRACTICE.md) and 
 
 ## 7. Later studies
 
-Three studies were still running when this file was first written. All three have finished and are committed; none
-changes a certified file or record.
+Three studies were still running when this file was first written. All three have finished and are committed, and
+later ones follow them as they land. None changes a certified file or record.
 
 - **The s3i ablation** ([ABLATION_S3.md](integration/ABLATION_S3.md), code and records in
   [`integration/ablation_s3/`](integration/ablation_s3/)). Each hand-made part was removed in turn and the model
@@ -312,6 +312,17 @@ changes a certified file or record.
   - **Why:** decay holds the weights small, small weights pass blurred digits, and a blurred code fits the training
     answers on the soft path, unsteadily, without being the machine. The exact rule needs larger weights than decay
     allows. Started at the compiled rule, every arm loses it within a few hundred steps.
+- **The loop over T, learned** ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), code and records in
+  [`integration/learned_loop/`](integration/learned_loop/)). sp2's hand-written countdown, its gate, and the round
+  search's assumption that the answer at T = t is the round run t times are removed. The machine gets one generic
+  count loop, `C.r[body]` (run the body as many times as register r holds), and T goes into a register as x and N
+  do. Once the round is found, a second search finds `C.S[T.round1 STA.X]`: run the round T times, feeding each answer
+  back as x.
+  - `submission_stage3_ll.py` (md5 `419c15e70ccf6483ff68b04b08f52bdc`) certifies on the official H100 manifest
+    (frozen by 1,002 s) and on 7 of 8 B200 seeds. Seed 2 runs out of time in sp2's unchanged climb before any loop is
+    searched; with the budget doubled (a research run) it certifies.
+  - **Still designed:** the count loop itself (a strict judge can call it the countdown made into an instruction),
+    T's place in the machine and its 2-digit field, the answer program's search space, and what sp2 designs.
 
 ## 8. About this checkout
 

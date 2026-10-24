@@ -1,0 +1,42 @@
+[
+ {
+  "name": "g2_m4_h100",
+  "task": "m4",
+  "file": "integration/sp_breadth/submission_spb_g2.py",
+  "hardware": "h100",
+  "memory_gb": 48,
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600
+   }
+  }
+ },
+ {
+  "name": "g2_cube_h100",
+  "task": "cube",
+  "file": "integration/sp_breadth/submission_spb_g2.py",
+  "hardware": "h100",
+  "memory_gb": 48
+ },
+ {
+  "name": "g2_mont_h100",
+  "task": "mont",
+  "file": "integration/sp_breadth/submission_spb_g2.py",
+  "hardware": "h100",
+  "memory_gb": 48
+ },
+ {
+  "name": "g2_xfirst_h100",
+  "task": "xfirst",
+  "file": "integration/sp_breadth/submission_spb_g2.py",
+  "hardware": "h100",
+  "memory_gb": 48
+ },
+ {
+  "name": "g2_xy_h100",
+  "task": "xy",
+  "file": "integration/sp_breadth/submission_spb_g2.py",
+  "hardware": "h100",
+  "memory_gb": 48
+ }
+]

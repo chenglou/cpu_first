@@ -204,6 +204,11 @@ the piece's shortest programs drop to 4, but every one of them clears the carry 
 learner keeps a problem's shortest programs only. With those as routines no add-with-carry of up to 5 instructions
 exists (3M states), nor with the invented subtract added.
 
+Searching deeper does not close the gap. Each level of these searches holds 25 to 45 times the one before, so checking
+every program of 8 instructions takes about 600 times the states of checking every program of 6. bar3-scale found
+that no bound on bar 3's search space shrinks it more than 1.7 times, and its compiled search is 4 to 5 times faster on
+searches of a million states (`bar3/scale/SCALE.md` §8 and §1).
+
 **What a place cannot do.** A slice sees one place's digits and what the places below passed up. Of s3i's other
 instructions:
 - the moves and clears (LDA, STA, CLA, CLC, CLK, LDH) are a copy or a zero at each place: the counting machine's own
@@ -367,7 +372,11 @@ already has. So the variant keeps s3i's way of learning the tables' contents and
 **A GPU port of the counting search** (`tdcm.py`) was written toward that end. It is exact against the numpy search
 (`test_tdcm.py`: the same registers and dead flags on random machines for 3,706 items, and the same levels and programs for three
 searches), but a direct port is slower than numpy on a CPU core (23 s against 3 s for a 30,000-state search); its H100
-benchmark was stopped before it finished, to stay within the session's 8 GPUs. It is not used.
+benchmark was stopped before it finished, to stay within the session's 8 GPUs. It is not used. The better route is
+bar3-scale's compiled engine (`bar3/scale/engine.py`, numba, exact against bar 3's search). On Modal's hosts it is 4
+to 5 times faster than bar 3's search on 1M-state searches and 24 to 45 times faster with carried routine libraries,
+the case of this learner's later rounds (`bar3/scale/SCALE.md` §1 and §2). Carrying it to this six-register machine was
+not done here.
 
 **The learner's later rounds.** At 07:27 PT Modal disabled the workspace at its spend limit and stopped every running
 container, the learner's included. Round 0 had finished for all 12 runs and round 1 for hardest-first subtraction;

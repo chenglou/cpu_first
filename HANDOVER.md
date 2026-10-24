@@ -72,7 +72,8 @@ checkpoints, 322 MB in all, the largest 52 MB. Only two are cited by name, the t
 HANDWIRED_BRIDGE.md mentions, and a clone does not have them.
 
 **Not touched:** the work of the sessions still running: `nca/` (uncommitted changes), `integration/self_practice/`,
-`integration/SELF_PRACTICE.md`, `integration/ablation_s3/` and `integration/ABLATION_S3.md` (untracked).
+`integration/SELF_PRACTICE.md`, `integration/ablation_s3/` and `integration/ABLATION_S3.md` (untracked then). The
+ablation and self-practice have since been committed; `nca/` is still running and uncommitted.
 
 ### Proposed removals (not done)
 
@@ -103,7 +104,7 @@ To stage the deletions without staging the running sessions' changes, name the f
 
 **On disk only** (in no clone, bundle or push):
 - the 17 ignored outputs (322 MB);
-- the running sessions' untracked files (about 11 MB);
+- the running sessions' untracked files (about 11 MB then; now only `nca/`'s new files);
 - every uncommitted change.
 
 **Commit first:** this pass's edits and the finished sessions' work. A clone, bundle or push carries only what is

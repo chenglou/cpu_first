@@ -19,8 +19,12 @@ The project measures itself against three bars ([OVERVIEW §4](OVERVIEW.md#4-whe
    hand-written datapath and no menu of wirings: the program its forward pass runs ("copy x, multiply, reduce") was
    found by search inside the training run. But the instruction set that search runs over (32 digit instructions) and
    the curriculum that walks it up the pieces of long division and the schoolbook multiply (which practice problems,
-   in which order) were written by hand, knowing the task family. The official budget is met only with that order
-   ([INTEGRATION §6](integration/INTEGRATION.md#6-is-bar-2-cleared)).
+   in which order) were written by hand, knowing the task family
+   ([INTEGRATION §6](integration/INTEGRATION.md#6-is-bar-2-cleared)). Two later studies (§7) narrow this down. An
+   ablation on the official manifest shows what the result rests on: two task-shaped instructions, the practice
+   problems that define long division's step, how the multiply's row and the registers are posed, and two parts of the
+   search. The curriculum's order only saves time. And a follow-up file that poses its own practice problems from a
+   general law book, in place of the hand-picked list, also certifies on the official manifest.
 3. **A general algorithm learner: results at a tiny size only.** A learner that picks its own practice problems
    invents x² mod N for x < N ≤ 7 (and ≤ 26) on a bare counting machine; unchanged, it invents 4 of 9 other formulas,
    and 2 more once its solved formulas carry over ([PRACTICE.md](bar3/PRACTICE.md), [BREADTH.md](bar3/BREADTH.md)).
@@ -34,7 +38,7 @@ Not claimed:
   the time and has no record behind it;
 - runs on B200s, CPUs or relaxed budgets are research; only official-manifest H100 runs count as certification here.
 
-## 2. The file to judge, and the other two
+## 2. The file to judge, and the others
 
 **[`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py)**, md5
 `0e8131440e1842546c67e7378caf472d` ("s3i", step 17 of the removal ladder). 3,437 lines, 173,817 bytes (the limit is
@@ -50,6 +54,15 @@ The other two frontier files ([OVERVIEW §4.1](OVERVIEW.md#41-the-models-at-the-
 - [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py), md5
   `0805b7d38f9fe4fa15b182c1b481886e`: general lessons v3, where the answers choose whole digit codes. Its 8 H1 seeds
   ran an earlier build, `v3f` (md5 `32a1d154`), on B200s; the final file's own H1 run is the official one.
+
+Finished after this file was first written ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), §7):
+- [`integration/self_practice/submission_stage3_sp2.py`](integration/self_practice/submission_stage3_sp2.py), md5
+  `afc70fe91069a85c416eba18b48ee30e`: s3i with its curriculum replaced by self-posed practice. 250,643 bytes. It
+  certifies on the official manifest and on all 8 B200 seeds. Its parent,
+  [`submission_stage3_sp.py`](integration/self_practice/submission_stage3_sp.py) (md5 `f0ef5b069ef2e1bd9dc337798d246ba4`),
+  certifies on the official manifest and on 7 of 8 seeds. s3i stays the file to judge here, since it has the most
+  evidence (the official run, seven more H100 seeds and the ablation). sp2 is the one to look at for how far bar 2
+  goes.
 
 Every earlier certified file is a step of the removal ladder ([OVERVIEW §5](OVERVIEW.md#5-the-removal-ladder)), each
 with its md5 and record.
@@ -82,7 +95,13 @@ embedded source against the file's md5 now; the manifest against the competition
 or differing only in `runtime.seeds` for the seed runs); whether the `RESULT_JSON=` line in `stdout` equals `result`;
 T on both ladders; every rung's count; the three splits; the times. On 2026-10-23 all ten checked out: md5s equal,
 T = 64 on both ladders, every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002. Any other record:
-`python3 tools/verify_records.py REC.json=FILE.py`.
+`python3 tools/verify_records.py REC.json=FILE.py`. For example, the self-practice files' official records (both
+check out the same way):
+
+```bash
+python3 tools/verify_records.py integration/self_practice/records/runner/submission_stage3_sp2_official.json=integration/self_practice/submission_stage3_sp2.py
+python3 tools/verify_records.py integration/self_practice/records/runner/submission_stage3_sp_official.json=integration/self_practice/submission_stage3_sp.py
+```
 
 Or by hand, for one record:
 
@@ -238,19 +257,38 @@ stage 3 was pushed), [INTEGRATION §3](integration/INTEGRATION.md#3-stage-3-no-s
 build, including the failures), and bar 3's [PRACTICE.md](bar3/PRACTICE.md) and [BREADTH.md](bar3/BREADTH.md).
 [README.md](README.md) indexes every file and folder.
 
-## 7. Still in progress
+## 7. Later studies
 
-Three studies were still running when this was written. None changes a certified file or record.
+Three studies were still running when this file was first written. Two have finished and are committed; none changes
+a certified file or record.
 
-- **The shader follow-up** ([`nca/`](nca/), uncommitted): long training with weight decay to trim the rules, per-weight
-  learning speeds set by agreement, and both, on the NCA probe ([NCA.md](nca/NCA.md)).
+- **The s3i ablation** ([ABLATION_S3.md](integration/ABLATION_S3.md), code and records in
+  [`integration/ablation_s3/`](integration/ablation_s3/)). Each hand-made part was removed in turn and the model
+  retrained on the official manifest: seed 74, one H100 per arm. The unchanged file, run beside the arms, replays
+  `s3i_official` exactly.
+  - **Needed** (without it the round is never found): SEL.S (keep or discard on the borrow); BRG.X (bring X's next
+    digit in); the two practice problems that define long division's step; mac posed with the running sum; the
+    register twins; routines; Occam's tie-break toward fewer executed steps.
+  - **Speed only** (it still certifies, frozen by 1,526 s at the latest): the curriculum's order (+270 s); not
+    re-searching solved twins (+364 s); BPE merges (+546 s); the T = 1 filter on the round's answers (+82 steps).
+  - **Not needed:** the search's routines-first order; the late table lessons, the wrap-around fact
+    (`ANCHOR_WRAP`) among them.
+  - **How firm:** every failed arm searched its whole cost-5 reach without the missing piece, so more training time
+    would not rescue it. A wider search was not tried. It is one seed per arm.
+- **Stage-3 self-practice** ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), code and records in
+  [`integration/self_practice/`](integration/self_practice/)). The nine hand-picked practice problems, their order,
+  the twins and mac's posing are replaced by a book of 11 laws on 8 patterns of the data's numbers. Every law is posed
+  in every binding to the registers, and one general rule picks what to practise. The problems the ablation found
+  needed come out of that book; nothing marks them.
+  - `submission_stage3_sp.py` certifies on the official H100 manifest (round by 746 s, frozen by 785 s) and on 7 of 8
+    B200 seeds.
+  - `submission_stage3_sp2.py` certifies on the official manifest (round by 1,029 s) and on all 8 seeds.
+  - **Still designed:** the law book, the choosing rule (picked after bar 3's own rules failed, by watching whether
+    the round came), the instruction set and the search sizes.
+  - The other formulas are still not learned.
+- **The shader follow-up** ([`nca/`](nca/), uncommitted, still running): long training with weight decay to trim the
+  rules, per-weight learning speeds set by agreement, and both, on the NCA probe ([NCA.md](nca/NCA.md)).
   > *To be filled by the coordinating session: the result, and whether `nca/` is committed.*
-- **Stage-3 self-practice** (`integration/SELF_PRACTICE.md`, `integration/self_practice/`, untracked): bar 3's
-  self-chosen practice on s3i's digit machine, in place of the hand-written curriculum (OVERVIEW §7, open question 2).
-  > *To be filled by the coordinating session: the result, and the write-up's link once committed.*
-- **The s3i ablation** (`integration/ablation_s3/` and its write-up `integration/ABLATION_S3.md`, both untracked and
-  in progress): which of s3i's hand-made inputs are load-bearing.
-  > *To be filled by the coordinating session: the result, and the write-up's link once committed.*
 
 ## 8. About this checkout
 

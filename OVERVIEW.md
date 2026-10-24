@@ -3,20 +3,23 @@
 **Reviewing or judging the project from outside? Start with [REVIEW.md](REVIEW.md)**: the claims, the file to judge,
 how to check its records, and the rules to rule on. It points back into this file.
 
-*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed five times as studies
-landed. This refresh, on 2026-10-23 at about 21:15, adds the ablation of s3i's hand-made parts and stage 3 with
-self-posed practice.*
+*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed six times as studies
+landed. This refresh, on 2026-10-24 at about 01:45, adds the NCA follow-up: the shader grid trained long with weight
+decay or with agreement.*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
   `litmus/records/`, `library/records/`): every certification, run time, freeze step, parameter count and seed count
   quoted here. The source embedded in each record was hashed and compared with the file's md5.*
+- *For the NCA follow-up (§4.5), the run, seed and step counts, the certifications, the best training and
+  one-size-up shares and the weight norms quoted were checked against `nca/runs/trim1.jsonl`, `trim_cols.jsonl`,
+  `trim_stab.jsonl` and `nca/records/sharpness.json`.*
 - *The data counts in §1–2 were computed from the released H1 files, and the commits come from `git log`.*
 - *The one-line findings of the timeline (§3) and the summaries of how each piece learns, including the NCA and bar-3
   studies, summarize their write-ups, which are linked; they were not re-run.*
 - *The older write-ups are left as they were. §9 lists where a write-up and a record disagree.*
-- *Everything described is committed (the last commit is `40a399c`, Oct 23 at 20:47), except a follow-up of the NCA
-  probe that was still running (§7).*
+- *Everything described is committed (the last commit is `d061820`, Oct 24 at 01:31). The runs still going are
+  listed in §7.*
 
 **In one minute.**
 - The task is exact repeated modular squaring. Almost every entry on the leaderboard scored near 0%, because the
@@ -159,7 +162,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 22, 06:15 `63f1613` | **inventing**: which of our inputs a search-and-compress learner cannot do without | [library/INVENTING.md](library/INVENTING.md) |
 | Oct 22, 09:32 `22df2de` | the machine compiled by handwired into affine + ReGLU layers, loosened the same way | [handwired_bridge/HANDWIRED_BRIDGE.md](handwired_bridge/HANDWIRED_BRIDGE.md) |
 
-### Oct 22 afternoon to Oct 23: integration, one fixed modulus, a shader, and bar 3
+### Oct 22 afternoon to Oct 24: integration, one fixed modulus, a shader, and bar 3
 
 | commit | what | write-up |
 |---|---|---|
@@ -175,6 +178,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 23, 20:44 `d5e0bc5`, 20:47 `40a399c` | the handover for an outside judge: an entry point with the claims and the gray rules, a hygiene pass, and a record checker (`tools/verify_records.py`) | [REVIEW.md](REVIEW.md), [HANDOVER.md](HANDOVER.md) |
 | Oct 23, 20:45 `aad38c9` | **the s3i ablation**: each hand-made part removed in turn and retrained on the official manifest | [integration/ABLATION_S3.md](integration/ABLATION_S3.md) |
 | Oct 23, 20:45 `8f6b3e1` | **stage 3 with self-posed practice**: the hand-picked curriculum replaced by a law book, and it still certifies | [integration/SELF_PRACTICE.md](integration/SELF_PRACTICE.md) |
+| Oct 24, 01:27 `6e31164` | **the NCA follow-up**: trained long with weight decay, or moving weights only where the questions agree, the shader grid still memorizes | [nca/NCA.md](nca/NCA.md) §9 |
 
 ### The lessons that came out of the failures
 
@@ -204,6 +208,11 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 - **Copies have no local check.** In a grid of identical local cells the arithmetic cells learn from their laws, but
   the long chains of copies that carry N and the borrow never form: nothing checks a copy where it happens
   ([NCA.md](nca/NCA.md)).
+- **The usual cures for memorizing assume the general rule is the small one.** Weight decay favours small weights;
+  on one account of grokking, that is how it wore a memorized lookup away until the general rule was left. In the
+  shader grid the exact rule needs large weights to keep its digits sharp tick after tick, while a blurred code that
+  fits the training answers is cheap, so decay favours the memorizer. Agreement between questions only slowed the
+  fit ([NCA.md](nca/NCA.md) §9).
 - **With wide menus, the checks still identify; the search is what can fail.** In every menu counted exactly, every
   wiring that passes all the checks is a correct one. Learning failed only where the search could not see the right
   combination: shown only a few sampled combinations instead of every one, a switch was caught by impostors in 14 of
@@ -416,6 +425,32 @@ small learned rule on its 3 × 3 neighbourhood, tick after tick, so that the loo
 - **Taught by lessons, it memorizes**: 84 runs in 41 variants, with every lesson the format can express, and none
   certifies. The cells' own arithmetic laws make their table exact, but the chains of copies that carry N, the old
   register and the borrow through the grid never form: no local check reaches a copy.
+- **Trained long with weight decay, or with agreement, it still memorizes** (NCA.md §9). Two known cures for
+  memorizing were tried, training far longer than the first probe did: *trimming*, weight decay over a long run, the
+  setting in which networks that had memorized modular arithmetic later found the general rule ("grokking"); and
+  *agreement*: the AND-mask moves a weight only where groups of questions (or the grid's columns) push it the same
+  way, and delta-bar-delta speeds a weight up while its gradient keeps its sign. The arms: plain Adam as the control;
+  AdamW at decays 0.1, 0.3 and 1; the AND-mask over 8 groups of questions and delta-bar-delta, each alone and with
+  decay 0.3; and at the smallest size the AND-mask over the grid's 4 columns, alone and with decay 0.3. That is 72
+  runs from random weights, 4 seeds per arm: 50,000 steps at the smallest size (base 3, two-digit N, one quotient
+  digit: 99 questions) and 20,000 at the next (three-digit N, two quotient digits: 2,835 questions, the grid in which
+  every local situation occurs). 20 more runs, 2 per arm at the smallest size, started at the exact rule.
+  - **None certifies**, and none fits its training questions with the digits snapped: the best any run reaches is 62
+    of the 99, and about a seventh of the 2,835. On a grid one size bigger, every run stays at chance from the first
+    check to the last: the most any check gets above "always answer 0" is 0.07 (0.25, where always answering 0 gets
+    0.18). There is no late jump.
+  - **Why decay fails here.** Training runs on blurred digits, each a mix of its possible values. Decay holds the
+    weights small (a norm of about 17–20, 10–13 and 6–7 at decays 0.1, 0.3 and 1), small weights keep the digits
+    blurred, and at the smallest size a blurred code fits the training answers, unsteadily, without being the
+    machine. The exact rule needs a norm of about 37 there to keep its digits sharp tick after tick. In grokking the
+    general rule was the one with the smaller weights; here it has the larger ones, so decay pushes away from it.
+  - **Started at the exact rule, every arm loses it** within a few hundred steps, the plain control included: a rule
+    the training cannot hold is not one it can find. NCA.md finds two pushes off it: blurred neighbours of the rule
+    meet the lessons as well as the rule does, and Adam, under every arm, keeps taking full-size steps even where
+    every lesson is met.
+  - **Agreement does not build the copies either**: the AND-mask lets a few percent of the gradient through, and
+    delta-bar-delta leaves most weights near its slowest speed. At the larger size no run fits even the blurred
+    answers (0.26 at best), so trimming's "fit first, then decay" never starts.
 - **Told every move** (the exact rule's next state at every cell and tick), it learns the training grid in a few
   hundred steps. With information flowing one way and a training grid that shows every local situation, it also
   certifies on bigger sizes. That help is out of bounds for the contest: producing the moves needs the algorithm.
@@ -481,7 +516,7 @@ s3i's hand-made parts was removed in turn, 13 arms and the unchanged control, ea
 problems; with mac posed as "x times a digit, plus N"; without the twins; without routines; without Occam's
 tie-break. Each failure is the climb running out of things to try, between 3 and 30 minutes into training, after
 every search for the missing piece had covered every program up to its cost limit. The other six certified, frozen by
-1,526 s at the latest. Seed 1 and five more arms are built and wait.
+1,526 s at the latest. Seed 1 of every arm and five more arms have been running since 01:10 on Oct 24 (§7).
 
 **Self-posed practice** ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), step 19). The learner poses its own
 practice problems: every law of an 11-law book (compare, equal, min, max, remainder, quotient, add, subtract, multiply,
@@ -639,11 +674,12 @@ The imports, the initialization, the host transfers and the absence of backward 
 
 ## 7. Status and open questions
 
-**What is running.** Every study described here has finished and is committed, except one: a follow-up of the NCA
-probe (long training with weight decay to trim the rules, per-weight learning speeds set by agreement, and both) was
-still running in `nca/`, uncommitted, and was expected to land around 22:30 on Oct 23.
+**What is running.** Every study described here has finished and is committed; the NCA follow-up was the last
+(`6e31164`, §4.5). Since 01:10 on Oct 24, more of the s3i ablation has been running: seed 1 of the control and of
+all 13 arms, and five more arms at seed 74 (dropping only the step problem, only the chain, or only the multiply's
+row problem, and the round's cost limit at 4 and at 6). They will be folded in when they land.
 
-**Answered since the last refresh.**
+**Answered on Oct 23 and 24.**
 - **Which hand-made parts carry the result** (ABLATION_S3.md): two instructions, the step's two practice problems,
   the posing of the multiply's row and of the registers, routines, and Occam's tie-break are needed. The curriculum's
   order, BPE and two search rules only cost time.
@@ -651,6 +687,10 @@ still running in `nca/`, uncommitted, and was expected to land around 22:30 on O
   its place, stage 3 still certifies on the official manifest (step 19).
 - **Whether s3i needs the late table lessons**, the width-dependent wrap-around fact among them: no. Without them it
   certifies, its climb identical line for line.
+- **Whether the usual cures for memorizing teach the shader grid** (NCA.md §9): no. Neither long training with
+  weight decay nor agreement between questions or columns turns its memorizing into the rule, and no arm can even
+  hold the rule when started there. Not tried: an optimizer that can rest at the exact rule (NCA.md's own check finds
+  that Adam with a larger eps can), another learning rate, more seeds, agreement across seeds or sizes.
 
 **Open questions for bar 2** (nothing a strict judge would call the hand-written algorithm):
 1. **The instruction set.** s3i's 32 digit instructions are general but chosen knowing the family, and two of them,
@@ -660,8 +700,9 @@ still running in `nca/`, uncommitted, and was expected to land around 22:30 on O
 2. **The law book and the choosing rule.** Self-posed practice replaces the curriculum with a book of 11 laws on 8
    patterns and one choosing rule. Both are designed, and the rule was found by watching whether the round came.
    Whether a smaller or more generic book still yields the round is untested.
-3. **How firm the ablation is.** One seed per arm; seed 1 and five more arms are built and wait. Every failed arm had
-   exhausted its cost-5 search, so more time would not help, but a wider search might, and was not tried.
+3. **How firm the ablation is.** One seed per arm so far; seed 1 and five more arms are running (above). Every
+   failed arm had exhausted its cost-5 search, so more time would not help, but a wider search might, and was not
+   tried.
 4. **The round's search space and the countdown** are designed. The other formulas are still not learned, by s3i or
    by self-practice: they need a constant, another reduction, more routine calls than the round's search allows, or
    answers at T = 8.
@@ -708,7 +749,7 @@ still running in `nca/`, uncommitted, and was expected to land around 22:30 on O
 | [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |
 | [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/` |
-| [`nca/`](nca/) | long division as a shader: identical local cells ([NCA.md](nca/NCA.md)); a follow-up was still running |
+| [`nca/`](nca/) | long division as a shader: identical local cells ([NCA.md](nca/NCA.md)), and the follow-up trained long with weight decay or agreement (NCA.md §9); records in `runs/` and `records/` |
 | [`tools/`](tools/) | the shared Modal runner and the measured seed policy ([tools/README.md](tools/README.md)) |
 | [`tinyrouting/`](tinyrouting/) | wiring and tables learned together in tiny machines |
 | [`tinycore/`](tinycore/) | the quotient-digit chicken-and-egg, computed exactly |
@@ -717,7 +758,7 @@ still running in `nca/`, uncommitted, and was expected to land around 22:30 on O
 | [`submission.py`](submission.py) | SpecBit |
 | [`panel/`](panel/), [`panel_synthesis.md`](panel_synthesis.md) | the five-design panel and its synthesis |
 | [`FINDINGS_substrate.md`](FINDINGS_substrate.md), [`RELAXED.md`](RELAXED.md), [`UNFOLD.md`](UNFOLD.md), [`UNFOLD_FAMILY.md`](UNFOLD_FAMILY.md) | the day-1 topic write-ups |
-| `runs/` | run records. Official ones: `runs/learned_remainder/*_official.json`, `runs/learned_wiring/*_official.json`, `runs/wider_menus/*_official.json`, `runs/unfold_sub/official_h100.json`, `runs/unfold_small/official_h100.json`, `runs/h100_h1.json`. Later folders keep their own: `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`, `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`, `handwired_bridge/h1/records/`, `litmus/records/`, `library/records/`, `bar3/records/` |
+| `runs/` | run records. Official ones: `runs/learned_remainder/*_official.json`, `runs/learned_wiring/*_official.json`, `runs/wider_menus/*_official.json`, `runs/unfold_sub/official_h100.json`, `runs/unfold_small/official_h100.json`, `runs/h100_h1.json`. Later folders keep their own: `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`, `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`, `integration/ablation_s3/records/`, `integration/self_practice/records/`, `handwired_bridge/h1/records/`, `litmus/records/`, `library/records/`, `bar3/records/`, `bar3/breadth/records/`, `nca/runs/`, `nca/records/` |
 | `../one-layer-deeper/` | the competition clone at `87e5c26` ("Releasing H1"), with the H1 data under `data/generated/` |
 | `~/github/handwired-lab/montgomery-search` | outside this repo: search over a Montgomery squaring program in the handwired project (branch `lab/montgomery-search`) |
 

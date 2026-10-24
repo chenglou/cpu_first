@@ -335,7 +335,9 @@ later ones follow them as they land. None changes a certified file or record.
   back as x.
   - `submission_stage3_ll.py` (md5 `419c15e70ccf6483ff68b04b08f52bdc`) certifies on the official H100 manifest
     (frozen by 1,002 s) and on 7 of 8 B200 seeds. Seed 2 runs out of time in sp2's unchanged climb before any loop is
-    searched; with the budget doubled (a research run) it certifies.
+    searched; with the budget doubled (a research run) it certifies. The slow path comes from the random start, not
+    the loop: a diagnostic copy that starts from sp2's own random draws replays sp2's climb line for line on seeds 74
+    and 2, and the learned loop then certifies both, seed 2 frozen by 1,062 s.
   - **Still designed:** the count loop itself (a strict judge can call it the countdown made into an instruction),
     T's place in the machine and its 2-digit field, the answer program's search space, and what sp2 designs.
 

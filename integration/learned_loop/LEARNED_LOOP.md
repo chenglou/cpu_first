@@ -30,7 +30,9 @@ alone it returns the round itself, with no loop).
 768/768, every split exact, frozen by 1,002 s of the 3,600 s budget. On 8 B200 seeds, 7 certify. Seed 2 runs out of
 time before any loop is searched: sp2's practice climb, unchanged here, took 10 levels on that seed's path to build the
 round's last piece, the long division, and finished it just as the climb's time ran out. With the budget doubled (a
-research run), the same seed finds the round, then the loop, and certifies, frozen by 3,741 s.
+research run), the same seed finds the round, then the loop, and certifies, frozen by 3,741 s. And the slow path is
+not the loop's: with sp2's own random start (a diagnostic copy that keeps sp2's unused gate), seed 2 replays sp2's
+climb exactly, finds the round at level 4, and the learned loop certifies it, frozen by 1,062 s.
 
 **How T is read.** That is designed too, and part of it carries weight. The reader takes T as the prompt's third
 number with exactly 2 digits, and that width is what tells T apart from x: both are below N, so the order facts the
@@ -259,11 +261,11 @@ The two runs do not follow each other step for step (§4).
 | `ll2_b200_seed2_relaxed` (7,200 s budget) | 2 | 64 / 64 | yes, on the doubled budget | 698 | 699, 54.2 | 772 | 898, 3,741 | 3,874.1 / 96.0 |
 
 Every certified run's splits are exact, and its tournament holds the one program `C.S[T.round1 STA.X]` (the second
-round, where there was one, is merged into the first, §3). In every run where the round came, the answer program came
-at the next step, from one search, and that run certified. That is 14 runs: the 8 above (searches of 29–96 s over
-13,336–15,561 items), the first build's 4 below (11–90 s, on the T = 1 and 2 rows alone), the 8-digit T run of §6
-(27 s, 11,581 items) and seed 2 on the doubled budget (54 s, 16,983 items). No other program was ever accepted. sp2's 8 B200 seeds froze
-by 666–1,804 s; these 7 by 724–927 s.
+round, where there was one, is merged into the first, §3). In every run where the round came, the answer program came at
+the next step, from one search, and that run certified. That is 16 runs: the 8 above (searches of 29–96 s over
+13,336–15,561 items), the first build's 4 below (11–90 s, on the T = 1 and 2 rows alone), the 8-digit T run of §6 (27 s,
+11,581 items), seed 2 on the doubled budget (54 s, 16,983 items) and the diagnostic copy's 2 runs below (29 s and 52 s).
+No other program was ever accepted. sp2's 8 B200 seeds froze by 666–1,804 s; these 7 by 724–927 s.
 
 The first build (`ba07d656`, §4) ran the official manifest and seeds 74, 1, 2 and 3. On each seed it follows the final
 file step for step up to the round (the same steps for the round, the answer program, T and the freeze), with its
@@ -301,6 +303,32 @@ long division (`red/x+on@XN`, cost 5), and:
 
 So on the official budget, seed 2 is short by the climb's last level: its round came at 3,673 s, past the climb's
 deadline of 3,480 s, and its freeze 141 s past the end of the 3,600 s budget.
+
+**Is the time-out sp2's or the loop's? The random start's.** sp2's own seed 2 found its round at level 4 by 744 s, so
+the slow path is not sp2's on that seed. The two climbs part at level 0. The two trainings reach the climb at
+different steps (step 631 for sp2, 583 here) with different pools of read rows, so different bindings tie for the
+cleanest practice: sp2 practises `red/pair@AY` at level 1 and the chain `red/x+dn@AY` at level 3, and that gives it
+the long division `red/x+on@XA` at level 4. This file got `red/pair@AN` only, the chain one level later in binding
+AN, and the long division in that binding (`red/x+on@XN`) waited until level 10.
+
+To test it, `diag/submission_stage3_ll_gate.py` (md5 `2afacc78`, built by `diag/make_gate_replay.py`; not a
+submission) is this file with sp2's gate put back as dead weight: the parameter created where sp2 creates it, its
+loop law, and the gate in phase B's switch, with nothing reading it. Every tensor then starts from sp2's draws and
+every lesson until the round is sp2's. On two B200 seeds (records `records/b200/llgate_b200_seed*`, both verified;
+`diag/compare_climb.py` compares them with sp2's B200 records):
+
+| seed | against sp2's own run, up to the round | the round | answer program | T resolved | frozen | certified |
+|---|---|---|---|---|---|---|
+| 74 | identical: all 18 logged losses, all 48 climb lines | step 688, level 4 (sp2: 688) | step 689, 28.9 s, 15,421 items (sp2's official library's count, §3) | 709 (sp2: 708) | 888, by 735 s | yes |
+| 2 | identical: all 18 logged losses, all 52 climb lines | step 683, level 4 (sp2: 683) | step 684, 52.2 s, 13,746 items | 704 (sp2: 703) | 883, by 1,062 s | yes |
+
+With sp2's start, seed 2 takes sp2's fast path, and the learned loop then finds `C.S[T.round1 STA.X]` at the next step
+and certifies. So nothing the loop does slows the climb: its own code runs in phase C too (keeping the rows of every
+count), and the climb's lines still match sp2's. The learned-loop file loses seed 2 because dropping the gate's 4
+parameters moves every later tensor's random draws, and dropping its lesson changes the gradient's clipped norm at
+every step from phase B on. The climb that follows is a new random sample of sp2's climb, and on this seed a slow one. (Locally,
+`diag/replay_check.py` runs sp2's file and the diagnostic copy side by side on a CPU: the same schedule event for
+event, and the same losses until step 158, as close as sp2's file repeats itself on that CPU, step 166.)
 
 ## 6. How T is read
 
@@ -373,14 +401,16 @@ register holding x or N ends in the cap's error after its count downs, before an
 - **The count loop**: one design, checked on the four machines with 46 random programs and the H1 program (local).
 - **The answer program's search offline**: 6 arms, five on B200s and one on the laptop (§3); `records/offline/`.
 - **The evaluator**: the first build on the official manifest and 4 B200 seeds; the final file on the official
-  manifest and 8 B200 seeds; T as wide as x on 3 B200 seeds; seed 2 on a doubled budget. 18 records.
+  manifest and 8 B200 seeds; T as wide as x on 3 B200 seeds; seed 2 on a doubled budget; the diagnostic copy with
+  sp2's gate on seeds 74 and 2. 20 records.
 - **T's reading**: 10 local reader runs (5 seeds at each width) and the 3 evaluator runs above.
 - **Rule 8**: the gradient test at T = 1 and T = 2 on this file and on sp2's, and once with the damping off (local).
 
-**Money.** About $54 of Modal at list price, against the $400 soft budget. The evaluator runs come to $50.6: the
+**Money.** About $58 of Modal at list price, against the $400 soft budget. The evaluator runs come to $54.9: the
 first build's official run $2.0 and 4 seeds $12.0; the final file's official run $1.6 and 8 seeds $20.2; T as wide as
-x $7.8; seed 2 on the doubled budget $7.0. The offline searches, 6 short B200 jobs, came to about $3. That is about
-8 B200-hours and 1 H100-hour. Everything else ran locally on a laptop CPU, each check in seconds to a few minutes.
+x $7.8; seed 2 on the doubled budget $7.0; the diagnostic copy on 2 seeds $4.3. The offline searches, 6 short B200
+jobs, came to about $3. That is about 8.5 B200-hours and 1 H100-hour. Everything else ran locally on a laptop
+CPU, each check in seconds to a few minutes.
 
 **Dead ends, and how hard each was tried.**
 - One search for the loop and its body together (the brief's first way): not run. Counting its candidates (§3) puts
@@ -390,8 +420,9 @@ x $7.8; seed 2 on the doubled budget $7.0. The offline searches, 6 short B200 jo
   2 and certified; fixed in the final file.
 - T read as wide as x: tried locally on 5 seeds and in the evaluator on 3. It fails whenever the reader takes x from
   T's run (§6).
-- Seed 2: a failure of sp2's climb on this file's trajectory, not of the loop. Diagnosed from its log and offline
-  (§5); the doubled budget's rerun is in §5.
+- Seed 2: a failure of sp2's climb on this file's trajectory, not of the loop. Diagnosed from its log and offline,
+  certified on a doubled budget, and certified on the official budget once the training starts from sp2's own draws
+  (the diagnostic copy, §5).
 
 ## 9. Files and how to rerun
 
@@ -407,7 +438,8 @@ Everything is in `cpu_first/integration/learned_loop/`; nothing outside it was c
 | `modal_ll.py` | the offline modules on a Modal GPU (app and Volume `learned-loop`) |
 | `rows.py`, `summarize.py` | H1 rows as digits; one line per evaluator record |
 | `checks/` | `test_count.py` (the four machines), `designed_ll.py` (the prediction path at the truth), `smoke_replay.py` (training after the round), `gradtest_ll.py` (rule 8), `reader_k.py` (T's width, §6); `sp2_official_lib.json` and `ll_seed2_lib.json`, the recorded libraries |
-| `records/` | the evaluator's records: `ll2_official.json` (the file), `ll_official.json` (the first build); `b200/` the seeds (`ll2_b200_seed*`, `ll_b200_seed*`) and T as wide as x (`llk8_b200_seed*`); `offline/` the offline searches |
+| `diag/` | seed 2's question (§5): `make_gate_replay.py` builds `submission_stage3_ll_gate.py` (this file with sp2's gate as dead weight); `replay_check.py` (sp2, it and this file side by side on a CPU); `compare_climb.py` (two records' training up to the round) |
+| `records/` | the evaluator's records: `ll2_official.json` (the file), `ll_official.json` (the first build); `b200/` the seeds (`ll2_b200_seed*`, `ll_b200_seed*`), T as wide as x (`llk8_b200_seed*`) and the diagnostic copy (`llgate_b200_seed*`); `offline/` the offline searches |
 
 From `cpu_first/`, with the sotaku venv's Python:
 

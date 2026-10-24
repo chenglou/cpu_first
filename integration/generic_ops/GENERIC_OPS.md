@@ -17,15 +17,15 @@ SHL.A" moves X's top digit into A. No single instruction does either old job. A 
 all (the borrow moved into the multiplier digit), reaches the round only with deep probes seven times larger, after
 3.6 hours of the climb alone: far past the hour the contest allows.
 
-**Does it still find the round? Yes, inside training, but it is not certified yet.** The learner built the step
-itself (§4): the conditional subtraction as `T.sub.pair.YX C[LDA.Y]` (subtract; if it borrowed, reload the input),
-the chain as `B[T.lt C[T.add]]` (subtract; if it borrowed, add back), long division as
-`LDA.N P[SHL.Y SHL.A T.chain]` (the two shifts as its "bring down"), and, new to stage 3, a shift-and-add multiply
-over the accumulator. In the contest's own evaluation (official manifest, one H100, seed 74) the file
-`submission_stage3_g3.py` (md5 `e6bd2a1f`) found its round after level 4. The run was killed before it wrote a
-record, so these figures come from its log alone: the round at about 2,370 s of training, frozen at about 2,440 s,
-and exact on every rung it was evaluated on (seen moduli T = 1 to 64, unseen T = 1, 2, 4) when Modal stopped the whole
-workspace at its spend limit. Its 8 seeds were six minutes in. Both need to be run again; §0 has the commands.
+**Does it still find the round? Yes, and it is certified.** The learner built the step itself (§4): the conditional
+subtraction as `T.sub.pair.YX C[LDA.Y]` (subtract; if it borrowed, reload the input), the chain as
+`B[T.lt C[T.add]]` (subtract; if it borrowed, add back), long division as `LDA.N P[SHL.Y SHL.A T.chain]` (the two
+shifts as its "bring down"), and, new to stage 3, a shift-and-add multiply over the accumulator. In the contest's own
+evaluation (official manifest, one H100, seed 74) the file `submission_stage3_g3.py` (md5 `e6bd2a1f`) found its round
+after level 4, by 2,507 s of training, froze by 2,572 s, and is certified to T = 64 on both ladders, with every
+split exact (test 9,999 of 9,999; unseen T and unseen moduli 10,002 of 10,002 each). Its 8 seeds on B200 (74 and 1 to
+7) certified the same way, each with its round after level 4. `tools/verify_records.py` checks all nine records
+against the file (§0).
 
 **What it took.** The instruction set alone is not enough. Replacing SEL.S alone works with no other change (the round
 after level 4 in the tiny core, 15% slower). Replacing BRG.X makes long division one step longer (cost 5, not 4), and
@@ -40,29 +40,65 @@ three things then stop the climb, each found in a run and fixed by a rule that h
    own operands alone.
 The law book did not change.
 
-**At what cost?** About 2.3 times sp2's training time to the round on the official run (2,370 s against 1,029 s, by
-the log), in the budget with about 1,100 s to spare, on one seed; 1.3 to 2.4 times in the tiny core. The rules were
-found by watching whether the round came, which is design with the target in view, and the first of them also costs
-sp2's own machine a level. About $210 of compute.
+**At what cost?** About 2.4 times sp2's training time to the round on the official run (by 2,507 s against 1,029 s),
+and 2.2 times its whole training (2,770 s against 1,277 s), inside the 3,600 s budget with 830 s to spare.
+On the 8 B200 seeds the round came between 2,042 and 2,505 s (sp2 on the same seeds: 650 to 1,775 s), and training
+took 2,290 to 2,790 s; in the tiny core, 1.3 to 2.4 times sp2's. The rules were found by watching whether the round
+came, which is design with the target in view, and the first of them also costs sp2's own machine a level. About $255
+of compute.
 <!-- /PLAIN -->
 
-## 0. Status, records and the runs to relaunch
+## 0. Status, records and how they were run
 
 **The candidate.** `integration/generic_ops/submission_stage3_g3.py`, md5 `e6bd2a1f9bfd9fd2119b0d44483c7100`, 244,664
 bytes, instruction set `if1,k`. §8 has the command that rebuilds it byte for byte.
 
-**Not certified yet.** At 07:27 PDT on 2026-10-24 Modal stopped every container in the workspace (its spend limit),
-and it refuses launches until the limit is lifted:
-- the official H100 run (run `submission-stage3-g3-official`) was stopped during evaluation and wrote no record. By
-  its log only (the peeks during the run; the last copy is
-  `records/runner/partial/submission-stage3-g3-official.peek.txt`):
-  - the round found by calls after level 4, at step 698 (step 700 at 2,373 s of training);
-  - T's direction at step 718, frozen at step 897;
-  - then certified (exact_accuracy 1.000) on seen moduli T = 1, 2, 4, 8, 16, 32, 64 and unseen moduli T = 1, 2, 4,
-    with unseen T = 8 to 64 not yet run;
+**Certified.** Its official H100 run and its 8 B200 seeds ran on 2026-10-24 from 14:42 PDT (runs `g3-official-2`
+and `g3-seeds-2`). All nine certified to T = 64 on both ladders (seen and unseen moduli), with every split exact
+(test 9,999 of 9,999; unseen T and unseen moduli 10,002 of 10,002 each). Each found its round by calls after level 4,
+at cost 2, and froze about 200 steps later:
+
+| run | GPU, seed | the round: step; training clock | frozen: step; clock | training | evaluation | wall | sp2 on the same GPU and seed: round; training |
+|---|---|---|---|---|---|---|---|
+| official | H100, 74 | 698; 2,507 s | 897; 2,572 s | 2,770 s | 386 s | 3,163 s | 1,029 s; 1,277 s |
+| seed | B200, 74 | 698; 2,505 s | 897; 2,570 s | 2,790 s | 381 s | 3,178 s | 702 s; 855 s |
+| seed | B200, 1 | 640; 2,207 s | 839; 2,247 s | 2,444 s | 302 s | 2,752 s | 650 s; 786 s |
+| seed | B200, 2 | 689; 2,362 s | 888; 2,416 s | 2,593 s | 306 s | 2,905 s | 744 s; 886 s |
+| seed | B200, 3 | 610; 2,104 s | 809; 2,135 s | 2,338 s | 298 s | 2,644 s | 1,775 s; 2,010 s |
+| seed | B200, 4 | 703; 2,234 s | 902; 2,261 s | 2,426 s | 291 s | 2,723 s | 937 s; 1,209 s |
+| seed | B200, 5 | 643; 2,157 s | 842; 2,197 s | 2,388 s | 332 s | 2,726 s | 651 s; 784 s |
+| seed | B200, 6 | 607; 2,214 s | 806; 2,243 s | 2,419 s | 299 s | 2,724 s | 818 s; 1,073 s |
+| seed | B200, 7 | 688; 2,042 s | 887; 2,095 s | 2,290 s | 307 s | 2,606 s | 931 s; 1,187 s |
+
+- The clock is the training clock at the first progress line (one every 100 steps) at or after the step, so the round
+  and the freeze had happened by then. sp2's figures are from its records in `../self_practice/records/runner/`.
+- Every round is four programs of one form: x into A (and Y), the multiply, the product into X or Y, the reduction by
+  N. On seed 74, two of the four use the shift-and-add multiply (`LDA.X T.mul.x,o.AX STA.Y T.red.x+on.YN`).
+- On B200, g3's median time to the round is 2.8 times sp2's (2,211 s against 781 s; seed by seed, 1.2 to 3.6
+  times), and its median training 2.5 times (2,423 s against 980 s). The slowest of the nine trained 2,790 s of the
+  3,600 s budget (sp2's slowest: 2,010 s).
+- Peak host memory 13.0 to 14.1 GiB.
+
+**Verified.** `tools/verify_records.py` checks all nine records. Each embeds the file's source, md5
+`e6bd2a1f9bfd9fd2119b0d44483c7100`, with the official manifest (seeds 1 to 7: official except the seed), return
+code 0 and a RESULT_JSON line equal to its result:
+
+```bash
+cd cpu_first && python3 tools/verify_records.py integration/generic_ops/records/runner/submission_stage3_g3_official.json=integration/generic_ops/submission_stage3_g3.py integration/generic_ops/records/runner/submission_stage3_g3_b200_seed*.json
+```
+
+**The first attempt, stopped.** At 07:27 PDT the same day, Modal stopped every container in the workspace at its
+spend limit, and refused launches until the limit was raised:
+- the first official run (run `submission-stage3-g3-official`) was stopped during evaluation and wrote no record. By
+  its log (the last copy is `records/runner/partial/submission-stage3-g3-official.peek.txt`), it had found the round
+  at step 698 (step 700 at 2,373 s of training), resolved T's direction at step 718 and frozen at step 897, the same
+  steps as the rerun on the same seed. It had certified seen T = 1 to 64 and unseen T = 1, 2, 4;
 - its 8 B200 seeds (run `g3-seeds`) were stopped six minutes in (steps 500 to 600), with no records;
 - the official run of `submission_stage3_g_brg3.py` (run `submission-stage3-g-brg3-official`) was stopped at level 5,
-  about 2,950 s in, with no record (§5). It is not needed for the result and is not to be relaunched.
+  about 2,950 s in, with no record (§5). It is not needed for the result and was not relaunched.
+
+The three stopped apps (ap-4CbUBB9ywEgDf0ckoZNLna, ap-s0kQgp7W8LLMBLN2hiaa43, ap-JhxvAGCpX7YUGC72Ggg5iC) were left as
+they were, and none had run again by the time the reruns finished.
 
 **Complete records** (runs that ended, one way or another):
 - tiny core: `records/<run>.json` and `.log` for the 21 runs of §3 that ran to their end (`"final": true` in the
@@ -71,47 +107,19 @@ and it refuses launches until the limit is lifted:
   - the gate diagnoses `records/diag_gate_if_k_L4.log` and `records/diag_gate_brg3_L4.log`, made from the record
     snapshots in `diag/`;
 - evaluator, in `records/runner/`:
+  - `submission_stage3_g3_official.json` and `submission_stage3_g3_b200_seed{74,1,2,3,4,5,6,7}.json`: g3, certified
+    (above);
   - `submission_stage3_g_brg_official.json` and `submission_stage3_g_official.json`, both killed by the runner's
     memory cap;
   - `submission_stage3_g2_official.json` and `submission_stage3_g_brg2_official.json`, both of which ran their
     3,600 s and are not certified;
   - `submission_stage3_g_b200_seed74.json`, an earlier build (md5 `dad32aa5`), not certified.
 
-**To relaunch once the limit is lifted** (about $50: one H100 run and eight B200 runs, each up to about an hour;
-spent so far about $210 of $400).
-
-1. See whether the stopped runs came back by themselves: their drivers and workers still read PENDING. A job that came
-   back shows attempt 2 and a fresh log (`--mode peek`): let it finish, and fetch it with
-   `--mode fetch --run TAG --wait`.
+**How they were run** (about $43 at list price for the nine: $3.56 for the H100 run, $39.28 for the eight B200
+seeds). The spend check, then the two launches. They took `--force` because the stopped runs held the record names:
 
 ```bash
-cd cpu_first && ~/github/sotaku/venv/bin/python tools/modal_runner.py --mode status --run submission-stage3-g3-official
-```
-
-```bash
-cd cpu_first && ~/github/sotaku/venv/bin/python tools/modal_runner.py --mode status --run g3-seeds
-```
-
-2. If they did not come back, stop the three stopped apps (g3's official run, its seeds, brg3's official run), so that
-   none can restart midway and run twice:
-
-```bash
-~/github/sotaku/venv/bin/python -m modal app stop ap-4CbUBB9ywEgDf0ckoZNLna
-```
-
-```bash
-~/github/sotaku/venv/bin/python -m modal app stop ap-s0kQgp7W8LLMBLN2hiaa43
-```
-
-```bash
-~/github/sotaku/venv/bin/python -m modal app stop ap-JhxvAGCpX7YUGC72Ggg5iC
-```
-
-3. Run the spend check, then the two launches. They need `--force`, because the stopped runs hold the record names,
-   which the new records reuse:
-
-```bash
-cd cpu_first && ~/github/sotaku/venv/bin/python integration/ablation_s3/spend.py 4750
+cd cpu_first && ~/github/sotaku/venv/bin/python integration/ablation_s3/spend.py 3750
 ```
 
 ```bash
@@ -122,7 +130,7 @@ cd cpu_first && ~/github/sotaku/venv/bin/python -m modal run --detach tools/moda
 cd cpu_first && ~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode seeds --file integration/generic_ops/submission_stage3_g3.py --seeds 8 --hardware b200 --memory-gb 48 --out integration/generic_ops/records/runner --run g3-seeds-2 --force
 ```
 
-4. Fetch (each waits until its records are in), then verify:
+Then the fetches, each of which waits until its records are in:
 
 ```bash
 cd cpu_first && ~/github/sotaku/venv/bin/python tools/modal_runner.py --mode fetch --run g3-official-2 --wait
@@ -132,9 +140,8 @@ cd cpu_first && ~/github/sotaku/venv/bin/python tools/modal_runner.py --mode fet
 cd cpu_first && ~/github/sotaku/venv/bin/python tools/modal_runner.py --mode fetch --run g3-seeds-2 --wait
 ```
 
-```bash
-cd cpu_first && python3 tools/verify_records.py integration/generic_ops/records/runner/submission_stage3_g3_official.json=integration/generic_ops/submission_stage3_g3.py integration/generic_ops/records/runner/submission_stage3_g3_b200_seed*.json
-```
+A rerun needs new run tags. Give it another `--out` as well, so that the records above keep their place (a fetch
+replaces a record from another run only with `--force`).
 
 ## 1. The two instructions, and what replaces them
 
@@ -390,6 +397,15 @@ No instruction in it selects, restores or brings a digit in: the "keep or discar
 load, and the "bring the next digit down" is two shifts. The shift-and-add multiply is new: no stage-3 run had it,
 because a zero-fill shift loses the digit it moves out.
 
+The certified official run (§0) built the same pieces, in its own bindings (its library at the round, in the record's
+log):
+- the link `LDA.Y T.lt.pair.AX C[LDA.Y]`;
+- the chain `B[T.lt.pair.AN C[T.add.pair.AN]]`;
+- the reduction `LDA.N P[SHL.Y SHL.A T.red.x+dn.AN]`;
+- both multiplies, `CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]` and `CLK P[SHL.A SHL.Y T.acc.mul.o,x,d.AXY]`.
+
+The table's round, `LDA.X STA.Y T.mul.x,o.XY STA.Y T.red.x+on.YN`, is one of its round's four programs.
+
 ## 5. In the evaluator: the files and their runs
 
 Every file is built by [`make_g.py`](make_g.py) from the template, libcore_g and spcore_g (§8), and checked locally
@@ -403,23 +419,26 @@ through the shared runner, on one H100 with the untouched official manifest, see
 | `submission_stage3_g.py` (`038e70d1`) | if1,k, the five rule changes of §3 | the multiply at level 4, no reduction (scratch chains, §2.2); level 5 ran past the deadline (4,994 s) to 49.4 GiB, killed | `submission_stage3_g_official.json` (killed) |
 | `submission_stage3_g2.py` (`1f16bf80`) | as `g`, + acceptance to four digits, + the deadline check | the multiply at level 4, no reduction; climbed to level 7, no round; trained exactly 3,600 s, 15.9 GB at most | `submission_stage3_g2_official.json`: not certified (test 7/9,999) |
 | `submission_stage3_g_brg2.py` (`dc154a11`) | as `g_brg`, + four digits, + the deadline check | the fake now rejected, but no real reduction either (every chain on A scratched in X, which BRG.X reads); level 7, no round, 3,600 s | `submission_stage3_g_brg2_official.json`: not certified |
-| **`submission_stage3_g3.py` (`e6bd2a1f`)** | **if1,k, the five rule changes, four digits, side-effect-free routines ("scratch")** | **by its log only: the round found by calls after level 4 (step 698, ~2,370 s of training): `LDA.X STA.Y T.mul.x,o.XY STA.Y T.red.x+on.YN` and three others; T's direction at step 718; frozen at step 897. Evaluation had passed seen moduli T = 1-64, all exact and certified, and unseen moduli T = 1, 2, 4, certified, when Modal stopped the workspace at its spend limit (07:27 PDT)** | **none: not certified yet** (the evaluator writes the record at the end); the log's tail is in `records/runner/partial/`; §0 has the relaunch |
+| **`submission_stage3_g3.py` (`e6bd2a1f`)** | **if1,k, the five rule changes, four digits, side-effect-free routines ("scratch")** | **the round found by calls after level 4 (step 698, by 2,507 s of training): `LDA.X STA.Y T.mul.x,o.XY STA.Y T.red.x+on.YN` and three others; T's direction at step 718; frozen at step 897 (by 2,572 s); training 2,770 s, evaluation 386 s. The first run (stopped by the workspace's spend limit at 07:27 PDT, mid-evaluation) had taken the same steps** | **`submission_stage3_g3_official.json`: certified, T = 64 on both ladders, every split exact** (the first run's log tail is in `records/runner/partial/`) |
 | `submission_stage3_g_brg3.py` (`e18241d4`) | as `g_brg2`, + side-effect-free routines | clean chains in the run, but no reduction at level 4: the cost-4 long division is in the vocabulary and passes acceptance, yet the probe listed only fakes there, and with sp2's alias rule its closeness is 0, so no deep probe. Level 5's deep probes (sent by the quotient's closeness) found a reduction at cost 5 in three bindings, at about 2,950 s of the run, and the workspace cap killed it before the round's search | none (the log's tail is in `records/runner/partial/`) |
 
 An earlier build of `submission_stage3_g.py` (`dad32aa5`, rotation "once") ran on a B200
 (`submission_stage3_g_b200_seed74.json`): the fake at level 4, and a level-5 vocabulary unit that ran 1,599 s past
 the deadline (training 4,408 s against 3,600 s). Its source is in the record; the file was rebuilt since.
 
-`submission_stage3_g3.py`'s 8 B200 seeds (run `g3-seeds`) were six minutes in when the workspace went down; none
-finished.
+`submission_stage3_g3.py`'s 8 B200 seeds (run `g3-seeds-2`; seeds 74 and 1 to 7) all certified, T = 64 on both
+ladders with every split exact, each with its round after level 4: the round by 2,042 to 2,505 s of training,
+training 2,290 to 2,790 s (records `submission_stage3_g3_b200_seed*.json`; §0 has the table). The first try at them
+(run `g3-seeds`) was stopped six minutes in by the workspace's spend limit.
 <!-- /OFFICIAL -->
 
 ## 6. What each change costs
 
-**Training time.** By its log, the full-generic file's round came at about 2,370 s of training on the official H100,
-and it froze by about 2,440 s (step 897), against sp2's 1,029 s and 1,077 s and s3i's 1,047 s and 1,092 s: about 2.3
-times as long, inside the 3,600 s budget with some 1,100 s to spare, on one seed. In the tiny core (B200, the climb
-alone):
+**Training time.** On the official H100, the full-generic file's round came by 2,507 s of training, and it froze by
+2,572 s (step 897), against sp2's 1,029 s and 1,077 s and s3i's 1,047 s and 1,092 s: about 2.4 times as long. Its
+training ended at 2,770 s (sp2's: 1,277 s), inside the 3,600 s budget with 830 s to spare. On the 8 B200 seeds, the
+round came by 2,042 to 2,505 s and training took 2,290 to 2,790 s, against sp2's 650 to 1,775 s and 784 to 2,010 s on
+the same seeds (§0). In the tiny core (B200, the climb alone):
 
 | step | tiny core, time to the round (after level 4 unless said) | against |
 |---|---|---|
@@ -440,8 +459,8 @@ level 4, so level 5 is a cliff to avoid, not a level to wait for.
 **Size.** 244,664 bytes for `submission_stage3_g3.py`, under the 256 KiB limit because the builder drops the inlined
 core's dead code (sp2's file, with it: 250,643 bytes).
 
-**Compute.** About 26 B200-hours of tiny cores and diagnostics and about 12 GPU-hours of evaluator runs, about $210 at
-list price, of the $400 this study was given.
+**Compute.** About 26 B200-hours of tiny cores and diagnostics and about 19 GPU-hours of evaluator runs (7 of them for
+the nine certifying runs), about $255 at list price, of the $400 this study was given.
 
 **The law book did not change.** Every problem posed is sp2's book's (11 laws on 8 patterns, in every binding);
 nothing was added or removed. The changes are in the instruction set and in five rules of the search that picks and
@@ -475,9 +494,9 @@ and, for the evaluator's paths, acceptance at one more size and side-effect-free
   - Its analysis (no record) observed that the shift through k is exactly the one-place piece of the law x·B. Each
     place writes the digit that came up from below and passes its own digit up as the carry. libcore's SHR and BRG.X
     are not of that kind. So `SHL.X SHL.A` is the form a place-by-place law gives BRG.X.
-- The deliverable is not complete. The full-generic file's official run was stopped mid-evaluation by the workspace's
-  spend limit, and its 8 seeds did not run. Until both are rerun (§0), it has found the round and passed every rung it
-  reached, by its log, but it is not certified.
+- Nine runs of one file certify it (§0): the official H100 run and 8 B200 seeds. Its margin is time. The slowest of the
+  nine trained 2,790 s of the 3,600 s budget (sp2's slowest: 2,010 s). Seed 74 took about the same time on the H100 as
+  on the B200 (2,770 s and 2,790 s), so a faster GPU does not widen the margin.
 
 ## 8. Files and how to rerun
 
@@ -523,5 +542,5 @@ cd cpu_first && PYTHONPATH=. ~/github/sotaku/venv/bin/python integration/generic
 cd cpu_first && ~/github/sotaku/venv/bin/python -m modal run --detach integration/generic_ops/modal_g.py --envs '[{"TAG": "g_if1_gain_root", "ISA": "if1,k", "ALIAS_FIT": "1", "CALLS_FIRST": "1", "DEEP_ROTATE": "gain", "DEEP_UNION": "0", "DEEP_K": "16", "ROUND": "2e6", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "5400"}]'
 ```
 
-g3's official run and seeds, their fetch and their verification: §0. Its commands reuse the stopped runs' record
-names, hence `--force` and new run tags.
+g3's official run and seeds, their fetch and their verification: §0, with what a rerun needs (new run tags and
+another `--out`).

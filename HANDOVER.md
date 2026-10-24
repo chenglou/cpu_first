@@ -1,8 +1,8 @@
 # Handover: the hygiene pass before this repo leaves the laptop
 
 *Written 2026-10-23, with [REVIEW.md](REVIEW.md), for `main` at `f55fdca`. Brought up to date on 2026-10-24, once the
-later studies were committed: §1's scan covers their commits, and §5's sizes include them. Nothing was pushed or
-uploaded.*
+later studies were committed: §1's scan covers their commits, and §5's sizes include them. The same day the repo went
+to a private GitHub repository (§6).*
 
 ## 1. Secrets and private data
 
@@ -86,7 +86,7 @@ HANDWIRED_BRIDGE.md mentions, and a clone does not have them.
 **One record over 5 MB is tracked on purpose:** `nca/runs/trim1.jsonl` (14.6 MB), the records of NCA.md §9's 64 runs
 from random weights, which §9's numbers are checked against.
 
-### Proposed removals (not done)
+### Proposed removals (not done: the user chose to keep every log)
 
 1. **38 waiter transcripts**, 172 KB. These are the polling logs of the per-folder fetch waiters. No doc cites them,
    and the records hold what they waited for.
@@ -167,9 +167,11 @@ To include the on-disk-only outputs as well (322 MB before compression):
 cd ~/github/one-layer/cpu_first && git ls-files --others --ignored --exclude-standard -z | xargs -0 tar czf ~/Desktop/cpu_first_big_outputs.tgz
 ```
 
-## 6. Decisions left for the user
+## 6. The user's decisions (2026-10-24)
 
-- Whether the logs' home path, local project names and Modal workspace name are fine to share. They are not secrets
-  (§1); the alternative is the history rewrite above.
-- Whether to make the proposed removals (§4).
-- Which handover option to use, after committing.
+- The logs' home path, local project names and Modal workspace name are fine to share. The logs stay as they are, and
+  the history is not rewritten.
+- The proposed removals (§4) are not made: every log is kept.
+- The handover is option 3: a private GitHub repository, [`chenglou/cpu_first`](https://github.com/chenglou/cpu_first),
+  created with `gh repo create cpu_first --private --source=. --remote=origin --push`. The user adds the reviewer as a
+  collaborator.

@@ -259,8 +259,8 @@ build, including the failures), and bar 3's [PRACTICE.md](bar3/PRACTICE.md) and 
 
 ## 7. Later studies
 
-Three studies were still running when this file was first written. Two have finished and are committed; none changes
-a certified file or record.
+Three studies were still running when this file was first written. All three have finished and are committed; none
+changes a certified file or record.
 
 - **The s3i ablation** ([ABLATION_S3.md](integration/ABLATION_S3.md), code and records in
   [`integration/ablation_s3/`](integration/ablation_s3/)). Each hand-made part was removed in turn and the model
@@ -286,9 +286,18 @@ a certified file or record.
   - **Still designed:** the law book, the choosing rule (picked after bar 3's own rules failed, by watching whether
     the round came), the instruction set and the search sizes.
   - The other formulas are still not learned.
-- **The shader follow-up** ([`nca/`](nca/), uncommitted, still running): long training with weight decay to trim the
-  rules, per-weight learning speeds set by agreement, and both, on the NCA probe ([NCA.md](nca/NCA.md)).
-  > *To be filled by the coordinating session: the result, and whether `nca/` is committed.*
+- **The shader follow-up** ([NCA.md](nca/NCA.md) §9, code and records in [`nca/`](nca/)). The NCA probe is one
+  identical tiny cell repeated over a grid, each wired only to its neighbours, trained from random weights on lessons
+  alone. Two known cures for memorization were tried on it, far past the point where it fits: long training with
+  weight decay ("trimming", the setting in which networks that had memorized modular arithmetic later found the
+  rule), and agreement (a weight moves only where groups of questions, or the grid's columns, push it the same way;
+  or it speeds up while its gradient keeps its sign). 72 runs from random weights, 4 seeds per arm (50,000 steps at
+  (3, 2, 1), 20,000 at (3, 3, 2)), and 20 started at the compiled rule.
+  - **Result:** none certifies, none fits the training questions on snapped digits (the best any run reaches is 62
+    of the 99 at (3, 2, 1)), and one size up every run stays at chance from start to end: no late jump.
+  - **Why:** decay holds the weights small, small weights pass blurred digits, and a blurred code fits the training
+    answers on the soft path, unsteadily, without being the machine. The exact rule needs larger weights than decay
+    allows. Started at the compiled rule, every arm loses it within a few hundred steps.
 
 ## 8. About this checkout
 

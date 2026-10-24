@@ -21,8 +21,8 @@ from integration.lib import libcore as L
 from integration.self_practice import spcore as S
 
 HERE = Path(__file__).resolve().parent
-H1_DIR = os.environ.get("H1_DATA", "/Users/chenglou/github/one-layer/one-layer-deeper/data/generated/"
-                                   "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2")
+H1_DIR = os.environ.get("H1_DATA", str(HERE.parents[2] / "one-layer-deeper" / "data" / "generated" /
+                                       "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2"))
 
 
 def load_rows(n, seed, T=None, split="train"):

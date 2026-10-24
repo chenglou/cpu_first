@@ -1,0 +1,7 @@
+T=1 library only: cost 5 levels [1, 38, 1011, 23562, 509763, 14383010] 10.6s  programs ['T.reduce STA.X T.mul STA.X T.reduce', 'LDA.X STA.Y T.mul STA.X T.reduce']
+T=1 with T.sq: cost 1 levels [1, 39] 1.8s  programs ['T.sq']
+T=2 library only: cost None levels [1, 38, 1012, 23687, 513560, 14501734] 186.9s exhausted cost 5 programs []
+T=2 with T.sq: cost 1 levels [1, 39, 1035, 24046, 518807, 14625946] 19.1s exhausted cost 5 programs ['T.sq']
+by calls: 126 items, cost 2 levels [1, 119, 7674]  programs ['ONE[LDA.X STA.Y T.mul] ONE[STA.X T.reduce]']
+
+EXIT 0

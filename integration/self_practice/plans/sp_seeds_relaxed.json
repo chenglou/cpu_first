@@ -1,0 +1,47 @@
+[
+ {
+  "name": "sp_relaxed_b200_s1",
+  "task": "h1",
+  "file": "integration/self_practice/submission_stage3_sp.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 36000,
+    "seeds": [
+     1
+    ]
+   }
+  },
+  "hardware": "b200",
+  "memory_gb": 48
+ },
+ {
+  "name": "sp_relaxed_b200_s2",
+  "task": "h1",
+  "file": "integration/self_practice/submission_stage3_sp.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 36000,
+    "seeds": [
+     2
+    ]
+   }
+  },
+  "hardware": "b200",
+  "memory_gb": 48
+ },
+ {
+  "name": "sp_relaxed_b200_s3",
+  "task": "h1",
+  "file": "integration/self_practice/submission_stage3_sp.py",
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 36000,
+    "seeds": [
+     3
+    ]
+   }
+  },
+  "hardware": "b200",
+  "memory_gb": 48
+ }
+]

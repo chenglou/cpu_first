@@ -1,0 +1,167 @@
+device NVIDIA B200 config {'rule': 'ct2a2', 'K': 4, 'NP': 16, 'probe_budget': 1000000, 'fallback_budget': 0, 'look_budget': 300000, 'round_budget': 4000000, 'levels': 12, 'search_s': 900.0, 'fuse': 4, 'patterns': None, 'laws': None, 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest']}
+UNIT      2.0s +    2.0s L0 pose: 124 candidates on 39 roots | GPU peak 2.6 GiB
+UNIT      3.4s +    1.4s L0 probe pair@AX      1.4s solved {'lt': 4, 'sub': 4} [('routines', [1, 32, 803, 20198, 530070, 18149097], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.3 GiB
+UNIT      5.0s +    1.6s L0 probe pair@AY      1.6s solved {'lt': 4, 'sub': 4} [('routines', [1, 32, 809, 20516, 540738, 18532873], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.5 GiB
+UNIT      6.4s +    1.4s L0 probe pair@AN      1.4s solved {'lt': 4, 'sub': 4} [('routines', [1, 32, 810, 20596, 545739, 18740114], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.7 GiB
+UNIT      7.9s +    1.5s L0 probe pair@XA      1.5s solved {} [('routines', [1, 32, 803, 20216, 530574, 18160570], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.7 GiB
+UNIT      9.4s +    1.5s L0 probe pair@XY      1.5s solved {'lt': 5, 'sub': 5} [('routines', [1, 32, 805, 20301, 533116, 18221370], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.7 GiB
+UNIT     10.9s +    1.5s L0 probe pair@XN      1.5s solved {'lt': 5, 'sub': 5} [('routines', [1, 32, 807, 20409, 537569, 18395093], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.7 GiB
+UNIT     12.4s +    1.5s L0 probe pair@YA      1.5s solved {} [('routines', [1, 32, 809, 20566, 544114, 18662114], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.7 GiB
+UNIT     13.9s +    1.6s L0 probe pair@YX      1.6s solved {'lt': 5, 'sub': 5} [('routines', [1, 32, 805, 20325, 534130, 18255315], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.7 GiB
+UNIT     15.4s +    1.5s L0 probe pair@YN      1.5s solved {'lt': 5, 'sub': 5} [('routines', [1, 32, 813, 20718, 549407, 18868621], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.8 GiB
+UNIT     17.0s +    1.6s L0 probe pair@NA      1.6s solved {} [('routines', [1, 32, 811, 20625, 546144, 18768949], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.8 GiB
+UNIT     18.5s +    1.5s L0 probe pair@NX      1.5s solved {'lt': 5, 'sub': 5} [('routines', [1, 32, 807, 20413, 537459, 18406725], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.8 GiB
+UNIT     20.1s +    1.5s L0 probe pair@NY      1.5s solved {'lt': 5, 'sub': 5} [('routines', [1, 32, 813, 20727, 549476, 18837032], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.8 GiB
+UNIT     22.6s +    2.6s L0 probe tgt@XN       2.6s solved {'val.0': 0, 'val.1': 1, 'val.2': 1, 'val.3': 3, 'val.4': 2, 'val.5': 3, 'val.6': 2, 'val.7': 3, 'val.8': 3, 'val.9': 1, 'val.10': 3, 'val.11': 1, 'val.12': 2, 'val.13': 3, 'val.14': 2, 'val.15': 3, 'val.16': 2, 'val.17': 3, 'val.18': 2, 'val.19': 3, 'val.20': 3, 'val.21': 2, 'val.22': 3} [('routines', [1, 32, 806, 20270, 531020, 18132171], 'budget: level 5 stream | GPU peak 22.8 GiB
+UNIT     24.1s +    1.5s L0 probe rest.0@XN    1.5s solved {} [('routines', [1, 32, 815, 20758, 550202, 18860787], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.8 GiB
+UNIT     25.6s +    1.5s L0 probe rest.1@XN    1.5s solved {} [('routines', [1, 32, 815, 20819, 552851, 18966012], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.8 GiB
+UNIT     27.0s +    1.5s L0 probe rest.2@XN    1.5s solved {} [('routines', [1, 32, 815, 20829, 553794, 19039786], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.8 GiB
+UNIT     28.5s +    1.4s L0 probe rest.3@XN    1.4s solved {} [('routines', [1, 32, 799, 19890, 513119, 17445469], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.8 GiB
+UNIT     29.9s +    1.5s L0 probe rest.4@XN    1.5s solved {} [('routines', [1, 32, 799, 19934, 516368, 17586885], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.9 GiB
+UNIT     31.3s +    1.4s L0 probe rest.5@XN    1.4s solved {} [('routines', [1, 32, 795, 19689, 505829, 17161971], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.9 GiB
+UNIT     32.8s +    1.5s L0 probe rest.6@XN    1.5s solved {} [('routines', [1, 32, 799, 19937, 516415, 17592749], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.9 GiB
+UNIT     34.2s +    1.4s L0 probe rest.7@XN    1.4s solved {} [('routines', [1, 32, 790, 19479, 499017, 16926032], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.9 GiB
+UNIT     35.8s +    1.6s L0 probe rest.8@XN    1.6s solved {} [('routines', [1, 32, 799, 19903, 514379, 17501912], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.9 GiB
+UNIT     37.2s +    1.4s L0 probe rest.9@XN    1.4s solved {} [('routines', [1, 32, 815, 20823, 553492, 19009275], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.9 GiB
+UNIT     38.5s +    1.4s L0 probe rest.10@XN   1.4s solved {} [('routines', [1, 32, 799, 19885, 514406, 17517568], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 22.9 GiB
+UNIT     40.0s +    1.5s L0 probe rest.11@XN   1.5s solved {} [('routines', [1, 32, 772, 18414, 459046, 15578156], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     41.4s +    1.4s L0 probe rest.12@XN   1.4s solved {} [('routines', [1, 32, 789, 18968, 472842, 16037545], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     43.2s +    1.8s L0 probe rest.13@XN   1.8s solved {} [('routines', [1, 32, 810, 20356, 529324, 18065866], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     44.7s +    1.5s L0 probe rest.14@XN   1.5s solved {} [('routines', [1, 32, 806, 20371, 535009, 18270969], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     46.1s +    1.4s L0 probe rest.15@XN   1.4s solved {} [('routines', [1, 32, 806, 20320, 533195, 18227074], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     47.5s +    1.4s L0 probe rest.16@XN   1.4s solved {} [('routines', [1, 32, 806, 20373, 535428, 18308337], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     48.9s +    1.4s L0 probe rest.17@XN   1.4s solved {} [('routines', [1, 32, 806, 20294, 531607, 18138176], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     50.3s +    1.4s L0 probe rest.18@XN   1.4s solved {} [('routines', [1, 32, 799, 19974, 518193, 17666595], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     51.8s +    1.4s L0 probe rest.19@XN   1.4s solved {} [('routines', [1, 32, 799, 19824, 508678, 17245253], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     53.3s +    1.5s L0 probe rest.20@XN   1.5s solved {} [('routines', [1, 32, 806, 20295, 532277, 18186809], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     54.8s +    1.5s L0 probe rest.21@XN   1.5s solved {} [('routines', [1, 32, 799, 19974, 518389, 17681400], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     56.2s +    1.4s L0 probe rest.22@XN   1.4s solved {} [('routines', [1, 32, 795, 19716, 506735, 17220848], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     57.6s +    1.4s L0 probe rst1@XN      1.4s solved {} [('routines', [1, 32, 795, 19725, 509059, 17316904], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     59.1s +    1.4s L0 probe rst2@XN      1.4s solved {} [('routines', [1, 32, 806, 20355, 534312, 18260266], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     60.5s +    1.5s L0 probe rst3@XN      1.4s solved {} [('routines', [1, 32, 806, 20384, 535722, 18313817], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT     61.0s +    0.5s L0 look: 93 lookaheads; the target alone: cost None | GPU peak 25.3 GiB
+UNIT     65.3s +    4.3s L0 look ('lt/pair@AX',): cost None 4.3s | GPU peak 25.3 GiB
+UNIT     67.5s +    2.2s L0 look ('sub/pair@AX',): cost None 2.2s | GPU peak 25.3 GiB
+UNIT     69.5s +    2.0s L0 look ('lt/pair@AY',): cost None 2.0s | GPU peak 25.3 GiB
+UNIT     71.7s +    2.2s L0 look ('lt/pair@AN',): cost None 2.2s | GPU peak 25.3 GiB
+UNIT     73.9s +    2.2s L0 look ('sub/pair@AN',): cost None 2.2s | GPU peak 25.3 GiB
+UNIT     76.0s +    2.1s L0 look ('lt/pair@XY',): cost None 2.1s | GPU peak 25.3 GiB
+UNIT     78.6s +    2.6s L0 look ('sub/pair@XY',): cost None 2.6s | GPU peak 25.3 GiB
+UNIT     80.8s +    2.2s L0 look ('lt/pair@XN',): cost None 2.2s | GPU peak 25.3 GiB
+UNIT     83.1s +    2.3s L0 look ('lt/pair@YX',): cost None 2.3s | GPU peak 25.3 GiB
+UNIT     85.2s +    2.1s L0 look ('lt/pair@YN',): cost None 2.1s | GPU peak 25.3 GiB
+UNIT     87.4s +    2.2s L0 look ('lt/pair@NX',): cost None 2.2s | GPU peak 25.3 GiB
+UNIT     90.0s +    2.6s L0 look ('sub/pair@NX',): cost None 2.6s | GPU peak 25.3 GiB
+UNIT     92.2s +    2.2s L0 look ('lt/pair@NY',): cost None 2.2s | GPU peak 25.3 GiB
+UNIT     94.6s +    2.4s L0 look ('sub/pair@NY',): cost None 2.4s | GPU peak 25.3 GiB
+UNIT     96.1s +    1.5s L0 look ('val.3/tgt@XN',): cost None 1.5s | GPU peak 25.3 GiB
+UNIT     97.3s +    1.2s L0 look ('val.4/tgt@XN',): cost None 1.2s | GPU peak 25.3 GiB
+UNIT     99.6s +    2.2s L0 look ('val.5/tgt@XN',): cost None 2.2s | GPU peak 25.3 GiB
+UNIT    101.0s +    1.4s L0 look ('val.6/tgt@XN',): cost None 1.4s | GPU peak 25.3 GiB
+UNIT    102.8s +    1.8s L0 look ('val.7/tgt@XN',): cost None 1.8s | GPU peak 25.3 GiB
+UNIT    104.3s +    1.5s L0 look ('val.8/tgt@XN',): cost None 1.5s | GPU peak 25.3 GiB
+UNIT    105.8s +    1.5s L0 look ('val.10/tgt@XN',): cost None 1.5s | GPU peak 25.3 GiB
+UNIT    107.2s +    1.4s L0 look ('val.12/tgt@XN',): cost None 1.4s | GPU peak 25.3 GiB
+UNIT    108.8s +    1.6s L0 look ('val.13/tgt@XN',): cost None 1.6s | GPU peak 25.3 GiB
+UNIT    110.0s +    1.3s L0 look ('val.14/tgt@XN',): cost None 1.3s | GPU peak 25.3 GiB
+UNIT    111.6s +    1.6s L0 look ('val.15/tgt@XN',): cost None 1.6s | GPU peak 25.3 GiB
+UNIT    112.8s +    1.2s L0 look ('val.16/tgt@XN',): cost None 1.2s | GPU peak 25.3 GiB
+UNIT    114.7s +    1.9s L0 look ('val.17/tgt@XN',): cost None 1.9s | GPU peak 25.3 GiB
+UNIT    116.0s +    1.3s L0 look ('val.18/tgt@XN',): cost None 1.2s | GPU peak 25.3 GiB
+UNIT    117.5s +    1.6s L0 look ('val.19/tgt@XN',): cost None 1.6s | GPU peak 25.3 GiB
+UNIT    119.2s +    1.7s L0 look ('val.20/tgt@XN',): cost None 1.6s | GPU peak 25.3 GiB
+UNIT    120.5s +    1.3s L0 look ('val.21/tgt@XN',): cost None 1.3s | GPU peak 25.3 GiB
+UNIT    122.4s +    1.9s L0 look ('val.22/tgt@XN',): cost None 1.9s | GPU peak 25.3 GiB
+UNIT    125.9s +    3.5s L0 look ('lt/pair@AX', 'lt/pair@XY'): cost None 3.5s | GPU peak 25.3 GiB
+UNIT    128.2s +    2.2s L0 look ('lt/pair@AX', 'sub/pair@XY'): cost None 2.2s | GPU peak 25.3 GiB
+UNIT    130.4s +    2.3s L0 look ('sub/pair@AX', 'lt/pair@XY'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    133.0s +    2.5s L0 look ('sub/pair@AX', 'sub/pair@XY'): cost None 2.5s | GPU peak 25.3 GiB
+UNIT    135.5s +    2.5s L0 look ('lt/pair@AY', 'lt/pair@XY'): cost None 2.5s | GPU peak 25.3 GiB
+UNIT    137.7s +    2.2s L0 look ('lt/pair@AY', 'sub/pair@XY'): cost None 2.2s | GPU peak 25.3 GiB
+UNIT    139.9s +    2.2s L0 look ('lt/pair@AN', 'lt/pair@XY'): cost None 2.2s | GPU peak 25.3 GiB
+UNIT    142.3s +    2.3s L0 look ('lt/pair@AN', 'sub/pair@XY'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    144.8s +    2.5s L0 look ('sub/pair@AN', 'lt/pair@XY'): cost None 2.5s | GPU peak 25.3 GiB
+UNIT    147.1s +    2.3s L0 look ('sub/pair@AN', 'sub/pair@XY'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    149.4s +    2.3s L0 look ('lt/pair@XY', 'sub/pair@XY'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    151.6s +    2.3s L0 look ('lt/pair@XY', 'lt/pair@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    154.4s +    2.5s L0 look ('lt/pair@XY', 'lt/pair@YX'): cost None 2.5s | GPU peak 25.3 GiB
+UNIT    156.9s +    2.5s L0 look ('lt/pair@XY', 'lt/pair@YN'): cost None 2.5s | GPU peak 25.3 GiB
+UNIT    159.2s +    2.3s L0 look ('lt/pair@XY', 'lt/pair@NX'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    161.5s +    2.4s L0 look ('lt/pair@XY', 'sub/pair@NX'): cost None 2.4s | GPU peak 25.3 GiB
+UNIT    164.3s +    2.8s L0 look ('lt/pair@XY', 'lt/pair@NY'): cost None 2.8s | GPU peak 25.3 GiB
+UNIT    166.6s +    2.3s L0 look ('lt/pair@XY', 'sub/pair@NY'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    168.9s +    2.3s L0 look ('lt/pair@XY', 'val.3/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    171.2s +    2.3s L0 look ('lt/pair@XY', 'val.4/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    173.5s +    2.2s L0 look ('lt/pair@XY', 'val.5/tgt@XN'): cost None 2.2s | GPU peak 25.3 GiB
+UNIT    176.1s +    2.7s L0 look ('lt/pair@XY', 'val.6/tgt@XN'): cost None 2.7s | GPU peak 25.3 GiB
+UNIT    178.4s +    2.3s L0 look ('lt/pair@XY', 'val.7/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    180.7s +    2.3s L0 look ('lt/pair@XY', 'val.8/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    183.0s +    2.3s L0 look ('lt/pair@XY', 'val.10/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    185.8s +    2.8s L0 look ('lt/pair@XY', 'val.12/tgt@XN'): cost None 2.8s | GPU peak 25.3 GiB
+UNIT    188.1s +    2.3s L0 look ('lt/pair@XY', 'val.13/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    190.5s +    2.3s L0 look ('lt/pair@XY', 'val.14/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    192.8s +    2.3s L0 look ('lt/pair@XY', 'val.15/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    196.0s +    3.1s L0 look ('lt/pair@XY', 'val.16/tgt@XN'): cost None 3.1s | GPU peak 25.3 GiB
+UNIT    198.6s +    2.6s L0 look ('lt/pair@XY', 'val.17/tgt@XN'): cost None 2.6s | GPU peak 25.3 GiB
+UNIT    201.1s +    2.5s L0 look ('lt/pair@XY', 'val.18/tgt@XN'): cost None 2.5s | GPU peak 25.3 GiB
+UNIT    203.7s +    2.6s L0 look ('lt/pair@XY', 'val.19/tgt@XN'): cost None 2.6s | GPU peak 25.3 GiB
+UNIT    206.1s +    2.4s L0 look ('lt/pair@XY', 'val.20/tgt@XN'): cost None 2.4s | GPU peak 25.3 GiB
+UNIT    208.4s +    2.3s L0 look ('lt/pair@XY', 'val.21/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    211.0s +    2.5s L0 look ('lt/pair@XY', 'val.22/tgt@XN'): cost None 2.5s | GPU peak 25.3 GiB
+UNIT    213.5s +    2.6s L0 look ('sub/pair@XY', 'lt/pair@XN'): cost None 2.6s | GPU peak 25.3 GiB
+UNIT    216.2s +    2.6s L0 look ('sub/pair@XY', 'lt/pair@YX'): cost None 2.6s | GPU peak 25.3 GiB
+UNIT    218.5s +    2.3s L0 look ('sub/pair@XY', 'lt/pair@YN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    220.8s +    2.3s L0 look ('sub/pair@XY', 'lt/pair@NX'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    223.4s +    2.6s L0 look ('sub/pair@XY', 'sub/pair@NX'): cost None 2.6s | GPU peak 25.3 GiB
+UNIT    225.7s +    2.3s L0 look ('sub/pair@XY', 'lt/pair@NY'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    228.1s +    2.3s L0 look ('sub/pair@XY', 'sub/pair@NY'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    230.4s +    2.4s L0 look ('sub/pair@XY', 'val.3/tgt@XN'): cost None 2.4s | GPU peak 25.3 GiB
+UNIT    233.0s +    2.6s L0 look ('sub/pair@XY', 'val.4/tgt@XN'): cost None 2.6s | GPU peak 25.3 GiB
+UNIT    235.3s +    2.3s L0 look ('sub/pair@XY', 'val.5/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    237.7s +    2.4s L0 look ('sub/pair@XY', 'val.6/tgt@XN'): cost None 2.4s | GPU peak 25.3 GiB
+UNIT    240.0s +    2.3s L0 look ('sub/pair@XY', 'val.7/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    242.7s +    2.7s L0 look ('sub/pair@XY', 'val.8/tgt@XN'): cost None 2.7s | GPU peak 25.3 GiB
+UNIT    245.0s +    2.3s L0 look ('sub/pair@XY', 'val.10/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    247.4s +    2.4s L0 look ('sub/pair@XY', 'val.12/tgt@XN'): cost None 2.4s | GPU peak 25.3 GiB
+UNIT    250.0s +    2.3s L0 look ('sub/pair@XY', 'val.13/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    252.3s +    2.4s L0 look ('sub/pair@XY', 'val.14/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    254.7s +    2.3s L0 look ('sub/pair@XY', 'val.15/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    257.0s +    2.3s L0 look ('sub/pair@XY', 'val.16/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    259.5s +    2.6s L0 look ('sub/pair@XY', 'val.17/tgt@XN'): cost None 2.6s | GPU peak 25.3 GiB
+UNIT    261.9s +    2.4s L0 look ('sub/pair@XY', 'val.18/tgt@XN'): cost None 2.4s | GPU peak 25.3 GiB
+UNIT    264.3s +    2.4s L0 look ('sub/pair@XY', 'val.19/tgt@XN'): cost None 2.4s | GPU peak 25.3 GiB
+UNIT    266.7s +    2.4s L0 look ('sub/pair@XY', 'val.20/tgt@XN'): cost None 2.3s | GPU peak 25.3 GiB
+UNIT    269.1s +    2.4s L0 look ('sub/pair@XY', 'val.21/tgt@XN'): cost None 2.4s | GPU peak 25.3 GiB
+UNIT    271.8s +    2.7s L0 look ('sub/pair@XY', 'val.22/tgt@XN'): cost None 2.7s | GPU peak 25.3 GiB
+UNIT    271.8s +    0.0s L0 choose (ct2a2): {'learnable': 32, 'unsolved': 83, 'duplicate': 4, 'trivial': 5}; picks [('lt/pair@XY', 5, 'CLC LDA.X P[SBB.Y INC]'), ('val.3/tgt@XN', 3, 'SHR.X CLA ADC.X'), ('val.22/tgt@XN', 3, 'CLA SBB.X ADC.X'), ('sub/pair@XY', 5, 'CLC LDA.X P[INC SBB.Y]')] | GPU peak 25.3 GiB
+UNIT    271.8s +    0.0s L0 sleep: B0.1=SBB.Y INC; B0.2=P[B0.1]; B0.3=LDA.X B0.2; B0.4=CLC B0.3; B0.5=CLC B0.2; B0.6=LDA.X B0.5; B0.7=INC SBB.Y; T.lt.pair.XY=B0.4; T.val.3.tgt.XN=SHR.X CLA ADC.X; T.val.22.tgt.XN=CLA SBB.X ADC.X; T.sub.pair.XY=CLC LDA.X P[B0.7] | GPU peak 25.3 GiB
+UNIT    277.8s +    6.0s L0 target: cost None levels [1, 36, 988, 26236, 713585, 25433406] fits [0, 9, 11, 11, 13, 14] 6.0s budget: level 5 streamed (over 4000000 states) [] full size None | GPU peak 25.3 GiB
+UNIT    279.5s +    1.7s L1 pose: 136 candidates on 46 roots | GPU peak 25.3 GiB
+UNIT    283.9s +    4.4s L1 probe pair@AX      4.4s solved {'lt': 4, 'max': 5, 'sub': 4} [('routines', [1, 36, 989, 26429, 723665, 25945209], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    287.1s +    3.2s L1 probe pair@AY      3.2s solved {'lt': 2, 'min': 5, 'red': 4, 'sub': 2} [('routines', [1, 36, 996, 26863, 739001, 26510335], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    290.2s +    3.2s L1 probe pair@AN      3.2s solved {'lt': 4, 'sub': 4} [('routines', [1, 36, 1000, 27169, 753953, 27146576], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    293.3s +    3.1s L1 probe pair@XA      3.1s solved {'lt': 2, 'max': 5, 'red': 5, 'sub': 2} [('routines', [1, 36, 980, 26153, 716097, 25691038], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    296.5s +    3.1s L1 probe pair@XY      3.1s solved {'min': 5, 'max': 5, 'red': 4} [('routines', [1, 36, 993, 26592, 727651, 26081062], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    299.8s +    3.3s L1 probe pair@XN      3.3s solved {'lt': 3, 'sub': 3} [('routines', [1, 36, 995, 26791, 737125, 26465771], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    303.1s +    3.3s L1 probe pair@YA      3.3s solved {'min': 5, 'sub': 5} [('routines', [1, 36, 998, 26972, 744518, 26750181], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    306.4s +    3.3s L1 probe pair@YX      3.3s solved {'lt': 5, 'min': 5, 'max': 5, 'sub': 4} [('routines', [1, 36, 993, 26629, 729263, 26119548], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    309.8s +    3.3s L1 probe pair@YN      3.3s solved {'lt': 5, 'sub': 5} [('routines', [1, 36, 1000, 27057, 747726, 26856262], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    313.1s +    3.3s L1 probe pair@NA      3.3s solved {'lt': 4, 'sub': 4} [('routines', [1, 36, 999, 27087, 749644, 26971835], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    316.5s +    3.4s L1 probe pair@NX      3.4s solved {'lt': 5, 'sub': 5} [('routines', [1, 36, 993, 26655, 731816, 26225097], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    319.8s +    3.3s L1 probe pair@NY      3.3s solved {'lt': 3, 'red': 5, 'sub': 3} [('routines', [1, 36, 994, 26932, 745138, 26800346], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    324.0s +    4.2s L1 probe tgt@XN       4.2s solved {'val.23': 0, 'val.24': 1, 'val.25': 1, 'val.26': 1, 'val.27': 2, 'val.28': 1, 'val.29': 2, 'val.30': 3, 'val.31': 1, 'val.32': 2, 'val.33': 3, 'val.34': 1, 'val.35': 2, 'val.36': 3, 'val.37': 1, 'val.38': 2, 'val.39': 3, 'val.40': 2, 'val.41': 3, 'val.42': 2, 'val.43': 3, 'val.44': 2, 'val.45': 3, 'val.46': 2, 'val.47': 3, 'val.48': 1, 'val.49': 2, 'val.50': 3, ' | GPU peak 25.3 GiB
+UNIT    327.2s +    3.2s L1 probe rest.23@XN   3.2s solved {} [('routines', [1, 36, 1003, 27266, 757720, 27293445], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    330.4s +    3.1s L1 probe rest.24@XN   3.1s solved {} [('routines', [1, 36, 1004, 27279, 757863, 27301990], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    333.5s +    3.1s L1 probe rest.25@XN   3.1s solved {} [('routines', [1, 36, 1005, 27440, 763294, 27489239], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    336.4s +    2.9s L1 probe rest.26@XN   2.9s solved {} [('routines', [1, 36, 962, 24843, 654185, 23076505], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    339.4s +    3.0s L1 probe rest.27@XN   3.0s solved {} [('routines', [1, 36, 972, 25426, 679723, 24112213], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    342.6s +    3.2s L1 probe rest.28@XN   3.2s solved {} [('routines', [1, 36, 1005, 27325, 757989, 27244071], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    345.8s +    3.2s L1 probe rest.29@XN   3.2s solved {} [('routines', [1, 36, 1002, 27102, 749893, 26933012], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    348.8s +    3.0s L1 probe rest.30@XN   3.0s solved {} [('routines', [1, 36, 972, 25334, 671797, 23769544], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    351.9s +    3.1s L1 probe rest.31@XN   3.1s solved {} [('routines', [1, 36, 1000, 27123, 752672, 27102789], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    355.2s +    3.2s L1 probe rest.32@XN   3.2s solved {} [('routines', [1, 36, 1004, 27313, 758539, 27286923], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    358.1s +    2.9s L1 probe rest.33@XN   2.9s solved {} [('routines', [1, 36, 970, 25144, 665770, 23547344], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    361.3s +    3.2s L1 probe rest.34@XN   3.2s solved {} [('routines', [1, 36, 1004, 27317, 758086, 27255154], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    364.4s +    3.2s L1 probe rest.35@XN   3.2s solved {} [('routines', [1, 36, 1005, 27395, 761778, 27427250], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    367.5s +    3.0s L1 probe rest.36@XN   3.0s solved {} [('routines', [1, 36, 972, 25318, 670222, 23685913], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB
+UNIT    370.6s +    3.1s L1 probe rest.37@XN   3.1s solved {} [('routines', [1, 36, 1005, 27356, 759910, 27337138], 'budget: level 5 streamed (over 1000000 states)')] | GPU peak 25.3 GiB

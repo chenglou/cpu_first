@@ -3,10 +3,11 @@
 **Reviewing or judging the project from outside? Start with [REVIEW.md](REVIEW.md)**: the claims, the file to judge,
 how to check its records, and the rules to rule on. It points back into this file.
 
-*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed nine times as studies
-landed. This refresh, on 2026-10-24 at about 08:45, adds the four studies that Modal's spend limit cut short, now
-written up: optimizers that can rest at the shader grid's rule, which laws self-practice needs, a cheaper and deeper
-bar-3 learner, and generic instructions in place of SEL.S and BRG.X (not certified yet).*
+*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed ten times as studies
+landed. The refresh of 2026-10-24 at about 08:45 added the four studies that Modal's spend limit cut short:
+optimizers that can rest at the shader grid's rule, which laws self-practice needs, a cheaper and deeper bar-3
+learner, and generic instructions in place of SEL.S and BRG.X. This one, at about 16:00 the same day, records that
+last file certified once the limit was raised (§4.8); the other three reruns are still going (§7).*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -27,9 +28,10 @@ bar-3 learner, and generic instructions in place of SEL.S and BRG.X (not certifi
 - *For the four studies written up after the stop: NCA §10's certifications and one-size-up shares were read from
   `nca/runs/rest_*.jsonl` (91 runs that finished) and `nca/records/rest_cut.json` (13 cut off); the law ablation's
   verdicts and times from its 61 records, the two books' official ones through `tools/verify_records.py`; and the
-  bar-3 scale study's same choices and search-hours were rerun with its own `compare.py`. The generic-instructions
-  file has no record: its evaluation lines come from the run's last log copy, and its round's step and time from
-  GENERIC_OPS.md alone.*
+  bar-3 scale study's same choices and search-hours were rerun with its own `compare.py`.*
+- *For the generic-instructions file (§4.8): its nine records, written after the limit was raised, pass
+  `tools/verify_records.py`, and each run's round and freeze, step and clock, were reread from its log, as were
+  sp2's round times and training times on the same seeds.*
 - *The data counts in §1–2 were computed from the released H1 files, and the commits come from `git log`.*
 - *The one-line findings of the timeline (§3) and the summaries of how each piece learns, including the NCA and bar-3
   studies, summarize their write-ups, which are linked; they were not re-run.*
@@ -57,8 +59,9 @@ bar-3 learner, and generic instructions in place of SEL.S and BRG.X (not certifi
        general law book instead of the hand-picked list, and that book can shrink to 5 laws or be generated from a
        grammar; one learns the loop over T, one never reads the clock, and one replaces a task-shaped instruction
        with one that bar 3's learner invented (§4.7, §4.8);
-     - generic instructions in place of both task-shaped ones let the run find its round, but that build is not
-       certified yet: Modal's spend limit stopped its official run before it wrote a record (§4.8).
+     - one more replaces both task-shaped instructions with generic ones, an if block and shifts, so that the learner
+       builds long division's step itself. It certifies too, training 2.2 times as long as sp2 but inside the
+       budget, after search rules found by watching whether the round came (§4.8).
 
      The law book or its grammar, the choosing rule and most of the instruction set are still designed.
   3. **A general algorithm learner: results at a tiny size, and first steps at full size.** A learner that picks its
@@ -212,6 +215,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 24, 08:07 `c6922d0` | **the law ablation**: sp2's law book and choosing rule taken apart; a 5-law book and a book generated from a grammar each certify | [integration/sp_ablation/SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md) |
 | Oct 24, 08:21 `5d108a7` | **bar 3, cheaper and deeper**: 515 search-hours down to 51 with the same choices; along a sequence of formulas it invents 10·x², 10·x² + 1 and x³, and Fibonacci comes from scratch | [bar3/scale/SCALE.md](bar3/scale/SCALE.md) |
 | Oct 24, 08:23 `597440e` | **generic instructions** in place of SEL.S and BRG.X: the round is found inside training, but the official run was stopped before it wrote a record, so the build is not certified | [integration/generic_ops/GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md) |
+| Oct 24, 15:45 `3a9d9e0` | **generic instructions, certified**: rerun once Modal's limit was raised, the official H100 run (training 2,770 s) and 8 of 8 B200 seeds certify | [integration/generic_ops/GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md) §0 |
 
 ### The lessons that came out of the failures
 
@@ -717,6 +721,7 @@ count as research, as sp2's do.
 | [`integration/sp_breadth/submission_spb_g3.py`](integration/sp_breadth/submission_spb_g3.py) (`30efec64`) | sp2 with three general changes to the round's search | `g3_h1_h100`: 1,242.0 (887, by 1,012) / 194.3 | 8 of 8 on B200s; 7 more tasks learned (one H100 each) |
 | [`integration/sp_ablation/variants/book_min.py`](integration/sp_ablation/variants/book_min.py) (`e4732f09`) | sp2 with a book of 5 laws on 4 patterns | `book_min_h100_seed74`: 798.8 (888, by 614) / 179.4 | 8 of 8 on B200s |
 | [`integration/sp_ablation/variants/book_gen.py`](integration/sp_ablation/variants/book_gen.py) (`8bbac4a1`) | sp2 with its book generated from a grammar | `book_gen_h100_seed74`: 2,428.0 (915, by 2,228) / 182.7 | 8 of 8 on B200s |
+| [`integration/generic_ops/submission_stage3_g3.py`](integration/generic_ops/submission_stage3_g3.py) (`e6bd2a1f`) | sp2 with an if block and carry-passing shifts in place of SEL.S and BRG.X | `submission_stage3_g3_official`: 2,770.1 (897, by 2,572) / 386.0 | 8 of 8 on B200s |
 
 **The loop over T, learned** ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md)). sp2 repeats its round by a
 hand-written countdown: subtract 1 from T, and while that does not go below zero, run the round again on its own
@@ -778,17 +783,23 @@ every operation on every pattern, and one set of target rules. It holds sp2's bo
 round by routes sp2's book does not offer, the square as "0 plus x times x" among them. It is slower (frozen by
 2,228 s), but within the budget.
 
-**Generic instructions, not certified yet** ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md)). SEL.S becomes
+**Generic instructions** ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md)). SEL.S becomes
 an if block, `C[...]`, whose body's effects stay only where the borrow was set; BRG.X becomes shifts that pass the
 digit they move through the multiply's carry digit. No single instruction does either old job, so the learner builds
 the conditional subtraction, the chain and long division's "bring down" itself.
 - Replacing SEL.S alone needs no other change. Replacing BRG.X too makes long division one step longer, and it took
   three rules, each stated for every law but found by watching whether the round came: closeness counted without the
   reduction's fakes, acceptance at four digits, and a preference for routines that leave the other registers alone.
-- `submission_stage3_g3.py` (`e6bd2a1f`) found its round in the official H100 run, at about 2,370 s of training by
-  its log, and was exact on every rung evaluated (seen moduli T = 1 to 64, unseen T = 1, 2 and 4) when Modal's spend
-  limit stopped the workspace, before the run wrote a record. Its 8 seeds were six minutes in. Rerunning both is what
-  would certify it (§7).
+- `submission_stage3_g3.py` (`e6bd2a1f`) certifies on the official manifest and on 8 of 8 B200 seeds, each run finding
+  its round after level 4. It is the slowest file in the table: on the official H100 the round came by 2,507 s and
+  training took 2,770 s, against sp2's 1,029 s and 1,277 s, which leaves 830 s of the budget. A first official run,
+  stopped by Modal's spend limit before it wrote a record, had taken the same steps.
+- What the learner built: the conditional subtraction as "subtract, and reload the input if it borrowed", the chain as
+  "subtract, and add back if it borrowed", long division with the two shifts as its "bring down", and, new to stage 3,
+  a shift-and-add multiply.
+- Still designed: the if block and the shifts, which are generic in kind but chosen, and the rule changes. A judge may
+  say `SHL.X SHL.A` is BRG.X in two pieces; the write-up agrees, and notes that it is the form a place-by-place law
+  gives BRG.X (GENERIC_OPS.md §7).
 
 ## 5. The removal ladder
 
@@ -883,7 +894,7 @@ Notes:
     fewer after each change, down to y³, Montgomery's and the fourth number;
   - the bridge's first launch, which crashed on a bug in its CUDA graph (`bar3/bridge/records/runner_bug1/`);
   - the law ablation's 17 arms that never found the round, all on seed 74 (`integration/sp_ablation/records/`);
-  - the generic-instructions builds' five evaluator runs (`integration/generic_ops/records/runner/`), none certified:
+  - five earlier generic-instructions runs (`integration/generic_ops/records/runner/`), none certified:
     two killed by the runner's memory cap, two that ran their 3,600 s, and one earlier build on a B200.
 
   `chain_official`, the chain's first recipe, certified, but one of its CPU seeds that never sees an answer did not.
@@ -955,14 +966,15 @@ The imports, the initialization, the host transfers and the absence of backward 
 
 ## 7. Status and open questions
 
-**What is running.** Nothing, and everything described here is committed. At about 07:25 PT on Oct 24, Modal's
-workspace spend limit stopped every task and refused new launches, at about $3,000 billed this month. Four reruns
-wait for the user to raise the limit:
-- the NCA's 13 runs from random that were cut off (about $10);
-- the law ablation's 17 seed-1 arms, and one arm rerun at three times the budget (about $82);
-- the bar-3 scale study's cut-off runs: Montgomery's and Fibonacci along the sequences, and a few side runs (about
-  $12–15);
-- the generic-instructions file's official run and 8 seeds (about $50), which is what would certify it.
+**What is running.** At about 07:25 PT on Oct 24, Modal's workspace spend limit stopped every task, at about $3,000
+billed this month. The user raised it to $4,000 that afternoon, and the four cut-off studies were relaunched at
+14:42–14:47 PT. The generic-instructions file's reruns have finished and certify it (§4.8). Three are still running,
+and what this file says of them is not final:
+- the NCA's 13 runs from random that were cut off, resumed from their checkpoints;
+- the law ablation's 17 seed-1 arms, and one arm rerun at three times the budget;
+- the bar-3 scale study's cut-off runs: Montgomery's and Fibonacci along the sequences, and a few side runs.
+
+Everything else described here is committed.
 
 **Answered on Oct 23 and 24.**
 - **Which hand-made parts carry the result** (ABLATION_S3.md): two instructions, the step's two practice problems,
@@ -982,6 +994,10 @@ wait for the user to raise the limit:
   tasks); after three general changes to the round's search, 8 of 11.
 - **Whether bar 3's learner can invent stage 3's instructions** (BRIDGE.md): two of the four digit cells, the select
   and subtract-with-borrow, and s3i with the invented select certifies.
+- **Whether generic instructions can replace SEL.S and BRG.X** (GENERIC_OPS.md): yes. With an if block and shifts
+  that carry their digit, the learner builds the conditional subtraction, the chain and long division's "bring down"
+  itself, and the file certifies on the official manifest and 8 of 8 seeds, at 2.2 times sp2's training time. The
+  search rules it needed were found by watching whether the round came.
 - **Whether a cheaper bar-3 learner reaches further** (SCALE.md): ten times cheaper, with the same choices, buys
   about one instruction. But it made the pairs rule affordable along a sequence of formulas, which then invents
   10·x², 10·x² + 1 and x³, and a new practice source gives Fibonacci.
@@ -1009,8 +1025,8 @@ wait for the user to raise the limit:
    round: wrong programs pass its weak checks, or crowd out the right one in a capped search. The run that would
    confirm the second was refused by the spend limit (BRIDGE.md §5). Generic instructions, an if block and carry
    shifts, can stand in for SEL.S and BRG.X: the learner then builds the conditional subtraction and long division's
-   "bring down" itself, and the official run found its round before the spend limit stopped it, unrecorded (§4.8).
-   That took three new search rules, found by watching whether the round came.
+   "bring down" itself, and the file certifies (§4.8). That took new search rules, found by watching whether the
+   round came, and 2.2 times sp2's training time.
 2. **The law book and the choosing rule.** Self-posed practice replaces the curriculum with a book of 11 laws on 8
    patterns and one choosing rule. A book of 5 laws, and one generated from a grammar, also yield the round and
    certify (§4, bar 2). Still designed: the grammar and its target rules, and the choosing rule, which was found by
@@ -1068,7 +1084,7 @@ s3i: the service refused it ("Submissions are now closed"), so there is no hoste
 | [`handwired_bridge/`](handwired_bridge/) | the machine compiled by handwired into affine + ReGLU layers, loosened the same way ([HANDWIRED_BRIDGE.md](handwired_bridge/HANDWIRED_BRIDGE.md)); `h1/submission_wide_reglu.py`, which did not certify officially |
 | [`tournament/`](tournament/) | the wiring chosen inside training by tournaments ([TOURNAMENT.md](tournament/TOURNAMENT.md)): `submission_tournament.py` (step 13), the tiny machine `tiny.py`, records in `tournament/h1_records/` |
 | [`general_lessons/`](general_lessons/) | a law library, mined facts and answer-chosen lessons ([LESSONS.md](general_lessons/LESSONS.md)): `submission_general.py`, `submission_general_v2.py` and `submission_general_v3.py` (steps 14, 15 and 18); one fixed modulus in `fixed/` ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md)); records in `records/` and `fixed/records/` |
-| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/`. The ablation of s3i's hand-made parts ([ABLATION_S3.md](integration/ABLATION_S3.md), in `ablation_s3/`, its fixed checks in `ablation_s3/fix/`), and stage 3 with self-posed practice ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), in `self_practice/`: `submission_stage3_sp.py` and `submission_stage3_sp2.py`, step 19). The variants of §4.8: the loop over T learned ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), in `learned_loop/`), strict builds ([STRICT.md](integration/strict/STRICT.md), in `strict/`) and breadth at full size ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md), in `sp_breadth/`); which laws self-practice needs, with the smaller and generated books ([SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md), in `sp_ablation/`); and generic instructions in place of SEL.S and BRG.X, not certified yet ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md), in `generic_ops/`) |
+| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/`. The ablation of s3i's hand-made parts ([ABLATION_S3.md](integration/ABLATION_S3.md), in `ablation_s3/`, its fixed checks in `ablation_s3/fix/`), and stage 3 with self-posed practice ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), in `self_practice/`: `submission_stage3_sp.py` and `submission_stage3_sp2.py`, step 19). The variants of §4.8: the loop over T learned ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), in `learned_loop/`), strict builds ([STRICT.md](integration/strict/STRICT.md), in `strict/`) and breadth at full size ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md), in `sp_breadth/`); which laws self-practice needs, with the smaller and generated books ([SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md), in `sp_ablation/`); and generic instructions in place of SEL.S and BRG.X ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md), in `generic_ops/`) |
 | [`HANDOVER.md`](HANDOVER.md) | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, what is tracked and what is on disk only |
 | [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |

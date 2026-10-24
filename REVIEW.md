@@ -20,15 +20,20 @@ The project measures itself against three bars ([OVERVIEW §4](OVERVIEW.md#4-whe
    found by search inside the training run. But the instruction set that search runs over (32 digit instructions) and
    the curriculum that walks it up the pieces of long division and the schoolbook multiply (which practice problems,
    in which order) were written by hand, knowing the task family
-   ([INTEGRATION §6](integration/INTEGRATION.md#6-is-bar-2-cleared)). Two later studies (§7) narrow this down. An
+   ([INTEGRATION §6](integration/INTEGRATION.md#6-is-bar-2-cleared)). Later studies (§7) narrow this down. An
    ablation on the official manifest shows what the result rests on: two task-shaped instructions, the practice
-   problems that define long division's step, how the multiply's row and the registers are posed, and two parts of the
-   search. The curriculum's order only saves time. And a follow-up file that poses its own practice problems from a
-   general law book, in place of the hand-picked list, also certifies on the official manifest.
-3. **A general algorithm learner: results at a tiny size only.** A learner that picks its own practice problems
-   invents x² mod N for x < N ≤ 7 (and ≤ 26) on a bare counting machine; unchanged, it invents 4 of 9 other formulas,
-   and 2 more once its solved formulas carry over ([PRACTICE.md](bar3/PRACTICE.md), [BREADTH.md](bar3/BREADTH.md)).
-   Nothing at H1's size.
+   problems that define long division's step, how the multiply's row and the registers are posed, and routines. The
+   curriculum's order only saves time. Variants that also certify on the official manifest go further: one poses its
+   own practice problems from a general law book in place of the hand-picked list, and that book can shrink to 5
+   laws or be generated from a grammar; one learns the loop over T; one never reads the clock; one runs on a select
+   that bar 3's learner invented; and one replaces both task-shaped instructions with generic ones, an if block and
+   shifts, so that the learner builds long division's step itself.
+3. **A general algorithm learner: results at a tiny size, and first steps at full size.** A learner that picks its own
+   practice problems invents x² mod N for x < N ≤ 7 (and ≤ 26) on a bare counting machine; unchanged, it invents 4 of
+   9 other formulas, and 2 more once its solved formulas carry over ([PRACTICE.md](bar3/PRACTICE.md),
+   [BREADTH.md](bar3/BREADTH.md)). Run on one digit place, it invents two of stage 3's digit instructions
+   ([BRIDGE.md](bar3/bridge/BRIDGE.md)). At H1's size, the self-practising stage 3 learns 8 of 11 tasks of the
+   family after three general changes to its round's search ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
 
 Four rules are **gray** for s3i: 4, 7, 8 and 14 (§5). The write-ups flag them; they do not argue them away.
 
@@ -369,7 +374,7 @@ later ones follow them as they land. None changes a certified file or record.
     target rules and the choosing rule. 17 seed-1 arms and one rerun at three times the budget were cut off by
     Modal's spend limit (about $82 to finish).
 - **Generic instructions in place of SEL.S and BRG.X** ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md),
-  code and records in [`integration/generic_ops/`](integration/generic_ops/)). **Not certified yet.**
+  code and records in [`integration/generic_ops/`](integration/generic_ops/)). **Certified.**
   - SEL.S becomes an if block, `C[...]`, whose body's effects stay only where the borrow was set. BRG.X becomes
     shifts that pass the digit they move through the multiply's carry digit. No single instruction does either old
     job, so the learner builds the conditional subtraction, the chain and long division's "bring down" itself.
@@ -377,10 +382,14 @@ later ones follow them as they land. None changes a certified file or record.
     took three rules, each stated for every law but found by watching whether the round came: the gate's closeness
     counted without the reduction's fakes, with deep probes rotated; acceptance at four digits; and a preference for
     routines that leave the other registers alone.
-  - `submission_stage3_g3.py` (md5 `e6bd2a1f9bfd9fd2119b0d44483c7100`) found its round in the official H100 run, at
-    about 2,370 s of training by its log. It was exact on every rung evaluated (seen moduli T = 1–64, unseen T = 1, 2
-    and 4) when Modal's spend limit stopped the workspace, and wrote no record; its 8 seeds were six minutes in. The
-    reruns cost about $50. Its acceptance at four digits also closes the weak reduction check.
+  - `submission_stage3_g3.py` (md5 `e6bd2a1f9bfd9fd2119b0d44483c7100`) certifies on the official H100 manifest
+    (`submission_stage3_g3_official.json`: training 2,770 s, the round at step 698 by 2,507 s, evaluation 386 s) and
+    on 8 of 8 B200 seeds (74 and 1–7, training 2,290–2,790 s). That is 2.2 times sp2's training on the official
+    run, with 830 s of the budget to spare. A first official run, stopped by Modal's spend limit before it wrote a
+    record, had taken the same steps. Its acceptance at four digits also closes the weak reduction check.
+  - **Still designed:** the if block and the shifts, generic in kind but chosen, and the rule changes. A judge may say
+    `SHL.X SHL.A` is BRG.X in two pieces; GENERIC_OPS.md §7 agrees, and notes it is the form a place-by-place law
+    gives BRG.X.
 - **Strict builds of s3i and sp2** ([STRICT.md](integration/strict/STRICT.md), code and records in
   [`integration/strict/`](integration/strict/)). The gray points of §5 that can go without changing what is learned
   are removed, by exact edits to the certified sources:

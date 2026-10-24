@@ -1,5 +1,7 @@
 # Adversarial critiques (one per design, in completion order)
 
+*`$SCRATCH` below is the author's scratch folder on Oct 19, outside this repo; the panel's own scripts and logs stayed there and are not included.*
+
 # Verdict: fatal  (p certify = 0.04)
 
 ## verdict
@@ -52,7 +54,7 @@ fatal
 
 ## algorithm_check
 
-All scripts and outputs are in /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/panel/critique-binary-cpu/.
+All scripts and outputs are in $SCRATCH/panel/critique-binary-cpu/.
 
 (1) The design's simulations reproduce. sim_pipeline gives 10,752/10,752, and sim_variants gives 5,376/5,376 per profile as mixed-T predicated batches. Highest carry-save bit 24, S <= 2.251N, s <= 1.294N, exit < N. The theory agrees: S < 3N inside a squaring; Walter's bound gives s < 2N with R = 2^26 > 4N for every N < 2^24; the exit is < N because s is never 0 mod N; N^-1 ≡ N mod 8.
 
@@ -226,7 +228,7 @@ I wrote my own vectorised exact-integer simulation of the design as written: squ
 
 Total compute was about 9 minutes, over the ~5-minute target; most of it was one 300 s joint run.
 
-Scripts, in /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/panel/critique-gpu-native/:
+Scripts, in $SCRATCH/panel/critique-gpu-native/:
 - stats.py
 - core_sim.py
 - setup_sim.py
@@ -305,7 +307,7 @@ fatal
 
 ## algorithm_check
 
-All scripts and logs are in /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/panel/critique-training-dynamics/.
+All scripts and logs are in $SCRATCH/panel/critique-training-dynamics/.
 
 (1) Oracle SRT squarer (srt_sim.py): reproduced 768/768 on all 14 rungs, with max |r|/N 0.5 and max |col| 14. The congruent column datapath is correct.
 
@@ -393,7 +395,7 @@ fatal
 
 ## algorithm_check
 
-I re-implemented the QX integer machine in vectorized PyTorch, following qexposed.py's semantics (WP=17, WR=10, WQ=16, WS=8; pairwise ADD tree; 10 lanes; select (0,1); y = P - qN). Scripts are in /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/panel/critique-learned-wiring/: hardsim.py, corrupt.py (corrupt.log), graded.py, armA_sub.py (logs armA_sub_q0.log, armA_sub_st.log, armA_sub_st_ident0.log), soft_ld_stability.py, armB_smooth.py.
+I re-implemented the QX integer machine in vectorized PyTorch, following qexposed.py's semantics (WP=17, WR=10, WQ=16, WS=8; pairwise ADD tree; 10 lanes; select (0,1); y = P - qN). Scripts are in $SCRATCH/panel/critique-learned-wiring/: hardsim.py, corrupt.py (corrupt.log), graded.py, armA_sub.py (logs armA_sub_q0.log, armA_sub_st.log, armA_sub_st_ident0.log), soft_ld_stability.py, armB_smooth.py.
 
 (1) With true tables the machine is exact on all 1000 T=1 rows and on all rows of depth_t_64, depth_ood_n_t_64 (including 110 rows with 8-digit N), depth_t_32 and depth_ood_n_t_32. Eval cost is trivial: about 1.2 s per 768-row T=64 split in CPU PyTorch.
 

@@ -1,6 +1,6 @@
 # One Layer Deeper, CPU-first: synthesis of the five-design panel
 
-Paths: `SCRATCH=/private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad`, `DATA=$SCRATCH/data/h1`.
+Paths: `SCRATCH` is the author's scratch folder on Oct 19, outside this repo (the synthesis scripts listed below stayed there and are not included); `DATA=$SCRATCH/data/h1` held the H1 data, the same files as `../one-layer-deeper/data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2`.
 
 ## Bottom line
 
@@ -370,7 +370,7 @@ This is the critic's `gate_sim.py`, which is exact on 10,752 of 10,752 prompts. 
 
 ## Files (new in this synthesis)
 
-- `/private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/synth/enum_gate_by_labels.py` — all 65,536 gates against labeled T=1 rows through the gate-level netlist; 15 s per pass.
-- `/private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/synth/enum_gate_robust.py` — 16 single rows and 120 random pairs.
-- `/private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/synth/gauge_check.py` — the decimal relabeling gauge under law-only axioms, and label selection over the 8! relabelings.
-- `/private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/synth/pilot_canon_em_v2.py` — the shared-CANON pilot (sequence vs. per-digit loss, with and without spread). Logs are `pilot_*.log` in the same directory.
+- `$SCRATCH/synth/enum_gate_by_labels.py` — all 65,536 gates against labeled T=1 rows through the gate-level netlist; 15 s per pass.
+- `$SCRATCH/synth/enum_gate_robust.py` — 16 single rows and 120 random pairs.
+- `$SCRATCH/synth/gauge_check.py` — the decimal relabeling gauge under law-only axioms, and label selection over the 8! relabelings.
+- `$SCRATCH/synth/pilot_canon_em_v2.py` — the shared-CANON pilot (sequence vs. per-digit loss, with and without spread). Logs are `pilot_*.log` in the same directory.

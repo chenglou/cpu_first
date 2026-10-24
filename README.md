@@ -1,6 +1,9 @@
 # cpu_first — experiments for a CPU-first take on One Layer Deeper
 
-**Start with [OVERVIEW.md](OVERVIEW.md)**: where everything stands against three bars, the models at the frontier, the removal ladder, the
+**Reviewing or judging the project? Start with [REVIEW.md](REVIEW.md)**: what is claimed, the one file to judge and its
+md5, how to check the official records and reproduce them, and the gray rules a judge should rule on.
+
+**Otherwise, start with [OVERVIEW.md](OVERVIEW.md)**: where everything stands against three bars, the models at the frontier, the removal ladder, the
 rules, and the open questions. This file indexes every file and folder.
 
 The early experiments run on a laptop CPU in seconds to minutes. Later ones, from the grammar search on, run on Modal
@@ -18,6 +21,8 @@ with the H1 data under `data/generated/`. Its virtualenv was left out of the cop
 |---|---|
 | `OVERVIEW.md` | the current entry point: the task, why it is hard, the timeline, the best model, the removal ladder, rules 1–16, open questions, a map |
 | `README.md` | this index |
+| `REVIEW.md` | for an outside reviewer: the claims, the file to judge, the official records and how to check them, how to reproduce, the gray rules and the questions to rule on, an hour's reading order |
+| `HANDOVER.md` | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, proposed removals, what is tracked and what is on disk only, and the handover commands |
 | `REPORT.md` | the first day's write-up (§0–8) and the follow-ups on SpecBit and the grammar search (§9–14) |
 | `FINDINGS_substrate.md` | raw numbers for REPORT.md: the substrate experiments, SpecBit through the evaluator, and the grammar-search runs |
 | `RELAXED.md` | which single relaxed rule makes the step learnable by a mostly generic network: per-step labels, show-your-work traces (and curricula), periodic units tied to N in fp64, unlimited data, and supervising s². A trace GPT whose every token is local (trial subtractions) certifies T=64 up to 24 bits |
@@ -42,7 +47,7 @@ with the H1 data under `data/generated/`. Its virtualenv was left out of the cop
 | `alias_width_audit.py` | the same netlist at 24 bits passes every training row and the training-pool profile but fails 2,068/5,376 OOD rows: speculation cannot see off-distribution structure |
 | `bitcpu_netlist.py` | panel critic's gate-level BitCPU (every gate = one FA table): `python bitcpu_netlist.py $H1_DATA 01101001,00010111` certifies T=64 on both profiles |
 | `submission.py` | SpecBit as a competition submission: that netlist in torch, its one cell learned inside the forward pass as a mixture over all 65,536 truth tables (bitsliced, 64 per int64 word). Certifies T=64 on both profiles through the unmodified `benchmark.runner`, also on the official H100 manifest (`runs/h100_h1.json`) |
-| `h1_local_mps.json`, `h1_local_cpu.json` | local copies of `h100_hard_h1.json` (device `mps:0` / `cpu`, fp32, amp off, `num_workers` 0, `log_every` 1); edit `data_root` to your generated H1 folder |
+| `h1_local_mps.json`, `h1_local_cpu.json` | local copies of `h100_hard_h1.json` (device `mps:0` / `cpu`, fp32, amp off, `num_workers` 0, `log_every` 1); `data_root` is the official relative path, so run them from `../one-layer-deeper` as the official manifest is |
 | `spec_grammar.py` | bitsliced speculation in torch over a grown grammar of whole machines (gate, converters, entry/exit, a two-operand Montgomery core with radix-2 and radix-4 families): staged search with label-free round trips, label-free core laws (stage C0, `--law`), labels, every training row, then the certification audit. `--families r2 --ppop ab --law none --kw-max 28` reproduces the first 2^54.4 runs; `--core ports` adds carry-save port sources; `--law-synth`, `--count-law` and `--c-check decimal` make the search label-free (REPORT §10); `--cell-law` and `--width-law` add per-cell value laws and a width bound inside the core, and `--cell-audit` checks them (REPORT §11); `--kw-max` (default 32) sets the largest K, W and word width, `--digit-scales` the value laws' per-row scales, `--witness` adds declared-range witness rows to the audit (REPORT §12); `--collapse` runs D and E on one machine per class of law-equivalent survivors (`--collapse C1` already groups stage C's survivors, so the semigroup check also runs once per class), and `--collapse-check` spot-checks other members of each class (REPORT §13–14). `--bench` measures raw throughput, `--fuse-probe` the `torch.compile` headroom of the hot block, `--alias-demo` the T=1 aliases without the entry/exit round trip |
 | `modal_h100.py` | the same on a Modal H100, in an image mirroring the competition's `modal_runner.py`: `--task h1` runs the official H1 manifest untouched, `--task bench` / `--task search` run `spec_grammar.py` |
 | `relax_common.py`, `relax_step.py`, `relax_trace.py`, `relax_trace_errors.py`, `relax_periodic.py`, `relax_periodic_cert.py`, `relax_square.py`, `relax_table.py` | the RELAXED.md experiments; `relax_table.py` prints every result |
@@ -80,4 +85,4 @@ with the H1 data under `data/generated/`. Its virtualenv was left out of the cop
 | `unfold_small/` | UnfoldS: UnfoldB at the manifest's batch size of 512, certified on the official H100 manifest (`NOTE.md`) |
 | `panel/` | the design panel: brief, prior-art survey, 5 designs, 5 adversarial critiques (synthesis in `panel_synthesis.md`) |
 | `runs/` | logs and JSON records of the runs above (MPS, CPU, H100). Official records: `h100_h1.json` (SpecBit), `unfold_sub/`, `unfold_small/`, `learned_remainder/*_official.json`, `learned_wiring/`, `wider_menus/`; each learned-machine record holds the full log, the result and the exact source. The ablation keeps its own in `ablation/runs/`, the anchors in `anchors/records/` |
-| `tools/` | `modal_runner.py`, the shared Modal runner for new runs: any submission file through the unmodified evaluator (official, seeds, plans), re-attaching after a driver restart, at most 20 containers per run, records in the usual format; `README.md` there has the commands, the plan format and the measured seed policy; `validation/` holds its reproductions of certified records |
+| `tools/` | `modal_runner.py`, the shared Modal runner for new runs: any submission file through the unmodified evaluator (official, seeds, plans), re-attaching after a driver restart, at most 20 containers per run, records in the usual format; `README.md` there has the commands, the plan format and the measured seed policy; `validation/` holds its reproductions of certified records; `verify_records.py` checks official records against the files they certify (standard library only) |

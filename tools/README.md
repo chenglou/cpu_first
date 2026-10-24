@@ -23,6 +23,10 @@ $PY $R --mode cost --run TAG                     # the run's billed $, and list-
 $PY $R --mode compare REF.json NEW.json ...      # a reproduction, field by field
 ```
 
+`python3 tools/verify_records.py` (standard library only, no Modal) checks official records against the files they
+certify: the embedded source's md5, the manifest, the evaluator's RESULT_JSON line, every rung and split
+([REVIEW.md](../REVIEW.md) §3).
+
 Don't use `~/github/tips-for-running-modal/venv/bin/modal`: its interpreter line points to
 `~/github/testing-modal/venv/bin/python3`, which no longer exists ("bad interpreter"). Recreate that venv to use it.
 

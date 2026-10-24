@@ -144,8 +144,8 @@ def learn(seed=0, sbb_steps=600, rows=4096, batch=64, cell_steps=300, lr=0.05, l
 
 
 if __name__ == "__main__":
-    os.environ.setdefault("H1_DATA", "/Users/chenglou/github/one-layer/one-layer-deeper/data/generated/"
-                                     "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2")
+    os.environ.setdefault("H1_DATA", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..",
+                                                  "one-layer-deeper", "data", "generated", "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2"))
     torch.set_num_threads(2)
     import json
     seeds = [int(v) for v in os.environ.get("SEEDS", sys.argv[1] if len(sys.argv) > 1 else "0").split(",")]

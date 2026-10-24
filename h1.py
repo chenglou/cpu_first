@@ -15,9 +15,8 @@ import numpy as np
 
 DATA = os.environ.get(
     "H1_DATA",
-    "/private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-"
-    "2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/"
-    "b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/data/h1",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "one-layer-deeper", "data", "generated",
+                 "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2"),
 )
 LADDER = (1, 2, 4, 8, 16, 32, 64)
 L = 10  # digit slots: 24-bit N has 8 digits; keep guard digits

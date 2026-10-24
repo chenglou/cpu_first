@@ -1,5 +1,7 @@
 # Panel designs (5 independent lenses)
 
+*`$SCRATCH` below is the author's scratch folder on Oct 19, outside this repo; the panel's own scripts and logs stayed there and are not included.*
+
 # Sandboxed Carry-Save Folding (SCF): a squaring core whose depth does not grow with digit count, with no comparisons inside the loop, learned magnitude control, and one learned final select
 
 ## name
@@ -218,7 +220,7 @@ Interpretation:
 
 ## sanity_checks_run
 
-All scripts are in /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/panel/wide_shallow/ (stats.py, fold_sim2.py, sandbox_sim.py, multicarry_sim.py, float_quot.py, rns_sim.py, basin.py, adam_upstream.py). Total compute was a few minutes.
+All scripts are in $SCRATCH/panel/wide_shallow/ (stats.py, fold_sim2.py, sandbox_sim.py, multicarry_sim.py, float_quot.py, rns_sim.py, basin.py, adam_upstream.py). Total compute was a few minutes.
 
 (1) Data. 430 training moduli. Leading digits: training {1:2, 3:18, 4:23, 5:125, 6:111, 7:76, 8:56, 9:19}; OOD {1:204, 2:166, 3:49, 8:36, 9:50}. 109 OOD moduli have 8 digits; only 4 T=1 rows have a 7-digit N. Both sets cover N mod 10 ∈ {1,3,7,9}.
 
@@ -463,7 +465,7 @@ Interpretation:
 
 ## sanity_checks_run
 
-All scripts are in /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/panel/bitlevel/.
+All scripts are in $SCRATCH/panel/bitlevel/.
 
 E1 (sim_pipeline.py, sim_variants.py): bit-level numpy simulation of the full pipeline (reverse double-dabble, entry, carry-save Montgomery plus adder, MonPro(s,1) exit, double-dabble, right-aligned digits) on the H1 depth ladders.
 - 10,752/10,752 exact across both profiles and T = 1, 2, 4, ..., 64.
@@ -720,7 +722,7 @@ How to read it: if w* >= 30, the avalanche thesis is wrong, label-only table lea
 
 ## sanity_checks_run
 
-All scratch files are in /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/panel/decimal_bcd/.
+All scratch files are in $SCRATCH/panel/decimal_bcd/.
 
 (1) sim_montgomery.py (first design, redundant digits). 0 mismatches on 4,976 training rows (all T=1 and T=2 rows, 2% of T>=4) and on all 10,752 certification rows. Measured maxima: sum U <= 43 (bound 52), accumulator digit <= 13, state digit <= 11, s~ < 1.011N. Coverage holes: ADD3 entries (1,6,1) and (4,7,1), and SPLIT at U=43, are hit in certification but not in the training sample.
 
@@ -890,7 +892,7 @@ How to read other outcomes:
 
 ## sanity_checks_run
 
-All scripts are in /private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/panel/training-dynamics/.
+All scripts are in $SCRATCH/panel/training-dynamics/.
 
 (1) srt_sim.py, an exact digit-level SRT squarer with an oracle predictor: 768/768 on all 14 certification splits (both profiles, T=1..64). Max |r|/N 0.5, max |column| 14.
 

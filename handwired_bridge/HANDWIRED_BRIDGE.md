@@ -112,7 +112,7 @@ bits) and a one-hot borrow (2 exact bits).
 The program is one **tick**: it computes every scratch cell's next state from the current states of the cells it reads
 (its ports A, B and C, the same ports as the attention bridge's heads). The **host loop** runs it `depth` times, writing
 the state cells back after each evaluation, which is how handwired runs any program with state
-([tutorial.md](../../../handwired/docs/tutorial.md)). Input cells (N's and v's digits, the constant zeros) are input
+(handwired's `docs/tutorial.md`, in `~/github/handwired`, outside this repo). Input cells (N's and v's digits, the constant zeros) are input
 cells: the host writes them and the program keeps them. In handwired's idioms:
 
 | part | JavaScript it replaces | handwired operations |

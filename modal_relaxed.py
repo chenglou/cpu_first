@@ -22,8 +22,8 @@ import modal
 HERE = Path(__file__).resolve().parent
 H1_LOCAL = os.environ.get(
     "H1_DATA",
-    "/Users/chenglou/github/one-layer/one-layer-deeper/data/generated/"
-    "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "one-layer-deeper", "data", "generated",
+                 "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2"),
 )
 SCRIPTS = ["relax_common.py", "relax_step.py", "relax_trace.py", "relax_periodic.py", "relax_square.py", "relax_trace_errors.py",
            "relax_periodic_cert.py", "h1.py"]

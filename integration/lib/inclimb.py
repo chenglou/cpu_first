@@ -43,8 +43,8 @@ from library import dsl as pdsl
 from library import merge
 from integration.lib import tdsl, tfast
 
-H1_DIR = os.environ.get("H1_DATA", "/Users/chenglou/github/one-layer/one-layer-deeper/data/generated/"
-                                   "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2")
+H1_DIR = os.environ.get("H1_DATA", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..",
+                                                "one-layer-deeper", "data", "generated", "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2"))
 BASE_NEEDS = {"lt": (), "modx": (), "add": ("lt", "modx"), "modB": ("add",), "mrow": ("add",), "mac": ("mrow", "add"),
               "mul": ("add",), "sq": ("mul",), "step": ("modB",), "reduce": ("add",), "sqmod": ("mul", "reduce")}
 SWAP = {"X": "Y", "Y": "X", "N": "N"}

@@ -11,7 +11,7 @@ DO NOT read ~/github/handwired, ~/github/handwired-lab or ~/github/handwired-wor
 independent exploration first). Do not search the web for this competition's solutions or write-ups.
 
 ## 1. The task (exact facts, verified from the released repo + locally generated data)
-Repo clone: `REPO=/private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-efb0abec6f53/scratchpad/repo/one-layer-deeper`
+Repo clone: `REPO=$SCRATCH/repo/one-layer-deeper`, where `SCRATCH` was the author's scratch folder on Oct 19, outside this repo (the clone now sits at `../one-layer-deeper`)
 Generated H1 data (JSONL): `DATA=.../scratchpad/data/h1` (same scratchpad root). Python venv with torch (MPS) at `.../scratchpad/.venv`.
 
 - Predict y = x^(2^T) mod N (repeated modular squaring = RSW time-lock puzzle / Blum-Blum-Shub recurrence).

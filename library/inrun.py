@@ -35,8 +35,8 @@ import numpy as np
 from library import dsl
 from library.dsl import to_digits
 
-H1_DIR = os.environ.get("H1_DATA", "/Users/chenglou/github/one-layer/one-layer-deeper/data/generated/"
-                                   "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2")
+H1_DIR = os.environ.get("H1_DATA", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..",
+                                                "one-layer-deeper", "data", "generated", "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2"))
 NEEDS = {"lt": (), "modx": (), "add": ("lt", "modx"), "mac": ("mrow", "add"), "modB": ("add",), "mrow": ("add",), "mul": ("add",), "sq": ("mul",),
          "step0": ("modB",), "step": ("modB",), "reduce": ("add",), "sqmod": ("mul", "reduce")}
 INRUN_TASKS = tuple(NEEDS)

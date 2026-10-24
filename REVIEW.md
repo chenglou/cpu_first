@@ -1,0 +1,259 @@
+# For a reviewer: what is claimed, the file to judge, and what to rule on
+
+*Written 2026-10-23 for an outside judge of One Layer Deeper H1 (learn x^(2^T) mod N from prompt/answer pairs). It
+points into [OVERVIEW.md](OVERVIEW.md) and [INTEGRATION.md](integration/INTEGRATION.md) instead of repeating their
+tables. The checks in §3 were rerun on 2026-10-23. Nothing here has been submitted to the hosted evaluator.*
+
+The rules are the competition's own: [one-layer-deeper/README.md §Rules](../one-layer-deeper/README.md#rules), at
+commit `87e5c26` ("Releasing H1"). Links into `../one-layer-deeper/` work once that clone sits next to this folder.
+
+## 1. What is claimed
+
+The project measures itself against three bars ([OVERVIEW §4](OVERVIEW.md#4-where-it-stands-three-bars-and-the-models-at-the-frontier)):
+
+1. **Certify H1 with learned parts: done.** Every step of the removal ladder certifies T = 64 on both ladders of the
+   untouched official manifest on an H100. From step 11 on, no hand-written arithmetic runs in training or in the
+   answer: every table that computes is learned from a random start, though until step 17 the datapath around those
+   tables is still written by hand.
+2. **Nothing a strict judge would call the hand-written algorithm: partly cleared.** The best file, s3i, has no
+   hand-written datapath and no menu of wirings: the program its forward pass runs ("copy x, multiply, reduce") was
+   found by search inside the training run. But the instruction set that search runs over (32 digit instructions) and
+   the curriculum that walks it up the pieces of long division and the schoolbook multiply (which practice problems,
+   in which order) were written by hand, knowing the task family. The official budget is met only with that order
+   ([INTEGRATION §6](integration/INTEGRATION.md#6-is-bar-2-cleared)).
+3. **A general algorithm learner: results at a tiny size only.** A learner that picks its own practice problems
+   invents x² mod N for x < N ≤ 7 (and ≤ 26) on a bare counting machine; unchanged, it invents 4 of 9 other formulas,
+   and 2 more once its solved formulas carry over ([PRACTICE.md](bar3/PRACTICE.md), [BREADTH.md](bar3/BREADTH.md)).
+   Nothing at H1's size.
+
+Four rules are **gray** for s3i: 4, 7, 8 and 14 (§5). The write-ups flag them; they do not argue them away.
+
+Not claimed:
+- nothing was submitted to the hosted evaluator, before or after the deadline;
+- the leaderboard count in [REPORT.md](REPORT.md) §0 (3 of 146 entries certified) comes from the public leaderboard at
+  the time and has no record behind it;
+- runs on B200s, CPUs or relaxed budgets are research; only official-manifest H100 runs count as certification here.
+
+## 2. The file to judge, and the other two
+
+**[`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py)**, md5
+`0e8131440e1842546c67e7378caf472d` ("s3i", step 17 of the removal ladder). 3,437 lines, 173,817 bytes (the limit is
+256 KiB), 207,374 learned numbers in 16 parameter tensors, Adam. It is a generated file:
+[`make_stage3.py`](integration/make_stage3.py) builds it from [`stage3_template.py`](integration/stage3_template.py)
+(1,008 lines), [`lib/libcore.py`](integration/lib/libcore.py) (1,877 lines) and stage 1's reader, and rebuilding it
+from those sources gives the same bytes (§4.3). Its docstring (lines 1–35) is the best one-page summary.
+
+The other two frontier files ([OVERVIEW §4.1](OVERVIEW.md#41-the-models-at-the-frontier) compares all three):
+- [`integration/submission_stage1.py`](integration/submission_stage1.py), md5 `cfd7b61d7d3d4b76c606606ba8b8d9db`:
+  the tournament and the general lessons in one file. Its forward pass is still the hand-written H1 datapath, with
+  menus that hold the right wirings (rule 7 is gray as for its parents).
+- [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py), md5
+  `0805b7d38f9fe4fa15b182c1b481886e`: general lessons v3, where the answers choose whole digit codes. Its 8 H1 seeds
+  ran an earlier build, `v3f` (md5 `32a1d154`), on B200s; the final file's own H1 run is the official one.
+
+Every earlier certified file is a step of the removal ladder ([OVERVIEW §5](OVERVIEW.md#5-the-removal-ladder)), each
+with its md5 and record.
+
+## 3. The official records, and how to check them
+
+| file | official record | other seeds on the official manifest |
+|---|---|---|
+| s3i | [`integration/records/s3i_official.json`](integration/records/s3i_official.json) | `integration/records/s3i_h100_seed1.json` … `seed7.json` (H100s) |
+| stage 1 | [`integration/records/s1_official.json`](integration/records/s1_official.json) | CPU seeds: `integration/records/s1_cpu_seed*.json` |
+| general v3 | [`general_lessons/fixed/records/v3k_h1_official.json`](general_lessons/fixed/records/v3k_h1_official.json) | `v3f` build on B200s ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md)) |
+
+Careful with one name: `runs/learned_remainder/s1_official.json` is a different, failed run (the removal ladder's
+first recipe for step 1), not stage 1's.
+
+**What a record holds.** One JSON per evaluator run: `submission` (the exact source sent, as `submission.py`),
+`manifest` (as passed; the shared runner's records also name `manifest_file`), the evaluator's full `stdout`, whose
+last `RESULT_JSON=` line is the evaluator's own result, `result` (that line, parsed), `gpu`, `returncode`, and for
+records written by [`tools/modal_runner.py`](tools/modal_runner.py) also `submission_md5` (checked inside the
+container before the run) and `runner.data_md5`, an md5 over the generated H1 folder the run read.
+
+**One command** (standard library only, from this folder, with the competition clone next to it):
+
+```bash
+python3 tools/verify_records.py
+```
+
+For each of the ten records above (s3i's official run and seeds 1–7, stage 1, general v3) it prints: the md5 of the
+embedded source against the file's md5 now; the manifest against the competition's `h100_hard_h1.json` (identical,
+or differing only in `runtime.seeds` for the seed runs); whether the `RESULT_JSON=` line in `stdout` equals `result`;
+T on both ladders; every rung's count; the three splits; the times. On 2026-10-23 all ten checked out: md5s equal,
+T = 64 on both ladders, every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002. Any other record:
+`python3 tools/verify_records.py REC.json=FILE.py`.
+
+Or by hand, for one record:
+
+```bash
+python3 -c "import hashlib,json; r=json.load(open('integration/records/s3i_official.json')); print(hashlib.md5(r['submission'].encode()).hexdigest())"
+md5 integration/submission_stage3_s3i.py      # Linux: md5sum
+```
+
+**What to look for in s3i's log** (`stdout` of the record): `LR climb step=671 L6 round: cost 5` (the round found, as
+one of several equivalent spellings), `LR frozen step=870` (the freeze), the `ROUND` line (the four programs the
+tournament holds, with their weights), and the `SCHEDULE … history=[…]` line (every phase change, with its step).
+
+Three things that look odd but are not:
+- `exact_accuracy` reads 0.9999999892 on ood_t and ood_n_t although `correct_examples` is 10,002 of 10,002. The
+  evaluator sums float32 batch means, and the shortfall is exactly one float32 rounding (2⁻²⁴) on the last batch of
+  1,810 rows. The counts are what certification uses.
+- `final_train_loss` is −0.0: after the freeze the loss is the parameters' sum times 0.0, exactly zero with the sum's
+  sign.
+- Training reports 1,340.3 s, though the model froze at step 870: the evaluator keeps stepping, at learning rate 0,
+  to the file's 20,000 steps. In `structured_metrics` the progress line just after the freeze (step 900) reads
+  1,143.0 s.
+
+[OVERVIEW §9](OVERVIEW.md#9-where-docs-and-records-disagree) lists every place a write-up and a record disagree.
+
+## 4. How to reproduce
+
+### 4.1 With the competition's own evaluator (one H100, no Modal)
+
+```bash
+git clone https://github.com/tilde-research/one-layer-deeper.git && cd one-layer-deeper && git checkout 87e5c26
+uv venv .venv && source .venv/bin/activate && uv sync
+bash scripts/generate_datasets.sh        # every tier; the H1 block alone (lines 282-301) is enough
+python3 ../cpu_first/tools/verify_records.py --data data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
+mkdir -p /tmp/s3i && cp ../cpu_first/integration/submission_stage3_s3i.py /tmp/s3i/submission.py
+CUDA_VISIBLE_DEVICES=0 python -m benchmark.runner --manifest benchmark/manifests/h100_hard_h1.json \
+  --submission-file /tmp/s3i/submission.py --include-structured-metrics | tee s3i_run.log
+python3 ../cpu_first/tools/verify_records.py --log s3i_run.log
+```
+
+- The `--data` line should print `a6414ec9fc6a5efce6414895b52d4eb7`, the H1 folder every shared-runner record read
+  (this checkout's own H1 folder gives it too).
+- The copy only gives the file rule 1's name; the bytes are unchanged.
+- The run takes about 26 minutes (the official record: 1,557 s of wall time).
+- `--log` compares your `RESULT_JSON=` line with `s3i_official`: the certified T, every rung and the splits. Times
+  will differ: the eight H100 runs trained in 1,133–1,350 s.
+- The run's path is reproducible in practice: seed 74 on a B200
+  (`integration/records/b200/s3i_b200_seed74.json`) found the round at step 671 and froze at step 870, with the same
+  four round programs and the same tournament weights as the H100 run.
+- But the climb reads the wall clock (§5, rule 4). A much slower host can change how far a search gets before its
+  time limit; on an H100 the searches end well inside their limits (the round's took 26.6 s).
+
+### 4.2 With our runner (Modal)
+
+[`tools/modal_runner.py`](tools/modal_runner.py) builds the competition's image (CUDA 12.9.1, Python 3.13,
+`uv sync --frozen` on the clone's lock file), regenerates every dataset with `scripts/generate_datasets.sh`, sends the
+file as bytes, checks its md5 in the container, and runs the untouched manifest on an H100. It needs a Modal account,
+the Modal client 1.2.6, and the competition clone at `../one-layer-deeper` (or `ONE_LAYER_DEEPER=<path>`).
+
+```bash
+python -m modal run --detach tools/modal_runner.py --mode official --file integration/submission_stage3_s3i.py --name s3i_judge --out /tmp/judge_records --run s3i-judge
+python tools/modal_runner.py --mode fetch --out /tmp/judge_records --run s3i-judge --wait
+python tools/modal_runner.py --mode compare integration/records/s3i_official.json /tmp/judge_records/s3i_judge.json
+```
+
+[tools/README.md](tools/README.md) has the other modes, the limits, and the runner's own validation against stored
+records. The write-ups' commands say `~/github/sotaku/venv/bin/python`: that is the author's virtualenv, and any
+Python with torch, numpy and that Modal client does.
+
+### 4.3 Cheap checks (seconds, CPU)
+
+- **s3i is built by its sources.** Without writing anything:
+
+  ```bash
+  python3 -c "import importlib.util as u, hashlib; s=u.spec_from_file_location('m','integration/make_stage3.py'); m=u.module_from_spec(s); s.loader.exec_module(m); print(hashlib.md5(m.build().encode()).hexdigest())"
+  ```
+
+  It prints s3i's md5. (`python3 integration/make_stage3.py s3h` checks the previous build, s3h, the same way.)
+- **The competition's static source policy** (the check the CLI and the evaluator run before importing a file):
+
+  ```bash
+  python3 -c "import sys; sys.path.insert(0, '../one-layer-deeper'); from submission_validation import validate_submission_source as v; print(v('submission.py', open('integration/submission_stage3_s3i.py').read(), 256 * 1024))"
+  ```
+
+  It passes for all three frontier files.
+- **Plumbing and gradient checks** (reader and cells at the truth, the prediction path, the gradient test of rule 8):
+  [INTEGRATION §7](integration/INTEGRATION.md#7-reproduce).
+
+## 5. The gray areas: what a judge should rule on
+
+[OVERVIEW §6](OVERVIEW.md#6-rules-116-for-the-best-model) goes through rules 1–16 for s3i, and
+[INTEGRATION §5](integration/INTEGRATION.md#5-rules-7-8-and-14) sets rules 7, 8 and 14 for stage 1 and stage 3 side by
+side. The questions, with where to look in s3i:
+
+1. **Rule 4: the evaluator owns the loop, the cadence and the deadline.** The evaluator is untouched: one forward,
+   one loss and one backward per step. But the model keeps its own schedule as Python state (`Control`, line 2349:
+   the reader's stages, phases A–D, then a freeze that sets the learning rate to 0 once every check has held for 200
+   steps, `FREEZE_WIN`). It also reads the clock: `build_optimizer` (line 3425) sets a deadline from the budget the
+   evaluator passes in; each search stops after `SEARCH_S` = 900 s (line 92); the climb stops `CLIMB_MARGIN` = 120 s
+   before the budget ends (line 97). And it keeps rows across batches: up to `POOL` = 4,096 read rows for its
+   practice problems and `ANS_POOL` = 512 answered rows with T = 1 for the round's search (lines 110–111).
+   *Is a model that reads the clock, stops its own work at the deadline, and keeps a memory of past rows within
+   rule 4?*
+2. **Rule 7: no hard-coded algorithm in the forward pass.** No datapath and no menu is in the file; the forward pass
+   runs the program training found, on learned tables. But the instruction set is digit arithmetic
+   (subtract-with-borrow, add-with-carry and multiply-accumulate at a pointer, keep-or-discard on the borrow, bring
+   the top digit in, loops by the number's length), the practice problems (made from the law library, `LAWS` at
+   line 140, in the order `NEEDS` at line 1413 sets) walk the search up long division's and the schoolbook
+   multiply's pieces, two of them are definitions of long division's step, and the countdown over T is hand-written.
+   *Did the algorithm move into the instruction set and the curriculum, and does that count as hard-coding it?*
+3. **Rule 8: final logits from the model, inside autograd, with an unbroken gradient path.** In the gradient test
+   every one of the 16 parameter tensors reaches the final logits. That test ran on the earlier build s3g; s3h kept
+   s3g's prediction path, and s3i's changes are in phase D's checking machine and the search (INTEGRATION §3, §5).
+   But:
+   - (a) in training the forward returns zero logits, so the lessons teach, not the final logits;
+   - (b) the gradient is damped per lookup (`GRAD_DAMP`, line 53) and underflows to exactly 0 on the deepest paths at
+     a perfect prediction;
+   - (c) the answering program is a discrete result of search, held in Python (`model.ctl.lib` and
+     `model.ctl.progs`), and only the choice among four found programs is a parameter (`prog`, one logit each);
+   - (d) which reading hypothesis a prompt uses is decided by designed run-detection logic.
+
+   *Is that "produced entirely by the submitted model from its inputs and learned PyTorch state"?*
+4. **Rule 14: no data inspection, task-specific solvers, custom training loops, or hidden training work.** No
+   backward or grad call, no custom autograd function, no file read, no number made up. But the climb is a program
+   search inside the training forward pass, run over many steps; its practice problems are made from the rows'
+   own digits and the law library; a miner computes statistics over the training batches; and the lessons include
+   the old table lessons, joining `LATE_AFTER` = 100 steps after the digit laws, with the width-dependent fact "a
+   wrapped x − N is large" among them (`ANCHOR_WRAP`, line 70). *Is the curriculum a task-specific solver written as
+   lessons, and is an in-forward search "hidden training work"?*
+5. **The instruction set and the curriculum, as a matter of bar 2** (the project's own bar, not a rule): which parts
+   would you call the algorithm? [INTEGRATION §4](integration/INTEGRATION.md#4-what-is-still-hand-made) lists
+   everything hand-made, against stage 1's.
+
+Worth a word too: rules 5, 6 and 9 as they apply to the found programs. The library lives in Python outside the
+state dict, so the 207,374 counted numbers do not include it, and each program is traced on the host from its text
+into opcode columns on the GPU. OVERVIEW §6 marks these rules "yes"; a strict reader may want to say so explicitly.
+
+For stage 1 and general v3, the differences are listed under OVERVIEW §6's table ("The other frontier files").
+
+## 6. An hour's reading order
+
+| minutes | read | for |
+|---|---|---|
+| 0–5 | this file, §1–3 | the claims and the evidence |
+| 5–15 | OVERVIEW: "In one minute", [§1](OVERVIEW.md#1-the-task-in-plain-words), [§2](OVERVIEW.md#2-why-it-is-hard) | the task, and why exact answers defeat ordinary training |
+| 15–25 | OVERVIEW [§4](OVERVIEW.md#4-where-it-stands-three-bars-and-the-models-at-the-frontier) and [§4.7](OVERVIEW.md#47-discovering-the-skeleton-library-learning-then-stage-3) | the bars, the frontier, what s3i still writes by hand |
+| 25–40 | INTEGRATION: ["In plain words"](integration/INTEGRATION.md#in-plain-words), [§4](integration/INTEGRATION.md#4-what-is-still-hand-made), [§5](integration/INTEGRATION.md#5-rules-7-8-and-14), [§6](integration/INTEGRATION.md#6-is-bar-2-cleared) | what one training run learns, what is hand-made, the rules, the bar-2 call |
+| 40–50 | s3i itself: the docstring (lines 1–35), the constants (51–139), `LAWS` (140), the practice tasks (1412), `Control` (2349), `LibraryMachine` (2394, `forward` at 2749), the loss, the schedule and `SUBMISSION` (3380–3437) | where each gray point lives |
+| 50–55 | `python3 tools/verify_records.py`, and the log lines of §3 | the record against the file |
+| 55–60 | OVERVIEW [§6](OVERVIEW.md#6-rules-116-for-the-best-model), [§7](OVERVIEW.md#7-status-and-open-questions), [§9](OVERVIEW.md#9-where-docs-and-records-disagree) | every rule, the open questions, the known disagreements |
+
+With more time: OVERVIEW [§5](OVERVIEW.md#5-the-removal-ladder) (each hand-written piece removed in turn, and how hard
+stage 3 was pushed), [INTEGRATION §3](integration/INTEGRATION.md#3-stage-3-no-skeleton-no-menus) (every stage-3
+build, including the failures), and bar 3's [PRACTICE.md](bar3/PRACTICE.md) and [BREADTH.md](bar3/BREADTH.md).
+[README.md](README.md) indexes every file and folder.
+
+## 7. Still in progress
+
+Three studies were still running when this was written. None changes a certified file or record.
+
+- **The shader follow-up** ([`nca/`](nca/), uncommitted): long training with weight decay to trim the rules, per-weight
+  learning speeds set by agreement, and both, on the NCA probe ([NCA.md](nca/NCA.md)).
+  > *To be filled by the coordinating session: the result, and whether `nca/` is committed.*
+- **Stage-3 self-practice** (`integration/SELF_PRACTICE.md`, `integration/self_practice/`, untracked): bar 3's
+  self-chosen practice on s3i's digit machine, in place of the hand-written curriculum (OVERVIEW §7, open question 2).
+  > *To be filled by the coordinating session: the result, and the write-up's link once committed.*
+- **The s3i ablation** (`integration/ablation_s3/` and its write-up `integration/ABLATION_S3.md`, both untracked and
+  in progress): which of s3i's hand-made inputs are load-bearing.
+  > *To be filled by the coordinating session: the result, and the write-up's link once committed.*
+
+## 8. About this checkout
+
+[HANDOVER.md](HANDOVER.md) has the hygiene pass: what is tracked and what is on disk only, the scan for secrets and
+private data (no credentials anywhere; the author's home path and Modal workspace name appear in run logs), the link
+check, and the files proposed for removal.

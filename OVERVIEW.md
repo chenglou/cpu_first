@@ -1,5 +1,8 @@
 # One Layer Deeper H1, from the CPU up: where everything stands
 
+**Reviewing or judging the project from outside? Start with [REVIEW.md](REVIEW.md)**: the claims, the file to judge,
+how to check its records, and the rules to rule on. It points back into this file.
+
 *The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed four times as studies
 landed; this refresh, on 2026-10-23 at about 15:30, adds the integration's stage 3, general lessons v2 and v3, the NCA
 probe and the two bar-3 studies.*
@@ -608,6 +611,7 @@ still in progress in `nca/`, uncommitted.
 | path | what |
 |---|---|
 | [`OVERVIEW.md`](OVERVIEW.md) | this file |
+| [`REVIEW.md`](REVIEW.md) | the entry point for an outside reviewer: the claims, the file to judge, how to check and reproduce its records, the questions to rule on |
 | [`README.md`](README.md) | one line for every file and folder |
 | [`REPORT.md`](REPORT.md) | the first-day report: the analysis (§0–8), SpecBit and the grammar search (§9–14) |
 | [`learned_remainder/`](learned_remainder/) | the removal ladder, steps 0–5: every `submission*.py`, its write-up (LEARNED_REMAINDER, CHAIN, SQUARE, CONTROL, ADDER, IO, COMBINED), the Modal launchers, plans and local checks |

@@ -19,9 +19,7 @@ from pathlib import Path
 import modal
 
 HERE = Path(__file__).resolve().parent
-H1 = ("/private/tmp/claude-501/-Users-chenglou-Library-Application-Support-Claude-scratch-workspaces-2037fc6c-747d-"
-      "4cf1-a5f5-8a4697a4e390-5ef58abe-646a-4ac9-9fae-d0ea15914ce2-scratch-2026-10-19-536f87/b9b2c6b4-1440-4f5a-b125-"
-      "efb0abec6f53/scratchpad/data/h1")
+H1 = str(HERE.parent.parent / "one-layer-deeper" / "data" / "generated" / "squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2")
 
 image = (
     modal.Image.debian_slim(python_version="3.12")

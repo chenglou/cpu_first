@@ -5,9 +5,10 @@
 
 First, the compiled rule written into the trim runs' network (hidden 128, the causal hood) at a range of output
 scales: exact at (3, 2, 1) and one size up on the snapped and the soft path, and its weight norm (the norm the trim
-runs log). Second, for every trim record at (3, 2, 1) that kept its weights, and for the compiled rule at scales 4 and
-20: on the 99 training questions, every tick, every written cell, the largest probability of each channel's
-distribution, as a median and the share above 0.9. Writes nca/records/sharpness.json (seconds; under 0.5 GB).
+runs log). Second, for every trim and rest1 (§10) record at (3, 2, 1) that kept its weights, and for the compiled rule
+at scales 4 and 20: on the 99 training questions, every tick, every written cell, the largest probability of each
+channel's distribution, as a median and the share above 0.9. Writes nca/records/sharpness.json (about a minute;
+under 0.5 GB).
 """
 
 from __future__ import annotations
@@ -65,7 +66,7 @@ def main():
             row["sharpness"] = sharp(r)
         rec["compiled"][str(beta)] = row
         print(f"compiled, output scale {beta}:", row, flush=True)
-    for suite in ("trim1", "trim_cols", "trim_stab"):
+    for suite in ("trim1", "trim_cols", "trim_stab", "rest1"):
         p = HERE / "runs" / f"{suite}.jsonl"
         for l in (open(p) if p.exists() else []):
             x = json.loads(l)

@@ -91,8 +91,9 @@ class RunCfg:
                                                        # "d" or "d,b"; the run is the teacher's, the others unlabelled
     save_weights: bool = False                         # keep the trained rule's weights in the record (base64 float32)
     freeze_g: int = 0                                  # hyper: g (the wiring) frozen for this many steps
-    optim: str = "adam"                                # adam | adamw (decoupled weight decay `wd`: trimming)
-    wd: float = 0.0
+    optim: str = "adam"                                # adam | adamw (decoupled weight decay `wd`: trimming) | sgd
+    wd: float = 0.0                                    # (plain; `wd` is then L2: lr * wd off every weight per step)
+    eps: float = 1e-8                                  # adam, adamw: added to the root of the squared-gradient average
     agree: str = ""                                    # "": plain; "and": AND-mask over question groups;
                                                        # "and_cols": over blocks of grid columns (cell positions);
                                                        # "dbd": delta-bar-delta, a per-weight speed by agreement over
@@ -171,9 +172,11 @@ class Run:
                 from nca import compile as Cm
                 Cm.set_compiled(self.net, c.B, beta=c.init_beta, noise=c.init_noise, gen=g, task=c.task)
         if c.optim == "adamw":
-            self.opt = torch.optim.AdamW(self.net.parameters(), lr=c.lr, weight_decay=c.wd)
+            self.opt = torch.optim.AdamW(self.net.parameters(), lr=c.lr, weight_decay=c.wd, eps=c.eps)
+        elif c.optim == "sgd":
+            self.opt = torch.optim.SGD(self.net.parameters(), lr=c.lr, weight_decay=c.wd)
         else:
-            self.opt = torch.optim.Adam(self.net.parameters(), lr=c.lr)
+            self.opt = torch.optim.Adam(self.net.parameters(), lr=c.lr, eps=c.eps)
         self.speed = None                                    # dbd: one speed per weight, and a trace of gradients
         self.trace_g = None
         self.nparams = sum(p.numel() for p in self.net.parameters() if p.requires_grad)

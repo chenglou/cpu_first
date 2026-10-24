@@ -108,11 +108,26 @@ chance from start to end: no late jump. Two measurements say why, for every arm:
 - started at the machine's own rule, every arm loses it within a few hundred steps, the plain control included. The
   lessons, which only see blurred digits, are met as well by blurred neighbours of the rule, and Adam, the optimizer
   under every arm, keeps taking full-size steps even where every lesson is already met. A rule the training cannot
-  hold is not one it can find.
+  hold is not one it can find; item 8 tries optimizers that can hold it.
 
 Agreement does not help either: the AND-mask lets a few percent of the gradient through, and delta-bar-delta ends
 with most weights near its slowest speed. Neither builds the copies: N's digit, the old register and the final borrow
 never reach the cells that read them.
+
+**8. An optimizer that can rest at the exact rule does not change the verdict.** Plain SGD, and Adam with a larger
+eps, stay put where no lesson pulls, unlike Adam at its default eps. They were tried in §9's lessons-only setting at
+(3, 2, 1), 4 seeds, with and without weight decay:
+- **from random they memorize as before.** One size up every run stays at chance as far as it ran (13 of the 24 were
+  cut off short of their 50,000 steps when Modal's spend limit stopped them; finishing them can change end-of-run
+  numbers, not this); plain SGD holds the steadiest soft fit of any arm so far, and it is a blurred code (a third of
+  the answers on snapped digits);
+- **started at the rule, they keep it only where the lessons are met exactly**, so that nothing moves them; weight
+  decay leads them out of there. Where the lessons still pull, plain SGD at a small learning rate keeps every training
+  answer, but not the rule: one size up it slips (to 0.70 of the answers at (3, 2, 2) after 10,000 steps), and
+  99.7–99.9% of its one-tick errors are in situations the training grid never shows. The lessons hold the rule only
+  where the training grid goes;
+- **at (3, 3, 2)**, where almost every situation occurs, plain SGD holds the rule, exactly or nearly, until within 100
+  steps it loses all of it, in every seed (at step 700–8,900).
 
 **Against the bridge.** The bridge's attention fell for the bypass (reading the prompt's clean digits instead of the
 computed ones) and learned its wiring only from menus of about 10 options, or by trying whole options and keeping
@@ -130,7 +145,8 @@ every move, it learns the exact machine.
   here too); a copy has none, and the answers at the far end are too weak a signal to grow the chains.
 - **The air is still sucked out, inside the cell.** The cells are small, but each cell's rule is a dense function of
   its whole neighbourhood, so it entangles what it needs with what happens to be next to it. That is why it fails
-  where the surroundings are new, and why it extrapolates once training has shown it every surrounding. Making the
+  where the surroundings are new, and why it extrapolates once training has shown it every surrounding. Even the
+  exact rule, trained further on the lessons, drifts exactly there (§10). Making the
   rule sparse with a penalty does not pick the right inputs (the training grid cannot say which of two always-together
   features matters), and two-input logic gates on random wires do not find them at all.
 - **A concise description of all-to-all wiring is not easier to find than the wiring.** The generator does say the
@@ -158,9 +174,10 @@ every move, it learns the exact machine.
 7. The bit-level arm
 8. Wiring from a generator: every cell connected to every other
 9. Trained long, with trimming or agreement: lessons only
-10. The traps, and the project's fixes, against the bridge
-11. Caveats
-12. Reproduce
+10. An optimizer that can rest at the rule: lessons only
+11. The traps, and the project's fixes, against the bridge
+12. Caveats
+13. Reproduce
 
 ## 1. The grid and the compiled rule
 
@@ -966,7 +983,7 @@ weights grow and the soft fit goes too (0.24–0.54). Two causes push the rule o
   raised from 1e-8 to 1e-4 the same run stays exact.
 
 A rule the training cannot hold is not one it can be expected to find. The arms tested here all sit on top of Adam at
-a learning rate of 0.003, and none of them changes that.
+a learning rate of 0.003, and none of them changes that; §10 tries two optimizers that can rest at the rule.
 
 **What was tried, and how hard** (dead ends):
 - Weight decay at 0.1, 0.3 and 1, 4 seeds each at both sizes: 50,000 steps at (3, 2, 1) is 9–33 times the steps the
@@ -977,7 +994,7 @@ a learning rate of 0.003, and none of them changes that.
 - Delta-bar-delta speeds, alone and with decay 0.3, 4 seeds each at both sizes.
 - Every arm from the compiled rule, 2 seeds each, 10,000 steps.
 - In all, 72 runs from random (40 at (3, 2, 1), 32 at (3, 3, 2)) and 20 from the compiled rule.
-- Not tried: another optimizer than Adam (plain SGD, or Adam with a larger eps, which `rest.py` shows can rest at the
+- Not tried here: another optimizer than Adam (§10 tries plain SGD and Adam with a larger eps, which can rest at the
   rule), another learning rate, more seeds (no arm certified, so none got the 8 the plan held for one that did),
   agreement across seeds or sizes rather than question groups or columns, and training on the snapped path (STE) with
   decay.
@@ -1002,7 +1019,275 @@ a learning rate of 0.003, and none of them changes that.
   `records/trim_cut.json` (from `cut.py`). Once the other runs had ended it was resumed from that checkpoint in a
   launch of its own and finished: its record's curve up to step 47,500 equals the kept one.
 
-## 10. The traps, and the project's fixes, against the bridge
+## 10. An optimizer that can rest at the rule: lessons only
+
+`suites.py` (`rest_lr`, `rest1`, `rest_stab`, `rest_stab3`), records in `runs/rest_lr.jsonl`, `runs/rest1.jsonl`,
+`runs/rest_stab.jsonl` and `runs/rest_stab3.jsonl`, 4 seeds per arm (one per learning rate in `rest_lr`); `rest.py`,
+`erosion.py`, `cut.py`.
+
+**The question.** Every arm of §9 sat on Adam, and Adam does not stay at an exact rule: it divides each weight's step
+by the size of that weight's recent gradients, so even where every lesson is met, with gradients of 1e-8, it moves
+every weight by about half the learning rate (`rest.py`). Two optimizers do stay there. Adam with eps raised to 1e-4
+shrinks the step of any weight whose gradient is well under 1e-4, and plain SGD's step is the gradient times the
+learning rate. With them, two questions: started at the compiled rule, as in `trim_stab`, does the grid keep the rule;
+and from random, does it find the rule, or memorize as it did with Adam?
+
+**The setting.** §9's at (3, 2, 1): lessons only (GCL; the step law needs two links and does not act at k = 1), the
+causal neighbourhood, all 99 questions every step, a curve point every 500 steps, no early stop. The arms:
+- Adam with eps 1e-4 at §9's learning rate (0.003), alone and as AdamW with weight decay 0.3;
+- plain SGD at learning rate 0.01, alone and with weight decay (L2, set to take the same 0.09% off every weight per
+  step as AdamW 0.3 does at 0.003);
+- plain SGD at learning rate 0.1, the same two ways.
+
+SGD's learning rates come from `rest_lr` (one seed each, below): 0.01 is the largest of those tried that kept the
+compiled rule's training answers for 10,000 steps, and 0.1 learned fastest from random. Each arm ran from random for
+50,000 steps (`rest1`), and from the compiled rule for 10,000 steps (`rest_stab`) at two output scales: 4, as in
+`trim_stab`, where the lessons are met but not perfectly (a tenth of the weights have a gradient of 1e-3 or more,
+`rest.py grads`); and 20, where every lesson is met and no gradient is above 1.1e-7 (with plain Adam and AdamW 0.3
+there too, which `trim_stab` ran only at scale 4). Because of what the start at scale 4 showed, it was repeated at
+(3, 3, 2), where almost every local situation of a bigger grid occurs (`rest_stab3`: §9's (3, 3, 2) lessons, the step
+law included, in batches of 256 on GPU; output scale 4, the smallest at which the compiled rule is exact there on both
+paths; 10,000 steps): plain Adam, Adam with eps 1e-4, and plain SGD at 0.003 and 0.01.
+
+13 of `rest1`'s 24 runs were cut off: at about 07:25 PT on 2026-10-24 Modal stopped every container of the workspace
+when it reached its spend limit, with these runs at steps 18,000–46,500 of their 50,000 (each run's step is in the
+table of cut-off runs below). Their curves up to there are kept (`records/rest_cut.json`, from `cut.py`), and their
+checkpoints are on the Volume; the tables of the runs' ends have the 11 that finished. Every other run here finished.
+
+**SGD's learning rate** (`rest_lr`): from random, the training share snapped / soft; from the compiled rule at output
+scale 4, when it first fell below exact:
+
+<!-- REST_LR -->
+| learning rate | from random: training at step 1,000, snapped / soft | at step 5,000 | weight norm at step 5,000 | from the compiled rule: first step below exact, snapped / soft | training at step 10,000 |
+|---|---|---|---|---|---|
+| 0.003 | · | · | · | never / never | 1.00 / 1.00 |
+| 0.01 | 0.16 / 0.18 | 0.31 / 0.95 | 21 | never / never | 1.00 / 1.00 |
+| 0.02 | · | · | · | 7,600 / 8,000 | 0.00 / 0.00 |
+| 0.03 | 0.16 / 0.39 | 0.27 / 0.32 | 29 | · | · |
+| 0.1 | 0.38 / 0.51 | 0.60 / 0.92 | 37 | · | · |
+| 0.3 | 0.19 / 0.18 | 0.19 / 0.18 | 27 | · | · |
+| 1 | 0.12 / 0.12 | 0.12 / 0.12 | 165 | · | · |
+<!-- /REST_LR -->
+
+**What happened, in plain words.**
+- **Where every lesson is met (output scale 20), both optimizers rest at the rule, and nothing else does.** Adam with
+  eps 1e-4 and plain SGD, at 0.01 and at 0.1, keep it exactly for the 10,000 steps and certify, 4 of 4 seeds each:
+  with gradients of at most 1.1e-7 nothing moves them. Plain Adam is below exact within 100 steps, as `rest.py`
+  showed. Every arm with weight decay leaves too (AdamW 0.3 by step 100–300, as plain Adam; with eps 1e-4 at step 500;
+  SGD at 0.1 and 0.01 at steps 700 and 1,100), though decay alone does not break the rule: shrinking every weight of
+  the compiled rule by one factor keeps its snapped path exact at any factor (it has no output bias, so its outputs
+  only scale) and its soft path down to a norm of 79, from 198 (`rest.py shrink`). What the shrinking does is bring
+  the lessons' gradient back: its largest is 1.1e-7 at the start, 8e-3 once every weight is at 0.64 of its size
+  (where 0.09% a step puts it at step 500) and 0.17 at half, against 0.21 at output scale 4. Decay walks the rule out
+  of the one place where it can rest.
+- **Where the lessons still pull (output scale 4), only plain SGD at a small learning rate keeps the training
+  answers.** At 0.01 it keeps all 99 on both paths for the 10,000 steps, in every seed, and at 0.003 too (`rest_lr`;
+  at 0.02 it holds until step 7,600, then answers every question wrong). The seeds differ only in the extra ticks drawn
+  each step, and take nearly one path: each moves its weights 2.97 from the start, and they end within 0.004–0.013 of
+  one another. Adam with eps 1e-4 is below exact by step 100–200, as plain Adam was: at output scale 4 the gradients
+  that matter are of 1e-3 and more, and eps 1e-4 does not shrink their steps. Every arm with weight decay is below
+  exact by step 100–300, its weights shrinking (to a norm of 7–12 by the end). SGD at 0.1 answers every question wrong
+  by step 100.
+- **It keeps the answers, not the rule.** One size up, SGD at 0.01 is exact until step 2,500 and then slips: 0.99 /
+  0.99 at step 3,000, 0.98 / 0.97 at step 5,000, 0.70 / 0.64 at step 10,000, while every training answer stays right.
+  A smaller learning rate only slows this. SGD at 0.003 follows 0.01's path, 0.3 times as fast: at its step 10,000 it
+  has the lessons' loss and the weight norm that 0.01 had at step 3,000 (0.038 against 0.037; 45.88 at both), and it
+  is still whole one size up there, about where 0.01 began to slip.
+- **Where it slips is where the training grid never goes** (`erosion.py`, on seed 0 at step 10,000). Run for one tick
+  from each of the machine's own states, the drifted rule acts as the machine wherever the situation (the kinds of the
+  3 × 3 neighbourhood and the five states the causal rule reads) occurs at (3, 2, 1): it is wrong on 0.0043% of those
+  cell-ticks at (3, 2, 2) and 0.0025% at (3, 3, 2) (0.016% at the training size), and on 3.3% and 2.4% of the cell-ticks
+  whose situation (3, 2, 1) never shows. Those are 31% of the cell-ticks at (3, 2, 2) and 47% at (3, 3, 2), and they
+  hold 99.7–99.9% of its errors. The lessons pin the rule only where the training grid goes, and their gradient, which
+  still has something to improve on the soft path, moves the rest freely. This is §4's "situations never met" again,
+  now pulling the machine's own rule away from itself.
+- **At (3, 3, 2) nothing keeps the rule for 10,000 steps.** Plain Adam and Adam with eps 1e-4 are below exact within
+  100–400 steps. Plain SGD at 0.003 and at 0.01 holds it exactly, on training and one size up, while the lessons' loss
+  keeps falling (at 0.003 from 0.26–0.27 at step 100 to 0.07–0.09, and to 0.016 in the longest run at 0.01). Then,
+  within 100 steps, the loss jumps 47- to 3,000-fold, and the grid falls to 0.00–0.08 of its training answers (about
+  what "always answer 0" gets, 0.06) and never comes back: at step 2,300–4,300 at 0.003, and 700–8,900 at 0.01. At
+  0.003 the weights hardly move in the fall (the norm changes by 0.03–0.19 across it in three of the four seeds). One
+  run lasted long enough to show (3, 2, 1)'s drift: at 0.01, seed 3 began missing training answers at step 4,500 (2
+  of the 2,835; 50 by step 8,500), and one size up from step 5,000 (0.98 / 0.93 at step 8,500), before it fell at
+  step 8,900. Why SGD falls here at rates that hold at (3, 2, 1) is not settled: the batches of 256 (at (3, 2, 1)
+  every step sees all 99 questions), the step law and the GPU (whose convolutions may run in TF32) all differ. Whether
+  a training grid that shows almost every situation stops the drift is therefore open too.
+- **From random nothing changes: every arm memorizes.** One size up no curve point of any of the 24 runs (the cut-off
+  ones up to where they stopped) is more than 0.06 above "always answer 0" (at best 0.24 at (3, 2, 2) and 0.10 at (3,
+  3, 2), against 0.18 and 0.06), and none fits training on snapped digits: the best any run reaches at any curve point
+  is 63 of its 99 questions. The arms differ, as in §9, in the code they memorize with:
+  - Adam with eps 1e-4 behaves as §9's control: every seed fits the soft path by step 1,000–3,500 (at a norm of
+    24–31), its weights keep growing (to 60–67), and the fit goes (never at 0.99 in the second half of the run;
+    0.18–0.76 at the last point);
+  - plain SGD at 0.01 fits the soft path by step 4,500–7,000 and keeps it, at 0.99 or better at 75–100% of the curve
+    points in the second half (§9's steadiest arms: 66–82%), at a norm of 26–27 and a third of the answers snapped
+    (0.29–0.40). Its states are sharper than decay leaves them and well short of the rule's (40–86% of them above 0.9
+    in the seed that finished, against all of them for the compiled rule): the steadiest blurred code yet;
+  - plain SGD at 0.1 fits the soft path in two seeds (by step 3,000 and 6,000), then every seed collapses to a
+    constant answer (0.12 or 0.18 of training on both paths, from step 9,000–27,500), its weight norm jumping to 47–93;
+  - with weight decay the weights settle where decay puts them (a norm of 7 with SGD at 0.01, 11–13 otherwise) and the
+    code is §9's blurred one: AdamW keeps the soft fit at 56–79% of the second half's curve points, SGD at 0.1 reaches
+    0.99 at only 1 and 4 curve points in two of its seeds, and SGD at 0.01 never (0.66–0.76 at best).
+
+  The plumbing probe finds the three copies as faintly as in §9: at the end, medians of 0.00–0.29 and at most 0.42 in
+  any run that finished, against 1 for the compiled rule.
+
+**What finishing the 13 cut-off runs can change.** Nothing started at the compiled rule: all 75 of those runs, at
+(3, 2, 1) and at (3, 3, 2), finished, as did `rest_lr`'s 5 from random. Nor the from-random verdict, that no arm finds
+the rule: every arm has at least one seed that ran its 50,000 steps at chance one size up throughout, and the cut-off
+seeds had shown nothing different by where they stopped; finishing them could add only a late jump in their last
+3,500–32,000 steps, which none of the 11 finished runs made. What can change are the from-random numbers read at the
+end of a run: the medians in the table of the runs' ends and in the curve table's last column (now over 1–3 seeds per
+arm), the sharpness of plain SGD at 0.01 (one seed so far), and how steadily each arm holds its soft fit, which for a
+cut-off run is counted over the second half of the curve it reached.
+
+Started at the compiled rule at (3, 2, 1) (`rest_stab`; as `trim_stab`'s table):
+
+<!-- REST_STAB -->
+| arm | first step below exact, snapped (each seed) | the same, soft | training at the end, snapped / soft | weight norm | one size up at the end (k + 1 / w + 1, k + 1) | certified | sub table |
+|---|---|---|---|---|---|---|---|
+| scale 4: Adam, eps 1e-4 | 200, 100, 200 and 100 | 5,500, 5,500, 2,000 and 500 | 0.33 / 0.61 | 47 → 53 | 0.17 / 0.05 | 0/4 | 18 + 18 |
+| scale 4: AdamW, eps 1e-4, weight decay 0.3 | 300, 100, 100 and 200 | 1,000, 1,000, 500 and 500 | 0.21 / 0.93 | 32 → 12 | 0.14 / 0.05 | 0/4 | 17 + 17 |
+| scale 4: plain SGD, learning rate 0.01 | never, never, never and never | never, never, never and never | 1.00 / 1.00 | 46 → 46 | 0.70 / 0.64 | 0/4 | 18 + 18 |
+| scale 4: plain SGD 0.01 + weight decay | 300, 300, 300 and 300 | 500, 500, 500 and 500 | 0.24 / 0.59 | 29 → 7 | 0.14 / 0.05 | 0/4 | 11 + 16 |
+| scale 4: plain SGD, learning rate 0.1 | 100, 100, 100 and 100 | 500, 500, 500 and 500 | 0.00 / 0.00 | 52 → 52 | 0.00 / 0.00 | 0/4 | 6 + 9 |
+| scale 4: plain SGD 0.1 + weight decay | 100, 100, 100 and 100 | 500, 500, 500 and 500 | 0.19 / 0.36 | 34 → 11 | 0.12 / 0.05 | 0/4 | 5 + 9 |
+| scale 20: plain Adam (the control) | 100, 100, 100 and 100 | 500, 500, 500 and 500 | 0.18 / 0.18 | 198 → 199 | 0.18 / 0.06 | 0/4 | 16 + 18 |
+| scale 20: AdamW, weight decay 0.3 | 100, 100, 200 and 300 | 500, 500, 500 and 500 | 0.18 / 0.97 | 127 → 12 | 0.14 / 0.04 | 0/4 | 17 + 18 |
+| scale 20: Adam, eps 1e-4 | never, never, never and never | never, never, never and never | 1.00 / 1.00 | 198 → 198 | 1.00 / 1.00 | 4/4 | 18 + 18 |
+| scale 20: AdamW, eps 1e-4, weight decay 0.3 | 500, 500, 500 and 500 | 500, 500, 500 and 500 | 0.23 / 0.88 | 126 → 11 | 0.13 / 0.05 | 0/4 | 15 + 17 |
+| scale 20: plain SGD, learning rate 0.01 | never, never, never and never | never, never, never and never | 1.00 / 1.00 | 198 → 198 | 1.00 / 1.00 | 4/4 | 18 + 18 |
+| scale 20: plain SGD 0.01 + weight decay | 1,100, 1,100, 1,100 and 1,100 | 1,500, 1,500, 1,500 and 1,500 | 0.21 / 0.38 | 126 → 6 | 0.12 / 0.05 | 0/4 | 11 + 16 |
+| scale 20: plain SGD, learning rate 0.1 | never, never, never and never | never, never, never and never | 1.00 / 1.00 | 198 → 198 | 1.00 / 1.00 | 4/4 | 18 + 18 |
+| scale 20: plain SGD 0.1 + weight decay | 700, 700, 700 and 700 | 1,000, 1,000, 1,000 and 1,000 | 0.18 / 0.19 | 126 → 5 | 0.16 / 0.06 | 0/4 | 5 + 9 |
+<!-- /REST_STAB -->
+
+One size up, for the starts that ended with every training answer right (k + 1 / w + 1, k + 1, on the curve's sample,
+medians over the seeds; learning rate 0.003 from `rest_lr`):
+
+<!-- REST_UP -->
+| started at the compiled rule | seeds | step 2,500 | step 5,000 | step 7,500 | step 10,000 |
+|---|---|---|---|---|---|
+| (3, 2, 1), output scale 4: plain SGD, learning rate 0.003 | 1 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 |
+| (3, 2, 1), output scale 4: plain SGD, learning rate 0.01 | 4 | 1.00 / 1.00 | 0.98 / 0.97 | 0.97 / 0.93 | 0.70 / 0.64 |
+| (3, 2, 1), output scale 20: Adam, eps 1e-4 | 4 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 |
+| (3, 2, 1), output scale 20: plain SGD, learning rate 0.01 | 4 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 |
+| (3, 2, 1), output scale 20: plain SGD, learning rate 0.1 | 4 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 | 1.00 / 1.00 |
+<!-- /REST_UP -->
+
+Where the drifted rule goes wrong (`erosion.py`: plain SGD at 0.01, seed 0, at step 10,000; one tick of it from each
+state of the machine's own run from blank, over 1.5 times the depth's ticks; the rates are per cell-tick):
+
+<!-- EROSION -->
+| rule | measured at | answers right | cell-ticks in situations never met at the training size | one-tick errors in situations met there (rate) | in situations never met (rate) |
+|---|---|---|---|---|---|
+| plain SGD, learning rate 0.01, 10,000 steps from the compiled rule (output scale 4) | (3, 2, 1), the training size, 99 questions | 1.00 | · | 8 (0.016%) | · |
+| | (3, 2, 2), every one of 297 questions | 0.70 | 31% | 28 (0.0043%) | 9,605 (3.3%) |
+| | (3, 3, 2), a sample of 200 | 0.61 | 47% | 12 (0.0025%) | 9,965 (2.4%) |
+<!-- /EROSION -->
+
+At (3, 3, 2) (`rest_stab3`):
+
+<!-- REST_STAB3 -->
+| arm | first step below exact, snapped (each seed) | the same, soft | training at the end, snapped / soft | weight norm | one size up at the end (k + 1 / w + 1, k + 1) | certified | sub table |
+|---|---|---|---|---|---|---|---|
+| plain Adam (the control) | 100, 100, 200 and 100 | 500, 500, 500 and 500 | 0.06 / 0.06 | 47 → 52 | 0.06 / 0.02 | 0/4 | 18 + 18 |
+| Adam, eps 1e-4 | 100, 100, 400 and 100 | 500, 500, 500 and 500 | 0.06 / 0.06 | 46 → 52 | 0.06 / 0.03 | 0/4 | 17 + 18 |
+| plain SGD, learning rate 0.003 | 4,300, 2,800, 2,300 and 2,600 | 4,500, 3,000, 2,500 and 3,000 | 0.06 / 0.11 | 46 → 46 | 0.06 / 0.02 | 0/4 | 17 + 18 |
+| plain SGD, learning rate 0.01 | 2,800, 700, 1,700 and 4,500 | 3,000, 1,000, 2,000 and 9,000 | 0.06 / 0.06 | 46 → 55 | 0.06 / 0.03 | 0/4 | 6 + 9 |
+<!-- /REST_STAB3 -->
+
+From random, at the end of the run, medians over the runs that finished ("certified" counts them):
+
+<!-- REST -->
+| trained at | arm | certified | training, snapped / soft | best training, snapped | one size up (k + 1 / w + 1, k + 1) | its best over the run | weight norm | sub table | plumbing: N's digit / old register / final borrow |
+|---|---|---|---|---|---|---|---|---|---|
+| (3, 2, 1), 50,000 steps | Adam, eps 1e-4 | 0/2 | 0.20 / 0.29 | 0.54 | 0.13 / 0.06 | 0.22 / 0.08 | 21 → 63 | 18 + 18 | 0.29 / 0.10 / 0.22 |
+| (3, 2, 1), 50,000 steps | AdamW, eps 1e-4, weight decay 0.3 | 0/2 | 0.33 / 0.89 | 0.52 | 0.15 / 0.05 | 0.21 / 0.07 | 16 → 12 | 18 + 18 | 0.12 / 0.02 / 0.20 |
+| (3, 2, 1), 50,000 steps | plain SGD, learning rate 0.01 | 0/1 | 0.40 / 1.00 | 0.51 | 0.21 / 0.06 | 0.21 / 0.08 | 17 → 27 | 18 + 18 | 0.09 / 0.14 / 0.26 |
+| (3, 2, 1), 50,000 steps | plain SGD 0.01 + weight decay | 0/3 | 0.17 / 0.52 | 0.38 | 0.10 / 0.03 | 0.23 / 0.08 | 11 → 7 | 15 + 17 | 0.12 / 0.04 / 0.16 |
+| (3, 2, 1), 50,000 steps | plain SGD, learning rate 0.1 | 0/2 | 0.15 / 0.15 | 0.59 | 0.15 / 0.05 | 0.21 / 0.07 | 18 → 82 | 6 + 9 | 0.00 / 0.00 / 0.00 |
+| (3, 2, 1), 50,000 steps | plain SGD 0.1 + weight decay | 0/1 | 0.42 / 0.80 | 0.59 | 0.19 / 0.06 | 0.21 / 0.07 | 12 → 12 | 8 + 11 | 0.07 / 0.03 / 0.16 |
+<!-- /REST -->
+
+Over training, the same runs: the training share snapped / soft / one size up ((3, 3, 2), on the curve's 500-question
+sample), medians over the seeds:
+
+<!-- REST_CURVE -->
+| trained at (3, 2, 1); one size up is (3, 3, 2) | step 1,000 | step 10,000 | step 25,000 | step 50,000 |
+|---|---|---|---|---|
+| Adam, eps 1e-4 (2 seeds) | 0.41 / 0.89 / 0.07 | 0.41 / 0.79 / 0.05 | 0.27 / 0.35 / 0.07 | 0.20 / 0.29 / 0.05 |
+| AdamW, eps 1e-4, weight decay 0.3 (2 seeds) | 0.39 / 0.93 / 0.06 | 0.34 / 0.94 / 0.05 | 0.37 / 0.86 / 0.05 | 0.33 / 0.89 / 0.05 |
+| plain SGD, learning rate 0.01 (1 seed) | 0.18 / 0.18 / 0.06 | 0.29 / 0.51 / 0.04 | 0.41 / 1.00 / 0.05 | 0.40 / 1.00 / 0.08 |
+| plain SGD 0.01 + weight decay (3 seeds) | 0.18 / 0.18 / 0.07 | 0.29 / 0.47 / 0.05 | 0.21 / 0.59 / 0.04 | 0.17 / 0.52 / 0.03 |
+| plain SGD, learning rate 0.1 (2 seeds) | 0.46 / 0.55 / 0.06 | 0.38 / 0.66 / 0.04 | 0.15 / 0.15 / 0.06 | 0.15 / 0.15 / 0.06 |
+| plain SGD 0.1 + weight decay (1 seed) | 0.10 / 0.33 / 0.06 | 0.48 / 0.71 / 0.04 | 0.44 / 0.96 / 0.05 | 0.42 / 0.80 / 0.04 |
+<!-- /REST_CURVE -->
+
+The 13 cut-off runs, each at the step it reached when Modal stopped it, and its last curve point:
+
+<!-- REST_CUT -->
+| arm | seed | stopped at step | at its last curve point: training, snapped / soft | one size up (k + 1 / w + 1, k + 1) | its best over the run | weight norm |
+|---|---|---|---|---|---|---|
+| Adam, eps 1e-4 | 1 | 45,000 | 0.13 / 0.26 | 0.15 / 0.05 | 0.21 / 0.08 | 62 |
+| Adam, eps 1e-4 | 2 | 42,500 | 0.37 / 0.76 | 0.10 / 0.02 | 0.21 / 0.08 | 67 |
+| AdamW, eps 1e-4, weight decay 0.3 | 2 | 37,500 | 0.28 / 1.00 | 0.14 / 0.05 | 0.19 / 0.07 | 12 |
+| AdamW, eps 1e-4, weight decay 0.3 | 3 | 18,000 | 0.40 / 0.87 | 0.19 / 0.08 | 0.20 / 0.08 | 12 |
+| plain SGD, learning rate 0.01 | 1 | 46,500 | 0.33 / 1.00 | 0.17 / 0.05 | 0.22 / 0.08 | 26 |
+| plain SGD, learning rate 0.01 | 2 | 32,000 | 0.29 / 1.00 | 0.12 / 0.05 | 0.24 / 0.09 | 26 |
+| plain SGD, learning rate 0.01 | 3 | 42,000 | 0.31 / 1.00 | 0.08 / 0.05 | 0.18 / 0.08 | 27 |
+| plain SGD 0.01 + weight decay | 0 | 44,000 | 0.20 / 0.61 | 0.13 / 0.04 | 0.22 / 0.09 | 7 |
+| plain SGD, learning rate 0.1 | 1 | 36,000 | 0.12 / 0.12 | 0.12 / 0.05 | 0.22 / 0.06 | 47 |
+| plain SGD, learning rate 0.1 | 3 | 34,000 | 0.18 / 0.18 | 0.18 / 0.06 | 0.22 / 0.08 | 51 |
+| plain SGD 0.1 + weight decay | 1 | 37,000 | 0.36 / 0.95 | 0.18 / 0.05 | 0.21 / 0.08 | 12 |
+| plain SGD 0.1 + weight decay | 2 | 45,500 | 0.34 / 0.73 | 0.13 / 0.05 | 0.21 / 0.08 | 13 |
+| plain SGD 0.1 + weight decay | 3 | 29,500 | 0.55 / 0.99 | 0.16 / 0.05 | 0.24 / 0.10 | 12 |
+<!-- /REST_CUT -->
+
+How sharp the states are at the end, as in §9's table (the runs that finished):
+
+<!-- REST_SHARP -->
+| rule | weight norm | training, snapped / soft | d | n | b | m | g |
+|---|---|---|---|---|---|---|---|
+| the compiled rule, output scale 4 | 45 | 1.00 / 1.00 | 0.95 (100%) | 0.95 (100%) | 0.98 (100%) | 0.96 (100%) | 0.98 (100%) |
+| the compiled rule, output scale 20 | 198 | 1.00 / 1.00 | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) |
+| Adam, eps 1e-4 (2 seeds) | 63 | 0.20 / 0.29 | 1.00 (88%) | 1.00 (92%) | 1.00 (97%) | 1.00 (98%) | 1.00 (98%) |
+| AdamW, eps 1e-4, weight decay 0.3 (2 seeds) | 12 | 0.33 / 0.89 | 0.80 (33%) | 0.54 (2%) | 0.92 (54%) | 0.64 (4%) | 0.70 (10%) |
+| plain SGD, learning rate 0.01 (1 seed) | 27 | 0.40 / 1.00 | 0.99 (73%) | 0.84 (40%) | 1.00 (86%) | 0.87 (44%) | 0.94 (62%) |
+| plain SGD 0.01 + weight decay (3 seeds) | 7 | 0.17 / 0.52 | 0.73 (18%) | 0.54 (0%) | 0.85 (37%) | 0.55 (0%) | 0.64 (0%) |
+| plain SGD, learning rate 0.1 (2 seeds) | 82 | 0.15 / 0.15 | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) |
+| plain SGD 0.1 + weight decay (1 seed) | 12 | 0.42 / 0.80 | 0.80 (37%) | 0.74 (21%) | 0.89 (48%) | 0.71 (17%) | 0.86 (42%) |
+<!-- /REST_SHARP -->
+
+**What was tried, and how hard** (dead ends):
+- Plain SGD's learning rate (`rest_lr`, one seed each): 0.01, 0.03, 0.1, 0.3 and 1 from random for 5,000 steps;
+  0.003, 0.01 and 0.02 from the compiled rule for 10,000.
+- From random at (3, 2, 1) (`rest1`): Adam with eps 1e-4 and plain SGD at 0.01 and 0.1, each alone and with weight
+  decay, 4 seeds each, 50,000 steps (11 runs finished; 13 stopped at steps 18,000–46,500).
+- From the compiled rule at (3, 2, 1) (`rest_stab`): the same six arms at output scale 4, and with plain Adam and
+  AdamW 0.3 at output scale 20, 4 seeds each, 10,000 steps.
+- From the compiled rule at (3, 3, 2) (`rest_stab3`): plain Adam, Adam with eps 1e-4, plain SGD at 0.003 and 0.01, 4
+  seeds each, 10,000 steps.
+- In all, 104 runs: 29 from random and 75 from the compiled rule.
+- Not tried: (3, 3, 2) from random (at (3, 2, 1) no arm came near the rule, and at (3, 3, 2) none of §9's arms fit
+  even the soft path in 20,000 steps); at (3, 3, 2), a learning rate below 0.003 or a clipped gradient, which might
+  keep SGD from falling; SGD with momentum; a learning rate that falls over the run; other values of eps; training on
+  the snapped path (STE).
+
+**Budget notes.**
+- The 104 runs cost about $45 on Modal.
+- (3, 2, 1) ran on 4-core CPU containers at 0.19–0.31 s a step, SGD as fast as Adam (3.0–4.1 hours for a run of
+  50,000 steps); (3, 3, 2) on L4 GPUs, two or three runs to a GPU, at 0.82–0.92 s a step (2.3–2.6 hours for 10,000).
+- As in §9, Modal preempted CPU containers and the runs resumed from their checkpoints. One `rest1` run (AdamW with
+  eps 1e-4, seed 2) restarted from step 0 instead of resuming at step 10,500: Modal hands a container that has finished
+  one job the next, and such a container sees the Volume as it was when it started, so the run did not find its own
+  checkpoint. `modal_nca.py` now reloads the Volume before each job (in later launches; this sweep was already
+  running).
+- At about 07:25 PT on 2026-10-24 the workspace reached its Modal spend limit, and Modal stopped every container and
+  refused new ones, with 13 `rest1` runs unfinished (the last `rest_stab3` record was written 5 seconds before its app
+  stopped). Their checkpoints are on the Volume: relaunching `rest1` resumes them where they stopped.
+
+## 11. The traps, and the project's fixes, against the bridge
 
 The project's named traps ([OVERVIEW.md](../OVERVIEW.md) §3, [BRIDGE.md](../bridge/BRIDGE.md) §6), as they show up
 here:
@@ -1016,7 +1301,7 @@ here:
 | **lookup arrangements** (the quotient slots' trap) | soft trial slots co-adapt into a lookup | straight-through states reach 0.32–0.98 of training on the snapped path (3 runs fit it exactly at some step), at chance one size up |
 | **self-copy, and the blank grid** (new) | a causal mask keeps a cell from reading itself | told only that the machine's settled grid must be a resting state (`selfcopy2`), every rule learns that, and every run then answers 0 on 91–100% of questions: a cell that reads its own state holds it, and with the own state hidden the blank grid is still a second resting state, which the run from blank never leaves |
 | **a second resting state** (new) | the causal mask makes the grid a feed-forward circuit | a rule that reads the row below makes rows feed back; a bigger grid settles into another self-consistent pattern |
-| **situations never met** (new) | ports are fixed, so a cell sees only what it uses | a third to two thirds of a bigger grid's cells see a neighbourhood training never showed; a dense rule is undefined there |
+| **situations never met** (new) | ports are fixed, so a cell sees only what it uses | a third to two thirds of a bigger grid's cells see a neighbourhood training never showed; a dense rule is undefined there, and even the exact rule, trained further on lessons, drifts there (§10) |
 
 The fixes, in their most generic forms:
 - **snapping** (straight-through): closes the analog code's soft/hard gap, and raises the snapped training share, but
@@ -1039,14 +1324,19 @@ fixed or chosen from about 10 options, and taught by lessons on cells and sub-gr
 moving a digit from where it is to where it is needed is a chain of learned copies through every cell in between, the
 lessons say nothing about a copy, and the soft search finds a memorizing code first.
 
-## 11. Caveats
+## 12. Caveats
 
 - **Tiny sizes, few seeds.** Base 3, two- and three-digit moduli for training, 2 seeds per arm (6 for the causal
-  trace at (3, 2, 1), 14 for the certified setting, 4 per arm in §9 and 2 per arm from the compiled rule), one
-  learning rate per family. "0/2" means no seed of 2, not never.
-- **One optimizer.** Every run is Adam (AdamW with decay) at its default eps. §9 shows that Adam does not rest at the
-  compiled rule, so its arms were tested on top of an optimizer that drifts off an exact rule; an optimizer that can
-  rest there was not tried.
+  trace at (3, 2, 1), 14 for the certified setting, 4 per arm in §9 and §10, 2 per arm in §9's starts from the
+  compiled rule; 11 of §10's 24 runs from random finished), one learning rate per family (§10 scans plain SGD's on one
+  seed). "0/2" means no seed of 2, not never.
+- **Few optimizers.** Every run before §10 is Adam (AdamW with decay) at its default eps, which does not rest at the
+  compiled rule. §10 adds Adam with eps 1e-4 and plain SGD, without momentum and at a fixed learning rate. At (3, 3, 2)
+  plain SGD falls off the rule in every seed, and nothing that might keep it on (a smaller learning rate, a clipped
+  gradient) was tried.
+- **(3, 3, 2) ran on GPUs, (3, 2, 1) on CPUs.** PyTorch lets cuDNN run float32 convolutions in TF32 by default, so the
+  (3, 3, 2) runs of §9 and §10 may have trained at lower precision; §10's plain SGD falls only there, and whether
+  precision plays a part is untested.
 - **The grid is designed.** The rows' kinds (SHIFT, SUB, SEL; SPLIT, MUL), the number of ticks, where the prompt is
   written and where the answer is read are all given, as the bridge gave its notches the grid. Nothing here asks the
   cells to discover the worksheet's layout. A cell knows its own kind and its neighbours' kinds.
@@ -1057,11 +1347,12 @@ lessons say nothing about a copy, and the soft search finds a memorizing code fi
   bridge's cell lessons carried.
 - **The trace is not a lesson the task offers.** It tells every cell its next state at every tick. It is here to
   separate what the format can learn from what the lessons can teach.
-- **Budgets are small, except in §9.** 3,000 steps for the MLP rules in §3–§8; the bit-level arm, which usually needs
-  far longer, got 10,000 in its last suite. §9 trains 20,000 steps at (3, 3, 2) and 50,000 at (3, 2, 1), without
-  early stopping. The first bit-level trace suite ran out of memory (8 GB per container) and was stopped; its
-  successor samples 6 ticks of the trace per step. The gates' wiring was random and fixed throughout: DiffLogic CA's
-  structured perception stage, or wiring chosen by whole-option search, was not tried.
+- **Budgets are small, except in §9 and §10.** 3,000 steps for the MLP rules in §3–§8; the bit-level arm, which
+  usually needs far longer, got 10,000 in its last suite. §9 trains 20,000 steps at (3, 3, 2) and 50,000 at (3, 2, 1),
+  without early stopping; §10 50,000 from random and 10,000 from the compiled rule. The first bit-level trace suite
+  ran out of memory (8 GB per container) and was stopped; its successor samples 6 ticks of the trace per step. The
+  gates' wiring was random and fixed throughout: DiffLogic CA's structured perception stage, or wiring chosen by
+  whole-option search, was not tried.
 - **The compile check of the two biggest squares, (3, 5) and (5, 3), ran out of memory** (8 GB per container) on
   every try and was stopped; the compile table has every other size. (The runs that were still going when §3–§8
   were first written have since been folded in.)
@@ -1076,7 +1367,7 @@ lessons say nothing about a copy, and the soft search finds a memorizing code fi
   misses of that size (a 0.03% miss rate escapes a sample of 3,000 about half the time). It is not H1's
   certification, and nothing here was run on H1.
 
-## 12. Reproduce
+## 13. Reproduce
 
 Run from `cpu_first/` with the sotaku venv's Python (`~/github/sotaku/venv/bin/python`, torch 2.8.0). Local commands
 take seconds to a minute and stay under 1 GB; the sweeps run on Modal (app and Volume `nca`, launched through a remote
@@ -1180,6 +1471,48 @@ The weight norm the compiled rule needs and the sharpness of the trained runs' s
 ~/github/sotaku/venv/bin/python -m nca.rest
 ```
 
+The optimizers that can rest at the rule (§10): plain SGD's learning rate, then the arms from random and from the
+compiled rule at (3, 2, 1), then the start at (3, 3, 2) on GPU, each launched, watched and fetched as above:
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach nca/modal_nca.py --suite rest_lr
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach nca/modal_nca.py --suite rest1,rest_stab
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach nca/modal_nca.py --suite rest_stab3
+```
+
+The curves of the `rest1` runs that Modal stopped at the workspace's spend limit, read from the Volume (seconds,
+written to `records/rest_cut.json`); launching `rest1` again resumes them from their checkpoints:
+
+```bash
+~/github/sotaku/venv/bin/python -m nca.cut rest
+```
+
+Where the drifted rule goes wrong (about 30 seconds, written to `records/erosion.json`), then the lessons' gradient at
+the compiled rule, the rule shrunk as weight decay alone would shrink it, and plain SGD at the rule where every lesson
+is met (seconds each):
+
+```bash
+~/github/sotaku/venv/bin/python -m nca.erosion
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m nca.rest grads
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m nca.rest shrink
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m nca.rest sgd
+```
+
 The situations count (seconds) and the tables:
 
 ```bash
@@ -1199,16 +1532,21 @@ Files:
 - `hyper.py`: the generator-wired NCA (all-to-all heads weighted by g), its compiled point and check
   (`records/compile_hyper.json`), the wiring probes, the one-port census and the first pull;
 - `compile.py`: the compile check;
-- `train.py`: the lessons, training (Adam or AdamW; the AND-mask and delta-bar-delta speeds; checkpoints),
+- `train.py`: the lessons, training (Adam, AdamW or plain SGD; the AND-mask and delta-bar-delta speeds; checkpoints),
   certification, the probes (the plumbing probe among them) and the per-cell diagnosis;
 - `suites.py`, `modal_nca.py`: the sweeps and their launcher;
 - `situations.py`: how many of a bigger grid's local situations are new;
 - `verify.py`: the certified rules checked further out from their saved weights;
 - `where.py`: where a saved rule misses on every question of a size (its records: `records/where_*.json`);
-- `sharpness.py`: the weight norm the compiled rule needs on the soft path, and how sharp the trim runs' states are;
-- `rest.py`: whether Adam rests at the compiled rule;
-- `cut.py`: the curve of the trim run that stopped without a record, saved before it was resumed;
+- `sharpness.py`: the weight norm the compiled rule needs on the soft path, and how sharp the trim and rest1 runs'
+  states are;
+- `rest.py`: whether an optimizer rests at the compiled rule (Adam, Adam with eps 1e-4, plain SGD), the lessons'
+  gradient there, and the rule shrunk as weight decay alone would shrink it;
+- `erosion.py`: where a rule that kept its training answers goes wrong one size up;
+- `cut.py`: the curves of runs that stopped without a record (§9's trim run, saved before it was resumed; §10's
+  rest1 runs that Modal stopped);
 - `summarize.py`, `fill.py`: the tables;
-- `records/`: compile.json, situations.json, verify.json, where_*.json, sharpness.json, trim_cut.json; `runs/`: one
-  jsonl per suite, each record holding its config, its training log and its probes (and, in cover2, cover3 and the
-  trim suites, the trained rule's weights; in the trim suites also its curve).
+- `records/`: compile.json, situations.json, verify.json, where_*.json, sharpness.json, trim_cut.json, rest_cut.json,
+  erosion.json; `runs/`: one jsonl per suite, each record holding its config, its training log and its probes (and,
+  in cover2, cover3, the trim suites and the rest suites but rest_lr, the trained rule's weights; in the trim and rest
+  suites also its curve).

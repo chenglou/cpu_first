@@ -527,6 +527,59 @@ def trim_stab():
             for aname, arm in arms.items() for seed in range(2)]
 
 
+def rest_lr():
+    """Plain SGD's learning rate for §10 at (3, 2, 1) in trim1's setting, one seed: from random for 5,000 steps (does
+    it learn, and how fast), and from the compiled rule at output scale 4 for 10,000 steps (does it keep the rule)."""
+    rand = [dict(TRIM, **TRIM_SIZES["w2"], optim="sgd", lr=lr, steps=5000, seed=0, cert=False, save_weights=False,
+                 tag="rand_sgd", name=f"rand_lr{lr:g}") for lr in (0.01, 0.03, 0.1, 0.3, 1.0)]
+    comp = [dict(TRIM, **TRIM_SIZES["w2"], optim="sgd", lr=lr, init="compiled", init_beta=4.0, steps=10000, seed=0,
+                 cert=False, save_weights=False, tag="b4_sgd", name=f"b4_lr{lr:g}") for lr in (0.003, 0.01, 0.02)]
+    return rand + comp
+
+
+# Adam with eps 1e-4 at trim1's learning rate; plain SGD at 0.01, the largest learning rate in rest_lr that kept the
+# scale-4 rule for 10,000 steps, and at 0.1, which learned fastest from random there but cannot keep it. Each alone and
+# with weight decay: AdamW 0.3, or SGD's L2 set to take the same 0.09% off every weight per step.
+REST_ARMS = {"eps": dict(eps=1e-4), "eps_wd0.3": dict(optim="adamw", wd=0.3, eps=1e-4),
+             **{f"sgd{lr:g}{wd}": dict(optim="sgd", lr=lr, wd=0.003 * 0.3 / lr if wd else 0.0)
+                for lr in (0.01, 0.1) for wd in ("", "_wd")}}
+
+
+def rest1(seeds=range(4)):
+    """§10: optimizers that can rest at the compiled rule (REST_ARMS), taught by lessons only as in trim1 at (3, 2, 1)
+    on CPU, from random; 50,000 steps, 4 seeds."""
+    return [dict(TRIM, **TRIM_SIZES["w2"], **arm, steps=50000, seed=seed, tag=f"w2_{aname}", name=f"w2_{aname}_s{seed}")
+            for aname, arm in REST_ARMS.items() for seed in seeds]
+
+
+def rest_stab(seeds=range(4)):
+    """rest1's arms started at the compiled rule as in trim_stab (output scale 4), and at output scale 20, where every
+    lesson is met and its gradient is about 1e-8 (with plain Adam and AdamW 0.3 there too: trim_stab ran them only at
+    scale 4); 10,000 steps, 4 seeds."""
+    jobs = []
+    for beta, arms in ((4.0, REST_ARMS), (20.0, {"ctl": {}, "wd0.3": TRIM_ARMS["wd0.3"], **REST_ARMS})):
+        jobs += [dict(TRIM, **TRIM_SIZES["w2"], **arm, init="compiled", init_beta=beta, steps=10000, seed=seed,
+                      tag=f"b{beta:g}_{aname}", name=f"b{beta:g}_{aname}_s{seed}")
+                 for aname, arm in arms.items() for seed in seeds]
+    return jobs
+
+
+def rest_stab3(seeds=range(4), pack=3):
+    """§10 at (3, 3, 2), where almost every local situation of a bigger grid occurs: started at the compiled rule
+    (output scale 4, the smallest at which it is exact there on both paths), trim1's (3, 3, 2) lessons (batches of 256,
+    on GPU, up to `pack` runs to a GPU), 10,000 steps, 4 seeds. Plain Adam (trim_stab ran only at (3, 2, 1)), Adam with
+    eps 1e-4, and plain SGD at 0.003 and 0.01: at (3, 2, 1) both rates kept the training answers for 10,000 steps, and
+    0.01 eroded the rule one size up."""
+    arms = {"ctl": {}, "eps": REST_ARMS["eps"], "sgd0.003": dict(optim="sgd", lr=0.003),
+            "sgd0.01": REST_ARMS["sgd0.01"]}
+    jobs = [dict(TRIM, **TRIM_SIZES["w3"], **arm, init="compiled", init_beta=4.0, steps=10000, seed=seed,
+                 tag=f"w3_{aname}", name=f"w3_{aname}_s{seed}") for aname, arm in arms.items() for seed in seeds]
+    npacks = -(-len(jobs) // pack)
+    for i, j in enumerate(jobs):
+        j["pack"] = f"p{i % npacks}"
+    return jobs
+
+
 def compile_all():
     """The compile check (compile.py), one job per size: the division at every size of compile.SIZES with the
     prompt re-injected and written only at tick 0; the square at every size of compile.SIZES_SQ; and both at a few
@@ -552,4 +605,4 @@ SUITES = {"explore": explore, "ladder2": ladder2, "square1": square1, "diag1": d
           "causal2": causal2, "logic3": logic3,
           "partial1": partial1, "cover1": cover1,
           "cover2": cover2, "selfcopy2": selfcopy2, "cover3": cover3,
-          "hyper1": hyper1, "hyper2": hyper2, "hyper3": hyper3, "hyper_stab": hyper_stab, "hyper_diag": hyper_diag, "trim_time": trim_time, "trim_time2": trim_time, "trim_time3": trim_time3, "trim_time4": trim_time4, "trim1": trim1, "trim_cols": trim_cols, "trim_stab": trim_stab, "verify": lambda: __import__("nca.verify", fromlist=["jobs"]).jobs()}
+          "hyper1": hyper1, "hyper2": hyper2, "hyper3": hyper3, "hyper_stab": hyper_stab, "hyper_diag": hyper_diag, "trim_time": trim_time, "trim_time2": trim_time, "trim_time3": trim_time3, "trim_time4": trim_time4, "trim1": trim1, "trim_cols": trim_cols, "trim_stab": trim_stab, "rest_lr": rest_lr, "rest1": rest1, "rest_stab": rest_stab, "rest_stab3": rest_stab3, "verify": lambda: __import__("nca.verify", fromlist=["jobs"]).jobs()}

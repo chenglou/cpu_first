@@ -12,6 +12,9 @@ is already on the Volume or in the local file. Modal restarts a killed container
 preemption); a job that starts twice in a row (per launch) without writing a new checkpoint is reported failed
 instead of starting again: the starts are counted on the Volume. A run with a curve (`curve_every`) saves itself at every curve point under
 <VERSION>/.ckpt/<suite>/ and resumes from there when restarted; `--peek` prints each such run's latest curve point.
+Modal hands a container that has finished one job the next, and a container sees the Volume as it was when it
+started, so every job first reloads the Volume: without that, a restarted run that landed on such a container could
+miss its own checkpoint and start over (one rest1 run did, on 2026-10-24).
 """
 
 from __future__ import annotations
@@ -37,6 +40,10 @@ def _prepare(job: dict, device: str):
     that dies still counts it; a new checkpoint since the last start resets the count), give a train job its device
     and checkpoint path. Returns (job, None) to run, or (None, result) when there is nothing to run."""
     import os
+    try:
+        vol.reload()                      # the Volume as it is now, not as it was when this container started
+    except Exception as e:                # (it refuses while a file is open; the job then sees the older view)
+        print("Volume reload failed:", repr(e)[:200], flush=True)
     job = dict(job)
     launch = job.pop("launch", "")
     job.pop("gpu", None)

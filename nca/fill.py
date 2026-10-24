@@ -345,25 +345,28 @@ TRIM_ARMS = {"ctl": "plain Adam (the control)", "wd0.1": "AdamW, weight decay 0.
              "and_wd0.3": "AND-mask + weight decay 0.3", "dbd_wd0.3": "delta-bar-delta + weight decay 0.3",
              "and_cols": "AND-mask over the 4 columns",
              "and_cols_wd0.3": "AND-mask over the columns + weight decay 0.3"}
+REST_ARMS = {"eps": "Adam, eps 1e-4", "eps_wd0.3": "AdamW, eps 1e-4, weight decay 0.3",
+             "sgd0.01": "plain SGD, learning rate 0.01", "sgd0.01_wd": "plain SGD 0.01 + weight decay",
+             "sgd0.1": "plain SGD, learning rate 0.1", "sgd0.1_wd": "plain SGD 0.1 + weight decay"}
 
 
-def trim_rows():
-    return [json.loads(l) for s in ("trim1", "trim_cols") if (HERE / "runs" / f"{s}.jsonl").exists()
+def trim_rows(suites=("trim1", "trim_cols")):
+    return [json.loads(l) for s in suites if (HERE / "runs" / f"{s}.jsonl").exists()
             for l in open(HERE / "runs" / f"{s}.jsonl")]
 
 
-def trim_table():
-    """trim1 (§9), one row per size and arm, medians over seeds: training share snapped / soft at the end and its best
-    over the run; one size up at the end and the best any curve point reached (a late jump would show there); the
-    weight norm at the first and last curve points; the sub table and the plumbing probe at the end."""
+def trim_table(suites=("trim1", "trim_cols"), arms=TRIM_ARMS):
+    """trim1 (§9; rest1, §10), one row per size and arm, medians over seeds: training share snapped / soft at the end
+    and its best over the run; one size up at the end and the best any curve point reached (a late jump would show
+    there); the weight norm at the first and last curve points; the sub table and the plumbing probe at the end."""
     by = defaultdict(list)
-    for r in trim_rows():
+    for r in trim_rows(suites):
         by[r["cfg"]["tag"]].append(r)
     out = ["| trained at | arm | certified | training, snapped / soft | best training, snapped | one size up (k + 1 / "
            "w + 1, k + 1) | its best over the run | weight norm | sub table | plumbing: N's digit / old register / "
            "final borrow |", "|---|---|---|---|---|---|---|---|---|---|"]
     for size in ("w3", "w2"):
-        for arm, lab in TRIM_ARMS.items():
+        for arm, lab in arms.items():
             rs = by.get(f"{size}_{arm}")
             if not rs:
                 continue
@@ -384,15 +387,15 @@ def trim_table():
     return "\n".join(out)
 
 
-def trim_curve_table():
-    """trim1 (§9) over training, medians over seeds at a few curve points: training share snapped / soft, and one
-    size up ((B, w + 1, k + 1), on the curve's 500-question sample)."""
+def trim_curve_table(suites=("trim1", "trim_cols"), arms=TRIM_ARMS):
+    """trim1 (§9; rest1, §10) over training, medians over seeds at a few curve points: training share snapped / soft,
+    and one size up ((B, w + 1, k + 1), on the curve's 500-question sample)."""
     by = defaultdict(list)
-    for r in trim_rows():
+    for r in trim_rows(suites):
         by[r["cfg"]["tag"]].append(r)
     out = []
     for size, points in (("w3", (1000, 5000, 10000, 20000)), ("w2", (1000, 10000, 25000, 50000))):
-        rows = [(arm, lab, by[f"{size}_{arm}"]) for arm, lab in TRIM_ARMS.items() if by.get(f"{size}_{arm}")]
+        rows = [(arm, lab, by[f"{size}_{arm}"]) for arm, lab in arms.items() if by.get(f"{size}_{arm}")]
         if not rows:
             continue
         c = rows[0][2][0]["cfg"]
@@ -409,29 +412,51 @@ def trim_curve_table():
                 at = [x for x in at if x]
                 cells.append("·" if not at else f"{f2(med([x['train_hard'] for x in at]))} / "
                              f"{f2(med([x['train_soft'] for x in at]))} / {f2(med([x[up] for x in at]))}")
-            out.append(f"| {lab} | " + " | ".join(cells) + " |")
+            seeds = f" ({len(rs)} seed{'s' if len(rs) > 1 else ''})" if len(rs) < 4 else ""      # 4 per arm, if all ran
+            out.append(f"| {lab}{seeds} | " + " | ".join(cells) + " |")
     return "\n".join(out)
 
 
-def trim_stab_table():
-    """trim_stab (§9): each arm started at the compiled rule. Per arm, over its seeds: the step at which the training
-    share first fell below 1, snapped (the log, every 100 steps) and soft (the curve, every 500); the shares at the
-    end; the weight norm at the first and last curve points; one size up and certification at the end."""
-    p = HERE / "runs" / "trim_stab.jsonl"
+def cut_table(which="rest", arms=REST_ARMS):
+    """records/<which>_cut.json (§10): the runs that stopped short without a record, one row each: the step reached;
+    at its last curve point the training share snapped / soft, one size up (k + 1 / w + 1, k + 1) and the weight norm;
+    and the best one size up any of its curve points reached."""
+    p = HERE / "records" / f"{which}_cut.json"
+    if not p.exists():
+        return ""
+    arm = lambda pk: pk["tag"].split("_", 1)[1]
+    out = ["| arm | seed | stopped at step | at its last curve point: training, snapped / soft | one size up (k + 1 / "
+           "w + 1, k + 1) | its best over the run | weight norm |", "|---|---|---|---|---|---|---|"]
+    runs = sorted(json.loads(p.read_text()).items(), key=lambda kv: (list(arms).index(arm(kv[1])), kv[0]))
+    for name, pk in runs:
+        last, up = pk["curve"][-1], [k for k in pk["curve"][0] if k.count(",") == 2]
+        out.append(f"| {arms[arm(pk)]} | {name.rsplit('_s', 1)[1]} | {pk['step']:,} | {f2(last['train_hard'])} / "
+                   f"{f2(last['train_soft'])} | {' / '.join(f2(last[k]) for k in up)} | "
+                   f"{' / '.join(f2(max(x[k] for x in pk['curve'])) for k in up)} | {last['wnorm']:.0f} |")
+    return "\n".join(out)
+
+
+def trim_stab_table(suite="trim_stab", rows=tuple((f"w2_{a}", lab) for a, lab in TRIM_ARMS.items())):
+    """trim_stab (§9; rest_stab, §10): each arm started at the compiled rule, one row per (tag, label) in `rows`. Per
+    arm, over its seeds: the step at which the training share first fell below 1, snapped (the log, every 100 steps)
+    and soft (the curve, every 500); the shares at the end; the weight norm at the first and last curve points; one
+    size up and certification at the end."""
+    p = HERE / "runs" / f"{suite}.jsonl"
     by = defaultdict(list)
     for l in (open(p) if p.exists() else []):
         r = json.loads(l)
-        by[r["cfg"]["tag"].removeprefix("w2_")].append(r)
+        by[r["cfg"]["tag"]].append(r)
     first = lambda xs, key: next((f"{x['step']:,}" for x in xs if x[key] < 1.0), "never")
+    each = lambda xs: " and ".join(xs) if len(xs) < 3 else ", ".join(xs[:-1]) + " and " + xs[-1]
     out = ["| arm | first step below exact, snapped (each seed) | the same, soft | training at the end, snapped / soft "
            "| weight norm | one size up at the end (k + 1 / w + 1, k + 1) | certified | sub table |",
            "|---|---|---|---|---|---|---|---|"]
-    for arm, lab in TRIM_ARMS.items():
-        rs = sorted(by.get(arm, []), key=lambda r: r["cfg"]["seed"])
+    for tag, lab in rows:
+        rs = sorted(by.get(tag, []), key=lambda r: r["cfg"]["seed"])
         if not rs:
             continue
-        hard = " and ".join(first(r["log"], "exact") for r in rs)
-        soft = " and ".join(first(r["curve"], "train_soft") for r in rs)
+        hard = each([first(r["log"], "exact") for r in rs])
+        soft = each([first(r["curve"], "train_soft") for r in rs])
         tr = f"{f2(med([r['train_hard'] for r in rs]))} / {f2(med([r['train_soft'] for r in rs]))}"
         wn = f"{med([r['curve'][0]['wnorm'] for r in rs]):.0f} → {med([r['curve'][-1]['wnorm'] for r in rs]):.0f}"
         up = " / ".join(f2(med([r["bigger"][k] for r in rs])) for k in rs[0]["bigger"])
@@ -442,9 +467,111 @@ def trim_stab_table():
     return "\n".join(out)
 
 
-def sharp_table():
-    """records/sharpness.json (§9): the compiled rule at output scales 4 and 20, then every trim arm at (3, 2, 1)
-    (medians over its seeds, random starts only): the weight norm, the training share snapped / soft, and per channel
+def rest_lr_table():
+    """rest_lr (§10): plain SGD at each learning rate, one seed. From random: the training share snapped / soft at
+    steps 1,000 and 5,000, and the weight norm at 5,000. From the compiled rule (output scale 4): the first step below
+    exact, snapped (the log, every 100 steps) and soft (the curve, every 500), and the shares at step 10,000."""
+    p = HERE / "runs" / "rest_lr.jsonl"
+    rows = [json.loads(l) for l in open(p)] if p.exists() else []
+    rand = {r["cfg"]["lr"]: r for r in rows if r["cfg"]["tag"] == "rand_sgd"}
+    comp = {r["cfg"]["lr"]: r for r in rows if r["cfg"]["tag"] == "b4_sgd"}
+    at = lambda r, s: next((x for x in r["curve"] if x["step"] == s), None) if r else None
+    pair = lambda x: "·" if x is None else f"{f2(x['train_hard'])} / {f2(x['train_soft'])}"
+    first = lambda xs, key: next((f"{x['step']:,}" for x in xs if x[key] < 1.0), "never")
+    out = ["| learning rate | from random: training at step 1,000, snapped / soft | at step 5,000 | weight norm at "
+           "step 5,000 | from the compiled rule: first step below exact, snapped / soft | training at step 10,000 |",
+           "|---|---|---|---|---|---|"]
+    for lr in sorted(set(rand) | set(comp)):
+        a, b = rand.get(lr), comp.get(lr)
+        norm = f"{at(a, 5000)['wnorm']:.0f}" if at(a, 5000) else "·"
+        below = f"{first(b['log'], 'exact')} / {first(b['curve'], 'train_soft')}" if b else "·"
+        out.append(f"| {lr:g} | {pair(at(a, 1000))} | {pair(at(a, 5000))} | {norm} | {below} | "
+                   f"{pair(at(b, 10000))} |")
+    return "\n".join(out)
+
+
+def rest_stab_table():
+    """rest_stab (§10): rest1's arms started at the compiled rule at output scales 4 and 20 (at 20 also plain Adam and
+    AdamW 0.3), as in trim_stab_table."""
+    return trim_stab_table("rest_stab", [(f"b4_{a}", f"scale 4: {lab}") for a, lab in REST_ARMS.items()] +
+                           [(f"b20_{a}", f"scale 20: {lab}") for a, lab in
+                            {"ctl": TRIM_ARMS["ctl"], "wd0.3": TRIM_ARMS["wd0.3"], **REST_ARMS}.items()])
+
+
+REST3_ARMS = {"ctl": TRIM_ARMS["ctl"], "eps": REST_ARMS["eps"], "sgd0.003": "plain SGD, learning rate 0.003",
+              "sgd0.01": "plain SGD, learning rate 0.01"}
+
+
+def arm_label(c):
+    """An optimizer's name from a run's cfg (the arms of §10)."""
+    if c["optim"] == "sgd":
+        return f"plain SGD, learning rate {c['lr']:g}" + (" + weight decay" if c["wd"] else "")
+    eps = f", eps {c['eps']:.0e}".replace("e-0", "e-") if c["eps"] != 1e-8 else ""          # 1e-4, as REST_ARMS says
+    if c["optim"] == "adamw":
+        return f"AdamW{eps}, weight decay {c['wd']:g}"
+    return f"Adam{eps}" if eps else "plain Adam"
+
+
+def rest_up_table(points=(2500, 5000, 7500, 10000)):
+    """rest_lr, rest_stab and rest_stab3 (§10): the compiled starts that ended with every training answer right on the
+    snapped path, one row per size, output scale and arm: one size up (k + 1 / w + 1, k + 1, on the curve's sample
+    of 500 questions) at a few curve points, medians over the seeds."""
+    by = defaultdict(list)
+    for suite in ("rest_stab", "rest_stab3", "rest_lr"):          # rest_lr only where the others ran nothing
+        p = HERE / "runs" / f"{suite}.jsonl"
+        got = defaultdict(list)
+        for r in map(json.loads, open(p) if p.exists() else []):
+            c = r["cfg"]
+            if c["init"] == "compiled":
+                got[(c["w"], c["init_beta"], arm_label(c))].append(r)
+        by.update({key: rs for key, rs in got.items() if key not in by})
+    out = ["| started at the compiled rule | seeds | " + " | ".join(f"step {p:,}" for p in points) + " |",
+           "|---|---|" + "---|" * len(points)]
+    for (w, beta, lab), rs in sorted(by.items(), key=lambda kv: (kv[0][0], kv[0][1], kv[1][0]["cfg"]["lr"])):
+        if not all(r["train_hard"] == 1.0 for r in rs):
+            continue
+        c = rs[0]["cfg"]
+        ups = [f"{c['B']},{c['w']},{c['k'] + 1}", f"{c['B']},{c['w'] + 1},{c['k'] + 1}"]
+        cells = []
+        for p in points:
+            at = [x for x in (next((x for x in r["curve"] if x["step"] == p), None) for r in rs) if x]
+            cells.append("·" if not at else " / ".join(f2(med([x[u] for x in at])) for u in ups))
+        out.append(f"| ({c['B']}, {c['w']}, {c['k']}), output scale {beta:g}: {lab} | {len(rs)} | " +
+                   " | ".join(cells) + " |")
+    return "\n".join(out)
+
+
+def erosion_table():
+    """records/erosion.json (§10): where a rule that kept its training answers goes wrong one size up. Per record and
+    size: the answers right run freely; the share of the machine's cell-ticks whose situation never occurs at the
+    training size; the trained rule's one-tick errors in situations met there and never met (count and rate)."""
+    p = HERE / "records" / "erosion.json"
+    if not p.exists():
+        return ""
+    recs = {f"{s}/{r['name']}": r for s in ("rest_stab", "rest_stab3")
+            if (HERE / "runs" / f"{s}.jsonl").exists() for r in map(json.loads, open(HERE / "runs" / f"{s}.jsonl"))}
+    pct = lambda n, of: f"{n:,} ({100 * n / of:.2g}%)" if of else "·"
+    out = ["| rule | measured at | answers right | cell-ticks in situations never met at the training size | one-tick "
+           "errors in situations met there (rate) | in situations never met (rate) |", "|---|---|---|---|---|---|"]
+    for name, e in json.loads(p.read_text()).items():
+        c, t = recs[name]["cfg"], e["train"]
+        lab = f"{arm_label(c)}, {e['steps']:,} steps from the compiled rule (output scale {c['init_beta']:g})"
+        out.append(f"| {lab} | ({', '.join(map(str, t['size']))}), the training size, {t['questions']:,} questions | "
+                   f"{f2(t['right'])} | · | {pct(t['errors'], t['cell_ticks'])} | · |")
+        for size, x in e.items():
+            if size in ("steps", "train"):
+                continue
+            q = f"every one of {x['questions']:,} questions" if x["every"] else f"a sample of {x['questions']:,}"
+            nn = round(x["never_met"] * x["cell_ticks"])
+            out.append(f"| | ({size.replace(',', ', ')}), {q} | {f2(x['right'])} | {x['never_met']:.0%} | "
+                       f"{pct(x['errors'] - x['errors_never_met'], x['cell_ticks'] - nn)} | "
+                       f"{pct(x['errors_never_met'], nn)} |")
+    return "\n".join(out)
+
+
+def sharp_table(suites=("trim1", "trim_cols"), arms=TRIM_ARMS):
+    """records/sharpness.json (§9; rest1, §10): the compiled rule at output scales 4 and 20, then every arm of the
+    suites at (3, 2, 1) (medians over its seeds): the weight norm, the training share snapped / soft, and per channel
     the median of a state's largest probability over every tick and written cell (the share above 0.9)."""
     p = HERE / "records" / "sharpness.json"
     if not p.exists():
@@ -461,9 +588,9 @@ def sharp_table():
     by = defaultdict(list)
     for name, r in rec["runs"].items():
         suite, run = name.split("/")
-        if suite != "trim_stab":
+        if suite in suites:
             by[run.rsplit("_s", 1)[0].removeprefix("w2_")].append(r)
-    for arm, lab in TRIM_ARMS.items():
+    for arm, lab in arms.items():
         rs = by.get(arm)
         if not rs:
             continue
@@ -504,7 +631,12 @@ def main():
     tables = {"COMPILE": compile_table, "SITUATIONS": situations_table, "VERIFY": verify_table,
               "HYPER": lambda: hyper_table(rows), "HYPER_STAB": lambda: hyper_stab_table(rows),
               "HYPER_SWAPS": hyper_swaps_table, "TRIM": trim_table, "TRIM_CURVE": trim_curve_table,
-              "TRIM_STAB": trim_stab_table, "SHARP": sharp_table,
+              "TRIM_STAB": trim_stab_table, "SHARP": sharp_table, "REST_LR": rest_lr_table,
+              "REST": lambda: trim_table(("rest1",), REST_ARMS), "REST_STAB": rest_stab_table,
+              "REST_CURVE": lambda: trim_curve_table(("rest1",), REST_ARMS),
+              "REST_SHARP": lambda: sharp_table(("rest1",), REST_ARMS), "REST_UP": rest_up_table,
+              "EROSION": erosion_table, "REST_CUT": cut_table,
+              "REST_STAB3": lambda: trim_stab_table("rest_stab3", [(f"w3_{a}", lab) for a, lab in REST3_ARMS.items()]),
               **{t: (lambda t=t: run_table(rows, t)) for t in ("LESSONS", "TRACE", "SQUARE", "LOGIC")}}
     for name, fn in tables.items():
         pat = re.compile(rf"(<!-- {name} -->\n).*?(<!-- /{name} -->)", re.S)

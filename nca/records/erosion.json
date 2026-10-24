@@ -1,0 +1,39 @@
+{
+ "rest_stab/b4_sgd0.01_s0": {
+  "steps": 10000,
+  "train": {
+   "size": [
+    3,
+    2,
+    1
+   ],
+   "questions": 99,
+   "right": 1.0,
+   "cell_ticks": 49500,
+   "errors": 8,
+   "situations": 2853
+  },
+  "3,2,2": {
+   "questions": 297,
+   "every": true,
+   "right": 0.696969696969697,
+   "cell_ticks": 935550,
+   "never_met": 0.3077,
+   "errors": 9633,
+   "errors_never_met": 9605,
+   "error_rate_met": 4.3e-05,
+   "error_rate_never_met": 0.033371
+  },
+  "3,3,2": {
+   "questions": 200,
+   "every": false,
+   "right": 0.615,
+   "cell_ticks": 900000,
+   "never_met": 0.4689,
+   "errors": 9977,
+   "errors_never_met": 9965,
+   "error_rate_met": 2.5e-05,
+   "error_rate_never_met": 0.023612
+  }
+ }
+}

@@ -1,0 +1,36 @@
+integration/strict/records/s3is_h100_seed7.json
+integration/strict/fix/records/s3is_fix_h100_seed7.json
+
+== the study's own script
+climb and schedule lines: 71 vs 71: IDENTICAL
+SCHEDULE same
+  A: SCHEDULE phase=frozen io=5 step=20000 history=[(4, 'io2_digits'), (134, 'io3_ranked', (0, 0, 1, 1)), (152, 'io4_reading', 0.9909), (231, 'order_digits'), (271, 'switch', 271, 0.8455), (291, 'cells', 20), (634, 'climb', 363), (665, 'round', 4), (685, 'T_resolved', 64), (864, 'frozen', 200)]
+  train_s: 1112.3421715149998 vs 1487.3856250190001
+  eval_s: 157.70908498000063 vs 345.0941265890001
+  state: 289815 vs 289815
+  max T 64 / 64; splits {'ood_n_t': (10002, 10002), 'ood_t': (10002, 10002), 'test': (9999, 9999)}
+
+
+== the runner's compare
+reference: integration/strict/records/s3is_h100_seed7.json
+  s3is_h100_seed7 [h100] rc=0 T=64/64 steps=20000 frozen=864 train=1112s eval=158s wall=1276s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=11baebb4
+
+integration/strict/fix/records/s3is_fix_h100_seed7.json
+  s3is_fix_h100_seed7 [h100] rc=0 T=64/64 steps=20000 frozen=864 train=1487s eval=345s wall=1837s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=7297133d
+  DIFFERS  submission md5: 11baebb4265de98a395033ae90a3cebe vs 7297133d1a7aec497b0b923a6fa7bfb6
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 164 vs 164 entries, first difference at #64: LR climb step=635 L0 lt       cost 5 (library) levels [1, 32, 815, 20841, 554244, 19047855] 4.0s budget: level 5 streamed (over 5800000 states) ['CLC P[LDA.X SBB.N INC]', 'CLC LDA.X P[SBB.N INC]'] [work +1.301e+06, 1.301e+06 in all] (4.0s) vs LR climb step=635 L0 lt       cost 5 (library) levels [1, 32, 815, 20841, 554244, 19047855] 4.5s budget: level 5 streamed (over 5800000 states) ['CLC P[LDA.X SBB.N INC]', 'CLC LDA.X P[SBB.N INC]'] [work +1.301e+06, 1.301e+06 in all] (4.5s)
+  timing   train 1112.3s -> 1487.4s, eval 157.7s -> 345.1s, wall 1276s -> 1837s
+

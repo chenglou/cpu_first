@@ -1,0 +1,34 @@
+integration/learned_loop/records/b200/ll2_b200_seed5.json
+integration/learned_loop/fix/records/ll2_fix_b200_seed5.json
+
+== the study's own script
+schedule events: 8 and 8; identical over the first 8
+logged losses (every 50 steps): 18 and 18; identical over the first 18
+climb lines: 51 and 51; identical over the first 51
+round, reference: LR climb step=659 L4 round: cost 2 calls levels [1, 75, 3803, 164210, 8870972] Ts budget: level 4 streamed (over 4000000 states); by calls: levels [1, 447, 209239]  ['LDA.X STA.Y T.mul.x,o.XY STA.X LD
+round, new:       LR climb step=659 L4 round: cost 2 calls levels [1, 75, 3803, 164210, 8870972] Ts budget: level 4 streamed (over 4000000 states); by calls: levels [1, 447, 209239]  ['LDA.X STA.Y T.mul.x,o.XY STA.X LD
+
+
+== the runner's compare
+reference: integration/learned_loop/records/b200/ll2_b200_seed5.json
+  ll2_b200_seed5 [b200] rc=0 T=64/64 steps=20000 frozen=859 train=938s eval=94s wall=1036s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=419c15e7
+
+integration/learned_loop/fix/records/ll2_fix_b200_seed5.json
+  ll2_fix_b200_seed5 [b200] rc=0 T=64/64 steps=20000 frozen=859 train=1270s eval=197s wall=1471s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=b08c0087
+  DIFFERS  submission md5: 419c15e70ccf6483ff68b04b08f52bdc vs b08c00874507f5c8be5c2491ecb54612
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 204 vs 204 entries, first difference at #63: LR climb step=609 L0 pose: 71 candidates on 12 roots (0.1s) vs LR climb step=609 L0 pose: 71 candidates on 12 roots (0.2s)
+  timing   train 937.6s -> 1270.1s, eval 94.4s -> 196.9s, wall 1036s -> 1471s
+

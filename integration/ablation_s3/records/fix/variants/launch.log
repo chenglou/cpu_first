@@ -1,0 +1,79 @@
+LAUNCH OK
+2026-10-24 18:45:32 --mode official --file integration/strict/fix/submission_stage3_s3i_strict_fix.py --name s3is_fix_official --out integration/strict/fix/records --run fix8-s3is-official
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+[modal-client] 2026-10-24T18:45:55-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-GzEDKSJiTlfUm4RxiB06Nw
+2026-10-24 18:45:55 --mode official --file integration/strict/fix/submission_stage3_sp2_strict_fix.py --name sp2s_fix_official --out integration/strict/fix/records --run fix8-sp2s-official
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+[modal-client] 2026-10-24T18:46:19-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-K476TakTccEeCxaV9bmdXp
+2026-10-24 18:46:19 --mode official --file integration/learned_loop/fix/submission_stage3_ll_fix.py --name ll2_fix_official --out integration/learned_loop/fix/records --run fix8-ll-official
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+[modal-client] 2026-10-24T18:46:42-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-T0QQoEuoAZ5lgvPwLTn3JA
+2026-10-24 18:46:42 --mode official --file bar3/bridge/fix/submission_stage3_bridge_fix.py --name bridge_fix_official --out bar3/bridge/fix/records --run fix8-bridge-official
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+[modal-client] 2026-10-24T18:47:07-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-qh3yUeAVoOzISXUcScbz3C
+2026-10-24 18:47:07 --mode official --file integration/sp_breadth/fix/submission_spb_g3_fix.py --memory-gb 48 --name spb_g3_fix_official --out integration/sp_breadth/fix/records --run fix8-spb-official
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+[modal-client] 2026-10-24T18:47:29-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-JscCj3sC1f0UESV1SWa1B0
+2026-10-24 18:47:29 --mode official --file integration/sp_ablation/fix/book_min_fix.py --memory-gb 48 --name book_min_fix_official --out integration/sp_ablation/fix/records --run fix8-bookmin-official
+spawned book_min_fix_official on h100: fc-01M5RBW7RVM0CS4HB5BE8WHV4X
+[modal-client] 2026-10-24T18:47:52-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-iTB6ABXnJtbkqK6g5TBIHH
+2026-10-24 18:47:52 --mode official --file integration/sp_ablation/fix/book_gen_fix.py --memory-gb 48 --name book_gen_fix_official --out integration/sp_ablation/fix/records --run fix8-bookgen-official
+spawned book_gen_fix_official on h100: fc-01M5RBWYK5RPVC4Q38911EXV0H
+[modal-client] 2026-10-24T18:48:17-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-QW4dC2sYCrL1DUTbG0aoCK
+2026-10-24 18:48:17 --mode official --file integration/generic_ops/fix/submission_stage3_g3_fix.py --memory-gb 48 --name g3_fix_official --out integration/generic_ops/fix/records --run fix8-g3-official
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+[modal-client] 2026-10-24T18:48:41-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-IisNTZqnHECDh0MEZaBaQs
+  10-25 01:00 $8.20
+LAUNCH OK
+2026-10-24 19:05:49 --mode seeds book_min_fix
+[modal-client] 2026-10-24T19:06:13-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-6FLG8uyb1oJK5YMu3eYXcK
+LAUNCH OK
+2026-10-24 19:08:52 --mode seeds spb_g3_fix
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-wFvrv5MAFz7yNgQUjH2rT8
+LAUNCH OK
+2026-10-24 19:09:17 --mode plan fix8_spb_tasks
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-BOKHcrMh7QAcLA94UhCvXt
+LAUNCH OK
+2026-10-24 19:10:00 --mode seeds s3is_fix
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-0KPxmI4EvdL3gDMwvMVsJt
+LAUNCH OK
+2026-10-24 19:10:25 --mode seeds sp2s_fix
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-QaTyLvLGKuRSq6JSuvRlNT
+LAUNCH OK
+2026-10-24 19:16:57 --mode seeds ll2_fix
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-bCbKXxvFtOgtFHO3CUt1G3
+LAUNCH OK
+2026-10-24 19:29:56 --mode seeds bridge_fix
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-OH0VViP93P2S9TFOWf8Qxg
+LAUNCH OK
+2026-10-24 19:34:31 --mode seeds book_gen_fix
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-ebqmkVNvAQqUldNnWyUuJv
+LAUNCH OK
+2026-10-24 19:42:10 --mode seeds g3_fix
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-qTRicctkc9auB48GkJtMh1

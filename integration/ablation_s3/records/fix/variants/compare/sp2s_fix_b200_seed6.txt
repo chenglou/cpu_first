@@ -1,0 +1,36 @@
+integration/strict/records/sp2s_b200_seed6.json
+integration/strict/fix/records/sp2s_fix_b200_seed6.json
+
+== the study's own script
+climb and schedule lines: 97 vs 97: IDENTICAL
+SCHEDULE same
+  A: SCHEDULE phase=frozen io=5 step=20000 history=[(6, 'io2_digits'), (83, 'io3_ranked', (0, 0, 1, 1)), (105, 'io4_reading', 0.9903), (145, 'order_digits'), (189, 'switch', 189, 0.8107), (209, 'cells', 20), (549, 'climb', 360), (600, 'round', 1), (671, 'T_resolved', 64), (799, 'frozen', 200)]
+  train_s: 852.0295956210001 vs 1172.0067747879998
+  eval_s: 91.26537479000012 vs 197.22716430400033
+  state: 289816 vs 289816
+  max T 64 / 64; splits {'ood_n_t': (10002, 10002), 'ood_t': (10002, 10002), 'test': (9999, 9999)}
+
+
+== the runner's compare
+reference: integration/strict/records/sp2s_b200_seed6.json
+  sp2s_b200_seed6 [b200] rc=0 T=64/64 steps=20000 frozen=799 train=852s eval=91s wall=947s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=1a1f15fb
+
+integration/strict/fix/records/sp2s_fix_b200_seed6.json
+  sp2s_fix_b200_seed6 [b200] rc=0 T=64/64 steps=20000 frozen=799 train=1172s eval=197s wall=1374s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=bca0c4b3
+  DIFFERS  submission md5: 1a1f15fb231d6da5fd53d530bc9bdcb6 vs bca0c4b3bb894c93830e6ddccf463be4
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 208 vs 208 entries, first difference at #68: LR climb step=550 L0 pose: 70 candidates on 12 roots [work +0, 0 in all] (0.1s) vs LR climb step=550 L0 pose: 70 candidates on 12 roots [work +0, 0 in all] (0.2s)
+  timing   train 852.0s -> 1172.0s, eval 91.3s -> 197.2s, wall 947s -> 1374s
+

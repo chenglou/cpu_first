@@ -1,0 +1,44 @@
+integration/sp_ablation/records/book_gen_h100_seed74.json
+integration/sp_ablation/fix/records/book_gen_fix_official.json
+
+== the study's own script
+{
+ "compared": [
+  "certified",
+  "T",
+  "splits",
+  "steps",
+  "climb_step",
+  "round_step",
+  "frozen_step",
+  "T_step",
+  "rounds",
+  "round_lib",
+  "error"
+ ],
+ "differ": {}
+}
+
+== the runner's compare
+reference: integration/sp_ablation/records/book_gen_h100_seed74.json
+  book_gen_h100_seed74 [h100] rc=0 T=64/64 steps=20000 frozen=915 train=2428s eval=183s wall=2617s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=8bbac4a1
+
+integration/sp_ablation/fix/records/book_gen_fix_official.json
+  book_gen_fix_official [h100] rc=0 T=64/64 steps=20000 frozen=915 train=2500s eval=169s wall=2676s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=8b701e28
+  DIFFERS  submission md5: 8bbac4a1c631a08c8b72179de37fcb26 vs 8b701e2825db56ccc0df65805469f417
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 261 vs 261 entries, first difference at #71: LR climb step=641 L0 pose: 107 candidates on 24 roots (0.7s) vs LR climb step=641 L0 pose: 107 candidates on 24 roots (0.9s)
+  timing   train 2428.0s -> 2500.2s, eval 182.7s -> 169.1s, wall 2617s -> 2676s
+

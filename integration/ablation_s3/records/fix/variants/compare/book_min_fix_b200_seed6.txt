@@ -1,0 +1,44 @@
+integration/sp_ablation/records/book_min_b200_seed6.json
+integration/sp_ablation/fix/records/book_min_fix_b200_seed6.json
+
+== the study's own script
+{
+ "compared": [
+  "certified",
+  "T",
+  "splits",
+  "steps",
+  "climb_step",
+  "round_step",
+  "frozen_step",
+  "T_step",
+  "rounds",
+  "round_lib",
+  "error"
+ ],
+ "differ": {}
+}
+
+== the runner's compare
+reference: integration/sp_ablation/records/book_min_b200_seed6.json
+  book_min_b200_seed6 [b200] rc=0 T=64/64 steps=20000 frozen=795 train=732s eval=162s wall=899s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=e4732f09
+
+integration/sp_ablation/fix/records/book_min_fix_b200_seed6.json
+  book_min_fix_b200_seed6 [b200] rc=0 T=64/64 steps=20000 frozen=795 train=528s eval=94s wall=626s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=0546c790
+  DIFFERS  submission md5: e4732f09e8e5b46a8cfa5a1236771bd2 vs 0546c790106be9a15e2b9ed3b1b0e3fe
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 199 vs 199 entries, first difference at #70: LR climb step=551 L0 probe 12 roots 14.5s solved {'lt/pair@AX': 4, 'lt/pair@AY': 4, 'lt/pair@AN': 4, 'lt/pair@XY': 5, 'lt/pair@XN': 5, 'lt/pair@YX': 5, 'lt/pair@YN': 5, 'lt/pair@NX': 5, 'lt/pair@NY': 5} [('routines', 12.3)] (14.5s) vs LR climb step=551 L0 probe 12 roots 12.8s solved {'lt/pair@AX': 4, 'lt/pair@AY': 4, 'lt/pair@AN': 4, 'lt/pair@XY': 5, 'lt/pair@XN': 5, 'lt/pair@YX': 5, 'lt/pair@YN': 5, 'lt/pair@NX': 5, 'lt/pair@NY': 5} [('routines', 10.6)] (12.8s)
+  timing   train 732.3s -> 527.8s, eval 161.7s -> 93.8s, wall 899s -> 626s
+

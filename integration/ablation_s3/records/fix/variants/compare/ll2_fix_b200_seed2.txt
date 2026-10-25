@@ -1,0 +1,40 @@
+integration/learned_loop/records/b200/ll2_b200_seed2.json
+integration/learned_loop/fix/records/ll2_fix_b200_seed2.json
+
+== the study's own script
+schedule events: 7 and 7; identical over the first 7
+logged losses (every 50 steps): 34 and 25; identical over the first 25
+climb lines: 230 and 178; first differ at #110:
+    LR climb step=694 L10 deep ['x+on@XY', 'x+on@XN', 'x+on@YA', 'x+on@YX'] Ts solved {'red/x+on@XN': 5} [("deep ['T.acc.add.o,x,d.AXY', 'T.acc.mul.o,x,d.ANX', 'T.acc.mul.o,x,d.AXY', '
+    LR climb step=694 L10 deep ['x+on@XY', 'x+on@XN', 'x+on@YA', 'x+on@YX'] Ts solved {} [("deep ['T.acc.add.o,x,d.AXY', 'T.acc.mul.o,x,d.ANX', 'T.acc.mul.o,x,d.AXY', 'T.add.pair.AX', 
+round, reference: none
+round, new:       none
+
+
+== the runner's compare
+reference: integration/learned_loop/records/b200/ll2_b200_seed2.json
+  ll2_b200_seed2 [b200] rc=0 T=None/None steps=1698 frozen=- train=3600s eval=5s wall=3610s ood_n_t=5/10002 ood_t=20/10002 test=7/9999 md5=419c15e7
+
+integration/learned_loop/fix/records/ll2_fix_b200_seed2.json
+  ll2_fix_b200_seed2 [b200] rc=0 T=None/None steps=1242 frozen=- train=3600s eval=7s wall=3613s ood_n_t=5/10002 ood_t=20/10002 test=7/9999 md5=b08c0087
+  DIFFERS  submission md5: 419c15e70ccf6483ff68b04b08f52bdc vs b08c00874507f5c8be5c2491ecb54612
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  DIFFERS  steps: 1698 vs 1242
+  same     frozen step
+  DIFFERS  final train loss: 0.28351256251335144 vs 0.29146096110343933
+  same     state elements (model, optimizer)
+  DIFFERS  train trace (step, loss, accuracy): 18 vs 14 entries, first difference at #13: (1300, 0.292, 0.0) vs (1242, 0.291, 0.0)
+  DIFFERS  log without timings: 569 vs 456 entries, first difference at #62: LR climb step=584 L0 pose: 68 candidates on 12 roots (0.1s) vs LR climb step=584 L0 pose: 68 candidates on 12 roots (0.2s)
+  timing   train 3600.0s -> 3600.0s, eval 4.9s -> 7.1s, wall 3610s -> 3613s
+
+
+first climb line differing:
+  LR climb step=694 L10 deep ['x+on@XY', 'x+on@XN', 'x+on@YA', 'x+on@YX'] #s solved {'red/x+on@XN': 5} [("deep ['T.acc.add.o,x,d.AXY', 'T.acc.mul.o,x,d.ANX', 'T.acc.mul.o,x,d.AXY', 'T.add.pair.AX', 'T.add.pair.AY', 'T.lt.pair.AN', 'T.lt.pair.AY', 'T.min.pair.AY', 'T.mul.x,o.XY', 'T.red.Bx+d.XN', 'T.red.Bx+d.YN', 'T.red.pair.AN', 'T.red.x+dn.AN', 'T.red.x+dn.NX', 'T.red.x+dn.NY', 'T.red.x+dn.YA', 'T.red.x+n.XA', 'T.red.x+n.YA', 'T.sub.pair.AX', 'T.sub.x+n.XY', 'T.sub.x+n.YX']", #)] (#s)
+  LR climb step=694 L10 deep ['x+on@XY', 'x+on@XN', 'x+on@YA', 'x+on@YX'] #s solved {} [("deep ['T.acc.add.o,x,d.AXY', 'T.acc.mul.o,x,d.ANX', 'T.acc.mul.o,x,d.AXY', 'T.add.pair.AX', 'T.add.pair.AY', 'T.lt.pair.AN', 'T.lt.pair.AY', 'T.min.pair.AY', 'T.mul.x,o.XY', 'T.red.Bx+d.XN', 'T.red.Bx+d.YN', 'T.red.pair.AN', 'T.red.x+dn.AN', 'T.red.x+dn.NX', 'T.red.x+dn.NY', 'T.red.x+dn.YA', 'T.red.x+n.XA', 'T.red.x+n.YA', 'T.sub.pair.AX', 'T.sub.x+n.XY', 'T.sub.x+n.YX']", #)] (#s)

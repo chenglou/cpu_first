@@ -1,0 +1,36 @@
+integration/strict/records/sp2s_b200_seed5.json
+integration/strict/fix/records/sp2s_fix_b200_seed5.json
+
+== the study's own script
+climb and schedule lines: 90 vs 90: IDENTICAL
+SCHEDULE same
+  A: SCHEDULE phase=frozen io=5 step=20000 history=[(7, 'io2_digits'), (92, 'io3_ranked', (0, 0, 1, 1)), (114, 'io4_reading', 0.9905), (178, 'order_digits'), (220, 'switch', 220, 0.8434), (240, 'cells', 20), (588, 'climb', 368), (637, 'round', 1), (657, 'T_resolved', 64), (836, 'frozen', 200)]
+  train_s: 751.2108763190001 vs 743.2351126339998
+  eval_s: 95.31428619799999 vs 90.73128596400011
+  state: 289816 vs 289816
+  max T 64 / 64; splits {'ood_n_t': (10002, 10002), 'ood_t': (10002, 10002), 'test': (9999, 9999)}
+
+
+== the runner's compare
+reference: integration/strict/records/sp2s_b200_seed5.json
+  sp2s_b200_seed5 [b200] rc=0 T=64/64 steps=20000 frozen=836 train=751s eval=95s wall=850s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=1a1f15fb
+
+integration/strict/fix/records/sp2s_fix_b200_seed5.json
+  sp2s_fix_b200_seed5 [b200] rc=0 T=64/64 steps=20000 frozen=836 train=743s eval=91s wall=838s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=bca0c4b3
+  DIFFERS  submission md5: 1a1f15fb231d6da5fd53d530bc9bdcb6 vs bca0c4b3bb894c93830e6ddccf463be4
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 200 vs 200 entries, first difference at #70: LR climb step=595 L1 probe 12 roots 39.9s solved {'min/pair@AX': 4, 'min/pair@AY': 4, 'red/pair@AY': 3, 'eq/pair@AN': 5, 'min/pair@AN': 4, 'red/pair@AN': 3, 'min/pair@XA': 4, 'red/pair@XA': 5, 'min/pair@XY': 5, 'red/pair@XY': 4, 'min/pair@XN': 5, 'red/pair@XN': 4, 'min/pair@YA': 4, 'red/pair@YA': 5, 'min/pair@YX': 5, 'red/pair@YX': 4, 'min/pair@YN': 5, 'red/pair@YN': 4, 'eq/pair@NA': 4, 'min/pair@NA': 4, 'red/pair@NA': 5, 'min/pair@NX': 5, 'red/pair@NX': 4, 'min/pair@NY': 5, 'red/pair@NY': 4} [('routines', 34.6)] [work +3.362e+07, 3.869e+07 in all] (39.9s) vs LR climb step=595 L1 probe 12 roots 39.8s solved {'min/pair@AX': 4, 'min/pair@AY': 4, 'red/pair@AY': 3, 'eq/pair@AN': 5, 'min/pair@AN': 4, 'red/pair@AN': 3, 'min/pair@XA': 4, 'red/pair@XA': 5, 'min/pair@XY': 5, 'red/pair@XY': 4, 'min/pair@XN': 5, 'red/pair@XN': 4, 'min/pair@YA': 4, 'red/pair@YA': 5, 'min/pair@YX': 5, 'red/pair@YX': 4, 'min/pair@YN': 5, 'red/pair@YN': 4, 'eq/pair@NA': 4, 'min/pair@NA': 4, 'red/pair@NA': 5, 'min/pair@NX': 5, 'red/pair@NX': 4, 'min/pair@NY': 5, 'red/pair@NY': 4} [('routines', 34.5)] [work +3.363e+07, 3.87e+07 in all] (39.8s)
+  timing   train 751.2s -> 743.2s, eval 95.3s -> 90.7s, wall 850s -> 838s
+

@@ -1,0 +1,56 @@
+[
+ {
+  "name": "g3fix_minus1_h100",
+  "task": "minus1",
+  "file": "integration/sp_breadth/fix/submission_spb_g3_fix.py",
+  "hardware": "h100",
+  "memory_gb": 48
+ },
+ {
+  "name": "g3fix_ten_h100",
+  "task": "ten",
+  "file": "integration/sp_breadth/fix/submission_spb_g3_fix.py",
+  "hardware": "h100",
+  "memory_gb": 48
+ },
+ {
+  "name": "g3fix_rho_h100",
+  "task": "rho",
+  "file": "integration/sp_breadth/fix/submission_spb_g3_fix.py",
+  "hardware": "h100",
+  "memory_gb": 48
+ },
+ {
+  "name": "g3fix_plus3_h100",
+  "task": "plus3",
+  "file": "integration/sp_breadth/fix/submission_spb_g3_fix.py",
+  "hardware": "h100",
+  "memory_gb": 48
+ },
+ {
+  "name": "g3fix_tenrho_h100",
+  "task": "tenrho",
+  "file": "integration/sp_breadth/fix/submission_spb_g3_fix.py",
+  "hardware": "h100",
+  "memory_gb": 48
+ },
+ {
+  "name": "g3fix_m4_h100",
+  "task": "m4",
+  "file": "integration/sp_breadth/fix/submission_spb_g3_fix.py",
+  "hardware": "h100",
+  "memory_gb": 48,
+  "manifest": {
+   "runtime": {
+    "total_training_time_seconds": 3600
+   }
+  }
+ },
+ {
+  "name": "g3fix_xfirst_h100",
+  "task": "xfirst",
+  "file": "integration/sp_breadth/fix/submission_spb_g3_fix.py",
+  "hardware": "h100",
+  "memory_gb": 48
+ }
+]

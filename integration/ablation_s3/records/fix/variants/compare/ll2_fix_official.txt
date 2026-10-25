@@ -1,0 +1,34 @@
+integration/learned_loop/records/ll2_official.json
+integration/learned_loop/fix/records/ll2_fix_official.json
+
+== the study's own script
+schedule events: 8 and 8; identical over the first 8
+logged losses (every 50 steps): 17 and 17; identical over the first 17
+climb lines: 48 and 48; identical over the first 48
+round, reference: LR climb step=610 L4 round: cost 2 calls levels [1, 74, 3722, 159463, 8595937] Ts budget: level 4 streamed (over 4000000 states); by calls: levels [1, 451, 210140]  ['LDA.X STA.Y T.mul.x,o.XY STA.X LD
+round, new:       LR climb step=610 L4 round: cost 2 calls levels [1, 74, 3722, 159463, 8595937] Ts budget: level 4 streamed (over 4000000 states); by calls: levels [1, 451, 210140]  ['LDA.X STA.Y T.mul.x,o.XY STA.X LD
+
+
+== the runner's compare
+reference: integration/learned_loop/records/ll2_official.json
+  ll2_official [h100] rc=0 T=64/64 steps=20000 frozen=810 train=1192s eval=196s wall=1393s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=419c15e7
+
+integration/learned_loop/fix/records/ll2_fix_official.json
+  ll2_fix_official [h100] rc=0 T=64/64 steps=20000 frozen=810 train=1435s eval=332s wall=1773s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=b08c0087
+  DIFFERS  submission md5: 419c15e70ccf6483ff68b04b08f52bdc vs b08c00874507f5c8be5c2491ecb54612
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 198 vs 198 entries, first difference at #65: LR climb step=564 L0 probe 12 roots 19.4s solved {'lt/pair@AX': 4, 'sub/pair@AX': 4, 'lt/pair@AY': 4, 'sub/pair@AY': 4, 'lt/pair@AN': 4, 'sub/pair@AN': 4, 'lt/pair@XY': 5, 'sub/pair@XY': 5, 'lt/pair@XN': 5, 'sub/pair@XN': 5, 'lt/pair@YX': 5, 'sub/pair@YX': 5, 'lt/pair@YN': 5, 'sub/pair@YN': 5, 'lt/pair@NX': 5, 'sub/pair@NX': 5, 'lt/pair@NY': 5, 'sub/pair@NY': 5} [('routines', 16.7)] (19.4s) vs LR climb step=564 L0 probe 12 roots 23.8s solved {'lt/pair@AX': 4, 'sub/pair@AX': 4, 'lt/pair@AY': 4, 'sub/pair@AY': 4, 'lt/pair@AN': 4, 'sub/pair@AN': 4, 'lt/pair@XY': 5, 'sub/pair@XY': 5, 'lt/pair@XN': 5, 'sub/pair@XN': 5, 'lt/pair@YX': 5, 'sub/pair@YX': 5, 'lt/pair@YN': 5, 'sub/pair@YN': 5, 'lt/pair@NX': 5, 'sub/pair@NX': 5, 'lt/pair@NY': 5, 'sub/pair@NY': 5} [('routines', 20.5)] (23.8s)
+  timing   train 1191.6s -> 1435.3s, eval 195.7s -> 332.0s, wall 1393s -> 1773s
+

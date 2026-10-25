@@ -1,0 +1,29 @@
+bar3/bridge/records/runner/submission_stage3_bridge2_b200_seed74.json
+bar3/bridge/fix/records/bridge_fix_b200_seed74.json
+
+== the study's own script
+(no record comparison of its own)
+
+== the runner's compare
+reference: bar3/bridge/records/runner/submission_stage3_bridge2_b200_seed74.json
+  submission_stage3_bridge2_b200_seed74 [b200] rc=0 T=64/64 steps=20000 frozen=870 train=2115s eval=380s wall=2502s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=85ff74c5
+
+bar3/bridge/fix/records/bridge_fix_b200_seed74.json
+  bridge_fix_b200_seed74 [b200] rc=0 T=64/64 steps=20000 frozen=870 train=1538s eval=177s wall=1719s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=6df3e193
+  DIFFERS  submission md5: 85ff74c5faf902c1ede7a9f07d059026 vs 6df3e19322e975f98144c36d50d6be3b
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 170 vs 170 entries, first difference at #71: LR climb step=641 L0 lt       cost 5 (library) levels [1, 36, 1027, 29682, 893065, 33556093] 5.2s budget: level 5 streamed (over 5800000 states) ['CLC P[LDA.X SUB.N INC]', 'CLC LDA.X P[SUB.N INC]'] (5.2s) vs LR climb step=641 L0 lt       cost 5 (library) levels [1, 36, 1027, 29682, 893065, 33556093] 5.4s budget: level 5 streamed (over 5800000 states) ['CLC P[LDA.X SUB.N INC]', 'CLC LDA.X P[SUB.N INC]'] (5.4s)
+  timing   train 2115.3s -> 1537.9s, eval 380.4s -> 176.8s, wall 2502s -> 1719s
+

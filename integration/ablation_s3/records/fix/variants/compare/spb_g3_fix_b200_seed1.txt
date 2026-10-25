@@ -1,0 +1,45 @@
+integration/sp_breadth/records/submission_spb_g3_b200_seed1.json
+integration/sp_breadth/fix/records/spb_g3_fix_b200_seed1.json
+
+== the study's own script
+{
+ "compared": [
+  "task",
+  "T",
+  "certified",
+  "splits",
+  "steps",
+  "levels",
+  "round_step",
+  "programs",
+  "const",
+  "frozen",
+  "rungs",
+  "last_round"
+ ],
+ "differ": {}
+}
+
+== the runner's compare
+reference: integration/sp_breadth/records/submission_spb_g3_b200_seed1.json
+  submission_spb_g3_b200_seed1 [b200] rc=0 T=64/64 steps=20000 frozen=829 train=1077s eval=164s wall=1247s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=30efec64
+
+integration/sp_breadth/fix/records/spb_g3_fix_b200_seed1.json
+  spb_g3_fix_b200_seed1 [b200] rc=0 T=64/64 steps=20000 frozen=829 train=795s eval=97s wall=895s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=672c6f90
+  DIFFERS  submission md5: 30efec64d6e4f0a7417938e9370a363e vs 672c6f909a0fbed334b2f204fd134c34
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 196 vs 196 entries, first difference at #63: LR climb step=583 L0 pose: 70 candidates on 12 roots (0.2s) vs LR climb step=583 L0 pose: 70 candidates on 12 roots (0.1s)
+  timing   train 1076.8s -> 794.6s, eval 164.2s -> 96.8s, wall 1247s -> 895s
+

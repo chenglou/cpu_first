@@ -1,0 +1,58 @@
+integration/generic_ops/records/runner/submission_stage3_g3_b200_seed4.json
+integration/generic_ops/fix/records/g3_fix_b200_seed4.json
+
+== the study's own script
+original:
+  step 651 L0 choose (lpca): lt/pair@AX (4) CLC P[SBB.X INC]; lt/pair@AY (4) CLC P[SBB.Y INC]; lt/pair@AN (4) CLC P[SBB.N INC]; sub/pair@AN (4) CLC P[INC SBB.N]
+  step 660 L1 choose (lpca): min/pair@XY (5) LDA.X T.lt.pair.AY LDA.Y C[LDA.X]; min/pair@XN (5) LDA.X T.lt.pair.AN LDA.N C[LDA.X]; min/pair@YX (5) LDA.Y T.lt.pair.AX LDA.X C[LDA.Y]; min/pair@YN (5) LDA.N T.lt.pair.AY LDA.Y C[LDA.N]; min/pair@NX (5) LDA.N T.lt.pair.AX LDA.X C[LDA.N]; max/pair@XY (5) LDA.X T.lt.pair.AY LDA.X C[LDA.Y]; max/pair@XN (5) LDA.N T.lt.pair.AX LDA.N C[LDA.X]; max/pair@YN (5) LDA.N T.lt.pair.AY LDA.N C[LDA.Y]; max/pair@NX (5) LDA.X T.lt.pair.AN LDA.X C[LDA.N]; max/pair@NY (5) LDA.Y T.lt.pair.AN LDA.Y C[LDA.N]; red/pair@XY (4) LDA.X T.lt.pair.AY C[LDA.X]; red/pair@XN (4) LDA.X T.lt.pair.AN C[LDA.X]; 
+  step 662 L1 round: : cost None levels [1, 43, 1240, 32463, 815112, 26984986] #s by calls first: levels [1, 146, 9141] exhausted cost 2; flat: exhausted cost 5 [] (#s)
+  step 669 L2 choose (lpca): add/pair@AX (4) CLC P[ADC.X INC]; add/pair@AY (4) CLC P[ADC.Y INC]; add/pair@AN (4) CLC P[ADC.N INC]; add/pair@NX (4) T.min.pair.YX P[ADC.N INC]
+  step 671 L2 round: : cost None levels [1, 47, 1445, 40758, 1108466, 39298603] #s by calls first: levels [1, 170, 14072] exhausted cost 2; flat: exhausted cost 5 [] (#s)
+  step 684 L3 choose (lpca): acc.mul/o,x,d@AXY (5) LDH.Y CLK P[MUL.X INC]; acc.mul/o,x,d@AYX (5) LDH.X CLK P[MUL.Y INC]; acc.mul/o,x,d@ANX (5) LDH.X CLK P[MUL.N INC]; acc.mul/o,x,d@ANY (5) LDH.Y CLK P[MUL.N INC]; red/x+n@AX (4) P[T.lt.pair.AX C[T.add.pair.AX]]; red/x+n@AN (4) P[T.lt.pair.AN C[T.add.pair.AN]]; red/x+n@NX (4) T.red.pair.NX T.lt.pair.AX C[T.add.pair.AX]; red/x+dn@AX (4) B[T.lt.pair.AX C[T.add.pair.AX]]; red/x+dn@AY (4) B[T.lt.pair.AY C[T.add.pair.AY]]; red/x+dn@AN (4) B[T.lt.pair.AN C[T.add.pair.AN]]; sub/x+n@XA (2) STA.Y T.red.pair.XY; sub/x+n@YA (2) STA.X T.red.pair.YX; sub/x+n@NA (2) STA.Y T.red.pair.NY
+  step 686 L3 round: : cost None levels [1, 60, 2381, 85781, 4035846] #s by calls first: levels [1, 341, 115835] exhausted cost 2; flat: budget: level 4 streamed (over 2000000 states) [] (#s)
+  step 701 L4 choose (lpca): red/x+on@XY (5) LDA.Y P[SHL.X SHL.A T.red.x+dn.AY]; red/x+on@XN (5) LDA.N P[SHL.X SHL.A T.red.x+dn.AN]; red/x+on@YX (5) LDA.X P[SHL.Y SHL.A T.red.x+dn.AX]; red/x+on@YN (5) LDA.N P[SHL.Y SHL.A T.red.x+dn.AN]; mul/x,o@AN (5) CLK P[SHL.A SHL.X T.acc.mul.o,x,d.ANX]; mul/x,o@XA (5) CLK P[SHL.A SHL.Y T.acc.mul.o,x,d.AXY]; mul/x,o@XY (5) CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]; mul/x,o@YX (5) CLA W[T.acc.mul.o,x,d.AYX INC SHL.Y]; red/Bx+d@XY (2) LDA.X T.red.x+dn.AY; red/Bx+d@XN (2) LDA.X T.red.x+dn.AN; red/Bx+d@YX (2) LDA.Y T.red.x+dn.AX; red/Bx+d@YN (2) LDA.Y T.red.x+dn.AN; red/Bx+d@NX (2) LDA.N T.red.
+  step 703 L4 round: : cost 2 calls levels [] #s by calls first: levels [1, 453, 238667]  ['LDA.X STA.Y T.mul.x,o.YX STA.X T.red.x+on.XN', 'LDA.X STA.Y T.mul.x,o.XY STA.Y LDA.N STA.X T.red.x+on.YX', 'LDA.X STA.Y T.mul.x,o.YX STA.Y LDA.N STA.X T.red.x+on.YX'] (#s)
+  LR round_found step=703 programs: ['LDA.X T.mul.x,o.XA STA.X T.red.x+on.XN', 'LDA.X T.mul.x,o.XA STA.Y T.red.x+on.YN', 'LDA.X STA.Y T.mul.x,o.XY STA.X T.red.x+on.XN', 'LDA.X STA.Y T.mul.x,o.XY STA.Y T.red.x+on.YN'] library: {'B#': 'SBB.N INC', 'B#': 'P[B#]', 'B#': 'CLC B#', 'T.lt.pair.AX': 'CLC P[SBB.X INC]', 'T.lt.pair.AY': 'CLC P[SBB.Y INC]', 'T.lt.pair.AN': 'B#', 'T.sub.pair.AN': 'C
+  LR frozen step=902 history=[(5, 'io2_digits'), (77, 'io3_ranked', (0, 0, 1, 1)), (101, 'io4_reading', #), (241, 'order_digits'), (285, 'switch', 285, #), (305, 'cells', 20), (648, 'climb', 363), (703, 'round', 4), (723, 'T_resolved', 64), (902, 'frozen', 200)] round: LDA.X T.mul.x,o.XA STA.X T.red.x+on.XN (#) | LDA.X T.mul.x,o.XA STA.Y T.red.x+on.YN (#) | LDA.X STA.Y T.mul.x,o.XY
+  result: {"score": {"mean_exact_accuracy": #, "mean_loss": #, "num_measurements": 3, "primary_metric": "mean_exact_accuracy"}}
+  last progress: RESULT_JSON={"depth_profile": {"depth_factor": 64, "ladder": [1, 2, 4, 8, 16, 32, 64], "max_certified_time_steps": 64, "ood_n_ladder": [1, 2, 4, 8, 16, 32, 64], "ood_n_max_certified_time_steps": 64, "
+  depth profile: {"depth_factor": 64, "ladder": [1, 2, 4, 8, 16, 32, 64], "max_certified_time_steps": 64, "ood_n_ladder": [1, 2, 4, 8, 16, 32, 64], "ood_n_max_certified_time_steps": 64, "ood_n_profile_available": true}
+fixed:
+  step 651 L0 choose (lpca): lt/pair@AX (4) CLC P[SBB.X INC]; lt/pair@AY (4) CLC P[SBB.Y INC]; lt/pair@AN (4) CLC P[SBB.N INC]; sub/pair@AN (4) CLC P[INC SBB.N]
+  step 660 L1 choose (lpca): min/pair@XY (5) LDA.X T.lt.pair.AY LDA.Y C[LDA.X]; min/pair@XN (5) LDA.X T.lt.pair.AN LDA.N C[LDA.X]; min/pair@YX (5) LDA.Y T.lt.pair.AX LDA.X C[LDA.Y]; min/pair@YN (5) LDA.N T.lt.pair.AY LDA.Y C[LDA.N]; min/pair@NX (5) LDA.N T.lt.pair.AX LDA.X C[LDA.N]; max/pair@XY (5) LDA.X T.lt.pair.AY LDA.X C[LDA.Y]; max/pair@XN (5) LDA.N T.lt.pair.AX LDA.N C[LDA.X]; max/pair@YN (5) LDA.N T.lt.pair.AY LDA.N C[LDA.Y]; max/pair@NX (5) LDA.X T.lt.pair.AN LDA.X C[LDA.N]; max/pair@NY (5) LDA.Y T.lt.pair.AN LDA.Y C[LDA.N]; red/pair@XY (4) LDA.X T.lt.pair.AY C[LDA.X]; red/pair@XN (4) LDA.X T.lt.pair.AN C[LDA.X]; 
+  step 662 L1 round: : cost None levels [1, 43, 1240, 32463, 815112, 26984986] #s by calls first: levels [1, 146, 9141] exhausted cost 2; flat: exhausted cost 5 [] (#s)
+  step 669 L2 choose (lpca): add/pair@AX (4) CLC P[ADC.X INC]; add/pair@AY (4) CLC P[ADC.Y INC]; add/pair@AN (4) CLC P[ADC.N INC]; add/pair@NX (4) T.min.pair.YX P[ADC.N INC]
+  step 671 L2 round: : cost None levels [1, 47, 1445, 40758, 1108466, 39298603] #s by calls first: levels [1, 170, 14072] exhausted cost 2; flat: exhausted cost 5 [] (#s)
+  step 684 L3 choose (lpca): acc.mul/o,x,d@AXY (5) LDH.Y CLK P[MUL.X INC]; acc.mul/o,x,d@AYX (5) LDH.X CLK P[MUL.Y INC]; acc.mul/o,x,d@ANX (5) LDH.X CLK P[MUL.N INC]; acc.mul/o,x,d@ANY (5) LDH.Y CLK P[MUL.N INC]; red/x+n@AX (4) P[T.lt.pair.AX C[T.add.pair.AX]]; red/x+n@AN (4) P[T.lt.pair.AN C[T.add.pair.AN]]; red/x+n@NX (4) T.red.pair.NX T.lt.pair.AX C[T.add.pair.AX]; red/x+dn@AX (4) B[T.lt.pair.AX C[T.add.pair.AX]]; red/x+dn@AY (4) B[T.lt.pair.AY C[T.add.pair.AY]]; red/x+dn@AN (4) B[T.lt.pair.AN C[T.add.pair.AN]]; sub/x+n@XA (2) STA.Y T.red.pair.XY; sub/x+n@YA (2) STA.X T.red.pair.YX; sub/x+n@NA (2) STA.Y T.red.pair.NY
+  step 686 L3 round: : cost None levels [1, 60, 2381, 85781, 4035846] #s by calls first: levels [1, 341, 115835] exhausted cost 2; flat: budget: level 4 streamed (over 2000000 states) [] (#s)
+  step 701 L4 choose (lpca): red/x+on@XY (5) LDA.Y P[SHL.X SHL.A T.red.x+dn.AY]; red/x+on@XN (5) LDA.N P[SHL.X SHL.A T.red.x+dn.AN]; red/x+on@YX (5) LDA.X P[SHL.Y SHL.A T.red.x+dn.AX]; red/x+on@YN (5) LDA.N P[SHL.Y SHL.A T.red.x+dn.AN]; mul/x,o@AN (5) CLK P[SHL.A SHL.X T.acc.mul.o,x,d.ANX]; mul/x,o@XA (5) CLK P[SHL.A SHL.Y T.acc.mul.o,x,d.AXY]; mul/x,o@XY (5) CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]; mul/x,o@YX (5) CLA W[T.acc.mul.o,x,d.AYX INC SHL.Y]; red/Bx+d@XY (2) LDA.X T.red.x+dn.AY; red/Bx+d@XN (2) LDA.X T.red.x+dn.AN; red/Bx+d@YX (2) LDA.Y T.red.x+dn.AX; red/Bx+d@YN (2) LDA.Y T.red.x+dn.AN; red/Bx+d@NX (2) LDA.N T.red.
+  step 703 L4 round: : cost 2 calls levels [] #s by calls first: levels [1, 453, 238667]  ['LDA.X STA.Y T.mul.x,o.YX STA.X T.red.x+on.XN', 'LDA.X STA.Y T.mul.x,o.XY STA.Y LDA.N STA.X T.red.x+on.YX', 'LDA.X STA.Y T.mul.x,o.YX STA.Y LDA.N STA.X T.red.x+on.YX'] (#s)
+  LR round_found step=703 programs: ['LDA.X T.mul.x,o.XA STA.X T.red.x+on.XN', 'LDA.X T.mul.x,o.XA STA.Y T.red.x+on.YN', 'LDA.X STA.Y T.mul.x,o.XY STA.X T.red.x+on.XN', 'LDA.X STA.Y T.mul.x,o.XY STA.Y T.red.x+on.YN'] library: {'B#': 'SBB.N INC', 'B#': 'P[B#]', 'B#': 'CLC B#', 'T.lt.pair.AX': 'CLC P[SBB.X INC]', 'T.lt.pair.AY': 'CLC P[SBB.Y INC]', 'T.lt.pair.AN': 'B#', 'T.sub.pair.AN': 'C
+  LR frozen step=902 history=[(5, 'io2_digits'), (77, 'io3_ranked', (0, 0, 1, 1)), (101, 'io4_reading', #), (241, 'order_digits'), (285, 'switch', 285, #), (305, 'cells', 20), (648, 'climb', 363), (703, 'round', 4), (723, 'T_resolved', 64), (902, 'frozen', 200)] round: LDA.X T.mul.x,o.XA STA.X T.red.x+on.XN (#) | LDA.X T.mul.x,o.XA STA.Y T.red.x+on.YN (#) | LDA.X STA.Y T.mul.x,o.XY
+  result: {"score": {"mean_exact_accuracy": #, "mean_loss": #, "num_measurements": 3, "primary_metric": "mean_exact_accuracy"}}
+  last progress: RESULT_JSON={"depth_profile": {"depth_factor": 64, "ladder": [1, 2, 4, 8, 16, 32, 64], "max_certified_time_steps": 64, "ood_n_ladder": [1, 2, 4, 8, 16, 32, 64], "ood_n_max_certified_time_steps": 64, "
+  depth profile: {"depth_factor": 64, "ladder": [1, 2, 4, 8, 16, 32, 64], "max_certified_time_steps": 64, "ood_n_ladder": [1, 2, 4, 8, 16, 32, 64], "ood_n_max_certified_time_steps": 64, "ood_n_profile_available": true}
+
+== the runner's compare
+reference: integration/generic_ops/records/runner/submission_stage3_g3_b200_seed4.json
+  submission_stage3_g3_b200_seed4 [b200] rc=0 T=64/64 steps=20000 frozen=902 train=2426s eval=291s wall=2723s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=e6bd2a1f
+
+integration/generic_ops/fix/records/g3_fix_b200_seed4.json
+  g3_fix_b200_seed4 [b200] rc=0 T=64/64 steps=20000 frozen=902 train=2025s eval=183s wall=2212s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=4f885231
+  DIFFERS  submission md5: e6bd2a1f9bfd9fd2119b0d44483c7100 vs 4f885231afb4552dd1737ea5ee3d2227
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 212 vs 212 entries, first difference at #64: LR climb step=649 L0 pose: 72 candidates on 12 roots (0.2s) vs LR climb step=649 L0 pose: 72 candidates on 12 roots (0.1s)
+  timing   train 2426.4s -> 2024.8s, eval 290.6s -> 182.9s, wall 2723s -> 2212s
+

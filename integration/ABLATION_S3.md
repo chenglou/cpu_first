@@ -3,7 +3,7 @@
 *Written 2026-10-23/24 (PT) for a judge of the contest. Code, plans and records are in
 [`integration/ablation_s3/`](ablation_s3/). The model is stage 3's final file,
 [`submission_stage3_s3i.py`](submission_stage3_s3i.py) (s3i, md5 `0e8131440e1842546c67e7378caf472d`), which this
-study never edits; §8 fixes two of its checks in a new file.*
+study never edits; §8 fixes two of its checks in a new file, and in copies of eight other certified files.*
 
 ## In plain words
 
@@ -81,6 +81,11 @@ conditional subtraction. It does so in s3i and in sp2 (the self-practice build, 
 checks. Nothing else changes. The fixed files replay s3i's and sp2's official runs and seed runs exactly, 17 in all.
 The reduction check's 3% falls to about 10^-11. Without Occam's tie-break, the fixed s3i certifies on both seeds. And
 without the step problem, it certifies on seed 74, where s3i had failed.
+
+Eight other certified files share these checks. Copies of them with the same fix certify wherever the originals did,
+over 78 runs, and 75 of those runs equal the original's. In one of the other three, the fixed check rejected a wrong
+program that the old one had let in, though the run never used it. The other two ended their hour at a different
+training step on hosts of a different speed.
 
 **What this says about Bar 2.** The parts the result needs are where INTEGRATION.md §6 said the decomposition lives:
 - two task-shaped instructions;
@@ -536,7 +541,9 @@ seeds, 17 runs in all. Every record equals the original's field for field, with 
 Locally, the fixed checks reject the two wrong programs and still accept s3i's, and the chance that a loop of
 subtractions passes the reduction's check falls from about 3% to about 10^-11. With the conditional subtraction's
 check fixed, Occam's tie-break is not needed: occam_steps_off certifies on both seeds. And the run the weak reduction
-check broke, no_step on seed 74, certifies with the fix, three steps before the control.
+check broke, no_step on seed 74, certifies with the fix, three steps before the control. Eight other certified files
+carry the same checks. Copies of them with the same fix certify wherever the originals did, over 78 runs, and 75 of
+those runs equal the original's (*The fix in the certified variants*, below).
 
 **What was weak.**
 - *The reduction's check.* The practice problem draws X = x + q·N, with q another row's top W digits, and builds X
@@ -623,14 +630,97 @@ s3i with no_step's edits from make_variants.py, built by make_fix.py) certifies 
 - *Borrows.* X - N on the new probes needs no borrow, since X is N with one digit raised. A program with the right
   comparison and a subtraction that drops borrows would pass them. None is known within reach. Probes with borrows
   need X built with carries, that is an adder, which the conditional subtraction comes before.
-- *The sources and the other builds.* The fix is in the two new files only. The code s3i and sp2 are built from
-  keeps the old checks: `integration/lib/libcore.py` (make_stage3.py) and `self_practice/spcore.py` (make_sp.py). So
-  do the other files that carry them: sp, the earlier stage-3 files, and the bridge's `libcore_b.py` and
-  `submission_stage3_bridge.py`. The bridge also has its own diagnostic for modx (`strong_modx` in `climb_b.py`,
-  which adds N digit by digit, as no training run may).
+- *The sources and the other builds.* The fix is in new files only: the two above and the copies of the eight
+  certified variants below. The code they are built from keeps the old checks: `integration/lib/libcore.py`
+  (make_stage3.py), `self_practice/spcore.py` (make_sp.py), and each study's own sources and make scripts, which its
+  certified file's byte-for-byte rebuild reads. So do the files no copy was made of: sp, the earlier stage-3 files, and
+  the bridge's `libcore_b.py`. The bridge also has its own diagnostic for modx (`strong_modx` in `climb_b.py`, which
+  adds N digit by digit, as no training run may).
 
-**Earlier versions.** Two versions came before these files; their records are in `records/fix/v1/` and
-`records/fix/v2/`.
+**The fix in the certified variants.** Eight more certified files carry s3i's or sp2's two checks: the strict builds
+of both ([STRICT.md](strict/STRICT.md)), the learned loop ([LEARNED_LOOP.md](learned_loop/LEARNED_LOOP.md)), the
+bridge ([BRIDGE.md](../bar3/bridge/BRIDGE.md) §5), sp_breadth's g3 ([SP_BREADTH.md](sp_breadth/SP_BREADTH.md)), the
+sp ablation's two books ([SP_ABLATION.md](sp_ablation/SP_ABLATION.md) §5) and generic_ops' g3
+([GENERIC_OPS.md](generic_ops/GENERIC_OPS.md) §0). [`fix/make_fix_variants.py`](ablation_s3/fix/make_fix_variants.py)
+writes a fixed copy of each into a `fix/` folder of its own study, with make_fix.py's edits. It asserts each
+original's md5 and reads nothing else, so no certified file, record, source or make script changed.
+- *The same edits.* s3i's two variants take s3i's edits, sp2's six take sp2's. Each copy adds 53 lines (book_gen 54)
+  and removes 2 or 3. Each of those lines is one that s3i's or sp2's fix adds or removes, except four of book_gen's
+  (below). Strict sp2 renamed `search_s` to `search_work`, so one edit finds its place by the new name.
+- *The bridge* adds with a cell named ADD, not ADC. Its table is s3i's adc table, so the new probes read the same
+  entries. The reduction's probes add with the learned helper `add`, whatever instructions it uses. So its copy takes
+  s3i's edits as they are.
+- *book_gen*'s generated book has its own `Draw` and `law_target`, so the edits go on its own lines. It also poses a
+  second reduction with a large quotient, red on x + x·N, where the quotient is x itself, and seed 74's round calls
+  it (`T.red.x+xn.XN`). So its copy checks both reductions at full size. Its four lines that are not in sp2's fix
+  are `FULL_CHECK`, which names both, a line of its comment, and the old and new forms of its own Draw's line that
+  builds x + q·N.
+- *generic_ops' g3* already accepts at four digits (GENERIC_OPS.md §2.1). That rejects the 600-subtraction loop of
+  §3, but not a loop of 10,000: no four-digit quotient is above 9,999. Such a loop costs 5 there, as long division
+  does, a tie that GENERIC_OPS.md §2.1 notes. So its copy has both parts too.
+
+**Checked locally.** [`fix/check_fix_variants.py`](ablation_s3/fix/check_fix_variants.py) takes about a minute and
+under 1 GB. It runs each copy against its original, with exact cells and the library of the original's official run:
+1. the lines each copy adds and removes, against s3i's or sp2's fix (above);
+2. the new probes: N < X < 2N with the answer X - N on all of the drawn ones (43 to 65 per copy), and the
+   reduction's full-size probes equal to x + q·N by Python's integers, 60 of 60;
+3. at the old check sizes, the acceptance machines (inputs, targets and random starts) equal the original's;
+4. each file's own conditional subtraction and reduction pass both checks. The alias "x if x < N, else 0", written
+   in each file's own instructions (with SELC in the bridge, with the if block in g3), passes every original check and
+   fails every fixed one. So does a loop of subtractions: `B[P[T.modB~ T.modB]]` in s3i's variants, on a pool that
+   lets it through; a loop of 1,000 in sp2's, which passes their three-digit checks on every pool; and a loop of
+   10,000 in g3, which passes its four-digit check on every pool.
+
+**Certified.** Each copy ran on the official manifest (one H100) and on its original's runs, with its original's
+hardware and memory cap: 78 runs. [`fix/compare_fix_variants.py`](ablation_s3/fix/compare_fix_variants.py) compares
+each with its original in two ways:
+- by the study's own script: strict's `checks/compare_runs.py`, learned_loop's `diag/compare_climb.py`,
+  sp_breadth's `summarize.py`, sp_ablation's `analyze.py` and generic_ops' `summarize_runner.py` (the bridge has
+  none for evaluator records);
+- by the runner's compare, plus the climb's log lines with seconds and strict's work counts masked.
+
+`tools/verify_records.py` checks out all 8 official records against their fixed copies, and 62 of the 63 seed runs
+against theirs. The one that fails is the learned loop's seed 2, which its original fails too. sp_breadth's 7 task
+runs fail only the manifest check, as their originals do: each task replaces H1's data.
+
+| original (study) | fixed copy and md5 | official record | other runs certified | equal to the original's |
+|---|---|---|---|---|
+| `strict/submission_stage3_s3i_strict.py` (STRICT.md) | `strict/fix/submission_stage3_s3i_strict_fix.py`, `7297133d1a7aec497b0b923a6fa7bfb6` | `strict/fix/records/s3is_fix_official.json` | H100 seeds 1-7: 7 of 7 | 8 of 8 |
+| `strict/submission_stage3_sp2_strict.py` (STRICT.md) | `strict/fix/submission_stage3_sp2_strict_fix.py`, `bca0c4b3bb894c93830e6ddccf463be4` | `strict/fix/records/sp2s_fix_official.json` | B200 seeds 74, 1-7: 8 of 8 | 9 of 9 |
+| `learned_loop/submission_stage3_ll.py` (LEARNED_LOOP.md) | `learned_loop/fix/submission_stage3_ll_fix.py`, `b08c00874507f5c8be5c2491ecb54612` | `learned_loop/fix/records/ll2_fix_official.json` | B200 seeds: 7 of 8, as the original (seed 2 runs out of time) | 8 of 9 (seed 2: the clock) |
+| `../bar3/bridge/submission_stage3_bridge.py` (BRIDGE.md §5) | `../bar3/bridge/fix/submission_stage3_bridge_fix.py`, `6df3e19322e975f98144c36d50d6be3b` | `../bar3/bridge/fix/records/bridge_fix_official.json` | B200 seeds: 8 of 8 | 9 of 9 |
+| `sp_breadth/submission_spb_g3.py` (SP_BREADTH.md) | `sp_breadth/fix/submission_spb_g3_fix.py`, `672c6f909a0fbed334b2f204fd134c34` | `sp_breadth/fix/records/spb_g3_fix_official.json` | B200 seeds: 8 of 8; the 7 other learned tasks (H100): 7 of 7 | 15 of 16 (M4: the clock) |
+| `sp_ablation/variants/book_min.py` (SP_ABLATION.md §5) | `sp_ablation/fix/book_min_fix.py`, `0546c790106be9a15e2b9ed3b1b0e3fe` | `sp_ablation/fix/records/book_min_fix_official.json` | B200 seeds: 8 of 8 | 9 of 9 |
+| `sp_ablation/variants/book_gen.py` (SP_ABLATION.md §5) | `sp_ablation/fix/book_gen_fix.py`, `8b701e2825db56ccc0df65805469f417` | `sp_ablation/fix/records/book_gen_fix_official.json` | B200 seeds: 8 of 8 | 8 of 9 (seed 1: the fix at work) |
+| `generic_ops/submission_stage3_g3.py` (GENERIC_OPS.md §0) | `generic_ops/fix/submission_stage3_g3_fix.py`, `4f885231afb4552dd1737ea5ee3d2227` | `generic_ops/fix/records/g3_fix_official.json` | B200 seeds: 8 of 8 | 9 of 9 |
+
+"Equal" means that the study's own script finds the two runs the same and that the runner's compare finds every
+evaluator field equal: the training trace with every logged loss, every rung and split, and the freeze step. The
+climb's log is the same once seconds and work counts are masked. Every fixed copy certified wherever its original
+did. The strict files count the acceptance's machine work, and there the climb's total grew by about 0.1% at most.
+Strict sp2's grew by 0.5e6 to 2e6 units; its heaviest climb, seed 3's, did 1.809e9 against 1.807e9, of the 2.2e9
+budget. Strict s3i's was unchanged to four figures.
+
+**Three runs differ.** None of them because a fixed check rejected a program the climb needed.
+- *book_gen, seed 1: the fix at work.* On this seed alone, min on the pair is practised a level before red on the
+  pair (level 1 against 2; on book_gen's eight other runs both come at level 1). So when red on the pair is searched,
+  `T.min.pair.Ar CLA SEL.S` costs 3, as the true conditional subtraction does. min leaves x in S and the borrow set,
+  and the rest clears A, then takes S's digits where the borrow is set: "x if x < N, else 0". The original check
+  accepts it and the fixed check rejects it, in all three bindings with A
+  ([`fix/why_book_gen_seed1.py`](ablation_s3/fix/why_book_gen_seed1.py)). It never became a routine, but each pick's
+  first 8 accepted programs join the corpus that BPE merges. So the original merged `CLA SEL.S` at level 2, and two
+  more pairs at level 4. The fixed run lacks those three merges. Its routines, picks, rounds and steps are the
+  original's, and so is every evaluator field.
+- *The learned loop, seed 2: the clock.* Neither run certifies: the climb runs out of time, as LEARNED_LOOP.md §5
+  reports for the original. The fixed run's host was slower: phases A and B took 39% longer, and every level 15-40%
+  longer. So its climb reached the deadline one search earlier. Its first 110 climb lines are the original's, and so
+  is its training trace up to step 1,200, where it stopped; the original reached step 1,698.
+- *sp_breadth's M4: the clock.* M4 never freezes (every row has T = 8), so it trains until the hour is up. The fixed
+  run's host was faster: 5,324 steps against 4,724. Its climb and round are the original's, and so is its training
+  trace up to step 4,700. It certifies the same.
+
+**Earlier versions.** Two versions came before s3i's and sp2's fixed files; their records are in `records/fix/v1/`
+and `records/fix/v2/`.
 - *v1* built the reduction's probes by doubling at every size. Doubling takes fewer additions than repeated
   addition, and each learned addition draws random machine starts, so every start drawn after the probes changed. Its
   official runs certified with every field equal, but two of s3i's log lines differed: the state counts of the
@@ -638,10 +728,13 @@ s3i with no_step's edits from make_variants.py, built by make_fix.py) certifies 
 - *v2* doubled only at full size and fixed only the reduction. It replayed all 17 runs exactly. The modx probes came
   after the bridge session's finding, and v3 (the files above) adds them to v2.
 
-**Cost.** The fix's runs cost $74 at list price:
+**Cost.** At list price, s3i's and sp2's fix cost $74:
 - the official runs of v1, v2 and v3: $3.14, $3.29 and $3.33;
 - the seeds of v2 and v3: $27.95 and $31.90;
 - occam_steps_off and no_step on the fixed file: $2.94 and $1.45.
+
+The certified variants' 78 runs cost $209.93: $16.97 for the 8 official runs, and $192.96 for the seeds and
+sp_breadth's tasks. The cost of each launch is in `records/fix/variants/cost.log`.
 
 **Reproduce.** From `cpu_first/`, as in §6:
 
@@ -666,3 +759,23 @@ $PY -m modal run --detach tools/modal_runner.py --mode plan --plan integration/a
 ```
 
 v2 and v3 reused v1's record names, so their launches added `--force`.
+
+The certified variants. `records/fix/variants/launch.log` lists all 17 launches with their arguments, each after a
+`spend.py` check. Each copy's records are in its study's `fix/records/`, and the comparisons in
+`records/fix/variants/compare/`:
+
+```bash
+$PY integration/ablation_s3/fix/make_fix_variants.py      # the eight copies, each in a fix/ folder of its own study
+$PY integration/ablation_s3/fix/make_fix_variants.py --diff book_gen_fix
+$PY integration/ablation_s3/fix/check_fix_variants.py     # the local checks above
+$PY integration/ablation_s3/fix/why_book_gen_seed1.py     # book_gen seed 1's alias, in both checks
+G=integration/generic_ops/fix                              # for example, generic_ops' g3:
+$PY -m modal run --detach tools/modal_runner.py --mode official --file $G/submission_stage3_g3_fix.py --memory-gb 48 \
+  --name g3_fix_official --out $G/records --run fix8-g3-official
+$PY -m modal run --detach tools/modal_runner.py --mode seeds --file $G/submission_stage3_g3_fix.py --seeds 8 \
+  --hardware b200 --memory-gb 48 --name g3_fix --out $G/records --cap 8 --run fix8-g3-seeds
+$PY -m modal run --detach tools/modal_runner.py --mode plan --plan integration/ablation_s3/plans/fix8_spb_tasks.json \
+  --out integration/sp_breadth/fix/records --cap 7 --run fix8-spb-tasks         # sp_breadth's 7 other tasks
+$PY integration/ablation_s3/fix/compare_fix_variants.py   # each run against its original
+python3 tools/verify_records.py $G/records/g3_fix_official.json=$G/submission_stage3_g3_fix.py    # and the other 7
+```

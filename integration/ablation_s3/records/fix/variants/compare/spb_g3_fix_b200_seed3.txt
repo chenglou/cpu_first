@@ -1,0 +1,45 @@
+integration/sp_breadth/records/submission_spb_g3_b200_seed3.json
+integration/sp_breadth/fix/records/spb_g3_fix_b200_seed3.json
+
+== the study's own script
+{
+ "compared": [
+  "task",
+  "T",
+  "certified",
+  "splits",
+  "steps",
+  "levels",
+  "round_step",
+  "programs",
+  "const",
+  "frozen",
+  "rungs",
+  "last_round"
+ ],
+ "differ": {}
+}
+
+== the runner's compare
+reference: integration/sp_breadth/records/submission_spb_g3_b200_seed3.json
+  submission_spb_g3_b200_seed3 [b200] rc=0 T=64/64 steps=20000 frozen=809 train=1991s eval=194s wall=2191s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=30efec64
+
+integration/sp_breadth/fix/records/spb_g3_fix_b200_seed3.json
+  spb_g3_fix_b200_seed3 [b200] rc=0 T=64/64 steps=20000 frozen=809 train=2051s eval=190s wall=2247s ood_n_t=10002/10002 ood_t=10002/10002 test=9999/9999 md5=672c6f90
+  DIFFERS  submission md5: 30efec64d6e4f0a7417938e9370a363e vs 672c6f909a0fbed334b2f204fd134c34
+  same     manifest
+  same     manifest runtime
+  same     returncode
+  same     certified T (seen N, unseen N)
+  same     rungs, seen N (7 entries)
+  same     rungs, unseen N (7 entries)
+  same     splits
+  same     split losses
+  same     steps
+  same     frozen step
+  same     final train loss
+  same     state elements (model, optimizer)
+  same     train trace (step, loss, accuracy) (201 entries)
+  DIFFERS  log without timings: 223 vs 223 entries, first difference at #71: LR climb step=554 L0 probe 12 roots 13.8s solved {'lt/pair@AX': 4, 'sub/pair@AX': 4, 'lt/pair@AY': 4, 'sub/pair@AY': 4, 'lt/pair@AN': 4, 'lt/pair@XY': 5, 'sub/pair@XY': 5, 'lt/pair@XN': 5, 'lt/pair@YX': 5, 'sub/pair@YX': 5, 'lt/pair@YN': 5, 'sub/pair@YN': 5, 'lt/pair@NX': 5, 'sub/pair@NX': 5, 'lt/pair@NY': 5, 'sub/pair@NY': 5} [('routines', 11.6)] (13.8s) vs LR climb step=554 L0 probe 12 roots 15.1s solved {'lt/pair@AX': 4, 'sub/pair@AX': 4, 'lt/pair@AY': 4, 'sub/pair@AY': 4, 'lt/pair@AN': 4, 'lt/pair@XY': 5, 'sub/pair@XY': 5, 'lt/pair@XN': 5, 'lt/pair@YX': 5, 'sub/pair@YX': 5, 'lt/pair@YN': 5, 'sub/pair@YN': 5, 'lt/pair@NX': 5, 'sub/pair@NX': 5, 'lt/pair@NY': 5, 'sub/pair@NY': 5} [('routines', 12.3)] (15.1s)
+  timing   train 1991.4s -> 2050.9s, eval 193.6s -> 190.5s, wall 2191s -> 2247s
+

@@ -1,0 +1,59 @@
+s3i_strict: integration/strict/fix/submission_stage3_s3i_strict_fix.py
+  1. lines added: 53, 0 not in s3i's fix []; removed: 3, 0 not in s3i's fix []
+  3. the reduction's machines at the search's and the verify sizes equal the original's: True
+  2. full size: X = x + q N on 60/60 probes (q up to 647,350)
+  4. on a pool whose 60 three-digit probes have q <= 600: the original accepts the loop True, the reduction True; the fix False, True
+     modx: the original accepts the alias 'T.lt LDA.X STA.S CLA SEL.S' True, its modx 'LDA.X STA.S T.lt SEL.S' True; the fix False, True
+  2. above probes: 53/180 drawn at W = 1, 2, 3; N < X < 2N and X - N the answer on 53/53
+sp2_strict: integration/strict/fix/submission_stage3_sp2_strict_fix.py
+  1. lines added: 53, 0 not in sp2's fix []; removed: 2, 0 not in sp2's fix []
+  3. the acceptance machines at the verify sizes [1, 2, 3] equal the original's: True
+  4. red on pair in AX: its routine 'B1.2 SEL.S': original True, fix True; the alias 'STA.S T.lt.pair.AX CLA SEL.S': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 774,301)
+  4. red on x+on in XA: its routine 'STA.Y P[BRG.X T.red.x+dn.AY]': original True, fix True; a loop of 1,000 subtractions 'STA.Y LDA.X B[B[B[T.red.pair.AY]]]': original True, fix False
+  2. above probes: 50/180 drawn at W = 1, 2, 3; N < X < 2N and X - N the answer on 50/50
+ll: integration/learned_loop/fix/submission_stage3_ll_fix.py
+  1. lines added: 53, 0 not in sp2's fix []; removed: 2, 0 not in sp2's fix []
+  3. the acceptance machines at the verify sizes [1, 2, 3] equal the original's: True
+  4. red on pair in AX: its routine 'B1.1 SEL.S': original True, fix True; the alias 'STA.S T.lt.pair.AX CLA SEL.S': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 650,236)
+  4. red on x+on in XA: its routine 'STA.Y P[BRG.X T.red.x+dn.AY]': original True, fix True; a loop of 1,000 subtractions 'STA.Y LDA.X B[B[B[T.red.pair.AY]]]': original True, fix False
+  2. above probes: 48/180 drawn at W = 1, 2, 3; N < X < 2N and X - N the answer on 48/48
+bridge: bar3/bridge/fix/submission_stage3_bridge_fix.py
+  1. lines added: 53, 0 not in s3i's fix []; removed: 3, 0 not in s3i's fix []
+  3. the reduction's machines at the search's and the verify sizes equal the original's: True
+  2. full size: X = x + q N on 60/60 probes (q up to 756,669)
+  4. on a pool whose 60 three-digit probes have q <= 600: the original accepts the loop True, the reduction True; the fix False, True
+     modx: the original accepts the alias 'T.lt CLA P[SELC.X INC]' True, its modx 'T.lt P[SELC.X INC]' True; the fix False, True
+  2. above probes: 52/180 drawn at W = 1, 2, 3; N < X < 2N and X - N the answer on 52/52
+spb_g3: integration/sp_breadth/fix/submission_spb_g3_fix.py
+  1. lines added: 53, 0 not in sp2's fix []; removed: 2, 0 not in sp2's fix []
+  3. the acceptance machines at the verify sizes [1, 2, 3] equal the original's: True
+  4. red on pair in AX: its routine 'B1.2 SEL.S': original True, fix True; the alias 'STA.S T.lt.pair.AX CLA SEL.S': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 816,334)
+  4. red on x+on in XA: its routine 'STA.Y P[BRG.X T.red.x+dn.AY]': original True, fix True; a loop of 1,000 subtractions 'STA.Y LDA.X B[B[B[T.red.pair.AY]]]': original True, fix False
+  2. above probes: 43/180 drawn at W = 1, 2, 3; N < X < 2N and X - N the answer on 43/43
+book_min: integration/sp_ablation/fix/book_min_fix.py
+  1. lines added: 53, 0 not in sp2's fix []; removed: 2, 0 not in sp2's fix []
+  3. the acceptance machines at the verify sizes [1, 2, 3] equal the original's: True
+  4. red on pair in AX: its routine 'STA.S T.lt.pair.AX SEL.S': original True, fix True; the alias 'STA.S T.lt.pair.AX CLA SEL.S': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 916,634)
+  4. red on x+on in XA: its routine 'STA.Y P[BRG.X B[T.red.pair.AY]]': original True, fix True; a loop of 1,000 subtractions 'STA.Y LDA.X B[B[B[T.red.pair.AY]]]': original True, fix False
+  2. above probes: 44/180 drawn at W = 1, 2, 3; N < X < 2N and X - N the answer on 44/44
+book_gen: integration/sp_ablation/fix/book_gen_fix.py
+  1. lines added: 54, 3 not in sp2's fix ["+                                 # (W digits; both reductions whose quotient is another row's x or x itself):", '+            v = add_q(ops, st, lib, self.x, self.N, self.count(NFORM[name]), gen, dev)', '+FULL_CHECK = (("red", "x+on"), ("red", "x+xn"))  # fix: laws on patterns whose acceptance also runs at the round\'s size']; removed: 2, 1 not in sp2's fix ['-            v = repeat_add(ops, st, lib, self.x, self.N, self.count(NFORM[name]), gen, dev)']
+  3. the acceptance machines at the verify sizes [1, 2, 3] equal the original's: True
+  4. red on pair in AX: its routine 'B1.11 SEL.S': original True, fix True; the alias 'STA.S T.lt.pair.AX CLA SEL.S': original True, fix False
+  2. red on x+xn at W = 8: X = x + q N on 60/60 probes (q up to 836,950)
+  4. red on x+xn in XN: its routine 'LDA.N P[BRG.X T.red.x+dn.AN]': original True, fix True; a loop of 1,000 subtractions 'LDA.X B[B[T.red.x+dn.AN]]': original True, fix False
+  2. above probes: 50/180 drawn at W = 1, 2, 3; N < X < 2N and X - N the answer on 50/50
+g3: integration/generic_ops/fix/submission_stage3_g3_fix.py
+  1. lines added: 53, 0 not in sp2's fix []; removed: 2, 0 not in sp2's fix []
+  3. the acceptance machines at the verify sizes [1, 2, 3, 4] equal the original's: True
+  4. red on pair in XY: its routine 'B1.5 B1.2': original True, fix True; the alias 'LDA.X T.lt.pair.AY CLA C[LDA.X]': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 935,069)
+  4. red on x+on in XN: its routine 'LDA.N P[SHL.X B4.1]': original True, fix True; a loop of 10,000 subtractions 'LDA.X B[B[B[T.red.x+dn.AN]]]': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 722,857)
+  4. red on x+on in YN: its routine 'LDA.N P[SHL.Y B4.1]': original True, fix True; a loop of 10,000 subtractions 'LDA.Y B[B[B[T.red.x+dn.AN]]]': original True, fix False
+  2. above probes: 65/240 drawn at W = 1, 2, 3, 4; N < X < 2N and X - N the answer on 65/65
+(55 s)

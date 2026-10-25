@@ -29,11 +29,13 @@ The project measures itself against three bars ([OVERVIEW §4](OVERVIEW.md#4-whe
    that bar 3's learner invented; and one replaces both task-shaped instructions with generic ones, an if block and
    shifts, so that the learner builds long division's step itself.
 3. **A general algorithm learner: results at a tiny size, and first steps at full size.** A learner that picks its own
-   practice problems invents x² mod N for x < N ≤ 7 (and ≤ 26) on a bare counting machine; unchanged, it invents 4 of
-   9 other formulas, and 2 more once its solved formulas carry over ([PRACTICE.md](bar3/PRACTICE.md),
-   [BREADTH.md](bar3/BREADTH.md)). Run on one digit place, it invents two of stage 3's digit instructions
-   ([BRIDGE.md](bar3/bridge/BRIDGE.md)). At H1's size, the self-practising stage 3 learns 8 of 11 tasks of the
-   family after three general changes to its round's search ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
+   practice problems invents x² mod N for x < N ≤ 7 (and ≤ 26) on a bare counting machine; unchanged, it invents 4 of 9
+   other formulas, and 2 more once its solved formulas carry over ([PRACTICE.md](bar3/PRACTICE.md),
+   [BREADTH.md](bar3/BREADTH.md)). Aiming one deeper search at the piece the target factors through, found from the rows
+   alone, brings x³ and 10·x² from scratch ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md)). Run on one digit place, it
+   invents two of stage 3's digit instructions ([BRIDGE.md](bar3/bridge/BRIDGE.md)). At H1's size, the self-practising
+   stage 3 learns 8 of 11 tasks of the family after three general changes to its round's search
+   ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
 
 Four rules are **gray** for s3i: 4, 7, 8 and 14 (§5). The write-ups flag them; they do not argue them away.
 
@@ -442,11 +444,29 @@ later ones follow them as they land. None changes a certified file or record.
   - **But what became affordable reached further.** Run along a sequence of formulas, each solved one kept as a
     routine, the pairs rule invents 10·x², 10·x² + 1 and x³, each in the first round of its step: 10·x² is "x² mod N
     (carried), then the rest of the way". A new practice source, steps that move two numbers at once, gives Fibonacci
-    from scratch. At N ≤ 26 and N ≤ 50 the unchanged learner finds the same programs as at N ≤ 7.
-  - **Not reached:** Montgomery's in the sequence (3–4 rounds), and 10·x², 10·x² + 1 and x³ from scratch.
+    from scratch. At N ≤ 26 and N ≤ 50 the unchanged learner finds the same programs as at N ≤ 7. Hardest first's
+    own sequence, finished after the spend-limit cut, misses 10·x² + 1 but then invents x³, Montgomery's (round 3)
+    and Fibonacci (round 1).
+  - **Not reached:** Montgomery's and Fibonacci in the anchored-pairs sequences (5 rounds; their Fibonacci programs
+    are right but take more steps than the general check allows), and 10·x², 10·x² + 1 and x³ from scratch, until
+    the subgoal study below.
   - **Bounds on the search space:** fewer instances with counterexamples, merging symmetric registers, dead
     registers, meet in the middle and a lower value cap each save at most 1.7×, against the 9–10× each instruction
-    costs. Some runs were cut off by Modal's spend limit (about $12–15 to finish).
+    costs. The runs Modal's spend limit cut off were finished from their stores, each the same as before in every
+    round they share (184 search-hours, $21.92).
+- **A signal that sees a piece before it is solved** ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md), code and records
+  in [`bar3/scale/subgoal/`](bar3/scale/subgoal/)). The learner scores each problem it poses by whether the target
+  factors through it, from the rows alone: the target is a function of the problem's answer and N, or one law of the
+  book away from it. It aims one deeper search (10M states) at the problem the score singles out.
+  - **From scratch at N ≤ 7:** x³ in round 1 under both choosing rules, and 10·x² in round 1 under hardest first.
+    The same learner without the score gets neither in 5 rounds. Every program found is right on every pair up to
+    N = 120.
+  - **Nothing regressed:** x² mod N, x² ± 1, x² + 3, 2x + 1 and Fibonacci still come, and hardest first's x² + 3,
+    lost with the bigger law book this study uses, came back.
+  - **Not reached:** 10·x² + 1, whose rest after x² mod N is a token beyond the deeper search, and Montgomery's,
+    whose 16 instances at N ≤ 7 are too few to pin down halving mod N.
+  - **What did the work:** the deeper search, aimed by the score (1.6 of 47 search-hours). Breaking ties by the
+    score changed some picks but no outcome. About $12.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

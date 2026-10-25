@@ -3,14 +3,14 @@
 **Reviewing or judging the project from outside? Start with [REVIEW.md](REVIEW.md)**: the claims, the file to judge,
 how to check its records, and the rules to rule on. It points back into this file.
 
-*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed ten times as studies
-landed. The refresh of 2026-10-24 at about 08:45 added the four studies that Modal's spend limit cut short:
-optimizers that can rest at the shader grid's rule, which laws self-practice needs, a cheaper and deeper bar-3
-learner, and generic instructions in place of SEL.S and BRG.X. This one, at about 17:30 the same day, adds what the
-reruns after the limit was raised have brought so far: that last file certified (§4.8), the law ablation's seed-1 arms
-(§4, bar 2) and its rerun at three times the budget, and the NCA's 13 cut-off runs, finished (§4.5); bar 3's
-replays are still going (§7). A refresh on Oct 25 at about 03:30 adds the weak-check fix in copies of eight more
-certified files (§4.7).*
+*The entry point for `cpu_first/`. First written 2026-10-21 at 03:45 Pacific and refreshed ten times as studies landed.
+The refresh of 2026-10-24 at about 08:45 added the four studies that Modal's spend limit cut short: optimizers that can
+rest at the shader grid's rule, which laws self-practice needs, a cheaper and deeper bar-3 learner, and generic
+instructions in place of SEL.S and BRG.X. This one, at about 17:30 the same day, adds what the reruns after the limit
+was raised have brought so far: that last file certified (§4.8), the law ablation's seed-1 arms (§4, bar 2) and its
+rerun at three times the budget, and the NCA's 13 cut-off runs, finished (§4.5); bar 3's replays are still going (§7). A
+refresh on Oct 25 at about 03:30 adds the weak-check fix in copies of eight more certified files (§4.7), bar 3's cut
+runs, finished, and a signal that brings x³ and 10·x² from scratch (§4, bar 3).*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -43,6 +43,11 @@ certified files (§4.7).*
   `tools/verify_records.py` against their fixed copies, and so do 62 of the 63 seed records (the learned loop's seed 2
   fails, as its original does); `check_fix_variants.py` and `compare_fix_variants.py` were rerun, and 75 of the 78
   runs equal their originals'.*
+- *For bar 3's finished cut runs and the subgoal study (§4, bar 3): `compare.py --old` was rerun on each replayed
+  record against its version from before the cut, and on the subgoal study's eight controls against the cut depth-2
+  runs; every round they share is the same. Every program the finished sequences and the subgoal study's 40 records
+  found was rechecked on every pair up to N = 120 (Montgomery's: the 3,600 odd-N pairs), and the score's ranking test
+  reproduces its record. The subgoal learner's copy check needs numba and was not rerun.*
 - *The data counts in §1–2 were computed from the released H1 files, and the commits come from `git log`.*
 - *The one-line findings of the timeline (§3) and the summaries of how each piece learns, including the NCA and bar-3
   studies, summarize their write-ups, which are linked; they were not re-run.*
@@ -75,13 +80,14 @@ certified files (§4.7).*
        budget, after search rules found by watching whether the round came (§4.8).
 
      The law book or its grammar, the choosing rule and most of the instruction set are still designed.
-  3. **A general algorithm learner: results at a tiny size, and first steps at full size.** A learner that picks its
-     own practice problems invents x² mod N for x < N ≤ 7, and, changed in nothing, four of nine other formulas, two
-     more once its solved formulas carry over. Made ten times cheaper with the same choices, it also invents 10·x²
-     and 10·x² + 1 along a sequence of formulas, and Fibonacci from a new kind of practice problem. Run on one digit
-     place, it invents two of stage 3's digit instructions. At full size, the self-practising stage 3 learns 8 of 11
-     tasks of the family after three general changes to its round's search. Within the task family, general lessons
-     v3 now learns all 14 practice datasets that use one fixed modulus.
+  3. **A general algorithm learner: results at a tiny size, and first steps at full size.** A learner that picks its own
+     practice problems invents x² mod N for x < N ≤ 7, and, changed in nothing, four of nine other formulas, two more
+     once its solved formulas carry over. Made ten times cheaper with the same choices, it also invents 10·x² and
+     10·x² + 1 along a sequence of formulas, and Fibonacci from a new kind of practice problem. Scoring which pieces the
+     target factors through, and searching one of them deeper, brings x³ and 10·x² from scratch. Run on one digit place,
+     it invents two of stage 3's digit instructions. At full size, the self-practising stage 3 learns 8 of 11 tasks of
+     the family after three general changes to its round's search. Within the task family, general lessons v3 now learns
+     all 14 practice datasets that use one fixed modulus.
 - It got there by removing hand-written parts one at a time, with certification as the gate at each step (§5).
 
 ## 1. The task, in plain words
@@ -231,6 +237,8 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 24, 17:25 `23a5534` | **the NCA's 13 cut-off runs, finished**: from random every arm still memorizes; only numbers read at a run's end moved | [nca/NCA.md](nca/NCA.md) §10 |
 | Oct 24, 15:45 `3a9d9e0` | **generic instructions, certified**: rerun once Modal's limit was raised, the official H100 run (training 2,770 s) and 8 of 8 B200 seeds certify | [integration/generic_ops/GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md) §0 |
 | Oct 25, 03:12 `6d2d60d` | **the weak-check fix in eight more certified files**: each fixed copy certifies wherever its original did, over 78 runs, and 75 runs equal the original's; in one of the other three, the fixed check rejects a wrong program the old one let through | [integration/ABLATION_S3.md](integration/ABLATION_S3.md) §8 |
+| Oct 25, 03:30 `74c8c32` | **bar 3's cut runs, finished**: hardest first's sequence invents Montgomery's and Fibonacci; the anchored-pairs sequences miss both in 5 rounds | [bar3/scale/SCALE.md](bar3/scale/SCALE.md) §6 |
+| Oct 25, 03:31 `97f30b9` | **bar 3 sees a piece before solving it**: scored by whether the target factors through it, one deeper search brings x³ and 10·x² from scratch | [bar3/scale/subgoal/SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md) |
 
 ### The lessons that came out of the failures
 
@@ -400,8 +408,16 @@ in the answer.
   library). But it made the pairs rule affordable along a sequence of formulas, each solved one kept as a routine,
   and there it invents 10·x², 10·x² + 1 and x³, each in the first round of its step. A new practice source, steps
   that move two numbers at once, gives Fibonacci from scratch. At N ≤ 26 and N ≤ 50, what the unchanged learner
-  invents is the program it found at N ≤ 7. Not reached: Montgomery's along the sequence, and 10·x², 10·x² + 1 and
-  x³ from scratch. No bound on the search space tried saves more than 1.7×.
+  invents is the program it found at N ≤ 7. Hardest first's own sequence, finished after the spend-limit cut, also
+  invents Montgomery's and Fibonacci; the anchored-pairs sequences miss both. Not reached: 10·x², 10·x² + 1 and x³
+  from scratch. No bound on the search space tried saves more than 1.7×.
+- **Seeing a piece before solving it** ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md)). The learner scores each
+  problem it poses by whether the target factors through it, from the rows alone (the target a function of the
+  problem's answer and N, or one law of the book away), and aims one deeper search at the problem the score singles
+  out. From scratch, x³ then comes in round 1 under both choosing rules and 10·x² in round 1 under hardest first,
+  where the same learner without the score gets neither in 5 rounds. Nothing regressed. 10·x² + 1 and Montgomery's
+  still do not come: the rest of the way after x² mod N is one token beyond the deeper search, and Montgomery's 16
+  instances at N ≤ 7 are too few to pin it down.
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -992,11 +1008,12 @@ The imports, the initialization, the host transfers and the absence of backward 
 ## 7. Status and open questions
 
 **What is running.** At about 07:25 PT on Oct 24, Modal's workspace spend limit stopped every task, at about $3,000
-billed this month. The user raised it to $4,000 that afternoon, and the four cut-off studies were relaunched at
-14:42–14:47 PT. Three have finished: the generic-instructions file certifies (§4.8), the NCA's 13 runs left its
-verdict as it was (§4.5), and the law ablation has all its seed-1 arms and its rerun at three times the budget (§4).
-One is still running, and what this file says of it is not final: the bar-3 scale study's cut-off runs, Montgomery's
-and Fibonacci along the sequences, and a few side runs.
+billed this month. The user raised it to $4,000 that afternoon and to $5,000 that evening, and the four cut-off
+studies were relaunched at 14:42–14:47 PT. All four have finished: the generic-instructions file certifies (§4.8),
+the NCA's 13 runs left its verdict as it was (§4.5), the law ablation has all its seed-1 arms and its rerun at three
+times the budget (§4), and bar 3's cut runs are finished (§4, bar 3). One new study is running, so nothing here
+covers it yet: whether bar 3's learner, on one digit place, invents add-with-carry and multiply-accumulate once it
+keeps or poses the version of their piece that counts the carry (BRIDGE.md §3).
 
 Everything else described here is committed.
 
@@ -1026,6 +1043,9 @@ Everything else described here is committed.
 - **Whether a cheaper bar-3 learner reaches further** (SCALE.md): ten times cheaper, with the same choices, buys
   about one instruction. But it made the pairs rule affordable along a sequence of formulas, which then invents
   10·x², 10·x² + 1 and x³, and a new practice source gives Fibonacci.
+- **Whether the learner can aim its search before it solves a piece** (SUBGOAL.md): yes. Scored from the rows by
+  whether the target factors through it, x² mod N ranks first in round 0 for all four targets built on it, and one
+  deeper search aimed there brings x³ and 10·x² from scratch.
 - **Whether the curriculum can go** (SELF_PRACTICE.md): yes, for H1. With a law book and a general choosing rule in
   its place, stage 3 still certifies on the official manifest (step 19).
 - **Which laws self-practice needs** (SP_ABLATION.md): the multiply-add law and its pattern, the parts every problem
@@ -1077,11 +1097,14 @@ Everything else described here is committed.
    self-practising stage 3: one target at first, now 8 of 11 tasks, after changes written with the family in view
    (§4.8).
 7. **What its sources cannot pose.** A new source poses steps that move two numbers at once, and Fibonacci is now
-   invented from scratch. From scratch, 10·x², 10·x² + 1 and x³ still do not come: they need x² mod N as a piece,
-   which the base law book never poses, and they come only along a sequence that carries it (SCALE.md).
+   invented from scratch. 10·x², 10·x² + 1 and x³ need x² mod N as a piece, which the base law book never poses; the
+   depth-2 book poses it, and a score of whether the target factors through it, with one deeper search aimed there,
+   brings x³ and 10·x² from scratch (SUBGOAL.md). 10·x² + 1 needs a second step: the rest of the way after x² mod N
+   would have to be split the same way.
 8. **The cost of searching.** A compiled search, shared searches and the cheaper choosing rule cut the breadth study
    from 515 search-hours to 51 with the same choices. But each extra instruction still multiplies the search by 9–10
    (about 40 over a carried library), and no bound on the search space tried saves more than 1.7× (SCALE.md §8).
+   What brought x³ and 10·x² was aiming one deeper search by a score, not searching faster (SUBGOAL.md).
 9. **What the data cannot say.** On data whose T always has one digit, nothing tells "16" from "61" (eight of v3's
    fixed-modulus sets stop at T = 8 for that reason). A prior, such as reading T the way the answer is written, would
    settle it, but it is a designer's choice.
@@ -1114,7 +1137,7 @@ s3i: the service refused it ("Submissions are now closed"), so there is no hoste
 | [`HANDOVER.md`](HANDOVER.md) | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, what is tracked and what is on disk only |
 | [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |
-| [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/`. Stage 3's digit instructions invented at one place, and the s3i variant that uses one ([BRIDGE.md](bar3/bridge/BRIDGE.md), in `bridge/`). The learner made ten times cheaper, then given new kinds of practice problems ([SCALE.md](bar3/scale/SCALE.md), in `scale/`) |
+| [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/`. Stage 3's digit instructions invented at one place, and the s3i variant that uses one ([BRIDGE.md](bar3/bridge/BRIDGE.md), in `bridge/`). The learner made ten times cheaper, then given new kinds of practice problems ([SCALE.md](bar3/scale/SCALE.md), in `scale/`), and a signal that sees a piece before it is solved ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md), in `scale/subgoal/`) |
 | [`nca/`](nca/) | long division as a shader: identical local cells ([NCA.md](nca/NCA.md)), the follow-up trained long with weight decay or agreement (NCA.md §9), and with optimizers that can rest at the rule (NCA.md §10); records in `runs/` and `records/` |
 | [`tools/`](tools/) | the shared Modal runner and the measured seed policy ([tools/README.md](tools/README.md)) |
 | [`tinyrouting/`](tinyrouting/) | wiring and tables learned together in tiny machines |

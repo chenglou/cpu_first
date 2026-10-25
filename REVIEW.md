@@ -374,7 +374,8 @@ later ones follow them as they land. None changes a certified file or record.
     composition of + and ×, one set of target rules). It holds sp2's book and 24 concepts more, and certifies on the
     official manifest (frozen by 2,228 s) and on 8 of 8 seeds.
   - **What it says:** the particular list of laws is not what the result rests on. Still designed: the grammar, the
-    target rules and the choosing rule. One rerun, an arm at three times the budget, is still running.
+    target rules and the choosing rule. Rerun at three times the budget, the rule without its ties still finds no
+    round on seed 74: the climb reaches its 16-level cap with no reduction the round can use.
   - **Found in passing:** sp2's searches can run past the training deadline. One failing arm trained 3,673 s of its
     3,600; every certified run in the study trained inside the budget.
 - **Generic instructions in place of SEL.S and BRG.X** ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md),

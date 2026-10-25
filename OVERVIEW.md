@@ -8,7 +8,8 @@ landed. The refresh of 2026-10-24 at about 08:45 added the four studies that Mod
 optimizers that can rest at the shader grid's rule, which laws self-practice needs, a cheaper and deeper bar-3
 learner, and generic instructions in place of SEL.S and BRG.X. This one, at about 17:30 the same day, adds what the
 reruns after the limit was raised have brought so far: that last file certified (§4.8), the law ablation's seed-1 arms
-(§4, bar 2), and the NCA's 13 cut-off runs, finished (§4.5); the rest are still going (§7).*
+(§4, bar 2) and its rerun at three times the budget, and the NCA's 13 cut-off runs, finished (§4.5); bar 3's
+replays are still going (§7).*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -221,6 +222,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 24, 08:21 `5d108a7` | **bar 3, cheaper and deeper**: 515 search-hours down to 51 with the same choices; along a sequence of formulas it invents 10·x², 10·x² + 1 and x³, and Fibonacci comes from scratch | [bar3/scale/SCALE.md](bar3/scale/SCALE.md) |
 | Oct 24, 08:23 `597440e` | **generic instructions** in place of SEL.S and BRG.X: the round is found inside training, but the official run was stopped before it wrote a record, so the build is not certified | [integration/generic_ops/GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md) |
 | Oct 24, 16:10 `10d9882` | **the law ablation on seed 1**: the 17 arms the spend limit cut off; two parts that only cost time on seed 74, the x + d·N pattern and choosing at all, are needed on seed 1 | [integration/sp_ablation/SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md) |
+| Oct 24, 18:01 `29efe74` | **the law ablation's rerun at three times the budget**: without lpca's ties, seed 74 still finds no round; its climb runs out of levels, not time | [integration/sp_ablation/SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md) §4 |
 | Oct 24, 17:25 `23a5534` | **the NCA's 13 cut-off runs, finished**: from random every arm still memorizes; only numbers read at a run's end moved | [nca/NCA.md](nca/NCA.md) §10 |
 | Oct 24, 15:45 `3a9d9e0` | **generic instructions, certified**: rerun once Modal's limit was raised, the official H100 run (training 2,770 s) and 8 of 8 B200 seeds certify | [integration/generic_ops/GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md) §0 |
 
@@ -361,8 +363,8 @@ in the answer.
   - **needed**: the multiply-add law and its pattern, since the multiply is a loop over the row they pose; compare,
     remainder, add and the pair pattern, which every other problem is built or checked with; the round's two
     routines, the multiply and the reduction; and, in the choosing rule, rating a law on a pattern by its cheapest
-    placement. Two more parts of the rule each failed on seed 74 and certified on seed 1: they make the result
-    reliable rather than possible;
+    placement. Two more parts of the rule each failed on seed 74 and certified on seed 1, one of them still failing
+    on seed 74 at three times the budget: they make the result reliable rather than possible;
   - **speed only on seed 74, needed on seed 1**: the x + d·N pattern (+441 s on seed 74, corrected for host speed;
     on seed 1 the reduction never comes), and choosing at all (practising everything certifies on seed 74 at the edge
     of the budget, frozen by 3,249 s, and runs out of time a level short on seed 1);
@@ -977,10 +979,10 @@ The imports, the initialization, the host transfers and the absence of backward 
 
 **What is running.** At about 07:25 PT on Oct 24, Modal's workspace spend limit stopped every task, at about $3,000
 billed this month. The user raised it to $4,000 that afternoon, and the four cut-off studies were relaunched at
-14:42–14:47 PT. Two have finished: the generic-instructions file certifies (§4.8), and the NCA's 13 runs left its
-verdict as it was (§4.5). Two are still running, and what this file says of them is not final:
-- the law ablation's one arm rerun at three times the budget (its 17 seed-1 arms are in, §4);
-- the bar-3 scale study's cut-off runs: Montgomery's and Fibonacci along the sequences, and a few side runs.
+14:42–14:47 PT. Three have finished: the generic-instructions file certifies (§4.8), the NCA's 13 runs left its
+verdict as it was (§4.5), and the law ablation has all its seed-1 arms and its rerun at three times the budget (§4).
+One is still running, and what this file says of it is not final: the bar-3 scale study's cut-off runs, Montgomery's
+and Fibonacci along the sequences, and a few side runs.
 
 Everything else described here is committed.
 

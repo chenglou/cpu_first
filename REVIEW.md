@@ -32,10 +32,13 @@ The project measures itself against three bars ([OVERVIEW §4](OVERVIEW.md#4-whe
    practice problems invents x² mod N for x < N ≤ 7 (and ≤ 26) on a bare counting machine; unchanged, it invents 4 of 9
    other formulas, and 2 more once its solved formulas carry over ([PRACTICE.md](bar3/PRACTICE.md),
    [BREADTH.md](bar3/BREADTH.md)). Aiming one deeper search at the piece the target factors through, found from the rows
-   alone, brings x³ and 10·x² from scratch ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md)). Run on one digit place, it
-   invents three of stage 3's four digit cells, all but multiply-accumulate ([BRIDGE.md](bar3/bridge/BRIDGE.md),
-   [CARRY.md](bar3/bridge/CARRY.md)). At H1's size, the self-practising stage 3 learns 8 of 11 tasks of the family after
-   three general changes to its round's search ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
+   alone, brings x³ and 10·x² from scratch ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md)). Frozen with that rule, it
+   invents 5 of 10 formulas that none of its rules were written for, with its predictions written down before the runs
+   ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md)). Run on one digit place, it invents all four of stage 3's digit cells,
+   each under at least one of its choosing rules; multiply-accumulate needs a deeper search aimed at its piece the same
+   way ([BRIDGE.md](bar3/bridge/BRIDGE.md), [CARRY.md](bar3/bridge/CARRY.md)). At H1's size, the self-practising stage 3
+   learns 8 of 11 tasks of the family after three general changes to its round's search
+   ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
 
 Four rules are **gray** for s3i: 4, 7, 8 and 14 (§5). The write-ups flag them; they do not argue them away.
 
@@ -468,16 +471,29 @@ later ones follow them as they land. None changes a certified file or record.
     tried small, would not reach 10·x² + 1 either: no source poses its piece, 10X mod N (SUBGOAL.md §8).
   - **What did the work:** the deeper search, aimed by the score (1.6 of 47 search-hours). Breaking ties by the
     score changed some picks but no outcome. About $12.
+- **Tested on formulas none of its rules were written for** ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md), code and
+  records in [`bar3/scale/heldout/`](bar3/scale/heldout/)). Each rule so far was written after watching one of the
+  tracked formulas fail. So the learner, frozen with the subgoal, was run from scratch on ten new formulas under both
+  choosing rules, with a prediction for each written down before any run (`PREREG.md`, its hash recorded).
+  - **What came:** 5 of 10, in 9 of 20 runs, all in round 0 or 1: (x² + x), (x + 1)², 3·x² and x⁴ mod N under both
+    rules, and 2^x mod N under anchored pairs. Every program is right on every pair up to N = 120.
+  - **The predictions:** 16 of 20 held, including all 8 made with medium or high confidence.
+  - **The subgoal's part:** a control without it, added after the test, loses 3·x² under hardest first and x⁴ under
+    anchored pairs, and gets x⁴ under hardest first two rounds later.
+  - **Not reached:** (x³ + x), Lucas, Tribonacci, floor(x²/N) and the triangular numbers. Two need a step no source
+    poses: the running sum's y(x + 1) from y(x) and x, and a step on three numbers. Three need a program longer than the
+    search reaches. About $11.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18
   such slices, and 11 of them compose back into their law when looped over the places.
   - Bar 3's learner, unchanged, on a counting machine with no digits, carries or wrap-around, invented the select (what
     SEL.S does at one place) and subtract-with-borrow, and, in the round that Modal's spend limit had cut off,
-    add-with-carry: it adds, compares with the base and subtracts it once ([CARRY.md](bar3/bridge/CARRY.md)). It did not
-    invent multiply-accumulate, whose carry must count: a new rule that poses the counting piece lets the learner's
-    probe find it, but in the learners' own runs a piece that uses up N, or one instruction too many, stands in the way.
-    Each invented program, compiled to a base-10 table, is exactly stage 3's cell.
+    add-with-carry: it adds, compares with the base and subtracts it once ([CARRY.md](bar3/bridge/CARRY.md)).
+    Multiply-accumulate, whose carry must count, came once a deeper search was aimed at its piece as in the subgoal
+    study: a score read off the rows names the piece the target loops over, and in that search a clean program beats a
+    cheaper one that uses up N. Hardest first then invents it in round 1; the pairs signal does not in 2 rounds
+    (CARRY.md §12). Each invented program, compiled to a base-10 table, is exactly stage 3's cell.
   - `submission_stage3_bridge.py` (md5 `85ff74c5faf902c1ede7a9f07d059026`) is s3i with 36 instructions: subtract, add
     and multiply-accumulate at the pointer against each register, their tables learned as s3i learns them, and the
     invented select in place of SEL.S. It certifies on the official H100 manifest (training 1,839 s, against s3i's
@@ -486,9 +502,12 @@ later ones follow them as they land. None changes a certified file or record.
   - With all 11 slices (61 instructions) there is no round. At s3i's budgets the search runs out of states; at 4
     times them, wrong programs pass the two weak checks. The run that would confirm the second explanation was
     refused by Modal's spend limit.
-  - **Still designed:** the law book, the frame (moves, the pointer, shifts, BRG.X, the loops), which slices become
-    instructions, and multiply-accumulate, which the learner did not invent. The instruction list is made
-    before training; the run does not invent its cells.
+  - **A reduction with nothing estimated** (CARRY.md §13; local, nothing built): Montgomery's quotient digit is a table
+    of one place, t's lowest digit and N's last (40 rows at base 10), where long division's has to be estimated and
+    corrected. Run from that table and the invented multiply-accumulate, subtract and select alone, Montgomery's
+    reduction is right on 300 of 300 random cases at every base from 2 to 16.
+  - **Still designed:** the law book, the frame (moves, the pointer, shifts, BRG.X, the loops) and which slices become
+    instructions. The instruction list is made before training; the run does not invent its cells.
 
 ## 8. About this checkout
 

@@ -33,8 +33,8 @@ sp2's official record exactly.
 - **Two more parts of lpca make the result reliable rather than possible.** Each failed on seed 74 and certified on
   seed 1. Hardest first among the concepts: in a random order the multiply-add row, which can be found at one level
   only, is kept or lost by the draw. Every placement tied for cleanest: with one placement per concept, whether the
-  reduction lands in registers the round can use is chance (on seed 1 the learner found a long division sp2 never
-  had, one that shifts the divisor instead of the dividend).
+  reduction lands in registers the round can use is chance. On seed 1 it did (a long division sp2 never had, one
+  that shifts the divisor instead of the dividend); on seed 74 it did not, even at three times the budget.
 
 **What made it slower on seed 74 and failed on seed 1.** Nothing in the book or the rule costs only time on both
 seeds.
@@ -68,12 +68,14 @@ any such grammar must have: a composition of + and × that accumulates (the mult
 grammar (its atoms, its forms, the patterns of the comparison pair), the target rules, the choosing rule, and the rest
 of sp2 (SELF_PRACTICE.md §6).
 
-**How firm this is.** Seed 74 ran for all 30 arms and both books ran on all 8 seeds. Seed 1 ran for 13 arms before
-Modal stopped the workspace at its spend limit; 17 seed-1 arms and a rerun at three times the budget are not run yet
-(about $82 to finish, §6). Most failures were cut by the training deadline, not by running out of things to try; for
-each, §4 says why more time would not help: by construction, two full levels that found nothing, a piece that can be
-found at one level only, or longer runs of the same rule elsewhere. The exception is one placement per concept, whose
-rerun at three times the budget had no round when it was stopped at 6,229 s.
+**How firm this is.** Every arm ran on seeds 74 and 1, and both books on all 8 seeds. Most failures were cut by the
+training deadline, not by running out of things to try; for each, §4 says why more time would not help: by
+construction, two full levels that found nothing, a piece that can be found at one level only, or longer runs of the
+same rule elsewhere. One placement per concept, rerun at three times the budget, still had no round: its climb reached
+sp2's cap of 16 levels about 5,910 s in, without a reduction the round can use, and the round search found nothing in
+the time left. Two failures on seed 1 were not rerun with more time: practising everything, which ran out of time a
+level short of where seed 74's round came, and x + d N, whose search missed a program that is right with its own
+routines (why is not known). And two seeds show that four parts can go either way, not how often (§6).
 <!-- /PLAIN -->
 
 ## 1. What was removed, and how
@@ -162,8 +164,10 @@ Every run is the untouched official manifest on one H100 (`benchmark/manifests/h
 64 on both ladders, every rung 768/768 and every split exact; every certified run here is. The round's time is the
 evaluator's elapsed seconds at the first logged step after it, host-corrected in brackets where at least 10 search
 units equal the control's (§4); "cut by the training deadline in L*n*" means the climb was still going when the
-training deadline stopped it, "ended" that it ended by its own rule. Records: `records/<arm>_h100_seed<seed>.json`;
-the table comes from [`analyze.py`](analyze.py) `--both`.
+training deadline stopped it, "ended" that it ended by its own rule (its time, too, is at the first logged step after
+it, so it can include round searches made after the climb). Records: `records/<arm>_h100_seed<seed>.json`, and
+rule_lpc's rerun at 3 times the budget `records/rule_lpc_h100_r10800_seed74.json` (§4); the table comes from
+[`analyze.py`](analyze.py) `--both`.
 
 | arm | what it removes | seed 74 | seed 1 | verdict |
 |---|---|---|---|---|
@@ -181,7 +185,7 @@ the table comes from [`analyze.py`](analyze.py) `--both`.
 | no_pat_xdn | the pattern x + d N | yes: 694 (L5), 1,302 (1,418) s | no: cut by the training deadline in L9 (of L0-L10) | speed only on seed 74 (+441 s); needed on seed 1 |
 | rule_all | choosing at all (every learnable practised) | yes: 687 (L4), 3,211 s | no: cut by the training deadline in L4 (of L0-L14) | speed only on seed 74 (+2,234 s, at the budget's edge); needed on seed 1 (out of time) |
 | rule_rca | lpca's hardest first (random order) | no: cut by the training deadline in L7 (of L0-L8) | yes: 629 (L4), 858 (962) s | needed on seed 74; not needed on seed 1 |
-| rule_lpc | lpca's every tied placement (one each) | no: cut by the training deadline in L11 (of L0-L12) | yes: 640 (L5), 1,078 s | needed on seed 74; speed only on seed 1 (+244 s) |
+| rule_lpc | lpca's every tied placement (one each) | no: cut by the training deadline in L11 (of L0-L12) | yes: 640 (L5), 1,078 s | needed on seed 74 (at 3x the budget too); speed only on seed 1 (+244 s) |
 | no_law_accmul | the law a + b c | no: cut by the training deadline in L8 (of L0-L10) | no: cut by the training deadline in L6 (of L0-L8) | needed |
 | no_pat_oxd | the pattern (o, x, d) | no: cut by the training deadline in L8 (of L0-L10) | no: cut by the training deadline in L6 (of L0-L8) | needed |
 | no_law_lt | the law lt | no: ended in L16: the level cap (step 737, 1,530 s) | no: ended in L16: the level cap (step 679, 890 s) | needed |
@@ -311,9 +315,10 @@ what the control would have practised a level later, or to other laws:
 **Needed, in the rule.** lpca has four parts: concepts rated by their cheapest placement (against bar 3's
 hardest-first on candidates, `lp`), hardest first among them (against a random order, `rca`), every placement tied
 for cleanest (against one, `lpc`), and cleanest rather than cheapest (`lpcc`: not needed, above). The first is needed
-on both seeds. The second and third failed on seed 74 and certified on seed 1, so they are needed for a reliable
-result rather than a possible one. And choosing well matters: every other rule bar 3 tried fails on both seeds. The
-exception is practising everything, which certifies on seed 74 at the budget's edge and runs out of time on seed 1.
+on both seeds. The second and third failed on seed 74 (the third at 3 times the budget too) and certified on seed 1,
+so they are needed for a reliable result rather than a possible one. And choosing well matters: every other rule
+bar 3 tried fails on both seeds. The exception is practising everything, which certifies on seed 74 at the budget's
+edge and runs out of time on seed 1.
 - **bar 3's hardest learnable first** (rule_lp): the costliest candidates are costly placements of easy laws (the
   comparison and subtraction at cost 5 with their operands in X, Y or N, then min, max and the link), so levels 0-3
   go to the pair pattern, the addition comes at level 4, the multiply-accumulate row at 5, and the multiply and a
@@ -344,10 +349,11 @@ exception is practising everything, which certifies on seed 74 at the budget's e
   modulus) up 8 places, loads the dividend from Y, and then 8 times shifts the modulus down one place and runs the
   chain against X: long division by moving the divisor instead of bringing in the dividend's digits, which works with
   the X chain. The round is `LDA.X STA.Y T.mul.x,o.XY STA.Y LDA.N STA.X T.red.x+on.YX`. The rerun at 3 times the
-  budget on seed 74 (§4) found the same reduction at level 11 (4,275 s), but with the dividend in N, which no
-  instruction can write, so no round can use it; it had no round by level 15 (6,229 s) when Modal's spend limit
-  stopped it. So one placement per concept makes the round a matter of which placement comes up, where every tied
-  placement gave it on both seeds.
+  budget on seed 74 (§4) found the same reduction at level 11 (about 3,670 s), but with the dividend in N, which no
+  instruction can write, so no round can use it. Its climb then reached sp2's cap of 16 levels (about 5,910 s) with
+  no other reduction of x + o N, and the round searches of the 4,770 s left before the deadline found nothing. So
+  one placement per concept makes the round a matter of which placement comes up, where every tied placement gave
+  it on both seeds.
 - **bar 3's cheaper pairs signal** (rule_ct2a2): 678 lookaheads, the round searched with each learnable candidate and
   with each pair that includes one of the two hardest, and none reaches the round (at full size it is reached or not,
   so no lookahead tells candidates apart until both the multiply and the reduction exist). With every gain zero it
@@ -380,12 +386,13 @@ exception is practising everything, which certifies on seed 74 at the budget's e
 ## 4. How hard each arm was tried
 
 <!-- HOW_HARD -->
-- **One run per arm and seed**, the untouched official manifest on one H100: seeds 74 and 1 for all 30 arms. 17 of
-  the seed-1 runs were cut off by Modal's spend limit and run again from the start once it was raised (below). A
-  certifying arm's run takes 1,000-1,600 s of wall time (practising everything, 3,573 s). A failing arm takes the
-  whole 3,600 s: its climb, then the round searched again every 10 steps until the deadline. One failing run went
-  past the budget: rule_lp on seed 1 trained 3,673 s. Its last search, building level 9's vocabulary, took 239 s and
-  ended 73 s after the budget's end. It fails either way, but sp2's searches can run past the training deadline.
+- **One run per arm and seed**, the untouched official manifest on one H100: seeds 74 and 1 for all 30 arms, and
+  rule_lpc once more on seed 74 at 3 times the budget (10,800 s). 17 of the seed-1 runs and the 3x rerun were cut
+  off by Modal's spend limit and run again from the start once it was raised (below). A certifying arm's run takes
+  1,000-1,600 s of wall time (practising everything, 3,573 s). A failing arm takes the whole 3,600 s: its climb,
+  then the round searched again every 10 steps until the deadline. One failing run went past the budget: rule_lp on
+  seed 1 trained 3,673 s. Its last search, building level 9's vocabulary, took 239 s and ended 73 s after the
+  budget's end. It fails either way, but sp2's searches can run past the training deadline.
 - **The control is exact.** `tools/modal_runner.py --mode compare` finds every field equal to sp2's official record
   (`records/runner/submission_stage3_sp2_official.json`): the training trace (201 points), the loss at every logged
   step, every rung and split, the freeze at step 887. The climb's 48 units equal the official run's line for line once
@@ -428,10 +435,15 @@ exception is practising everything, which certifies on seed 74 at the budget's e
   - `rca`: no, on seed 74. The multiply-accumulate row's only search that reaches it (the primitives alone, once per
     root) was at level 3; afterwards every level's deep probes go to the same unsolved near miss (the quotient on
     x + d N).
-  - `lpc`: not within 3 times the budget so far. The rerun of seed 74 at 10,800 s (H100) found a reduction at level 11
-    (4,275 s), the divisor-shifting one seed 1 used (§3), but with its dividend in N, which no instruction writes; the
-    round searches of levels 11-14 found nothing, and Modal's spend limit stopped the run in level 15 (6,229 s). Its
-    last log lines are in [`partial/`](partial/); there is no record.
+  - `lpc`: no, on seed 74, at 3 times the budget either. The rerun at 10,800 s (H100) found a reduction at level 11
+    (about 3,670 s), the divisor-shifting one seed 1 used (§3), but with its dividend in N, which no instruction
+    writes. Level 15 added four more reductions, of x + d N and x + N, and the climb ended by its own rule at sp2's
+    cap of 16 levels: step 832, about 5,910 s (the climb's own seconds added up from the last logged step;
+    `analyze.py` prints 7,890 s, the next logged step's, which comes after six round searches). With its 31 routines
+    the round was then searched 14 more times to cost 5 in full (325-330 s each), with nothing found, until the
+    deadline. So it ran out of levels, not time. The first try at this rerun, which Modal's stop cut off at the end
+    of level 15 (6,229 s), had climbed the same way: its last 30 climb lines, in [`partial/`](partial/), equal the
+    rerun's once seconds are removed.
   - `lp`, `ct2a2`: no reduction in 10-12 levels of real work on seed 74, or in 8-9 on seed 1 (where both had the
     multiply and chains, chains that read or write X). SELF_PRACTICE.md's tiny core ran them longer (`lp` at 16
     probes: 10 levels, 3,976 s on a B200; `ct2a2`: 7 levels, 1,799 s), also without one.
@@ -445,9 +457,10 @@ exception is practising everything, which certifies on seed 74 at the budget's e
   book arms practised another reduction, `CLA P[BRG.X T.add.pair.AN T.red.x+dn.AN]` with the modulus in N. It is
   right at every size [`reduce_check.py`](reduce_check.py) tries (W = 1 to 8, quotients up to 10^W), and those arms
   lack the multiply anyway. So each failure lacks a piece outright rather than holding a wrong one.
-- **Cost.** Billed by Modal: $119.41 for the ablation's run (`sp-abl-s74`: seed 74, the 13 seed-1 records and the
-  cut-off work), $3.08 and $49.00 for the books' runs (`sp-books-gen`, `sp-books-2`), all through 13:00 UTC; the last
-  half hour before the stop adds about $14. About $185 in all, of a $300 soft budget.
+- **Cost.** Billed by Modal: $134.38 for the ablation's first run (`sp-abl-s74`: seed 74, the 13 seed-1 records and
+  the work cut off by the stop), $3.08 and $49.00 for the books' runs (`sp-books-gen`, `sp-books-2`), $70.27 for the
+  17 seed-1 runs again (`sp-abl-s1-rest`), and $9.05 so far for the 3x rerun (`sp-abl-relaxed`; its last 48 minutes
+  are not billed yet, and its list price is $12.15). About $269 in all: $186 before the stop, $82 after.
 - **The stop.** At 07:25 PDT (14:27 UTC) on Oct 24, Modal stopped every container in the workspace, every session's:
   the workspace reached its spend limit (about $3,000 for the month, set in Modal below the $5,000 this study was
   planned around). Seven seed-1 runs were cut off mid-run (no record), ten never started, and the 3x rerun of `lpc`
@@ -599,13 +612,14 @@ every seed, inside the budget on every one.
 - **bar 3's `random`** (no probes; each random pick given a full practice search) has no counterpart: sp2's only
   searches are its probes, so a random pick the probes did not solve has no program to practise. `random_ok` (K
   learnable candidates at random) is the nearest arm.
-- **Relaxed-budget reruns** were run only where a failure could plausibly be the clock's (§4): `lpc` on seed 74.
-  Two seed-1 failures that came later were not rerun. One is `all`, a level short of where seed 74's round came, so
-  more time would likely make it speed only on both seeds. The other is x + d N, where whether more levels would
-  find the inline chain is not known. The other failures are structural, and §4 says why for each: the book cannot
-  pose the piece, or no practised routine can make it, or the climb's own gate keeps its deep searches elsewhere.
-  bar 3's own rules (`lp`, `ct2a2`, `all`, `lpu`) also had long tiny-core runs in SELF_PRACTICE.md §3.2: 7 to 10
-  levels and up to 6,693 s on a B200 each, without the round.
+- **Relaxed-budget reruns** were run only where a failure could plausibly be the clock's (§4): `lpc` on seed 74,
+  which ran out of sp2's 16 levels instead, with no round. Two seed-1 failures that came later were not rerun. One
+  is `all`, a level short of where seed 74's round came, so more time would likely make it speed only on both
+  seeds. The other is x + d N, where whether more levels would find the inline chain is not known. The other
+  failures are structural, and §4 says why for each: the book cannot pose the piece, or no practised routine can
+  make it, or the climb's own gate keeps its deep searches elsewhere. bar 3's own rules (`lp`, `ct2a2`, `all`,
+  `lpu`) also had long tiny-core runs in SELF_PRACTICE.md §3.2: 7 to 10 levels and up to 6,693 s on a B200 each,
+  without the round.
 - **Single cells of the book** (one law on one pattern, such as lt on x + d N alone) were not removed one at a time.
   The arms remove a whole law or a whole pattern; the smallest book (§5.1) removes cells by combining both.
 - **The search sizes and the rest of sp2** (the probe and deep-probe budgets, K, the probes per setting, the round's

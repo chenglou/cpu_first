@@ -464,7 +464,8 @@ later ones follow them as they land. None changes a certified file or record.
   - **Nothing regressed:** x² mod N, x² ± 1, x² + 3, 2x + 1 and Fibonacci still come, and hardest first's x² + 3,
     lost with the bigger law book this study uses, came back.
   - **Not reached:** 10·x² + 1, whose rest after x² mod N is a token beyond the deeper search, and Montgomery's,
-    whose 16 instances at N ≤ 7 are too few to pin down halving mod N.
+    whose 16 instances at N ≤ 7 are too few to pin down halving mod N. A second level, the subgoal's own subgoal,
+    tried small, would not reach 10·x² + 1 either: no source poses its piece, 10X mod N (SUBGOAL.md §8).
   - **What did the work:** the deeper search, aimed by the score (1.6 of 47 search-hours). Breaking ties by the
     score changed some picks but no outcome. About $12.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in

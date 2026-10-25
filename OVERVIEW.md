@@ -245,6 +245,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 25, 03:31 `97f30b9` | **bar 3 sees a piece before solving it**: scored by whether the target factors through it, one deeper search brings x³ and 10·x² from scratch | [bar3/scale/subgoal/SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md) |
 | Oct 25, 03:55 `b5c82a2` | **bar 3 invents add-with-carry**: the learner's round 1, lost to the spend limit and finished, invents it by reducing the sum once; multiply-accumulate still not, even with a rule that poses the counting piece | [bar3/bridge/CARRY.md](bar3/bridge/CARRY.md) |
 | Oct 25, 05:48 `a495bce` | **a theory note on large numbers**: what classical, learning and neural theory already say, mapped onto the project. H1 is Rivest, Shamir and Wagner's time-lock function, with no known shortcut over T squarings without N's factors; digits, repeated squaring and clock features are the exp/log reparametrizations that work | [theory/LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md) |
+| Oct 25, 05:53 `fae297b` | the subgoal's own subgoal, tried small: no source poses 10·x² + 1's piece, 10X mod N, so the study stopped before any run | [bar3/scale/subgoal/SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md) §8 |
 
 ### The lessons that came out of the failures
 
@@ -423,7 +424,8 @@ in the answer.
   out. From scratch, x³ then comes in round 1 under both choosing rules and 10·x² in round 1 under hardest first,
   where the same learner without the score gets neither in 5 rounds. Nothing regressed. 10·x² + 1 and Montgomery's
   still do not come: the rest of the way after x² mod N is one token beyond the deeper search, and Montgomery's 16
-  instances at N ≤ 7 are too few to pin it down.
+  instances at N ≤ 7 are too few to pin it down. A second level of subgoals, tried small, would not reach 10·x² + 1
+  either: nothing poses its piece, 10X mod N (SUBGOAL.md §8).
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -1109,7 +1111,7 @@ Everything else described here is committed.
    invented from scratch. 10·x², 10·x² + 1 and x³ need x² mod N as a piece, which the base law book never poses; the
    depth-2 book poses it, and a score of whether the target factors through it, with one deeper search aimed there,
    brings x³ and 10·x² from scratch (SUBGOAL.md). 10·x² + 1 needs a second step: the rest of the way after x² mod N
-   would have to be split the same way.
+   would have to be split the same way, and tried small that fails: no source poses 10X mod N (SUBGOAL.md §8).
 8. **The cost of searching.** A compiled search, shared searches and the cheaper choosing rule cut the breadth study
    from 515 search-hours to 51 with the same choices. But each extra instruction still multiplies the search by 9–10
    (about 40 over a carried library), and no bound on the search space tried saves more than 1.7× (SCALE.md §8).

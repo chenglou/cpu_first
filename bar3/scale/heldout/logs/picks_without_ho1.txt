@@ -1,0 +1,40 @@
+lp_clean_deep_sub_x2x_ho1, round 1, with the subgoal:
+    subgoal: law2/mul(add(X,N),X) {'law': 'mod(add(g,X),N)', 'table': 9, 'how': 'g,x', 'pure': 55, 'key': (1, 9)}
+    picked: ['law2/mul(add(X,N),X)', 'law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)']
+lp_clean_deep_sub_x2x_ho1, round 1, without:
+    picked: ['law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)', 'law2/div(N,pred(X))']
+lp_clean_deep_sub_three_ho1, round 1, with the subgoal:
+    subgoal: law2/mod(mul(X,X),N) {'law': 'mod(mul(g,3),N)', 'table': 24, 'how': 'g,N', 'pure': 55, 'key': (1, 24)}
+    picked: ['law2/mod(mul(X,X),N)', 'law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)']
+lp_clean_deep_sub_three_ho1, round 1, without:
+    picked: ['law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)', 'law2/div(N,pred(X))']
+lp_clean_deep_sub_x4_ho1, round 1, with the subgoal:
+    subgoal: law2/mod(mul(X,X),N) {'law': 'mod(mul(g,g),N)', 'table': 24, 'how': 'g,N', 'pure': 55, 'key': (1, 24)}
+    picked: ['law2/mod(mul(X,X),N)', 'law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)']
+lp_clean_deep_sub_x4_ho1, round 1, without:
+    picked: ['law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)', 'law2/div(N,pred(X))']
+ct2a2_clean_deep_sub_three_ho1, round 1, with the subgoal:
+    subgoal: law2/mod(mul(X,X),N) {'law': 'mod(mul(g,3),N)', 'table': 24, 'how': 'g,N', 'pure': 55, 'key': (1, 24)}
+    picked: ['law2/mod(mul(X,X),N)', 'restrict/target/X<3', 'law2/mod(N,succ(X))', 'restrict/target/X·X<X+X']
+ct2a2_clean_deep_sub_three_ho1, round 1, without:
+    (no store holds target: the replay ends)
+ct2a2_clean_deep_sub_x4_ho1, round 1, with the subgoal:
+    subgoal: law2/mod(mul(X,X),N) {'law': 'mod(mul(g,g),N)', 'table': 24, 'how': 'g,N', 'pure': 55, 'key': (1, 24)}
+    picked: ['law/add(X,N)/x', 'law2/mod(mul(X,X),N)', 'law/add(X,X)/x', 'law/add(N,N)/x']
+ct2a2_clean_deep_sub_x4_ho1, round 1, without:
+    (no store holds target: the replay ends)
+lp_clean_deep_sub_lucas_ho1, round 0, with the subgoal:
+    subgoal: law2/absdiff(mul(X,N),N) {'law': None, 'table': 8, 'how': 'g,x', 'pure': 55, 'key': (0, 8)}
+    picked: ['law2/absdiff(mul(X,N),N)', 'law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)']
+lp_clean_deep_sub_lucas_ho1, round 0, without:
+    picked: ['law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)', 'law2/lt(add(X,X),N)']
+ct2a2_clean_deep_sub_lucas_ho1, round 0, with the subgoal:
+    subgoal: law2/absdiff(mul(X,N),N) {'law': None, 'table': 8, 'how': 'g,x', 'pure': 55, 'key': (0, 8)}
+    picked: ['law/mod(X,N)/x+qN', 'value/L.X[MOV.A.T MOV.T.X] INC.A -> A', 'value/INC.A L.X[MOV.A.X INC.X] -> A', 'law2/succ(succ(X))']
+ct2a2_clean_deep_sub_lucas_ho1, round 0, without:
+    (no store holds target: the replay ends)
+ct2a2_clean_deep_sub_floorsq_ho1, round 3, with the subgoal:
+    subgoal: law2/mul(pred(X),N) {'law': None, 'table': 17, 'how': 'g,x', 'pure': 55, 'key': (0, 17)}
+    picked: ['law2/mul(pred(X),N)', 'law2/gcd(add(X,X),N)', 'law2/mod(mul(X,X),N)', 'law/add(X,N)/x']
+ct2a2_clean_deep_sub_floorsq_ho1, round 3, without:
+    picked: ['law/add(X,N)/x', 'law2/gcd(add(X,X),N)', 'law2/mod(mul(X,X),N)', 'law/add(X,X)/x']

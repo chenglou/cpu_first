@@ -1,0 +1,563 @@
+  guided target: cost None bits, levels 30 []
+  picked: ['law2/gcd(succ(X),N)', 'law2/div(N,pred(X))', 'law2/gcd(pred(X),N)', 'law2/mul(add(X,N),N)']
+    + M2.1 = L.N[M1.3] M0.2 M1.4    (L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.X[DEC.N DEC.N] MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + M2.2 = DEC.X DEC.X INC.N L.N[M0.4]    (DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M2.3 = L.N[INC.X] L.N[L.X[INC.A]]    (L.N[INC.X] L.N[L.X[INC.A]])
+    + T.law9 = INC.X L.X[M1.3] L.N[INC.A]    (INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + T.law11 = DEC.X L.N[M1.3] L.N[INC.A]    (DEC.X L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+  target: cost None levels [1, 35, 994, 27906, 766162, 37674721] []
+[lp_clean_deep_lucas_ctl1] round 3: target probe mdl 101.8 best [5, 9, 14, 17]; pool 288
+  probes: trivial 19, learnable 131, alias 2, duplicate 28, unsolved 57
+  picked: ['law2/mul(add(X,X),N)', 'law2/max(add(X,X),N)', 'law2/div(mul(X,X),N)', 'law2/mod(mul(X,X),N)']
+    + M3.1 = M0.2 MOV.U.X M2.3 CLR.N M2.2    (L.X[DEC.N DEC.N] MOV.U.X L.N[INC.X] L.N[L.X[INC.A]] CLR.N INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.2 = MOV.A.X T.law7 MOV.X.A CLR.A M2.2    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.A CLR.A INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.3 = MOV.A.X T.law7 MOV.X.N MOV.N.A M1.3    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.N MOV.N.A MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M3.4 = L.N[INC.N] L.N[L.X[INC.A]]    (L.N[INC.N] L.N[L.X[INC.A]])
+    + T.law13 = L.N[L.X[INC.A]] L.A[INC.A]    (L.N[L.X[INC.A]] L.A[INC.A])
+    + T.law14 = M0.2 L.X[INC.N INC.N] MOV.A.N    (L.X[DEC.N DEC.N] L.X[INC.N INC.N] MOV.A.N)
+    + T.law15 = L.X[L.X[INC.T]] MOV.X.T T.div(X,N)@x+QN    (L.X[L.X[INC.T]] MOV.X.T MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.law16 = MOV.A.X T.law7 L.X[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] L.X[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+  target: cost 2 levels [1, 43, 1460] ['M3.3 M3.3', 'T.law16 T.law16', 'T.law16 M3.3']
+  general in round 3: M3.3 M3.3 = MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.N MOV.N.A MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.N MOV.N.A MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]
+  probes: trivial 18, learnable 155, alias 2, duplicate 28, unsolved 85
+  guided target: cost None bits, levels 30 []
+  picked: ['law2/mul(add(X,X),N)', 'law2/max(add(X,X),N)', 'law2/div(mul(X,X),N)', 'law2/mod(mul(X,X),N)']
+    + M3.1 = M0.2 MOV.U.X M2.3 CLR.N M2.2    (L.X[DEC.N DEC.N] MOV.U.X L.N[INC.X] L.N[L.X[INC.A]] CLR.N INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.2 = MOV.A.X T.law7 MOV.X.A CLR.A M2.2    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.A CLR.A INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.3 = MOV.A.X T.law7 MOV.X.N MOV.N.A M1.3    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.N MOV.N.A MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M3.4 = L.N[INC.N] L.N[L.X[INC.A]]    (L.N[INC.N] L.N[L.X[INC.A]])
+    + T.law13 = L.N[L.X[INC.A]] L.A[INC.A]    (L.N[L.X[INC.A]] L.A[INC.A])
+    + T.law14 = M0.2 L.X[INC.N INC.N] MOV.A.N    (L.X[DEC.N DEC.N] L.X[INC.N INC.N] MOV.A.N)
+    + T.law15 = L.X[L.X[INC.T]] MOV.X.T T.div(X,N)@x+QN    (L.X[L.X[INC.T]] MOV.X.T MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.law16 = MOV.A.X T.law7 L.X[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] L.X[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+  target: cost None levels [1, 43, 1460, 46715, 1438234, 77069902] []
+[lp_clean_deep_three_ctl1] round 4: target probe mdl 109.9 best [12, 12, 14, 16]; pool 245
+  guided target: cost None bits, levels 29 []
+  picked: ['law/div(X,N)/x+QN', 'law2/mul(add(X,X),N)', 'law2/max(add(X,X),N)', 'law2/div(X,monus(N,X))']
+    + M3.1 = INC.N MOV.T.N MOV.N.X MOV.X.T M2.2    (INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.2 = M0.2 INC.X L.X[M2.2 INC.N]    (L.X[DEC.N DEC.N] INC.X L.X[DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]] INC.N])
+    + M3.3 = M1.4 INC.A MOV.X.A M2.2 DEC.A    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] INC.A MOV.X.A DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]] DEC.A)
+    + M3.4 = MOV.A.X MOV.X.N L.A[L.X[T.res5]]    (MOV.A.X MOV.X.N L.A[L.X[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U] L.N[MOV.U.T MOV.T.N] INC.U MOV.A.U]])
+    + T.div(X,N)@x+QN = MOV.T.X MOV.X.N MOV.N.T INC.X M2.2    (MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.law14 = L.N[L.X[INC.A]] L.A[INC.A]    (L.N[L.X[INC.A]] L.A[INC.A])
+    + T.law15 = M0.2 L.X[INC.N INC.N] MOV.A.N    (L.X[DEC.N DEC.N] L.X[INC.N INC.N] MOV.A.N)
+    + T.law16 = M1.4 MOV.X.A INC.X M2.2 DEC.A    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] MOV.X.A INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]] DEC.A)
+  target: cost None levels [1, 42, 1448, 47189, 1465579, 79950992] []
+[lp_clean_deep_lucas_ctl1] round 4: target probe mdl 102.3 best [5, 9, 14, 17]; pool 287
+  probes: trivial 20, learnable 138, alias 1, duplicate 25, unsolved 61
+  probes: trivial 21, learnable 143, alias 1, duplicate 26, unsolved 96
+Process SpawnProcess-7:
+Process SpawnProcess-11:
+Process SpawnProcess-14:
+Process SpawnProcess-5:
+Process SpawnProcess-1:
+Process SpawnProcess-4:
+Process SpawnProcess-3:
+Process SpawnProcess-9:
+Process SpawnProcess-15:
+Process SpawnProcess-10:
+Process SpawnProcess-16:
+Process SpawnProcess-6:
+Process SpawnProcess-13:
+Process SpawnProcess-8:
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+KeyboardInterrupt
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+KeyboardInterrupt
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+KeyboardInterrupt
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 100, in get
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 242, in _process_worker
+    call_item = call_queue.get(block=True)
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 101, in get
+    res = self._recv_bytes()
+  File "/usr/local/lib/python3.13/multiprocessing/connection.py", line 216, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "/usr/local/lib/python3.13/multiprocessing/connection.py", line 430, in _recv_bytes
+    buf = self._recv(4)
+  File "/usr/local/lib/python3.13/multiprocessing/connection.py", line 395, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+[modal-client] 2026-10-25T15:05:24+0000 Detected 3 background thread(s) [Thread-3 (guard), Thread-5 (guard), Thread-6] still running after container exit. This will prevent runner shutdown for up to 30 seconds.
+  job failed: target: SystemError('CPUDispatcher(<function _apply_many at 0x2b419b9ecea0>) returned a result with an exception set')
+Traceback (most recent call last):
+  File "/root/modal_heldout.py", line 77, in guard
+    fn(*a, **kw)
+    ~~^^^^^^^^^^
+  File "/root/bar3/scale/subgoal/learn.py", line 320, in fresh
+    run(name, cfg, tap.mapper, tap.emit_with_looks(lambda r: emit(dict(r, target_name=tname))), log=log)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/bar3/scale/subgoal/learn.py", line 287, in run
+    guided = run_jobs("guided", [job(tgt, lib, kinds, dict(B["target"], max_cost=cfg.get("guided_max", 80)),
+             ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                     "guided", k, k2, general=True, costs=costs, **gup)])[0]
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/bar3/scale/subgoal/learn.py", line 80, in run_jobs
+    recs = mapper(jobs) if jobs else []
+           ~~~~~~^^^^^^
+  File "/root/bar3/breadth/drive.py", line 40, in mapper
+    recs = self.search_many(tagged)
+  File "/root/bar3/scale/pool.py", line 89, in __call__
+    self.cache[members[0][0]] = (self.pool.submit(work, members[0][1]), None)
+                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 788, in submit
+    raise RuntimeError('cannot schedule new futures after shutdown')
+RuntimeError: cannot schedule new futures after shutdown
+Exception in thread Thread-5 (guard):
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 254, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/root/bar3/scale/pool.py", line 23, in work
+    return search_job(job)
+  File "/root/bar3/scale/jobs.py", line 143, in search_job
+    res = engine.bfs(prob, classes, lib, m, max_cost=job.get("max_cost", 10),
+                     max_states=job.get("max_states", 200_000), time_limit=job.get("time_limit", 300),
+                     accept=lambda ps: [verify(p)["verified"] for p in ps], limit=job.get("limit", 200), codes=codes)
+  File "/root/bar3/scale/engine.py", line 452, in bfs
+    fm = _fresh(seen, keys)
+  File "/root/library/search.py", line 187, in _fresh
+    pos = np.searchsorted(seen, keys)
+  File "/usr/local/lib/python3.13/site-packages/numpy/_core/fromnumeric.py", line 1539, in searchsorted
+    return _wrapfunc(a, 'searchsorted', v, side=side, sorter=sorter)
+  File "/usr/local/lib/python3.13/site-packages/numpy/_core/fromnumeric.py", line 54, in _wrapfunc
+    return bound(*args, **kwds)
+KeyboardInterrupt
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/threading.py", line 1041, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/threading.py", line 992, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_heldout.py", line 77, in guard
+    fn(*a, **kw)
+    ~~^^^^^^^^^^
+  File "/root/bar3/scale/subgoal/learn.py", line 320, in fresh
+    run(name, cfg, tap.mapper, tap.emit_with_looks(lambda r: emit(dict(r, target_name=tname))), log=log)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/bar3/scale/subgoal/learn.py", line 279, in run
+    tr = run_jobs("target", [job(tgt, lib, kinds, B["target"], "target", k, k2, general=True, **gup)])[0]
+         ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/bar3/scale/subgoal/learn.py", line 80, in run_jobs
+    recs = mapper(jobs) if jobs else []
+           ~~~~~~^^^^^^
+  File "/root/bar3/breadth/drive.py", line 40, in mapper
+    recs = self.search_many(tagged)
+  File "/root/bar3/scale/pool.py", line 101, in __call__
+    r = f.result()
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+KeyboardInterrupt
+Container terminated due to preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
+[lp_clean_deep_x2x_ctl1] round 0: target probe mdl 96.0 best [15, 15, 15, 15, 16, 19]; pool 231
+[lp_clean_deep_three_ctl1] round 0: target probe mdl 118.8 best [12, 12, 12, 12, 13, 16]; pool 238
+[lp_clean_deep_lucas_ctl1] round 0: target probe mdl 103.6 best [5, 9, 9, 12, 14, 18]; pool 253
+[lp_clean_deep_x4_ctl1] round 0: target probe mdl 73.1 best [8, 17, 17, 20, 20, 22]; pool 280
+  probes: trivial 8, learnable 99, alias 0, duplicate 28, unsolved 96
+  guided target: cost None bits, levels 33 []
+  picked: ['law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)', 'law2/lt(add(X,X),N)']
+    + M0.1 = INC.U L.N[MOV.A.U]    (INC.U L.N[MOV.A.U])
+    + M0.2 = L.X[DEC.N DEC.N]    (L.X[DEC.N DEC.N])
+    + M0.3 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M0.4 = DEC.N L.X[DEC.N] M0.1    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U])
+    + M0.5 = MOV.A.N M0.2 L.N[DEC.A]    (MOV.A.N L.X[DEC.N DEC.N] L.N[DEC.A])
+    + T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.law2 = INC.X INC.X L.N[DEC.X] Z.X[INC.A]    (INC.X INC.X L.N[DEC.X] Z.X[INC.A])
+    + T.law4 = M0.2 INC.A Z.N[DEC.A]    (L.X[DEC.N DEC.N] INC.A Z.N[DEC.A])
+  target: cost None levels [1, 24, 414, 7172, 127697, 4827340] []
+  probes: trivial 9, learnable 104, alias 0, duplicate 27, unsolved 98
+  guided target: cost None bits, levels 33 []
+  picked: ['law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)', 'law2/lt(add(X,X),N)']
+    + M0.1 = INC.U L.N[MOV.A.U]    (INC.U L.N[MOV.A.U])
+    + M0.2 = L.X[DEC.N DEC.N]    (L.X[DEC.N DEC.N])
+    + M0.3 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M0.4 = DEC.N L.X[DEC.N] M0.1    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U])
+    + M0.5 = MOV.A.N M0.2 L.N[DEC.A]    (MOV.A.N L.X[DEC.N DEC.N] L.N[DEC.A])
+    + T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.law2 = INC.X INC.X L.N[DEC.X] Z.X[INC.A]    (INC.X INC.X L.N[DEC.X] Z.X[INC.A])
+    + T.law4 = M0.2 INC.A Z.N[DEC.A]    (L.X[DEC.N DEC.N] INC.A Z.N[DEC.A])
+  target: cost None levels [1, 24, 414, 7172, 127697, 4827340] []
+  probes: trivial 8, learnable 109, alias 0, duplicate 27, unsolved 109
+  guided target: cost None bits, levels 33 []
+  picked: ['law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)', 'law2/lt(add(X,X),N)']
+    + M0.1 = INC.U L.N[MOV.A.U]    (INC.U L.N[MOV.A.U])
+    + M0.2 = L.X[DEC.N DEC.N]    (L.X[DEC.N DEC.N])
+    + M0.3 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M0.4 = DEC.N L.X[DEC.N] M0.1    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U])
+    + M0.5 = MOV.A.N M0.2 L.N[DEC.A]    (MOV.A.N L.X[DEC.N DEC.N] L.N[DEC.A])
+    + T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.law2 = INC.X INC.X L.N[DEC.X] Z.X[INC.A]    (INC.X INC.X L.N[DEC.X] Z.X[INC.A])
+    + T.law4 = M0.2 INC.A Z.N[DEC.A]    (L.X[DEC.N DEC.N] INC.A Z.N[DEC.A])
+  target: cost None levels [1, 24, 414, 7172, 127697, 4827340] []
+  probes: trivial 10, learnable 99, alias 0, duplicate 30, unsolved 141
+  guided target: cost None bits, levels 33 []
+  picked: ['law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)', 'law2/lt(add(X,X),N)']
+    + M0.1 = INC.U L.N[MOV.A.U]    (INC.U L.N[MOV.A.U])
+    + M0.2 = L.X[DEC.N DEC.N]    (L.X[DEC.N DEC.N])
+    + M0.3 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M0.4 = DEC.N L.X[DEC.N] M0.1    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U])
+    + M0.5 = MOV.A.N M0.2 L.N[DEC.A]    (MOV.A.N L.X[DEC.N DEC.N] L.N[DEC.A])
+    + T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.law2 = INC.X INC.X L.N[DEC.X] Z.X[INC.A]    (INC.X INC.X L.N[DEC.X] Z.X[INC.A])
+    + T.law4 = M0.2 INC.A Z.N[DEC.A]    (L.X[DEC.N DEC.N] INC.A Z.N[DEC.A])
+  target: cost None levels [1, 24, 414, 7172, 127697, 4827340] []
+[lp_clean_deep_three_ctl1] round 1: target probe mdl 114.3 best [12, 12, 13, 15, 16]; pool 282
+[lp_clean_deep_x2x_ctl1] round 1: target probe mdl 61.0 best [15, 15, 19, 22, 23]; pool 263
+[lp_clean_deep_x4_ctl1] round 1: target probe mdl 62.9 best [8, 17, 20, 22, 22]; pool 252
+[lp_clean_deep_lucas_ctl1] round 1: target probe mdl 100.9 best [5, 9, 14, 17, 17]; pool 328
+  probes: trivial 10, learnable 140, alias 0, duplicate 32, unsolved 100
+  guided target: cost None bits, levels 31 []
+  picked: ['law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)', 'law2/div(N,pred(X))']
+    + M1.1 = DEC.X DEC.X INC.N L.N[M0.4]    (DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M1.2 = DEC.X M0.3 L.A[L.X[INC.A]]    (DEC.X MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.A[L.X[INC.A]])
+    + M1.3 = MOV.A.N MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M1.4 = MOV.A.N L.X[DEC.A] Z.A[M0.3]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + T.absdiff(X,N)@x+qN = MOV.A.N L.X[DEC.A] Z.A[T.mod(X,N)@x+qN]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.law7 = L.X[L.X[INC.A]] L.X[DEC.A]    (L.X[L.X[INC.A]] L.X[DEC.A])
+  target: cost None levels [1, 29, 618, 13022, 277927, 11925756] []
+  probes: trivial 10, learnable 133, alias 0, duplicate 34, unsolved 86
+  picked: ['law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)', 'law2/div(N,pred(X))']
+    + M1.1 = DEC.X DEC.X INC.N L.N[M0.4]    (DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M1.2 = DEC.X M0.3 L.A[L.X[INC.A]]    (DEC.X MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.A[L.X[INC.A]])
+    + M1.3 = MOV.A.N MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M1.4 = MOV.A.N L.X[DEC.A] Z.A[M0.3]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + T.absdiff(X,N)@x+qN = MOV.A.N L.X[DEC.A] Z.A[T.mod(X,N)@x+qN]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.law7 = L.X[L.X[INC.A]] L.X[DEC.A]    (L.X[L.X[INC.A]] L.X[DEC.A])
+  target: cost 5 levels [1, 29, 618, 13022, 277927, 11925756] ['INC.X T.law7 L.X[MOV.X.A T.mod(X,N)@x+qN]', 'INC.X T.law7 L.N[MOV.X.A T.mod(X,N)@x+qN]', 'INC.X T.law7 MOV.X.N MOV.N.A M1.3']
+  probes: trivial 13, learnable 127, alias 0, duplicate 31, unsolved 81
+  general in round 1: INC.X T.law7 L.X[MOV.X.A T.mod(X,N)@x+qN] = INC.X L.X[L.X[INC.A]] L.X[DEC.A] L.X[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]
+  guided target: cost None bits, levels 31 []
+  picked: ['law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)', 'law2/div(N,pred(X))']
+    + M1.1 = DEC.X DEC.X INC.N L.N[M0.4]    (DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M1.2 = DEC.X M0.3 L.A[L.X[INC.A]]    (DEC.X MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.A[L.X[INC.A]])
+    + M1.3 = MOV.A.N MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M1.4 = MOV.A.N L.X[DEC.A] Z.A[M0.3]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + T.absdiff(X,N)@x+qN = MOV.A.N L.X[DEC.A] Z.A[T.mod(X,N)@x+qN]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.law7 = L.X[L.X[INC.A]] L.X[DEC.A]    (L.X[L.X[INC.A]] L.X[DEC.A])
+  target: cost None levels [1, 29, 618, 13022, 277927, 11925756] []
+  probes: trivial 9, learnable 153, alias 0, duplicate 35, unsolved 131
+  guided target: cost None bits, levels 31 []
+  picked: ['restrict/remainder[MOV.U.X M0.4 -> N]/N<X+X', 'law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)']
+    + M1.1 = M0.4 CLR.X MOV.U.N T.law2 MOV.A.X M0.4    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U] CLR.X MOV.U.N INC.X INC.X L.N[DEC.X] Z.X[INC.A] MOV.A.X DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U])
+    + M1.2 = DEC.X M0.3 L.A[L.X[INC.A]]    (DEC.X MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.A[L.X[INC.A]])
+    + M1.3 = MOV.A.N MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M1.4 = MOV.A.N L.X[DEC.A] Z.A[M0.3]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + T.res5 = M0.4 L.N[MOV.U.T MOV.T.N] INC.U MOV.A.U    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U] L.N[MOV.U.T MOV.T.N] INC.U MOV.A.U)
+    + T.absdiff(X,N)@x+qN = MOV.A.N L.X[DEC.A] Z.A[T.mod(X,N)@x+qN]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.law8 = L.X[L.X[INC.A]] L.X[DEC.A]    (L.X[L.X[INC.A]] L.X[DEC.A])
+  target: cost None levels [1, 30, 681, 15644, 367018, 16655896] []
+[lp_clean_deep_three_ctl1] round 2: target probe mdl 114.9 best [12, 12, 13, 15, 16]; pool 273
+[lp_clean_deep_lucas_ctl1] round 2: target probe mdl 99.8 best [5, 9, 14, 17, 18]; pool 346
+[lp_clean_deep_x4_ctl1] round 2: target probe mdl 63.3 best [8, 17, 20, 22, 22]; pool 252
+  probes: trivial 17, learnable 150, alias 1, duplicate 27, unsolved 78
+  guided target: cost None bits, levels 30 []
+  picked: ['law/div(X,N)/x+QN', 'law2/gcd(succ(X),N)', 'law2/gcd(pred(X),N)', 'law2/mul(add(X,N),N)']
+    + M2.1 = L.N[M1.3] L.N[M0.1]    (L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.U L.N[MOV.A.U]])
+    + M2.2 = INC.N MOV.T.N MOV.N.X MOV.X.T M1.1    (INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M2.3 = L.N[INC.X] L.N[L.X[INC.A]]    (L.N[INC.X] L.N[L.X[INC.A]])
+    + T.div(X,N)@x+QN = MOV.T.X MOV.X.N MOV.N.T INC.X M1.1    (MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.law10 = INC.X L.X[M1.3] L.N[INC.A]    (INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + T.law11 = DEC.X L.N[M1.3] L.N[INC.A]    (DEC.X L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+  target: cost None levels [1, 35, 979, 27154, 739747, 36571629] []
+  probes: trivial 16, learnable 170, alias 1, duplicate 30, unsolved 129
+  guided target: cost None bits, levels 30 []
+  picked: ['law2/gcd(succ(X),N)', 'law2/div(N,pred(X))', 'law2/gcd(pred(X),N)', 'law2/mul(add(X,N),N)']
+    + M2.1 = L.N[M1.3] M0.2 M1.4    (L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.X[DEC.N DEC.N] MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + M2.2 = DEC.X DEC.X INC.N L.N[M0.4]    (DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M2.3 = L.N[INC.X] L.N[L.X[INC.A]]    (L.N[INC.X] L.N[L.X[INC.A]])
+    + T.law9 = INC.X L.X[M1.3] L.N[INC.A]    (INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + T.law11 = DEC.X L.N[M1.3] L.N[INC.A]    (DEC.X L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+  target: cost None levels [1, 35, 994, 27906, 766162, 37674721] []
+  probes: trivial 19, learnable 144, alias 1, duplicate 27, unsolved 61
+  guided target: cost None bits, levels 30 []
+  picked: ['law/div(X,N)/x+QN', 'law2/gcd(succ(X),N)', 'law2/gcd(pred(X),N)', 'law2/mul(add(X,N),N)']
+    + M2.1 = L.N[M1.3] L.N[M0.1]    (L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.U L.N[MOV.A.U]])
+    + M2.2 = INC.N MOV.T.N MOV.N.X MOV.X.T M1.1    (INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M2.3 = L.N[INC.X] L.N[L.X[INC.A]]    (L.N[INC.X] L.N[L.X[INC.A]])
+    + T.div(X,N)@x+QN = MOV.T.X MOV.X.N MOV.N.T INC.X M1.1    (MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.law10 = INC.X L.X[M1.3] L.N[INC.A]    (INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + T.law11 = DEC.X L.N[M1.3] L.N[INC.A]    (DEC.X L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+  target: cost None levels [1, 35, 979, 27154, 739747, 36571629] []
+[lp_clean_deep_lucas_ctl1] round 3: target probe mdl 101.8 best [5, 9, 14, 17]; pool 288
+[lp_clean_deep_three_ctl1] round 3: target probe mdl 117.1 best [12, 12, 13, 15]; pool 246
+[lp_clean_deep_x4_ctl1] round 3: target probe mdl 63.8 best [8, 17, 21, 22]; pool 237
+  probes: trivial 18, learnable 155, alias 2, duplicate 28, unsolved 85
+  guided target: cost None bits, levels 29 []
+  picked: ['law/div(X,N)/x+QN', 'law2/mul(add(X,X),N)', 'law2/max(add(X,X),N)', 'law2/div(X,monus(N,X))']
+    + M3.1 = INC.N MOV.T.N MOV.N.X MOV.X.T M2.2    (INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.2 = M0.2 INC.X L.X[M2.2 INC.N]    (L.X[DEC.N DEC.N] INC.X L.X[DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]] INC.N])
+    + M3.3 = M1.4 INC.A MOV.X.A M2.2 DEC.A    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] INC.A MOV.X.A DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]] DEC.A)
+    + M3.4 = MOV.A.X MOV.X.N L.A[L.X[T.res5]]    (MOV.A.X MOV.X.N L.A[L.X[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U] L.N[MOV.U.T MOV.T.N] INC.U MOV.A.U]])
+    + T.div(X,N)@x+QN = MOV.T.X MOV.X.N MOV.N.T INC.X M2.2    (MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.law14 = L.N[L.X[INC.A]] L.A[INC.A]    (L.N[L.X[INC.A]] L.A[INC.A])
+    + T.law15 = M0.2 L.X[INC.N INC.N] MOV.A.N    (L.X[DEC.N DEC.N] L.X[INC.N INC.N] MOV.A.N)
+    + T.law16 = M1.4 MOV.X.A INC.X M2.2 DEC.A    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] MOV.X.A INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]] DEC.A)
+  target: cost None levels [1, 42, 1448, 47189, 1465579, 79950992] []
+[lp_clean_deep_lucas_ctl1] round 4: target probe mdl 102.3 best [5, 9, 14, 17]; pool 287
+  probes: trivial 19, learnable 142, alias 2, duplicate 26, unsolved 57
+  guided target: cost None bits, levels 30 []
+  picked: ['law2/mul(add(X,X),N)', 'law2/max(add(X,X),N)', 'law2/div(mul(X,X),N)', 'law2/mod(mul(X,X),N)']
+    + M3.1 = M0.2 MOV.U.X M2.3 CLR.N M2.2    (L.X[DEC.N DEC.N] MOV.U.X L.N[INC.X] L.N[L.X[INC.A]] CLR.N INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.2 = MOV.A.X T.law7 MOV.X.A CLR.A M2.2    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.A CLR.A INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.3 = MOV.A.X T.law7 MOV.X.N MOV.N.A M1.3    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.N MOV.N.A MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M3.4 = L.N[INC.N] L.N[L.X[INC.A]]    (L.N[INC.N] L.N[L.X[INC.A]])
+    + T.law13 = L.N[L.X[INC.A]] L.A[INC.A]    (L.N[L.X[INC.A]] L.A[INC.A])
+    + T.law14 = M0.2 L.X[INC.N INC.N] MOV.A.N    (L.X[DEC.N DEC.N] L.X[INC.N INC.N] MOV.A.N)
+    + T.law15 = L.X[L.X[INC.T]] MOV.X.T T.div(X,N)@x+QN    (L.X[L.X[INC.T]] MOV.X.T MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.law16 = MOV.A.X T.law7 L.X[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] L.X[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+  target: cost None levels [1, 43, 1460, 46715, 1438234, 77069902] []
+  probes: trivial 19, learnable 131, alias 2, duplicate 28, unsolved 57
+  picked: ['law2/mul(add(X,X),N)', 'law2/max(add(X,X),N)', 'law2/div(mul(X,X),N)', 'law2/mod(mul(X,X),N)']
+    + M3.1 = M0.2 MOV.U.X M2.3 CLR.N M2.2    (L.X[DEC.N DEC.N] MOV.U.X L.N[INC.X] L.N[L.X[INC.A]] CLR.N INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.2 = MOV.A.X T.law7 MOV.X.A CLR.A M2.2    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.A CLR.A INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.3 = MOV.A.X T.law7 MOV.X.N MOV.N.A M1.3    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.N MOV.N.A MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M3.4 = L.N[INC.N] L.N[L.X[INC.A]]    (L.N[INC.N] L.N[L.X[INC.A]])
+    + T.law13 = L.N[L.X[INC.A]] L.A[INC.A]    (L.N[L.X[INC.A]] L.A[INC.A])
+    + T.law14 = M0.2 L.X[INC.N INC.N] MOV.A.N    (L.X[DEC.N DEC.N] L.X[INC.N INC.N] MOV.A.N)
+    + T.law15 = L.X[L.X[INC.T]] MOV.X.T T.div(X,N)@x+QN    (L.X[L.X[INC.T]] MOV.X.T MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.law16 = MOV.A.X T.law7 L.X[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] L.X[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+  target: cost 2 levels [1, 43, 1460] ['M3.3 M3.3', 'T.law16 T.law16', 'T.law16 M3.3']
+  general in round 3: M3.3 M3.3 = MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.N MOV.N.A MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.N MOV.N.A MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]
+  probes: trivial 21, learnable 143, alias 1, duplicate 26, unsolved 96
+[lp_clean_deep_three_ctl1] round 4: target probe mdl 109.9 best [12, 12, 14, 16]; pool 245
+  probes: trivial 20, learnable 138, alias 1, duplicate 25, unsolved 61
+  guided target: cost None bits, levels 29 []
+  picked: ['restrict/remainder[M0.4 -> N]/N+N<X·X', 'law/max(X,N)/x+qN', 'law/lt(N,X)/x+QN', 'law/eq(X,N)/x+QN']
+    + M4.1 = T.res5 DEC.X T.law2 T.law2 T.law2    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U] L.N[MOV.U.T MOV.T.N] INC.U MOV.A.U DEC.X INC.X INC.X L.N[DEC.X] Z.X[INC.A] INC.X INC.X L.N[DEC.X] Z.X[INC.A] INC.X INC.X L.N[DEC.X] Z.X[INC.A])
+    + M4.2 = DEC.X MOV.A.N MOV.U.X M3.1    (DEC.X MOV.A.N MOV.U.X INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M4.3 = INC.N M0.3 CLR.A M0.1    (INC.N MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] CLR.A INC.U L.N[MOV.A.U])
+    + M4.4 = M1.4 CLR.X T.law2 MOV.A.X    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] CLR.X INC.X INC.X L.N[DEC.X] Z.X[INC.A] MOV.A.X)
+    + T.res17 = T.res5 L.N[MOV.T.X T.law2] MOV.U.N    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U] L.N[MOV.U.T MOV.T.N] INC.U MOV.A.U L.N[MOV.T.X INC.X INC.X L.N[DEC.X] Z.X[INC.A]] MOV.U.N)
+    + T.max(X,N)@x+qN = T.mod(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.A.N L.T[MOV.A.X])
+    + T.lt(N,X)@x+QN = M0.3 L.A[DEC.N MOV.A.N]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.A[DEC.N MOV.A.N])
+    + T.eq(X,N)@x+QN = T.mod(X,N)@x+qN L.A[CLR.T] MOV.A.T    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] L.A[CLR.T] MOV.A.T)
+  target: cost None levels [1, 47, 1862, 69479, 2471142, 151699729] []
+  guided target: cost None bits, levels 30 []
+  picked: ['law/max(X,N)/x+qN', 'law/lt(N,X)/x+QN', 'law/eq(X,N)/x+QN', 'law2/mul(succ(X),N)']
+    + M4.1 = DEC.X MOV.A.N MOV.U.X M2.2    (DEC.X MOV.A.N MOV.U.X INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M4.2 = INC.N M0.3 CLR.A M0.1    (INC.N MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] CLR.A INC.U L.N[MOV.A.U])
+    + M4.3 = INC.X L.N[L.X[INC.A]]    (INC.X L.N[L.X[INC.A]])
+    + M4.4 = M0.3 CLR.X T.law2 M0.5    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] CLR.X INC.X INC.X L.N[DEC.X] Z.X[INC.A] MOV.A.N L.X[DEC.N DEC.N] L.N[DEC.A])
+    + T.max(X,N)@x+qN = T.mod(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.A.N L.T[MOV.A.X])
+    + T.lt(N,X)@x+QN = M0.3 L.A[DEC.N MOV.A.N]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.A[DEC.N MOV.A.N])
+    + T.eq(X,N)@x+QN = T.mod(X,N)@x+qN L.A[CLR.T] MOV.A.T    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] L.A[CLR.T] MOV.A.T)
+    + T.law20 = MOV.A.N L.N[L.X[INC.A]]    (MOV.A.N L.N[L.X[INC.A]])
+  target: cost None levels [1, 48, 1758, 59766, 1951215, 114030773] []
+group done in 1209s on 32 cores; largest worker 8.7 GB

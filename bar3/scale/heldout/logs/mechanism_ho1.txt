@@ -1,0 +1,50 @@
+ct2a2_clean_deep_sub_floorsq_ho1.jsonl: not invented in 5 rounds
+ct2a2_clean_deep_sub_lucas_ho1.jsonl: not invented in 5 rounds
+ct2a2_clean_deep_sub_pow2_ho1.jsonl: round 1, target search: INC.A L.X[T.rec6] MOV.X.A M0.2
+    T.rec6 = MOV.X.A M0.4 T.mod(X,N)@x+qN   (recur1/A: source recur1, practised in round 1, cost 3)
+    M0.4 = INC.A L.X[INC.X MOV.A.X]   (a merge, round 0)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)
+    M0.2 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]   (a merge, round 0)
+ct2a2_clean_deep_sub_three_ho1.jsonl: round 1, target search: M1.3 L.X[T.res8 MOV.X.A]
+    M1.3 = L.X[L.X[INC.A]] M1.1   (a merge, round 1)
+    M1.1 = L.A[MOV.X.A T.mod(X,N)@x+qN]   (a merge, round 1)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)
+    T.res8 = INC.X INC.X T.mod(X,N)@x+qN   (restrict/target/X·X<X+X: source restrict, practised in round 1, cost 3)
+ct2a2_clean_deep_sub_tri_ho1.jsonl: not invented in 5 rounds
+ct2a2_clean_deep_sub_trib_ho1.jsonl: not invented in 5 rounds
+ct2a2_clean_deep_sub_x1sq_ho1.jsonl: round 1, target search: INC.X M1.2
+    M1.2 = L.X[M1.1] L.A[MOV.X.A T.mod(X,N)@x+qN]   (a merge, round 1)
+    M1.1 = L.X[INC.A]   (a merge, round 1)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)
+ct2a2_clean_deep_sub_x2x_ho1.jsonl: round 0, target search: M0.4 L.N[MOV.X.A T.mod(X,N)@x+qN]
+    M0.4 = MOV.A.X L.A[L.X[INC.A]]   (a merge, round 0)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)
+ct2a2_clean_deep_sub_x3x_ho1.jsonl: not invented in 5 rounds
+ct2a2_clean_deep_sub_x4_ho1.jsonl: round 1, target search: M1.2 CLR.A M1.2
+    M1.2 = L.X[M1.1] L.A[MOV.X.A T.mod(X,N)@x+qN]   (a merge, round 1)
+    M1.1 = L.X[INC.A]   (a merge, round 1)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)
+lp_clean_deep_sub_floorsq_ho1.jsonl: not invented in 5 rounds
+lp_clean_deep_sub_lucas_ho1.jsonl: not invented in 5 rounds
+lp_clean_deep_sub_pow2_ho1.jsonl: not invented in 5 rounds
+lp_clean_deep_sub_three_ho1.jsonl: round 1, target search: T.law5 L.X[INC.A INC.A] M1.1
+    T.law5 = M1.2 L.X[MOV.X.A T.mod(X,N)@x+qN]   (law2/mod(mul(X,X),N): source law2, practised in round 1, cost 6, the subgoal, solved by its deeper probe)
+    M1.2 = L.X[L.X[INC.A]]   (a merge, round 1)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)
+    M1.1 = L.A[MOV.X.A T.mod(X,N)@x+qN]   (a merge, round 1)
+lp_clean_deep_sub_tri_ho1.jsonl: not invented in 5 rounds
+lp_clean_deep_sub_trib_ho1.jsonl: not invented in 5 rounds
+lp_clean_deep_sub_x1sq_ho1.jsonl: round 1, target search: INC.X T.res5
+    T.res5 = M1.2 L.X[MOV.X.A T.mod(X,N)@x+qN]   (restrict/remainder[M0.4 -> N]/3<X: source restrict, practised in round 1, cost 6)
+    M1.2 = L.X[L.X[INC.A]]   (a merge, round 1)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)
+lp_clean_deep_sub_x2x_ho1.jsonl: round 1, target search: INC.X T.law8 L.X[MOV.X.A T.mod(X,N)@x+qN]
+    T.law8 = L.X[L.X[INC.A]] L.X[DEC.A]   (law2/mul(pred(X),X): source law2, practised in round 1, cost 5)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)
+lp_clean_deep_sub_x3x_ho1.jsonl: not invented in 5 rounds
+lp_clean_deep_sub_x4_ho1.jsonl: round 1, target search: T.law5 T.law8 M1.1
+    T.law5 = M1.2 L.X[MOV.X.A T.mod(X,N)@x+qN]   (law2/mod(mul(X,X),N): source law2, practised in round 1, cost 6, the subgoal, solved by its deeper probe)
+    M1.2 = L.X[L.X[INC.A]]   (a merge, round 1)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)
+    T.law8 = M1.2 L.X[DEC.A]   (law2/mul(pred(X),X): source law2, practised in round 1, cost 5)
+    M1.1 = L.A[MOV.X.A T.mod(X,N)@x+qN]   (a merge, round 1)

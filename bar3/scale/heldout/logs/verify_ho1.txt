@@ -1,0 +1,69 @@
+ct2a2_clean_deep_sub_floorsq_ho1.jsonl: 5 rounds, 5.3 search-hours; not invented
+    round 0: subgoal law2/mul(pred(X),N): learnable 4
+    round 1: subgoal law2/mul(pred(X),N): learnable 4
+    round 2: subgoal law2/mul(pred(X),N): learnable 4
+    round 3: subgoal law2/mul(pred(X),N): learnable 2, picked
+    round 4: subgoal value/L.X[M0.4] -> A: duplicate 2
+ct2a2_clean_deep_sub_lucas_ho1.jsonl: 5 rounds, 7.04 search-hours; not invented
+    round 0: subgoal law2/absdiff(mul(X,N),N): learnable 6
+    round 1: subgoal law2/absdiff(mul(X,N),N): learnable 6, picked
+    round 2: subgoal value/T.res6 -> A: trivial 1
+    round 3: subgoal value/T.res6 -> A: trivial 1
+    round 4: subgoal value/T.res6 -> A: trivial 1
+ct2a2_clean_deep_sub_pow2_ho1.jsonl: 2 rounds, 2.06 search-hours; invented in round 1: INC.A L.X[T.rec6] MOV.X.A M0.2 (20 primitive instructions), right on all 7260 pairs up to N = 120 (7260 right)
+    M0.2 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]
+ct2a2_clean_deep_sub_three_ho1.jsonl: 2 rounds, 0.71 search-hours; invented in round 1: M1.3 L.X[T.res8 MOV.X.A] (21 primitive instructions), right on all 7260 pairs up to N = 120 (7260 right)
+    M1.3 = L.X[L.X[INC.A]] M1.1
+    round 0: subgoal law2/mod(mul(X,X),N): unsolved None
+    round 1: subgoal law2/mod(mul(X,X),N): learnable 6, picked
+ct2a2_clean_deep_sub_tri_ho1.jsonl: 5 rounds, 7.66 search-hours; not invented
+ct2a2_clean_deep_sub_trib_ho1.jsonl: 5 rounds, 5.98 search-hours; not invented
+ct2a2_clean_deep_sub_x1sq_ho1.jsonl: 2 rounds, 1.1 search-hours; invented in round 1: INC.X M1.2 (12 primitive instructions), right on all 7260 pairs up to N = 120 (7260 right)
+    M1.2 = L.X[M1.1] L.A[MOV.X.A T.mod(X,N)@x+qN]
+ct2a2_clean_deep_sub_x2x_ho1.jsonl: 1 rounds, 0.28 search-hours; invented in round 0: M0.4 L.N[MOV.X.A T.mod(X,N)@x+qN] (12 primitive instructions), right on all 7260 pairs up to N = 120 (7260 right)
+    M0.4 = MOV.A.X L.A[L.X[INC.A]]
+    round 0: subgoal law2/mul(add(X,N),X): learnable 5
+ct2a2_clean_deep_sub_x3x_ho1.jsonl: 5 rounds, 8.06 search-hours; not invented
+    round 0: subgoal remainder/L.X[DEC.N MOV.A.N] -> A: unsolved None
+ct2a2_clean_deep_sub_x4_ho1.jsonl: 2 rounds, 1.18 search-hours; invented in round 1: M1.2 CLR.A M1.2 (23 primitive instructions), right on all 7260 pairs up to N = 120 (7260 right)
+    M1.2 = L.X[M1.1] L.A[MOV.X.A T.mod(X,N)@x+qN]
+    round 0: subgoal law2/mod(mul(X,X),N): unsolved None
+    round 1: subgoal law2/mod(mul(X,X),N): learnable 6, picked
+lp_clean_deep_sub_floorsq_ho1.jsonl: 5 rounds, 2.81 search-hours; not invented
+    round 0: subgoal law2/mul(pred(X),N): learnable 4
+    round 1: subgoal law2/mul(pred(X),N): learnable 4
+    round 2: subgoal law2/mul(pred(X),N): learnable 2
+    round 3: subgoal law2/mul(pred(X),N): learnable 2
+    round 4: subgoal law2/mul(pred(X),N): learnable 2
+lp_clean_deep_sub_lucas_ho1.jsonl: 5 rounds, 5.41 search-hours; not invented
+    round 0: subgoal law2/absdiff(mul(X,N),N): learnable 6, picked
+    round 1: subgoal dream/L.U[MOV.N.A T.law3] Z.U[M0.3 DEC.A]: learnable 2
+lp_clean_deep_sub_pow2_ho1.jsonl: 5 rounds, 4.04 search-hours; not invented
+    round 1: subgoal value/M0.4 M0.5 T.law4 -> A: learnable 3
+    round 2: subgoal value/M0.4 M0.5 T.law4 -> A: learnable 3
+lp_clean_deep_sub_three_ho1.jsonl: 2 rounds, 0.48 search-hours; invented in round 1: T.law5 L.X[INC.A INC.A] M1.1 (22 primitive instructions), right on all 7260 pairs up to N = 120 (7260 right)
+    T.law5 = M1.2 L.X[MOV.X.A T.mod(X,N)@x+qN]
+    M1.1 = L.A[MOV.X.A T.mod(X,N)@x+qN]
+    round 0: subgoal law2/mod(mul(X,X),N): unsolved None
+    round 1: subgoal law2/mod(mul(X,X),N): learnable 6, picked
+lp_clean_deep_sub_tri_ho1.jsonl: 5 rounds, 3.77 search-hours; not invented
+lp_clean_deep_sub_trib_ho1.jsonl: 5 rounds, 4.52 search-hours; not invented
+    round 1: subgoal value/DEC.X M0.3 -> A: learnable 2
+    round 2: subgoal value/DEC.X M0.3 -> A: learnable 2
+    round 3: subgoal value/DEC.X M0.3 -> A: learnable 2
+    round 4: subgoal law2/div(mul(X,X),N): unsolved None
+lp_clean_deep_sub_x1sq_ho1.jsonl: 2 rounds, 0.75 search-hours; invented in round 1: INC.X T.res5 (12 primitive instructions), right on all 7260 pairs up to N = 120 (7260 right)
+    T.res5 = M1.2 L.X[MOV.X.A T.mod(X,N)@x+qN]
+    round 1: subgoal value/M0.4 L.X[MOV.A.N] -> A: learnable 3
+lp_clean_deep_sub_x2x_ho1.jsonl: 2 rounds, 0.37 search-hours; invented in round 1: INC.X T.law8 L.X[MOV.X.A T.mod(X,N)@x+qN] (14 primitive instructions), right on all 7260 pairs up to N = 120 (7260 right)
+    T.law8 = L.X[L.X[INC.A]] L.X[DEC.A]
+    round 0: subgoal law2/mul(add(X,N),X): learnable 5
+    round 1: subgoal law2/mul(add(X,N),X): learnable 5, picked
+lp_clean_deep_sub_x3x_ho1.jsonl: 5 rounds, 5.64 search-hours; not invented
+    round 0: subgoal remainder/L.X[DEC.N MOV.A.N] -> A: unsolved None
+lp_clean_deep_sub_x4_ho1.jsonl: 2 rounds, 0.86 search-hours; invented in round 1: T.law5 T.law8 M1.1 (24 primitive instructions), right on all 7260 pairs up to N = 120 (7260 right)
+    T.law5 = M1.2 L.X[MOV.X.A T.mod(X,N)@x+qN]
+    T.law8 = M1.2 L.X[DEC.A]
+    M1.1 = L.A[MOV.X.A T.mod(X,N)@x+qN]
+    round 0: subgoal law2/mod(mul(X,X),N): unsolved None
+    round 1: subgoal law2/mod(mul(X,X),N): learnable 6, picked

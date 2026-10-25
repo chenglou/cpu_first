@@ -1,0 +1,1846 @@
+[
+ {
+  "target": "x2x",
+  "formula": "(x\u00b2 + x) mod N",
+  "pool": 231,
+  "scored": 104,
+  "rows": 55,
+  "consts": [
+   2
+  ],
+  "inputs_law": null,
+  "target_probe": {
+   "best_fit": [
+    15,
+    15,
+    15,
+    15,
+    16,
+    19
+   ],
+   "NP": 28,
+   "found_cost": null
+  },
+  "near": [
+   [
+    16,
+    4,
+    "INC.A INC.A Z.X[CLR.A]"
+   ],
+   [
+    10,
+    2,
+    "MOV.A.X DEC.A"
+   ],
+   [
+    9,
+    2,
+    "INC.A INC.A"
+   ],
+   [
+    8,
+    1,
+    "MOV.A.X"
+   ],
+   [
+    8,
+    2,
+    "Z.X[INC.A]"
+   ],
+   [
+    8,
+    2,
+    "Z.X[MOV.A.N]"
+   ],
+   [
+    7,
+    2,
+    "L.X[MOV.A.N]"
+   ],
+   [
+    5,
+    2,
+    "MOV.A.X INC.A"
+   ],
+   [
+    4,
+    2,
+    "MOV.A.N DEC.A"
+   ],
+   [
+    1,
+    1,
+    "INC.A"
+   ]
+  ],
+  "subgoal": "law2/mul(add(X,N),X)",
+  "tied_at_top": 1,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 2,
+    "law": "mod(add(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 36,
+    "key": [
+     1,
+     0
+    ]
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": "mod(add(g,X),N)",
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,X)/x",
+    "law": "mod(add(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/succ(X)/x",
+    "law": "mod(mul(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law2/add(succ(X),N)",
+    "law": "mod(mul(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(succ(X),X)",
+    "law": "mod(g,N)",
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(succ(X),N)",
+    "law": "mod(mul(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law2/add(mul(X,X),N)",
+    "law": "mod(add(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": "mod(add(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 36
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   }
+  ]
+ },
+ {
+  "target": "x1sq",
+  "formula": "(x + 1)\u00b2 mod N",
+  "pool": 289,
+  "scored": 109,
+  "rows": 55,
+  "consts": [
+   4
+  ],
+  "inputs_law": null,
+  "target_probe": {
+   "best_fit": [
+    8,
+    11,
+    13,
+    13,
+    15,
+    19
+   ],
+   "NP": 28,
+   "found_cost": null
+  },
+  "near": [
+   [
+    15,
+    4,
+    "L.X[DEC.N] MOV.A.N DEC.A"
+   ],
+   [
+    14,
+    4,
+    "L.X[DEC.N MOV.A.N] DEC.A"
+   ],
+   [
+    13,
+    2,
+    "Z.X[INC.A]"
+   ],
+   [
+    12,
+    3,
+    "DEC.X Z.X[INC.A]"
+   ],
+   [
+    12,
+    4,
+    "DEC.X DEC.X Z.X[INC.A]"
+   ],
+   [
+    12,
+    4,
+    "DEC.N INC.A Z.N[DEC.A]"
+   ],
+   [
+    11,
+    1,
+    "INC.A"
+   ],
+   [
+    9,
+    3,
+    "MOV.A.X DEC.A INC.A"
+   ],
+   [
+    9,
+    3,
+    "Z.X[MOV.A.N] DEC.A"
+   ],
+   [
+    8,
+    2,
+    "MOV.A.X INC.A"
+   ],
+   [
+    7,
+    2,
+    "Z.X[MOV.A.N]"
+   ]
+  ],
+  "subgoal": null,
+  "tied_at_top": 3,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 4,
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 28,
+    "key": [
+     0,
+     0
+    ]
+   },
+   {
+    "name": "remainder/L.X[DEC.N] MOV.A.N DEC.A -> A",
+    "rank": 4,
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 28,
+    "key": [
+     0,
+     0
+    ]
+   }
+  ],
+  "top": [
+   {
+    "name": "law/succ(X)/x",
+    "law": "mod(mul(g,g),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law2/monus(N,succ(X))",
+    "law": "mod(mul(g,g),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(succ(X),N)",
+    "law": "mod(mul(g,g),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/add(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/add(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/add(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/monus(N,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mod(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/min(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   }
+  ]
+ },
+ {
+  "target": "three",
+  "formula": "3\u00b7x\u00b2 mod N",
+  "pool": 238,
+  "scored": 111,
+  "rows": 55,
+  "consts": [
+   3
+  ],
+  "inputs_law": null,
+  "target_probe": {
+   "best_fit": [
+    12,
+    12,
+    12,
+    12,
+    13,
+    16
+   ],
+   "NP": 28,
+   "found_cost": null
+  },
+  "near": [
+   [
+    13,
+    4,
+    "L.X[MOV.A.N CLR.N] DEC.A"
+   ],
+   [
+    13,
+    4,
+    "DEC.N DEC.N Z.N[MOV.A.X]"
+   ],
+   [
+    13,
+    4,
+    "DEC.X L.X[MOV.A.N DEC.N]"
+   ],
+   [
+    13,
+    4,
+    "DEC.N L.X[MOV.A.N MOV.N.X]"
+   ],
+   [
+    13,
+    4,
+    "DEC.X L.X[MOV.A.T MOV.T.X]"
+   ],
+   [
+    12,
+    1,
+    "MOV.A.X"
+   ],
+   [
+    12,
+    3,
+    "MOV.A.X DEC.A DEC.A"
+   ],
+   [
+    12,
+    3,
+    "L.X[MOV.A.N] DEC.A"
+   ],
+   [
+    10,
+    2,
+    "MOV.A.X DEC.A"
+   ],
+   [
+    7,
+    2,
+    "L.X[MOV.A.N]"
+   ],
+   [
+    6,
+    2,
+    "MOV.A.N DEC.A"
+   ]
+  ],
+  "subgoal": "law2/mod(mul(X,X),N)",
+  "tied_at_top": 1,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 1,
+    "law": "mod(mul(g,3),N)",
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "key": [
+     1,
+     24
+    ]
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": "mod(mul(g,3),N)",
+    "table": 24,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/absdiff(add(X,X),N)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/max(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(monus(N,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/add(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/monus(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   }
+  ]
+ },
+ {
+  "target": "x4",
+  "formula": "x\u2074 mod N",
+  "pool": 280,
+  "scored": 108,
+  "rows": 55,
+  "consts": [],
+  "inputs_law": null,
+  "target_probe": {
+   "best_fit": [
+    8,
+    17,
+    17,
+    20,
+    20,
+    22
+   ],
+   "NP": 28,
+   "found_cost": null
+  },
+  "near": [
+   [
+    20,
+    3,
+    "INC.A Z.X[DEC.A]"
+   ],
+   [
+    17,
+    1,
+    "MOV.A.X"
+   ],
+   [
+    17,
+    3,
+    "L.X[DEC.N MOV.A.N]"
+   ],
+   [
+    16,
+    3,
+    "L.N[MOV.A.N MOV.N.X]"
+   ],
+   [
+    14,
+    3,
+    "L.X[MOV.A.X CLR.X]"
+   ],
+   [
+    14,
+    3,
+    "L.X[L.X[INC.A]]"
+   ],
+   [
+    13,
+    1,
+    "INC.A"
+   ],
+   [
+    13,
+    3,
+    "Z.X[INC.A] INC.A"
+   ],
+   [
+    13,
+    3,
+    "Z.X[MOV.A.N] INC.A"
+   ],
+   [
+    13,
+    3,
+    "INC.A Z.X[MOV.A.N]"
+   ],
+   [
+    13,
+    3,
+    "L.X[MOV.A.X INC.X]"
+   ],
+   [
+    13,
+    3,
+    "L.X[MOV.A.X MOV.X.N]"
+   ]
+  ],
+  "subgoal": "law2/mod(mul(X,X),N)",
+  "tied_at_top": 1,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 1,
+    "law": "mod(mul(g,g),N)",
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "key": [
+     1,
+     24
+    ]
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": "mod(mul(g,g),N)",
+    "table": 24,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/absdiff(add(X,X),N)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/max(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(pred(X),N)",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "value/L.X[MOV.A.X MOV.X.N] -> A",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(monus(N,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   }
+  ]
+ },
+ {
+  "target": "x3x",
+  "formula": "(x\u00b3 + x) mod N",
+  "pool": 321,
+  "scored": 116,
+  "rows": 55,
+  "consts": [
+   2
+  ],
+  "inputs_law": null,
+  "target_probe": {
+   "best_fit": [
+    11,
+    11,
+    15,
+    15,
+    17,
+    17
+   ],
+   "NP": 28,
+   "found_cost": null
+  },
+  "near": [
+   [
+    17,
+    4,
+    "L.X[MOV.A.N] DEC.A DEC.A"
+   ],
+   [
+    16,
+    4,
+    "INC.A INC.A Z.X[CLR.A]"
+   ],
+   [
+    15,
+    2,
+    "MOV.A.X DEC.A"
+   ],
+   [
+    15,
+    4,
+    "L.X[MOV.A.N MOV.N.X] DEC.A"
+   ],
+   [
+    15,
+    4,
+    "DEC.X L.X[MOV.A.T MOV.T.X]"
+   ],
+   [
+    14,
+    3,
+    "L.X[MOV.A.X INC.A]"
+   ],
+   [
+    14,
+    4,
+    "MOV.A.X DEC.X L.X[MOV.A.X]"
+   ],
+   [
+    14,
+    4,
+    "DEC.X L.X[MOV.A.N MOV.N.X]"
+   ],
+   [
+    14,
+    4,
+    "DEC.X L.N[MOV.A.N MOV.N.X]"
+   ],
+   [
+    13,
+    3,
+    "L.X[INC.X] MOV.A.X"
+   ],
+   [
+    12,
+    3,
+    "MOV.A.N DEC.A DEC.A"
+   ],
+   [
+    12,
+    3,
+    "L.X[DEC.N MOV.A.N]"
+   ]
+  ],
+  "subgoal": "remainder/L.X[DEC.N MOV.A.N] -> A",
+  "tied_at_top": 1,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 16,
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 36,
+    "key": [
+     0,
+     0
+    ]
+   }
+  ],
+  "top": [
+   {
+    "name": "remainder/L.X[DEC.N MOV.A.N] -> A",
+    "law": "mod(absdiff(g,N),N)",
+    "table": 21,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(monus(N,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/add(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/monus(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/succ(mul(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/pred(mul(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "value/L.X[MOV.A.N] DEC.A -> A",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   }
+  ]
+ },
+ {
+  "target": "pow2",
+  "formula": "2^x mod N",
+  "pool": 338,
+  "scored": 114,
+  "rows": 55,
+  "consts": [
+   2
+  ],
+  "inputs_law": null,
+  "target_probe": {
+   "best_fit": [
+    4,
+    10,
+    11,
+    11,
+    15,
+    15
+   ],
+   "NP": 28,
+   "found_cost": null
+  },
+  "near": [
+   [
+    15,
+    4,
+    "L.X[MOV.A.X CLR.X] INC.A"
+   ],
+   [
+    14,
+    4,
+    "INC.A Z.X[DEC.A] INC.A"
+   ],
+   [
+    14,
+    4,
+    "L.X[MOV.A.X INC.X] INC.A"
+   ],
+   [
+    14,
+    4,
+    "INC.A L.X[L.A[INC.A]]"
+   ],
+   [
+    13,
+    4,
+    "MOV.A.X DEC.X Z.X[INC.A]"
+   ],
+   [
+    12,
+    4,
+    "DEC.N INC.X L.N[MOV.A.X]"
+   ],
+   [
+    11,
+    2,
+    "MOV.A.X INC.A"
+   ],
+   [
+    11,
+    4,
+    "L.X[MOV.A.X MOV.X.N] INC.A"
+   ],
+   [
+    11,
+    4,
+    "L.N[MOV.A.N MOV.N.X] INC.A"
+   ],
+   [
+    11,
+    4,
+    "L.X[L.X[INC.A]] INC.A"
+   ],
+   [
+    11,
+    4,
+    "DEC.N INC.A Z.N[DEC.A]"
+   ],
+   [
+    11,
+    4,
+    "INC.A L.X[DEC.N MOV.A.N]"
+   ]
+  ],
+  "subgoal": null,
+  "tied_at_top": 114,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 1,
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 34,
+    "key": [
+     0,
+     0
+    ]
+   }
+  ],
+  "top": [
+   {
+    "name": "law/add(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/add(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/add(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/monus(N,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mod(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/min(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/gcd(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 19
+   },
+   {
+    "name": "law/succ(X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/succ(N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   }
+  ]
+ },
+ {
+  "target": "lucas",
+  "formula": "L(x) mod N, L(0) = 2, L(1) = 1, L(x + 2) = L(x) + L(x + 1)",
+  "pool": 253,
+  "scored": 114,
+  "rows": 55,
+  "consts": [
+   2
+  ],
+  "inputs_law": null,
+  "target_probe": {
+   "best_fit": [
+    5,
+    9,
+    9,
+    12,
+    14,
+    18
+   ],
+   "NP": 28,
+   "found_cost": null
+  },
+  "near": [
+   [
+    14,
+    4,
+    "INC.A INC.A L.X[DEC.A]"
+   ],
+   [
+    13,
+    4,
+    "L.X[MOV.A.T MOV.T.X] INC.A"
+   ],
+   [
+    12,
+    3,
+    "Z.X[INC.A] INC.A"
+   ],
+   [
+    12,
+    3,
+    "L.X[MOV.A.X INC.X]"
+   ],
+   [
+    12,
+    4,
+    "MOV.A.X DEC.A INC.A INC.A"
+   ],
+   [
+    12,
+    4,
+    "Z.X[INC.X INC.X] MOV.A.X"
+   ],
+   [
+    11,
+    3,
+    "L.X[MOV.A.X CLR.X]"
+   ],
+   [
+    11,
+    4,
+    "DEC.N L.X[MOV.A.X MOV.X.N]"
+   ],
+   [
+    10,
+    4,
+    "MOV.A.N DEC.A DEC.A DEC.A"
+   ],
+   [
+    10,
+    4,
+    "L.X[MOV.N.X INC.X] MOV.A.N"
+   ],
+   [
+    10,
+    4,
+    "INC.A L.X[MOV.A.X INC.X]"
+   ],
+   [
+    9,
+    1,
+    "MOV.A.X"
+   ]
+  ],
+  "subgoal": "law2/absdiff(mul(X,N),N)",
+  "tied_at_top": 1,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 3,
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 41,
+    "key": [
+     0,
+     0
+    ]
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/absdiff(mul(X,N),N)",
+    "law": null,
+    "table": 8,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "value/MOV.A.N DEC.A DEC.A -> A",
+    "law": null,
+    "table": 1,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law/add(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/add(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/add(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/monus(N,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/mod(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/min(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55
+   },
+   {
+    "name": "law/gcd(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 32
+   }
+  ]
+ },
+ {
+  "target": "trib",
+  "formula": "T(x) mod N, T(0) = T(1) = 0, T(2) = 1, T(x + 3) = T(x) + T(x + 1) + T(x + 2)",
+  "pool": 290,
+  "scored": 114,
+  "rows": 55,
+  "consts": [],
+  "inputs_law": null,
+  "target_probe": {
+   "best_fit": [
+    14,
+    14,
+    20,
+    20,
+    22,
+    25
+   ],
+   "NP": 28,
+   "found_cost": null
+  },
+  "near": [
+   [
+    22,
+    4,
+    "DEC.X INC.A Z.X[DEC.A]"
+   ],
+   [
+    20,
+    2,
+    "MOV.A.X DEC.A"
+   ],
+   [
+    20,
+    3,
+    "MOV.A.X DEC.A DEC.A"
+   ],
+   [
+    19,
+    4,
+    "DEC.X L.X[MOV.A.X CLR.X]"
+   ],
+   [
+    19,
+    4,
+    "DEC.X L.N[MOV.A.N MOV.N.X]"
+   ],
+   [
+    18,
+    4,
+    "DEC.X L.X[MOV.A.X INC.X]"
+   ],
+   [
+    18,
+    4,
+    "DEC.X L.X[MOV.A.X MOV.X.N]"
+   ],
+   [
+    18,
+    4,
+    "DEC.X L.X[L.X[INC.A]]"
+   ],
+   [
+    16,
+    3,
+    "INC.A Z.X[DEC.A]"
+   ],
+   [
+    16,
+    4,
+    "INC.T L.X[MOV.A.N MOV.N.T]"
+   ],
+   [
+    15,
+    4,
+    "DEC.X L.X[MOV.A.N MOV.N.X]"
+   ],
+   [
+    15,
+    4,
+    "DEC.X L.X[MOV.A.T MOV.T.X]"
+   ]
+  ],
+  "subgoal": null,
+  "tied_at_top": 2,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 10,
+    "law": null,
+    "table": 24,
+    "how": "g,x",
+    "pure": 55,
+    "key": [
+     0,
+     24
+    ]
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/gcd(succ(X),N)",
+    "law": null,
+    "table": 33,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/div(mul(X,X),N)",
+    "law": null,
+    "table": 33,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/monus(add(X,X),N)",
+    "law": null,
+    "table": 29,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/min(add(X,X),N)",
+    "law": null,
+    "table": 29,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/div(N,monus(N,X))",
+    "law": null,
+    "table": 29,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/div(X,monus(N,X))",
+    "law": null,
+    "table": 29,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 29,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(N,succ(X))",
+    "law": null,
+    "table": 25,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(add(X,X),N)",
+    "law": null,
+    "table": 25,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/monus(mul(X,X),N)",
+    "law": null,
+    "table": 24,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": null,
+    "table": 24,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/min(mul(X,X),N)",
+    "law": null,
+    "table": 24,
+    "how": "g,x",
+    "pure": 55
+   }
+  ]
+ },
+ {
+  "target": "floorsq",
+  "formula": "floor(x\u00b2 / N)",
+  "pool": 234,
+  "scored": 103,
+  "rows": 55,
+  "consts": [],
+  "inputs_law": "div(mul(X,X),N)",
+  "target_probe": {
+   "best_fit": [
+    16,
+    16,
+    19,
+    22,
+    22,
+    24
+   ],
+   "NP": 28,
+   "found_cost": null
+  },
+  "near": [
+   [
+    22,
+    3,
+    "MOV.A.X DEC.A DEC.A"
+   ],
+   [
+    20,
+    4,
+    "DEC.X L.X[MOV.A.T MOV.T.X]"
+   ],
+   [
+    19,
+    2,
+    "MOV.A.X DEC.A"
+   ],
+   [
+    18,
+    4,
+    "DEC.X INC.A Z.X[DEC.A]"
+   ],
+   [
+    18,
+    4,
+    "DEC.X L.N[MOV.A.N MOV.N.X]"
+   ],
+   [
+    17,
+    4,
+    "DEC.X L.X[MOV.A.N MOV.N.X]"
+   ],
+   [
+    9,
+    2,
+    "Z.X[INC.A]"
+   ],
+   [
+    9,
+    2,
+    "Z.X[MOV.A.N]"
+   ],
+   [
+    7,
+    1,
+    "MOV.A.X"
+   ],
+   [
+    7,
+    2,
+    "L.X[MOV.A.N]"
+   ],
+   [
+    5,
+    1,
+    "INC.A"
+   ]
+  ],
+  "subgoal": "law2/mul(pred(X),N)",
+  "tied_at_top": 1,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 25,
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 51,
+    "key": [
+     0,
+     0
+    ]
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mul(pred(X),N)",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law/pred(X)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/add(pred(X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/monus(N,pred(X))",
+    "law": null,
+    "table": 9,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(pred(X),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/succ(pred(X))",
+    "law": null,
+    "table": 9,
+    "how": "g,N",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(monus(N,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   }
+  ]
+ },
+ {
+  "target": "tri",
+  "formula": "x\u00b7(x + 1)/2 mod N",
+  "pool": 265,
+  "scored": 107,
+  "rows": 55,
+  "consts": [],
+  "inputs_law": null,
+  "target_probe": {
+   "best_fit": [
+    11,
+    14,
+    14,
+    17,
+    17,
+    17
+   ],
+   "NP": 28,
+   "found_cost": null
+  },
+  "near": [
+   [
+    17,
+    3,
+    "L.X[MOV.A.X INC.X]"
+   ],
+   [
+    17,
+    3,
+    "L.X[MOV.A.X CLR.X]"
+   ],
+   [
+    15,
+    3,
+    "INC.A Z.X[DEC.A]"
+   ],
+   [
+    15,
+    4,
+    "MOV.A.X DEC.X L.X[MOV.A.X]"
+   ],
+   [
+    15,
+    4,
+    "DEC.N L.X[MOV.A.X MOV.X.N]"
+   ],
+   [
+    14,
+    1,
+    "MOV.A.X"
+   ],
+   [
+    13,
+    3,
+    "L.X[MOV.A.X MOV.X.N]"
+   ],
+   [
+    13,
+    3,
+    "L.N[MOV.A.N MOV.N.X]"
+   ],
+   [
+    13,
+    3,
+    "L.X[L.X[INC.A]]"
+   ],
+   [
+    9,
+    2,
+    "MOV.A.X DEC.A"
+   ],
+   [
+    8,
+    1,
+    "INC.A"
+   ]
+  ],
+  "subgoal": null,
+  "tied_at_top": 2,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 19,
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 51,
+    "key": [
+     0,
+     0
+    ]
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/monus(mul(X,X),N)",
+    "law": null,
+    "table": 24,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/min(mul(X,X),N)",
+    "law": null,
+    "table": 24,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(pred(X),N)",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "value/DEC.N L.X[MOV.A.X MOV.X.N] -> A",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "value/L.X[MOV.A.X MOV.X.N] -> A",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(add(X,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/mod(monus(N,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   },
+   {
+    "name": "law2/add(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55
+   }
+  ]
+ }
+]

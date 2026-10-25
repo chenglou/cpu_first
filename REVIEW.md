@@ -33,9 +33,9 @@ The project measures itself against three bars ([OVERVIEW §4](OVERVIEW.md#4-whe
    other formulas, and 2 more once its solved formulas carry over ([PRACTICE.md](bar3/PRACTICE.md),
    [BREADTH.md](bar3/BREADTH.md)). Aiming one deeper search at the piece the target factors through, found from the rows
    alone, brings x³ and 10·x² from scratch ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md)). Run on one digit place, it
-   invents two of stage 3's digit instructions ([BRIDGE.md](bar3/bridge/BRIDGE.md)). At H1's size, the self-practising
-   stage 3 learns 8 of 11 tasks of the family after three general changes to its round's search
-   ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
+   invents three of stage 3's four digit cells, all but multiply-accumulate ([BRIDGE.md](bar3/bridge/BRIDGE.md),
+   [CARRY.md](bar3/bridge/CARRY.md)). At H1's size, the self-practising stage 3 learns 8 of 11 tasks of the family after
+   three general changes to its round's search ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
 
 Four rules are **gray** for s3i: 4, 7, 8 and 14 (§5). The write-ups flag them; they do not argue them away.
 
@@ -471,10 +471,12 @@ later ones follow them as they land. None changes a certified file or record.
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18
   such slices, and 11 of them compose back into their law when looped over the places.
-  - Bar 3's learner, unchanged, on a counting machine with no digits, carries or wrap-around, invented the select
-    (what SEL.S does at one place) and subtract-with-borrow. It did not invent add-with-carry or multiply-accumulate:
-    their one missing piece takes 8 counting instructions, past its search. Each invented program, compiled to a
-    base-10 table, is exactly stage 3's cell.
+  - Bar 3's learner, unchanged, on a counting machine with no digits, carries or wrap-around, invented the select (what
+    SEL.S does at one place) and subtract-with-borrow, and, in the round that Modal's spend limit had cut off,
+    add-with-carry: it adds, compares with the base and subtracts it once ([CARRY.md](bar3/bridge/CARRY.md)). It did not
+    invent multiply-accumulate, whose carry must count: a new rule that poses the counting piece lets the learner's
+    probe find it, but in the learners' own runs a piece that uses up N, or one instruction too many, stands in the way.
+    Each invented program, compiled to a base-10 table, is exactly stage 3's cell.
   - `submission_stage3_bridge.py` (md5 `85ff74c5faf902c1ede7a9f07d059026`) is s3i with 36 instructions: subtract, add
     and multiply-accumulate at the pointer against each register, their tables learned as s3i learns them, and the
     invented select in place of SEL.S. It certifies on the official H100 manifest (training 1,839 s, against s3i's
@@ -484,7 +486,7 @@ later ones follow them as they land. None changes a certified file or record.
     times them, wrong programs pass the two weak checks. The run that would confirm the second explanation was
     refused by Modal's spend limit.
   - **Still designed:** the law book, the frame (moves, the pointer, shifts, BRG.X, the loops), which slices become
-    instructions, and add and multiply-accumulate, which the learner did not invent. The instruction list is made
+    instructions, and multiply-accumulate, which the learner did not invent. The instruction list is made
     before training; the run does not invent its cells.
 
 ## 8. About this checkout

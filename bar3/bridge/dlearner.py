@@ -17,6 +17,11 @@ The loop is bar 3's, unchanged in what it does each round:
 Rules: lp (hardest learnable first), ct2 with anchor 2 (BREADTH.md's cheaper pairs signal: the target's description
 shortened by a pair of routines, over pairs with one member among the 2 hardest), all (every learnable candidate),
 ct1 (bar 3's single-candidate signal; ct1d gives each lookahead the 1M-state probe's budget).
+
+CARRY.md's rule, off unless a config says so: `widen` poses, beside every candidate that pins an input register, its
+widening (dwiden.py; the w<rule>_<target> configs); `conj` also poses the conjunctions of two of the target's
+restrictions that pin an input neither pins alone (the cw<rule>_<target> configs). `lib0`, `corpus0` and `prefix`
+start a run from a carried library, its own merges and routines named with the prefix.
 """
 
 from __future__ import annotations
@@ -31,7 +36,7 @@ from pathlib import Path
 import numpy as np
 
 from library import dsl, merge
-from bar3.bridge import dcm, dproblems as P, dsearch, slices as S
+from bar3.bridge import dcm, dproblems as P, dsearch, dwiden as W, slices as S
 from bar3.bridge.djobs import search_job
 
 HERE = Path(__file__).resolve().parent
@@ -58,6 +63,12 @@ for _t, _s in TARGETS.items():
 DEEP = dict(BIG, look=PROBE_B)          # ct1d: each candidate's lookahead with the 1M-state probe's budget
 for _t, _s in TARGETS.items():
     CONFIGS[f"ct1d_{_t}"] = dict(target=_s, rule="ct1", K=4, rounds=3, budgets=DEEP, sources=SOURCES)
+# CARRY.md: the same rules, with every pinned candidate widened (dwiden.py) beside it; c: and the conjunctions of two
+# restrictions that pin more
+for _t in TARGETS:
+    for _r in ("lp", "ct2", "all"):
+        CONFIGS[f"w{_r}_{_t}"] = dict(CONFIGS[f"{_r}_{_t}"], widen=True)
+        CONFIGS[f"cw{_r}_{_t}"] = dict(CONFIGS[f"{_r}_{_t}"], widen=True, conj=True)
 N_PRIMS, N_KINDS = len(dcm.prims(dcm.REGS)), len(dcm.loop_kinds(dcm.REGS))
 
 
@@ -158,7 +169,8 @@ def run(name, cfg, mapper, emit, log=print):
     tgt = P.from_slice(tsl, "target")
     tgt_gen = P.from_slice(gen[tsl.name], "target")
     laws = [P.from_slice(s, "slice") for s in posed if s.name != tsl.name]
-    lib, corpus, practiced, stems = {}, {}, {}, {}
+    lib, corpus, practiced, stems = dict(cfg.get("lib0", {})), dict(cfg.get("corpus0", {})), {}, {}
+    pfx = cfg.get("prefix", "")           # names this run's merges and routines apart from a carried library's
     sigs = Signatures()
     totals = {}
 
@@ -196,6 +208,10 @@ def run(name, cfg, mapper, emit, log=print):
         if "value" in src or "remainder" in src:
             pool += [c for c in P.from_near_misses(near, lib, tgt)
                      if c.source in src or (c.source == "restrict" and "remainder" in src)]
+        if cfg.get("conj"):
+            pool += W.conjunctions(P.restrictions(tgt), pool)
+        if cfg.get("widen"):
+            pool += W.widenings(pool)
         pool = [c for c in P.dedupe(pool) if c.key() not in practiced and c.key() != tgt.key()]
         log(f"[{name}] round {rnd}: target probe mdl {mdl0:.1f} best {tp['best_fit']}; pool {len(pool)}")
         status = {}
@@ -281,13 +297,13 @@ def run(name, cfg, mapper, emit, log=print):
         for c in pick:
             practiced.setdefault(c.key(), c.name)
         for c in pick:
-            stems[c.name] = stem(c, len(stems) + 1)
+            stems[c.name] = pfx + stem(c, len(stems) + 1)
         pcorpus = {t: [dsl.parse(p) for p in ps] for t, ps in corpus.items()}
         for c in pick:
             pcorpus[stems[c.name]] = [dsl.parse(p) for p in status[c.name]["programs"]]
         plib = {t: dsl.parse(v) for t, v in lib.items()}
         mlog = []
-        pcorpus, plib, _ = merge.mdl(pcorpus, plib, prefix=f"M{rnd}.", log=mlog, kinds=[], lib_weight=0.5,
+        pcorpus, plib, _ = merge.mdl(pcorpus, plib, prefix=f"{pfx}M{rnd}.", log=mlog, kinds=[], lib_weight=0.5,
                                      n_prims=N_PRIMS, n_kinds=N_KINDS)
         pcorpus, plib, plog = promote_first(pcorpus, plib, [stems[c.name] for c in pick])
         for e in mlog + plog:

@@ -3,6 +3,11 @@
 *2026-10-24. Code and records in `cpu_first/bar3/bridge/`. Nothing submitted; no file outside this
 folder changed (the builders assert the md5s of the files they copy).*
 
+*Update, 2026-10-25: [CARRY.md](CARRY.md) finished the learner's lost round 1. Unchanged, the learner invents
+add-with-carry there by adding, comparing with the base and subtracting it once, a route §3 did not consider.
+Multiply-accumulate is still not invented. So the variant's ADC cell is an invented instruction, and its MUL cell
+still rests on a hand-written piece.*
+
 ## In plain words
 
 <!-- PLAIN -->
@@ -38,6 +43,8 @@ times" and "if r is 0": no digits, no carry, no wrap-around.
   piece, "add where R < C" (add one, wrap at the base, carry). That piece takes 8 counting instructions, and no probe
   reaches past 6: testing "reached the base" costs three instructions more than testing "reached zero". Given the piece,
   the search finds add as `L.R[INC.C] L.C[piece]` and multiply-accumulate as `L.H[L.R[INC.C]] L.C[piece]`.
+  *Later* ([CARRY.md](CARRY.md)): the finished round 1 invents add-with-carry under the pairs signal and
+  practise-everything, by another route that reduces the sum once. Multiply-accumulate is still not invented.
 - Each invented program, compiled to a table at base 10, is exactly stage 3's cell (200 of 200 rows), and so is each
   program built on the hand-written add piece (10,000 of 10,000 rows for multiply-accumulate).
 - **The rest** of stage 3's instructions are not functions of one place, or are trivial there. Moves and clears are
@@ -76,7 +83,8 @@ needed (without it no round); here a select the learner invented takes its place
   place and was told nothing about digits or carries.
 - *Add-with-carry and multiply-accumulate are slices of laws in the same book.* The book poses them, but the learner
   does not invent them: their one missing piece is 8 instructions, past its search. The variant includes them with
-  hand-written pieces. Their tables are still learned from data, as s3i's are.
+  hand-written pieces. Their tables are still learned from data, as s3i's are. *Later* ([CARRY.md](CARRY.md)): the
+  finished round 1 invents add-with-carry, so only multiply-accumulate's piece is still hand-written.
 - *What remains designed.* The law book itself, the frame (moves, the pointer, SHL/SHR, BRG.X, the loops), and the
   choice of which slices become cells. The variant uses 4 of the 11 that lift. Each of the other 7 is one of these 4
   with its operands swapped, an operand at zero, or an output dropped (compare is subtract's borrow alone). That rule
@@ -186,6 +194,10 @@ Each of stage 3's 32 instructions, by what it does at one place:
 | INC, the loops by P, B, W | the pointer and repetition by the frame's sizes | the frame's control | – | – |
 
 Both invented programs compile to exactly stage 3's tables (§4).
+
+*Later* ([CARRY.md](CARRY.md) §4): in the finished round 1, the pairs signal and practise-everything invent ADC as
+"add the carry and r, compare with the base, subtract it once" (the sum stays below 2B), exactly stage 3's table. MUL,
+whose sum reaches B² − 1, is still not invented.
 
 **Why add and multiply-accumulate are harder than subtract.** Each needs one piece: the step at one place when nothing
 is added but a carry comes in. For subtraction that step is "take one off, wrapping to the base below zero": the
@@ -382,7 +394,8 @@ not done here.
 container, the learner's included. Round 0 had finished for all 12 runs and round 1 for hardest-first subtraction;
 round 1 of add and multiply-accumulate (started 04:08 to 06:52) and round 2 of hardest-first subtraction were lost.
 Planned were 5 rounds for hardest first and 3 for the other rules. The shared search cache keeps every finished search,
-so a relaunch (`modal_bridge.py --multi --configs ... --tag r1`) replays the finished ones at no cost.
+so a relaunch (`modal_bridge.py --multi --configs ... --tag r1`) replays the finished ones at no cost. CARRY.md §4
+did this for add and multiply-accumulate: round 1 invents add, not multiply-accumulate.
 
 **The one run left to do: the reduce search without its goal cap**, which would confirm why the 61-instruction climb
 misses the reduction (§5). It was refused for the same reason. One H100; the capped search took 643 s, and the

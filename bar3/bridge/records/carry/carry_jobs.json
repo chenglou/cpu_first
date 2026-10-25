@@ -1,0 +1,766 @@
+[
+ {
+  "label": "widened piece, T.mod only, probe_a",
+  "lib": {
+   "T.mod": "MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]]"
+  },
+  "record": {
+   "name": "widen/restrict/add(A,R)/R<C",
+   "kind": "probe_a",
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    30,
+    557,
+    9801,
+    345742
+   ],
+   "best_fit": [
+    0,
+    9,
+    23,
+    23,
+    24
+   ],
+   "NP": 32,
+   "seconds": 6.16,
+   "item_seconds": 5.82,
+   "stop": "budget: level 4 streamed (over 30000 states)",
+   "n_tokens": 36,
+   "n_kinds": 10,
+   "n_classes": 6357,
+   "lib_size": 1,
+   "aliases": [],
+   "wall": 11.98
+  }
+ },
+ {
+  "label": "widened piece, lp_adc's round-1 library, probe_a",
+  "lib": {
+   "M0.1": "DEC.C Z.N[INC.C]",
+   "M0.2": "MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A]",
+   "M0.3": "Z.A[INC.C MOV.A.C] DEC.A L.A[CLR.C]",
+   "M0.4": "MOV.N.C CLR.C",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] L.N[DEC.A] L.T[INC.A]",
+   "T.lawlt(C,A)a": "INC.C L.A[DEC.C] Z.C[INC.T] MOV.C.T",
+   "T.lawlt(C,R)a": "INC.C L.R[DEC.C] Z.C[INC.T] MOV.C.T",
+   "T.laweq(A,C)a": "Z.C[INC.T] L.A[MOV.T.C DEC.C] MOV.C.T"
+  },
+  "record": {
+   "name": "widen/restrict/add(A,R)/R<C",
+   "kind": "probe_a",
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    36,
+    871,
+    20666,
+    910434
+   ],
+   "best_fit": [
+    0,
+    9,
+    23,
+    23,
+    23
+   ],
+   "NP": 32,
+   "seconds": 17.88,
+   "item_seconds": 18.97,
+   "stop": "budget: level 4 streamed (over 30000 states)",
+   "n_tokens": 43,
+   "n_kinds": 10,
+   "n_classes": 9638,
+   "lib_size": 8,
+   "aliases": [],
+   "wall": 36.86
+  }
+ },
+ {
+  "label": "widened piece, ct2_adc's round-1 library, probe_a",
+  "lib": {
+   "M0.1": "MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A]",
+   "M0.2": "INC.C L.A[DEC.C] Z.C[INC.T] MOV.C.T",
+   "M0.3": "L.R[INC.A] Z.C[DEC.A] CLR.C",
+   "T.res2": "Z.C[DEC.A] L.R[INC.A] DEC.C",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] L.N[DEC.A] L.T[INC.A]",
+   "T.lawadd(A,R)a": "L.R[INC.A]"
+  },
+  "record": {
+   "name": "widen/restrict/add(A,R)/R<C",
+   "kind": "probe_a",
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    35,
+    805,
+    17933,
+    736690
+   ],
+   "best_fit": [
+    0,
+    10,
+    23,
+    23,
+    23
+   ],
+   "NP": 32,
+   "seconds": 9.83,
+   "item_seconds": 11.93,
+   "stop": "budget: level 4 streamed (over 30000 states)",
+   "n_tokens": 41,
+   "n_kinds": 10,
+   "n_classes": 8753,
+   "lib_size": 6,
+   "aliases": [],
+   "wall": 21.77
+  }
+ },
+ {
+  "label": "widened piece, all_adc's round-1 library, probe_a",
+  "lib": {
+   "M0.1": "L.A[DEC.N]",
+   "M0.2": "Z.N[INC.C]",
+   "M0.3": "L.R[INC.A]",
+   "M0.4": "L.A[DEC.R] Z.R[INC.C]",
+   "M0.5": "L.C[DEC.A]",
+   "M0.6": "L.A[DEC.C] Z.C[INC.T] MOV.C.T",
+   "M0.7": "MOV.A.C CLR.C",
+   "M0.8": "MOV.N.R M0.1 Z.N[MOV.A.R]",
+   "M0.9": "L.N[INC.A]",
+   "M0.10": "L.R[MOV.T.C CLR.C] MOV.C.T",
+   "M0.11": "L.N[MOV.N.A DEC.A]",
+   "M0.12": "L.C[MOV.A.C]",
+   "M0.13": "L.N[DEC.A]",
+   "M0.14": "L.R[DEC.A] Z.A[INC.C]",
+   "M0.15": "DEC.A M0.1 M0.2",
+   "M0.16": "INC.R L.R[DEC.N] L.N[CLR.C MOV.A.R]",
+   "M0.17": "L.A[DEC.C]",
+   "M0.18": "L.A[MOV.A.C]",
+   "M0.19": "L.C[MOV.A.R]",
+   "M0.20": "L.R[DEC.A]",
+   "M0.21": "Z.A[MOV.A.C]",
+   "M0.22": "M0.1 L.N[CLR.C MOV.T.A] MOV.A.T",
+   "M0.23": "M0.18 Z.C[INC.T] Z.A[MOV.C.T]",
+   "M0.24": "MOV.T.A M0.13 L.T[DEC.N] M0.9",
+   "M0.25": "L.R[MOV.N.C CLR.C] DEC.C M0.2",
+   "T.lawadd(A,A)a": "L.A[INC.A]",
+   "T.lawadd(A,C)a": "L.C[INC.A]",
+   "T.lawadd(R,R)a": "MOV.A.R T.lawadd(A,A)a",
+   "T.lawadd(R,C)a": "MOV.A.C M0.3",
+   "T.lawadd(R,N)a": "MOV.A.N M0.3",
+   "T.lawadd(C,C)a": "MOV.A.C T.lawadd(A,A)a",
+   "T.lawadd(C,N)a": "MOV.A.N T.lawadd(A,C)a",
+   "T.lawmonus(R,A)a": "L.A[DEC.R] MOV.A.R",
+   "T.lawmonus(R,C)a": "MOV.A.R M0.5",
+   "T.lawmonus(C,A)a": "Z.A[MOV.T.C] MOV.A.T",
+   "T.lawmonus(C,R)a": "Z.R[MOV.A.C]",
+   "T.lawmonus(N,A)a": "M0.1 MOV.A.N",
+   "T.lawmonus(N,R)a": "MOV.A.N M0.20",
+   "T.lawmonus(N,C)a": "MOV.A.N M0.5",
+   "T.lawabsdiff(A,C)a": "MOV.T.A M0.5 Z.T[MOV.A.C]",
+   "T.lawabsdiff(R,C)a": "T.lawmonus(R,C)a T.lawmonus(C,R)a",
+   "T.lawmul(A,A)a": "L.A[L.A[INC.T]] MOV.A.T",
+   "T.lawmul(A,R)a": "L.R[L.A[INC.T]] MOV.A.T",
+   "T.lawmul(A,C)a": "Z.C[CLR.A]",
+   "T.lawmul(A,N)a": "L.N[L.A[INC.T]] MOV.A.T",
+   "T.lawmul(R,R)a": "L.R[M0.3]",
+   "T.lawmul(R,N)a": "L.N[M0.3]",
+   "T.lawmul(C,N)a": "L.C[MOV.A.N]",
+   "T.lawdiv(C,A)a": "L.A[MOV.A.C DEC.C]",
+   "T.lawdiv(C,R)a": "DEC.R T.lawmonus(C,R)a",
+   "T.lawmod(C,A)a": "DEC.A M0.18",
+   "T.lawmod(C,R)a": "L.R[MOV.A.T MOV.T.C]",
+   "T.lawmin(A,R)a": "MOV.T.A L.R[DEC.T] L.T[DEC.A]",
+   "T.lawmin(R,C)a": "L.R[MOV.A.C]",
+   "T.lawmax(A,R)a": "M0.20 M0.3",
+   "T.lawmax(R,C)a": "MOV.A.C L.R[MOV.A.R]",
+   "T.lawlt(A,R)a": "L.A[DEC.R] L.R[MOV.C.R DEC.R]",
+   "T.lawlt(R,A)a": "M0.20 L.A[MOV.C.A DEC.A]",
+   "T.lawlt(R,C)a": "L.R[DEC.C]",
+   "T.lawlt(C,A)a": "INC.C M0.6",
+   "T.lawlt(C,R)a": "INC.C T.lawlt(R,C)a Z.C[INC.T] MOV.C.T",
+   "T.lawle(A,C)a": "Z.A[DEC.C] INC.C M0.17",
+   "T.lawle(R,C)a": "Z.R[DEC.C] INC.C T.lawlt(R,C)a",
+   "T.lawle(C,R)a": "Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+   "T.laweq(A,C)a": "Z.C[INC.T] L.A[MOV.T.C DEC.C] MOV.C.T",
+   "T.laweq(R,C)a": "Z.C[INC.T] L.R[MOV.T.C DEC.C] MOV.C.T",
+   "T.lawgcd(R,C)a": "MOV.A.C Z.A[MOV.A.R]",
+   "T.lawgcd(C,N)a": "MOV.A.N M0.12",
+   "T.lawsucc(R)a": "MOV.A.R INC.A",
+   "T.lawsucc(C)a": "MOV.A.C INC.A",
+   "T.lawpred(R)a": "MOV.A.R DEC.A",
+   "T.lawselect(C,R,A)a": "Z.C[MOV.A.R]",
+   "T.lawselect(C,R,N)a": "MOV.A.N T.lawselect(C,R,A)a",
+   "T.lawselect(C,N,A)a": "Z.C[MOV.A.N]",
+   "T.lawselect(C,N,R)a": "MOV.A.N M0.19",
+   "T.lawdiv(N,A)aN": "L.A[MOV.A.N DEC.N]",
+   "T.lawmod(N,A)aN": "M0.13 L.A[MOV.A.N]",
+   "T.lawlt(N,A)aN": "INC.N M0.1 M0.2",
+   "T.lawle(A,N)aN": "L.A[MOV.C.N DEC.N]",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] M0.13 L.T[INC.A]",
+   "T.lawdiv(A,N)aqN": "M0.1 CLR.A Z.N[INC.A]",
+   "T.lawmod(A,N)aqN": "MOV.T.N L.A[DEC.T] Z.T[M0.13]",
+   "T.lawmin(A,R)aqN": "MOV.T.R L.A[DEC.T] Z.T[MOV.A.R]",
+   "T.lawmin(A,N)aqN": "MOV.T.A L.N[DEC.T] L.T[DEC.A]",
+   "T.lawmax(A,N)aqN": "M0.13 M0.9",
+   "T.lawlt(A,N)aqN": "M0.1 INC.C Z.N[DEC.C]",
+   "T.lawlt(R,A)aqN": "M0.20 INC.C Z.A[DEC.C]",
+   "T.lawlt(N,A)aqN": "M0.13 L.A[MOV.C.A DEC.A]",
+   "T.lawle(A,N)aqN": "M0.13 Z.A[INC.C]",
+   "T.lawle(N,A)aqN": "M0.1 M0.2",
+   "T.laweq(A,N)aqN": "L.N[MOV.C.A DEC.A] L.A[CLR.C]",
+   "T.res81": "INC.R L.R[DEC.N] L.N[DEC.C MOV.A.R]",
+   "T.res82": "MOV.A.C DEC.C",
+   "T.val83": "Z.C[M0.3]",
+   "T.res84": "M0.13 INC.C",
+   "T.res85": "MOV.C.A INC.C L.N[DEC.C] L.C[CLR.A]",
+   "T.res86": "Z.C[DEC.A] M0.3 DEC.C",
+   "T.val87": "MOV.A.C Z.R[DEC.A]",
+   "T.val88": "L.C[CLR.A]",
+   "T.val89": "T.val88 INC.A",
+   "T.val90": "MOV.A.R T.lawmul(A,C)a",
+   "T.val91": "INC.A T.val88",
+   "T.val92": "Z.R[INC.A]",
+   "T.val93": "Z.C[DEC.A]",
+   "T.val94": "Z.C[INC.A]"
+  },
+  "record": {
+   "name": "widen/restrict/add(A,R)/R<C",
+   "kind": "probe_a",
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    109,
+    8448,
+    976259
+   ],
+   "best_fit": [
+    0,
+    10,
+    23,
+    28
+   ],
+   "NP": 32,
+   "seconds": 66.38,
+   "item_seconds": 602.47,
+   "stop": "budget: level 3 streamed (over 30000 states)",
+   "n_tokens": 140,
+   "n_kinds": 10,
+   "n_classes": 89773,
+   "lib_size": 105,
+   "aliases": [],
+   "wall": 668.86
+  }
+ },
+ {
+  "label": "widened piece, T.mod only, probe_b",
+  "lib": {
+   "T.mod": "MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]]"
+  },
+  "record": {
+   "name": "widen/restrict/add(A,R)/R<C",
+   "kind": "probe_b",
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    30,
+    557,
+    9801,
+    166022,
+    5730634
+   ],
+   "best_fit": [
+    0,
+    9,
+    23,
+    23,
+    24,
+    32
+   ],
+   "NP": 32,
+   "seconds": 25.17,
+   "item_seconds": 4.3,
+   "stop": "budget: level 5 streamed (over 1000000 states)",
+   "n_tokens": 36,
+   "n_kinds": 10,
+   "n_classes": 6357,
+   "lib_size": 1,
+   "aliases": [],
+   "programs": [
+    {
+     "program": "INC.A T.mod Z.A[INC.C] DEC.C",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.A[INC.C] DEC.C",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A T.mod Z.T[INC.C] DEC.C",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.T[INC.C] DEC.C",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A T.mod DEC.C Z.A[INC.C]",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] DEC.C Z.A[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "DEC.C INC.A T.mod Z.A[INC.C]",
+     "primitive": "DEC.C INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.A[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A DEC.C T.mod Z.A[INC.C]",
+     "primitive": "INC.A DEC.C MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.A[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A T.mod DEC.C Z.T[INC.C]",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] DEC.C Z.T[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "DEC.C INC.A T.mod Z.T[INC.C]",
+     "primitive": "DEC.C INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.T[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A DEC.C T.mod Z.T[INC.C]",
+     "primitive": "INC.A DEC.C MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.T[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    }
+   ],
+   "wall": 29.48
+  }
+ },
+ {
+  "label": "widened piece, lp_adc's round-1 library, probe_b",
+  "lib": {
+   "M0.1": "DEC.C Z.N[INC.C]",
+   "M0.2": "MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A]",
+   "M0.3": "Z.A[INC.C MOV.A.C] DEC.A L.A[CLR.C]",
+   "M0.4": "MOV.N.C CLR.C",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] L.N[DEC.A] L.T[INC.A]",
+   "T.lawlt(C,A)a": "INC.C L.A[DEC.C] Z.C[INC.T] MOV.C.T",
+   "T.lawlt(C,R)a": "INC.C L.R[DEC.C] Z.C[INC.T] MOV.C.T",
+   "T.laweq(A,C)a": "Z.C[INC.T] L.A[MOV.T.C DEC.C] MOV.C.T"
+  },
+  "record": {
+   "name": "widen/restrict/add(A,R)/R<C",
+   "kind": "probe_b",
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    36,
+    871,
+    20666,
+    478647,
+    20900601
+   ],
+   "best_fit": [
+    0,
+    9,
+    23,
+    23,
+    23,
+    32
+   ],
+   "NP": 32,
+   "seconds": 102.54,
+   "item_seconds": 15.77,
+   "stop": "budget: level 5 streamed (over 1000000 states)",
+   "n_tokens": 43,
+   "n_kinds": 10,
+   "n_classes": 9638,
+   "lib_size": 8,
+   "aliases": [],
+   "programs": [
+    {
+     "program": "INC.A M0.2 L.A[MOV.A.T] M0.1",
+     "primitive": "INC.A MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A] L.A[MOV.A.T] DEC.C Z.N[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.2 L.N[MOV.A.T] M0.1",
+     "primitive": "INC.A MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A] L.N[MOV.A.T] DEC.C Z.N[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.2 M0.1 L.A[MOV.A.T]",
+     "primitive": "INC.A MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A] DEC.C Z.N[INC.C] L.A[MOV.A.T]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.2 M0.1 L.N[MOV.A.T]",
+     "primitive": "INC.A MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A] DEC.C Z.N[INC.C] L.N[MOV.A.T]",
+     "primitive_cost": 13,
+     "verified": true
+    }
+   ],
+   "wall": 118.32
+  }
+ },
+ {
+  "label": "widened piece, ct2_adc's round-1 library, probe_b",
+  "lib": {
+   "M0.1": "MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A]",
+   "M0.2": "INC.C L.A[DEC.C] Z.C[INC.T] MOV.C.T",
+   "M0.3": "L.R[INC.A] Z.C[DEC.A] CLR.C",
+   "T.res2": "Z.C[DEC.A] L.R[INC.A] DEC.C",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] L.N[DEC.A] L.T[INC.A]",
+   "T.lawadd(A,R)a": "L.R[INC.A]"
+  },
+  "record": {
+   "name": "widen/restrict/add(A,R)/R<C",
+   "kind": "probe_b",
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    35,
+    805,
+    17933,
+    389949,
+    15861693
+   ],
+   "best_fit": [
+    0,
+    10,
+    23,
+    23,
+    23,
+    24
+   ],
+   "NP": 32,
+   "seconds": 97.63,
+   "item_seconds": 18.33,
+   "stop": "budget: level 5 streamed (over 1000000 states)",
+   "n_tokens": 41,
+   "n_kinds": 10,
+   "n_classes": 8753,
+   "lib_size": 6,
+   "aliases": [],
+   "wall": 115.96
+  }
+ },
+ {
+  "label": "widened piece, all_adc's round-1 library, probe_b",
+  "lib": {
+   "M0.1": "L.A[DEC.N]",
+   "M0.2": "Z.N[INC.C]",
+   "M0.3": "L.R[INC.A]",
+   "M0.4": "L.A[DEC.R] Z.R[INC.C]",
+   "M0.5": "L.C[DEC.A]",
+   "M0.6": "L.A[DEC.C] Z.C[INC.T] MOV.C.T",
+   "M0.7": "MOV.A.C CLR.C",
+   "M0.8": "MOV.N.R M0.1 Z.N[MOV.A.R]",
+   "M0.9": "L.N[INC.A]",
+   "M0.10": "L.R[MOV.T.C CLR.C] MOV.C.T",
+   "M0.11": "L.N[MOV.N.A DEC.A]",
+   "M0.12": "L.C[MOV.A.C]",
+   "M0.13": "L.N[DEC.A]",
+   "M0.14": "L.R[DEC.A] Z.A[INC.C]",
+   "M0.15": "DEC.A M0.1 M0.2",
+   "M0.16": "INC.R L.R[DEC.N] L.N[CLR.C MOV.A.R]",
+   "M0.17": "L.A[DEC.C]",
+   "M0.18": "L.A[MOV.A.C]",
+   "M0.19": "L.C[MOV.A.R]",
+   "M0.20": "L.R[DEC.A]",
+   "M0.21": "Z.A[MOV.A.C]",
+   "M0.22": "M0.1 L.N[CLR.C MOV.T.A] MOV.A.T",
+   "M0.23": "M0.18 Z.C[INC.T] Z.A[MOV.C.T]",
+   "M0.24": "MOV.T.A M0.13 L.T[DEC.N] M0.9",
+   "M0.25": "L.R[MOV.N.C CLR.C] DEC.C M0.2",
+   "T.lawadd(A,A)a": "L.A[INC.A]",
+   "T.lawadd(A,C)a": "L.C[INC.A]",
+   "T.lawadd(R,R)a": "MOV.A.R T.lawadd(A,A)a",
+   "T.lawadd(R,C)a": "MOV.A.C M0.3",
+   "T.lawadd(R,N)a": "MOV.A.N M0.3",
+   "T.lawadd(C,C)a": "MOV.A.C T.lawadd(A,A)a",
+   "T.lawadd(C,N)a": "MOV.A.N T.lawadd(A,C)a",
+   "T.lawmonus(R,A)a": "L.A[DEC.R] MOV.A.R",
+   "T.lawmonus(R,C)a": "MOV.A.R M0.5",
+   "T.lawmonus(C,A)a": "Z.A[MOV.T.C] MOV.A.T",
+   "T.lawmonus(C,R)a": "Z.R[MOV.A.C]",
+   "T.lawmonus(N,A)a": "M0.1 MOV.A.N",
+   "T.lawmonus(N,R)a": "MOV.A.N M0.20",
+   "T.lawmonus(N,C)a": "MOV.A.N M0.5",
+   "T.lawabsdiff(A,C)a": "MOV.T.A M0.5 Z.T[MOV.A.C]",
+   "T.lawabsdiff(R,C)a": "T.lawmonus(R,C)a T.lawmonus(C,R)a",
+   "T.lawmul(A,A)a": "L.A[L.A[INC.T]] MOV.A.T",
+   "T.lawmul(A,R)a": "L.R[L.A[INC.T]] MOV.A.T",
+   "T.lawmul(A,C)a": "Z.C[CLR.A]",
+   "T.lawmul(A,N)a": "L.N[L.A[INC.T]] MOV.A.T",
+   "T.lawmul(R,R)a": "L.R[M0.3]",
+   "T.lawmul(R,N)a": "L.N[M0.3]",
+   "T.lawmul(C,N)a": "L.C[MOV.A.N]",
+   "T.lawdiv(C,A)a": "L.A[MOV.A.C DEC.C]",
+   "T.lawdiv(C,R)a": "DEC.R T.lawmonus(C,R)a",
+   "T.lawmod(C,A)a": "DEC.A M0.18",
+   "T.lawmod(C,R)a": "L.R[MOV.A.T MOV.T.C]",
+   "T.lawmin(A,R)a": "MOV.T.A L.R[DEC.T] L.T[DEC.A]",
+   "T.lawmin(R,C)a": "L.R[MOV.A.C]",
+   "T.lawmax(A,R)a": "M0.20 M0.3",
+   "T.lawmax(R,C)a": "MOV.A.C L.R[MOV.A.R]",
+   "T.lawlt(A,R)a": "L.A[DEC.R] L.R[MOV.C.R DEC.R]",
+   "T.lawlt(R,A)a": "M0.20 L.A[MOV.C.A DEC.A]",
+   "T.lawlt(R,C)a": "L.R[DEC.C]",
+   "T.lawlt(C,A)a": "INC.C M0.6",
+   "T.lawlt(C,R)a": "INC.C T.lawlt(R,C)a Z.C[INC.T] MOV.C.T",
+   "T.lawle(A,C)a": "Z.A[DEC.C] INC.C M0.17",
+   "T.lawle(R,C)a": "Z.R[DEC.C] INC.C T.lawlt(R,C)a",
+   "T.lawle(C,R)a": "Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+   "T.laweq(A,C)a": "Z.C[INC.T] L.A[MOV.T.C DEC.C] MOV.C.T",
+   "T.laweq(R,C)a": "Z.C[INC.T] L.R[MOV.T.C DEC.C] MOV.C.T",
+   "T.lawgcd(R,C)a": "MOV.A.C Z.A[MOV.A.R]",
+   "T.lawgcd(C,N)a": "MOV.A.N M0.12",
+   "T.lawsucc(R)a": "MOV.A.R INC.A",
+   "T.lawsucc(C)a": "MOV.A.C INC.A",
+   "T.lawpred(R)a": "MOV.A.R DEC.A",
+   "T.lawselect(C,R,A)a": "Z.C[MOV.A.R]",
+   "T.lawselect(C,R,N)a": "MOV.A.N T.lawselect(C,R,A)a",
+   "T.lawselect(C,N,A)a": "Z.C[MOV.A.N]",
+   "T.lawselect(C,N,R)a": "MOV.A.N M0.19",
+   "T.lawdiv(N,A)aN": "L.A[MOV.A.N DEC.N]",
+   "T.lawmod(N,A)aN": "M0.13 L.A[MOV.A.N]",
+   "T.lawlt(N,A)aN": "INC.N M0.1 M0.2",
+   "T.lawle(A,N)aN": "L.A[MOV.C.N DEC.N]",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] M0.13 L.T[INC.A]",
+   "T.lawdiv(A,N)aqN": "M0.1 CLR.A Z.N[INC.A]",
+   "T.lawmod(A,N)aqN": "MOV.T.N L.A[DEC.T] Z.T[M0.13]",
+   "T.lawmin(A,R)aqN": "MOV.T.R L.A[DEC.T] Z.T[MOV.A.R]",
+   "T.lawmin(A,N)aqN": "MOV.T.A L.N[DEC.T] L.T[DEC.A]",
+   "T.lawmax(A,N)aqN": "M0.13 M0.9",
+   "T.lawlt(A,N)aqN": "M0.1 INC.C Z.N[DEC.C]",
+   "T.lawlt(R,A)aqN": "M0.20 INC.C Z.A[DEC.C]",
+   "T.lawlt(N,A)aqN": "M0.13 L.A[MOV.C.A DEC.A]",
+   "T.lawle(A,N)aqN": "M0.13 Z.A[INC.C]",
+   "T.lawle(N,A)aqN": "M0.1 M0.2",
+   "T.laweq(A,N)aqN": "L.N[MOV.C.A DEC.A] L.A[CLR.C]",
+   "T.res81": "INC.R L.R[DEC.N] L.N[DEC.C MOV.A.R]",
+   "T.res82": "MOV.A.C DEC.C",
+   "T.val83": "Z.C[M0.3]",
+   "T.res84": "M0.13 INC.C",
+   "T.res85": "MOV.C.A INC.C L.N[DEC.C] L.C[CLR.A]",
+   "T.res86": "Z.C[DEC.A] M0.3 DEC.C",
+   "T.val87": "MOV.A.C Z.R[DEC.A]",
+   "T.val88": "L.C[CLR.A]",
+   "T.val89": "T.val88 INC.A",
+   "T.val90": "MOV.A.R T.lawmul(A,C)a",
+   "T.val91": "INC.A T.val88",
+   "T.val92": "Z.R[INC.A]",
+   "T.val93": "Z.C[DEC.A]",
+   "T.val94": "Z.C[INC.A]"
+  },
+  "record": {
+   "name": "widen/restrict/add(A,R)/R<C",
+   "kind": "probe_b",
+   "found_cost": 4,
+   "level_sizes": [
+    1,
+    109,
+    8448,
+    615925,
+    69739959
+   ],
+   "best_fit": [
+    0,
+    10,
+    23,
+    28,
+    32
+   ],
+   "NP": 32,
+   "seconds": 600.02,
+   "item_seconds": 629.94,
+   "stop": "time: 600s at level 4",
+   "n_tokens": 140,
+   "n_kinds": 10,
+   "n_classes": 89773,
+   "lib_size": 105,
+   "aliases": [],
+   "programs": [
+    {
+     "program": "INC.A T.lawmod(A,N)aqN T.res86 M0.14",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.C[DEC.A] L.R[INC.A] DEC.C L.R[DEC.A] Z.A[INC.C]",
+     "primitive_cost": 16,
+     "verified": true
+    },
+    {
+     "program": "INC.A T.lawmod(A,N)aqN MOV.R.C T.lawle(C,R)a",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] MOV.R.C Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "MOV.R.C INC.A T.lawmod(A,N)aqN T.lawle(C,R)a",
+     "primitive": "MOV.R.C INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.R.C T.lawmod(A,N)aqN T.lawle(C,R)a",
+     "primitive": "INC.A MOV.R.C MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.R.A T.lawmod(A,N)aqN T.lawle(C,R)a",
+     "primitive": "INC.A MOV.R.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "INC.A T.lawmod(A,N)aqN INC.R T.lawle(C,R)a",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] INC.R Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "INC.R INC.A T.lawmod(A,N)aqN T.lawle(C,R)a",
+     "primitive": "INC.R INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "INC.A INC.R T.lawmod(A,N)aqN T.lawle(C,R)a",
+     "primitive": "INC.A INC.R MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "MOV.R.A INC.A T.lawmod(A,N)aqN T.lawle(C,R)a",
+     "primitive": "MOV.R.A INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "MOV.R.A T.lawsucc(R)a T.lawmod(A,N)aqN T.lawle(C,R)a",
+     "primitive": "MOV.R.A MOV.A.R INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 14,
+     "verified": true
+    },
+    {
+     "program": "INC.A T.lawmod(A,N)aqN MOV.R.N T.lawle(C,R)a",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] MOV.R.N Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "MOV.R.N INC.A T.lawmod(A,N)aqN T.lawle(C,R)a",
+     "primitive": "MOV.R.N INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.R.N T.lawmod(A,N)aqN T.lawle(C,R)a",
+     "primitive": "INC.A MOV.R.N MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.R[MOV.T.C] DEC.C Z.T[INC.C]",
+     "primitive_cost": 13,
+     "verified": true
+    }
+   ],
+   "wall": 1229.99
+  }
+ },
+ {
+  "label": "add(A,R) with T.mod and the counting piece",
+  "lib": {
+   "T.mod": "MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]]",
+   "T.cnt": "INC.A T.mod Z.A[INC.C] DEC.C"
+  },
+  "record": {
+   "name": "add(A,R)",
+   "kind": "target",
+   "found_cost": 4,
+   "level_sizes": [
+    1,
+    30,
+    623,
+    12900,
+    249603
+   ],
+   "best_fit": [
+    3,
+    8,
+    8,
+    14,
+    32
+   ],
+   "NP": 32,
+   "seconds": 10.42,
+   "item_seconds": 9.36,
+   "stop": "",
+   "n_tokens": 37,
+   "n_kinds": 10,
+   "n_classes": 6959,
+   "lib_size": 2,
+   "aliases": [],
+   "programs": [
+    {
+     "program": "L.R[INC.C] L.C[T.cnt]",
+     "primitive": "L.R[INC.C] L.C[INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.A[INC.C] DEC.C]",
+     "primitive_cost": 13,
+     "verified": true,
+     "general": true
+    }
+   ],
+   "wall": 19.8
+  }
+ },
+ {
+  "label": "acc.mul(A,R,H) with T.mod and the counting piece",
+  "lib": {
+   "T.mod": "MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]]",
+   "T.cnt": "INC.A T.mod Z.A[INC.C] DEC.C"
+  },
+  "record": {
+   "name": "acc.mul(A,R,H)",
+   "kind": "target",
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    43,
+    1198,
+    32067,
+    818389,
+    43616930
+   ],
+   "best_fit": [
+    7,
+    7,
+    8,
+    12,
+    15,
+    32
+   ],
+   "NP": 32,
+   "seconds": 312.19,
+   "item_seconds": 20.42,
+   "stop": "budget: level 5 streamed (over 3000000 states)",
+   "n_tokens": 50,
+   "n_kinds": 12,
+   "n_classes": 14889,
+   "lib_size": 2,
+   "aliases": [],
+   "programs": [
+    {
+     "program": "L.H[L.R[INC.C]] L.C[T.cnt]",
+     "primitive": "L.H[L.R[INC.C]] L.C[INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.A[INC.C] DEC.C]",
+     "primitive_cost": 14,
+     "verified": true,
+     "general": true
+    }
+   ],
+   "wall": 332.62
+  }
+ }
+]

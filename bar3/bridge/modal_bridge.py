@@ -4,8 +4,11 @@ searches fanned out to CPU containers, identical jobs shared through a modal.Dic
     cd cpu_first && BRIDGE_MAX=18 ~/github/sotaku/venv/bin/python -m modal run --detach bar3/bridge/modal_bridge.py --multi --configs lp_sbb,lp_adc --tag r1
     cd cpu_first && ~/github/sotaku/venv/bin/python -m modal run bar3/bridge/modal_bridge.py --fetch
 
-Records go to the Volume `bar3-bridge` as v1/<config>_<tag>.jsonl, one line per round; --fetch copies them to
-bar3/bridge/records/. Limits: every search has its own state and time budget; search containers have a 3-hour
+Records go to the Volume `bar3-bridge` as v1/<config>_<tag>.jsonl, one line per round (v1/<sub>/... with --sub);
+--fetch copies them to bar3/bridge/records/ and its subfolders (--only carry/ fetches one study's). --rounds overrides
+a config's rounds; --carry <record> starts each config from the library that run's last round left (CARRY.md).
+BRIDGE_APP names the app (default bar3-bridge), so that a study's bill can be read apart; the search cache is shared
+either way. Limits: every search has its own state and time budget; search containers have a 3-hour
 timeout and a 32 GiB hard memory limit; drivers 24 hours; a cancelled driver's inputs are cancelled with it.
 """
 
@@ -27,7 +30,7 @@ for _f in sorted(HERE.glob("*.py")):
     image = image.add_local_file(_f, f"/root/bar3/bridge/{_f.name}")
 vol = modal.Volume.from_name("bar3-bridge", create_if_missing=True)
 VERSION = "v1"
-app = modal.App("bar3-bridge", image=image)
+app = modal.App(os.environ.get("BRIDGE_APP", "bar3-bridge"), image=image)
 MAX = int(os.environ.get("BRIDGE_MAX", "20"))
 cache = modal.Dict.from_name("bar3-bridge-cache", create_if_missing=True)
 
@@ -68,6 +71,7 @@ def driver(name: str, cfg: dict) -> str:
     from bar3.bridge import dlearner
     os.makedirs(f"/out/{VERSION}", exist_ok=True)
     path = f"/out/{VERSION}/{name}.jsonl"
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     open(path, "w").close()
 
     def emit(rec):
@@ -96,6 +100,7 @@ def driver_multi(runs: list) -> list:
     launch = f"{time.time():.0f}"
 
     def emitter(path):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
         open(path, "w").close()
 
         def emit(rec):
@@ -127,11 +132,16 @@ def driver_multi(runs: list) -> list:
 def list_records() -> dict:
     vol.reload()
     d = f"/out/{VERSION}"
-    return {f: open(os.path.join(d, f)).read() for f in sorted(os.listdir(d))} if os.path.isdir(d) else {}
+    out = {}
+    for root, _, files in os.walk(d):
+        for f in sorted(files):
+            out[os.path.relpath(os.path.join(root, f), d)] = open(os.path.join(root, f)).read()
+    return out
 
 
 @app.local_entrypoint()
-def main(configs: str = "", fetch: bool = False, tag: str = "", only: str = "", multi: bool = False) -> None:
+def main(configs: str = "", fetch: bool = False, tag: str = "", only: str = "", multi: bool = False, rounds: int = 0,
+         sub: str = "", carry: str = "") -> None:
     import sys
     sys.path.insert(0, str(ROOT))
     if configs:
@@ -139,14 +149,22 @@ def main(configs: str = "", fetch: bool = False, tag: str = "", only: str = "", 
         from bar3.bridge.dbook import CONFIGS as BOOK
         allc = {**CONFIGS, **{k: dict(v, book=True) for k, v in BOOK.items()}}
         calls = {}
-        names = [(c + (f"_{tag}" if tag else ""), json.loads(json.dumps(allc[c]))) for c in configs.split(",")]
+        names = [((f"{sub}/" if sub else "") + c + (f"_{tag}" if tag else ""), json.loads(json.dumps(allc[c])))
+                 for c in configs.split(",")]
+        for _, c in names:
+            if rounds:
+                c["rounds"] = rounds
+            if carry:                    # start from the library a finished run left (its record's last round)
+                last = json.loads((HERE / "records" / carry).read_text().splitlines()[-1])
+                c.update(lib0=last["lib"], corpus0=last["corpus"], prefix="K.", carried_from=carry)
         if multi:
             calls["multi:" + ",".join(n for n, _ in names)] = driver_multi.spawn([[n, c] for n, c in names]).object_id
         for name, cfg in ([] if multi else names):
             calls[name] = driver.spawn(name, cfg).object_id
         print("spawned", calls)
         (HERE / "records").mkdir(exist_ok=True)
-        ids = HERE / "records" / f"calls_{tag or 'default'}.json"
+        ids = HERE / "records" / sub / f"calls_{tag or 'default'}.json"
+        ids.parent.mkdir(parents=True, exist_ok=True)
         old = json.loads(ids.read_text()) if ids.exists() else {}
         ids.write_text(json.dumps({**old, **calls}, indent=1))
         print("call ids ->", ids)
@@ -156,5 +174,6 @@ def main(configs: str = "", fetch: bool = False, tag: str = "", only: str = "", 
         for f, txt in list_records.remote().items():
             if only and only not in f:
                 continue
+            (HERE / "records" / f).parent.mkdir(parents=True, exist_ok=True)
             (HERE / "records" / f).write_text(txt)
             print("fetched", f, len(txt.splitlines()), "rounds")

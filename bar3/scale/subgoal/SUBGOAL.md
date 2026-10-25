@@ -97,12 +97,32 @@ specific to the target, and in round 0 it already points at the missing piece. O
 two of the three targets in round 1, for about 3% more search. Two limits remain, and neither is about the choice:
 - *The score sees one step.* Once x² mod N is a routine, the rest of the way to 10·x² + 1 is a new problem, posed on
   the routine's values rather than on the target's instances. Aiming the deeper probe at it (the chain) is not enough,
-  because its program is a token longer than that probe reaches. The next step would be to pose and score pieces for
-  that problem the way the target's own pieces are posed and scored: (10X + 1) mod N factors through 10X mod N by
-  one law.
+  because its program is a token longer than that probe reaches. Posing and scoring pieces for that problem the way
+  the target's own pieces are posed and scored (below) does not get to 10X mod N, the piece it factors through by one
+  law: nothing poses it, though the score would pick it if something did.
 - *Montgomery's at N ≤ 7 is too small to learn from.* Only odd N count, which leaves 16 instances. That is too few
   to tell halving mod N apart from programs that only fit those 16. Here the limit is the size of the problem, not
   what the learner picks.
+
+**The next step, tried small: the subgoal's own subgoal** (`recurse.py`, `rank_rest.py`; §8). The rule: when a
+subgoal stays unsolved after its deeper probe, treat it as a target in its own right. Pose the target's sources on its
+instances, score what is posed by the same rule, and aim the deeper probe at the one the score singles out (at most
+two levels deep). Before changing the learner, a tiny local test (no Modal, about 2 minutes) asked what the rule
+would pick in the chain runs:
+- *10·x² + 1*: the rest of the way, (10X + 1) mod N, factors through 10X mod N, but no source poses 10X mod N. The
+  near misses of a search of the rest are look-alikes: the best is right on 26 of its 28 instances, and no register
+  holds 10X mod N on the way. The score instead picks one of their values, "1 at X = 0, else 11 mod N", which is
+  no step on the way.
+- *Montgomery's*: nothing is singled out (a tie), and halving is not posed either.
+- *x² mod N itself*, unsolved in round 0 of the squaring runs: nothing is singled out (4 problems tie), so the rule
+  would not change those rounds.
+
+So the study stopped there, as planned when the piece is not at the top: no learner change, no runs. The score is
+not what is missing. If 10X mod N were posed, the score would pick it first and alone (one law: add 1, reduce), and
+the usual 1M-state probe solves it at cost 5 with that round's routines: start from X, make 3, then X times add 9
+and reduce, the step the 10·x² runs found. Cost 5 was that round's top cost, so hardest first would take it once it
+wins the subgoal's tie-break. What is missing is a source that poses it from the rows. One the rule does not have
+would: the answer less its answer at X = 0, mod N.
 <!-- /PLAIN -->
 
 ## Details
@@ -338,7 +358,62 @@ Neither target came. The remainder was the subgoal in every round from 2 to 4, a
   the one odd N the check adds).
   Here the size of the problem, not the choice of practice, is what stops it.
 
-### 8. Files and how to rerun
+### 8. The subgoal's own subgoal: a tiny test (`recurse.py`, `rank_rest.py`, `records/rank_rest.json`)
+
+**The rule** (`recurse.py`). A subgoal that its deeper probe leaves unsolved (the score's pick, or the chain's rest of
+the way) is treated as a target in its own right. Its instances get the sources the target's get, posed from its rows
+instead of the target's:
+- the near misses of a search of it: the values they hold, and the rest of the way from each;
+- its restrictions, projections, recurrences and constants;
+- the rest of the way from each routine.
+
+Everything posed on all of its instances is scored against it by score.py's rule, with its rows and the constants its
+data shows. The laws and the dreams are posed on the data's pairs, which hold every one of its instances (its X is
+below N), so they are scored as the pool has them. The candidate the score singles out would get the deeper probe and
+the ties, two levels deep at most. The rule reads no formula: only the rows, the routines and the data's pairs.
+
+**The test** (`rank_rest.py`; local, about 2 minutes, most of it five searches for near misses). It takes the round in
+which the chain's rest of the way first became the subgoal, in the chain runs that practised x² mod N, and x² mod N
+itself in round 0. Each run's pools are rebuilt from its record (its libraries, the target probes' near misses, its
+picks), and every rebuilt pool matches the record's, name for name, in every round up to the one tested. The near
+misses come from one search of the subgoal at the 1M-state probe's budget, which holds the same levels as the
+10M-state probe (0–4; the deeper probe only streams level 5).
+
+| run, round | the subgoal (its rows) | posed on it: new, scored | singled out | the piece |
+|---|---|---|---|---|
+| hardest first, 10·x² + 1, 2 | the rest from x² mod N: (10X + 1) mod N (31) | 242, 65 (200 in all) | a near miss's value, "1 at X = 0, else 11 mod N" (table 13, no law) | 10X mod N: not posed |
+| hardest first, Montgomery's, 2 | the rest: X·2⁻¹ mod N (14) | 225, 48 (182) | none (a tie at 6) | halving: not posed |
+| anchored pairs, Montgomery's, 2 | the same (14) | 83, 30 (156) | none (a tie at 6) | not posed |
+| hardest first, 10·x² + 1 and x³, 0 | x² mod N (55) | 256, 8–10 (114–116) | none (4 tied at 20) | – |
+
+By the test set before any run, the rule stops here: for 10·x² + 1, 10X mod N is not at or near the top, because
+nothing poses it. So the learner was not changed and nothing ran on Modal.
+
+**Why not.** The near misses of the rest of the way are look-alikes. The best, `MOV.A.X M1.4 INC.X M1.4` (A ← X,
+then two of `M1.4`, "add X·X and reduce", with INC.X between), is right on 26 of the 28 search instances and 47 of
+the 55 check instances, and no register holds 10X mod N on the way. The law book's only constants are those the data
+shows, and here that is 11 (the answer at X = 1), not 10. The score's pick is then a cheap value of those near misses
+that, grouped with x, determines the rest of the way on its rows.
+
+**What would.** Three local checks (in `rank_rest.py`; the hypothetical piece is scored with the rest, never posed to
+the learner):
+- if 10X mod N were posed on the data's pairs, as the laws are, the score would single it out, first and alone:
+  mod(succ(g), N), "add 1, reduce", is exact on all 31 rows (table 11);
+- one source the rule does not have poses exactly it: the subgoal's answer less its answer at X = 0, mod N
+  (`offset`);
+- the usual probes solve it with that round's library: not at 30k states, at cost 5 at 1M, `T.con2 MOV.A.X
+  L.X[MOV.X.U M1.4]` (U = 3, A = X, then X times add 3² and reduce: the step the 10·x² runs found, §6). Cost 5 is that
+  round's top cost (24 problems at it, picked in pool order), so hardest first would take it once it wins the
+  subgoal's tie-break.
+
+For Montgomery's, the offset is the subgoal itself (its answer at X = 0 is 0). "X + N when X is odd", which would be
+first and alone if posed (table 7; halving is then dividing that by 2), is posed by nothing either.
+
+So the score is not the limit here: it picks the piece whenever the piece is posed. The sources are. For 10·x² + 1, a
+source that takes away the answer at X = 0 would pose the piece. Not tested: whether the rest of the way and the
+target then come.
+
+### 9. Files and how to rerun
 
 All in `bar3/scale/subgoal/` (new; nothing outside it was changed):
 - `score.py`: the score (`python -m bar3.scale.subgoal.score` checks its operations against bar3/problems');
@@ -350,7 +425,10 @@ All in `bar3/scale/subgoal/` (new; nothing outside it was changed):
   `--fetch` brings the records, not the stores);
 - `verify.py`: each record's outcome, its program checked on every pair up to N = 120;
 - `attribute.py`: the replays on the stores, with and without the subgoal or under another config (`--as`);
-- `records/`: one `.jsonl` per run (`<config>_<target>_s1`), `rank0.json`, `calls_s1.json` (Modal call ids);
+- `recurse.py`: the subgoal's own subgoal (§8): its sources posed on a problem's instances, and the score against it;
+- `rank_rest.py`: §8's tiny test, `records/rank_rest.json` (needs numba: it runs five searches for near misses);
+- `records/`: one `.jsonl` per run (`<config>_<target>_s1`), `rank0.json`, `rank_rest.json`, `calls_s1.json` (Modal
+  call ids);
 - `logs/`: the containers' logs, `app_<app id>.log` (`ap-lNvJAqRy5MrBLucRw2dwMM` the eight main runs,
   `ap-4tXAOD75zIPMojgpTQMJO1` the twelve others, `ap-dcQyCySoU36iiftoGmhSeg` the chain runs,
   `ap-j8lCHxBHviHI7VukxbtBP5` the runs without the tie-break, and the controls: `ap-OYtCYyxITkFWZPnL180zLD` on x³ and
@@ -363,6 +441,7 @@ cd cpu_first
 ~/github/sotaku/venv/bin/python -m bar3.scale.subgoal.rank                      # the tiny test, seconds
 NV=<python with numba 0.68 and numpy 2.5.4>                                     # the Modal image's; locally a venv
 $NV -m bar3.scale.subgoal.check same ten h1 mont                                 # the copy, about 4 minutes
+$NV -m bar3.scale.subgoal.rank_rest                                              # §8's tiny test, about 2 minutes
 ~/github/sotaku/venv/bin/python integration/ablation_s3/spend.py 4750            # before every launch
 SUB_CPU=16 SUB_MEM=65536 ~/github/sotaku/venv/bin/python -m modal run --detach bar3/scale/subgoal/modal_subgoal.py \
   --fresh lp_clean_deep_sub,ct2a2_clean_deep_sub --targets ten,tenrho,cube,mont --tag s1 --groups 2

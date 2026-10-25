@@ -307,8 +307,13 @@ later ones follow them as they land. None changes a certified file or record.
       and on their originals' seeds, 17 runs in all, and every record equals the original's field for field. The
       reduction check's 3% falls to about 10^-11. With the fix, s3i needs neither Occam's tie-break nor the step
       problem: both arms certify.
-    - The fix is in the copies only. `lib/libcore.py` and `self_practice/spcore.py`, which s3i and sp2 are built
-      from, keep the old checks.
+    - The fix is in copies only. `lib/libcore.py` and `self_practice/spcore.py`, which s3i and sp2 are built from,
+      keep the old checks. Eight more certified files share the two checks: the strict builds, the learned loop, the
+      bridge, sp_breadth's g3, the law ablation's two books and generic_ops' g3. Copies of them with the same fix
+      certify wherever the originals did, over 78 runs, and 75 of those runs equal the original's. In one of the
+      other three, book_gen's seed 1, the fixed check rejected a wrong conditional subtraction that the old one had
+      let into the corpus BPE merges from; its routines, round and every evaluator field are the same. The other two
+      ended their hour at a different step, on hosts of a different speed.
 - **Stage-3 self-practice** ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), code and records in
   [`integration/self_practice/`](integration/self_practice/)). The nine hand-picked practice problems, their order,
   the twins and mac's posing are replaced by a book of 11 laws on 8 patterns of the data's numbers. Every law is posed
@@ -391,7 +396,9 @@ later ones follow them as they land. None changes a certified file or record.
     (`submission_stage3_g3_official.json`: training 2,770 s, the round at step 698 by 2,507 s, evaluation 386 s) and
     on 8 of 8 B200 seeds (74 and 1–7, training 2,290–2,790 s). That is 2.2 times sp2's training on the official
     run, with 830 s of the budget to spare. A first official run, stopped by Modal's spend limit before it wrote a
-    record, had taken the same steps. Its acceptance at four digits also closes the weak reduction check.
+    record, had taken the same steps. Its acceptance at four digits rejects the ablation's 600-subtraction fake,
+    but not a loop of 10,000, which costs 5 there, as long division does (GENERIC_OPS.md §2.1). Its fixed copy
+    rejects that loop too, and its 9 runs equal g3's (ABLATION_S3.md §8).
   - **Still designed:** the if block and the shifts, generic in kind but chosen, and the rule changes. A judge may say
     `SHL.X SHL.A` is BRG.X in two pieces; GENERIC_OPS.md §7 agrees, and notes it is the form a place-by-place law
     gives BRG.X.
@@ -408,7 +415,8 @@ later ones follow them as they land. None changes a certified file or record.
     H100s; sp2: 74 and 1–7 on B200s), 17 runs. Each run's climb and schedule are the original's line for line.
   - **Unchanged, and why:** zero logits in training (the real answer inside autograd on a training batch does not fit
     in an H100's memory); the damped gradient; the reader; the climb, the instruction set and the curriculum, which
-    are the learning method. The strict files keep the old weak checks; adopting the fix is a rebuild and 17 reruns.
+    are the learning method. The strict files keep the old weak checks; their fixed copies certify on all 17 runs,
+    each equal to the original's (ABLATION_S3.md §8).
 - **Breadth at full size** ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md), code and records in
   [`integration/sp_breadth/`](integration/sp_breadth/)). Does sp2 learn the family's other formulas at H1's size?
   - Unchanged, 2 of 11 tasks: H1 and H1 with the prompt's fields reordered. The other formulas fail in the round's

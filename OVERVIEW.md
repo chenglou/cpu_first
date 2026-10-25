@@ -9,7 +9,8 @@ optimizers that can rest at the shader grid's rule, which laws self-practice nee
 learner, and generic instructions in place of SEL.S and BRG.X. This one, at about 17:30 the same day, adds what the
 reruns after the limit was raised have brought so far: that last file certified (§4.8), the law ablation's seed-1 arms
 (§4, bar 2) and its rerun at three times the budget, and the NCA's 13 cut-off runs, finished (§4.5); bar 3's
-replays are still going (§7).*
+replays are still going (§7). A refresh on Oct 25 at about 03:30 adds the weak-check fix in copies of eight more
+certified files (§4.7).*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -38,6 +39,10 @@ replays are still going (§7).*
 - *For the generic-instructions file (§4.8): its nine records, written after the limit was raised, pass
   `tools/verify_records.py`, and each run's round and freeze, step and clock, were reread from its log, as were
   sp2's round times and training times on the same seeds.*
+- *For the weak-check fix in eight more certified files (§4.7): all 8 official records pass
+  `tools/verify_records.py` against their fixed copies, and so do 62 of the 63 seed records (the learned loop's seed 2
+  fails, as its original does); `check_fix_variants.py` and `compare_fix_variants.py` were rerun, and 75 of the 78
+  runs equal their originals'.*
 - *The data counts in §1–2 were computed from the released H1 files, and the commits come from `git log`.*
 - *The one-line findings of the timeline (§3) and the summaries of how each piece learns, including the NCA and bar-3
   studies, summarize their write-ups, which are linked; they were not re-run.*
@@ -225,6 +230,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 24, 18:01 `29efe74` | **the law ablation's rerun at three times the budget**: without lpca's ties, seed 74 still finds no round; its climb runs out of levels, not time | [integration/sp_ablation/SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md) §4 |
 | Oct 24, 17:25 `23a5534` | **the NCA's 13 cut-off runs, finished**: from random every arm still memorizes; only numbers read at a run's end moved | [nca/NCA.md](nca/NCA.md) §10 |
 | Oct 24, 15:45 `3a9d9e0` | **generic instructions, certified**: rerun once Modal's limit was raised, the official H100 run (training 2,770 s) and 8 of 8 B200 seeds certify | [integration/generic_ops/GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md) §0 |
+| Oct 25, 03:12 `6d2d60d` | **the weak-check fix in eight more certified files**: each fixed copy certifies wherever its original did, over 78 runs, and 75 runs equal the original's; in one of the other three, the fixed check rejects a wrong program the old one let through | [integration/ABLATION_S3.md](integration/ABLATION_S3.md) §8 |
 
 ### The lessons that came out of the failures
 
@@ -693,7 +699,14 @@ passes it. Occam's tie-break is what kept s3i off that program.
   check's 3% falls to about 10^-11.
 - **On the fixed copy**, the arm without Occam's tie-break certifies on both seeds, at the control's steps, and the
   arm without the step problem on seed 74. So neither part is needed.
-- The fix is in the copies only: s3i and sp2 themselves, and the files built the same way, keep the old checks.
+- The fix is in copies only: s3i and sp2 themselves, and the files built the same way, keep the old checks.
+- **Eight more certified files** share the two checks: the strict builds, the learned loop, the bridge, sp_breadth's
+  g3, the law ablation's two books and generic_ops' g3. Copies of them with the same fix certify wherever the
+  originals did, over 78 runs, and 75 runs equal the original's. In book_gen's seed 1 the fixed check rejected a
+  wrong conditional subtraction that the old one had let into the corpus BPE merges from: three fewer merges, and
+  the same routines, round and evaluator fields. The learned loop's seed 2 and sp_breadth's M4 ran on hosts of a
+  different speed and stopped at a different step. g3's acceptance at four digits had not closed the reduction's
+  check: a loop of 10,000 subtractions passes it at cost 5, as long division does. Its fixed copy rejects the loop.
 
 **Self-posed practice** ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), step 19). The learner poses its own
 practice problems: every law of an 11-law book (compare, equal, min, max, remainder, quotient, add, subtract, multiply,
@@ -760,7 +773,7 @@ All 17 runs certify (s3i's official run and seven H100 seeds; sp2's official run
 budget. Each climb is the original's line for line, so the changes alter nothing that is learned. Unchanged: training
 still returns zero logits, because the real answer inside autograd on a training batch does not fit in an H100's
 memory (512 rows at T = 16 ran out of 80 GB); the damped gradient; the reader; and the climb, which is the learning
-method. The strict files keep the old weak checks.
+method. The strict files keep the old weak checks; their fixed copies replay all 17 runs (§4.7).
 
 **s3i on an invented instruction** ([BRIDGE.md](bar3/bridge/BRIDGE.md) §5). The bridge file is s3i with 36
 instructions: subtract, add and multiply-accumulate at the pointer against X, Y, N or S, their tables learned as
@@ -876,11 +889,12 @@ Notes:
   line just after the freeze.
 - Records live in `runs/learned_remainder/`, `runs/learned_wiring/`, `runs/wider_menus/`, `ablation/runs/`,
   `anchors/records/`, `bridge/h1/records/`, `tournament/h1_records/`, `general_lessons/records/`,
-  `general_lessons/fixed/records/`, `integration/records/`, `integration/ablation_s3/records/` (the fix's in `fix/`),
-  `integration/self_practice/records/runner/`, `integration/learned_loop/records/`, `integration/strict/records/`,
-  `integration/sp_breadth/records/`, `integration/sp_ablation/records/`, `integration/generic_ops/records/runner/`
-  and `bar3/bridge/records/runner/`, one `<name>.json` each. Each holds the full log, the result and the exact
-  source. `tools/verify_records.py` checks the official records against the files they certify.
+  `general_lessons/fixed/records/`, `integration/records/`, `integration/ablation_s3/records/` (the fix's in `fix/`, and
+  each fixed copy's in its study's `fix/records/`), `integration/self_practice/records/runner/`,
+  `integration/learned_loop/records/`, `integration/strict/records/`, `integration/sp_breadth/records/`,
+  `integration/sp_ablation/records/`, `integration/generic_ops/records/runner/` and `bar3/bridge/records/runner/`, one
+  `<name>.json` each. Each holds the full log, the result and the exact source. `tools/verify_records.py` checks the
+  official records against the files they certify.
 - Other certified runs worth knowing: MENUS.md's four variant H100 runs; the general files' other formulas
   (`general_lessons/records/gen_*`, `integration/records/s1_*_s74`); and the practice datasets of v3
   (`general_lessons/fixed/records/v3k_*`).
@@ -993,7 +1007,8 @@ Everything else described here is committed.
   two search rules only cost time (§4, bar 2).
 - **Whether the weak checks can be fixed without changing what is learned** (ABLATION_S3.md §8): yes. Copies of s3i
   and sp2 with the missing probes replay all 17 runs field for field, and on them neither Occam's tie-break nor the
-  step problem is needed.
+  step problem is needed. Copies of eight more certified files with the same fix certify wherever their originals
+  did, and 75 of their 78 runs equal the original's.
 - **Whether the loop over T can be learned** (LEARNED_LOOP.md): yes, as a generic count loop and a second search. It
   certifies on the official manifest; seed 2's time-out is the random start's.
 - **Which gray points can go without changing what is learned** (STRICT.md): the clock, the rows and the round
@@ -1095,7 +1110,7 @@ s3i: the service refused it ("Submissions are now closed"), so there is no hoste
 | [`handwired_bridge/`](handwired_bridge/) | the machine compiled by handwired into affine + ReGLU layers, loosened the same way ([HANDWIRED_BRIDGE.md](handwired_bridge/HANDWIRED_BRIDGE.md)); `h1/submission_wide_reglu.py`, which did not certify officially |
 | [`tournament/`](tournament/) | the wiring chosen inside training by tournaments ([TOURNAMENT.md](tournament/TOURNAMENT.md)): `submission_tournament.py` (step 13), the tiny machine `tiny.py`, records in `tournament/h1_records/` |
 | [`general_lessons/`](general_lessons/) | a law library, mined facts and answer-chosen lessons ([LESSONS.md](general_lessons/LESSONS.md)): `submission_general.py`, `submission_general_v2.py` and `submission_general_v3.py` (steps 14, 15 and 18); one fixed modulus in `fixed/` ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md)); records in `records/` and `fixed/records/` |
-| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/`. The ablation of s3i's hand-made parts ([ABLATION_S3.md](integration/ABLATION_S3.md), in `ablation_s3/`, its fixed checks in `ablation_s3/fix/`), and stage 3 with self-posed practice ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), in `self_practice/`: `submission_stage3_sp.py` and `submission_stage3_sp2.py`, step 19). The variants of §4.8: the loop over T learned ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), in `learned_loop/`), strict builds ([STRICT.md](integration/strict/STRICT.md), in `strict/`) and breadth at full size ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md), in `sp_breadth/`); which laws self-practice needs, with the smaller and generated books ([SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md), in `sp_ablation/`); and generic instructions in place of SEL.S and BRG.X ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md), in `generic_ops/`) |
+| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/`. The ablation of s3i's hand-made parts ([ABLATION_S3.md](integration/ABLATION_S3.md), in `ablation_s3/`, its fixed checks in `ablation_s3/fix/`, and fixed copies of eight more certified files in a `fix/` folder of each one's study), and stage 3 with self-posed practice ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), in `self_practice/`: `submission_stage3_sp.py` and `submission_stage3_sp2.py`, step 19). The variants of §4.8: the loop over T learned ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), in `learned_loop/`), strict builds ([STRICT.md](integration/strict/STRICT.md), in `strict/`) and breadth at full size ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md), in `sp_breadth/`); which laws self-practice needs, with the smaller and generated books ([SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md), in `sp_ablation/`); and generic instructions in place of SEL.S and BRG.X ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md), in `generic_ops/`) |
 | [`HANDOVER.md`](HANDOVER.md) | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, what is tracked and what is on disk only |
 | [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |

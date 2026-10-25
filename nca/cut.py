@@ -5,7 +5,8 @@ no container.
   47,500; that run was then resumed from its checkpoint and finished, so a rerun now finds every run recorded and keeps
   the file.
 - `rest` (rest1, §10): run on 2026-10-24, when Modal stopped every container of the workspace at its spend limit, 13
-  of rest1's 24 runs short of their 50,000 steps.
+  of rest1's 24 runs short of their 50,000 steps; those were resumed from their checkpoints once the limit was raised
+  and finished, so a rerun now finds every run recorded and keeps the file.
 
     ~/github/sotaku/venv/bin/python -m nca.cut [trim|rest]      (default trim)
 """

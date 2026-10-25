@@ -117,10 +117,9 @@ never reach the cells that read them.
 **8. An optimizer that can rest at the exact rule does not change the verdict.** Plain SGD, and Adam with a larger
 eps, stay put where no lesson pulls, unlike Adam at its default eps. They were tried in §9's lessons-only setting at
 (3, 2, 1), 4 seeds, with and without weight decay:
-- **from random they memorize as before.** One size up every run stays at chance as far as it ran (13 of the 24 were
-  cut off short of their 50,000 steps when Modal's spend limit stopped them; finishing them can change end-of-run
-  numbers, not this); plain SGD holds the steadiest soft fit of any arm so far, and it is a blurred code (a third of
-  the answers on snapped digits);
+- **from random they memorize as before.** One size up every run stays at chance for its 50,000 steps (13 of the 24
+  were stopped short by Modal's spend limit, then resumed; their last steps changed none of this); plain SGD holds the
+  steadiest soft fit of any arm so far, and it is a blurred code (a third of the answers on snapped digits);
 - **started at the rule, they keep it only where the lessons are met exactly**, so that nothing moves them; weight
   decay leads them out of there. Where the lessons still pull, plain SGD at a small learning rate keeps every training
   answer, but not the rule: one size up it slips (to 0.70 of the answers at (3, 2, 2) after 10,000 steps), and
@@ -1050,9 +1049,11 @@ law included, in batches of 256 on GPU; output scale 4, the smallest at which th
 paths; 10,000 steps): plain Adam, Adam with eps 1e-4, and plain SGD at 0.003 and 0.01.
 
 13 of `rest1`'s 24 runs were cut off: at about 07:25 PT on 2026-10-24 Modal stopped every container of the workspace
-when it reached its spend limit, with these runs at steps 18,000–46,500 of their 50,000 (each run's step is in the
-table of cut-off runs below). Their curves up to there are kept (`records/rest_cut.json`, from `cut.py`), and their
-checkpoints are on the Volume; the tables of the runs' ends have the 11 that finished. Every other run here finished.
+when it reached its spend limit, with these runs at steps 18,000–46,500 of their 50,000. Their curves up to there are
+kept (`records/rest_cut.json`, from `cut.py`). Once the limit was raised they were resumed from their checkpoints
+(at 14:42 PT) and ran to their 50,000 steps: each record's curve up to its stop equals the kept one. Every run here
+has finished, and every table below has all of them; the table of cut-off runs shows each of the 13 at its stop and
+at its end.
 
 **SGD's learning rate** (`rest_lr`): from random, the training share snapped / soft; from the compiled rule at output
 scale 4, when it first fell below exact:
@@ -1112,34 +1113,36 @@ scale 4, when it first fell below exact:
   step 8,900. Why SGD falls here at rates that hold at (3, 2, 1) is not settled: the batches of 256 (at (3, 2, 1)
   every step sees all 99 questions), the step law and the GPU (whose convolutions may run in TF32) all differ. Whether
   a training grid that shows almost every situation stops the drift is therefore open too.
-- **From random nothing changes: every arm memorizes.** One size up no curve point of any of the 24 runs (the cut-off
-  ones up to where they stopped) is more than 0.06 above "always answer 0" (at best 0.24 at (3, 2, 2) and 0.10 at (3,
-  3, 2), against 0.18 and 0.06), and none fits training on snapped digits: the best any run reaches at any curve point
-  is 63 of its 99 questions. The arms differ, as in §9, in the code they memorize with:
+- **From random nothing changes: every arm memorizes.** One size up no curve point of any of the 24 runs is more than
+  0.06 above "always answer 0" (at best 0.24 at (3, 2, 2) and 0.10 at (3, 3, 2), against 0.18 and 0.06), and none
+  fits training on snapped digits: the best any run reaches, in its log of every 100 steps, is 64 of its 99 questions.
+  The arms differ, as in §9, in the code they memorize with:
   - Adam with eps 1e-4 behaves as §9's control: every seed fits the soft path by step 1,000–3,500 (at a norm of
-    24–31), its weights keep growing (to 60–67), and the fit goes (never at 0.99 in the second half of the run;
-    0.18–0.76 at the last point);
-  - plain SGD at 0.01 fits the soft path by step 4,500–7,000 and keeps it, at 0.99 or better at 75–100% of the curve
-    points in the second half (§9's steadiest arms: 66–82%), at a norm of 26–27 and a third of the answers snapped
-    (0.29–0.40). Its states are sharper than decay leaves them and well short of the rule's (40–86% of them above 0.9
-    in the seed that finished, against all of them for the compiled rule): the steadiest blurred code yet;
+    24–31), its weights keep growing (to 60–70), and the fit goes (never at 0.99 in the second half of the run;
+    0.18–0.42 at the last point);
+  - plain SGD at 0.01 fits the soft path by step 4,500–7,000 and keeps it, at 0.99 or better at 86–100% of the curve
+    points in the second half (§9's steadiest arms: 66–82%), at a norm of 26–27 and about a third of the answers
+    snapped (0.21–0.40). Its states are sharper than decay leaves them and well short of the rule's (over the seeds, a
+    median of 47–87% of each channel's states above 0.9, against all of them for the compiled rule): the steadiest
+    blurred code yet;
   - plain SGD at 0.1 fits the soft path in two seeds (by step 3,000 and 6,000), then every seed collapses to a
-    constant answer (0.12 or 0.18 of training on both paths, from step 9,000–27,500), its weight norm jumping to 47–93;
+    constant answer (0.12 or 0.18 of training on both paths, from step 9,000–19,500, but for two curve points in one
+    seed where the snapped path flickers off it), its weight norm jumping to 47–93;
   - with weight decay the weights settle where decay puts them (a norm of 7 with SGD at 0.01, 11–13 otherwise) and the
-    code is §9's blurred one: AdamW keeps the soft fit at 56–79% of the second half's curve points, SGD at 0.1 reaches
-    0.99 at only 1 and 4 curve points in two of its seeds, and SGD at 0.01 never (0.66–0.76 at best).
+    code is §9's blurred one: AdamW keeps the soft fit at 48–70% of the second half's curve points, SGD at 0.1 reaches
+    0.99 at only 1, 3 and 5 curve points in three of its seeds, and SGD at 0.01 never (0.68–0.76 at best).
 
-  The plumbing probe finds the three copies as faintly as in §9: at the end, medians of 0.00–0.29 and at most 0.42 in
-  any run that finished, against 1 for the compiled rule.
+  The plumbing probe finds the three copies as faintly as in §9: at the end, medians of 0.00–0.28 and at most 0.42 in
+  any run, against 1 for the compiled rule.
 
-**What finishing the 13 cut-off runs can change.** Nothing started at the compiled rule: all 75 of those runs, at
-(3, 2, 1) and at (3, 3, 2), finished, as did `rest_lr`'s 5 from random. Nor the from-random verdict, that no arm finds
-the rule: every arm has at least one seed that ran its 50,000 steps at chance one size up throughout, and the cut-off
-seeds had shown nothing different by where they stopped; finishing them could add only a late jump in their last
-3,500–32,000 steps, which none of the 11 finished runs made. What can change are the from-random numbers read at the
-end of a run: the medians in the table of the runs' ends and in the curve table's last column (now over 1–3 seeds per
-arm), the sharpness of plain SGD at 0.01 (one seed so far), and how steadily each arm holds its soft fit, which for a
-cut-off run is counted over the second half of the curve it reached.
+**What finishing the 13 cut-off runs changed.** Not the verdict: in their last 3,500–32,000 steps none came nearer
+the rule. One size up none went past 0.21 / 0.08 after its stop (against 0.18 / 0.06 for "always answer 0"), and on
+snapped digits none answered more than 59 of the 99 training questions. What moved are the numbers read at the end of
+a run, now over 4 seeds per arm. With decay the soft fit comes and goes (two runs that reached 1.00 after their stops
+ended at 0.18 and 0.19), so AdamW's share of the second half's curve points at 0.99 is now 48–70% (56–79% with the
+cut-off runs counted to their stops), and SGD at 0.1 with decay ends at a median of 0.62 on the soft path (0.80 in
+its one seed that had finished). Plain SGD at 0.01 held its fit (86–100%, from 75–100%), and its other three seeds
+are as sharp as seed 0 (41–91% of each channel's states above 0.9, against 40–86%).
 
 Started at the compiled rule at (3, 2, 1) (`rest_stab`; as `trim_stab`'s table):
 
@@ -1197,17 +1200,17 @@ At (3, 3, 2) (`rest_stab3`):
 | plain SGD, learning rate 0.01 | 2,800, 700, 1,700 and 4,500 | 3,000, 1,000, 2,000 and 9,000 | 0.06 / 0.06 | 46 → 55 | 0.06 / 0.03 | 0/4 | 6 + 9 |
 <!-- /REST_STAB3 -->
 
-From random, at the end of the run, medians over the runs that finished ("certified" counts them):
+From random, at the end of the run, medians over the seeds ("certified" counts them):
 
 <!-- REST -->
 | trained at | arm | certified | training, snapped / soft | best training, snapped | one size up (k + 1 / w + 1, k + 1) | its best over the run | weight norm | sub table | plumbing: N's digit / old register / final borrow |
 |---|---|---|---|---|---|---|---|---|---|
-| (3, 2, 1), 50,000 steps | Adam, eps 1e-4 | 0/2 | 0.20 / 0.29 | 0.54 | 0.13 / 0.06 | 0.22 / 0.08 | 21 → 63 | 18 + 18 | 0.29 / 0.10 / 0.22 |
-| (3, 2, 1), 50,000 steps | AdamW, eps 1e-4, weight decay 0.3 | 0/2 | 0.33 / 0.89 | 0.52 | 0.15 / 0.05 | 0.21 / 0.07 | 16 → 12 | 18 + 18 | 0.12 / 0.02 / 0.20 |
-| (3, 2, 1), 50,000 steps | plain SGD, learning rate 0.01 | 0/1 | 0.40 / 1.00 | 0.51 | 0.21 / 0.06 | 0.21 / 0.08 | 17 → 27 | 18 + 18 | 0.09 / 0.14 / 0.26 |
-| (3, 2, 1), 50,000 steps | plain SGD 0.01 + weight decay | 0/3 | 0.17 / 0.52 | 0.38 | 0.10 / 0.03 | 0.23 / 0.08 | 11 → 7 | 15 + 17 | 0.12 / 0.04 / 0.16 |
-| (3, 2, 1), 50,000 steps | plain SGD, learning rate 0.1 | 0/2 | 0.15 / 0.15 | 0.59 | 0.15 / 0.05 | 0.21 / 0.07 | 18 → 82 | 6 + 9 | 0.00 / 0.00 / 0.00 |
-| (3, 2, 1), 50,000 steps | plain SGD 0.1 + weight decay | 0/1 | 0.42 / 0.80 | 0.59 | 0.19 / 0.06 | 0.21 / 0.07 | 12 → 12 | 8 + 11 | 0.07 / 0.03 / 0.16 |
+| (3, 2, 1), 50,000 steps | Adam, eps 1e-4 | 0/4 | 0.25 / 0.34 | 0.55 | 0.11 / 0.06 | 0.21 / 0.08 | 21 → 65 | 18 + 18 | 0.28 / 0.09 / 0.22 |
+| (3, 2, 1), 50,000 steps | AdamW, eps 1e-4, weight decay 0.3 | 0/4 | 0.27 / 0.89 | 0.47 | 0.17 / 0.05 | 0.20 / 0.07 | 16 → 12 | 18 + 18 | 0.16 / 0.07 / 0.15 |
+| (3, 2, 1), 50,000 steps | plain SGD, learning rate 0.01 | 0/4 | 0.31 / 1.00 | 0.45 | 0.17 / 0.05 | 0.21 / 0.08 | 17 → 27 | 18 + 18 | 0.27 / 0.15 / 0.26 |
+| (3, 2, 1), 50,000 steps | plain SGD 0.01 + weight decay | 0/4 | 0.17 / 0.56 | 0.38 | 0.12 / 0.04 | 0.22 / 0.09 | 11 → 7 | 14 + 17 | 0.14 / 0.04 / 0.17 |
+| (3, 2, 1), 50,000 steps | plain SGD, learning rate 0.1 | 0/4 | 0.15 / 0.15 | 0.63 | 0.15 / 0.05 | 0.22 / 0.07 | 18 → 61 | 6 + 9 | 0.00 / 0.00 / 0.00 |
+| (3, 2, 1), 50,000 steps | plain SGD 0.1 + weight decay | 0/4 | 0.37 / 0.62 | 0.61 | 0.18 / 0.06 | 0.21 / 0.08 | 12 → 12 | 6 + 12 | 0.12 / 0.03 / 0.19 |
 <!-- /REST -->
 
 Over training, the same runs: the training share snapped / soft / one size up ((3, 3, 2), on the curve's 500-question
@@ -1216,54 +1219,56 @@ sample), medians over the seeds:
 <!-- REST_CURVE -->
 | trained at (3, 2, 1); one size up is (3, 3, 2) | step 1,000 | step 10,000 | step 25,000 | step 50,000 |
 |---|---|---|---|---|
-| Adam, eps 1e-4 (2 seeds) | 0.41 / 0.89 / 0.07 | 0.41 / 0.79 / 0.05 | 0.27 / 0.35 / 0.07 | 0.20 / 0.29 / 0.05 |
-| AdamW, eps 1e-4, weight decay 0.3 (2 seeds) | 0.39 / 0.93 / 0.06 | 0.34 / 0.94 / 0.05 | 0.37 / 0.86 / 0.05 | 0.33 / 0.89 / 0.05 |
-| plain SGD, learning rate 0.01 (1 seed) | 0.18 / 0.18 / 0.06 | 0.29 / 0.51 / 0.04 | 0.41 / 1.00 / 0.05 | 0.40 / 1.00 / 0.08 |
-| plain SGD 0.01 + weight decay (3 seeds) | 0.18 / 0.18 / 0.07 | 0.29 / 0.47 / 0.05 | 0.21 / 0.59 / 0.04 | 0.17 / 0.52 / 0.03 |
-| plain SGD, learning rate 0.1 (2 seeds) | 0.46 / 0.55 / 0.06 | 0.38 / 0.66 / 0.04 | 0.15 / 0.15 / 0.06 | 0.15 / 0.15 / 0.06 |
-| plain SGD 0.1 + weight decay (1 seed) | 0.10 / 0.33 / 0.06 | 0.48 / 0.71 / 0.04 | 0.44 / 0.96 / 0.05 | 0.42 / 0.80 / 0.04 |
+| Adam, eps 1e-4 | 0.35 / 0.77 / 0.06 | 0.47 / 0.86 / 0.05 | 0.24 / 0.35 / 0.06 | 0.25 / 0.34 / 0.05 |
+| AdamW, eps 1e-4, weight decay 0.3 | 0.36 / 0.94 / 0.05 | 0.26 / 0.94 / 0.05 | 0.33 / 0.91 / 0.05 | 0.27 / 0.89 / 0.05 |
+| plain SGD, learning rate 0.01 | 0.17 / 0.18 / 0.06 | 0.27 / 0.99 / 0.06 | 0.34 / 1.00 / 0.06 | 0.31 / 1.00 / 0.06 |
+| plain SGD 0.01 + weight decay | 0.18 / 0.18 / 0.07 | 0.28 / 0.47 / 0.06 | 0.22 / 0.55 / 0.04 | 0.17 / 0.56 / 0.04 |
+| plain SGD, learning rate 0.1 | 0.33 / 0.51 / 0.05 | 0.26 / 0.34 / 0.05 | 0.15 / 0.15 / 0.06 | 0.15 / 0.15 / 0.06 |
+| plain SGD 0.1 + weight decay | 0.31 / 0.32 / 0.05 | 0.45 / 0.64 / 0.06 | 0.42 / 0.83 / 0.05 | 0.37 / 0.62 / 0.07 |
 <!-- /REST_CURVE -->
 
-The 13 cut-off runs, each at the step it reached when Modal stopped it, and its last curve point:
+The 13 cut-off runs: the step each had reached when Modal stopped it, then each value at its last curve point before
+the stop → at the end of its 50,000 steps (its best one size up: up to the stop → over the whole run):
 
 <!-- REST_CUT -->
-| arm | seed | stopped at step | at its last curve point: training, snapped / soft | one size up (k + 1 / w + 1, k + 1) | its best over the run | weight norm |
+| arm | seed | stopped at step | at the stop → at the end: training, snapped / soft | one size up (k + 1 / w + 1, k + 1) | its best over the run | weight norm |
 |---|---|---|---|---|---|---|
-| Adam, eps 1e-4 | 1 | 45,000 | 0.13 / 0.26 | 0.15 / 0.05 | 0.21 / 0.08 | 62 |
-| Adam, eps 1e-4 | 2 | 42,500 | 0.37 / 0.76 | 0.10 / 0.02 | 0.21 / 0.08 | 67 |
-| AdamW, eps 1e-4, weight decay 0.3 | 2 | 37,500 | 0.28 / 1.00 | 0.14 / 0.05 | 0.19 / 0.07 | 12 |
-| AdamW, eps 1e-4, weight decay 0.3 | 3 | 18,000 | 0.40 / 0.87 | 0.19 / 0.08 | 0.20 / 0.08 | 12 |
-| plain SGD, learning rate 0.01 | 1 | 46,500 | 0.33 / 1.00 | 0.17 / 0.05 | 0.22 / 0.08 | 26 |
-| plain SGD, learning rate 0.01 | 2 | 32,000 | 0.29 / 1.00 | 0.12 / 0.05 | 0.24 / 0.09 | 26 |
-| plain SGD, learning rate 0.01 | 3 | 42,000 | 0.31 / 1.00 | 0.08 / 0.05 | 0.18 / 0.08 | 27 |
-| plain SGD 0.01 + weight decay | 0 | 44,000 | 0.20 / 0.61 | 0.13 / 0.04 | 0.22 / 0.09 | 7 |
-| plain SGD, learning rate 0.1 | 1 | 36,000 | 0.12 / 0.12 | 0.12 / 0.05 | 0.22 / 0.06 | 47 |
-| plain SGD, learning rate 0.1 | 3 | 34,000 | 0.18 / 0.18 | 0.18 / 0.06 | 0.22 / 0.08 | 51 |
-| plain SGD 0.1 + weight decay | 1 | 37,000 | 0.36 / 0.95 | 0.18 / 0.05 | 0.21 / 0.08 | 12 |
-| plain SGD 0.1 + weight decay | 2 | 45,500 | 0.34 / 0.73 | 0.13 / 0.05 | 0.21 / 0.08 | 13 |
-| plain SGD 0.1 + weight decay | 3 | 29,500 | 0.55 / 0.99 | 0.16 / 0.05 | 0.24 / 0.10 | 12 |
+| Adam, eps 1e-4 | 1 | 45,000 | 0.13 / 0.26 → 0.21 / 0.29 | 0.15 / 0.05 → 0.11 / 0.04 | 0.21 / 0.08 → 0.21 / 0.08 | 62 → 64 |
+| Adam, eps 1e-4 | 2 | 42,500 | 0.37 / 0.76 → 0.29 / 0.42 | 0.10 / 0.02 → 0.10 / 0.06 | 0.21 / 0.08 → 0.21 / 0.08 | 67 → 70 |
+| AdamW, eps 1e-4, weight decay 0.3 | 2 | 37,500 | 0.28 / 1.00 → 0.22 / 1.00 | 0.14 / 0.05 → 0.15 / 0.05 | 0.19 / 0.07 → 0.19 / 0.07 | 12 → 12 |
+| AdamW, eps 1e-4, weight decay 0.3 | 3 | 18,000 | 0.40 / 0.87 → 0.22 / 0.19 | 0.19 / 0.08 → 0.18 / 0.07 | 0.20 / 0.08 → 0.21 / 0.08 | 12 → 12 |
+| plain SGD, learning rate 0.01 | 1 | 46,500 | 0.33 / 1.00 → 0.35 / 1.00 | 0.17 / 0.05 → 0.19 / 0.06 | 0.22 / 0.08 → 0.22 / 0.08 | 26 → 26 |
+| plain SGD, learning rate 0.01 | 2 | 32,000 | 0.29 / 1.00 → 0.21 / 1.00 | 0.12 / 0.05 → 0.16 / 0.05 | 0.24 / 0.09 → 0.24 / 0.09 | 26 → 27 |
+| plain SGD, learning rate 0.01 | 3 | 42,000 | 0.31 / 1.00 → 0.27 / 0.92 | 0.08 / 0.05 → 0.10 / 0.07 | 0.18 / 0.08 → 0.18 / 0.08 | 27 → 27 |
+| plain SGD 0.01 + weight decay | 0 | 44,000 | 0.20 / 0.61 → 0.17 / 0.61 | 0.13 / 0.04 → 0.13 / 0.04 | 0.22 / 0.09 → 0.22 / 0.09 | 7 → 7 |
+| plain SGD, learning rate 0.1 | 1 | 36,000 | 0.12 / 0.12 → 0.12 / 0.12 | 0.12 / 0.05 → 0.12 / 0.05 | 0.22 / 0.06 → 0.22 / 0.06 | 47 → 47 |
+| plain SGD, learning rate 0.1 | 3 | 34,000 | 0.18 / 0.18 → 0.18 / 0.18 | 0.18 / 0.06 → 0.18 / 0.06 | 0.22 / 0.08 → 0.22 / 0.08 | 51 → 51 |
+| plain SGD 0.1 + weight decay | 1 | 37,000 | 0.36 / 0.95 → 0.43 / 0.59 | 0.18 / 0.05 → 0.15 / 0.08 | 0.21 / 0.08 → 0.21 / 0.08 | 12 → 12 |
+| plain SGD 0.1 + weight decay | 2 | 45,500 | 0.34 / 0.73 → 0.31 / 0.66 | 0.13 / 0.05 → 0.19 / 0.07 | 0.21 / 0.08 → 0.21 / 0.08 | 13 → 13 |
+| plain SGD 0.1 + weight decay | 3 | 29,500 | 0.55 / 0.99 → 0.17 / 0.18 | 0.16 / 0.05 → 0.17 / 0.06 | 0.24 / 0.10 → 0.24 / 0.10 | 12 → 12 |
 <!-- /REST_CUT -->
 
-How sharp the states are at the end, as in §9's table (the runs that finished):
+How sharp the states are at the end, as in §9's table:
 
 <!-- REST_SHARP -->
 | rule | weight norm | training, snapped / soft | d | n | b | m | g |
 |---|---|---|---|---|---|---|---|
 | the compiled rule, output scale 4 | 45 | 1.00 / 1.00 | 0.95 (100%) | 0.95 (100%) | 0.98 (100%) | 0.96 (100%) | 0.98 (100%) |
 | the compiled rule, output scale 20 | 198 | 1.00 / 1.00 | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) |
-| Adam, eps 1e-4 (2 seeds) | 63 | 0.20 / 0.29 | 1.00 (88%) | 1.00 (92%) | 1.00 (97%) | 1.00 (98%) | 1.00 (98%) |
-| AdamW, eps 1e-4, weight decay 0.3 (2 seeds) | 12 | 0.33 / 0.89 | 0.80 (33%) | 0.54 (2%) | 0.92 (54%) | 0.64 (4%) | 0.70 (10%) |
-| plain SGD, learning rate 0.01 (1 seed) | 27 | 0.40 / 1.00 | 0.99 (73%) | 0.84 (40%) | 1.00 (86%) | 0.87 (44%) | 0.94 (62%) |
-| plain SGD 0.01 + weight decay (3 seeds) | 7 | 0.17 / 0.52 | 0.73 (18%) | 0.54 (0%) | 0.85 (37%) | 0.55 (0%) | 0.64 (0%) |
-| plain SGD, learning rate 0.1 (2 seeds) | 82 | 0.15 / 0.15 | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) | 1.00 (100%) |
-| plain SGD 0.1 + weight decay (1 seed) | 12 | 0.42 / 0.80 | 0.80 (37%) | 0.74 (21%) | 0.89 (48%) | 0.71 (17%) | 0.86 (42%) |
+| Adam, eps 1e-4 (4 seeds) | 65 | 0.25 / 0.34 | 1.00 (90%) | 1.00 (94%) | 1.00 (95%) | 1.00 (98%) | 1.00 (99%) |
+| AdamW, eps 1e-4, weight decay 0.3 (4 seeds) | 12 | 0.27 / 0.89 | 0.80 (33%) | 0.55 (1%) | 0.92 (54%) | 0.66 (4%) | 0.70 (7%) |
+| plain SGD, learning rate 0.01 (4 seeds) | 27 | 0.31 / 1.00 | 1.00 (80%) | 0.89 (47%) | 1.00 (87%) | 0.90 (49%) | 0.94 (59%) |
+| plain SGD 0.01 + weight decay (4 seeds) | 7 | 0.17 / 0.56 | 0.71 (16%) | 0.54 (0%) | 0.87 (43%) | 0.56 (0%) | 0.65 (1%) |
+| plain SGD, learning rate 0.1 (4 seeds) | 61 | 0.15 / 0.15 | 1.00 (100%) | 1.00 (98%) | 1.00 (100%) | 1.00 (91%) | 1.00 (100%) |
+| plain SGD 0.1 + weight decay (4 seeds) | 12 | 0.37 / 0.62 | 0.77 (34%) | 0.67 (15%) | 0.89 (47%) | 0.72 (19%) | 0.84 (38%) |
 <!-- /REST_SHARP -->
 
 **What was tried, and how hard** (dead ends):
 - Plain SGD's learning rate (`rest_lr`, one seed each): 0.01, 0.03, 0.1, 0.3 and 1 from random for 5,000 steps;
   0.003, 0.01 and 0.02 from the compiled rule for 10,000.
 - From random at (3, 2, 1) (`rest1`): Adam with eps 1e-4 and plain SGD at 0.01 and 0.1, each alone and with weight
-  decay, 4 seeds each, 50,000 steps (11 runs finished; 13 stopped at steps 18,000–46,500).
+  decay, 4 seeds each, 50,000 steps (13 of them stopped at steps 18,000–46,500 by Modal's spend limit, and finished
+  once resumed).
 - From the compiled rule at (3, 2, 1) (`rest_stab`): the same six arms at output scale 4, and with plain Adam and
   AdamW 0.3 at output scale 20, 4 seeds each, 10,000 steps.
 - From the compiled rule at (3, 3, 2) (`rest_stab3`): plain Adam, Adam with eps 1e-4, plain SGD at 0.003 and 0.01, 4
@@ -1275,7 +1280,7 @@ How sharp the states are at the end, as in §9's table (the runs that finished):
   the snapped path (STE).
 
 **Budget notes.**
-- The 104 runs cost about $45 on Modal.
+- The 104 runs cost about $45 on Modal, and finishing the 13 cut-off runs about $3 more.
 - (3, 2, 1) ran on 4-core CPU containers at 0.19–0.31 s a step, SGD as fast as Adam (3.0–4.1 hours for a run of
   50,000 steps); (3, 3, 2) on L4 GPUs, two or three runs to a GPU, at 0.82–0.92 s a step (2.3–2.6 hours for 10,000).
 - As in §9, Modal preempted CPU containers and the runs resumed from their checkpoints. One `rest1` run (AdamW with
@@ -1285,7 +1290,9 @@ How sharp the states are at the end, as in §9's table (the runs that finished):
   running).
 - At about 07:25 PT on 2026-10-24 the workspace reached its Modal spend limit, and Modal stopped every container and
   refused new ones, with 13 `rest1` runs unfinished (the last `rest_stab3` record was written 5 seconds before its app
-  stopped). Their checkpoints are on the Volume: relaunching `rest1` resumes them where they stopped.
+  stopped). Once the limit was raised, relaunching `rest1` at 14:42 PT resumed them where they stopped, and they
+  finished by 17:10; Modal preempted five of their containers on the way, and each run resumed again. The relaunch's
+  output, its app log and a check every 10 minutes are in `logs/`.
 
 ## 11. The traps, and the project's fixes, against the bridge
 
@@ -1328,8 +1335,8 @@ lessons say nothing about a copy, and the soft search finds a memorizing code fi
 
 - **Tiny sizes, few seeds.** Base 3, two- and three-digit moduli for training, 2 seeds per arm (6 for the causal
   trace at (3, 2, 1), 14 for the certified setting, 4 per arm in §9 and §10, 2 per arm in §9's starts from the
-  compiled rule; 11 of §10's 24 runs from random finished), one learning rate per family (§10 scans plain SGD's on one
-  seed). "0/2" means no seed of 2, not never.
+  compiled rule), one learning rate per family (§10 scans plain SGD's on one seed). "0/2" means no seed of 2, not
+  never.
 - **Few optimizers.** Every run before §10 is Adam (AdamW with decay) at its default eps, which does not rest at the
   compiled rule. §10 adds Adam with eps 1e-4 and plain SGD, without momentum and at a fixed learning rate. At (3, 3, 2)
   plain SGD falls off the rule in every seed, and nothing that might keep it on (a smaller learning rate, a clipped
@@ -1486,11 +1493,16 @@ compiled rule at (3, 2, 1), then the start at (3, 3, 2) on GPU, each launched, w
 ~/github/sotaku/venv/bin/python -m modal run --detach nca/modal_nca.py --suite rest_stab3
 ```
 
-The curves of the `rest1` runs that Modal stopped at the workspace's spend limit, read from the Volume (seconds,
-written to `records/rest_cut.json`); launching `rest1` again resumes them from their checkpoints:
+The curves of the `rest1` runs that Modal stopped at the workspace's spend limit, read from the Volume before they
+were resumed (seconds, written to `records/rest_cut.json`; now that every run has a record, a rerun keeps the file as
+it is), then their resume from their checkpoints, fetched as above:
 
 ```bash
 ~/github/sotaku/venv/bin/python -m nca.cut rest
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach nca/modal_nca.py --suite rest1
 ```
 
 Where the drifted rule goes wrong (about 30 seconds, written to `records/erosion.json`), then the lessons' gradient at
@@ -1543,10 +1555,11 @@ Files:
 - `rest.py`: whether an optimizer rests at the compiled rule (Adam, Adam with eps 1e-4, plain SGD), the lessons'
   gradient there, and the rule shrunk as weight decay alone would shrink it;
 - `erosion.py`: where a rule that kept its training answers goes wrong one size up;
-- `cut.py`: the curves of runs that stopped without a record (§9's trim run, saved before it was resumed; §10's
-  rest1 runs that Modal stopped);
+- `cut.py`: the curves of runs that stopped without a record (§9's trim run and §10's rest1 runs that Modal stopped,
+  each saved before it was resumed);
 - `summarize.py`, `fill.py`: the tables;
 - `records/`: compile.json, situations.json, verify.json, where_*.json, sharpness.json, trim_cut.json, rest_cut.json,
   erosion.json; `runs/`: one jsonl per suite, each record holding its config, its training log and its probes (and,
   in cover2, cover3, the trim suites and the rest suites but rest_lr, the trained rule's weights; in the trim and rest
-  suites also its curve).
+  suites also its curve); `logs/`: the relaunch of §10's cut-off runs (its dry run, checkpoint peek, launch output, app
+  log and a check every 10 minutes).

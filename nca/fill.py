@@ -420,19 +420,31 @@ def trim_curve_table(suites=("trim1", "trim_cols"), arms=TRIM_ARMS):
 def cut_table(which="rest", arms=REST_ARMS):
     """records/<which>_cut.json (§10): the runs that stopped short without a record, one row each: the step reached;
     at its last curve point the training share snapped / soft, one size up (k + 1 / w + 1, k + 1) and the weight norm;
-    and the best one size up any of its curve points reached."""
+    and the best one size up any of its curve points reached. Once such runs have been resumed to their records
+    (runs/<suite>.jsonl), each value reads "at the stop → at the end": the record's last curve point, and its best
+    over the whole run."""
     p = HERE / "records" / f"{which}_cut.json"
     if not p.exists():
         return ""
+    cut, ends = json.loads(p.read_text()), {}
+    for suite in {name.split("/")[0] for name in cut}:
+        f = HERE / "runs" / f"{suite}.jsonl"
+        for l in (open(f) if f.exists() else []):
+            r = json.loads(l)
+            if f"{suite}/{r['name']}" in cut:
+                ends[f"{suite}/{r['name']}"] = r["curve"]
     arm = lambda pk: pk["tag"].split("_", 1)[1]
-    out = ["| arm | seed | stopped at step | at its last curve point: training, snapped / soft | one size up (k + 1 / "
-           "w + 1, k + 1) | its best over the run | weight norm |", "|---|---|---|---|---|---|---|"]
-    runs = sorted(json.loads(p.read_text()).items(), key=lambda kv: (list(arms).index(arm(kv[1])), kv[0]))
-    for name, pk in runs:
-        last, up = pk["curve"][-1], [k for k in pk["curve"][0] if k.count(",") == 2]
-        out.append(f"| {arms[arm(pk)]} | {name.rsplit('_s', 1)[1]} | {pk['step']:,} | {f2(last['train_hard'])} / "
-                   f"{f2(last['train_soft'])} | {' / '.join(f2(last[k]) for k in up)} | "
-                   f"{' / '.join(f2(max(x[k] for x in pk['curve'])) for k in up)} | {last['wnorm']:.0f} |")
+    up = [k for k in next(iter(cut.values()))["curve"][0] if k.count(",") == 2]
+    point = lambda c: [f"{f2(c[-1]['train_hard'])} / {f2(c[-1]['train_soft'])}", " / ".join(f2(c[-1][k]) for k in up),
+                       " / ".join(f2(max(x[k] for x in c)) for k in up), f"{c[-1]['wnorm']:.0f}"]
+    out = [f"| arm | seed | stopped at step | at {'the stop → at the end' if ends else 'its last curve point'}: "
+           "training, snapped / soft | one size up (k + 1 / w + 1, k + 1) | its best over the run | weight norm |",
+           "|---|---|---|---|---|---|---|"]
+    for name, pk in sorted(cut.items(), key=lambda kv: (list(arms).index(arm(kv[1])), kv[0])):
+        cells = point(pk["curve"])
+        if ends:
+            cells = [f"{a} → {b}" for a, b in zip(cells, point(ends[name]) if name in ends else ["·"] * 4)]
+        out.append(f"| {arms[arm(pk)]} | {name.rsplit('_s', 1)[1]} | {pk['step']:,} | " + " | ".join(cells) + " |")
     return "\n".join(out)
 
 

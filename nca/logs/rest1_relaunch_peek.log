@@ -1,0 +1,45 @@
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-Gbma1T2f9pGbnikgaS7lka
+✓ Created objects.
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/nca/modal_nca.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/nca/hyper.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/nca/verify.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/nca/logic.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/nca/suites.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/nca/compile.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/nca/model.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/nca/train.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/nca/grid.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/nca/__init__.py
+├── 🔨 Created function run_job.
+├── 🔨 Created function run_jobs_gpu.
+└── 🔨 Created function driver.
+    └── ⚠ Non-preemptible functions are billed at 3.0x the list rate for CPU and
+        Memory.
+w2_eps_s0                step  50000/50000   3.4 h {'train_hard': 0.31313131313131315, 'train_soft': 0.3939393939393939, '3,2,2': 0.16498316498316498, '3,3,2': 0.06, 'wnorm': 66.255, 't': 12079.9, 'sub': 36, 'plumbing': {'n_digit': 0.418, 'old_register': 0.169, 'final_borrow': 0.219}}
+w2_eps_s1                step  45000/50000   3.2 h {'train_hard': 0.13131313131313133, 'train_soft': 0.26262626262626265, '3,2,2': 0.15488215488215487, '3,3,2': 0.048, 'wnorm': 62.46, 't': 11554.9, 'sub': 36, 'plumbing': {'n_digit': 0.265, 'old_register': 0.047, 'final_borrow': 0.265}}
+w2_eps_s2                step  42500/50000   3.0 h {'train_hard': 0.37373737373737376, 'train_soft': 0.7575757575757576, '3,2,2': 0.09764309764309764, '3,3,2': 0.022, 'wnorm': 66.711, 't': 10701.9, 'sub': 36, 'plumbing': {'n_digit': 0.206, 'old_register': 0.135, 'final_borrow': 0.347}}
+w2_eps_s3                step  50000/50000   3.5 h {'train_hard': 0.09090909090909091, 'train_soft': 0.18181818181818182, '3,2,2': 0.09090909090909091, '3,3,2': 0.04, 'wnorm': 59.829, 't': 12748.1, 'sub': 36, 'plumbing': {'n_digit': 0.171, 'old_register': 0.027, 'final_borrow': 0.224}}
+w2_eps_wd0.3_s0          step  50000/50000   3.7 h {'train_hard': 0.31313131313131315, 'train_soft': 0.7777777777777778, '3,2,2': 0.18855218855218855, '3,3,2': 0.044, 'wnorm': 11.935, 't': 13218.9, 'sub': 36, 'plumbing': {'n_digit': 0.141, 'old_register': 0.074, 'final_borrow': 0.219}}
+w2_eps_wd0.3_s1          step  50000/50000   4.1 h {'train_hard': 0.3434343434343434, 'train_soft': 1.0, '3,2,2': 0.12121212121212122, '3,3,2': 0.058, 'wnorm': 11.327, 't': 14615.1, 'sub': 36, 'plumbing': {'n_digit': 0.106, 'old_register': -0.027, 'final_borrow': 0.179}}
+w2_eps_wd0.3_s2          step  37500/50000   2.5 h {'train_hard': 0.2828282828282828, 'train_soft': 1.0, '3,2,2': 0.1414141414141414, '3,3,2': 0.048, 'wnorm': 12.042, 't': 8961.0, 'sub': 36, 'plumbing': {'n_digit': 0.188, 'old_register': 0.074, 'final_borrow': 0.102}}
+w2_eps_wd0.3_s3          step  18000/50000   1.4 h {'train_hard': 0.40404040404040403, 'train_soft': 0.8686868686868687, '3,2,2': 0.18518518518518517, '3,3,2': 0.078, 'wnorm': 11.641, 't': 5166.5, 'sub': 36, 'plumbing': {'n_digit': 0.165, 'old_register': 0.264, 'final_borrow': 0.311}}
+w2_sgd0.01_s0            step  50000/50000   3.8 h {'train_hard': 0.40404040404040403, 'train_soft': 1.0, '3,2,2': 0.2053872053872054, '3,3,2': 0.076, 'wnorm': 26.786, 't': 13833.5, 'sub': 36, 'plumbing': {'n_digit': 0.094, 'old_register': 0.142, 'final_borrow': 0.26}}
+w2_sgd0.01_s1            step  46500/50000   3.4 h {'train_hard': 0.3333333333333333, 'train_soft': 1.0, '3,2,2': 0.16835016835016836, '3,3,2': 0.048, 'wnorm': 25.7, 't': 12281.5, 'sub': 36, 'plumbing': {'n_digit': 0.159, 'old_register': 0.182, 'final_borrow': 0.219}}
+w2_sgd0.01_s2            step  32000/50000   2.6 h {'train_hard': 0.29292929292929293, 'train_soft': 1.0, '3,2,2': 0.12121212121212122, '3,3,2': 0.048, 'wnorm': 26.383, 't': 9477.5, 'sub': 36, 'plumbing': {'n_digit': 0.353, 'old_register': 0.243, 'final_borrow': 0.092}}
+w2_sgd0.01_s3            step  42000/50000   2.9 h {'train_hard': 0.31313131313131315, 'train_soft': 1.0, '3,2,2': 0.08417508417508418, '3,3,2': 0.046, 'wnorm': 27.035, 't': 10517.7, 'sub': 36, 'plumbing': {'n_digit': 0.218, 'old_register': 0.081, 'final_borrow': 0.235}}
+w2_sgd0.01_wd_s0         step  44000/50000   3.6 h {'train_hard': 0.20202020202020202, 'train_soft': 0.6060606060606061, '3,2,2': 0.12794612794612795, '3,3,2': 0.038, 'wnorm': 6.804, 't': 13014.7, 'sub': 31, 'plumbing': {'n_digit': 0.171, 'old_register': -0.02, 'final_borrow': 0.321}}
+w2_sgd0.01_wd_s1         step  50000/50000   3.9 h {'train_hard': 0.2222222222222222, 'train_soft': 0.6565656565656566, '3,2,2': 0.18518518518518517, '3,3,2': 0.07, 'wnorm': 6.755, 't': 13948.0, 'sub': 32, 'plumbing': {'n_digit': 0.153, 'old_register': 0.041, 'final_borrow': 0.056}}
+w2_sgd0.01_wd_s2         step  50000/50000   3.7 h {'train_hard': 0.16161616161616163, 'train_soft': 0.37373737373737376, '3,2,2': 0.10101010101010101, '3,3,2': 0.028, 'wnorm': 6.843, 't': 13469.5, 'sub': 31, 'plumbing': {'n_digit': 0.124, 'old_register': -0.095, 'final_borrow': 0.219}}
+w2_sgd0.01_wd_s3         step  50000/50000   3.5 h {'train_hard': 0.1717171717171717, 'train_soft': 0.5151515151515151, '3,2,2': 0.08080808080808081, '3,3,2': 0.022, 'wnorm': 6.747, 't': 12730.4, 'sub': 29, 'plumbing': {'n_digit': 0.094, 'old_register': 0.041, 'final_borrow': 0.158}}
+w2_sgd0.1_s0             step  50000/50000   3.3 h {'train_hard': 0.12121212121212122, 'train_soft': 0.12121212121212122, '3,2,2': 0.12121212121212122, '3,3,2': 0.048, 'wnorm': 92.516, 't': 11960.7, 'sub': 15, 'plumbing': {'n_digit': 0.0, 'old_register': 0.0, 'final_borrow': 0.0}}
+w2_sgd0.1_s1             step  36000/50000   2.9 h {'train_hard': 0.12121212121212122, 'train_soft': 0.12121212121212122, '3,2,2': 0.12121212121212122, '3,3,2': 0.048, 'wnorm': 46.517, 't': 10579.7, 'sub': 15, 'plumbing': {'n_digit': 0.0, 'old_register': 0.0, 'final_borrow': 0.0}}
+w2_sgd0.1_s2             step  50000/50000   3.0 h {'train_hard': 0.18181818181818182, 'train_soft': 0.18181818181818182, '3,2,2': 0.18181818181818182, '3,3,2': 0.064, 'wnorm': 70.677, 't': 10935.9, 'sub': 15, 'plumbing': {'n_digit': 0.0, 'old_register': 0.0, 'final_borrow': 0.0}}
+w2_sgd0.1_s3             step  34000/50000   2.4 h {'train_hard': 0.18181818181818182, 'train_soft': 0.18181818181818182, '3,2,2': 0.18181818181818182, '3,3,2': 0.064, 'wnorm': 50.74, 't': 8524.2, 'sub': 15, 'plumbing': {'n_digit': 0.094, 'old_register': -0.007, 'final_borrow': 0.286}}
+w2_sgd0.1_wd_s0          step  50000/50000   3.5 h {'train_hard': 0.42424242424242425, 'train_soft': 0.797979797979798, '3,2,2': 0.18855218855218855, '3,3,2': 0.044, 'wnorm': 11.798, 't': 12598.0, 'sub': 19, 'plumbing': {'n_digit': 0.065, 'old_register': 0.027, 'final_borrow': 0.163}}
+w2_sgd0.1_wd_s1          step  37000/50000   2.8 h {'train_hard': 0.36363636363636365, 'train_soft': 0.9494949494949495, '3,2,2': 0.1750841750841751, '3,3,2': 0.054, 'wnorm': 12.356, 't': 10240.5, 'sub': 24, 'plumbing': {'n_digit': 0.082, 'old_register': 0.027, 'final_borrow': 0.179}}
+w2_sgd0.1_wd_s2          step  45500/50000   3.4 h {'train_hard': 0.3434343434343434, 'train_soft': 0.7272727272727273, '3,2,2': 0.12794612794612795, '3,3,2': 0.05, 'wnorm': 12.75, 't': 12215.6, 'sub': 17, 'plumbing': {'n_digit': 0.071, 'old_register': 0.162, 'final_borrow': 0.133}}
+w2_sgd0.1_wd_s3          step  29500/50000   2.2 h {'train_hard': 0.5454545454545454, 'train_soft': 0.98989898989899, '3,2,2': 0.15824915824915825, '3,3,2': 0.05, 'wnorm': 12.16, 't': 8021.6, 'sub': 20, 'plumbing': {'n_digit': 0.218, 'old_register': 0.095, 'final_borrow': 0.148}}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-Gbma1T2f9pGbnikgaS7lka

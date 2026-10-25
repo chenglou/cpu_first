@@ -1,0 +1,24 @@
+[lp_clean_new_k26_fib_N1] round 0: target probe mdl 148.1 best [5, 13, 13, 15, 19, 19]; pool 162
+  probes: trivial 10, learnable 43, alias 0, duplicate 28, unsolved 81
+  picked: ['law/mod(X,N)/x+qN', 'law/min(X,N)/x+qN', 'law/max(X,N)/x+qN', 'law/lt(N,X)/x+N']
+    + M0.1 = MOV.A.N L.X[DEC.N]    (MOV.A.N L.X[DEC.N])
+    + M0.2 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M0.3 = DEC.X L.X[DEC.N] Z.N[INC.A]    (DEC.X L.X[DEC.N] Z.N[INC.A])
+    + T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.U.A DEC.A] Z.U[MOV.A.X]    (MOV.A.X L.N[MOV.U.A DEC.A] Z.U[MOV.A.X])
+    + T.min(X,N)@x+qN = M0.1 L.N[DEC.A]    (MOV.A.N L.X[DEC.N] L.N[DEC.A])
+    + T.max(X,N)@x+qN = MOV.A.N L.X[DEC.A] L.X[INC.A]    (MOV.A.N L.X[DEC.A] L.X[INC.A])
+    + T.lt(N,X)@x+N = L.N[DEC.X] L.X[MOV.A.X DEC.X]    (L.N[DEC.X] L.X[MOV.A.X DEC.X])
+  target: cost None levels [1, 21, 291, 3870, 52759, 741345, 25128631] []
+[lp_clean_new_k26_fib_N1] round 1: target probe mdl 143.2 best [5, 13, 15, 19, 19]; pool 185
+  probes: trivial 15, learnable 73, alias 0, duplicate 27, unsolved 70
+  picked: ['recur2/stepUT', 'recur2/stepTU', 'law/mod(N,X)/x', 'recur2/stepUA']
+    + M1.1 = L.U[INC.X] M0.2    (L.U[INC.X] MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M1.2 = M0.1 MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N L.X[DEC.N] MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.U.A DEC.A] Z.U[MOV.A.X]])
+    + M1.3 = MOV.X.T M1.1    (MOV.X.T L.U[INC.X] MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + T.rec5 = L.T[INC.U] MOV.X.U T.mod(X,N)@x+qN MOV.U.T MOV.T.A    (L.T[INC.U] MOV.X.U MOV.A.X L.N[MOV.U.A DEC.A] Z.U[MOV.A.X] MOV.U.T MOV.T.A)
+    + T.rec6 = L.U[INC.T] MOV.X.T MOV.T.U T.mod(X,N)@x+qN MOV.U.A    (L.U[INC.T] MOV.X.T MOV.T.U MOV.A.X L.N[MOV.U.A DEC.A] Z.U[MOV.A.X] MOV.U.A)
+    + T.mod(N,X) = MOV.A.N MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.U.A DEC.A] Z.U[MOV.A.X]])
+    + T.rec8 = L.A[INC.U] MOV.X.U MOV.U.A M0.2    (L.A[INC.U] MOV.X.U MOV.U.A MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+  target: cost 3 levels [1, 23, 363, 5981] ['INC.T L.X[T.rec6]', 'INC.U L.X[T.rec5]']
+  general in round 1: INC.T L.X[T.rec6] = INC.T L.X[L.U[INC.T] MOV.X.T MOV.T.U MOV.A.X L.N[MOV.U.A DEC.A] Z.U[MOV.A.X] MOV.U.A]
+group done in 2922s on 32 cores; largest worker 5.4 GB

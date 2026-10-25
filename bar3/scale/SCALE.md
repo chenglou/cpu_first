@@ -53,7 +53,9 @@ count). The view holds for the search: more speed alone does not reach them.
    rule along a sequence (its all-pairs sequence was stopped after 5 hours on its second formula), and its
    hardest-first sequence missed 10·x²; so did hardest first here, in 5 rounds, with the levers. The same sequence
    with only the breadth study's sources invents them too, with the same programs: this came from the cheaper rule
-   made affordable, not from the new sources.
+   made affordable, not from the new sources. Hardest first's own sequence, finished after the cut, misses 10·x² + 1
+   as well, but then invents x³ (round 0 of its step), **Montgomery's x²·2⁻¹ (round 3)** and **Fibonacci (round 1)**,
+   over a library grown to 92–123 routines.
 3. *Constants taken from the data.* At a fixed x the answer depends on N alone; when it is c mod N for one small c,
    "make c" is posed (10 for 10·x², read off the remainders at x = 1), searched on one instance and checked on all.
    "Make 10" (7 instructions) is solved and picked, but no program used it, and from scratch neither 10·x² nor
@@ -64,14 +66,16 @@ count). The view holds for the search: more speed alone does not reach them.
    step). Guidance reaches about 3 bits further for each tenfold of states, and found x³ over a carried library with
    a third of the states the plain search needed; of its 76 searches in these runs, 2 found a program the plain one
    had not, and neither was general.
-5. *Still missing*: Montgomery's x²·2⁻¹ in the anchored-pairs sequences (not in 3–4 rounds; BREADTH.md's
-   hardest-first branch had it in round 0, from a different library), and 10·x², 10·x² + 1, x³ from scratch. Those
-   three need x² mod N as a piece, which the base law book never poses; the depth-2 law book poses it, but its
-   6-token program is mostly beyond the probes over the bigger vocabulary, and the one time it was learnable it tied
-   with dozens of others and was not picked.
+5. *Still missing*: Montgomery's x²·2⁻¹ in the anchored-pairs sequences (not in 5 rounds; its programs there pass
+   the N ≤ 10 check but are wrong on 40% of the pairs up to N = 40), Fibonacci along them (from round 1 they find a
+   program that is right on every pair up to N = 40, but it needs more steps at N = 40 than the general check's
+   machine allows, a million, so it is not accepted), and 10·x², 10·x² + 1, x³ from scratch. Those three need x² mod
+   N as a piece, which the base law book never poses; the depth-2 law book poses it, but its 6-token program is
+   mostly beyond the probes over the bigger vocabulary, and the one time it was learnable it tied with dozens of
+   others and was not picked.
 
 **How far N goes.** At N ≤ 26 the learner, unchanged, invents x² mod N, x² ± 1 and 2x + 1 in round 0, and
-Fibonacci in round 1 (anchored pairs); not x² + 3 in 2 rounds (it needed 1 at N ≤ 7). At N ≤ 50, x² mod N and
+Fibonacci in round 1 (by both rules); not x² + 3 in 2 rounds (it needed 1 at N ≤ 7). At N ≤ 50, x² mod N and
 2x + 1 in round 0 and Fibonacci in round 1 (hardest first). Each program is the algorithm found at N ≤ 7, right on
 every pair up to N = 120. A round costs 5.5–10 times more at N ≤ 26 and 14–15 times more at N ≤ 50, because every
 count runs longer.
@@ -84,6 +88,10 @@ count runs longer.
   10·x² + 1, turned out to be short in terms of earlier answers: each came in the first round of its step (and x³
   too, as it did in BREADTH.md's branch). So "engineering buys one instruction" is true of the search, not of the
   learner: it bought a choosing rule that could not be afforded before, and that rule reached them.
+- Along the sequence the two rules reach different formulas: anchored pairs 10·x² and 10·x² + 1, which hardest first
+  misses; hardest first Montgomery's and Fibonacci, which anchored pairs misses (for Fibonacci its program is right
+  but too slow for the general check). Hardest first pays for its reach with a library of up to 123 routines and
+  steps of up to 55 search-hours.
 - The new kinds of practice problem mattered where the old sources could not pose the piece at all: the two-number
   step gave Fibonacci. Constants, as posed here, were not needed.
 - What still limits it: the probes' reach (a needed piece 6 tokens long over a growing vocabulary is often out of
@@ -98,10 +106,14 @@ reads later do not exist before the last level, meet in the middle fails because
 one and the goal is a set, and a lower value cap changes nothing. None comes near the 9–10 times each instruction
 costs.
 
-**Not finished.** Modal's workspace spend limit stopped every container at about 14:27 UTC. Cut there: Montgomery's
-after 3–4 rounds of each anchored-pairs sequence, Fibonacci at the end of the sequences, hardest first's Fibonacci at
-N ≤ 26 after round 0, and a few side runs. §6 lists each with how far it got, and the commands that finish them from
-their stores (about $12–15). In all: about 378 search-hours and $40.
+**Cut, then finished.** Modal's workspace spend limit stopped every container at about 14:27 UTC on Oct 24, cutting
+Montgomery's after 3–4 rounds of each anchored-pairs sequence, Fibonacci at the end of the sequences, hardest first's
+sequence at 10·x² + 1, hardest first's Fibonacci at N ≤ 26 after round 0, and a few side runs. Once the limit was
+raised, the five groups with a store were relaunched; each replayed its finished rounds exactly and went on (§6).
+What they added: hardest first's sequence invents x³, Montgomery's and Fibonacci; the anchored-pairs sequences and
+both branches miss Montgomery's and Fibonacci in 5 rounds; hardest first at N ≤ 26 invents Fibonacci in round 1. The
+depth-2 law-book runs and x² + 3 at N ≤ 26 had no store and were not rerun here. In all: about 562 search-hours and $62
+(184 and $22 of them after the cut).
 <!-- /PLAIN -->
 
 ## Details
@@ -401,13 +413,35 @@ x² mod N.
 | x² + 3 | round 0 (1.4 h) | round 0 (1.5 h) | round 0 (1.2 h) | round 0 (1.3 h) | round 0 (9.7 h) |
 | 2x + 1 | round 0 (1.9 h) | round 0 (2.1 h) | round 0 (2.0 h) | round 0 (0.4 h) | round 0 (6.9 h) |
 | 10·x² | **round 0** (3.0 h) | **round 0** (3.2 h) | **round 0** (2.8 h) | no, 5 rounds (5.5 h) | no, round 0 (25.2 h) |
-| 10·x² + 1 | **round 0** (2.0 h) | **round 0** (2.0 h) | **round 0** (1.8 h) | no, 2 rounds, cut (7.3 h) | no, round 0 † (28.3 h) |
-| x³ | round 0 (1.4 h) | round 0 (1.5 h) | round 0 (1.6 h) | – | round 0 † (15.1 h) |
-| Montgomery's | no, 3 rounds, cut (4.7 h) | no, 3 rounds, cut (5.2 h) | no, 4 rounds, cut (6.5 h) | – | round 0 † (12.1 h) |
-| Fibonacci | – (cut) | – (cut) | branched after x³: no, 3 rounds, cut (2.7 h) | – | no, round 0 † (9.5 h) |
+| 10·x² + 1 | **round 0** (2.0 h) | **round 0** (2.0 h) | **round 0** (1.8 h) | no, 5 rounds (29.7 h) | no, round 0 † (28.3 h) |
+| x³ | round 0 (1.4 h) | round 0 (1.5 h) | round 0 (1.6 h) | round 0 (10.7 h) | round 0 † (15.1 h) |
+| Montgomery's | no, 5 rounds (10.2 h) | no, 5 rounds (11.5 h) | no, 5 rounds (8.2 h) | **round 3** (54.9 h) | round 0 † (12.1 h) |
+| Fibonacci | no, 5 rounds ‡ (13.5 h); branched after x³: no, 5 rounds ‡ (6.5 h) | no, 5 rounds ‡ (15.8 h) | no, 5 rounds (18.9 h); branched after x³: no, 5 rounds (7.7 h) | **round 1** (17.3 h) | no, round 0 † (9.5 h) |
 
 Search-hours are each step's own. The library each step starts from grows by 4–7 routines a step for anchored pairs
-(25 at 10·x², 36 at x³, 43 at Montgomery's) and faster for hardest first.
+(25 at 10·x², 36 at x³, 43 at Montgomery's, 67 at Fibonacci) and faster for hardest first (34 at 10·x², 66 at
+10·x² + 1, 92 at x³, 99 at Montgomery's, 123 at Fibonacci). Montgomery's, Fibonacci, hardest first's last four steps
+and the branches were finished after the spend-limit cut, replayed from their stores (§6). ‡: from round 1 the target
+search finds a Fibonacci program that is right on every pair up to N = 40, but the general check rejects it (below).
+
+**After the cut.** Every program here is right on every pair up to N = 120 (Montgomery's: all 3,600 odd-N pairs).
+- *Hardest first's sequence* gets x³ in round 0 of its step (`M0.21`: x times "add x² and reduce", as in BREADTH.md's
+  branch). It then gets **Montgomery's in round 3**: `Z.X[M0.24] T.tgt_minus1 T.res79`, 83 primitive instructions.
+  That is a special case for x = 0 (`M0.24`, merged in the step's round 0), the carried x² − 1 mod N, and `T.res79`,
+  the routine of "the rest of the way from what `T.tgt_minus1` leaves in X, where x > 3", practised in round 3, the
+  round the target search finds the program. It was the study's dearest step: 54.9 search-hours over 99–122
+  routines, with target searches of 73–117M states a round. Then comes **Fibonacci in round 1**:
+  `INC.U L.X[T.rec86]`, the two-number step as from scratch (§4.1), 16 primitive instructions. 10·x² + 1 it misses in
+  5 rounds.
+- *Anchored pairs* miss Montgomery's in 5 rounds in all three sequences. From round 1 or 2 their target searches
+  find programs that pass the N ≤ 10 check, but these are right on only 240 of the 400 odd-N pairs up to N = 40.
+- ‡ *Fibonacci with anchored pairs and the new sources* (both sequences, and the branch after x³): the step is
+  posed and practised in rounds 1–2. From round 1 the target search finds programs such as `INC.U L.X[T.rec58]` that
+  pass the N ≤ 10 check and are right on all 820 pairs up to N = 40, but at N = 40 they need between 1 and 2 million
+  machine steps. The general check runs a program for at most a million (`library/inventing/jobs.general`), so it
+  rejects every one of them. They are slow because the practised step adds one number to the other a unit at a time,
+  reducing mod N after each unit (`L.U[INC.X T.mod(X,N)@x+QN]`); hardest first's step adds it and reduces once. The
+  breadth study's sources do not pose the step, and their sequence and branch find nothing.
 
 ### 5. Larger N
 
@@ -424,12 +458,13 @@ search-hours; 2x + 1: 0.66, 3.7 and 9.4).
 | x² − 1 | round 0 / round 0 | round 0 (3.1 h) | round 0 (3.1 h) | – |
 | x² + 3 | round 1 / round 1 | no, 2 rounds (13.1 h; stopped) | no, 2 rounds (14.7 h; stopped) | – |
 | 2x + 1 | round 0 / round 0 | round 0 (3.7 h) | round 0 (3.7 h) | round 0 (9.4 h) |
-| Fibonacci | round 2 / round 1 | round 1 (9.2 h) | no in round 0 (3.9 h); round 1 cut | round 1 (14.9 h) |
+| Fibonacci | round 2 / round 1 | round 1 (9.2 h) | round 1 (9.3 h; finished after the cut, §6) | round 1 (14.9 h) |
 
 Every program found is right on every pair up to N = 120 (7,260 pairs), checked beyond the learner's own bound:
 - x² mod N at N ≤ 50: `L.X[L.X[INC.A]] L.X[MOV.X.A T.mod(X,N)@x+qN]`, the same algorithm as at N ≤ 7;
 - 2x + 1 at N ≤ 50: `L.X[INC.X] M0.1` (double, then add one and wrap);
-- Fibonacci at N ≤ 26: `INC.U L.X[T.rec6]`, the same two-number step as at N ≤ 7; at N ≤ 50 the step in another
+- Fibonacci at N ≤ 26: `INC.U L.X[T.rec6]`, the same two-number step as at N ≤ 7 (anchored pairs), and
+  `INC.T L.X[T.rec6]` with the step in another placement (hardest first); at N ≤ 50 the step in another
   placement, (X, A) = (a, b) → (b, a + b mod N) with T to hold x's copy: `INC.T L.X[MOV.X.T T.rec8]`;
 - x² ± 1 at N ≤ 26: x² ± 1, then N links.
 
@@ -463,22 +498,25 @@ The levers:
 - **The depth-2 law book** (`*_deep`, 8 runs, 2–4 rounds each, about 9 search-hours): it poses x² mod N, but that
   piece was out of the probes' reach in 8 of 9 rounds checked, and not picked the one time it was learnable (§4.5).
   The runs were preempted once and repeated their rounds, and were then cut by the spend limit (below).
-- **Hardest first along the sequence**: it missed 10·x² in 5 rounds and 10·x² + 1 in 2 (cut), because it practises
+- **Hardest first along the sequence**: it missed 10·x² and 10·x² + 1 in 5 rounds each, because it practises
   problems the formulas never use, so its library grows fast (34 routines at 10·x², 66 at 10·x² + 1, against 25 and
   31 for anchored pairs) and every search over it gets dearer: the piece 10·x² needed was out of its probe's reach.
-- **Montgomery's in the anchored-pairs sequences**: not in 3 or 4 rounds of its step (cut), where BREADTH.md's
-  hardest-first branch had it in round 0 from its own 34-routine library. Programs fitting all 16 search pairs were
-  found in rounds 0–2 (aliases that fail the N ≤ 10 check). The branch's program leaned on a routine hardest first
-  had practised for x² + 1; along these sequences x² + 1 came from other picks, and nothing here shows whether an
-  equivalent piece was within reach.
+  The same sequence then invented x³, Montgomery's and Fibonacci (§4.6), at 10–55 search-hours a step.
+- **Montgomery's in the anchored-pairs sequences**: not in 5 rounds of its step, in any of the three, where
+  BREADTH.md's hardest-first branch had it in round 0 from its own 34-routine library and hardest first's sequence
+  here in round 3 from 99. From round 1 or 2 their target searches find programs that pass the N ≤ 10 check but are
+  aliases: right on 240 of the 400 pairs up to N = 40 (odd N), with any step budget. The branch's program leaned on
+  a routine hardest first had practised for x² + 1; along these sequences x² + 1 came from other picks, and nothing
+  here shows whether an equivalent piece was within reach.
 - **Anchored pairs and ties.** On Fibonacci the link is one of six problems tied at the top cost in round 0, and the
   two hardest are taken in pool order, so its pairs are never tried: a round late (BREADTH.md §5 named the risk; not
   fixed here, since no pair helps Fibonacci in round 0 anyway, and when no pair helps the rule falls back on pool
   order).
 - **x² + 3 at N ≤ 26**: not in 2 rounds by either rule (at N ≤ 7 it came in round 1); stopped there (below).
 
-**How hard it was tried, in all.** About 378 search-hours (each job's own seconds, as in §2), about $40 of Modal
-(16-core preemptible CPU containers, up to about 18 at once):
+**How hard it was tried, in all.** About 562 search-hours (each job's own seconds, as in §2), about $62 of Modal
+(16-core preemptible CPU containers, up to about 18 at once): 378 and $40 before the spend-limit cut, 184 and $22 to
+finish the cut runs after it.
 
 | part | runs | rounds | search-hours |
 |---|---|---|---|
@@ -486,30 +524,36 @@ The levers:
 | the levers at N ≤ 7: from scratch, the depth-2 law book, the sequences and their branches (§4) | 53 | 186 | 175 |
 | larger N (§5) | 15 | 20 | 127 |
 | the reach searches (§3), the engine timings (§1) and two test runs | – | – | about 4 |
+| the cut runs, finished after the cut (below): the four sequences, the two branches, Fibonacci at N ≤ 26 | 7 | 38 more | 184 |
 
-**What was cut short, and how far each got.** At about 14:27 UTC Modal stopped every container in the workspace and
-refused new ones ("the workspace has exceeded its spend limit": a limit set in Modal itself, apparently near $3,000
-for the month; this study's own share was about $40). Records in `records/` hold every finished round:
+**What was cut short, and how it ended.** At about 14:27 UTC on Oct 24 Modal stopped every container in the
+workspace and refused new ones ("the workspace has exceeded its spend limit": a limit set in Modal itself,
+apparently near $3,000 for the month; this study's own share was about $40). Once the limit was raised, the runs with
+a store were relaunched (below) and finished:
 
-| run (record) | target | got to | lost |
+| run (record) | target | got to before the cut | how it ended |
 |---|---|---|---|
-| `seq_ct2a2_clean_new_targets_L1` | Montgomery's (step 9 of 10) | rounds 0–2 finished, no program | round 3 on, then Fibonacci |
-| `seq_ct2a2_clean_all3_targets_L1` | Montgomery's | rounds 0–2 finished, no program | round 3 on, then Fibonacci |
-| `seq_ct2a2_clean_targets_L1` (the breadth study's sources) | Montgomery's | rounds 0–3 finished, no program | round 4, then Fibonacci |
-| `seq_lp_clean_all3_targets_L1` | 10·x² + 1 (step 7) | rounds 0–1 finished, no program | rounds 2–4, then x³, Montgomery's, Fibonacci |
-| `branch_ct2a2_clean_targets_L1_after_cube_fib_L1` | Fibonacci, from the state after x³ | rounds 0–2 finished, no program (no source poses its step) | rounds 3–4 |
-| `branch_ct2a2_clean_new_targets_L1_after_cube_fib_L1` (no record yet) | Fibonacci, from the state after x³, new sources | round 0's probes finished (in its store) | the rest |
-| `lp_clean_new_k26_fib_N1` | Fibonacci at N ≤ 26, hardest first | round 0 finished, no program | round 1 on |
-| `{lp,ct2a2}_clean_deep_{ten,tenrho,cube,mont}_L1` | the depth-2 law book | 2–4 rounds each, nothing | the rest of 5 rounds |
-| `{lp,ct2a2}_clean_new_k26_plus3_N1` | x² + 3 at N ≤ 26 | rounds 0–1 finished, no program | stopped by hand (its container's neighbour run crashed on the empty-program bug of §1) |
+| `seq_ct2a2_clean_new_targets_L1` | Montgomery's (step 9 of 10) | rounds 0–2, no program | Montgomery's: no, 5 rounds; Fibonacci: no, 5 rounds ‡ |
+| `seq_ct2a2_clean_all3_targets_L1` | Montgomery's | rounds 0–2, no program | Montgomery's: no, 5 rounds; Fibonacci: no, 5 rounds ‡ |
+| `seq_ct2a2_clean_targets_L1` (the breadth study's sources) | Montgomery's | rounds 0–3, no program | Montgomery's: no, 5 rounds; Fibonacci: no, 5 rounds (no source poses its step) |
+| `seq_lp_clean_all3_targets_L1` | 10·x² + 1 (step 7) | rounds 0–1, no program | 10·x² + 1: no, 5 rounds; x³: round 0; **Montgomery's: round 3**; **Fibonacci: round 1** |
+| `branch_ct2a2_clean_targets_L1_after_cube_fib_L1` | Fibonacci, from the state after x³ | rounds 0–2, no program (no source poses its step) | no, 5 rounds |
+| `branch_ct2a2_clean_new_targets_L1_after_cube_fib_L1` | Fibonacci, from the state after x³, new sources | round 0's probes (in its store) | no, 5 rounds ‡ |
+| `lp_clean_new_k26_fib_N1` | Fibonacci at N ≤ 26, hardest first | round 0, no program | **round 1** |
+| `{lp,ct2a2}_clean_deep_{ten,tenrho,cube,mont}_L1` | the depth-2 law book | 2–4 rounds each, nothing | not rerun here (no store) |
+| `{lp,ct2a2}_clean_new_k26_plus3_N1` | x² + 3 at N ≤ 26 | rounds 0–1, no program | not rerun here (stopped by hand: its container's neighbour run crashed on the empty-program bug of §1) |
 
-Every other record is complete: the breadth study again (`*_s1`, `*_s2`), the levers from scratch (`*_L1` but the
-above), N ≤ 26 for x² mod N, x² ± 1, 2x + 1 and Fibonacci (anchored pairs), N ≤ 50, the reach searches
-(`reach_*.json`), the bounds (`bounds_*.json`).
+Every program the finished runs found is right on every pair up to N = 120 (7,260 pairs; Montgomery's 3,600, odd N).
+‡ as in §4.6. Every other record was complete before the cut: the breadth study again (`*_s1`, `*_s2`), the levers
+from scratch (`*_L1` but the above), N ≤ 26 for x² mod N, x² ± 1, 2x + 1 and Fibonacci (anchored pairs), N ≤ 50,
+the reach searches (`reach_*.json`), the bounds (`bounds_*.json`).
 
-**To finish them**, once the limit is lifted. The first five replay their finished searches from their stores on the
-Volume (`store_<first run of the group>.jsonl`, matched by the job's content), so each must be relaunched with
-exactly the flags it had; they rewrite their records from round 0, identical up to the cut, and go on. From
+**How they were finished.** The five commands below, at 14:43–14:45 PDT on Oct 24, each after
+`integration/ablation_s3/spend.py 3750` printed LAUNCH OK. Each group replays its finished searches from its store on
+the Volume (`store_<first run of the group>.jsonl`, matched by the job's content), so it was relaunched with exactly
+the flags it had; it rewrote its records from round 0 and went on. Every record matches its pre-cut version (git
+`5d108a7`) in each round they share (`compare.py --old`). Three of the five containers were preempted (3, 2 and 1
+times); each restart replayed from the store. The last finished at 02:51 PDT on Oct 25. Logs: `logs/`. From
 `cpu_first`:
 
 ```bash
@@ -532,11 +576,12 @@ SCALE_CPU=16 SCALE_MEM=65536 ~/github/sotaku/venv/bin/python -m modal run --deta
 SCALE_CPU=16 SCALE_MEM=65536 ~/github/sotaku/venv/bin/python -m modal run --detach bar3/scale/modal_scale.py --fresh lp_clean_new_k26 --targets fib --tag N1 --share
 ```
 
-Rough cost, at this study's rate of about $0.11 a search-hour plus a few minutes of replay per group: the three
-sequences together 70–100 search-hours ($8–11; hardest first's carries 66 routines, so its remaining steps are the
-dear ones), the plain sequence about 13 ($1.5), the two branches 5–12 ($1), Fibonacci at N ≤ 26 about 9 ($1):
-**about $12–15 in all, 3–5 hours on five containers.** The depth-2 law-book runs and x² + 3 at N ≤ 26 predate the
-stores and would start over (about 25 and 70 search-hours, $3 and $8); they matter less.
+What it took: 184 search-hours of new rounds (the three sequences 146, of which hardest first's 105 and its
+Montgomery's step alone 55; the plain sequence 21; the two branches 11; Fibonacci at N ≤ 26 6) and $21.92 (the app's
+billing, 21:00 UTC Oct 24 to its stop), against the estimate of $12–15 and 3–5 hours: hardest first's steps over its
+92–123 routines were dearer than its 66 had suggested, and its container ran for 12 hours. The depth-2 law-book runs
+and x² + 3 at N ≤ 26 predate the stores and would start over (about 25 and 70 search-hours, $3 and $8); they were
+not rerun here.
 
 ### 8. Bounds on the search space
 
@@ -590,6 +635,7 @@ Everything is in `cpu_first/bar3/scale/`. It imports `bar3/`, `bar3/breadth/`, `
   `bounds_*.json` (§8);
   `calls_*.json`: the Modal call ids. The Volume also keeps each group's store of finished searches
   (`store_*.jsonl`), which `--fetch` skips.
+- `logs/`: the relaunch of the cut runs (`relaunch.md`) and each relaunched container's log, `app_<app id>.log`.
 
 The compiled engine needs numba (0.68, with numpy 2.5.4; the Modal image pins both). Locally, any Python with them:
 

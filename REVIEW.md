@@ -255,6 +255,10 @@ into opcode columns on the GPU. OVERVIEW §6 marks these rules "yes"; a strict r
 
 For stage 1 and general v3, the differences are listed under OVERVIEW §6's table ("The other frontier files").
 
+**What to do about them.** [LEGAL_PLAN.md](LEGAL_PLAN.md) puts these questions first, then orders the rest by cost: what
+of bar 3 has to move inside a training run, what is still designed in the self-practising file, and the cheapest test of
+each. It was written on Oct 25, with no runs.
+
 ## 6. An hour's reading order
 
 | minutes | read | for |

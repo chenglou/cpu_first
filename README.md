@@ -22,6 +22,7 @@ with the H1 data under `data/generated/`. Its virtualenv was left out of the cop
 | `OVERVIEW.md` | the current entry point: the task, why it is hard, the timeline, the best model, the removal ladder, rules 1–16, open questions, a map |
 | `README.md` | this index |
 | `REVIEW.md` | for an outside reviewer: the claims, the file to judge, the official records and how to check them, how to reproduce, the gray rules and the questions to rule on, an hour's reading order |
+| `LEGAL_PLAN.md` | a plan from bar 3 to a contest-legal entry: what has to move inside the training run, what is still designed in the self-practising file, the questions only a judge can settle, and the cheapest test of each |
 | `HANDOVER.md` | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, proposed removals, what is tracked and what is on disk only, and the handover commands |
 | `REPORT.md` | the first day's write-up (§0–8) and the follow-ups on SpecBit and the grammar search (§9–14) |
 | `FINDINGS_substrate.md` | raw numbers for REPORT.md: the substrate experiments, SpecBit through the evaluator, and the grammar-search runs |

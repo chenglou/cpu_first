@@ -13,7 +13,8 @@ about 03:30 adds the weak-check fix in copies of eight more certified files (§4
 signal that brings x³ and 10·x² from scratch, and add-with-carry invented at one digit place (§4, bar 3). The last, on
 Oct 25 at about 10:30, adds the held-out test of the frozen bar-3 learner, which invents 5 of 10 formulas none of its
 rules were written for, and multiply-accumulate invented at one digit place, so that all four of stage 3's digit cells
-are now invented (§4, bar 3).*
+are now invented (§4, bar 3). At about 13:00 the same day it adds a pointer to a plan from bar 3 to a contest-legal
+entry, written without runs (§7).*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -261,6 +262,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 25, 05:53 `fae297b` | the subgoal's own subgoal, tried small: no source poses 10·x² + 1's piece, 10X mod N, so the study stopped before any run | [bar3/scale/subgoal/SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md) §8 |
 | Oct 25, 10:13 `307ab93` | **bar 3 on formulas no rule was written for**: frozen, with its predictions written down first, the learner invents 5 of 10, all in round 0 or 1, and 16 of 20 predictions hold; the misses need a step no source poses or a longer program | [bar3/scale/heldout/HELDOUT.md](bar3/scale/heldout/HELDOUT.md) |
 | Oct 25, 10:22 `9b640ef` | **bar 3 invents multiply-accumulate**: a deeper search aimed at its piece, where a clean program beats a cheaper one that uses up N, so all four of stage 3's digit cells are now invented; Montgomery's quotient digit is a table of one place | [bar3/bridge/CARRY.md](bar3/bridge/CARRY.md) §12–13 |
+| Oct 25, 12:59 `160bd0f` | a plan from bar 3 to a contest-legal entry: what has to move inside the training run, what is still designed in the self-practising file, the questions only a judge can settle, and the cheapest test of each; nothing run | [LEGAL_PLAN.md](LEGAL_PLAN.md) |
 
 ### The lessons that came out of the failures
 
@@ -1051,9 +1053,16 @@ runs left its verdict as it was (§4.5), the law ablation has all its seed-1 arm
 (§4), and bar 3's cut runs are finished (§4, bar 3). Running now, since about 10:00 PT on Oct 25: bar 3's learner on
 numbers given as digits, in unary, base 10 and base 2, to test the theory note's predictions
 ([theory/LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md) §5): 36 runs on Modal, under a spend watcher that stops them all at
-$90. Its folder, `bar3/scale/digits/`, is not committed yet.
+$90. Its folder, `bar3/scale/digits/`, is not committed yet. Queued after it, approved on Oct 25: the two practice
+sources the held-out test found missing, a running sum's step and the answer less its answer at x = 0 (HELDOUT.md §7,
+SUBGOAL.md §8).
 
 Everything else described here is committed.
+
+**A plan from here to a contest-legal entry** ([LEGAL_PLAN.md](LEGAL_PLAN.md), Oct 25, no runs): what of bar 3 has to
+move inside a training run, what is still designed in the self-practising file, four questions only a judge can settle,
+and the cheapest test of each, in order. No training target may come from Python's arithmetic, so what moves from bar 3
+is a rule rebuilt on stage 3's machine, not bar 3's code.
 
 **Answered on Oct 23 and 24.**
 - **Which hand-made parts carry the result** (ABLATION_S3.md): two instructions, the step's two practice problems,
@@ -1166,6 +1175,7 @@ s3i: the service refused it ("Submissions are now closed"), so there is no hoste
 |---|---|
 | [`OVERVIEW.md`](OVERVIEW.md) | this file |
 | [`REVIEW.md`](REVIEW.md) | the entry point for an outside reviewer: the claims, the file to judge, how to check and reproduce its records, the questions to rule on |
+| [`LEGAL_PLAN.md`](LEGAL_PLAN.md) | a plan from bar 3 to a contest-legal entry: what has to move inside the training run, what is still designed in the self-practising file, the questions only a judge can settle, and the cheapest test of each |
 | [`README.md`](README.md) | one line for every file and folder |
 | [`REPORT.md`](REPORT.md) | the first-day report: the analysis (§0–8), SpecBit and the grammar search (§9–14) |
 | [`learned_remainder/`](learned_remainder/) | the removal ladder, steps 0–5: every `submission*.py`, its write-up (LEARNED_REMAINDER, CHAIN, SQUARE, CONTROL, ADDER, IO, COMBINED), the Modal launchers, plans and local checks |

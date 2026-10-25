@@ -1,0 +1,1122 @@
+[
+ {
+  "label": "the piece, lp_mul's round-1 library, deeper probe with clean_win",
+  "lib": {
+   "M0.1": "MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A]",
+   "M0.2": "Z.C[INC.T] MOV.C.T",
+   "M0.3": "MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T]",
+   "M0.4": "INC.C L.A[DEC.C] M0.2",
+   "M0.5": "INC.C L.R[DEC.C] M0.2",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] L.N[DEC.A] L.T[INC.A]",
+   "T.lawmod(A,N)aqN": "MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]]"
+  },
+  "record": {
+   "name": "widen/restrict/acc.mul(A,R,H)/0<C&R+C<2",
+   "kind": "probe_deep",
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    47,
+    1346,
+    36341,
+    967691,
+    53614301
+   ],
+   "best_fit": [
+    0,
+    7,
+    25,
+    25,
+    32,
+    32
+   ],
+   "NP": 32,
+   "seconds": 294.38,
+   "item_seconds": 29.61,
+   "stop": "budget: level 5 streamed (over 10000000 states)",
+   "n_tokens": 55,
+   "n_kinds": 12,
+   "n_classes": 18397,
+   "lib_size": 7,
+   "aliases": [
+    [
+     4,
+     [
+      "INC.A M0.3 Z.N[DEC.C]"
+     ]
+    ]
+   ],
+   "programs": [
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] INC.T",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] INC.T",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 INC.T Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] INC.T Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] INC.H",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] INC.H",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 INC.H Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] INC.H Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.H INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "INC.H INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A INC.H M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A INC.H MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[INC.H DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[INC.H DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.T.R",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.T.R",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.T.R Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.T.R Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.R.H]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.R.H]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.N.A",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.N.A",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C CLR.H]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C CLR.H]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.H.C Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.H.C Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "MOV.H.C INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "MOV.H.C INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.H.C M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A MOV.H.C MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.H.N",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.H.N",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.H.N Z.H[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.H.N Z.H[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.H.N Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.H.N Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.H.A]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.H.A]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.H.T]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.H.T]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "MOV.H.N INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "MOV.H.N INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.H.N M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A MOV.H.N MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.R.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.R.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C CLR.T]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C CLR.T]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[INC.N DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[INC.N DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.H.R]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.H.R]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "MOV.R.N INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "MOV.R.N INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.R.N M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A MOV.R.N MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.T.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.T.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.T.C",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.T.C",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.R.C",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.R.C",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.R.A",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.R.A",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.R.A Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.R.A Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[MOV.N.C DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[MOV.N.C DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C DEC.T]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C DEC.T]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.R.H",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.R.H",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.R.H Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.R.H Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "MOV.R.H INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "MOV.R.H INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.R.H M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A MOV.R.H MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] INC.R",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] INC.R",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 INC.R Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] INC.R Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.R INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "INC.R INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A INC.R M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A INC.R MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] CLR.T",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] CLR.T",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 CLR.T Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] CLR.T Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] DEC.T",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] DEC.T",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 DEC.T Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] DEC.T Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "DEC.N M0.3 Z.N[INC.A DEC.C]",
+     "primitive": "DEC.N MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[INC.A DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.T.H",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.T.H",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.T.H Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.T.H Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.H.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.H.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "MOV.R.A INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "MOV.R.A INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.R.C Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.R.C Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "MOV.R.C INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "MOV.R.C INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.R.C M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A MOV.R.C MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "MOV.H.A INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "MOV.H.A INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[INC.T DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[INC.T DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A T.lawmod(A,N)aqN Z.A[INC.C] DEC.C",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.A[INC.C] DEC.C",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A T.lawmod(A,N)aqN Z.T[INC.C] DEC.C",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.T[INC.C] DEC.C",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A T.lawmod(A,N)aqN DEC.C Z.A[INC.C]",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] DEC.C Z.A[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "DEC.C INC.A T.lawmod(A,N)aqN Z.A[INC.C]",
+     "primitive": "DEC.C INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.A[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A DEC.C T.lawmod(A,N)aqN Z.A[INC.C]",
+     "primitive": "INC.A DEC.C MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.A[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A T.lawmod(A,N)aqN DEC.C Z.T[INC.C]",
+     "primitive": "INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] DEC.C Z.T[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "DEC.C INC.A T.lawmod(A,N)aqN Z.T[INC.C]",
+     "primitive": "DEC.C INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.T[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A DEC.C T.lawmod(A,N)aqN Z.T[INC.C]",
+     "primitive": "INC.A DEC.C MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.T[INC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] INC.N",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] INC.N",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.H.R",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.H.R",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.H.R Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.H.R Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "MOV.H.R INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "MOV.H.R INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.H.R M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A MOV.H.R MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.R.N",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.R.N",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.R.N Z.R[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.R.N Z.R[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.R.N Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.R.N Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.N.T",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.N.T",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.R DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.R DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.H.T",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.H.T",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.H.T Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.H.T Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.H.A M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A MOV.H.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.N.R]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.N.R]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[MOV.R.C DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[MOV.R.C DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.T.R]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.T.R]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[MOV.T.C DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[MOV.T.C DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[MOV.H.C DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[MOV.H.C DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] CLR.R",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] CLR.R",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 CLR.R Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] CLR.R Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "CLR.R INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "CLR.R INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "MOV.R.T INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "MOV.R.T INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A CLR.R M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A CLR.R MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.R.T M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A MOV.R.T MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.R.A]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.R.A]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.R.T]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.R.T]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.T.C Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.T.C Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.N.R",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.N.R",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.H.A",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.H.A",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.H.A Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.H.A Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.H.C",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.H.C",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.N.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.N.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.T.H]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.T.H]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.T.A",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.T.A",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.T.A Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.T.A Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.N.H",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.N.H",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.N.H]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.N.H]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 L.C[MOV.C.N INC.N]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] L.C[MOV.C.N INC.N]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] DEC.R",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] DEC.R",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 DEC.R Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] DEC.R Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "DEC.R INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "DEC.R INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A DEC.R M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A DEC.R MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[INC.R DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[INC.R DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C DEC.H]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C DEC.H]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.R.T",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.R.T",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.R.T Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.R.T Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.R.A M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A MOV.R.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] DEC.N",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] DEC.N",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] CLR.N",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] CLR.N",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] CLR.H",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] CLR.H",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 CLR.H Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] CLR.H Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "CLR.H INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "CLR.H INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "MOV.H.T INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "MOV.H.T INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A CLR.H M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A CLR.H MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A MOV.H.T M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A MOV.H.T MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.N.A]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.N.A]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C MOV.N.T]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C MOV.N.T]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] M0.3",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T]",
+     "primitive_cost": 15,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C CLR.R]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C CLR.R]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] DEC.H",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] DEC.H",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 DEC.H Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] DEC.H Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "DEC.H INC.A M0.3 Z.N[DEC.C]",
+     "primitive": "DEC.H INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A DEC.H M0.3 Z.N[DEC.C]",
+     "primitive": "INC.A DEC.H MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.T.N",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.T.N",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] T.lawmod(A,N)aqN",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]]",
+     "primitive_cost": 15,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.T.N Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.T.N Z.N[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 T.lawmod(A,N)aqN Z.N[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.N[DEC.C]",
+     "primitive_cost": 15,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 MOV.T.N Z.T[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.T.N Z.T[DEC.C]",
+     "primitive_cost": 10,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 T.lawmod(A,N)aqN Z.T[DEC.C]",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.T[DEC.C]",
+     "primitive_cost": 15,
+     "verified": true
+    },
+    {
+     "program": "INC.A M0.3 Z.N[DEC.C] MOV.N.C",
+     "primitive": "INC.A MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T] Z.N[DEC.C] MOV.N.C",
+     "primitive_cost": 10,
+     "verified": true
+    }
+   ],
+   "clean": true,
+   "dirty_first": [
+    "INC.A M0.3 Z.N[DEC.C]"
+   ],
+   "wall": 324.08
+  }
+ },
+ {
+  "label": "the piece, ct2_mul's round-1 library, deeper probe with clean_win",
+  "lib": {
+   "M0.1": "MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A]",
+   "M0.2": "INC.C L.A[DEC.C] Z.C[INC.T] MOV.C.T",
+   "M0.3": "INC.A L.R[DEC.A] Z.A[INC.C]",
+   "T.lawadd(A,C)a": "L.C[INC.A]",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] L.N[DEC.A] L.T[INC.A]"
+  },
+  "record": {
+   "name": "widen/restrict/acc.mul(A,R,H)/0<C&R+C<2",
+   "kind": "probe_deep",
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    46,
+    1313,
+    35158,
+    920695,
+    48952745
+   ],
+   "best_fit": [
+    0,
+    7,
+    25,
+    25,
+    25,
+    25
+   ],
+   "NP": 32,
+   "seconds": 282.1,
+   "item_seconds": 26.33,
+   "stop": "budget: level 5 streamed (over 10000000 states)",
+   "n_tokens": 53,
+   "n_kinds": 12,
+   "n_classes": 17196,
+   "lib_size": 5,
+   "aliases": [],
+   "wall": 308.44
+  }
+ },
+ {
+  "label": "acc.mul, lp_mul's round-2 library + the clean piece, target search 3M",
+  "lib": {
+   "M0.1": "MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A]",
+   "M0.2": "Z.C[INC.T] MOV.C.T",
+   "M0.3": "MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T]",
+   "M0.4": "INC.C L.A[DEC.C] M0.2",
+   "M0.5": "INC.C L.R[DEC.C] M0.2",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] L.N[DEC.A] L.T[INC.A]",
+   "T.lawmod(A,N)aqN": "MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]]",
+   "M1.1": "MOV.A.H L.R[DEC.H]",
+   "M1.2": "L.A[INC.N] L.N[M0.1 MOV.N.T] T.lawmod(A,N)aqN M0.1",
+   "M1.3": "MOV.T.C L.R[DEC.T] M0.5 CLR.T M0.2",
+   "T.lawgcd(A,N)aN": "L.A[INC.N] L.N[M0.1 MOV.N.T] L.N[MOV.A.N]",
+   "T.lawmin(R,H)a": "M1.1 L.H[DEC.A]",
+   "T.lawmax(R,H)a": "MOV.A.H L.R[DEC.A] L.R[INC.A]",
+   "T.cnt": "INC.A T.lawmod(A,N)aqN Z.A[INC.C] DEC.C"
+  },
+  "record": {
+   "name": "acc.mul(A,R,H)",
+   "kind": "target",
+   "found_cost": null,
+   "level_sizes": [
+    1,
+    55,
+    2066,
+    75426,
+    5035103
+   ],
+   "best_fit": [
+    7,
+    7,
+    8,
+    12,
+    15
+   ],
+   "NP": 32,
+   "seconds": 128.8,
+   "item_seconds": 139.51,
+   "stop": "budget: level 4 streamed (over 3000000 states)",
+   "n_tokens": 62,
+   "n_kinds": 12,
+   "n_classes": 24580,
+   "lib_size": 14,
+   "aliases": [],
+   "wall": 268.32
+  }
+ },
+ {
+  "label": "acc.mul, lp_mul's round-2 library + the clean piece, target search 10M",
+  "lib": {
+   "M0.1": "MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A]",
+   "M0.2": "Z.C[INC.T] MOV.C.T",
+   "M0.3": "MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T]",
+   "M0.4": "INC.C L.A[DEC.C] M0.2",
+   "M0.5": "INC.C L.R[DEC.C] M0.2",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] L.N[DEC.A] L.T[INC.A]",
+   "T.lawmod(A,N)aqN": "MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]]",
+   "M1.1": "MOV.A.H L.R[DEC.H]",
+   "M1.2": "L.A[INC.N] L.N[M0.1 MOV.N.T] T.lawmod(A,N)aqN M0.1",
+   "M1.3": "MOV.T.C L.R[DEC.T] M0.5 CLR.T M0.2",
+   "T.lawgcd(A,N)aN": "L.A[INC.N] L.N[M0.1 MOV.N.T] L.N[MOV.A.N]",
+   "T.lawmin(R,H)a": "M1.1 L.H[DEC.A]",
+   "T.lawmax(R,H)a": "MOV.A.H L.R[DEC.A] L.R[INC.A]",
+   "T.cnt": "INC.A T.lawmod(A,N)aqN Z.A[INC.C] DEC.C"
+  },
+  "record": {
+   "name": "acc.mul(A,R,H)",
+   "kind": "target",
+   "found_cost": 5,
+   "level_sizes": [
+    1,
+    55,
+    2066,
+    75426,
+    2682624,
+    177041098
+   ],
+   "best_fit": [
+    7,
+    7,
+    8,
+    12,
+    15,
+    32
+   ],
+   "NP": 32,
+   "seconds": 1438.56,
+   "item_seconds": 141.38,
+   "stop": "budget: level 5 streamed (over 10000000 states)",
+   "n_tokens": 62,
+   "n_kinds": 12,
+   "n_classes": 24580,
+   "lib_size": 14,
+   "aliases": [],
+   "programs": [
+    {
+     "program": "L.H[L.R[INC.C]] L.C[T.cnt]",
+     "primitive": "L.H[L.R[INC.C]] L.C[INC.A MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]] Z.A[INC.C] DEC.C]",
+     "primitive_cost": 14,
+     "verified": true,
+     "general": true
+    }
+   ],
+   "wall": 1580.07
+  }
+ },
+ {
+  "label": "the count C := C + R\u00b7H, lp_mul's round-2 library, probe_a",
+  "lib": {
+   "M0.1": "MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A]",
+   "M0.2": "Z.C[INC.T] MOV.C.T",
+   "M0.3": "MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T]",
+   "M0.4": "INC.C L.A[DEC.C] M0.2",
+   "M0.5": "INC.C L.R[DEC.C] M0.2",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] L.N[DEC.A] L.T[INC.A]",
+   "T.lawmod(A,N)aqN": "MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]]",
+   "M1.1": "MOV.A.H L.R[DEC.H]",
+   "M1.2": "L.A[INC.N] L.N[M0.1 MOV.N.T] T.lawmod(A,N)aqN M0.1",
+   "M1.3": "MOV.T.C L.R[DEC.T] M0.5 CLR.T M0.2",
+   "T.lawgcd(A,N)aN": "L.A[INC.N] L.N[M0.1 MOV.N.T] L.N[MOV.A.N]",
+   "T.lawmin(R,H)a": "M1.1 L.H[DEC.A]",
+   "T.lawmax(R,H)a": "MOV.A.H L.R[DEC.A] L.R[INC.A]"
+  },
+  "record": {
+   "name": "count/C:=(R\u00b7H)+C",
+   "kind": "probe_a",
+   "found_cost": 3,
+   "level_sizes": [
+    1,
+    54,
+    1962,
+    126748
+   ],
+   "best_fit": [
+    8,
+    8,
+    12,
+    32
+   ],
+   "NP": 32,
+   "seconds": 26.03,
+   "item_seconds": 132.22,
+   "stop": "budget: level 3 streamed (over 30000 states)",
+   "n_tokens": 61,
+   "n_kinds": 12,
+   "n_classes": 23389,
+   "lib_size": 13,
+   "aliases": [],
+   "programs": [
+    {
+     "program": "L.H[L.R[INC.C]]",
+     "primitive": "L.H[L.R[INC.C]]",
+     "primitive_cost": 3,
+     "verified": true
+    }
+   ],
+   "wall": 158.26
+  }
+ },
+ {
+  "label": "the count C := C + R\u00b7H, lp_mul's round-2 library, probe_b",
+  "lib": {
+   "M0.1": "MOV.T.A L.N[DEC.A] L.T[DEC.N] L.N[INC.A]",
+   "M0.2": "Z.C[INC.T] MOV.C.T",
+   "M0.3": "MOV.T.A L.N[MOV.N.A DEC.A] Z.N[MOV.A.T]",
+   "M0.4": "INC.C L.A[DEC.C] M0.2",
+   "M0.5": "INC.C L.R[DEC.C] M0.2",
+   "T.lawabsdiff(A,N)aqN": "MOV.T.N L.A[DEC.T] L.N[DEC.A] L.T[INC.A]",
+   "T.lawmod(A,N)aqN": "MOV.T.N L.A[DEC.T] Z.T[L.N[DEC.A]]",
+   "M1.1": "MOV.A.H L.R[DEC.H]",
+   "M1.2": "L.A[INC.N] L.N[M0.1 MOV.N.T] T.lawmod(A,N)aqN M0.1",
+   "M1.3": "MOV.T.C L.R[DEC.T] M0.5 CLR.T M0.2",
+   "T.lawgcd(A,N)aN": "L.A[INC.N] L.N[M0.1 MOV.N.T] L.N[MOV.A.N]",
+   "T.lawmin(R,H)a": "M1.1 L.H[DEC.A]",
+   "T.lawmax(R,H)a": "MOV.A.H L.R[DEC.A] L.R[INC.A]"
+  },
+  "record": {
+   "name": "count/C:=(R\u00b7H)+C",
+   "kind": "probe_b",
+   "found_cost": 3,
+   "level_sizes": [
+    1,
+    54,
+    1962,
+    68872
+   ],
+   "best_fit": [
+    8,
+    8,
+    12,
+    32
+   ],
+   "NP": 32,
+   "seconds": 17.0,
+   "item_seconds": 85.99,
+   "stop": "",
+   "n_tokens": 61,
+   "n_kinds": 12,
+   "n_classes": 23389,
+   "lib_size": 13,
+   "aliases": [],
+   "programs": [
+    {
+     "program": "L.H[L.R[INC.C]]",
+     "primitive": "L.H[L.R[INC.C]]",
+     "primitive_cost": 3,
+     "verified": true
+    }
+   ],
+   "wall": 103.01
+  }
+ }
+]

@@ -21,7 +21,11 @@ ct1 (bar 3's single-candidate signal; ct1d gives each lookahead the 1M-state pro
 CARRY.md's rule, off unless a config says so: `widen` poses, beside every candidate that pins an input register, its
 widening (dwiden.py; the w<rule>_<target> configs); `conj` also poses the conjunctions of two of the target's
 restrictions that pin an input neither pins alone (the cw<rule>_<target> configs). `lib0`, `corpus0` and `prefix`
-start a run from a carried library, its own merges and routines named with the prefix.
+start a run from a carried library, its own merges and routines named with the prefix. `subgoal` (CARRY.md §12; the
+s<rule>_<target> configs, sp<rule>_<target> with `pick`): the pool is scored by dsubgoal.py's loop view, and its
+subgoal gets a deeper probe with clean_win (djobs.py) when the usual probes leave it unsolved or solved only by
+programs that change an input they do not output; it wins the ties of the rule's orderings; once a subgoal has been
+practised, the target search gets the same deeper budget; with `pick` it is practised as soon as it is learnable.
 """
 
 from __future__ import annotations
@@ -36,7 +40,7 @@ from pathlib import Path
 import numpy as np
 
 from library import dsl, merge
-from bar3.bridge import dcm, dproblems as P, dsearch, dwiden as W, slices as S
+from bar3.bridge import dcm, dproblems as P, dsearch, dsubgoal as G, dwiden as W, slices as S
 from bar3.bridge.djobs import search_job
 
 HERE = Path(__file__).resolve().parent
@@ -69,6 +73,13 @@ for _t in TARGETS:
     for _r in ("lp", "ct2", "all"):
         CONFIGS[f"w{_r}_{_t}"] = dict(CONFIGS[f"{_r}_{_t}"], widen=True)
         CONFIGS[f"cw{_r}_{_t}"] = dict(CONFIGS[f"{_r}_{_t}"], widen=True, conj=True)
+# CARRY.md §12: and the subgoal (dsubgoal.py): its deeper probe, with clean_win, and the ties; p: and practised as soon
+# as it is learnable
+PROBE_DEEP = dict(PROBE_A, max_states=10_000_000, time_limit=3600)     # one level past the 1M-state probe
+for _t in TARGETS:
+    for _r in ("lp", "ct2", "all"):
+        CONFIGS[f"s{_r}_{_t}"] = dict(CONFIGS[f"cw{_r}_{_t}"], subgoal=dict(deep=PROBE_DEEP))
+        CONFIGS[f"sp{_r}_{_t}"] = dict(CONFIGS[f"cw{_r}_{_t}"], subgoal=dict(deep=PROBE_DEEP, pick=True))
 N_PRIMS, N_KINDS = len(dcm.prims(dcm.REGS)), len(dcm.loop_kinds(dcm.REGS))
 
 
@@ -170,6 +181,7 @@ def run(name, cfg, mapper, emit, log=print):
     tgt_gen = P.from_slice(gen[tsl.name], "target")
     laws = [P.from_slice(s, "slice") for s in posed if s.name != tsl.name]
     lib, corpus, practiced, stems = dict(cfg.get("lib0", {})), dict(cfg.get("corpus0", {})), {}, {}
+    sub_done = []                     # subgoals practised so far: from then on the target search gets the deeper budget
     pfx = cfg.get("prefix", "")           # names this run's merges and routines apart from a carried library's
     sigs = Signatures()
     totals = {}
@@ -214,6 +226,10 @@ def run(name, cfg, mapper, emit, log=print):
             pool += W.widenings(pool)
         pool = [c for c in P.dedupe(pool) if c.key() not in practiced and c.key() != tgt.key()]
         log(f"[{name}] round {rnd}: target probe mdl {mdl0:.1f} best {tp['best_fit']}; pool {len(pool)}")
+        sc, sub = G.subgoal_of(pool, tgt) if cfg.get("subgoal") else ({}, None)          # subgoal (CARRY.md §12)
+        subs = {sub} - {None}
+        if subs:
+            log(f"  subgoal: {sub}: {sc[sub]['loop']}")
         status = {}
         ra = run_jobs("probe_a", [job(c, lib, B["probe_a"], "probe_a") for c in pool])
         todo = [i for i, r in enumerate(ra) if r is not None and r["found_cost"] is None]
@@ -221,6 +237,16 @@ def run(name, cfg, mapper, emit, log=print):
         res = list(ra)
         for i, r in zip(todo, rb):
             res[i] = r
+        deep, plib = [], {t: dsl.parse(v) for t, v in lib.items()}
+        dtodo = [i for i, (c, r) in enumerate(zip(pool, res)) if c.name in subs and r is not None and
+                 (r["found_cost"] is None or not any(side_effects(dsl.parse(p["program"]), plib, c)[0]
+                                                     for p in r.get("programs", [])))]
+        if dtodo:              # subgoal: unsolved, or solved only by programs that change an input they do not output
+            deep = run_jobs("probe_deep", [dict(job(pool[i], lib, cfg["subgoal"]["deep"], "probe_deep"),
+                                                clean_win=True) for i in dtodo])
+            for i, r in zip(dtodo, deep):
+                if r is not None and r["found_cost"] is not None:
+                    res[i] = r
         have = {sigs.of((t,), lib) for t in dcm.prims(dcm.REGS) + list(lib)}
         learn_sig = {}
         for c, r in zip(pool, res):
@@ -251,7 +277,7 @@ def run(name, cfg, mapper, emit, log=print):
         if rule == "all":
             pick = learnable
         elif rule == "lp":
-            pick = sorted(learnable, key=lambda c: -status[c.name]["cost"])[:K]
+            pick = sorted(learnable, key=lambda c: (-status[c.name]["cost"], c.name not in subs))[:K]
         elif rule == "ct1":
             # bar 3's ct1 (one candidate at a time), with the lookahead's budget from the config (ct1d: the 1M-state
             # probe's, deep enough to reach a target that one routine makes 5 instructions long)
@@ -260,7 +286,7 @@ def run(name, cfg, mapper, emit, log=print):
             for c, r in zip(learnable, rl):
                 if r is not None:
                     scores[c.name] = mdl0 - mdl(r, n_sym(lib) + 1, len(tgt.outputs))
-            pick = sorted(learnable, key=lambda c: -scores.get(c.name, -1e9))[:K]
+            pick = sorted(learnable, key=lambda c: (-scores.get(c.name, -1e9), c.name not in subs))[:K]
         elif rule == "ct2":
             def with_routines(cs):
                 lb = dict(lib)
@@ -271,7 +297,8 @@ def run(name, cfg, mapper, emit, log=print):
             for c, r in zip(learnable, rl):
                 if r is not None:
                     scores[c.name] = mdl0 - mdl(r, n_sym(lib) + 1, len(tgt.outputs))
-            hard = sorted(learnable, key=lambda c: -status[c.name]["cost"])[:cfg.get("anchor") or len(learnable)]
+            hard = sorted(learnable, key=lambda c: (-status[c.name]["cost"], c.name not in subs))[
+                :cfg.get("anchor") or len(learnable)]
             combos = sorted({tuple(sorted((a, b))) for a in range(len(learnable)) for b in range(len(learnable))
                              if a != b and (learnable[a] in hard or learnable[b] in hard)})
             rl2 = run_jobs("look", [job(tgt, with_routines([learnable[a], learnable[b]]), B["look"], "look")
@@ -280,7 +307,7 @@ def run(name, cfg, mapper, emit, log=print):
                 if r is not None:
                     pairs.append((mdl0 - mdl(r, n_sym(lib) + 2, len(tgt.outputs)), learnable[a].name,
                                   learnable[b].name, r["found_cost"]))
-            pairs.sort(key=lambda p: -p[0])
+            pairs.sort(key=lambda p: (-p[0], not {p[1], p[2]} & subs))
             chosen = []
             for g, a, b, _ in pairs:
                 for nm in (a, b):
@@ -288,14 +315,17 @@ def run(name, cfg, mapper, emit, log=print):
                         chosen.append(nm)
                 if len(chosen) >= K:
                     break
-            for c in sorted(learnable, key=lambda c: -scores.get(c.name, -1e9)):
+            for c in sorted(learnable, key=lambda c: (-scores.get(c.name, -1e9), c.name not in subs)):
                 if len(chosen) < K and c.name not in chosen:
                     chosen.append(c.name)
             pick = sorted([c for c in learnable if c.name in chosen], key=lambda c: chosen.index(c.name))
         else:
             raise ValueError(rule)
+        if cfg.get("subgoal", {}).get("pick") and subs & {c.name for c in learnable} - {c.name for c in pick}:
+            pick = pick[:K - 1] + [c for c in learnable if c.name in subs]   # subgoal: practised when learnable
         for c in pick:
             practiced.setdefault(c.key(), c.name)
+        sub_done += [c.name for c in pick if c.name in subs]
         for c in pick:
             stems[c.name] = pfx + stem(c, len(stems) + 1)
         pcorpus = {t: [dsl.parse(p) for p in ps] for t, ps in corpus.items()}
@@ -310,7 +340,8 @@ def run(name, cfg, mapper, emit, log=print):
             e["expands_to"] = dsl.show(dsl.expand(plib[e["name"]], plib)) if e["name"] in plib else ""
         lib = {t: dsl.show(v) for t, v in plib.items()}
         corpus = {t: [dsl.show(p) for p in ps[:20]] for t, ps in pcorpus.items()}
-        tr = run_jobs("target", [job(tgt, lib, B["target"], "target", general=tgt_gen)])[0]
+        tr = run_jobs("target", [job(tgt, lib, cfg["subgoal"]["deep"] if sub_done else B["target"], "target",
+                                     general=tgt_gen)])[0]
         found = None
         if tr is not None and tr["found_cost"] is not None and tr.get("programs"):
             gens = [p for p in tr["programs"] if p.get("general")]
@@ -323,7 +354,9 @@ def run(name, cfg, mapper, emit, log=print):
         emit(dict(config=name, round=rnd, target=cfg["target"], rule=rule, pool=[c.to_dict() for c in pool],
                   status=status, scores=scores, pairs=pairs[:200], picked=[c.name for c in pick], stems=dict(stems),
                   merges=mlog, promoted=plog, lib=lib, corpus=corpus, target_probe=tp, target_rec=tr, general=found,
-                  mdl0=mdl0, totals=json.loads(json.dumps(totals)), dropped=[(s.name, s.why) for s in dropped]))
+                  mdl0=mdl0, totals=json.loads(json.dumps(totals)), dropped=[(s.name, s.why) for s in dropped],
+                  **({"subgoal": dict(name=sub, scored={n: v["loop"] for n, v in sc.items()}, done=list(sub_done),
+                                      deep=[r for r in deep if r is not None])} if cfg.get("subgoal") else {})))
         if found is not None:
             log(f"  invented {cfg['target']} in round {rnd}: {found['program']} = {found['primitive']}")
             break

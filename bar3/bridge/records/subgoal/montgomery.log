@@ -1,0 +1,39 @@
+1. the one-place test: q with t + q·N = 0 mod B, read off random reductions
+   base | steps | keyed by (t0, N0): groups, mixed | by t0 alone: groups, mixed | q = -t0·N0^-1 mod B
+      2 |  1643 |    2 groups, 0 mixed |   2 groups, 0 mixed | True
+      3 |  1479 |    6 groups, 0 mixed |   3 groups, 2 mixed | True
+      4 |  1546 |    8 groups, 0 mixed |   4 groups, 2 mixed | True
+      5 |  1455 |   20 groups, 0 mixed |   5 groups, 4 mixed | True
+      6 |  1539 |   12 groups, 0 mixed |   6 groups, 4 mixed | True
+      7 |  1487 |   42 groups, 0 mixed |   7 groups, 6 mixed | True
+      8 |  1546 |   32 groups, 0 mixed |   8 groups, 6 mixed | True
+      9 |  1452 |   54 groups, 0 mixed |   9 groups, 8 mixed | True
+     10 |  1532 |   40 groups, 0 mixed |  10 groups, 8 mixed | True
+     11 |  1491 |  110 groups, 0 mixed |  11 groups, 10 mixed | True
+     12 |  1543 |   48 groups, 0 mixed |  12 groups, 10 mixed | True
+     13 |  1480 |  156 groups, 0 mixed |  13 groups, 12 mixed | True
+     14 |  1514 |   84 groups, 0 mixed |  14 groups, 12 mixed | True
+     15 |  1551 |  120 groups, 0 mixed |  15 groups, 14 mixed | True
+     16 |  1490 |  128 groups, 0 mixed |  16 groups, 14 mixed | True
+2. the lift: t·B^(-k) mod N from the q table and the invented cells (mul, sub, select)
+   base  2: 300 / 300 reductions right; q table 2 rows (2 possible)
+   base  3: 300 / 300 reductions right; q table 6 rows (6 possible)
+   base  4: 300 / 300 reductions right; q table 8 rows (8 possible)
+   base  5: 300 / 300 reductions right; q table 20 rows (20 possible)
+   base  6: 300 / 300 reductions right; q table 12 rows (12 possible)
+   base  7: 300 / 300 reductions right; q table 42 rows (42 possible)
+   base  8: 300 / 300 reductions right; q table 32 rows (32 possible)
+   base  9: 300 / 300 reductions right; q table 54 rows (54 possible)
+   base 10: 300 / 300 reductions right; q table 40 rows (40 possible)
+   base 11: 300 / 300 reductions right; q table 110 rows (110 possible)
+   base 12: 300 / 300 reductions right; q table 48 rows (48 possible)
+   base 13: 300 / 300 reductions right; q table 156 rows (156 possible)
+   base 14: 300 / 300 reductions right; q table 84 rows (84 possible)
+   base 15: 300 / 300 reductions right; q table 120 rows (120 possible)
+   base 16: 300 / 300 reductions right; q table 128 rows (128 possible)
+3. the contrast: long division's first quotient digit, keyed by t's top two digits and N's top digit
+   base  2: 3 groups, 0 mixed, quotient digits in one group differing by up to 0
+   base  3: 12 groups, 4 mixed, quotient digits in one group differing by up to 1
+   base  7: 167 groups, 95 mixed, quotient digits in one group differing by up to 3
+   base 10: 474 groups, 223 mixed, quotient digits in one group differing by up to 5
+   base 16: 1410 groups, 340 mixed, quotient digits in one group differing by up to 7

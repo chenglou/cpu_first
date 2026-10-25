@@ -126,6 +126,7 @@ def bfs(prob: Problem, classes, lib, m, max_cost=10, max_states=1_000_000, time_
     seen = np.sort(keys_of(prob.root))
     parents = [None]
     res = Result()
+    stop_after = None                          # set by an accept that defers (djobs: clean_win)
     res.level_sizes.append(1)
     res.best_fit.append(int(prob.fits(prob.root)[0]))
     if prob.goal(prob.root)[0]:
@@ -218,12 +219,18 @@ def bfs(prob: Problem, classes, lib, m, max_cost=10, max_states=1_000_000, time_
                 break
             progs = programs(res, classes, limit=limit)
             ok = accept(progs)
+            if isinstance(ok, tuple):          # (oks, "defer"): take none here, and look one level further at most
+                ok = ok[0]
+                stop_after = d + 1 if stop_after is None else stop_after
             if any(ok):
                 res.accepted = [p for p, o in zip(progs, ok) if o]
                 break
             res.aliases.append((d, [dsl.show(p) for p in progs[:20]]))
             res.found_cost, res.goals = None, None
         if res.stop:
+            break
+        if stop_after is not None and d >= stop_after:
+            res.stop = f"deferred: nothing taken by level {d}"
             break
         seen = np.union1d(seen, uk)
     res.seconds = time.time() - t0

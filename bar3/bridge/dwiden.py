@@ -40,7 +40,8 @@ def pinned(c):
 
 def widen(c):
     """c's widening (a Cand), or None when c pins nothing or the widening is not well posed."""
-    regs = sorted(pinned(c), key=P.KEY.index)
+    pins = pinned(c)
+    regs = sorted(pins, key=P.KEY.index)
     if not regs:
         return None
     rows = {}
@@ -59,6 +60,7 @@ def widen(c):
         rows[B] = rr
     w = P.Cand(f"widen/{c.name}", "widen", f"{c.name}, with {', '.join(regs)} free to hold more (passed through)",
                c.inputs, c.outputs, rows, parent=c.name)
+    w.pins = pins                                      # dsubgoal.py extends the widening by them; not part of its key
     return w if P.well_posed(w) else None
 
 

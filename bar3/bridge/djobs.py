@@ -3,7 +3,10 @@
 A job: name, kind, regs (the problem's machine), outputs, probe (inputs {reg: [n]}, want [[...]]: the search's
 sampled rows), every (all rows at the search bases), check (all rows at the check bases), general (optional: all rows
 at bases up to 16), lib, budget (max_cost, max_states, time_limit, max_body, limit), near (near misses to return).
-A program is accepted when it is right on every row at the search bases and at the check bases.
+A program is accepted when it is right on every row at the search bases and at the check bases. With `clean_win`
+(CARRY.md §12, off by default), a right program that changes an input it does not output wins only when no right
+program within one level of it leaves those inputs as they were: the search looks one level further, and keeps the
+first right programs if none turns up.
 """
 
 from __future__ import annotations
@@ -70,16 +73,46 @@ def search_job(job):
                 rows[key]["general"] = right(p, lib, *job["general"], outs, S.GENERAL_BASES)
         return rows[key]
 
+    held = {}
+
+    def clean(p):
+        """Does p leave the inputs it does not output as they were, on every row at the search bases?"""
+        ins = {r: np.array(v, np.int64) for r, v in job["every"][0].items()}
+        regs, dead = dcm.evaluate(p, lib, ins, machine_for(S.SEARCH_BASES))
+        return not dead and all((regs[:, dcm.RI[r]] == v).all() for r, v in ins.items() if r not in outs)
+
+    def accept(ps):
+        ok = [verify(p)["verified"] for p in ps]
+        if not job.get("clean_win"):
+            return ok
+        good = [o and clean(p) for p, o in zip(ps, ok)]
+        if any(good):
+            return good
+        if any(ok) and not held:
+            held["progs"] = [p for p, o in zip(ps, ok) if o]
+            return [False] * len(ps), "defer"
+        return [False] * len(ps)
+
     res = dsearch.bfs(prob, classes, lib, machine_for(S.SEARCH_BASES), max_cost=job.get("max_cost", 10),
                       max_states=job.get("max_states", 200_000), time_limit=job.get("time_limit", 300),
-                      accept=lambda ps: [verify(p)["verified"] for p in ps], limit=job.get("limit", 200))
+                      accept=accept, limit=job.get("limit", 200))
+    if res.found_cost is None and held:                # nothing clean within one level: the first right programs
+        res.found_cost = dsl.cost(held["progs"][0])
     rec = dict(name=job.get("name"), kind=job.get("kind"), found_cost=res.found_cost, level_sizes=res.level_sizes,
                best_fit=res.best_fit, NP=prob.NP, seconds=round(res.seconds, 2), item_seconds=round(t_items, 2),
                stop=res.stop, n_tokens=n_tokens, n_kinds=n_kinds, n_classes=len(classes), lib_size=len(lib),
                aliases=[(d, ps[:3]) for d, ps in res.aliases])
     if res.found_cost is not None:
-        out = [verify(p) for p in dsearch.programs(res, classes, limit=job.get("limit", 200))]
+        if held and res.accepted is None:
+            found = held["progs"]
+        else:
+            found = dsearch.programs(res, classes, limit=job.get("limit", 200))
+        out = [verify(p) for p in found]
         rec["programs"] = [r for r in out if r["verified"]]
+        if job.get("clean_win"):
+            rec["clean"] = any(clean(dsl.parse(r["program"])) for r in rec["programs"])
+            if held:
+                rec["dirty_first"] = [dsl.show(p) for p in held["progs"][:5]]
     if job.get("near"):
         rec["near"] = [(fit, d, dsl.show(p)) for fit, d, p in dsearch.near_misses(res, prob, classes, n=job["near"])]
     rec["wall"] = round(time.time() - t0, 2)

@@ -274,8 +274,9 @@ discrete values, as the project's tables snap to exact digits.
 The study's test asks whether the answer is its own state (§2.2): equal answers must stay equal after any appended
 digit. It fails when two residues share an answer but not their futures, and then the loop's state must be x mod N.
 Checked in Python ([`checks/step_test.py`](checks/step_test.py); Fibonacci's pair state in
-[`checks/fib_and_float.py`](checks/fib_and_float.py)) on every x < 2,000 (600 for Fibonacci, 400 for its pair), every digit d
-and every N ≤ 7 (odd N for Montgomery's), in unary (x → x + 1), base 2 and base 10, with one verdict for all three:
+[`checks/fib_and_float.py`](checks/fib_and_float.py)) on every x < 2,000 (600 for Fibonacci, 400 for its pair), every
+digit d and every N ≤ 7 (odd N for Montgomery's), in unary (x → x + 1), base 2 and base 10, with one verdict for all
+three:
 
 | target | answer its own state? | state, and step x → x·B + d |
 |---|---|---|

@@ -1,0 +1,1592 @@
+[
+ {
+  "target": "h1",
+  "record": "lp_clean_new_h1_L1.jsonl",
+  "pool": 297,
+  "record_pool": 210,
+  "scored": 107,
+  "inputs_law": "mod(mul(X,X),N)",
+  "consts": [],
+  "rows": 55,
+  "sq": [],
+  "top": [
+   {
+    "name": "law2/absdiff(add(X,X),N)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/max(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mul(pred(X),N)",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "value/L.X[MOV.A.X MOV.X.N] -> A",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mul(add(X,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mod(monus(N,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/add(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/monus(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/succ(mul(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/pred(mul(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   }
+  ]
+ },
+ {
+  "target": "rho",
+  "record": "lp_clean_new_rho_L1.jsonl",
+  "pool": 384,
+  "record_pool": 297,
+  "scored": 114,
+  "inputs_law": null,
+  "consts": [
+   2
+  ],
+  "rows": 55,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 1,
+    "tied": 1,
+    "law": "mod(succ(g),N)",
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "status": null
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": "mod(succ(g),N)",
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law/mul(X,X)/x",
+    "law": "mod(succ(g),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": "mod(succ(g),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/add(mul(X,X),N)",
+    "law": "mod(succ(g),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/succ(mul(X,X))",
+    "law": "mod(g,N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/absdiff(add(X,X),N)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/max(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law/add(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/add(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/add(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/monus(N,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   }
+  ]
+ },
+ {
+  "target": "minus1",
+  "record": "lp_clean_new_minus1_L1.jsonl",
+  "pool": 300,
+  "record_pool": 210,
+  "scored": 107,
+  "inputs_law": null,
+  "consts": [],
+  "rows": 55,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 2,
+    "tied": 1,
+    "law": null,
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "status": null
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/add(mul(X,X),N)",
+    "law": "mod(pred(g),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": null,
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/absdiff(add(X,X),N)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/max(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/absdiff(mul(X,N),N)",
+    "law": null,
+    "table": 8,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law/add(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/add(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/add(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/monus(N,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mod(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "trivial",
+    "cost": 1
+   }
+  ]
+ },
+ {
+  "target": "plus3",
+  "record": "lp_clean_new_plus3_L1.jsonl",
+  "pool": 295,
+  "record_pool": 205,
+  "scored": 110,
+  "inputs_law": null,
+  "consts": [
+   3,
+   4
+  ],
+  "rows": 55,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 1,
+    "tied": 1,
+    "law": "mod(add(g,3),N)",
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "status": null
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": "mod(add(g,3),N)",
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law/mul(X,X)/x",
+    "law": "mod(add(g,3),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": "mod(add(g,3),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/add(mul(X,X),N)",
+    "law": "mod(add(g,3),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/absdiff(add(X,X),N)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/max(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law/add(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/add(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/add(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/monus(N,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mod(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "trivial",
+    "cost": 1
+   }
+  ]
+ },
+ {
+  "target": "affine",
+  "record": "lp_clean_new_affine_L1.jsonl",
+  "pool": 309,
+  "record_pool": 221,
+  "scored": 113,
+  "inputs_law": null,
+  "consts": [
+   3
+  ],
+  "rows": 55,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 8,
+    "tied": 106,
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 26,
+    "status": null
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mod(add(X,X),N)",
+    "law": "mod(succ(g),N)",
+    "table": 15,
+    "how": "g,N",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law/add(X,X)/x",
+    "law": "mod(succ(g),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/succ(X)/x",
+    "law": "mod(add(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 2
+   },
+   {
+    "name": "law2/add(succ(X),N)",
+    "law": "mod(add(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/add(succ(X),X)",
+    "law": "mod(g,N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mod(succ(X),N)",
+    "law": "mod(add(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/add(add(X,N),X)",
+    "law": "mod(succ(g),N)",
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law/add(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/add(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/monus(N,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mod(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "trivial",
+    "cost": 1
+   },
+   {
+    "name": "law/min(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "trivial",
+    "cost": 1
+   }
+  ]
+ },
+ {
+  "target": "ten",
+  "record": "lp_clean_deep_ten_L1.jsonl",
+  "pool": 231,
+  "record_pool": 231,
+  "scored": 104,
+  "inputs_law": null,
+  "consts": [
+   10
+  ],
+  "rows": 55,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 1,
+    "tied": 1,
+    "law": "mod(mul(g,10),N)",
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved"
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": "mod(mul(g,10),N)",
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/absdiff(add(X,X),N)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 5
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/max(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 6
+   },
+   {
+    "name": "law2/mod(add(X,X),N)",
+    "law": null,
+    "table": 15,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": null,
+    "table": 12,
+    "how": "g",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 5
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 2
+   },
+   {
+    "name": "law2/mul(add(X,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 5
+   },
+   {
+    "name": "law2/mod(monus(N,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law2/add(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "law2/monus(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "law2/succ(mul(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "law2/pred(mul(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 4
+   }
+  ]
+ },
+ {
+  "target": "tenrho",
+  "record": "lp_clean_deep_tenrho_L1.jsonl",
+  "pool": 237,
+  "record_pool": 237,
+  "scored": 107,
+  "inputs_law": null,
+  "consts": [
+   11
+  ],
+  "rows": 55,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 1,
+    "tied": 1,
+    "law": null,
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved"
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": null,
+    "table": 24,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/absdiff(add(X,X),N)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 5
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/max(monus(N,X),X)",
+    "law": null,
+    "table": 20,
+    "how": "g,N",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 6
+   },
+   {
+    "name": "law2/mod(add(X,X),N)",
+    "law": null,
+    "table": 15,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/absdiff(mul(X,X),N)",
+    "law": null,
+    "table": 3,
+    "how": "g,N",
+    "pure": 55,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law/add(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/add(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/add(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/monus(N,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,X)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(N,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mod(X,N)/x",
+    "law": null,
+    "table": 0,
+    "how": "",
+    "pure": 55,
+    "status": "trivial",
+    "cost": 1
+   }
+  ]
+ },
+ {
+  "target": "cube",
+  "record": "lp_clean_deep_cube_L1.jsonl",
+  "pool": 278,
+  "record_pool": 278,
+  "scored": 107,
+  "inputs_law": null,
+  "consts": [],
+  "rows": 55,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 1,
+    "tied": 1,
+    "law": "mod(mul(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 49,
+    "status": "unsolved"
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": "mod(mul(g,X),N)",
+    "table": 0,
+    "how": "",
+    "pure": 49,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/mul(pred(X),N)",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "value/L.X[MOV.A.X MOV.X.N] -> A",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 5
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 2
+   },
+   {
+    "name": "law2/mul(add(X,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 5
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 5
+   },
+   {
+    "name": "law2/mod(monus(N,X),N)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law2/add(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "law2/monus(mul(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "law2/succ(mul(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "law2/pred(mul(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "value/L.X[MOV.A.N] DEC.A -> A",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "duplicate",
+    "cost": 3
+   },
+   {
+    "name": "dream/INC.A Z.X[MOV.N.A] L.A[MOV.A.N MOV.T.A]",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   }
+  ]
+ },
+ {
+  "target": "mont",
+  "record": "lp_clean_deep_mont_L1.jsonl",
+  "pool": 308,
+  "record_pool": 308,
+  "scored": 106,
+  "inputs_law": null,
+  "consts": [],
+  "rows": 25,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 1,
+    "tied": 1,
+    "law": null,
+    "table": 11,
+    "how": "g,N",
+    "pure": 25,
+    "status": "unsolved"
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": null,
+    "table": 11,
+    "how": "g,N",
+    "pure": 25,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/absdiff(add(X,X),N)",
+    "law": null,
+    "table": 10,
+    "how": "g,N",
+    "pure": 25,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/mul(monus(N,X),X)",
+    "law": null,
+    "table": 10,
+    "how": "g,N",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 5
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 10,
+    "how": "g,N",
+    "pure": 25,
+    "status": "unsolved",
+    "cost": null
+   },
+   {
+    "name": "law2/max(monus(N,X),X)",
+    "law": null,
+    "table": 10,
+    "how": "g,N",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 6
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 4,
+    "how": "g,x",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": null,
+    "table": 4,
+    "how": "g,x",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 5
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 4,
+    "how": "g,x",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 2
+   },
+   {
+    "name": "law2/mul(add(X,X),N)",
+    "law": null,
+    "table": 4,
+    "how": "g,x",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 5
+   },
+   {
+    "name": "law2/mod(monus(N,X),N)",
+    "law": null,
+    "table": 4,
+    "how": "g,x",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law2/add(mul(X,N),X)",
+    "law": null,
+    "table": 4,
+    "how": "g,x",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "law2/monus(mul(X,N),X)",
+    "law": null,
+    "table": 4,
+    "how": "g,x",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "law2/succ(mul(X,N))",
+    "law": null,
+    "table": 4,
+    "how": "g,x",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "law2/pred(mul(X,N))",
+    "law": null,
+    "table": 4,
+    "how": "g,x",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 4
+   },
+   {
+    "name": "value/DEC.N L.X[MOV.A.N MOV.N.X] -> A",
+    "law": null,
+    "table": 4,
+    "how": "g,N",
+    "pure": 25,
+    "status": "learnable",
+    "cost": 4
+   }
+  ]
+ },
+ {
+  "target": "fib",
+  "record": "lp_clean_new_fib_L1.jsonl",
+  "pool": 324,
+  "record_pool": 237,
+  "scored": 111,
+  "inputs_law": null,
+  "consts": [],
+  "rows": 55,
+  "sq": [
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "rank": 8,
+    "tied": 3,
+    "law": null,
+    "table": 24,
+    "how": "g,x",
+    "pure": 55,
+    "status": null
+   }
+  ],
+  "top": [
+   {
+    "name": "law2/monus(add(X,X),N)",
+    "law": null,
+    "table": 29,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/min(add(X,X),N)",
+    "law": null,
+    "table": 29,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/div(N,monus(N,X))",
+    "law": null,
+    "table": 29,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/div(X,monus(N,X))",
+    "law": null,
+    "table": 29,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/min(monus(N,X),X)",
+    "law": null,
+    "table": 29,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mod(N,succ(X))",
+    "law": null,
+    "table": 25,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mod(add(X,X),N)",
+    "law": null,
+    "table": 25,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/monus(mul(X,X),N)",
+    "law": null,
+    "table": 24,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mod(mul(X,X),N)",
+    "law": null,
+    "table": 24,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/min(mul(X,X),N)",
+    "law": null,
+    "table": 24,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mul(pred(X),N)",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "value/L.X[MOV.A.X MOV.X.N] -> A",
+    "law": null,
+    "table": 17,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law/mul(X,N)/x",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": "learnable",
+    "cost": 3
+   },
+   {
+    "name": "law2/mul(add(X,N),X)",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   },
+   {
+    "name": "law2/mod(N,add(X,N))",
+    "law": null,
+    "table": 9,
+    "how": "g,x",
+    "pure": 55,
+    "status": null,
+    "cost": null
+   }
+  ]
+ }
+]

@@ -66,13 +66,14 @@ count). The view holds for the search: more speed alone does not reach them.
    step). Guidance reaches about 3 bits further for each tenfold of states, and found x³ over a carried library with
    a third of the states the plain search needed; of its 76 searches in these runs, 2 found a program the plain one
    had not, and neither was general.
-5. *Still missing*: Montgomery's x²·2⁻¹ in the anchored-pairs sequences (not in 5 rounds; its programs there pass
-   the N ≤ 10 check but are wrong on 40% of the pairs up to N = 40), Fibonacci along them (from round 1 they find a
-   program that is right on every pair up to N = 40, but it needs more steps at N = 40 than the general check's
-   machine allows, a million, so it is not accepted), and 10·x², 10·x² + 1, x³ from scratch. Those three need x² mod
-   N as a piece, which the base law book never poses; the depth-2 law book poses it, but its 6-token program is
-   mostly beyond the probes over the bigger vocabulary, and the one time it was learnable it tied with dozens of
-   others and was not picked.
+5. *Still missing*: Montgomery's x²·2⁻¹ in the anchored-pairs sequences (not in 5 rounds; its programs there pass the
+   N ≤ 10 check but are wrong on 40% of the pairs up to N = 40), Fibonacci along them (from round 1 they find a program
+   that is right on every pair up to N = 40, but it needs more steps at N = 40 than the general check's machine allows,
+   a million, so it is not accepted), and 10·x², 10·x² + 1, x³ from scratch. Those three need x² mod N as a piece, which
+   the base law book never poses; the depth-2 law book poses it, but its 6-token program is mostly beyond the probes
+   over the bigger vocabulary, and the one time it was learnable it tied with dozens of others and was not picked. A
+   follow-up ([subgoal/SUBGOAL.md](subgoal/SUBGOAL.md)) aims one deeper probe at that piece, chosen because the target
+   factors through it, and gets x³ (by both rules) and 10·x² (hardest first) from scratch in round 1.
 
 **How far N goes.** At N ≤ 26 the learner, unchanged, invents x² mod N, x² ± 1 and 2x + 1 in round 0, and
 Fibonacci in round 1 (by both rules); not x² + 3 in 2 rounds (it needed 1 at N ≤ 7). At N ≤ 50, x² mod N and
@@ -109,11 +110,12 @@ costs.
 **Cut, then finished.** Modal's workspace spend limit stopped every container at about 14:27 UTC on Oct 24, cutting
 Montgomery's after 3–4 rounds of each anchored-pairs sequence, Fibonacci at the end of the sequences, hardest first's
 sequence at 10·x² + 1, hardest first's Fibonacci at N ≤ 26 after round 0, and a few side runs. Once the limit was
-raised, the five groups with a store were relaunched; each replayed its finished rounds exactly and went on (§6).
-What they added: hardest first's sequence invents x³, Montgomery's and Fibonacci; the anchored-pairs sequences and
-both branches miss Montgomery's and Fibonacci in 5 rounds; hardest first at N ≤ 26 invents Fibonacci in round 1. The
-depth-2 law-book runs and x² + 3 at N ≤ 26 had no store and were not rerun here. In all: about 562 search-hours and $62
-(184 and $22 of them after the cut).
+raised, the five groups with a store were relaunched; each replayed its finished rounds exactly and went on (§6). What
+they added: hardest first's sequence invents x³, Montgomery's and Fibonacci; the anchored-pairs sequences and both
+branches miss Montgomery's and Fibonacci in 5 rounds; hardest first at N ≤ 26 invents Fibonacci in round 1. The depth-2
+law-book runs and x² + 3 at N ≤ 26 had no store and were not rerun here. The subgoal study's controls ran the depth-2
+runs again, the same in every round these records hold, to 5 rounds ([subgoal/SUBGOAL.md](subgoal/SUBGOAL.md)). In all:
+about 562 search-hours and $62 (184 and $22 of them after the cut).
 <!-- /PLAIN -->
 
 ## Details
@@ -540,7 +542,7 @@ a store were relaunched (below) and finished:
 | `branch_ct2a2_clean_targets_L1_after_cube_fib_L1` | Fibonacci, from the state after x³ | rounds 0–2, no program (no source poses its step) | no, 5 rounds |
 | `branch_ct2a2_clean_new_targets_L1_after_cube_fib_L1` | Fibonacci, from the state after x³, new sources | round 0's probes (in its store) | no, 5 rounds ‡ |
 | `lp_clean_new_k26_fib_N1` | Fibonacci at N ≤ 26, hardest first | round 0, no program | **round 1** |
-| `{lp,ct2a2}_clean_deep_{ten,tenrho,cube,mont}_L1` | the depth-2 law book | 2–4 rounds each, nothing | not rerun here (no store) |
+| `{lp,ct2a2}_clean_deep_{ten,tenrho,cube,mont}_L1` | the depth-2 law book | 2–4 rounds each, nothing | not rerun here (no store); run again as the subgoal study's controls, the same in every round these hold, to 5 rounds: 10·x² in round 4 under anchored pairs, nothing else ([subgoal/SUBGOAL.md](subgoal/SUBGOAL.md)) |
 | `{lp,ct2a2}_clean_new_k26_plus3_N1` | x² + 3 at N ≤ 26 | rounds 0–1, no program | not rerun here (stopped by hand: its container's neighbour run crashed on the empty-program bug of §1) |
 
 Every program the finished runs found is right on every pair up to N = 120 (7,260 pairs; Montgomery's 3,600, odd N).

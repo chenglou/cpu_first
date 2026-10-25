@@ -332,13 +332,13 @@ later ones follow them as they land. None changes a certified file or record.
   - **Why:** decay holds the weights small, small weights pass blurred digits, and a blurred code fits the training
     answers on the soft path, unsteadily, without being the machine. The exact rule needs larger weights than decay
     allows. Started at the compiled rule, every arm loses it within a few hundred steps.
-  - **Optimizers that can rest at the rule** (§10, 91 runs). Adam moves every weight by about half its learning rate
+  - **Optimizers that can rest at the rule** (§10, 104 runs). Adam moves every weight by about half its learning rate
     even where every lesson is met, so §10 tried Adam with eps 1e-4 and plain SGD. Started at the compiled rule with
     every lesson met, both keep it and certify, 4 of 4 seeds each, and every arm with weight decay leaves it. Where
     the lessons still pull, plain SGD keeps the training answers but drifts one size up, in exactly the situations
     the training grid never shows. From random, every arm still memorizes: one size up no run gets beyond chance.
-    13 runs from random were cut off by Modal's spend limit; finishing them can change only numbers read at a run's
-    end, not that verdict.
+    13 runs from random, cut off by Modal's spend limit, were finished from their checkpoints once it was raised:
+    the verdict held, and only numbers read at a run's end moved.
 - **The loop over T, learned** ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), code and records in
   [`integration/learned_loop/`](integration/learned_loop/)). sp2's hand-written countdown, its gate, and the round
   search's assumption that the answer at T = t is the round run t times are removed. The machine gets one generic

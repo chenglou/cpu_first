@@ -2,7 +2,8 @@
 
 *Written 2026-10-23, with [REVIEW.md](REVIEW.md), for `main` at `f55fdca`. Brought up to date on 2026-10-24, once the
 later studies were committed: §1's scan covers their commits, and §5's sizes include them. The same day the repo went
-to a private GitHub repository (§6).*
+to a private GitHub repository (§6). Early on 2026-10-25, after the reruns and bar 3's new studies landed, §1's scan
+was extended to their commits and §4 and §5's sizes were remeasured.*
 
 ## 1. Secrets and private data
 
@@ -20,6 +21,11 @@ there are no other branches, tags, stashes, remotes or unreachable objects), and
 **Again on 2026-10-24:** every line added by the six commits since `f55fdca` (220 files: this pass, the ablation,
 self-practice, the shader follow-up and the doc updates), for the same patterns. No credentials, no emails, and one
 home path, in a script default (`integration/self_practice/core.py`, now fixed; see the table).
+
+**Again on 2026-10-25:** every line added by the 13 commits since `6596beb` (313 files: the reruns after the spend
+limit, the weak-check fix in eight certified variants, bar 3's finished runs and its subgoal study, and the doc
+updates), for the same patterns and for the competition key's exact value. No credentials and no emails; the author's
+home path only inside four NCA relaunch logs (`nca/logs/rest1_relaunch*.log`), left as evidence like the others.
 
 | finding | where | done |
 |---|---|---|
@@ -76,15 +82,16 @@ before REVIEW.md.
 1 MB. There were no `.DS_Store` files, temp files or stray untracked outputs.
 
 **Kept on purpose, on disk only.** `.gitignore` keeps 17 run outputs over 5 MB out of git: search dumps and two
-checkpoints, 322 MB in all, the largest 52 MB. Only two are cited by name, the two `ladder.jsonl` files that
-HANDWIRED_BRIDGE.md mentions, and a clone does not have them.
+checkpoints, 337 MB in all on 2026-10-25, the largest 54 MB. Only two are cited by name, the two `ladder.jsonl` files
+that HANDWIRED_BRIDGE.md mentions, and a clone does not have them.
 
 **Not touched:** the work of the sessions still running then: `nca/` (uncommitted changes),
 `integration/self_practice/`, `integration/SELF_PRACTICE.md`, `integration/ablation_s3/` and
 `integration/ABLATION_S3.md` (untracked then). All of it has since been committed.
 
-**One record over 5 MB is tracked on purpose:** `nca/runs/trim1.jsonl` (14.6 MB), the records of NCA.md §9's 64 runs
-from random weights, which §9's numbers are checked against.
+**Three records over 5 MB are tracked on purpose:** `nca/runs/trim1.jsonl` (14.6 MB), the records of NCA.md §9's 64
+runs from random weights, and `nca/runs/rest_stab.jsonl` (8.8 MB) and `nca/runs/rest1.jsonl` (6.4 MB), two of §10's.
+The sections' numbers are checked against them.
 
 ### Proposed removals (not done: the user chose to keep every log)
 
@@ -109,14 +116,14 @@ To stage the deletions without staging the running sessions' changes, name the f
 
 ## 5. What goes, and how
 
-**Tracked:** 4,409 files at `main` on the afternoon of 2026-10-24 (3,635 that morning, before the day's studies
-landed), 558 MB as files. The largest is `nca/runs/trim1.jsonl`, 14.6 MB (§4), then `nca/runs/rest_stab.jsonl`,
-8.8 MB; every other tracked file is under 5 MB, and all are far under GitHub's 100 MB per-file limit (and its 50 MB
-warning). Packed, the whole history is about 50 MB.
+**Tracked:** 4,698 files at `main` early on 2026-10-25 (4,409 the afternoon before, 3,635 that morning), 647 MB as
+files. The largest is `nca/runs/trim1.jsonl`, 14.6 MB (§4), then `nca/runs/rest_stab.jsonl`, 8.8 MB, and
+`nca/runs/rest1.jsonl`, 6.4 MB; every other tracked file is under 5 MB, and all are far under GitHub's 100 MB per-file
+limit (and its 50 MB warning). Packed, the whole history is about 55 MB.
 
 **On disk only** (in no clone, bundle or push):
-- the 17 ignored outputs (322 MB);
-- the running sessions' untracked files (about 11 MB then; committed since);
+- the 17 ignored outputs (337 MB);
+- the running sessions' untracked files (early on 2026-10-25, the bridge session's carry study, in progress);
 - every uncommitted change.
 
 **Commit first:** anything still uncommitted. A clone, bundle or push carries only what is committed.
@@ -127,10 +134,10 @@ warning). Packed, the whole history is about 50 MB.
 git clone https://github.com/tilde-research/one-layer-deeper.git && git -C one-layer-deeper checkout 87e5c26
 ```
 
-**Options** (sizes remeasured on the afternoon of 2026-10-24 from test copies, since trashed; option 3 is the one
-the user chose, §6):
+**Options** (sizes remeasured early on 2026-10-25 from test copies, since trashed; option 3 is the one the user
+chose, §6):
 
-1. **A git bundle** (recommended): one file of about 50 MB, the full history, only what is committed.
+1. **A git bundle** (recommended): one file of about 55 MB, the full history, only what is committed.
 
    ```bash
    cd ~/github/one-layer/cpu_first
@@ -139,7 +146,7 @@ the user chose, §6):
    # the reviewer: git clone cpu_first.bundle cpu_first
    ```
 
-2. **A zip of a fresh clone**: about 150 MB (the snapshot plus the bundle; not built this time), the files plus a
+2. **A zip of a fresh clone**: about 175 MB (the snapshot plus the bundle; not built this time), the files plus a
    packed `.git`. `--no-local` packs the objects instead of hard-linking them. Removing `origin` drops the laptop's
    path from `.git/config`; the clone's reflog still notes where it came from.
 
@@ -148,7 +155,7 @@ the user chose, §6):
    zip -qry cpu_first.zip cpu_first
    ```
 
-3. **A private GitHub repository**: the push is about 50 MB, and the largest tracked file is 14.6 MB. This uploads to a
+3. **A private GitHub repository**: the push is about 55 MB, and the largest tracked file is 14.6 MB. This uploads to a
    third-party service.
 
    ```bash
@@ -157,13 +164,13 @@ the user chose, §6):
    gh api -X PUT repos/<your-login>/cpu_first/collaborators/<reviewer-login> -f permission=pull
    ```
 
-4. **A snapshot without history**: about 102 MB. No commit hash the docs cite can be checked from it.
+4. **A snapshot without history**: about 118 MB. No commit hash the docs cite can be checked from it.
 
    ```bash
    git -C ~/github/one-layer/cpu_first archive --format=zip --prefix=cpu_first/ -o ~/Desktop/cpu_first_snapshot.zip HEAD
    ```
 
-To include the on-disk-only outputs as well (322 MB before compression):
+To include the on-disk-only outputs as well (337 MB before compression):
 
 ```bash
 cd ~/github/one-layer/cpu_first && git ls-files --others --ignored --exclude-standard -z | xargs -0 tar czf ~/Desktop/cpu_first_big_outputs.tgz

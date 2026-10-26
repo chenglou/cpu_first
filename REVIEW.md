@@ -34,11 +34,12 @@ The project measures itself against three bars ([OVERVIEW §4](OVERVIEW.md#4-whe
    [BREADTH.md](bar3/BREADTH.md)). Aiming one deeper search at the piece the target factors through, found from the rows
    alone, brings x³ and 10·x² from scratch ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md)). Frozen with that rule, it
    invents 5 of 10 formulas that none of its rules were written for, with its predictions written down before the runs
-   ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md)). Run on one digit place, it invents all four of stage 3's digit cells,
-   each under at least one of its choosing rules; multiply-accumulate needs a deeper search aimed at its piece the same
-   way ([BRIDGE.md](bar3/bridge/BRIDGE.md), [CARRY.md](bar3/bridge/CARRY.md)). At H1's size, the self-practising stage 3
-   learns 8 of 11 tasks of the family after three general changes to its round's search
-   ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
+   ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md)). Given a loop over x's digits, it invents x mod N in base 2 by long
+   division's step, right up to nine digits ([DIGITS.md](bar3/scale/digits/DIGITS.md)). Run on one digit place, it
+   invents all four of stage 3's digit cells, each under at least one of its choosing rules; multiply-accumulate needs a
+   deeper search aimed at its piece the same way ([BRIDGE.md](bar3/bridge/BRIDGE.md), [CARRY.md](bar3/bridge/CARRY.md)).
+   At H1's size, the self-practising stage 3 learns 8 of 11 tasks of the family after three general changes to its
+   round's search ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
 
 Four rules are **gray** for s3i: 4, 7, 8 and 14 (§5). The write-ups flag them; they do not argue them away.
 
@@ -488,6 +489,27 @@ later ones follow them as they land. None changes a certified file or record.
   - **Not reached:** (x³ + x), Lucas, Tribonacci, floor(x²/N) and the triangular numbers. Two need a step no source
     poses: the running sum's y(x + 1) from y(x) and x, and a step on three numbers. Three need a program longer than the
     search reaches. About $11.
+- **x as digits** ([DIGITS.md](bar3/scale/digits/DIGITS.md), code and records in
+  [`bar3/scale/digits/`](bar3/scale/digits/)). A loop over x's units cannot reach x of 6–8 digits. So the frozen learner
+  was given a loop over x's digits in base B and a source that asks whether the answer for x·B + d is a function of the
+  answer for x, the digit d and N, and if so poses that step. A program counts only if it also passes a check at big x.
+  36 runs, with the predictions written down first (`PREREG.md`, its hash recorded).
+  - **What came:** x mod N in base 2 with the source: round 1 under anchored pairs, round 3 under hardest first. Both
+    programs loop over x's bits with long division's base-2 step as the body, and are right on 1,000 x below 10⁹.
+  - **The predictions:** all 5 general ones held, and 35 of 36 runs came out as predicted.
+  - **Not reached:** anything in unary, whose programs all count and run out of steps; base 10's step; 2^x mod N, whose
+    square-and-multiply step was never learnable; and x² mod N. The subgoal found its hidden state, x mod N on long x,
+    but the alias check counted that a twin of the law book's x mod N, and where the twin was practised the pick rule's
+    score saw no gain over counting programs. About $51.
+- **Two sources from Newton's differences** ([NEWTON.md](bar3/scale/newton/NEWTON.md), code and records in
+  [`bar3/scale/newton/`](bar3/scale/newton/)). The held-out test and the subgoal study each named a piece no source
+  poses. The frozen learner was given two sources, behind flags: a running sum's step, y(x + 1) from y(x) and x, and the
+  offset, each rest of the way less its value at X = 0.
+  - **What came:** the triangular numbers in round 1 under anchored pairs; that result was seen in a replay before the
+    predictions were written. Under hardest first the step loses to pool order.
+  - **Not reached:** 10·x² + 1. The offset poses its piece, 10X mod N, and the learner solves it, but the duplicate
+    check, run on random machine states on which both programs die, calls it a copy of 3X.
+  - The nine earlier held-out wins stand. Run locally from the earlier stores, $0.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

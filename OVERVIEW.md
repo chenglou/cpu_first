@@ -23,7 +23,8 @@ bar 3). Late that night both four-piece files certify, and the five-piece file, 
 learns, certifies in 751 s of training (§4.8). Early on Oct 26 its rebuild with work budgets set from eight climbs,
 fast2, certifies 8 of 8 and becomes the file to judge ([REVIEW.md](REVIEW.md) §2). Then bar 3's tie-break by the subgoal
 score brings 10·x² + 1 under hardest first for the first time, and a first composition test finds that bar 3's sources
-do not yet replace stage 3's law book on its digit machine (§4, bar 3).*
+do not yet replace stage 3's law book on its digit machine (§4, bar 3). Its second round replaces the book's last law,
+the reduction, with bar 3's own pieces (§4, bar 3).*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -92,6 +93,9 @@ do not yet replace stage 3's law book on its digit machine (§4, bar 3).*
   and 06:46 PT, each before the runs it names), the copied stage-3 driver's record against the committed driver's (equal
   but for timings), `verify.py summary` rerun with output identical to its log, and the control's round rerun on both
   ladders, 768/768 on every rung.*
+- *For the composition test's second round (§4, bar 3): its pre-registration's and two addenda's hashes and file times
+  (07:41, 07:53 and 08:43 PT, each before the runs it covers, by the launch logs), its three replays against round 1's
+  records (equal but for timings), and the round rerun on both ladders, 768/768 on every rung.*
 - *The data counts in §1–2 were computed from the released H1 files, and the commits come from `git log`.*
 - *The one-line findings of the timeline (§3) and the summaries of how each piece learns, including the NCA and bar-3
   studies, summarize their write-ups, which are linked; they were not re-run.*
@@ -304,6 +308,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 26, 01:17 `577fb72` | **bar 3 gets 10·x² + 1 under hardest first**: with the row check, breaking ties by the subgoal score picks its piece, 10X mod N, in round 2; passing priority to a subgoal's twin costs a win, and a score that sees big x cannot act | [bar3/scale/picks/PICKS.md](bar3/scale/picks/PICKS.md) |
 | Oct 26, 06:03 `8e0126b` | bar 3's deeper look finds the program that passes at big x, but the pick rule never picks its step; the twin as a fifth pick keeps every win; x² mod N at big x still does not come | [bar3/scale/reach/REACH.md](bar3/scale/reach/REACH.md) |
 | Oct 26, 07:32 `9e24be4` | **a first composition test**: on stage 3's digit machine with its law book removed, bar 3's sources pose no piece of the round, in 5 arms; the 5-law book's control gets the round, 768/768 to T = 64 | [bar3/scale/compose/COMPOSE.md](bar3/scale/compose/COMPOSE.md) |
+| Oct 26, 09:43 `ad77ad4` | **bar 3's pieces replace the law book's reduction**: on stage 3's machine, with the 5-law book less its reduction, bar 3's ported sources, subgoal score and a search that tests more than one spelling per state get the round at level 5, right to T = 64; bar 3's set alone still does not | [bar3/scale/compose2/COMPOSE2.md](bar3/scale/compose2/COMPOSE2.md) |
 
 ### The lessons that came out of the failures
 
@@ -534,6 +539,13 @@ in the answer.
   dirty, so its near misses' values are not functions of x and N; the multiply's route, the rows where x² < N, is never
   posed at this width; and the reduction's route fails twice, since x² is never a near miss and the climb's searches
   accept nothing even when handed that problem. About $11.
+- **Composition, round 2** ([COMPOSE2.md](bar3/scale/compose2/COMPOSE2.md)). With bar 3's subgoal score, row check and
+  tie-break ported, clean values, restrictions posed where they hold, and the search fixed to test up to 16 spellings
+  per state (it had reached the reduction's state and tested one look-alike), bar 3's set replaces book_min's reduction:
+  with the other four laws, the round comes at level 5 as x² then the reduction it learned, right on every rung of both
+  ladders to T = 64. The subgoal score, its law view, a deeper probe aimed at the subgoal's rest and the spelling fix
+  are each needed; the tie-break never acted. Bar 3's set alone still gets nothing: without the multiply-add row, the
+  multiply is 9 tokens over the primitives. About $30.
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -1177,8 +1189,7 @@ digits, testing the theory note's predictions ([theory/LARGE_NUMBERS.md](theory/
 practice sources the held-out test found missing (§4, bar 3). So have the combined file's second and third rounds, its
 fast version and fast2, now the file to judge (§4.8), and bar 3's duplicate check on each problem's own rows (§4, bar
 3). So have bar 3's three changes to what it picks (§4, bar 3). So have the next two, a deeper look and a fifth pick
-(§4, bar 3). So has the composition test (§4, bar 3). Running now: its second round, which ports the rest of bar 3's
-pieces and the fixes it names (§4, bar 3).
+(§4, bar 3). So has the composition test (§4, bar 3). So has its second round (§4, bar 3). Nothing else is running.
 
 Everything else described here is committed.
 
@@ -1273,9 +1284,9 @@ and the five-piece file, made fast without changing what it learns, certifies in
    Fibonacci), and on one digit place, where it invents all four of stage 3's digit cells. Frozen, it invents 5 of 10
    formulas none of its rules were written for (HELDOUT.md). Given a loop over x's digits and a source that asks one
    question of the rows, it invents x mod N in base 2 by long division's step, right up to nine digits; x² mod N and 2^x
-   mod N do not come (DIGITS.md). On stage 3's digit machine, its sources do not yet replace the law book (COMPOSE.md).
-   At H1's size there is the self-practising stage 3: one target at first, now 8 of 11 tasks, after changes written with
-   the family in view (§4.8).
+   mod N do not come (DIGITS.md). On stage 3's digit machine, its pieces replace the law book's reduction but not yet
+   the four laws below it (COMPOSE.md, COMPOSE2.md). At H1's size there is the self-practising stage 3: one target at
+   first, now 8 of 11 tasks, after changes written with the family in view (§4.8).
 7. **What its sources cannot pose.** A new source poses steps that move two numbers at once, and Fibonacci is now
    invented from scratch. 10·x², 10·x² + 1 and x³ need x² mod N as a piece, which the base law book never poses; the
    depth-2 book poses it, and a score of whether the target factors through it, with one deeper search aimed there,
@@ -1324,7 +1335,7 @@ s3i: the service refused it ("Submissions are now closed"), so there is no hoste
 | [`HANDOVER.md`](HANDOVER.md) | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, what is tracked and what is on disk only |
 | [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |
-| [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/`. Stage 3's digit instructions invented at one place, and the s3i variant that uses one ([BRIDGE.md](bar3/bridge/BRIDGE.md), in `bridge/`); add-with-carry, from the round the spend limit had cut off, and multiply-accumulate, with a deeper search aimed at its piece ([CARRY.md](bar3/bridge/CARRY.md)). The learner made ten times cheaper, then given new kinds of practice problems ([SCALE.md](bar3/scale/SCALE.md), in `scale/`), and a signal that sees a piece before it is solved ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md), in `scale/subgoal/`), tested on ten formulas no rule was written for ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md), in `scale/heldout/`); then x as digits ([DIGITS.md](bar3/scale/digits/DIGITS.md), in `scale/digits/`) and two sources from Newton's differences ([NEWTON.md](bar3/scale/newton/NEWTON.md), in `scale/newton/`); and the duplicate check on each problem's own rows ([ROWCHECK.md](bar3/scale/rowcheck/ROWCHECK.md), in `scale/rowcheck/`); and changes to what the learner picks ([PICKS.md](bar3/scale/picks/PICKS.md), in `scale/picks/`) and how far its looks reach ([REACH.md](bar3/scale/reach/REACH.md), in `scale/reach/`); and a first composition test on stage 3's machine ([COMPOSE.md](bar3/scale/compose/COMPOSE.md), in `scale/compose/`) |
+| [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/`. Stage 3's digit instructions invented at one place, and the s3i variant that uses one ([BRIDGE.md](bar3/bridge/BRIDGE.md), in `bridge/`); add-with-carry, from the round the spend limit had cut off, and multiply-accumulate, with a deeper search aimed at its piece ([CARRY.md](bar3/bridge/CARRY.md)). The learner made ten times cheaper, then given new kinds of practice problems ([SCALE.md](bar3/scale/SCALE.md), in `scale/`), and a signal that sees a piece before it is solved ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md), in `scale/subgoal/`), tested on ten formulas no rule was written for ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md), in `scale/heldout/`); then x as digits ([DIGITS.md](bar3/scale/digits/DIGITS.md), in `scale/digits/`) and two sources from Newton's differences ([NEWTON.md](bar3/scale/newton/NEWTON.md), in `scale/newton/`); and the duplicate check on each problem's own rows ([ROWCHECK.md](bar3/scale/rowcheck/ROWCHECK.md), in `scale/rowcheck/`); and changes to what the learner picks ([PICKS.md](bar3/scale/picks/PICKS.md), in `scale/picks/`) and how far its looks reach ([REACH.md](bar3/scale/reach/REACH.md), in `scale/reach/`); and a first composition test on stage 3's machine ([COMPOSE.md](bar3/scale/compose/COMPOSE.md), in `scale/compose/`) and its second round ([COMPOSE2.md](bar3/scale/compose2/COMPOSE2.md), in `scale/compose2/`) |
 | [`theory/`](theory/) | what is already known about computing and learning with large numbers: classical (digit automata, repeated squaring, Montgomery reduction, the time-lock puzzle H1 is), learning theory and neural theory (extrapolation, log space, clock and discrete-log features), mapped onto this project, with two local checks in `checks/` ([LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md)) |
 | [`nca/`](nca/) | long division as a shader: identical local cells ([NCA.md](nca/NCA.md)), the follow-up trained long with weight decay or agreement (NCA.md §9), and with optimizers that can rest at the rule (NCA.md §10); records in `runs/` and `records/` |
 | [`tools/`](tools/) | the shared Modal runner and the measured seed policy ([tools/README.md](tools/README.md)) |

@@ -899,6 +899,12 @@ fix.
   - **Why:** the digit machine's registers start dirty, so near misses' values are not functions of x and N; the
     multiply's route is never posed at this width; and the climb's searches accept no reduction even when handed that
     problem. About $11.
+- **Composition, round 2** ([COMPOSE2.md](bar3/scale/compose2/COMPOSE2.md), code and records in
+  [`bar3/scale/compose2/`](bar3/scale/compose2/)). Bar 3's remaining pieces ported, and the fixes round 1 named.
+  - **What came:** with book_min less its reduction, bar 3's set gets the round at level 5, right on every rung to
+    T = 64. It needs the subgoal score's law view, a deeper probe aimed at the subgoal's rest, and a search that tests
+    more than one spelling per state.
+  - **What didn't:** bar 3's set alone, since the multiply is out of reach without the multiply-add row. About $30.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

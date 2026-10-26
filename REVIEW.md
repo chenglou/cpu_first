@@ -892,6 +892,13 @@ fix.
     picks from pairs whose looks stay shallow. The twin as a fifth pick keeps hardest first's binary x mod N, but the
     square is never practised in time.
   - **The earlier wins:** all 12 stand. About $7.
+- **Composition on stage 3's machine** ([COMPOSE.md](bar3/scale/compose/COMPOSE.md), code and records in
+  [`bar3/scale/compose/`](bar3/scale/compose/)). Stage 3's tiny core with its law book removed and bar 3's sources
+  posing the practice: can they replace the 5-law book?
+  - **What came:** only the 5-law book's control gets the round. Bar 3's sources pose no piece in any of 5 arms.
+  - **Why:** the digit machine's registers start dirty, so near misses' values are not functions of x and N; the
+    multiply's route is never posed at this width; and the climb's searches accept no reduction even when handed that
+    problem. About $11.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

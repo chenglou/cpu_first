@@ -911,6 +911,10 @@ fix.
 - **The search on a GPU** ([GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md), code and records in
   [`bar3/gpu_search/`](bar3/gpu_search/)). Identical results on 18,708 stored searches and two whole runs, about 95
   times faster, but only 3–10 times cheaper: about half to one more instruction of depth for the same money. About $8.
+- **Consolidation** ([CONSOLIDATE.md](bar3/scale/consolidate/CONSOLIDATE.md), code and records in
+  [`bar3/scale/consolidate/`](bar3/scale/consolidate/)). One score for every choice keeps 1 of 16 earlier wins; two
+  general rules, one uniform search depth for every candidate and anchored pairs' picks, bring back 13 of 16, and most
+  special rules were needed for no win. About $50.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

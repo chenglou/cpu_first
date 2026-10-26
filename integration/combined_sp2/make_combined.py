@@ -24,9 +24,10 @@ The pieces, in the order they are applied (each a named group of exact edits, ev
 
 Left out, as the brief says: the bridge's invented select (made before training) and sp_breadth's round search.
 
-    cd cpu_first && ~/github/sotaku/venv/bin/python integration/combined_sp2/make_combined.py [--diff PIECE] [NAME=VALUE ...]
+    cd cpu_first && ~/github/sotaku/venv/bin/python integration/combined_sp2/make_combined.py [--round 2] [--diff STAGE] [NAME=VALUE ...]
 
-(--diff PIECE prints one piece's effect as a unified diff; NAME=VALUE sets a constant, for research builds only.)
+(--round 2 adds the second round's changes, ROUND2, and writes OUT2; --diff STAGE prints one stage's effect as a
+unified diff; NAME=VALUE sets a constant, for research builds only.)
 """
 
 from __future__ import annotations
@@ -955,6 +956,113 @@ Phases A-D, the cells, the climb and the prediction path are sp2's as LEARNED_LO
 '''
 
 
+# ============================================================================================ round 2 (COMBINED.md §8)
+# The three changes §6 proposed, each behind a named setting, built only with --round 2 (into OUT2; the first round's
+# file is unchanged): SHARED_ACCEPT, the laws of a probed root share one acceptance Root per call, at the longest
+# settings any of them needs (its first settings are the same machines: one generator, drawn in order); DOUBLE_COUNTS,
+# every count of the book built by doubling (times_add), not by repeated addition; and the work budgets set from the
+# combined climb's own count (BUDGETS2, §8).
+OUT2 = HERE / "submission_stage3_combined2.py"
+# set from the combined climb's own count, as STRICT.md §2 did from sp2's (COMBINED.md §8): its tiny core with both
+# budgets 0 did 2.651e9 units to the answer program and 3.34e8 in its largest search (a level-4 deep probe);
+# CLIMB_WORK is 1.22 times the first, SEARCH_WORK twice the second, each rounded up
+BUDGETS2 = {"SEARCH_WORK": "700_000_000", "CLIMB_WORK": "3_250_000_000"}
+ROUND2 = []
+
+
+def round2(what, old, new, count=1):
+    ROUND2.append((what, old, new, count))
+
+
+round2("settings", '''SEARCH_WORK = 700_000_000   # one search's work budget, in WORK's units (0: none; the climb's always holds) ...
+CLIMB_WORK = 2_200_000_000    # ... and the whole climb's, from its start (0: none): STRICT.md §2 sets both
+''', '''SEARCH_WORK = @SEARCH_WORK@   # one search's work budget, in WORK's units (0: none; the climb's always holds) ...
+CLIMB_WORK = @CLIMB_WORK@    # ... and the whole climb's, from its start (0: none): COMBINED.md §8 sets both
+SHARED_ACCEPT = True   # a probed root's laws share one acceptance Root a call (COMBINED.md §8)
+DOUBLE_COUNTS = True   # the book's counts by doubling, times_add (COMBINED.md §8)
+''')
+round2("shared acceptance", '''    def acceptors(self, root, rows):
+        accs = []
+        for g in root.goal_list:
+            if (g.name, root.key) not in self._accs:
+                self._accs[(g.name, root.key)] = (
+                    self.target.acceptor(self, rows, root, g.name) if hasattr(root, "kind") else
+                    Acceptor(g.name, root,
+                             self.verify + (self.full if (g.name, root.pattern) in FULL_CHECK else [])
+                             + (self.above if (g.name, root.pattern) in ABOVE_CHECK else []),
+                             rows, self.ops, self.lib, self.device))
+            accs.append(self._accs[(g.name, root.key)])
+        return accs
+''', '''    def acceptors(self, root, rows):
+        accs, sets = [], {}
+        for g in root.goal_list:
+            if (g.name, root.key) not in self._accs:
+                sets[g.name] = (self.verify + (self.full if (g.name, root.pattern) in FULL_CHECK else [])
+                                + (self.above if (g.name, root.pattern) in ABOVE_CHECK else []))
+        top = max(sets.values(), key=len, default=[])
+        assert all(top[:len(s)] == s for s in sets.values())
+        box = {"sets": top} if SHARED_ACCEPT else None
+        for g in root.goal_list:
+            if g.name in sets:
+                self._accs[(g.name, root.key)] = (
+                    self.target.acceptor(self, rows, root, g.name) if hasattr(root, "kind") else
+                    Acceptor(g.name, root, sets[g.name], rows, self.ops, self.lib, self.device, box=box))
+            accs.append(self._accs[(g.name, root.key)])
+        return accs
+''')
+round2("shared acceptance", '''    def __init__(self, law, root, verify, rows, ops, lib, device, n=60, seed=11):
+        self.cache = {}
+        self.probs = []
+        r = Root(root.pattern, root.binding, verify, n, rows, ops, lib, device, seed)
+        g = r.goals(ops, lib, [law])
+''', '''    def __init__(self, law, root, verify, rows, ops, lib, device, n=60, seed=11, box=None):
+        self.cache = {}
+        self.probs = []
+        if box is None:
+            r = Root(root.pattern, root.binding, verify, n, rows, ops, lib, device, seed)
+        else:                                  # SHARED_ACCEPT
+            if "root" not in box:
+                box["root"] = Root(root.pattern, root.binding, box["sets"], n, rows, ops, lib, device, seed)
+            r = box["root"]
+        g = r.goals(ops, lib, [law], len(verify))
+''')
+round2("shared acceptance", '''    def goals(self, ops, lib, laws):
+        out = []
+        for law in laws:
+            try:
+                ts = [law_target(law, d, ops, lib) for d in self.draws]
+''', '''    def goals(self, ops, lib, laws, k=None):
+        out = []
+        for law in laws:
+            try:
+                ts = [law_target(law, d, ops, lib) for d in self.draws[:k]]
+''')
+round2("doubled counts", '''    """D + times v by the learner's own addition (times a count per row; the additions repeated, mul.ladder)."""
+    D = D.clone()
+''', '''    """D + times v by the learner's own addition (times a count per row; the additions repeated, mul.ladder)."""
+    if DOUBLE_COUNTS:
+        return times_add(ops, st, lib, D, v, times, gen, device)
+    D = D.clone()
+''')
+DOC2 = '''"""Stage 3, self-practising, with every variant of sp2 that certified on its own, round 2 (cpu_first/integration/
+combined_sp2/COMBINED.md §8; make_combined.py --round 2 writes it from the certified files): sp2 (SELF_PRACTICE.md)
+with the loop over T learned (LEARNED_LOOP.md: the count loop C.r[body], T in S, OUTER_*), generic instructions
+(GENERIC_OPS.md: COND, SHIFT, BRING, g3's SP_* rules), the generated law book (SP_ABLATION.md 5.2), the fixed checks
+(ABLATION_S3.md 8: FULL_CHECK, ABOVE_CHECK) and the strict build (STRICT.md: work budgets, never the clock; the kept
+rows and the answer programs in buffers; Adam's own reset; no late lessons); new here, SHARED_ACCEPT, DOUBLE_COUNTS and
+budgets set from the combined climb. The rest is sp2's, as LEARNED_LOOP.md describes it.
+"""
+'''
+
+
+def apply_round2(src: str, log: list) -> str:
+    src = MS.apply(src, [(f"round 2: {w}", o, n, c) for w, o, n, c in ROUND2 + [("docstring", DOC, DOC2, 1)]], log)
+    for name, value in BUDGETS2.items():
+        assert src.count(f"@{name}@") == 1, name
+        src = src.replace(f"@{name}@", value)
+    return src
+
+
 # ================================================================================================== the build
 def undefined_globals(src: str) -> set:
     """Names a function reads as globals that neither the module's top level nor builtins define (symtable)."""
@@ -972,9 +1080,9 @@ def undefined_globals(src: str) -> set:
     return out
 
 
-def build(sets: dict | None = None) -> tuple[str, list, list]:
-    """The combined file's text, the log of every edit group applied (what, how many) and the text after each stage
-    (for --diff)."""
+def build(sets: dict | None = None, round_: int = 1) -> tuple[str, list, list]:
+    """The combined file's text (round_ 2: with ROUND2), the log of every edit group applied (what, how many) and the
+    text after each stage (for --diff)."""
     sp2 = read(*SP2)
     texts = {k: read(*v) for k, v in CERTIFIED.items()}
     replay()
@@ -993,6 +1101,9 @@ def build(sets: dict | None = None) -> tuple[str, list, list]:
     src = MS.apply(src, [(f"glue: {w}", o, n, c) for w, o, n, c in GLUE], log)
     src = drop_dead(src, DEAD, log)
     stages.append(("glue", src))
+    if round_ == 2:
+        src = apply_round2(src, log)
+        stages.append(("round2", src))
     for name, value in (sets or {}).items():                  # research builds only
         src, n = re.subn(rf"^{name} = .*$", f"{name} = {value}", src, count=1, flags=re.M)
         assert n == 1, name
@@ -1011,7 +1122,9 @@ def build(sets: dict | None = None) -> tuple[str, list, list]:
 
 def main(argv):
     sets = dict(a.split("=", 1) for a in argv if "=" in a and not a.startswith("--"))
-    src, log, stages = build(sets)
+    round_ = int(argv[argv.index("--round") + 1]) if "--round" in argv else 1
+    src, log, stages = build(sets, round_)
+    base = OUT if round_ == 1 else OUT2
     if argv[:1] == ["--diff"]:
         names = [n for n, _ in stages]
         i = names.index(argv[1])
@@ -1020,12 +1133,12 @@ def main(argv):
         return
     for what, n in log:
         print(f"{n:4d}  {what}")
-    out = OUT if not sets else HERE / "research" / ("submission_stage3_combined_" + "_".join(
+    out = base if not sets else HERE / "research" / (base.stem + "_" + "_".join(
         f"{k}-{v}" for k, v in sets.items()).replace("/", "") + ".py")
     if "--out" in argv:
         out = Path(argv[argv.index("--out") + 1])
-    if out == OUT and OUT.exists() and OUT.read_text() != src and "--force" not in argv:
-        raise SystemExit(f"{OUT} differs from this build (pass --force to replace it)")
+    if out == base and base.exists() and base.read_text() != src and "--force" not in argv:
+        raise SystemExit(f"{base} differs from this build (pass --force to replace it)")
     out.parent.mkdir(exist_ok=True)
     out.write_text(src)
     print(f"wrote {out}: {len(src.splitlines())} lines, {len(src.encode()):,} bytes, md5 {md5(src)}")

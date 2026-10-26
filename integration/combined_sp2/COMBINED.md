@@ -1,7 +1,8 @@
 # Every certified variant of sp2 in one file
 
-*Written 2026-10-25, step 2 of [LEGAL_PLAN.md](../../LEGAL_PLAN.md) §4. Folder `cpu_first/integration/combined_sp2/`.
-Every input is a certified file or a study builder, read and md5-asserted, never written. Nothing committed.*
+*Written 2026-10-25, step 2 of [LEGAL_PLAN.md](../../LEGAL_PLAN.md) §4; round 2 (§8) the same evening. Folder
+`cpu_first/integration/combined_sp2/`. Every input is a certified file or a study builder, read and md5-asserted, never
+written.*
 
 ## In plain words
 
@@ -30,10 +31,22 @@ at 1,695 s. The learned loop then finds `C.S[T.round1 STA.X]`, right on every un
 the strict work budget, which was set from sp2's smaller climbs. So the strict budget is a second conflict, with the
 book.
 
-**The cheapest next steps** (none run). Share one acceptance root among the laws of each pattern and binding: their
-machines are identical, so the climb would not change, and that setup work falls about ninefold. Build large counts by
-doubling, as the fix already does at full size. And set the work budget from the combined climb's own count, as
-STRICT.md set it from sp2's. Then the tiny core again (§6).
+**Round 2 (§8): the three changes this suggested, in a second file.** It is
+[`submission_stage3_combined2.py`](submission_stage3_combined2.py) (md5 `4e0e3f09`); the first is unchanged.
+- One acceptance setup is shared by the laws of each pattern and binding. That changes nothing in the climb: on every
+  pattern, binding and law, the probes, targets and 41,581 accept-or-reject verdicts are the first file's.
+- Counts are built by doubling, which changes the random draws. The climb first differs in level 3: the same programs,
+  found in another order, and other closeness values.
+- The work budget is set from the combined climb, as the strict study set its own: 3.25e9 units.
+
+Level 3 becomes six times cheaper (440 s against 2,585 s), and the climb now reaches the round in the tiny core, after
+level 4 at 3,206 s. The learned loop then finds `C.S[T.round1 STA.X]`, right on every unseen row.
+
+**Still not inside the hour, so no official run.** At the earlier ratios of tiny core to official H100 (1.05 to 1.15),
+the round would come by about 3,400 to 3,700 s on the H100. Level 4 is now the cost (2,499 s). 800 s of it go to deep
+probes on the book's second reduction, x + x·N, which the round does not use: g3's rule gives each level's second deep
+probe to the next closest concept. With sp2's book that was the multiply, at 59 s. Whether to change that rule is a
+judge's question (§8).
 <!-- /PLAIN -->
 
 ## 1. The pieces, and how the file is built
@@ -385,4 +398,127 @@ The official run, its record and its check:
 
 ```bash
 python3 tools/verify_records.py integration/combined_sp2/records/combined_official.json=integration/combined_sp2/submission_stage3_combined.py
+```
+
+## 8. Round 2: the three changes
+
+*Added 2026-10-25, on the user's go-ahead for §6's three changes, the tiny core, then an official run only if the round
+came well inside the hour. The first round's file, records and logs are unchanged.*
+
+**The file.** `make_combined.py --round 2` writes [`submission_stage3_combined2.py`](submission_stage3_combined2.py)
+(md5 `4e0e3f09b1ab55d1bfedbbed4fb0afc2`, 261,754 bytes, 390 under the limit) from the same certified files, every md5
+asserted: the first round's six steps, then `ROUND2`'s edits, each behind a named setting.
+- `SHARED_ACCEPT` (False gives the first round's acceptance back). In `SelfClimb.acceptors`, the laws of a probed root
+  that need a new acceptance share one Root, made once at the longest settings any of them needs: the verify sizes,
+  plus the full size for the two reductions or the N < x < 2N probes for red on the pair. Its first settings are the
+  same machines a law's own Root would have, since one generator draws them in order, and each law computes its targets
+  on its own prefix (`Root.goals(..., k)`). The sharing lasts one call, one step: in the evaluator the rows move
+  between steps, so a Root kept longer would not be the same machines.
+- `DOUBLE_COUNTS` (False gives repeated addition back). `repeat_add` builds every count of the book by doubling, the
+  fix's `times_add`: the same sums in about 2·log2(10^4) ≈ 27 additions instead of up to 9,999.
+- The budgets, set from the combined climb (below): `SEARCH_WORK` = 7e8, `CLIMB_WORK` = 3.25e9.
+- A shorter docstring, for room: with the first round's, the file was 20 bytes over the limit.
+
+**Fix 1 changes nothing in the climb.** [`checks/round2_fix1.py`](checks/round2_fix1.py) builds every law's acceptance
+twice, on every pattern of the book in every binding, as `SelfClimb.pose` poses them with the first round's tiny core's
+library and rows: once by the first round's file, once by the second round's with `DOUBLE_COUNTS` off. All 554 have the
+same probes (each setting's inputs, random starts, flags and pointer) and the same targets. All 41,581 verdicts agree,
+1,034 of them accepts, on the candidates: the first round's level-3 programs for each law and root, every routine of
+the library, and 20 random programs (`checks/logs/round2_fix1.log`). Alone, it saves less than §4 hoped: 158 s of
+setup against 285 s on the laptop, and only a third on x + o·N and x + x·N, because each law's own targets still
+repeat additions.
+
+**Fix 2: where the climb first differs.** [`checks/compare_cores.py`](checks/compare_cores.py) compares the first
+round's tiny core with the second round's, search by search and line by line, seconds and work masked:
+- the first 14 searches are the same: levels 0-2 and level 3's first probe group, with levels 0-2's work counts equal
+  to the unit;
+- the 15th, level 3's second probe group (x + n·N and x + d·N roots), finds the same programs in another order and
+  gives the open laws other closeness values (div on x + d·N in AN: 0.25 against 0.182). Its x + d·N probes are now
+  built by doubling, from other random draws;
+- the first log line that differs follows from it: level 3's choice of deep probes (unit 36 in both).
+
+The book's code now differs from book_gen_fix.py's only by these two changes (`repeat_add`'s doubling and the shared
+Root), so `book`'s line-for-line test reads False. Its targets are still the laws' values by Python's integers (`book`:
+12,382 on 40 concepts, against 12,407 on 41, from other draws). The fix's probes still check what they should (`fix`:
+full-size probes exact, the alias and the 10,000-subtraction loop rejected). The other checks of §3 pass on the final
+file: policy, machines, isa, designed, buffers, grad, the budget-binding smoke and the replay
+(`checks/logs/local2.log`).
+
+**Fix 3: the budget, from the combined climb.** As STRICT.md §2's round 1 did, the climb ran with both budgets 0 and
+the work counted. That build, `research/submission_stage3_combined2_SEARCH_WORK-0_CLIMB_WORK-0.py` (md5 `41077007`), is
+the final file byte for byte once both budgets are set to 0. In the tiny core it did 2.534e9 units to the round, 2.651e9
+with the answer program's search, and 3.34e8 in its largest search (a level-4 deep probe on x + x·N). `CLIMB_WORK` is
+1.22 times the climb and `SEARCH_WORK` twice the largest search, each rounded up (3.25e9 and 7e8), as STRICT.md §2 set
+them from sp2's climbs. Neither binds on that climb, so it is the final file's line for line. It was set from one climb;
+STRICT.md had nine. At this climb's rate on the B200, 1.25 s per million units, 3.25e9 units is about 4,000 s of climb,
+so on an H100 the hour, not the budget, would end it.
+
+**The tiny core** (`records/core_combined2_measure.*`, one B200):
+
+| level | g3 (`g_scratch_v4`) | round 1 | round 2 |
+|---|---|---|---|
+| 0 | 52 s | 58 s; 7.1e6 | 51 s; 7.1e6 |
+| 1 | 108 s | 126 s; 7.1e7 | 111 s; 7.1e7 |
+| 2 | 94 s | 116 s; 6.5e7 | 104 s; 6.5e7 |
+| 3 | 559 s | 2,585 s; 1.0e9 | **440 s; 2.2e8** |
+| 4 | 1,369 s; the round | 1,249 s; 1.05e9; out of work | **2,499 s; 2.17e9; the round** |
+| the round | 2,183 s | none | **3,206 s** (2.534e9 units) |
+| the answer program | (g3 keeps the countdown) | | `C.S[T.round1 STA.X]`: cost 3, 102 s, right on all 224 unseen rows |
+
+The round is `LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN` and three like it: the generated
+multiply-accumulate of two numbers, then the reduction on x + o·N with the modulus in N.
+
+**Level 4 is now the cost.** Its 11 ordinary probe groups take 974 s and 8.0e8 units, against g3's 6 groups in 532 s.
+Its 6 deep-probe groups take 1,504 s and 1.36e9 units, against g3's 822 s. g3's rules give two concepts deep probes a
+level, whole concepts until 16 roots. With sp2's book the second concept was the multiply on (x, o), whose three
+groups took 59 s. With the generated book it is the book's second reduction, red on x + x·N, whose three groups take
+799 s. The round does not use that reduction: its own is on x + o·N, from the first three groups. So about 800 s of
+level 4 goes to a reduction the round does not need, and about 440 s more to the bigger pool's ordinary probes.
+
+**No official run.** The tiny core's times do not carry over, but the earlier pairs bound them. g3's tiny core found its
+round at 2,183 s, and its official H100 run by 2,507 s (1.15 times; training took 2,770 s). The first round's level 3
+ended at 2,885 s in the tiny core and at about 3,015 s on the H100 (1.05 times). At those ratios this round would come
+by 3,370 to 3,690 s of training on the official H100, before the answer program's search and phase D's 200 steps. That
+is past the hour, not well inside it, so as the brief said for a close case, this is the report instead of the run.
+
+**Cost.** The tiny core, one B200, 3,321 s of climb: about $6.0 at list price, of the round's soft $15. The spend check
+before the launch read $3,505.36 billed this month. Everything else ran on the laptop's CPU, under `checks/capped.py`.
+
+**What it leaves.** The second deep-probe slot. With the generated book, the open concept closest after a reduction can
+be the same law on another pattern, and g3's rule then spends a level's second deep probe on a second reduction. A
+rule that treated a law's patterns as one concept for that slot, or that ended a level's deep probes once their law
+was found, would save about 800 s here. Whether either is general, or tuned to this task, is a judge's question, so
+neither was tried. The bigger pool's ordinary probes are the book's own cost, as SP_ABLATION.md §5.2 found.
+
+**Round 2's files and how to rerun.** New in the folder: `submission_stage3_combined2.py`; `research/` (the two
+research builds: the measuring one, and `SHARED_ACCEPT` alone for fix 1's check); `checks/round2_fix1.py`,
+`checks/compare_cores.py`, `checks/logs/round2_fix1.log` and `local2.log`; `records/core_combined2_measure.*`.
+`modal_c.py` now copies the whole folder into its image (both rounds' files and the research builds).
+
+```bash
+~/github/sotaku/venv/bin/python integration/combined_sp2/make_combined.py --round 2
+```
+
+```bash
+~/github/sotaku/venv/bin/python integration/combined_sp2/make_combined.py --round 2 SEARCH_WORK=0 CLIMB_WORK=0
+```
+
+```bash
+~/github/sotaku/venv/bin/python integration/combined_sp2/make_combined.py --round 2 DOUBLE_COUNTS=False
+```
+
+```bash
+PYTHONPATH=. ~/github/sotaku/venv/bin/python integration/combined_sp2/checks/capped.py 2700 14 -- ~/github/sotaku/venv/bin/python integration/combined_sp2/checks/round2_fix1.py
+```
+
+```bash
+COMBINED_FILE=integration/combined_sp2/submission_stage3_combined2.py PYTHONPATH=. ~/github/sotaku/venv/bin/python integration/combined_sp2/checks/capped.py 3000 14 -- ~/github/sotaku/venv/bin/python integration/combined_sp2/checks/local_combined.py policy machines isa designed buffers grad fix book climb_tiny replay
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach integration/combined_sp2/modal_c.py --envs '[{"TAG": "core_combined2_measure", "SECONDS": "3900", "FILE": "/root/cpu_first/integration/combined_sp2/research/submission_stage3_combined2_SEARCH_WORK-0_CLIMB_WORK-0.py"}]'
+```
+
+```bash
+python3 integration/combined_sp2/checks/compare_cores.py integration/combined_sp2/records/core_combined.json integration/combined_sp2/records/core_combined2_measure.json
 ```

@@ -26,9 +26,8 @@ MEMORY = (16384, 65536)             # request, hard limit (MiB)
 image = (modal.Image.debian_slim(python_version="3.13").pip_install("torch==2.14.1", "numpy==2.5.4")
          .add_local_dir(CPU / "learned_remainder" / "chain_local" / "stub",
                         "/root/cpu_first/learned_remainder/chain_local/stub", ignore=["__pycache__"])
-         .add_local_file(HERE / "core_c.py", "/root/cpu_first/integration/combined_sp2/core_c.py")
-         .add_local_file(HERE / "submission_stage3_combined.py",
-                         "/root/cpu_first/integration/combined_sp2/submission_stage3_combined.py")
+         .add_local_dir(HERE, "/root/cpu_first/integration/combined_sp2",        # core_c.py, the files (both rounds,
+                        ignore=["records", "checks", "__pycache__", "*.md"])  # research builds)
          .add_local_dir(CPU.parent / "one-layer-deeper" / "data" / "generated" / DATA, f"/root/data/{DATA}"))
 app = modal.App("combined-sp2", image=image)
 vol = modal.Volume.from_name("combined-sp2", create_if_missing=True)

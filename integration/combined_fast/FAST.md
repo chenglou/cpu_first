@@ -47,8 +47,15 @@ at about 3,792 s.
 
 **Seeds 1-7 certify too** (§8): eight of eight seeds on the official H100, the manifest changed only in its seed, all
 checked by `tools/verify_records.py`. Every seed finds its answer program by 471-504 s of training and ends training
-by 838 s. The thin margin is the climb's work budget, round 2's and unchanged: on seeds 1, 4 and 6 it ran out in the
-answer program's last search level, after the programs were found.
+by 838 s. The thin margin was the climb's work budget, round 2's: on seeds 1, 4 and 6 the climb's count passed it in
+the answer program's last search level, where it happened to cut nothing (§9).
+
+**A budget with margin, certified** (§9): [`submission_stage3_fast2.py`](submission_stage3_fast2.py) (md5 `41b9a013`)
+is the fast file with its two work budgets set again by STRICT.md §2's rule, from the eight climbs measured with no
+budget on the official manifest: `CLIMB_WORK` 4.3e9 (1.22 times the largest climb, 3.49e9) and `SEARCH_WORK` 8e8
+(twice the largest search). Three lines change. Its climb is unchanged (the tiny core unit for unit, and each official
+seed's climb line for line its budget-free run's), the largest climb uses 81% of the budget, and it certifies on all
+eight seeds, the official run included, training in 759-883 s.
 <!-- /PLAIN -->
 
 ## 1. Where the climb's seconds went
@@ -276,13 +283,14 @@ Everything is in `cpu_first/integration/combined_fast/`; nothing outside it was 
 | file | what |
 |---|---|
 | `submission_stage3_fast.py` | the file, md5 `91bb30b9d131791d165025d682b3f458`, 258,310 bytes (3,834 under the limit), written by `make_fast.py` |
+| `submission_stage3_fast2.py` | the same with the budgets of §9, md5 `41b9a013ae9436d7b7a53e9e594a18db`, 258,349 bytes, written by `make_fast.py --fast2` |
 | `make_fast.py` | the builder (§2): round 2's file from git at `914952f`, md5 asserted, then the listing, fused, grouped and room edits |
 | `research/` | `submission_stage3_fast_SEARCH_WORK-0_CLIMB_WORK-0.py` (md5 `39e00753`, the tiny cores' build) and round 2's own measuring build (`41077007`, copied from git, for the profile) |
 | `core_c.py` | combined_sp2's tiny core, copied byte for byte (md5 `2e9c6a52`) |
 | `prof_c.py` | the profile (§1): core_c.py with timers |
 | `modal_fast.py` | the Modal launcher (app and Volume `combined-fast`): B200, H100, and an H100 in the evaluator's own environment for checks |
-| `checks/` | `check_fused.py`, `speed_fused.py`, `check_grouped_work.py`, `check_listing.py`, `compare_more.py`, `compare_official.py`, `summarize_seeds.py`; `logs/local_fast.log` (combined_sp2's local checks on this file) |
-| `records/` | the profiles (`prof_base_*`, `prof_fast_sync*`), the tiny cores (`core_fast_v1_measure`, `core_fast_v2_measure`, `core_fast_v2_h100`), the checks' logs, the official record (`combined_fast_official.json`) and seeds 1-7's (`combined_fast_h100_seed<N>.json`, §8) |
+| `checks/` | `check_fused.py`, `speed_fused.py`, `check_grouped_work.py`, `check_listing.py`, `compare_more.py`, `compare_official.py`, `summarize_seeds.py`, `measure_work.py`; `logs/` (combined_sp2's local checks on the fast file, and §9's logs) |
+| `records/` | the profiles (`prof_base_*`, `prof_fast_sync*`), the tiny cores (`core_fast_v1_measure`, `core_fast_v2_measure`, `core_fast_v2_h100`), the checks' logs, the official record (`combined_fast_official.json`) and seeds 1-7's (`combined_fast_h100_seed<N>.json`, §8); the second file's (`core_fast2`, `combined_fast2_official`, `combined_fast2_h100_seed<N>`, §9); `research/`: the budget-free runs (§9) |
 
 From `cpu_first/`, with the sotaku venv's Python:
 
@@ -385,13 +393,16 @@ s, under a quarter of the hour.
 
 **The work budget is the thin margin, and it is round 2's.** The climb reaches its round with 2.51-2.75e9 units of
 `CLIMB_WORK`'s 3.25e9 (77-85%). The answer program's search then costs 1.2e8 to 8.8e8, far more spread than the tiny
-core's 1.2e8. On seeds 1, 4 and 6 it reached the budget in its last level (cost 3; its record's stop reads "work budget
-at level 3"): the budget cut that level's expansion short after it had found its goal states, so the programs were
-found and accepted, and the acceptance's own work is counted after (to 3.33e9, 3.32e9 and 3.49e9). A seed whose goal
-states lay later in that level would have lost its answer program there. The speedups change no work count, so round
-2's file meets the budget at exactly the same points; it was set in round 2 from one tiny-core climb (1.22 times its
-2.651e9, COMBINED.md §8). Resetting it from these eight climbs would be a change to the file's rules, not engineering,
-so it was not tried.
+core's 1.2e8, and on seeds 1, 4 and 6 the climb's count passed the budget inside that search's last level (cost 3; its
+record's stop reads "work budget at level 3"; the totals 3.33e9, 3.32e9 and 3.49e9). The budget is read only between
+blocks of a level, and it was passed in the last one, so it cut nothing: the same seeds with no budget do the same work
+and find the same level sizes and programs (§9). A search that passed it one block sooner would have lost the rest of
+its level. The speedups change no work count, so round 2's file meets the budget at exactly the same points; it was
+set in round 2 from one tiny-core climb (1.22 times its 2.651e9, COMBINED.md §8). §9 sets it again, by the same rule,
+from these eight climbs.
+
+*(Corrected after §9's runs: this paragraph first said the budget cut that level short after its goal states were
+found; the runs with no budget show it cut nothing.)*
 
 **Cost.** The seven runs' list-price estimate is $8.84 (walls 1,059-1,189 s; $4.73 billed so far, complete hours
 only), of the soft $15. `spend.py 4750` read $3,542.28 before the launch.
@@ -411,4 +422,115 @@ python3 tools/verify_records.py integration/combined_fast/records/combined_fast_
 
 ```bash
 python3 integration/combined_fast/checks/summarize_seeds.py integration/combined_fast/records/combined_fast_official.json integration/combined_fast/records/combined_fast_h100_seed{1,2,3,4,5,6,7}.json
+```
+
+## 9. A budget with margin: `submission_stage3_fast2.py`
+
+*Added 2026-10-26, on the coordinator's decision (after commit a2e4bac): set the two work budgets again by STRICT.md
+§2's rule, from the climbs on the official manifest, in a new file. The fast file and its records stay as they are.*
+
+**The true work, measured with no budget.** The fast file's budget-free build
+(`research/submission_stage3_fast_SEARCH_WORK-0_CLIMB_WORK-0.py`, md5 `39e00753`, the tiny cores' build) ran on the
+official manifest for seeds 74 and 1-7, one H100 each, as research runs
+(`records/research/fast_budget0_h100_seed<N>.json`; all eight certify too). Each climb is its certified run's line for
+line ([`checks/compare_official.py`](checks/compare_official.py), seconds masked; `checks/logs/compare_budget0.log`):
+every line on seeds 74, 2, 3, 5 and 7; on seeds 1, 4 and 6 every line but the answer program's search, which differs
+only in its stop ("work budget at level 3" there, none here), with the same level sizes, programs and work. So the old
+budget cut nothing, and the counts below are the true ones ([`checks/measure_work.py`](checks/measure_work.py),
+`checks/logs/measure_work.log`):
+
+| seed | work at the round | the answer program's search | the climb in all | largest search (a probe unit) | its largest run |
+|---|---|---|---|---|---|
+| 74 | 2.512e9 | 7.43e8 | 3.254e9 | 3.19e8 | 1.17e8 |
+| 1 | 2.686e9 | 6.46e8 | 3.332e9 | 3.07e8 | 2.14e8 |
+| 2 | 2.747e9 | 1.17e8 | 2.864e9 | 3.25e8 | 1.45e8 |
+| 3 | 2.678e9 | 3.79e8 | 3.057e9 | **3.91e8** | 1.34e8 |
+| 4 | 2.751e9 | 5.70e8 | 3.321e9 | 3.39e8 | 1.50e8 |
+| 5 | 2.643e9 | 1.29e8 | 2.772e9 | 3.84e8 | 1.46e8 |
+| 6 | 2.608e9 | 8.83e8 | **3.492e9** | 3.60e8 | 1.22e8 |
+| 7 | 2.652e9 | 2.48e8 | 2.900e9 | 3.85e8 | 1.19e8 |
+| the tiny core (B200, §4) | 2.534e9 | 1.17e8 | 2.651e9 | 3.34e8 | 1.27e8 |
+
+**The rule.** As STRICT.md §2 set the budgets and round 2 applied it (COMBINED.md §8):
+- `CLIMB_WORK` = 1.22 times the largest climb, the answer program's search in it as the file counts it: 1.22 x 3.492e9
+  (seed 6) = 4.26e9, rounded up to **4.3e9** (round 2: 3.25e9).
+- `SEARCH_WORK` = twice the largest search, measured as round 2 and STRICT.md measured it, a probe unit's work (its
+  log line): 2 x 3.913e8 (seed 3's level-4 deep probe on x + x·N) = 7.83e8, rounded up to **8e8** (round 2: 7e8). A
+  unit is one or more runs and the budget bounds each run; the largest run is 2.14e8, so the unit is the safer reading.
+
+**The margin.** The largest climb uses 81% of the new `CLIMB_WORK`. To reach it after the latest round seen (2.75e9), an
+answer program's search would have to spend 1.55e9, 1.75 times the most any seed spent. On time (STRICT.md's other
+condition: a climb that spends the whole budget still ends inside the hour): the eight research runs climbed at
+0.13-0.16 s per million units, so 4.3e9 units is at most about 710 s; with the climb's start (about 70 s) and phase
+D (at most 132 s), even a climb that spent it all would freeze by about 910 s.
+
+**No climb budget at all?** Considered, as the coordinator suggested: the evaluator owns the deadline and the strict
+build reads no clock, so `CLIMB_WORK` = 0 would remove the cut entirely. Not taken. It changes how a certified piece
+ends its climb (at a fixed amount of work, the same on every host, rather than wherever the evaluator's deadline
+falls), while the rule's value already leaves every measured climb at least 19% below it and is still far inside the
+hour if spent whole. The rule is the established method; that alternative would be a new one.
+
+**The file.** `make_fast.py --fast2` writes [`submission_stage3_fast2.py`](submission_stage3_fast2.py) (md5
+`41b9a013ae9436d7b7a53e9e594a18db`, 258,349 bytes, 3,795 under the limit): the fast file with three lines changed,
+`SEARCH_WORK = 800_000_000`, `CLIMB_WORK = 4_300_000_000` and the docstring's pointer here. `make_fast.py` alone
+still writes the fast file byte for byte (`91bb30b9`).
+
+**The climb is unchanged.** Its tiny core with its own budgets (`records/core_fast2.*`, B200) against the fast file's
+budget-free one (`core_fast_v2_measure`): compare_cores "the first 66 units are the same (of 66 and 66)", "the first
+47 [searches] are the same"; compare_more every unit's work and the total equal as floats, the history, library,
+rounds, routines and answer program equal. Neither budget binds there, nor in any climb measured above.
+
+**It certifies on all eight seeds.** The official run (`records/combined_fast2_official.json`, the manifest untouched)
+and seeds 1-7 (`records/combined_fast2_h100_seed<N>.json`, only the seed changed), one H100 each, through the shared
+runner as before (`--memory-gb 48`). `tools/verify_records.py`: "8 of 8 records check out"
+(`checks/logs/verify_fast2.log`), each embedding the file's md5, T = 64 on both ladders with every rung 768 of 768, test
+9,999 of 9,999 and both unseen splits 10,002 of 10,002. Each climb is its budget-free research run's line for line,
+every line on every seed (`checks/logs/compare_fast2.log`), with no work-budget stop anywhere: the new budgets bind
+nowhere on these seeds.
+
+| seed | the answer program | frozen | training | evaluation | the climb in all, of 4.3e9 |
+|---|---|---|---|---|---|
+| 74 (official) | step 630, about 492 s | step 829, about 538 s | 759 s | 377 s | 3.254e9 (76%) |
+| 1 | 653, 555 s | 852, 600 s | 838 s | 366 s | 3.332e9 (77%) |
+| 2 | 653, 499 s | 852, 631 s | 861 s | 334 s | 2.864e9 (67%) |
+| 3 | 681, 509 s | 880, 633 s | 883 s | 384 s | 3.057e9 (71%) |
+| 4 | 719, 535 s | 918, 586 s | 782 s | 360 s | 3.321e9 (77%) |
+| 5 | 677, 513 s | 876, 641 s | 870 s | 395 s | 2.772e9 (64%) |
+| 6 | 691, 499 s | 890, 538 s | 781 s | 365 s | 3.492e9 (81%) |
+| 7 | 632, 501 s | 831, 549 s | 776 s | 407 s | 2.900e9 (67%) |
+
+**Cost.** List prices: the eight research runs $10.66, the official run $1.29, seeds 1-7 $9.52, the tiny core about
+$0.85: about $22 of the soft $25 ($16.41 billed so far, complete hours only). `spend.py 4750` ran before each launch:
+$3,558.61 before the first, the last read $3,581.84.
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode seeds --file integration/combined_fast/research/submission_stage3_fast_SEARCH_WORK-0_CLIMB_WORK-0.py --seeds 74,1,2,3,4,5,6,7 --hardware h100 --memory-gb 48 --name fast_budget0 --out integration/combined_fast/records/research --run combined-fast-budget0
+```
+
+```bash
+python3 integration/combined_fast/checks/measure_work.py integration/combined_fast/records/research/fast_budget0_h100_seed{74,1,2,3,4,5,6,7}.json --extra "tiny core=3.342e8,2.651e9"
+```
+
+```bash
+~/github/sotaku/venv/bin/python integration/combined_fast/make_fast.py --fast2
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach integration/combined_fast/modal_fast.py --envs '[{"TAG": "core_fast2", "SCRIPT": "core_c.py", "SECONDS": "3900", "FILE": "/root/cpu_first/integration/combined_fast/submission_stage3_fast2.py"}]'
+```
+
+```bash
+python3 integration/combined_sp2/checks/compare_cores.py integration/combined_fast/records/core_fast_v2_measure.json integration/combined_fast/records/core_fast2.json
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode official --file integration/combined_fast/submission_stage3_fast2.py --memory-gb 48 --name combined_fast2_official --out integration/combined_fast/records --run combined-fast2-official
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode seeds --file integration/combined_fast/submission_stage3_fast2.py --seeds 1,2,3,4,5,6,7 --hardware h100 --memory-gb 48 --name combined_fast2 --out integration/combined_fast/records --run combined-fast2-h100-seeds
+```
+
+```bash
+python3 tools/verify_records.py integration/combined_fast/records/combined_fast2_official.json=integration/combined_fast/submission_stage3_fast2.py integration/combined_fast/records/combined_fast2_h100_seed{1,2,3,4,5,6,7}.json=integration/combined_fast/submission_stage3_fast2.py
 ```

@@ -3,10 +3,12 @@ submission_stage3_combined2.py, its committed bytes, md5 asserted) with engineer
 climb computes, as named groups of exact edits, each asserted to match exactly once. Writes submission_stage3_fast.py;
 NAME=VALUE sets a constant (research builds, written to research/).
 
-    cd cpu_first && ~/github/sotaku/venv/bin/python integration/combined_fast/make_fast.py [--diff] [--dev] [NAME=VALUE ...]
+    cd cpu_first && ~/github/sotaku/venv/bin/python integration/combined_fast/make_fast.py [--fast2] [--diff] [--dev] [NAME=VALUE ...]
 
-(--diff: the edits' effect as a unified diff against round 2's file; --dev: a working build that may be over the size
-limit, written as *_dev.py; --md5s: each cut's md5 printed instead of asserted, for writing a new cut.)
+(--fast2: the second file, submission_stage3_fast2.py, the work budgets set again (BUDGETS2); --diff: the edits'
+effect as a unified diff against round 2's file (with --fast2: against the fast file); --dev: a working build that may
+be over the size limit, written as *_dev.py; --md5s: each cut's md5 printed instead of asserted, for writing a new
+cut.)
 """
 
 from __future__ import annotations
@@ -447,6 +449,22 @@ edit("room", '''            if found is None and calls and not self.calls_first:
 ''')
 
 
+# ================================================================================================ budgets (fast2)
+# A second file, submission_stage3_fast2.py (--fast2): the fast file with its work budgets set again by STRICT.md §2's
+# rule, from the climbs measured on the official manifest (FAST.md §9): CLIMB_WORK 1.22 times the largest climb, the
+# answer program's search in it as the file counts it; SEARCH_WORK twice the largest search; each rounded up as round
+# 2 did (to 5e7 and 1e8). Everything else is the fast file's.
+OUT2 = HERE / "submission_stage3_fast2.py"
+BUDGETS2 = {"SEARCH_WORK": "800_000_000", "CLIMB_WORK": "4_300_000_000"}   # FAST.md §9: 2 x 3.913e8, 1.22 x 3.492e9
+EDITS2 = [("budgets", '''SEARCH_WORK = 700_000_000   # one search's work budget, in WORK's units (0: none; the climb's always holds) ...
+CLIMB_WORK = 3_250_000_000    # ... and the whole climb's, from its start (0: none): COMBINED.md §8 sets both
+''', f'''SEARCH_WORK = {BUDGETS2["SEARCH_WORK"]}   # one search's work budget, in WORK's units (0: none; the climb's always holds) ...
+CLIMB_WORK = {BUDGETS2["CLIMB_WORK"]}    # ... and the whole climb's, from its start (0: none): combined_fast/FAST.md §9 sets both
+'''), ("budgets", '''new here, SHARED_ACCEPT, DOUBLE_COUNTS and
+budgets set from the combined climb.''', '''new here, SHARED_ACCEPT, DOUBLE_COUNTS and
+budgets set from the combined climbs (combined_fast/FAST.md §9).''')]
+
+
 # ================================================================================================ the build
 def undefined_globals(src: str) -> set:
     """Names a function reads as globals that neither the module's top level nor builtins define (symtable)."""
@@ -464,12 +482,12 @@ def undefined_globals(src: str) -> set:
     return out
 
 
-def build(sets: dict | None = None, dev: bool = False) -> tuple[str, list]:
-    """The fast file's text and the log of the edit groups applied; dev: over the size limit is allowed (a working
-    build, never the submission)."""
+def build(sets: dict | None = None, dev: bool = False, fast2: bool = False) -> tuple[str, list]:
+    """The fast file's text (fast2: the second file's, EDITS2 too) and the log of the edit groups applied; dev: over
+    the size limit is allowed (a working build, never the submission)."""
     src = base()
     log = []
-    for e in EDITS:
+    for e in EDITS + ([("edit", g, o, n) for g, o, n in EDITS2] if fast2 else []):
         if e[0] == "edit":
             _, group, old, new = e
             n = src.count(old)
@@ -487,6 +505,7 @@ def build(sets: dict | None = None, dev: bool = False) -> tuple[str, list]:
                 assert got == digest, (group, start[:80], got)
             src = src[:i] + new + src[j:]
         log.append(group)
+    assert "@CLIMB_WORK@" not in src, "set BUDGETS2's CLIMB_WORK first"
     for name, value in (sets or {}).items():                  # research builds only
         src, n = re.subn(rf"^{name} = .*$", f"{name} = {value}", src, count=1, flags=re.M)
         assert n == 1, name
@@ -505,14 +524,17 @@ SHOW_MD5 = "--md5s" in sys.argv          # (prints each cut's md5 instead of ass
 
 def main(argv):
     sets = dict(a.split("=", 1) for a in argv if "=" in a and not a.startswith("--"))
-    src, log = build(sets, dev="--dev" in argv)
+    fast2 = "--fast2" in argv
+    src, log = build(sets, dev="--dev" in argv, fast2=fast2)
     if "--diff" in argv:
-        sys.stdout.writelines(difflib.unified_diff(base().splitlines(True), src.splitlines(True), "combined2", "fast",
-                                                   n=1))
+        old = build()[0] if fast2 else base()
+        sys.stdout.writelines(difflib.unified_diff(old.splitlines(True), src.splitlines(True),
+                                                   "fast" if fast2 else "combined2", "fast2" if fast2 else "fast", n=1))
         return
     for g in dict.fromkeys(log):
         print(f"{log.count(g):4d}  {g}")
-    out = OUT if not sets else HERE / "research" / (OUT.stem + "_" + "_".join(
+    first = OUT2 if fast2 else OUT
+    out = first if not sets else HERE / "research" / (first.stem + "_" + "_".join(
         f"{k}-{v}" for k, v in sets.items()).replace("/", "") + ".py")
     if "--dev" in argv:
         out = out.with_name(out.stem + "_dev.py")

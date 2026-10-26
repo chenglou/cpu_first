@@ -24,10 +24,11 @@ The pieces, in the order they are applied (each a named group of exact edits, ev
 
 Left out, as the brief says: the bridge's invented select (made before training) and sp_breadth's round search.
 
-    cd cpu_first && ~/github/sotaku/venv/bin/python integration/combined_sp2/make_combined.py [--round 2] [--diff STAGE] [NAME=VALUE ...]
+    cd cpu_first && ~/github/sotaku/venv/bin/python integration/combined_sp2/make_combined.py [--round 2 | --round 3 --variant V] [--diff STAGE] [NAME=VALUE ...] [--out PATH]
 
-(--round 2 adds the second round's changes, ROUND2, and writes OUT2; --diff STAGE prints one stage's effect as a
-unified diff; NAME=VALUE sets a constant, for research builds only.)
+(--round 2 adds the second round's changes, ROUND2, and writes OUT2; --round 3 --variant sp2book|sp2machine writes a
+four-piece file of OUT3 (COMBINED.md §9); --diff STAGE prints one stage's effect as a unified diff; NAME=VALUE sets a
+constant, for research builds only; --out writes elsewhere, as for a rebuild check.)
 """
 
 from __future__ import annotations
@@ -309,7 +310,7 @@ def merge_pieces(base_text: str, texts: dict, subs: dict) -> tuple[str, list]:
             n += 1
         log.append((f"{piece}: hunks applied as they are", n))
     for lo, hi, name, pieces, new in own:
-        assert tuple(sorted(seen[name])) == pieces, (name, sorted(seen[name]), pieces)
+        assert tuple(sorted(seen[name])) == tuple(q for q in pieces if q in texts), (name, sorted(seen[name]), pieces)
         new = "".join(base[lo:hi]) if new is None else subs.get(new, new)
         edits.append((lo, hi, new, "merge"))
         log.append((f"merge: {name}", 1))
@@ -1055,12 +1056,60 @@ budgets set from the combined climb. The rest is sp2's, as LEARNED_LOOP.md descr
 '''
 
 
-def apply_round2(src: str, log: list) -> str:
-    src = MS.apply(src, [(f"round 2: {w}", o, n, c) for w, o, n, c in ROUND2 + [("docstring", DOC, DOC2, 1)]], log)
-    for name, value in BUDGETS2.items():
+def apply_round2(src: str, log: list, doc: str = DOC2, budgets: dict = BUDGETS2, more: tuple = ()) -> str:
+    """ROUND2's edits, the docstring doc, any more edits (round 3's), and the budgets."""
+    src = MS.apply(src, [(f"round 2: {w}", o, n, c) for w, o, n, c in ROUND2 + [("docstring", DOC, doc, 1)]]
+                   + [(f"round 3: {w}", o, n, c) for w, o, n, c in more], log)
+    for name, value in budgets.items():
         assert src.count(f"@{name}@") == 1, name
         src = src.replace(f"@{name}@", value)
     return src
+
+
+# ============================================================================================ round 3 (COMBINED.md §9)
+# Two files of four pieces each, from round 2 (--round 3 --variant V): "sp2book" leaves the generated book out (sp2's
+# own book, with sp2's fix as make_fix.py certified it); "sp2machine" keeps g3's code with its settings set to sp2's
+# (SEL.S, zero shifts and BRG.X; its five search rules off; three-digit acceptance; the round's search at 4M, flat
+# first), as round 1's second tiny core ran it. Round 2's SHARED_ACCEPT and DOUBLE_COUNTS stay in both (both books build
+# their probes by repeated addition, through the same Root and Acceptor); each file's budgets come from its own climb.
+OUT3 = {"sp2book": HERE / "submission_stage3_combined3_sp2book.py",
+        "sp2machine": HERE / "submission_stage3_combined3_sp2machine.py"}
+# each from its own climb, as BUDGETS2 (COMBINED.md §9): its tiny core with both budgets 0 did 1.540e9 (sp2book) and
+# 1.986e9 (sp2machine) units to the answer program, 2.61e8 and 1.85e8 in its largest search (a level-4 deep probe; a
+# level-5 probe); CLIMB_WORK is 1.22 times the first, SEARCH_WORK twice the second, each rounded up
+BUDGETS3 = {"sp2book": {"SEARCH_WORK": "600_000_000", "CLIMB_WORK": "1_900_000_000"},
+            "sp2machine": {"SEARCH_WORK": "400_000_000", "CLIMB_WORK": "2_450_000_000"}}
+SP2_SETTINGS = [   # g3's settings back to sp2's (the comments stay g3's: each names sp2's value)
+    ("COND", "COND = 'if1'      # ", "COND = 'sel'      # "),
+    ("SHIFT", "SHIFT = 'k'      # ", "SHIFT = 'zero'   # "),
+    ("BRING", "BRING = False    # ", "BRING = True     # "),
+    ("SP_VERIFY", "SP_VERIFY = ((10, 1), (10, 2), (10, 3), (10, 4))  # ", "SP_VERIFY = ((10, 1), (10, 2), (10, 3))  # "),
+    ("SP_DEEP_K", "SP_DEEP_K = 16         # ", "SP_DEEP_K = 8          # "),
+    ("SP_DEEP_ROTATE", 'SP_DEEP_ROTATE = "gain"        # ', "SP_DEEP_ROTATE = False         # "),
+    ("SP_DEEP_UNION", "SP_DEEP_UNION = False          # ", "SP_DEEP_UNION = True           # "),
+    ("SP_PURE_FIRST", 'SP_PURE_FIRST = "scratch"  # ', "SP_PURE_FIRST = False  # "),
+    ("SP_ALIAS_FIT", "SP_ALIAS_FIT = True    # ", "SP_ALIAS_FIT = False   # "),
+    ("ROUND_STATES", "ROUND_STATES = 2_000_000       # ", "ROUND_STATES = 4_000_000       # "),
+    ("SP_CALLS_FIRST", "SP_CALLS_FIRST = True  # ", "SP_CALLS_FIRST = False  # "),
+]
+DOC3 = {"sp2book": '''"""Stage 3, self-practising, with four of sp2's five certified variants, round 3 (cpu_first/integration/
+combined_sp2/COMBINED.md §9; make_combined.py --round 3 --variant sp2book writes it from the certified files): sp2
+(SELF_PRACTICE.md) with its own law book and the loop over T learned (LEARNED_LOOP.md: the count loop C.r[body], T in
+S, OUTER_*), generic instructions (GENERIC_OPS.md: COND, SHIFT, BRING, g3's SP_* rules), the fixed checks
+(ABLATION_S3.md 8: FULL_CHECK, ABOVE_CHECK) and the strict build (STRICT.md: work budgets, never the clock; the kept
+rows and the answer programs in buffers; Adam's own reset; no late lessons); with round 2's SHARED_ACCEPT and
+DOUBLE_COUNTS, and budgets set from this file's climb. The rest is sp2's, as LEARNED_LOOP.md describes it.
+"""
+''', "sp2machine": '''"""Stage 3, self-practising, with four of sp2's five certified variants, round 3 (cpu_first/integration/
+combined_sp2/COMBINED.md §9; make_combined.py --round 3 --variant sp2machine writes it from the certified files): sp2
+(SELF_PRACTICE.md) with the loop over T learned (LEARNED_LOOP.md: the count loop C.r[body], T in S, OUTER_*), the
+generated law book (SP_ABLATION.md 5.2), the fixed checks (ABLATION_S3.md 8: FULL_CHECK, ABOVE_CHECK) and the strict
+build (STRICT.md: work budgets, never the clock; the kept rows and the answer programs in buffers; Adam's own reset; no
+late lessons). g3's generic instructions are in the code with their settings set to sp2's (COND, SHIFT, BRING: SEL.S,
+zero shifts, BRG.X; the SP_* rules sp2's). With round 2's SHARED_ACCEPT and DOUBLE_COUNTS, and budgets set from this
+file's climb. The rest is sp2's, as LEARNED_LOOP.md describes it.
+"""
+'''}
 
 
 # ================================================================================================== the build
@@ -1080,21 +1129,25 @@ def undefined_globals(src: str) -> set:
     return out
 
 
-def build(sets: dict | None = None, round_: int = 1) -> tuple[str, list, list]:
-    """The combined file's text (round_ 2: with ROUND2), the log of every edit group applied (what, how many) and the
-    text after each stage (for --diff)."""
+def build(sets: dict | None = None, round_: int = 1, variant: str | None = None) -> tuple[str, list, list]:
+    """The combined file's text (round_ 2: with ROUND2; round_ 3: a variant of OUT3), the log of every edit group
+    applied (what, how many) and the text after each stage (for --diff)."""
+    assert (round_ == 3) == (variant in OUT3), (round_, variant)
     sp2 = read(*SP2)
     texts = {k: read(*v) for k, v in CERTIFIED.items()}
     replay()
     subs = {"@G3_ROUND@": g3_round(texts["g3"].splitlines(True)), "@DOC@": DOC}
-    src, log = merge_pieces(sp2, {k: texts[k] for k in ("ll", "g3", "book")}, subs)
+    pieces = ("ll", "g3") + (() if variant == "sp2book" else ("book",))
+    src, log = merge_pieces(sp2, {k: texts[k] for k in pieces}, subs)
     stages = [("sp2", sp2), ("ll,g3,book", src)]
     # the fix: make_fix_variants.py's edits for book_gen (the generated book's Draw and law_target; sp2's other edits)
-    for old, new in MFV.BOOK_GEN:
+    fix = MF.SP2_EDITS if variant == "sp2book" else MFV.BOOK_GEN       # sp2's own book: sp2's fix, as certified
+    for old, new in fix:
         n = src.count(old)
         assert n == 1, ("fix", n, old[:80])
         src = src.replace(old, new)
-    log.append(("fix: make_fix_variants.BOOK_GEN's edits", len(MFV.BOOK_GEN)))
+    log.append((f"fix: {'make_fix.SP2_EDITS' if variant == 'sp2book' else 'make_fix_variants.BOOK_GEN'}'s edits",
+                len(fix)))
     stages.append(("fix", src))
     src = apply_strict(src, log)
     stages.append(("strict", src))
@@ -1104,6 +1157,11 @@ def build(sets: dict | None = None, round_: int = 1) -> tuple[str, list, list]:
     if round_ == 2:
         src = apply_round2(src, log)
         stages.append(("round2", src))
+    if round_ == 3:
+        more = [("budgets' section", "COMBINED.md §8 sets both", "COMBINED.md §9 sets both")]
+        more += SP2_SETTINGS if variant == "sp2machine" else []
+        src = apply_round2(src, log, DOC3[variant], BUDGETS3[variant], [(w, o, n, 1) for w, o, n in more])
+        stages.append(("round3", src))
     for name, value in (sets or {}).items():                  # research builds only
         src, n = re.subn(rf"^{name} = .*$", f"{name} = {value}", src, count=1, flags=re.M)
         assert n == 1, name
@@ -1123,8 +1181,9 @@ def build(sets: dict | None = None, round_: int = 1) -> tuple[str, list, list]:
 def main(argv):
     sets = dict(a.split("=", 1) for a in argv if "=" in a and not a.startswith("--"))
     round_ = int(argv[argv.index("--round") + 1]) if "--round" in argv else 1
-    src, log, stages = build(sets, round_)
-    base = OUT if round_ == 1 else OUT2
+    variant = argv[argv.index("--variant") + 1] if "--variant" in argv else None
+    src, log, stages = build(sets, round_, variant)
+    base = {1: OUT, 2: OUT2}[round_] if round_ < 3 else OUT3[variant]
     if argv[:1] == ["--diff"]:
         names = [n for n, _ in stages]
         i = names.index(argv[1])

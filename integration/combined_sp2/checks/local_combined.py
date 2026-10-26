@@ -61,13 +61,26 @@ def load(sets=()):
     return mod
 
 
-def g3_lib(M, round_i=None):
-    """g3's official run's library (if1,k, its bindings) with its rounds as T.round<i> (from 1)."""
+SP2_LIB = os.path.join(INTEG, "learned_loop", "checks", "sp2_official_lib.json")     # sp2's official run's (sel,zero,brg)
+SP2_ROUNDS = ["LDA.X STA.Y T.mul.x,o.XY STA.X LDA.N T.red.x+on.XA", "LDA.X STA.Y T.mul.x,o.YX STA.X LDA.N T.red.x+on.XA"]
+
+
+def lib_texts(M):
+    """The library and rounds (texts) of an official run on the file's instruction set: g3's for if1,k; sp2's (as
+    learned_loop's checks use it) where the file has SEL.S (round 3's sp2machine)."""
+    if "SEL.S" in M.PRIMS:
+        return json.load(open(SP2_LIB)), SP2_ROUNDS
     d = json.load(open(G3_LIB))
-    lib = {k: M.parse(v) for k, v in d["lib"].items()}
-    for i, r in enumerate(d["round"]):
+    return d["lib"], d["round"]
+
+
+def g3_lib(M, round_i=None):
+    """That library with its rounds as T.round<i> (from 1); the rounds parsed."""
+    texts, rounds = lib_texts(M)
+    lib = {k: M.parse(v) for k, v in texts.items()}
+    for i, r in enumerate(rounds):
         lib[f"T.round{i + 1}"] = M.parse(r)
-    return lib, [M.parse(r) for r in d["round"]]
+    return lib, [M.parse(r) for r in rounds]
 
 
 def say(*a):
@@ -154,9 +167,10 @@ def part_machines():
         progs.append(pre + (("REP", kind, body),) + post)
     n_ll = len(progs)
     cblock = lambda: ("REP", "C", (rng.choice(prims),))                # g3's if block (if1: one item)
+    ifs = M.COND in ("if", "if1")                                      # (C blocks only where the set has them)
     progs += [M.parse("C.S[SBB.Y C[ADC.Y] INC]"), M.parse("SBB.X C[STA.Y] C.S[C[LDA.Y] ADC.X]"),
-              M.parse("C.S[SBB.N C[C[ADC.N] STA.X] SHL.A]")]
-    for _ in range(30):                                               # count loops and C blocks together (ll x g3)
+              M.parse("C.S[SBB.N C[C[ADC.N] STA.X] SHL.A]")] if ifs else []
+    for _ in range(30 if ifs else 0):                                 # count loops and C blocks together (ll x g3)
         body = tuple(cblock() if rng.random() < 0.4 else rng.choice(prims) for _ in range(rng.randint(1, 4)))
         pre = tuple(cblock() if rng.random() < 0.4 else rng.choice(prims) for _ in range(rng.randint(0, 2)))
         post = tuple(cblock() if rng.random() < 0.4 else rng.choice(prims) for _ in range(rng.randint(0, 2)))
@@ -212,7 +226,8 @@ def part_isa():
         TI.check_lockstep(M, f"vocabulary {st}", st, voc, {}, gen)
     nested = [M.parse(s) for s in ("C[T.link]", "B[C[T.lt]]", "C[C[LDA.S] STA.X]", "P[T.link INC]", "C[T.mac SHL.Y]",
                                    "T.chain SHL.X SHL.A", "C[SHR.X] SHL.Y", "W[C[ADC.X] INC]")]
-    nested = [p[0] if len(p) == 1 else ("REP", M.ONE, p) for p in nested]
+    nested = [p[0] if len(p) == 1 else ("REP", M.ONE, p) for p in nested
+              if M.COND in ("if", "if1") or "C[" not in M.show(p)]           # (test_isa's own filter)
     comp = [c.rep for c in M.enumerate_items(list(M.PRIMS) + sorted(lib), lib, sets[:2], dev, max_body=1)] + nested
     for st in sets:
         TI.check_lockstep(M, f"routines and nests {st}", st, comp, lib, gen, rows=2000)
@@ -387,15 +402,16 @@ def part_replay(steps=80, B=64):
     m.ctl.cells_on = True
     m.train()
     bundle = M.build_optimizer(m, OptimizerSpec(3600.0, "cpu"))
-    full = {k: M.parse(v) for k, v in json.load(open(G3_LIB))["lib"].items()}
-    rounds = [M.parse(r) for r in json.load(open(G3_LIB))["round"]]
+    texts, rtexts = lib_texts(M)
+    full = {k: M.parse(v) for k, v in texts.items()}
+    rounds = [M.parse(r) for r in rtexts]
     keep = M.lib_names(full, [it for r in rounds for it in r])
     m.ctl.cells = m.snapped_cells()
     c = m.ctl.climb = M.SelfClimb(m.ctl.cells, "cpu", M.PR, chunk=1 << 18, **M.SP)
     m.ctl.climb_work0 = M.WORK[0]
     c.lib = {k: v for k, v in full.items() if k in keep}
     c.rounds, c.done = rounds, True
-    say(f"replay: a finished climb with g3's official rounds and the {len(c.lib)} definitions they use")
+    say(f"replay: a finished climb with an official run's rounds ({len(rounds)}) and the {len(c.lib)} definitions they use")
     rows = LW.load("train")
     g = torch.Generator().manual_seed(0)
     for step in range(1, steps + 1):
@@ -413,8 +429,9 @@ def part_replay(steps=80, B=64):
               f"{ctl.ans_ok} streak {ctl.streak} progs {m.prog_names()} {time.time() - t0:.2f}s", flush=True)
         if ctl.phase == "frozen":
             break
-    progs = m.round_text()[1]
-    ok = m.ctl.phase == "frozen" and progs == [M.parse(f"C.S[T.round{i + 1} STA.X]") for i in range(len(rounds))]
+    progs = m.round_text()[1]                          # (rounds that do the same on random machines merge: sp2's two)
+    ok = m.ctl.phase == "frozen" and progs and all(p in [M.parse(f"C.S[T.round{i + 1} STA.X]")
+                                                        for i in range(len(rounds))] for p in progs)
     print(f"REPLAY FROZEN, the answer programs {[M.show(p) for p in progs]} in the buffers" if ok else
           f"REPLAY NOT FROZEN {m.ctl.history}", flush=True)
     return not ok
@@ -467,23 +484,32 @@ def part_fix():
     finally:
         sys.argv = argv
     rel = os.path.relpath(FILE, CPU)
-    say(f"fix: check_fix_variants.check_sp2 with {rel} as the fixed copy, g3 as the original, g3's official library")
-    fix = ns["check_sp2"]("combined", "integration/generic_ops/submission_stage3_g3.py", rel,
-                          "integration/generic_ops/records/runner/submission_stage3_g3_official.json")
-    sizes = [w for _, w in fix.SP_VERIFY]
+    sel = "SEL.S" in load().PRIMS                     # sp2's machine (round 3's sp2machine): sp2 the original
+    orig, rec = (("integration/self_practice/submission_stage3_sp2.py",
+                  "integration/self_practice/records/runner/submission_stage3_sp2_official.json") if sel else
+                 ("integration/generic_ops/submission_stage3_g3.py",
+                  "integration/generic_ops/records/runner/submission_stage3_g3_official.json"))
+    say(f"fix: check_fix_variants.check_sp2 with {rel} as the fixed copy, {orig} as the original, its official library")
+    fix = ns["check_sp2"]("combined", orig, rel, rec)
+    sizes = [w for _, w in getattr(fix, "SP_VERIFY", ((10, 1), (10, 2), (10, 3)))]
     say(f"fix: above probes: {ns['above_ok'](fix, 'sp2', sizes)}")
 
 
 # ================================================================================================== book
 def part_book():
-    comb = open(FILE).read()
-    gen = open(os.path.join(INTEG, "sp_ablation", "fix", "book_gen_fix.py")).read()
+    import difflib
+    M = load()
+    sp2book = "acc.mul" in M.LAW_BOOK                  # round 3's sp2book: sp2's own book, with sp2's fix
+    ref_name = "ablation_s3/fix/submission_stage3_sp2_fix.py" if sp2book else "sp_ablation/fix/book_gen_fix.py"
+    comb, ref = open(FILE).read(), open(os.path.join(INTEG, ref_name)).read()
     a, b = "# ===================================================================================================== the law book\n", \
         "# ===================================================================================================== many goals\n"
-    same = comb[comb.index(a):comb.index(b)] == gen[gen.index(a):gen.index(b)]
-    say(f"book: the law book's code (PATTERNS to the end of law_target) is book_gen_fix.py's, line for line: {same}")
+    x, y = ref[ref.index(a):ref.index(b)].splitlines(), comb[comb.index(a):comb.index(b)].splitlines()
+    d = [l for l in difflib.unified_diff(x, y, n=0, lineterm="") if l[:1] in "+-" and l[:3] not in ("+++", "---")]
+    say(f"book: the law book's code (PATTERNS to the end of law_target) against {ref_name}'s: "
+        f"{'the same' if not d else f'{len(d)} lines differ'}" + "".join(f"\n    {l}" for l in d))
     import check_books_part2 as P2
-    return (not same) + P2.run(load())
+    return P2.run(M)
 
 
 # ================================================================================================== grad
@@ -494,8 +520,8 @@ def part_grad(n=2, split="depth_t_2"):
     import local_check as lc
     M = load([("MODE", '"designed"')])
     m = designed_model(M)
-    lib, _ = g3_lib(M)
-    m.set_round(lib, [M.parse("C.S[T.round1 STA.X]"), M.parse("C.S[T.round3 STA.X]")])
+    lib, rounds = g3_lib(M)
+    m.set_round(lib, [M.parse("C.S[T.round1 STA.X]"), M.parse(f"C.S[T.round{min(3, len(rounds))} STA.X]")])
     ids, am, lab, tpos = lc.glc.batch(lc.glc.rows(DATA, split, n))
     t0 = time.time()
     logits = m(ids, am)[0]

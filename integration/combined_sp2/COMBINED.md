@@ -1,8 +1,8 @@
 # Every certified variant of sp2 in one file
 
-*Written 2026-10-25, step 2 of [LEGAL_PLAN.md](../../LEGAL_PLAN.md) §4; round 2 (§8) the same evening. Folder
-`cpu_first/integration/combined_sp2/`. Every input is a certified file or a study builder, read and md5-asserted, never
-written.*
+*Written 2026-10-25, step 2 of [LEGAL_PLAN.md](../../LEGAL_PLAN.md) §4; rounds 2 and 3 (§8, §9) the same evening.
+Folder `cpu_first/integration/combined_sp2/`. Every input is a certified file or a study builder, read and
+md5-asserted, never written.*
 
 ## In plain words
 
@@ -47,6 +47,25 @@ the round would come by about 3,400 to 3,700 s on the H100. Level 4 is now the c
 probes on the book's second reduction, x + x·N, which the round does not use: g3's rule gives each level's second deep
 probe to the next closest concept. With sp2's book that was the multiply, at 59 s. Whether to change that rule is a
 judge's question (§8).
+
+**Round 3 (§9): each of the two pieces left out in turn, and both four-piece files certify.** Two files built from
+round 2's:
+- [`submission_stage3_combined3_sp2book.py`](submission_stage3_combined3_sp2book.py) (md5 `c7c711ea`) leaves out the
+  generated book, with sp2's own book and its own fix back;
+- [`submission_stage3_combined3_sp2machine.py`](submission_stage3_combined3_sp2machine.py) (md5 `682f2e85`) leaves out
+  the generic instructions, with g3's settings set back to sp2's.
+
+Both keep round 2's two fixes, and each has work budgets set from its own climb. In the tiny core each reached the
+round in about 2,000 s, so both ran on the official H100, manifest untouched. Both certify: T = 64 on both ladders,
+every split exact, frozen by 2,113 s and 2,035 s of the 3,600. So the two pieces together are what makes the
+five-piece file late; either one alone fits, with about 1,500 s to spare.
+
+**Round 2's file with two hours (§9): research, not a certification.** The five-piece file, byte for byte, ran on the
+official manifest with the training budget at 7,200 s instead of 3,600 (relaxed). It learns H1: T = 64 on both
+ladders, every split exact. But it froze by 4,131 s, 531 s past the hour, so round 2 was right not to run it
+officially. And its own work budget was used to the end: the climb and the answer program's search did 0.1% more
+work than `CLIMB_WORK`. The last batch of the search, the one that held the answer programs, crossed it. A slightly
+heavier climb would have found no answer program, however long the time.
 <!-- /PLAIN -->
 
 ## 1. The pieces, and how the file is built
@@ -521,4 +540,218 @@ COMBINED_FILE=integration/combined_sp2/submission_stage3_combined2.py PYTHONPATH
 
 ```bash
 python3 integration/combined_sp2/checks/compare_cores.py integration/combined_sp2/records/core_combined.json integration/combined_sp2/records/core_combined2_measure.json
+```
+
+## 9. Round 3: each of the two pieces left out in turn, and round 2's file relaxed
+
+*Added 2026-10-25, on the user's go-ahead for two four-piece files built from round 2's: one without the generated
+book, one without the generic instructions, each screened in the tiny core where in doubt and run on the official H100
+if its round came well inside the hour. Added to that round: one research run of round 2's file with a relaxed
+training budget, labelled relaxed, not a certification. The first two rounds' files, records and logs are unchanged,
+and both rounds still rebuild byte for byte.*
+
+**Both four-piece files certify on the official H100** (manifest untouched, seed 74; `tools/verify_records.py`: the
+md5, the manifest and the RESULT_JSON line check out):
+
+| | sp2book: no generated book | sp2machine: no generic instructions |
+|---|---|---|
+| the file (md5) | [`submission_stage3_combined3_sp2book.py`](submission_stage3_combined3_sp2book.py) (`c7c711ea`) | [`submission_stage3_combined3_sp2machine.py`](submission_stage3_combined3_sp2machine.py) (`682f2e85`) |
+| the round | after level 4: step 618, by about 1,956 s; 1.502e9 units | after level 5: step 628, by about 1,963 s; 1.362e9 units |
+| the answer program | step 619, 101 s: `C.S[T.round1 STA.X]` and three like it | step 629, 36 s: `C.S[T.round1 STA.X]` and `C.S[T.round3 STA.X]` |
+| the climb's work, of its budget | 1.625e9 of 1.9e9 (86%) | 1.422e9 of 2.45e9 (58%) |
+| T read; frozen | step 639; step 818, by 2,113 s | step 649; step 828, by 2,035 s |
+| training; evaluation | 2,314 s; 341 s | 2,235 s; 195 s |
+| the result | T = 64 on both ladders, every rung 768/768; test 9,999/9,999, ood_n_t and ood_t 10,002/10,002 | the same |
+
+The records are `records/combined3_sp2book_official.json` and `records/combined3_sp2machine_official.json`. A
+round's time is the evaluator's elapsed time at its last hundred-step line before that step, plus the climb units' own
+seconds since. "Frozen by" is the next hundred-step line (step 900).
+
+So the five-piece file is late because of the two pieces together, as round 1 found. Either one alone reaches the
+round by about 1,960 s and freezes by about 2,100 s, 1,500 s inside the hour. That is earlier than g3's own certified
+run (the round by 2,507 s, training 2,770 s). sp2's own run and the learned loop's froze by 1,077 s and 1,002 s
+(LEARNED_LOOP.md §5).
+
+**The files.** `make_combined.py --round 3 --variant V` writes each from the same certified files, every md5
+asserted: round 1's steps without the piece left out, round 2's edits, then the variant's own.
+- `submission_stage3_combined3_sp2book.py` (md5 `c7c711ea23ff2d8753b96b1ed07c4993`, 257,348 bytes, 4,796 under the
+  limit) leaves out the generated book. The merge takes ll's 81 hunks and g3's 69, with the same 9 hand merges, which
+  all lie between ll and g3. The fix is sp2's own, as make_fix.py certified it (`make_fix.SP2_EDITS`, 9 edits), since
+  the book it fixes is sp2's again.
+- `submission_stage3_combined3_sp2machine.py` (md5 `682f2e85125593a4f0b233a2d675d7e0`, 261,832 bytes, 312 under)
+  leaves out the generic instructions. It is round 2's file with g3's eleven settings set back to sp2's
+  (`SP2_SETTINGS`): `SEL.S`, zero shifts and `BRG.X`; three-digit acceptance; sp2's deep probes (8 roots, no rotation,
+  the union over bindings); g3's three search rules off; the round's search at 4M states. These are the eleven that
+  round 1's second tiny core set (§4). g3's code stays in the file, unused.
+
+Both keep round 2's two fixes. Both books are posed through the same `Root` and accepted through the same `Acceptor`,
+so `SHARED_ACCEPT` shares one setup among a root's laws in either. Both build their counted probes by repeated
+addition (`repeat_add`; in sp2's book, the x + d·N probes and the multiply's targets), so `DOUBLE_COUNTS` builds them
+by doubling in either. The budget lines' comment now points here (one more round-3 edit).
+
+**The budgets, from each file's own climb.** As in round 2, each file ran in the tiny core with both budgets 0 and its
+work counted. Those builds, `research/submission_stage3_combined3_sp2book_SEARCH_WORK-0_CLIMB_WORK-0.py` (md5
+`13b42ee3`) and its sp2machine twin (`4c412740`), are the final files byte for byte once both budgets are 0.
+
+| file | work to the round | with the answer program's search | largest search | `CLIMB_WORK` | `SEARCH_WORK` |
+|---|---|---|---|---|---|
+| round 2 (five pieces) | 2.534e9 | 2.651e9 | 3.34e8, a level-4 deep probe | 3.25e9 | 7e8 |
+| sp2book | 1.418e9 | 1.540e9 | 2.61e8, a level-4 deep probe | 1.9e9 | 6e8 |
+| sp2machine | 1.668e9 | 1.986e9 | 1.85e8, a level-5 probe | 2.45e9 | 4e8 |
+
+`CLIMB_WORK` is 1.22 times the climb with the answer program's search, and `SEARCH_WORK` twice the largest search,
+each rounded up (STRICT.md §2's factors). Neither binds on the climb it was set from, so each final file runs that
+climb line for line. As in round 2, "a search" here is one probe unit. The budget restarts for each run inside a unit,
+and the largest runs are smaller (9.3e7 and 1.29e8). On the official H100 both budgets held. sp2machine's official
+climb took another path from its tiny core's, with less work (1.422e9 against 1.986e9). sp2book's took 5.5% more work
+than its tiny core's (1.625e9 against 1.540e9) and used 86% of its budget. So 1.22 times one climb left 14% of the
+budget. STRICT.md set its budgets from nine climbs; each of these comes from one.
+
+**The local checks** pass on both final files (`checks/logs/local3_sp2book.log`, `local3_sp2machine.log`): policy,
+machines (sp2machine has no C blocks: `SEL.S`), isa, designed (exact to T = 64), buffers and the state dict, grad, fix,
+book, the budget-binding smoke, and the replay (frozen, the answer programs in the buffers). The checks now pick sp2's
+routines, rounds and certified original where a file has `SEL.S`. sp2's two rounds merge into one answer program,
+`C.S[T.round1 STA.X]`, and the replay check now accepts that. Three readings need a word, each with a known cause:
+- `grad`: sp2machine's addition table (`aa`, `ab`) gets no gradient. sp2's round never adds: its multiply accumulates
+  in the multiply cell and its reduction subtracts. LEARNED_LOOP.md's rule-8 test found the same on sp2's own file.
+  sp2book has a gradient on 14 of 15 tensors, as round 2 did.
+- `fix`: check 3 (the acceptance machines at the verify sizes equal the original's) reads False in both, as it did in
+  round 2. The doubled counts alone cause it: with `DOUBLE_COUNTS` off it reads True, on both files and on round 2's.
+  The rest of the fix check passes: the full-size probes are exact, and the alias and the loop of 10,000 subtractions
+  are rejected (1,000 in sp2machine, at three digits).
+- `book`: each book differs from its fixed original (sp2's in `submission_stage3_sp2_fix.py`, the generated one in
+  `book_gen_fix.py`) only by round 2's two changes, 17 lines. Its targets are the laws' values: 5,450 on 19 concepts
+  in sp2's book, 12,382 on 40 in the generated one.
+
+**The tiny cores** (`records/core_combined3_sp2book_measure.*` and `core_combined3_sp2machine_measure.*`, one B200
+each, at the same time):
+
+| level | round 2 (five pieces) | sp2book (no generated book) | sp2machine (no generic instructions) |
+|---|---|---|---|
+| 0 | 51 s; 7.1e6 | 64 s; 7.1e6 | 56 s; 5.9e6 |
+| 1 | 111 s; 7.1e7 | 125 s; 6.7e7 | 146 s; 7.6e7 |
+| 2 | 104 s; 6.5e7 | 111 s; 5.7e7 | 161 s; 8.8e7 |
+| 3 | 440 s; 2.2e8 | 240 s; 1.2e8 | 389 s; 2.7e8 |
+| 4 | 2,499 s; 2.17e9; the round | 1,465 s; 1.16e9; **the round** | 372 s; 3.2e8 |
+| 5 | | | 937 s; 9.1e8; **the round** |
+| the round | 3,206 s | **2,006 s** | **2,062 s** |
+| the answer program | `C.S[T.round1 STA.X]`, 102 s | `C.S[T.round1 STA.X]`, 112 s | `C.S[T.round1 STA.X]`, 83 s |
+
+Each answer program is right on all 224 unseen rows (T = 1 to 64). sp2book's round is
+`LDA.X T.mul.x,o.XA STA.Y T.red.x+on.YN` and three like it: sp2's multiply, then the reduction on x + o·N.
+sp2machine's is `LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X LDA.N T.red.x+on.XA` and three like it: the generated
+multiply-accumulate, then the same reduction, as in round 2. The official runs found rounds of the same two kinds.
+
+**Where the time went.** Each four-piece climb reaches the round in about 2,000 s, against the five-piece file's 3,206
+s, with 56% and 66% of its work.
+- Without the generated book, level 4 looks as §8 said it would. Its deep probes go to the reduction on x + o·N (3
+  groups, 800 s) and then to sp2's multiply on (x, o) (3 groups, 73 s), not to the book's second reduction (799 s in
+  round 2). Its ordinary probes are 6 groups in 575 s, against 11 groups in 974 s on the generated book's bigger pool.
+  Level 3 is cheaper too: 240 s against 440 s, and against 559 s in g3's own tiny core.
+- Without the generic instructions, the climb has sp2's shape: one more level, each one cheaper. Levels 4 and 5
+  together take 1,309 s. Their deep probes take 98 s on the generated multiply-accumulate's pattern (o, x, o) in level
+  4, and 320 s on the book's (o, x, x) in level 5.
+
+**This round's B200s were slower.** sp2machine is round 1's second tiny core plus round 2's two fixes. Its first 26
+units are that run's line for line (`checks/compare_cores.py`), with exactly that run's work in levels 0-2, and the
+first difference is level 3's x + d·N probes, built by doubling, as in round 2. But those 26 units take 408 s against
+279 s, and levels 4 and 5 take 1.2 times that run's seconds for about the same work. Its round came at 2,062 s with
+1.668e9 units, against 1,695 s with 1.727e9.
+
+**Well inside the hour, so both ran.** At the earlier ratios of tiny core to official H100 (1.05 to 1.15), the rounds
+would have come by 2,110 to 2,310 s (sp2book) and 2,170 to 2,370 s (sp2machine) of training, before the answer
+program's search and phase D's 200 steps. That is 1,200 s or more before the hour. They came by about 1,956 and 1,963
+s: 0.97 and 0.95 times the tiny cores' times, under the earlier ratios because these B200s were slow.
+
+**Round 2's file, relaxed: research, not a certification.** The run is round 2's
+[`submission_stage3_combined2.py`](submission_stage3_combined2.py) (md5 `4e0e3f09`), byte for byte, through the
+shared runner's plan mode on one H100 ([`plans/combined2_relaxed.json`](plans/combined2_relaxed.json)). One manifest
+key changed: `runtime.total_training_time_seconds` is 7,200 in place of 3,600. The runner runs a copy of H1's official
+manifest with that key replaced, as the learned loop's relaxed seed-2 run did, so the evaluation budget doubles too
+(it is half the training budget). The file reads no clock (the strict build), so the longer budget only moves the
+evaluator's stop. Its own stops, `CLIMB_WORK` 3.25e9 and `SEARCH_WORK` 7e8, stay as they are. The record is
+`records/combined2_h100_relaxed7200.json` (relaxed).
+
+**It learns H1, 531 s past the hour, with none of its own work budget left.** `tools/verify_records.py` checks the md5
+and the RESULT_JSON line, and flags the manifest (`runtime.total_training_time_seconds` 3,600 → 7,200), as it should.
+
+| | round 2's file, relaxed (7,200 s) |
+|---|---|
+| the round | after level 4: step 629, by about 3,792 s; 2.512e9 units (its tiny core: 3,206 s, 2.534e9) |
+| level 4 | 2,757 s (its tiny core: 2,499 s) |
+| the answer program | step 630, 279 s: `C.S[T.round1 STA.X]` and two like it |
+| the climb's work, of its budget | 3.254e9 of 3.25e9 |
+| T read; frozen | step 650; step 829, by 4,131 s |
+| training; evaluation | 4,350 s; 633 s |
+| the result | T = 64 on both ladders, every rung 768/768; test 9,999/9,999, ood_n_t and ood_t 10,002/10,002 |
+
+- Given the time, the five-piece climb learns H1 on the manifest's seed, with the same kind of round as its tiny core:
+  `LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.X LDA.N STA.Y T.red.x+on.XY` and two like it, the generated
+  multiply-accumulate, then the reduction on x + o·N.
+- It would not have fit in the hour: it froze 531 s past it. Its round came 1.18 times later than in its tiny core,
+  past the 1.05 to 1.15 seen before. So round 2's call (no official run) was right.
+- Its own budget had nothing left. The climb and the answer program's search did 3.254e9 units, 0.1% past
+  `CLIMB_WORK`. The search checks the budget before each batch of candidates, and the batch that held its programs
+  is the one that crossed it. A slightly heavier climb would have stopped the search before that batch, with no
+  answer program, however long the training budget. That search did 7.43e8 units in 279 s, against 1.17e8 in 102 s
+  in the tiny core, though it was smaller (59,840 states at cost 3, against 80,297). Why was not looked into.
+
+**Cost.** Round 3: two B200 tiny cores of 2,135 and 2,156 s, about $8 at list price; the two official H100 runs,
+$3.00 and $2.74 (the runner's list-price estimates). That is about $13.7 of the round's soft $15. The relaxed run:
+$5.61 at list price (the runner's estimate; $4.57 billed so far, for the complete hours), of its own soft $10. The
+spend checks before the launches read $3,514.05 (the tiny cores, then the relaxed run) and $3,522.55 (the two official
+runs) billed this month. The local checks ran on the laptop's CPU under `checks/capped.py`.
+
+**What it leaves.**
+- Two certified four-piece combinations, each on one seed, the manifest's. More seeds need a go-ahead.
+- The two pieces' conflict is located, and it is the one §8 found. With both, g3's rule gives level 4's second deep
+  probe to the book's second reduction (about 800 s), and the bigger pool's ordinary probes cost about 400 s more.
+  §8's judge's question stands: whether a rule that treats a law's patterns as one concept for that slot is general.
+- sp2book used 86% of a budget set from one climb. Seeds of either file should reset the budgets from more climbs, as
+  STRICT.md did from nine.
+- The five-piece file learns H1 in two hours, not one, and only just within its own work budget. To fit the hour it
+  needs about 530 s back; in its tiny core, the deep probes on the book's second reduction alone took about 800 s
+  (§8). Its `CLIMB_WORK` would need resetting too, from more than one climb: its official answer search cost six
+  times its tiny core's.
+
+**Round 3's files and how to rerun.** New in the folder: the two files; `research/`'s two measuring builds;
+`plans/combined2_relaxed.json`; `checks/logs/local3_sp2book.log` and `local3_sp2machine.log`;
+`records/core_combined3_sp2book_measure.*`, `core_combined3_sp2machine_measure.*`, `combined3_sp2book_official.json`,
+`combined3_sp2machine_official.json` and `combined2_h100_relaxed7200.json` (relaxed). `make_combined.py` takes
+`--variant` and `--out`; `checks/local_combined.py` and `checks/check_books_part2.py` follow a file with `SEL.S`.
+
+```bash
+~/github/sotaku/venv/bin/python integration/combined_sp2/make_combined.py --round 3 --variant sp2book
+```
+
+```bash
+~/github/sotaku/venv/bin/python integration/combined_sp2/make_combined.py --round 3 --variant sp2machine
+```
+
+```bash
+~/github/sotaku/venv/bin/python integration/combined_sp2/make_combined.py --round 3 --variant sp2book SEARCH_WORK=0 CLIMB_WORK=0
+```
+
+```bash
+COMBINED_FILE=integration/combined_sp2/submission_stage3_combined3_sp2book.py PYTHONPATH=. ~/github/sotaku/venv/bin/python integration/combined_sp2/checks/capped.py 3000 14 -- ~/github/sotaku/venv/bin/python integration/combined_sp2/checks/local_combined.py policy machines isa designed buffers grad fix book climb_tiny replay
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach integration/combined_sp2/modal_c.py --envs '[{"TAG": "core_combined3_sp2book_measure", "SECONDS": "3000", "FILE": "/root/cpu_first/integration/combined_sp2/research/submission_stage3_combined3_sp2book_SEARCH_WORK-0_CLIMB_WORK-0.py"}]'
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode official --file integration/combined_sp2/submission_stage3_combined3_sp2book.py --memory-gb 48 --name combined3_sp2book_official --out integration/combined_sp2/records --run combined3-sp2book-official
+```
+
+```bash
+python3 tools/verify_records.py integration/combined_sp2/records/combined3_sp2book_official.json=integration/combined_sp2/submission_stage3_combined3_sp2book.py
+```
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode plan --plan integration/combined_sp2/plans/combined2_relaxed.json --out integration/combined_sp2/records --cap 1 --run combined2-relaxed
+```
+
+```bash
+python3 integration/combined_sp2/checks/compare_cores.py integration/combined_sp2/records/core_book_sp2machine.json integration/combined_sp2/records/core_combined3_sp2machine_measure.json
 ```

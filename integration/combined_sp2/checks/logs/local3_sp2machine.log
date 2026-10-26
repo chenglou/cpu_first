@@ -1,0 +1,226 @@
+policy: the contest's static source policy passes; 261,832 bytes of 262,144 (0s)
+machines: 46 of test_count.py's programs and 0 with C blocks at P = 4, every machine from items and from instructions: 0 failing (2s)
+machines: counts 0-12 run that many times; 150 clears the probe (2s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X STA.Y T.mul.x,o.XY STA.X LDA.N T.red.x+on.XA) T=1: machines agree True, outer True, one-hot True; the answer right True (3s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X STA.Y T.mul.x,o.XY STA.X LDA.N T.red.x+on.XA) T=2: machines agree True, outer True, one-hot True; the answer right True (4s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X STA.Y T.mul.x,o.XY STA.X LDA.N T.red.x+on.XA) T=4: machines agree True, outer True, one-hot None; the answer right True (5s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X STA.Y T.mul.x,o.XY STA.X LDA.N T.red.x+on.XA) T=8: machines agree True, outer True, one-hot None; the answer right True (6s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X STA.Y T.mul.x,o.XY STA.X LDA.N T.red.x+on.XA) T=16: machines agree True, outer True, one-hot None; the answer right True (9s)
+MACHINES OK
+isa: sel,zero,brg, 32 primitives ['SBB.X', 'SBB.Y', 'SBB.N', 'SBB.S', 'ADC.X', 'ADC.Y', 'ADC.N', 'ADC.S', 'MUL.X', 'MUL.Y', 'MUL.N', 'SEL.S', 'LDA.X', 'LDA.Y', 'LDA.N', 'LDA.S', 'STA.X', 'STA.Y', 'STA.S', 'CLA', 'CLC', 'CLK', 'LDH.X', 'LDH.Y', 'INC', 'SHL.A', 'SHL.X', 'SHL.Y', 'SHR.A', 'SHR.X', 'SHR.Y', 'BRG.X']; loops ('P', 'B', 'W') (9s)
+  lockstep primitives (10,1) P=2: 32 items, 768 rows: same (0s)
+  lockstep primitives (10,2) P=4: 32 items, 768 rows: same (0s)
+  lockstep primitives (10,8) P=16: 32 items, 768 rows: same (0s)
+isa: vocabulary to body cost 2: 1862 items, 0 C blocks (9s)
+  lockstep vocabulary (10,1): 1862 items, 3000 rows: same (0s)
+  lockstep vocabulary (10,2): 1862 items, 3000 rows: same (0s)
+  lockstep routines and nests (10,1): 106 items, 2000 rows: same (1s)
+  lockstep routines and nests (10,2): 106 items, 2000 rows: same (2s)
+  lockstep routines and nests (10,8): 106 items, 2000 rows: same (20s)
+isa: the outer machine vs run_prog, 41 programs at 16 places: 0 differ (36s)
+isa: the one-hot machine (items and instructions) vs run_items, 25 programs at 16 places: 0 differ (50s)
+isa: the hand-written round LDA.X STA.Y T.mul STA.X LDA.N T.red, T.link = STA.S T.lt SEL.S, T.red = STA.Y P[BRG.X T.chain]: round_ok on 400 T = 1 rows True (50s)
+ISA OK
+designed: the buffers hold ['C.S[T.round1 STA.X]'] and 12 definitions; round_ops (4, 6607); parameters 207,370 (50s)
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (1.000)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=4 (no training ran)
+designed: depth_t_1 n=8: prediction path exact 1.000, run_outer exact 1.000 (0.1s) (50s)
+AUDIT count_loop_rows_used=11 (no training ran)
+designed: depth_t_8 n=8: prediction path exact 1.000, run_outer exact 1.000 (0.7s) (51s)
+AUDIT count_loop_rows_used=14 (no training ran)
+designed: depth_t_16 n=8: prediction path exact 1.000, run_outer exact 1.000 (1.4s) (52s)
+designed: depth_ood_n_t_2 n=8: prediction path exact 1.000, run_outer exact 1.000 (0.2s) (53s)
+AUDIT count_loop_rows_used=24 (no training ran)
+designed: depth_ood_n_t_64 n=8: prediction path exact 1.000, run_outer exact 1.000 (5.6s) (58s)
+DESIGNED ALL EXACT
+buffers: the count rows' buffers equal the learned loop's dict after each of 300 random batches: yes; kept {'00': 56, '01': 56, '11': 56, '02': 56, '22': 56, '03': 56, '04': 56, '08': 56, '09': 56} (58s)
+buffers: round_ops is answer_trace's (6607 instructions), round_src reads back the program and the 12 definitions it uses: True (58s)
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (1.000)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=7 (no training ran)
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (1.000)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=7 (no training ran)
+buffers: a fresh model loaded with the state dict gives the same logits: True; state 207,370 parameters, 314,131 buffer numbers (59s)
+BUFFERS OK
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (0.455) | C.S[T.round2 STA.X] (0.545)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=5 (no training ran)
+grad: depth_t_2 n=2 exact=1.000 (0.5s forward) (59s)
+grad: 15 tensors; with a gradient: 12 | none: ['aa', 'ab'] | all zero: ['prog'] (60s)
+   a: max |grad| 9.309e-10
+   b: max |grad| 7.062e-05
+   ml: max |grad| 9.072e-15
+   mh: max |grad| 9.990e-16
+   dg: max |grad| 1.405e-04
+   u: max |grad| 2.977e-13
+   wc: max |grad| 2.462e-02
+   anc: max |grad| 7.530e-02
+   strd: max |grad| 6.363e-03
+   shape: max |grad| 1.271e-02
+   off: max |grad| 1.086e-25
+   absp: max |grad| 4.035e-26
+fix: check_fix_variants.check_sp2 with integration/combined_sp2/submission_stage3_combined3_sp2machine.py as the fixed copy, integration/self_practice/submission_stage3_sp2.py as the original, its official library (61s)
+  3. the acceptance machines at the verify sizes [1, 2, 3] equal the original's: False
+  4. red on pair in AX: its routine 'B1.2 SEL.S': original True, fix True; the alias 'STA.S T.lt.pair.AX CLA SEL.S': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 692,065)
+  4. red on x+on in XA: its routine 'STA.Y P[BRG.X T.red.x+dn.AY]': original True, fix True; a loop of 1,000 subtractions 'STA.Y LDA.X B[B[B[T.red.pair.AY]]]': original True, fix False
+fix: above probes: 47/180 drawn at W = 1, 2, 3; N < X < 2N and X - N the answer on 47/47 (62s)
+book: the law book's code (PATTERNS to the end of law_target) against sp_ablation/fix/book_gen_fix.py's: 17 lines differ
+    +    if DOUBLE_COUNTS:
+    +        return times_add(ops, st, lib, D, v, times, gen, device)
+    -    def goals(self, ops, lib, laws):
+    +    def goals(self, ops, lib, laws, k=None):
+    -                ts = [law_target(law, d, ops, lib) for d in self.draws]
+    +                ts = [law_target(law, d, ops, lib) for d in self.draws[:k]]
+    -    def __init__(self, law, root, verify, rows, ops, lib, device, n=60, seed=11):
+    +    def __init__(self, law, root, verify, rows, ops, lib, device, n=60, seed=11, box=None):
+    -        r = Root(root.pattern, root.binding, verify, n, rows, ops, lib, device, seed)
+    -        g = r.goals(ops, lib, [law])
+    +        if box is None:
+    +            r = Root(root.pattern, root.binding, verify, n, rows, ops, lib, device, seed)
+    +        else:                                  # SHARED_ACCEPT
+    +            if "root" not in box:
+    +                box["root"] = Root(root.pattern, root.binding, box["sets"], n, rows, ops, lib, device, seed)
+    +            r = box["root"]
+    +        g = r.goals(ops, lib, [law], len(verify)) (62s)
+book: check_books part 2 on this file: 40 concepts posed (every binding), 12382 probe targets equal the law's value (2s)
+LR climb_starts step=1 cells: subtraction/addition/multiply snapped, right vs the truth (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+LR climb step=1 L0 pose: 104 candidates on 24 roots [work +0, 0 in all] (0.1s)
+LR step=1 phase=C io=5 loss=0.1051 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=-1000 rows_visited=200/200 pool=64 answers=1 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: none fit=[]  facts=
+/Users/chenglou/github/one-layer/cpu_first/integration/combined_sp2/checks/local_combined.py:467: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"STEP {step} loss {float(loss):.4f} phase {m.ctl.phase} answers t={int(m.ans_t)} "
+STEP 1 loss 0.1051 phase C answers t=1 1 pool 64 work 0 0.09s
+LR climb step=2 L0 probe 16 roots 17.4s solved {'min/x,x@AX': 0, 'max/x,x@AX': 0, 'min/x,x@AY': 0, 'max/x,x@AY': 0, 'min/x,x@AN': 0, 'max/x,x@AN': 0, 'min/x,x@XA': 0, 'max/x,x@XA': 0} [('routines', 11.5)] [work +8.729e+05, 8.729e+05 in all] (17.4s)
+STEP 2 loss 0.0908 phase C answers t=1 1 pool 128 work 8.729e+05 17.44s
+LR climb step=3 L0 probe 8 roots 0.0s solved {'min/x,x@XY': 1, 'max/x,x@XY': 1, 'min/x,x@XN': 1, 'max/x,x@XN': 1, 'min/x,x@YA': 0, 'max/x,x@YA': 0, 'min/x,x@YX': 1, 'max/x,x@YX': 1, 'min/x,x@YN': 1, 'max/x,x@YN': 1, 'min/x,x@NA': 0, 'max/x,x@NA': 0, 'min/x,x@NX': 1, 'max/x,x@NX': 1, 'min/x,x@NY': 1, 'max/x,x@NY': 1} [('routines', 0.0)] [work +2201, 8.751e+05 in all] (0.0s)
+STEP 3 loss 0.0896 phase C answers t=1 1 pool 192 work 8.751e+05 0.04s
+LR climb step=4 L0 choose (lpca): {'unsolved': 80, 'trivial': 24}; picks [] [work +600.1, 8.757e+05 in all] (0.0s)
+STEP 4 loss 0.0848 phase C answers t=1 1 pool 256 work 8.757e+05 0.02s
+LR climb step=5 L0 sleep: no new concept learnable; the next level poses practised ones' variants [work +0, 8.757e+05 in all] (0.0s)
+STEP 5 loss 0.0846 phase C answers t=1 3 pool 320 work 8.757e+05 0.02s
+LR climb step=6 L0 target: no answers yet [work +0, 8.757e+05 in all] (0.0s)
+STEP 6 loss 0.0777 phase C answers t=1 3 pool 384 work 8.757e+05 0.02s
+LR climb step=7 L1 pose: 80 candidates on 12 roots [work +0, 8.757e+05 in all] (0.1s)
+STEP 7 loss 0.0749 phase C answers t=1 3 pool 448 work 8.757e+05 0.07s
+LR climb step=8 L1 probe 12 roots 11.8s solved {} [('routines', 11.8)] [work +3.529e+05, 1.229e+06 in all] (11.8s)
+STEP 8 loss 0.0674 phase C answers t=1 3 pool 512 work 1.229e+06 11.86s
+LR climb step=9 L1 choose (lpca): {'unsolved': 80}; picks [] [work +0, 1.229e+06 in all] (0.0s)
+STEP 9 loss 0.0656 phase C answers t=1 3 pool 576 work 1.229e+06 0.02s
+LR mined step=10 fact=x<N
+LR mined step=10 fact=T<N
+LR mined step=10 fact=N!=0
+LR mined step=10 fact=N<10^7
+LR mined step=10 fact=N<10^8
+LR mined step=10 fact=Nmod2!=0
+LR mined step=10 fact=Nmod2=1
+LR mined step=10 fact=Nmod5!=0
+LR mined step=10 fact=Nmod3!=0
+LR mined step=10 fact=x!=0
+LR mined step=10 fact=x<10^6
+LR mined step=10 fact=x<10^7
+LR mined step=10 fact=x<10^8
+LR mined step=10 fact=T!=0
+LR mined step=10 fact=T<10^2
+LR mined step=10 fact=T<10^3
+LR mined step=10 fact=T<10^4
+LR mined step=10 fact=T<10^5
+LR mined step=10 fact=T<10^6
+LR mined step=10 fact=T<10^7
+LR mined step=10 fact=T<10^8
+LR mined step=10 fact=Tmod5!=0
+LR mined step=10 fact=Tmod3!=0
+LR climb step=10 L1 sleep: nothing learnable to practise; climb done [work +0, 1.229e+06 in all] (0.0s)
+LR mined step=10 fact=T<y
+LR mined step=10 fact=y<N
+LR mined step=10 fact=y!=0
+LR mined step=10 fact=y<10^6
+LR mined step=10 fact=y<10^7
+LR mined step=10 fact=y<10^8
+LR step=10 phase=C io=5 loss=0.0619 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=1 order_digits=-1000 rows_visited=200/200 pool=640 answers=3 counts={'01': 3, '02': 4, '04': 64, '08': 64} climb_level=1 solved=[] round: none fit=[]  facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);N mod 2 = 1(since 10, fails 0);N mod 3 != 0(since 10, fails 0);N mod 5 != 0(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < y(since 10, fails 0);T mod 3 != 0(since 10, fails 0);T mod 5 != 0(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0);y != 0(since 10, fails 0);y < 10^6(since 10, fails 0);y < N(since 10, fails 0)
+STEP 10 loss 0.0619 phase C answers t=1 3 pool 640 work 1.229e+06 0.03s
+STEP 11 loss 0.0619 phase C answers t=1 3 pool 704 work 1.229e+06 0.03s
+LR mined step=12 fact=N<10^6
+STEP 12 loss 0.0565 phase C answers t=1 3 pool 768 work 1.229e+06 0.03s
+climb (tiny budgets): level 1, 0 definitions, work 1.229e+06; climb lines 10 (95s)
+replay: a finished climb with an official run's rounds (2) and the 15 definitions they use (96s)
+LR step=1 phase=C io=4 loss=0.1051 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=-1000 rows_visited=200/200 pool=64 answers=1 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: none fit=[]  facts=
+STEP 1 loss 0.1051 phase C io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 0.0 streak 0 progs none 0.02s
+LR outer step=2 answer program: cost 3 levels [1, 27, 481, 9954] 32.5s  ['C.S[T.round1 STA.X]'] (36 rows of 3 counts, 2627 items, 520 loop bodies) [work +5.051e+07, 5.051e+07 in all]
+LR round_found step=2 programs: ['C.S[T.round1 STA.X]'] rounds: {'T.round1': 'LDA.X STA.Y T.mul.x,o.XY STA.X LDA.N T.red.x+on.XA', 'T.round2': 'LDA.X STA.Y T.mul.x,o.YX STA.X LDA.N T.red.x+on.XA'} library: {'B0.1': 'SBB.Y INC', 'B0.2': 'P[B0.1]', 'B0.3': 'CLC B0.2', 'T.lt.pair.AY': 'B0.3', 'B1.1': 'STA.S T.lt.pair.AY', 'T.red.pair.AY': 'B1.1 SEL.S', 'B3.1': 'B[T.red.pair.AY]', 'T.acc.mul.o,x,d.AXY': 'LDH.Y CLK P[MUL.X INC]', 'T.acc.mul.o,x,d.AYX': 'LDH.X CLK P[MUL.Y INC]', 'T.red.x+dn.AY': 'B3.1', 'B4.5': 'T.acc.mul.o,x,d.AYX INC', 'B4.6': 'B4.5 SHL.Y', 'T.mul.x,o.XY': 'CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]', 'T.mul.x,o.YX': 'CLA W[B4.6]', 'T.red.x+on.XA': 'STA.Y P[BRG.X T.red.x+dn.AY]', 'T.round1': 'LDA.X STA.Y T.mul.x,o.XY STA.X LDA.N T.red.x+on.XA', 'T.round2': 'LDA.X STA.Y T.mul.x,o.YX STA.X LDA.N T.red.x+on.XA'}
+STEP 2 loss 0.0908 phase D io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 1 progs C.S[T.round1 STA.X] (1.000) 32.55s
+STEP 3 loss 0.0896 phase D io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 2 progs C.S[T.round1 STA.X] (1.000) 0.03s
+STEP 4 loss 0.0848 phase D io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 3 progs C.S[T.round1 STA.X] (1.000) 0.05s
+LR io_stage=5 T_resolved step=5 rows=25 hits=25 snapped_right=1.000 share=1.0000
+STEP 5 loss 0.0846 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 4 progs C.S[T.round1 STA.X] (1.000) 0.61s
+STEP 6 loss 0.0777 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 5 progs C.S[T.round1 STA.X] (1.000) 0.05s
+STEP 7 loss 0.0749 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 6 progs C.S[T.round1 STA.X] (1.000) 0.05s
+STEP 8 loss 0.0674 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 7 progs C.S[T.round1 STA.X] (1.000) 0.05s
+STEP 9 loss 0.0656 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 8 progs C.S[T.round1 STA.X] (1.000) 0.05s
+LR mined step=10 fact=x<N
+LR mined step=10 fact=T<N
+LR mined step=10 fact=N!=0
+LR mined step=10 fact=N<10^7
+LR mined step=10 fact=N<10^8
+LR mined step=10 fact=Nmod2!=0
+LR mined step=10 fact=Nmod2=1
+LR mined step=10 fact=Nmod5!=0
+LR mined step=10 fact=Nmod3!=0
+LR mined step=10 fact=x!=0
+LR mined step=10 fact=x<10^6
+LR mined step=10 fact=x<10^7
+LR mined step=10 fact=x<10^8
+LR mined step=10 fact=T!=0
+LR mined step=10 fact=T<10^2
+LR mined step=10 fact=T<10^3
+LR mined step=10 fact=T<10^4
+LR mined step=10 fact=T<10^5
+LR mined step=10 fact=T<10^6
+LR mined step=10 fact=T<10^7
+LR mined step=10 fact=T<10^8
+LR mined step=10 fact=Tmod5!=0
+LR mined step=10 fact=Tmod3!=0
+LR mined step=10 fact=T<y
+LR mined step=10 fact=y<N
+LR mined step=10 fact=y!=0
+LR mined step=10 fact=y<10^6
+LR mined step=10 fact=y<10^7
+LR mined step=10 fact=y<10^8
+LR step=10 phase=D io=5 loss=0.0619 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=1.0000 streak=8 facts_streak=1 order_digits=-1000 rows_visited=200/200 pool=640 answers=3 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: C.S[T.round1 STA.X] (1.000) fit=[1.0] rows=25 hits=25 snapped_right=1.000 share=1.0000 facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);N mod 2 = 1(since 10, fails 0);N mod 3 != 0(since 10, fails 0);N mod 5 != 0(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < y(since 10, fails 0);T mod 3 != 0(since 10, fails 0);T mod 5 != 0(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0);y != 0(since 10, fails 0);y < 10^6(since 10, fails 0);y < N(since 10, fails 0)
+STEP 10 loss 0.0619 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 9 progs C.S[T.round1 STA.X] (1.000) 0.05s
+STEP 11 loss 0.0619 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 10 progs C.S[T.round1 STA.X] (1.000) 0.07s
+LR mined step=12 fact=N<10^6
+STEP 12 loss 0.0565 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 11 progs C.S[T.round1 STA.X] (1.000) 0.05s
+STEP 13 loss 0.0564 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 12 progs C.S[T.round1 STA.X] (1.000) 0.04s
+STEP 14 loss 0.0548 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 13 progs C.S[T.round1 STA.X] (1.000) 0.06s
+LR mined step=15 fact=Tmod2=0
+STEP 15 loss 0.0482 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 14 progs C.S[T.round1 STA.X] (1.000) 0.04s
+LR mined step=16 fact=T<x
+STEP 16 loss 0.0512 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 15 progs C.S[T.round1 STA.X] (1.000) 0.04s
+STEP 17 loss 0.0456 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 16 progs C.S[T.round1 STA.X] (1.000) 0.04s
+STEP 18 loss 0.0435 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 17 progs C.S[T.round1 STA.X] (1.000) 0.05s
+STEP 19 loss 0.0443 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 18 progs C.S[T.round1 STA.X] (1.000) 0.05s
+LR step=20 phase=D io=5 loss=0.0419 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=1.0000 streak=18 facts_streak=11 order_digits=-1000 rows_visited=200/200 pool=1280 answers=6 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: C.S[T.round1 STA.X] (1.000) fit=[1.0] rows=25 hits=25 snapped_right=1.000 share=1.0000 facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);N mod 2 = 1(since 10, fails 0);N mod 3 != 0(since 10, fails 0);N mod 5 != 0(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < x(since 16, fails 1);T mod 3 != 0(since 10, fails 0);T mod 5 != 0(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0);y != 0(since 10, fails 0);y < 10^6(since 10, fails 0);y < N(since 10, fails 0)
+STEP 20 loss 0.0419 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 19 progs C.S[T.round1 STA.X] (1.000) 0.04s
+LR frozen step=21 history=[(2, 'answer_program', 1), (5, 'T_resolved', 25), (21, 'frozen', 20)] round: C.S[T.round1 STA.X] (1.000)
+STEP 21 loss 0.0402 phase frozen io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 20 progs C.S[T.round1 STA.X] (1.000) 0.07s
+REPLAY FROZEN, the answer programs ['C.S[T.round1 STA.X]'] in the buffers
+EXIT 0 after 132 s, peak 3.4 GiB

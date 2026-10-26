@@ -22,10 +22,11 @@ DESIGNED = [("lt", "pair", "T.lt.pair.AY", "CLC P[SBB.Y INC]"),
 
 
 def run(M) -> int:
+    """(On a file with SEL.S, check_variants' own DESIGNED: sp2's link.)"""
     t0 = time.time()
     data = CV.rows(512, torch.Generator().manual_seed(0))
     lib, ops = {}, M.Ops()
-    for law, pat, name, prog in DESIGNED:
+    for law, pat, name, prog in (CV.DESIGNED if "SEL.S" in M.PRIMS else DESIGNED):
         lib[name] = M.parse(prog)
         ops.add(law, pat, name, ("A", "Y"))
     st = [M.Setting(B, W, M.exact_cells("cpu")) for B, W in ((10, 1), (10, 2), (10, 3))]
@@ -47,7 +48,7 @@ def run(M) -> int:
                         vals = [CB.as_int(terms[j][ki][i]) for j in range(ar)]
                         if law == "add":
                             continue                                   # below: the check
-                        want = CB.truth(law, vals)
+                        want = CB.truth(CB.RENAME.get(law, law), vals)      # (sp2's acc.mul, acc.add)
                         if "c" in t and bool(t["cm"][i]):
                             assert int(t["c"][i]) == want, (law, pat, bd, i, vals, int(t["c"][i]), want)
                             checked += 1

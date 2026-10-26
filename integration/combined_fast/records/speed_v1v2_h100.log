@@ -1,0 +1,11 @@
+NVIDIA H100 80GB HBM3 2.14.1+cu130 3.8.0
+P=4 NP=8 rows=8388608 steps=1 items=30 depth=0 cond=False: _stage3_fast 0.0259s (first 2.27s) ge3_fast_dev 0.0050s (first 0.54s) | _ustep 0.336s | same
+P=4 NP=8 rows=4194304 steps=16 items=64 depth=1 cond=True: _stage3_fast 0.1785s (first 1.28s) ge3_fast_dev 0.0217s (first 0.66s) | same
+P=4 NP=8 rows=131072 steps=2048 items=64 depth=2 cond=False: _stage3_fast 0.6910s (first 1.77s) ge3_fast_dev 0.0692s (first 0.64s) | same
+P=16 NP=8 rows=2097152 steps=100 items=64 depth=2 cond=True: _stage3_fast 1.1171s (first 2.11s) ge3_fast_dev 1.1387s (first 2.59s) | same
+P=4 NP=6 rows=262144 steps=2048 items=512 depth=2 cond=True: _stage3_fast 1.4123s (first 1.41s) ge3_fast_dev 0.5111s (first 1.40s) | same
+P=8 NP=60 rows=256 steps=4000 items=256 depth=3 cond=True: _stage3_fast 0.0217s (first 0.81s) ge3_fast_dev 0.0077s (first 0.79s) | _ustep 2.103s | same
+P=16 NP=60 rows=64 steps=16000 items=64 depth=4 cond=False: _stage3_fast 0.0791s (first 0.82s) ge3_fast_dev 0.0288s (first 0.76s) | _ustep 7.331s | same
+SPEED OK
+
+EXIT 0

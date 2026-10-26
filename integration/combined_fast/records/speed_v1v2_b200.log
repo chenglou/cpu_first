@@ -1,0 +1,11 @@
+NVIDIA B200 2.14.1+cu130 3.8.0
+P=4 NP=8 rows=8388608 steps=1 items=30 depth=0 cond=False: _stage3_fast 0.0242s (first 2.34s) ge3_fast_dev 0.0041s (first 0.58s) | _ustep 0.365s | same
+P=4 NP=8 rows=4194304 steps=16 items=64 depth=1 cond=True: _stage3_fast 0.1572s (first 1.40s) ge3_fast_dev 0.0197s (first 0.75s) | same
+P=4 NP=8 rows=131072 steps=2048 items=64 depth=2 cond=False: _stage3_fast 0.6319s (first 1.83s) ge3_fast_dev 0.0651s (first 0.72s) | same
+P=16 NP=8 rows=2097152 steps=100 items=64 depth=2 cond=True: _stage3_fast 0.9555s (first 2.03s) ge3_fast_dev 1.0053s (first 2.62s) | same
+P=4 NP=6 rows=262144 steps=2048 items=512 depth=2 cond=True: _stage3_fast 1.2551s (first 1.25s) ge3_fast_dev 0.4736s (first 1.41s) | same
+P=8 NP=60 rows=256 steps=4000 items=256 depth=3 cond=True: _stage3_fast 0.0211s (first 0.87s) ge3_fast_dev 0.0082s (first 0.91s) | _ustep 2.262s | same
+P=16 NP=60 rows=64 steps=16000 items=64 depth=4 cond=False: _stage3_fast 0.0787s (first 0.86s) ge3_fast_dev 0.0290s (first 0.81s) | _ustep 6.406s | same
+SPEED OK
+
+EXIT 0

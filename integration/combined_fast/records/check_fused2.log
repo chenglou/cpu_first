@@ -1,0 +1,16 @@
+file /root/cpu_first/integration/combined_fast/submission_stage3_fast_dev.py 91bb30b9d131791d165025d682b3f458 triton 3.8.0 2.14.1+cu130 NVIDIA B200
+random: 300 cases the same (P [2, 4, 6, 8, 16], NP [1, 2, 6, 8, 60], rows up to 4000, steps up to 700), 157 s
+vocab: 10751 items (83 tokens), built fused in 3 s
+vocab: apply_items the same at W=1, NP=8 (10751 items x 2 machines)
+vocab: apply_items the same at W=2, NP=8 (10751 items x 2 machines)
+vocab: apply_items the same at W=3, NP=60 (10751 items x 1 machines)
+vocab: apply_items the same at W=4, NP=60 (10751 items x 1 machines)
+vocab: apply_items the same at W=8, NP=60 (2000 items x 1 machines)
+vocab: apply_items the same at W=2, NP=6 (10751 items x 24 machines)
+speed: P=4 NP=8 rows=4194304 steps=1: _ustep 0.014 s, fused 0.0023 s (first 0.00 s)
+speed: P=4 NP=8 rows=131072 steps=2048: _ustep 1.135 s, fused 0.0656 s (first 0.07 s)
+speed: P=8 NP=60 rows=256 steps=4000: _ustep 1.790 s, fused 0.0074 s (first 0.01 s)
+speed: P=16 NP=60 rows=64 steps=16000: _ustep 6.969 s, fused 0.0291 s (first 0.03 s)
+FUSED OK
+
+EXIT 0

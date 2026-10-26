@@ -908,6 +908,9 @@ fix.
 - **Composition, round 3** ([COMPOSE3.md](bar3/scale/compose3/COMPOSE3.md), code and records in
   [`bar3/scale/compose3/`](bar3/scale/compose3/)). Without the book's multiply-add row, bar 3's set never gets the
   multiply; and round 2's winning setup fails on x³ and 10·x² + 1 mod N, so its route is shaped to x². About $8.
+- **The search on a GPU** ([GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md), code and records in
+  [`bar3/gpu_search/`](bar3/gpu_search/)). Identical results on 18,708 stored searches and two whole runs, about 95
+  times faster, but only 3–10 times cheaper: about half to one more instruction of depth for the same money. About $8.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

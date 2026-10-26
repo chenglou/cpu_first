@@ -1,0 +1,11 @@
+=== TARGET_FN=x3
+1. TARGET_FN x3: the draws' answers are the function on all 16 probes: True; e.g. [(40, 60, 40), (44, 48, 32), (42, 56, 0), (37, 63, 1)]
+PASS
+=== TARGET_FN=10x2p1
+1. TARGET_FN 10x2p1: the draws' answers are the function on all 16 probes: True; e.g. [(40, 60, 41), (44, 48, 17), (42, 56, 1), (37, 63, 20)]
+PASS
+=== TARGET_FN=x2
+1. TARGET_FN x2: the draws' answers are the function on all 16 probes: True; e.g. [(40, 60, 40), (44, 48, 16), (42, 56, 28), (37, 63, 46)]
+2. the look's near misses: ['T.target.rst5.XN', 'T.val.126.tgt.XN', 'T.target.rst5.XN T.acc.mul.o,x,d.ANX', 'T.val.126.tgt.XN T.acc.mul.o,x,d.ANX']; the rests posed: ['rest.1@XN', 'rest.2@XN', 'rest.3@XN', 'rest.4@XN', 'rest.5@XN', 'rest.10@XN', 'rest.11@XN', 'rest.14@XN', 'rest.15@XN', 'rest.16@XN']
+   by name (round 2's tie-break): None; by value (TIEFOLLOW): rest.3@XN, from T.target.rst5.XN
+PASS

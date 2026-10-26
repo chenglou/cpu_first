@@ -1,0 +1,22 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 10000, 'round_budget': 20000, 'levels': 3, 'search_s': 60.0, 'fuse': 1, 'patterns': [], 'laws': None, 'target': 'small', 'sources': ['restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'subgoal': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'spell': 16}
+UNIT      8.6s +    8.6s L0 pose: 11 candidates on 8 roots
+UNIT     11.3s +    2.7s L0 probe 8 roots 2.7s solved {'val.10/tgt@XN': 2} [('routines', 2.5)]
+UNIT     11.3s +    0.0s L0 choose (lpca): {'unsolved': 10, 'learnable': 1}; picks [('val.10/tgt@XN', 2, 'LDA.X SHL.A')]
+UNIT     11.3s +    0.0s L0 sleep: T.val.10.tgt.XN=LDA.X SHL.A
+UNIT     12.9s +    1.6s L0 target: cost None levels [1, 33, 839, 21185] fits [0, 6, 6, 6] 1.3s budget: level 3 has 21185 > 20000 states [] full size None | round: cost None levels [1, 33, 799, 17226, 483968] 0.2s budget: level 4 streamed (over 20000 states) []
+UNIT     13.0s +    0.2s L1 pose: 11 candidates on 8 roots
+UNIT     15.2s +    2.2s L1 probe 8 roots 2.2s solved {'val.25/tgt@XN': 1} [('routines', 1.2), ('primitives', 0.9)]
+UNIT     15.2s +    0.0s L1 deep: [('tgt@XN', {'low': 0.18181818181818182, 'ltx': 0.8, 'eqx': 0.6666666666666666}), ('rst1@XN', {'target': 0.4}), ('rst3@XN', {'target': 0.3076923076923077}), ('rst2@XN', {'target': 0.1111111111111111})]
+UNIT     18.2s +    3.0s L1 deep ['tgt@XN', 'rst1@XN', 'rst3@XN', 'rst2@XN'] 3.0s solved {'val.25/tgt@XN': 1} [('deep []', 2.0), ("deep ['T.val.10.tgt.XN']", 0.9)]
+UNIT     18.2s +    0.0s L1 choose (lpca): {'unsolved': 10, 'trivial': 1}; picks []
+UNIT     18.2s +    0.0s L1 sleep: no new concept learnable; the next level poses practised ones' variants
+UNIT     18.5s +    0.3s L1 target: cost None levels [1, 33, 839, 21185] fits [0, 6, 6, 6] 0.1s budget: level 3 has 21185 > 20000 states [] full size None | round: cost None levels [1, 33, 799, 17226, 483968] 0.2s budget: level 4 streamed (over 20000 states) []
+UNIT     18.7s +    0.2s L2 pose: 11 candidates on 8 roots
+UNIT     20.8s +    2.1s L2 probe 8 roots 2.1s solved {'val.40/tgt@XN': 1} [('routines', 1.2), ('primitives', 0.9)]
+UNIT     20.8s +    0.0s L2 deep: [('tgt@XN', {'low': 0.18181818181818182, 'ltx': 0.8, 'eqx': 0.6666666666666666}), ('rst1@XN', {'target': 0.4}), ('rst3@XN', {'target': 0.3076923076923077}), ('rst2@XN', {'target': 0.1111111111111111}), ('rest.40@XN', {'target': 0.07692307692307693})]
+UNIT     23.7s +    2.9s L2 deep ['tgt@XN', 'rst1@XN', 'rst3@XN', 'rst2@XN'] 2.9s solved {'val.40/tgt@XN': 1} [('deep []', 2.0), ("deep ['T.val.10.tgt.XN']", 0.9)]
+UNIT     24.5s +    0.8s L2 deep ['rest.40@XN'] 0.8s solved {} [('deep []', 0.8)]
+UNIT     24.5s +    0.0s L2 choose (lpca): {'unsolved': 10, 'trivial': 1}; picks []
+UNIT     24.5s +    0.0s L2 sleep: nothing learnable to practise; climb done
+TOTAL 24.5 s; rounds []
+LIB {"T.val.10.tgt.XN": "LDA.X SHL.A"}

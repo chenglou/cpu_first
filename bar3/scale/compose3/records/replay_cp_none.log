@@ -1,0 +1,10 @@
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 1, 'search_s': 900.0, 'fuse': 4, 'patterns': [], 'laws': None, 'target': 'small', 'sources': ['none'], 'round_too': True}
+UNIT      3.0s +    3.0s L0 pose: 0 candidates on 0 roots | GPU peak 1.4 GiB
+UNIT      3.0s +    0.0s L0 choose (lpca): {}; picks [] | GPU peak 1.4 GiB
+UNIT      3.0s +    0.0s L0 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 1.4 GiB
+UNIT      4.5s +    1.5s L0 target: cost None levels [1, 32, 805, 20162, 519798, 17583027] fits [0, 4, 4, 6, 6, 7] 1.5s budget: level 5 streamed (over 4000000 states) [] full size None | GPU peak 12.1 GiB
+UNIT      4.5s +    0.0s climb done at level 1 (the level cap) | GPU peak 12.1 GiB
+TOTAL 4.5 s; rounds []
+LIB {}
+
+EXIT 0

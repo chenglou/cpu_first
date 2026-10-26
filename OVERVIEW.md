@@ -17,7 +17,8 @@ are now invented (§4, bar 3). At about 13:00 the same day it adds a pointer to 
 entry, written without runs (§7), and at about 17:50 the plan's first test: one file with every certified variant of
 sp2, which does not certify (§4.8). At about 19:00 it adds two bar-3 studies: given x as digits, the learner invents x
 mod N in base 2 by long division's step, right up to nine digits; and a running sum's step, posed as practice, brings
-the triangular numbers (§4, bar 3).*
+the triangular numbers (§4, bar 3). Later that night, a second round of the combined file reaches the round, but past
+the hour (§4.8).*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -274,6 +275,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 25, 17:51 `c185410` | **every certified variant of sp2 in one file, not certified**: it builds, and every study's local check passes on it, but on the official H100 the hour runs out in level 4 of the climb, before the reduction. The generated book and the generic instructions together make level 3 cost 11.5 times sp2's | [integration/combined_sp2/COMBINED.md](integration/combined_sp2/COMBINED.md) |
 | Oct 25, 19:02 `305ac14` | **bar 3 with x as digits**: given a loop over x's digits and a source that asks one question of the rows, the learner invents x mod N in base 2 by long division's step, right on x below 10⁹; nothing else of 36 runs comes | [bar3/scale/digits/DIGITS.md](bar3/scale/digits/DIGITS.md) |
 | Oct 25, 19:02 `2da752e` | **bar 3 with a running sum's step as a source**: the triangular numbers come in round 1 under anchored pairs; a second source poses 10·x² + 1's piece, but the learner's duplicate check throws it away | [bar3/scale/newton/NEWTON.md](bar3/scale/newton/NEWTON.md) |
+| Oct 25, 20:07 `914952f` | **the combined file, round 2**: three fixes to its acceptance setup and work budget make level 3 six times cheaper, and the climb reaches the round, but at 3,206 s in the tiny core, past what fits in the hour; no official run | [integration/combined_sp2/COMBINED.md](integration/combined_sp2/COMBINED.md) §8 |
 
 ### The lessons that came out of the failures
 
@@ -923,8 +925,13 @@ study's local checks pass on it. It is 869 bytes under the 256 KiB limit.
 - Without the generic instructions it fits, barely. With their settings set back to sp2's, the tiny core reaches the
   round after level 5, at 1,695 s, and the learned loop finds `C.S[T.round1 STA.X]`. But that climb uses 93% of the
   strict work budget, which was set from sp2's smaller climbs.
-- Proposed, none run: one acceptance setup shared by the laws of each pattern and binding, which leaves the climb as it
-  is; large counts built by doubling; and the work budget set from the combined climb's own count. About $15 spent.
+- Round 2 ([COMBINED.md](integration/combined_sp2/COMBINED.md) §8): those three fixes, in
+  `submission_stage3_combined2.py` (`4e0e3f09`). Sharing the setup changes nothing in the climb, doubling changes its
+  random draws, and the budget comes from the combined climb. Level 3 drops from 2,585 s to 440 s, and the tiny core
+  reaches the round after level 4, at 3,206 s, with the learned loop's `C.S[T.round1 STA.X]` right on every unseen row.
+  That projects to 3,400–3,700 s on the H100, past the hour, so there was no official run. Level 4's second deep probe
+  now spends about 800 s on the book's second reduction, which the round does not use; whether to change that rule is a
+  judge's question. About $21 for both rounds.
 
 ## 5. The removal ladder
 
@@ -1099,8 +1106,8 @@ were relaunched at 14:42–14:47 PT. All four have finished: the generic-instruc
 runs left its verdict as it was (§4.5), the law ablation has all its seed-1 arms and its rerun at three times the budget
 (§4), and bar 3's cut runs are finished (§4, bar 3). Oct 25's two bar-3 studies have finished too: numbers given as
 digits, testing the theory note's predictions ([theory/LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md) §5), and the two
-practice sources the held-out test found missing (§4, bar 3). Running now: the combined file's second round, with three
-fixes to its acceptance setup and work budget (§4.8).
+practice sources the held-out test found missing (§4, bar 3). So has the combined file's second round (§4.8). Running
+now: bar 3's duplicate check, tested on each problem's own rows (`bar3/scale/rowcheck/`, not committed yet).
 
 Everything else described here is committed.
 
@@ -1108,7 +1115,8 @@ Everything else described here is committed.
 move inside a training run, what is still designed in the self-practising file, four questions only a judge can settle,
 and the cheapest test of each, in order. No training target may come from Python's arithmetic, so what moves from bar 3
 is a rule rebuilt on stage 3's machine, not bar 3's code. Its first test has run: one file with every certified variant
-of sp2 does not certify, because the hour runs out before the climb finds the reduction (§4.8).
+of sp2 does not certify, because the hour runs out before the climb finds the reduction (§4.8). A second round with
+three fixes finds the round in the tiny core, but too late for the hour.
 
 **Answered on Oct 23 and 24.**
 - **Which hand-made parts carry the result** (ABLATION_S3.md): two instructions, the step's two practice problems,

@@ -146,7 +146,11 @@ line is out, and nothing above matters.
    core, mostly in setting up the same acceptance probes again for each law. With the generic settings set back to
    sp2's, the tiny core reaches the round, using 93% of the strict work budget. Next, none run: one acceptance setup
    shared by the laws of each pattern and binding, large counts built by doubling, and a work budget set from the
-   combined climb's own count; then the tiny core again.
+   combined climb's own count; then the tiny core again. **Round 2, the same evening**
+   ([COMBINED.md](integration/combined_sp2/COMBINED.md) §8; about $6): with those three changes the tiny core reaches
+   the round after level 4, at 3,206 s, which projects past the hour on the H100, so there was no official run. Level
+   4's second deep probe spends about 800 s on the book's second reduction, which the round does not use; whether to
+   change that rule is for the judge.
 3. **The uncapped reduce search** (§2, item 3; at most about $8). If it finds the reduction: the 61-instruction climb in
    the tiny core, then in the combined file.
 4. **The subgoal score**: first as the cube's near-miss test (offline, about $1.6), then as the choosing rule (the tiny

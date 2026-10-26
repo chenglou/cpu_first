@@ -259,7 +259,8 @@ For stage 1 and general v3, the differences are listed under OVERVIEW §6's tabl
 **What to do about them.** [LEGAL_PLAN.md](LEGAL_PLAN.md) puts these questions first, then orders the rest by cost: what
 of bar 3 has to move inside a training run, what is still designed in the self-practising file, and the cheapest test of
 each. It was written on Oct 25, with no runs. Its first test, one file with every certified variant of sp2, does not
-certify: the hour runs out before the climb finds the reduction ([COMBINED.md](integration/combined_sp2/COMBINED.md)).
+certify: the hour runs out before the climb finds the reduction ([COMBINED.md](integration/combined_sp2/COMBINED.md)). A
+second round with three fixes finds the round in the tiny core, but too late for the hour.
 
 ## 6. An hour's reading order
 

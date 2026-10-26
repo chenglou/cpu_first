@@ -84,6 +84,9 @@ score brings 10·x² + 1 under hardest first for the first time (§4, bar 3).*
 - *For the picks study (§4, bar 3): its pre-registration's hash and file time (20:48 PT, before the runs with its flags
   on), both learners rebuilt byte for byte from `97f30b9` and the committed study builders, and `verify.py` rerun, with
   output identical to its log.*
+- *For the reach study (§4, bar 3): its pre-registration's hash and file time (01:24 PT, before the runs with its flags
+  on), both learners rebuilt byte for byte from `97f30b9` and the committed study builders, and `verify.py` rerun, with
+  output identical to its log.*
 - *The data counts in §1–2 were computed from the released H1 files, and the commits come from `git log`.*
 - *The one-line findings of the timeline (§3) and the summaries of how each piece learns, including the NCA and bar-3
   studies, summarize their write-ups, which are linked; they were not re-run.*
@@ -294,6 +297,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 26, 00:15 `f237a61` | **fast2**: the fast file with its work budgets set by STRICT.md's rule from eight climbs measured with no budget; 8 of 8 on H100s, and the measurements show the old budget never cut anything | [integration/combined_fast/FAST.md](integration/combined_fast/FAST.md) §9 |
 | Oct 26, 00:32 `238437d` | **REVIEW.md rewritten around fast2**, now the file to judge; the record checker's default run checks its eight records first; the hygiene pass covers the 28 new commits, with no credentials, emails or key found | [REVIEW.md](REVIEW.md), [HANDOVER.md](HANDOVER.md) |
 | Oct 26, 01:17 `577fb72` | **bar 3 gets 10·x² + 1 under hardest first**: with the row check, breaking ties by the subgoal score picks its piece, 10X mod N, in round 2; passing priority to a subgoal's twin costs a win, and a score that sees big x cannot act | [bar3/scale/picks/PICKS.md](bar3/scale/picks/PICKS.md) |
+| Oct 26, 06:03 `8e0126b` | bar 3's deeper look finds the program that passes at big x, but the pick rule never picks its step; the twin as a fifth pick keeps every win; x² mod N at big x still does not come | [bar3/scale/reach/REACH.md](bar3/scale/reach/REACH.md) |
 
 ### The lessons that came out of the failures
 
@@ -511,6 +515,12 @@ in the answer.
   Passing a subgoal's priority to its twin does not bring x² mod N in base 2, and it loses hardest first's binary x mod
   N. A pick score that sees the big-x check cannot act, since no look reaches the five-token program that passes at big
   x. Under the tie-break all 11 earlier wins stand. About $5.
+- **Reach** ([REACH.md](bar3/scale/reach/REACH.md)). Two more changes aimed at x² mod N at big x. A deeper look at the
+  posed steps finds the five-token program that passes at big x, and the big-x score values it at 2,189 bits, but
+  anchored pairs picks from its best pairs, whose looks stay shallow, so the step is never picked. The subgoal's twin as
+  a fifth pick keeps hardest first's binary x mod N, which the replacing twin had lost, but x² mod N still does not
+  come: the square waits at cost 4, and the five-token target search runs out of time. All 12 earlier wins stand. About
+  $7.
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -1153,8 +1163,8 @@ runs left its verdict as it was (§4.5), the law ablation has all its seed-1 arm
 digits, testing the theory note's predictions ([theory/LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md) §5), and the two
 practice sources the held-out test found missing (§4, bar 3). So have the combined file's second and third rounds, its
 fast version and fast2, now the file to judge (§4.8), and bar 3's duplicate check on each problem's own rows (§4, bar
-3). So have bar 3's three changes to what it picks (§4, bar 3). Running now: bar 3's next two, a deeper look aimed at
-the steps it poses and the subgoal's twin as an extra pick (§4, bar 3).
+3). So have bar 3's three changes to what it picks (§4, bar 3). So have the next two, a deeper look and a fifth pick
+(§4, bar 3). Running now: the composition test, bar 3's learner on stage 3's digit machine with no law book (§4, bar 3).
 
 Everything else described here is committed.
 
@@ -1299,7 +1309,7 @@ s3i: the service refused it ("Submissions are now closed"), so there is no hoste
 | [`HANDOVER.md`](HANDOVER.md) | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, what is tracked and what is on disk only |
 | [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |
-| [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/`. Stage 3's digit instructions invented at one place, and the s3i variant that uses one ([BRIDGE.md](bar3/bridge/BRIDGE.md), in `bridge/`); add-with-carry, from the round the spend limit had cut off, and multiply-accumulate, with a deeper search aimed at its piece ([CARRY.md](bar3/bridge/CARRY.md)). The learner made ten times cheaper, then given new kinds of practice problems ([SCALE.md](bar3/scale/SCALE.md), in `scale/`), and a signal that sees a piece before it is solved ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md), in `scale/subgoal/`), tested on ten formulas no rule was written for ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md), in `scale/heldout/`); then x as digits ([DIGITS.md](bar3/scale/digits/DIGITS.md), in `scale/digits/`) and two sources from Newton's differences ([NEWTON.md](bar3/scale/newton/NEWTON.md), in `scale/newton/`); and the duplicate check on each problem's own rows ([ROWCHECK.md](bar3/scale/rowcheck/ROWCHECK.md), in `scale/rowcheck/`); and changes to what the learner picks ([PICKS.md](bar3/scale/picks/PICKS.md), in `scale/picks/`) |
+| [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/`. Stage 3's digit instructions invented at one place, and the s3i variant that uses one ([BRIDGE.md](bar3/bridge/BRIDGE.md), in `bridge/`); add-with-carry, from the round the spend limit had cut off, and multiply-accumulate, with a deeper search aimed at its piece ([CARRY.md](bar3/bridge/CARRY.md)). The learner made ten times cheaper, then given new kinds of practice problems ([SCALE.md](bar3/scale/SCALE.md), in `scale/`), and a signal that sees a piece before it is solved ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md), in `scale/subgoal/`), tested on ten formulas no rule was written for ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md), in `scale/heldout/`); then x as digits ([DIGITS.md](bar3/scale/digits/DIGITS.md), in `scale/digits/`) and two sources from Newton's differences ([NEWTON.md](bar3/scale/newton/NEWTON.md), in `scale/newton/`); and the duplicate check on each problem's own rows ([ROWCHECK.md](bar3/scale/rowcheck/ROWCHECK.md), in `scale/rowcheck/`); and changes to what the learner picks ([PICKS.md](bar3/scale/picks/PICKS.md), in `scale/picks/`) and how far its looks reach ([REACH.md](bar3/scale/reach/REACH.md), in `scale/reach/`) |
 | [`theory/`](theory/) | what is already known about computing and learning with large numbers: classical (digit automata, repeated squaring, Montgomery reduction, the time-lock puzzle H1 is), learning theory and neural theory (extrapolation, log space, clock and discrete-log features), mapped onto this project, with two local checks in `checks/` ([LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md)) |
 | [`nca/`](nca/) | long division as a shader: identical local cells ([NCA.md](nca/NCA.md)), the follow-up trained long with weight decay or agreement (NCA.md §9), and with optimizers that can rest at the rule (NCA.md §10); records in `runs/` and `records/` |
 | [`tools/`](tools/) | the shared Modal runner and the measured seed policy ([tools/README.md](tools/README.md)) |

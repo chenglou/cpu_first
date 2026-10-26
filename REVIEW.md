@@ -886,6 +886,12 @@ fix.
     first's binary x mod N. A pick score that sees the big-x check cannot act: no look reaches the five-token program
     that passes at big x.
   - **The earlier wins:** all 11 stand under the tie-break. About $5.
+- **How far its looks reach** ([REACH.md](bar3/scale/reach/REACH.md), code and records in
+  [`bar3/scale/reach/`](bar3/scale/reach/)). Two more changes aimed at x² mod N at big x.
+  - **What came:** nothing new. A deeper look finds the five-token program that passes at big x, but anchored pairs
+    picks from pairs whose looks stay shallow. The twin as a fifth pick keeps hardest first's binary x mod N, but the
+    square is never practised in time.
+  - **The earlier wins:** all 12 stand. About $7.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

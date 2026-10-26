@@ -19,7 +19,8 @@ sp2, which does not certify (§4.8). At about 19:00 it adds two bar-3 studies: g
 mod N in base 2 by long division's step, right up to nine digits; and a running sum's step, posed as practice, brings
 the triangular numbers (§4, bar 3). Later that night, a second round of the combined file reaches the round, but past
 the hour (§4.8), and a duplicate check on each problem's own rows frees 10·x² + 1's piece but changes no outcome (§4,
-bar 3).*
+bar 3). Late that night both four-piece files certify, and the five-piece file, made fast without changing anything it
+learns, certifies in 751 s of training (§4.8).*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -282,6 +283,8 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 25, 19:02 `2da752e` | **bar 3 with a running sum's step as a source**: the triangular numbers come in round 1 under anchored pairs; a second source poses 10·x² + 1's piece, but the learner's duplicate check throws it away | [bar3/scale/newton/NEWTON.md](bar3/scale/newton/NEWTON.md) |
 | Oct 25, 20:07 `914952f` | **the combined file, round 2**: three fixes to its acceptance setup and work budget make level 3 six times cheaper, and the climb reaches the round, but at 3,206 s in the tiny core, past what fits in the hour; no official run | [integration/combined_sp2/COMBINED.md](integration/combined_sp2/COMBINED.md) §8 |
 | Oct 25, 20:29 `a3acc38` | **bar 3's duplicate check on each problem's own rows**: it frees 10·x² + 1's piece, 10X mod N, but no rerun's picks change; hardest first's pool order still buries the piece, and x² mod N's twin is a true copy | [bar3/scale/rowcheck/ROWCHECK.md](bar3/scale/rowcheck/ROWCHECK.md) |
+| Oct 25, 22:48 `1f46707` | **two four-piece files certify**: the combined file without the generated book, and without the generic instructions, each on the official H100; given two hours, the five-piece file learns H1 but freezes 531 s past the hour | [integration/combined_sp2/COMBINED.md](integration/combined_sp2/COMBINED.md) §9 |
+| Oct 25, 22:48 `5f78072` | **every certified variant in one file, certified**: a Triton kernel and two other speedups make the five-piece climb 7.7 times faster with nothing learned changed, and it certifies in 751 s of training | [integration/combined_fast/FAST.md](integration/combined_fast/FAST.md) |
 
 ### The lessons that came out of the failures
 
@@ -524,15 +527,17 @@ ladders, every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002.
 |---|---|---|---|---|---|
 | [`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py) (`0e813144`) | **stage 3**: no skeleton, no menus; the round discovered in training (§4.7) | 207,374 | `s3i_official`: 1,340.3 (870) / 209.9 | 8 of 8 on H100s, official manifest (74 and 1–7): trained in 1,133–1,350 s, frozen by 982–1,149 s | "copy x, multiply, reduce", at step 671 on seed 74 |
 | [`integration/self_practice/submission_stage3_sp2.py`](integration/self_practice/submission_stage3_sp2.py) (`afc70fe9`) | **stage 3 with self-posed practice**: s3i with its curriculum replaced by a law book and a general choosing rule (§4.7) | 207,374 | `submission_stage3_sp2_official`: 1,276.7 (887) / 225.5 | 8 of 8 on B200s (74 and 1–7); its first version `submission_stage3_sp.py` (`f0ef5b06`) certified officially and on 7 of 8 | the same round, at step 688, by 1,029 s |
+| [`integration/combined_fast/submission_stage3_fast.py`](integration/combined_fast/submission_stage3_fast.py) (`91bb30b9`) | **every certified variant of sp2 in one file, made fast**: the weak-check fix, the strict build, the learned loop over T, the generated law book and the generic instructions (§4.8) | 207,370 | `combined_fast_official`: 751.4 (829) / 362.0 | seeds 1–7 on H100s running | the generated book's round, at step 629, by about 460 s |
 | [`integration/submission_stage1.py`](integration/submission_stage1.py) (`cfd7b61d`) | **stage 1**: the tournament and the general lessons in one file | 222,113 | `s1_official`: 1,860.7 (716) / 56.1 | 8 of 8 on CPU | also learns y² + 1, 10·y², cubing, Montgomery's, 10·y² + 1, y² + 3 and M4 |
 | [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py) (`0805b7d3`) | **general lessons v3**: the answers choose whole digit codes (§4.6) | 11,589 | `v3k_h1_official`: 1,190.5 (645) / 42.3 | H1: 8 of 8 on B200s, run with an earlier v3 build (`v3f`) | also all 14 fixed-modulus practice sets, on relaxed budgets |
 
 s3i stays the file to judge ([REVIEW.md](REVIEW.md) §2): it has the most evidence, with the official run, seven more
 H100 seeds on the official manifest, and the ablation. sp2 is the one to look at for how far bar 2 goes; its seeds ran
-on B200s, which count as research, not certification. Two of s3i's checks are weak: in about 3% of runs its
-reduction check would accept a shortcut that fails at full size, and such a run cannot certify. None of its 8 seeds
-drew it. Copies of s3i and sp2 with both checks fixed replay all 17 of their runs exactly (§4.7), and the variants of
-§4.8 go further.
+on B200s, which count as research, not certification. Two of s3i's checks are weak: in about 3% of runs its reduction
+check would accept a shortcut that fails at full size, and such a run cannot certify. None of its 8 seeds drew it.
+Copies of s3i and sp2 with both checks fixed replay all 17 of their runs exactly (§4.7), and the variants of §4.8 go
+further. The fast five-piece file is the candidate to replace s3i as the file to judge once its seeds certify: of all
+the certified files, it has the least written by hand.
 
 The earlier frontier files are now steps of the ladder (§5): the wide model (step 11), its MLP-cell version (12), the
 tournament (13), and general lessons v1 and v2 (14, 15).
@@ -921,14 +926,14 @@ the conditional subtraction, the chain and long division's "bring down" itself.
   say `SHL.X SHL.A` is BRG.X in two pieces; the write-up agrees, and notes that it is the form a place-by-place law
   gives BRG.X (GENERIC_OPS.md §7).
 
-**All of them in one file: not certified** ([COMBINED.md](integration/combined_sp2/COMBINED.md), Oct 25, step 2 of
+**All of them in one file** ([COMBINED.md](integration/combined_sp2/COMBINED.md), Oct 25, step 2 of
 [LEGAL_PLAN.md](LEGAL_PLAN.md) §4). `integration/combined_sp2/submission_stage3_combined.py` (`11886419`) has five of
 the variants above: the weak-check fix, the strict build, the learned loop, the generated book and the generic
 instructions. It is built from the certified files by exact, asserted edits, a rebuild gives the same bytes, and every
 study's local checks pass on it. It is 869 bytes under the 256 KiB limit.
-- It does not certify. On the official H100 the hour ran out in level 4 of the climb, in the deep probes that look for
-  the reduction (training 3,713 s, 623 steps; test 7 of 9,999). In the tiny core the climb ran out of the strict build's
-  work budget at the same stage.
+- Round 1 does not certify. On the official H100 the hour ran out in level 4 of the climb, in the deep probes that look
+  for the reduction (training 3,713 s, 623 steps; test 7 of 9,999). In the tiny core the climb ran out of the strict
+  build's work budget at the same stage.
 - The time goes to two pieces together. In the tiny core, level 3 takes 225 s in sp2, 559 s with the generic
   instructions and their rules, 363 s with the generated book, and 2,585 s with both: 2.9 times what multiplying the two
   costs would give. Most of it is setting up acceptance checks. The book poses 9 laws on each of x + o·N and x + x·N, in
@@ -944,6 +949,15 @@ study's local checks pass on it. It is 869 bytes under the 256 KiB limit.
   That projects to 3,400–3,700 s on the H100, past the hour, so there was no official run. Level 4's second deep probe
   now spends about 800 s on the book's second reduction, which the round does not use; whether to change that rule is a
   judge's question. About $21 for both rounds.
+- Round 3 (COMBINED.md §9): two files of four pieces each certify on the official H100, one without the generated book
+  (`c7c711ea`, frozen by 2,113 s) and one without the generic instructions (`682f2e85`, by 2,035 s). Given two hours,
+  round 2's five-piece file learns H1, T = 64 with every split exact, but freezes 531 s past the hour.
+- **Made fast, it certifies** ([FAST.md](integration/combined_fast/FAST.md)). A profile showed the climb's time going to
+  launching tiny GPU kernels, not to arithmetic. A Triton kernel that runs every row's whole instruction sequence in one
+  launch, the one-primitive groups run through the same kernel, and one GPU walk to list the goal states make the tiny
+  core's climb 7.7 times faster, with every search, pick and unit of work unchanged.
+  `integration/combined_fast/submission_stage3_fast.py` (`91bb30b9`) certifies on the official H100 in 751 s of
+  training, and its climb is the five-piece file's own, line for line. Seeds 1–7 are running.
 
 ## 5. The removal ladder
 
@@ -1118,9 +1132,10 @@ were relaunched at 14:42–14:47 PT. All four have finished: the generic-instruc
 runs left its verdict as it was (§4.5), the law ablation has all its seed-1 arms and its rerun at three times the budget
 (§4), and bar 3's cut runs are finished (§4, bar 3). Oct 25's two bar-3 studies have finished too: numbers given as
 digits, testing the theory note's predictions ([theory/LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md) §5), and the two
-practice sources the held-out test found missing (§4, bar 3). So have the combined file's second round (§4.8) and bar
-3's duplicate check on each problem's own rows (§4, bar 3). Running now: the combined file's third round, two files of
-four pieces each, one without the generated book and one without the generic instructions (§4.8).
+practice sources the held-out test found missing (§4, bar 3). So have the combined file's second and third rounds and
+its fast version (§4.8), and bar 3's duplicate check on each problem's own rows (§4, bar 3). Running now: seeds 1–7 of
+the fast five-piece file on H100s (§4.8), and bar 3's three fixes to what the learner picks (`bar3/scale/picks/`, not
+committed yet).
 
 Everything else described here is committed.
 
@@ -1129,7 +1144,8 @@ move inside a training run, what is still designed in the self-practising file, 
 and the cheapest test of each, in order. No training target may come from Python's arithmetic, so what moves from bar 3
 is a rule rebuilt on stage 3's machine, not bar 3's code. Its first test has run: one file with every certified variant
 of sp2 does not certify, because the hour runs out before the climb finds the reduction (§4.8). A second round with
-three fixes finds the round in the tiny core, but too late for the hour.
+three fixes finds the round in the tiny core, but too late for the hour. In the third, both four-piece files certify,
+and the five-piece file, made fast without changing what it learns, certifies in 751 s (§4.8).
 
 **Answered on Oct 23 and 24.**
 - **Which hand-made parts carry the result** (ABLATION_S3.md): two instructions, the step's two practice problems,
@@ -1259,7 +1275,7 @@ s3i: the service refused it ("Submissions are now closed"), so there is no hoste
 | [`handwired_bridge/`](handwired_bridge/) | the machine compiled by handwired into affine + ReGLU layers, loosened the same way ([HANDWIRED_BRIDGE.md](handwired_bridge/HANDWIRED_BRIDGE.md)); `h1/submission_wide_reglu.py`, which did not certify officially |
 | [`tournament/`](tournament/) | the wiring chosen inside training by tournaments ([TOURNAMENT.md](tournament/TOURNAMENT.md)): `submission_tournament.py` (step 13), the tiny machine `tiny.py`, records in `tournament/h1_records/` |
 | [`general_lessons/`](general_lessons/) | a law library, mined facts and answer-chosen lessons ([LESSONS.md](general_lessons/LESSONS.md)): `submission_general.py`, `submission_general_v2.py` and `submission_general_v3.py` (steps 14, 15 and 18); one fixed modulus in `fixed/` ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md)); records in `records/` and `fixed/records/` |
-| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/`. The ablation of s3i's hand-made parts ([ABLATION_S3.md](integration/ABLATION_S3.md), in `ablation_s3/`, its fixed checks in `ablation_s3/fix/`, and fixed copies of eight more certified files in a `fix/` folder of each one's study), and stage 3 with self-posed practice ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), in `self_practice/`: `submission_stage3_sp.py` and `submission_stage3_sp2.py`, step 19). The variants of §4.8: the loop over T learned ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), in `learned_loop/`), strict builds ([STRICT.md](integration/strict/STRICT.md), in `strict/`) and breadth at full size ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md), in `sp_breadth/`); which laws self-practice needs, with the smaller and generated books ([SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md), in `sp_ablation/`); and generic instructions in place of SEL.S and BRG.X ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md), in `generic_ops/`); and five of them in one file, not certified ([COMBINED.md](integration/combined_sp2/COMBINED.md), in `combined_sp2/`) |
+| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/`. The ablation of s3i's hand-made parts ([ABLATION_S3.md](integration/ABLATION_S3.md), in `ablation_s3/`, its fixed checks in `ablation_s3/fix/`, and fixed copies of eight more certified files in a `fix/` folder of each one's study), and stage 3 with self-posed practice ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), in `self_practice/`: `submission_stage3_sp.py` and `submission_stage3_sp2.py`, step 19). The variants of §4.8: the loop over T learned ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), in `learned_loop/`), strict builds ([STRICT.md](integration/strict/STRICT.md), in `strict/`) and breadth at full size ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md), in `sp_breadth/`); which laws self-practice needs, with the smaller and generated books ([SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md), in `sp_ablation/`); and generic instructions in place of SEL.S and BRG.X ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md), in `generic_ops/`); five of them in one file ([COMBINED.md](integration/combined_sp2/COMBINED.md), in `combined_sp2/`), certified once made fast ([FAST.md](integration/combined_fast/FAST.md), in `combined_fast/`) |
 | [`HANDOVER.md`](HANDOVER.md) | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, what is tracked and what is on disk only |
 | [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |

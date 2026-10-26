@@ -18,16 +18,17 @@ The project measures itself against three bars ([OVERVIEW §4](OVERVIEW.md#4-whe
 2. **Nothing a strict judge would call the hand-written algorithm: partly cleared.** The best file, s3i, has no
    hand-written datapath and no menu of wirings: the program its forward pass runs ("copy x, multiply, reduce") was
    found by search inside the training run. But the instruction set that search runs over (32 digit instructions) and
-   the curriculum that walks it up the pieces of long division and the schoolbook multiply (which practice problems,
-   in which order) were written by hand, knowing the task family
-   ([INTEGRATION §6](integration/INTEGRATION.md#6-is-bar-2-cleared)). Later studies (§7) narrow this down. An
-   ablation on the official manifest shows what the result rests on: two task-shaped instructions, the practice
-   problems that define long division's step, how the multiply's row and the registers are posed, and routines. The
-   curriculum's order only saves time. Variants that also certify on the official manifest go further: one poses its
-   own practice problems from a general law book in place of the hand-picked list, and that book can shrink to 5
-   laws or be generated from a grammar; one learns the loop over T; one never reads the clock; one runs on a select
-   that bar 3's learner invented; and one replaces both task-shaped instructions with generic ones, an if block and
-   shifts, so that the learner builds long division's step itself.
+   the curriculum that walks it up the pieces of long division and the schoolbook multiply (which practice problems, in
+   which order) were written by hand, knowing the task family ([INTEGRATION
+   §6](integration/INTEGRATION.md#6-is-bar-2-cleared)). Later studies (§7) narrow this down. An ablation on the official
+   manifest shows what the result rests on: two task-shaped instructions, the practice problems that define long
+   division's step, how the multiply's row and the registers are posed, and routines. The curriculum's order only saves
+   time. Variants that also certify on the official manifest go further: one poses its own practice problems from a
+   general law book in place of the hand-picked list, and that book can shrink to 5 laws or be generated from a grammar;
+   one learns the loop over T; one never reads the clock; one runs on a select that bar 3's learner invented; and one
+   replaces both task-shaped instructions with generic ones, an if block and shifts, so that the learner builds long
+   division's step itself. Five of these variants also certify together in one file, once its climb is made 7.7 times
+   faster by engineering alone ([FAST.md](integration/combined_fast/FAST.md)).
 3. **A general algorithm learner: results at a tiny size, and first steps at full size.** A learner that picks its own
    practice problems invents x² mod N for x < N ≤ 7 (and ≤ 26) on a bare counting machine; unchanged, it invents 4 of 9
    other formulas, and 2 more once its solved formulas carry over ([PRACTICE.md](bar3/PRACTICE.md),
@@ -62,6 +63,12 @@ shortcut that fails at full size, and the conditional subtraction's never tests 
 [`fix/submission_stage3_s3i_fix.py`](integration/ablation_s3/fix/submission_stage3_s3i_fix.py) (md5
 `09a8263cf09321fef9ba3d4ffbc2aea6`), only adds the missing probes and replays all 8 certified runs field for field
 (§7).
+
+**A newer candidate.** [`submission_stage3_fast.py`](integration/combined_fast/submission_stage3_fast.py) (md5
+`91bb30b9d131791d165025d682b3f458`) has five of the variants of §7 in one file: the weak-check fix, the strict build,
+the learned loop over T, the generated law book and the generic instructions, with its climb made 7.7 times faster and
+nothing it learns changed ([FAST.md](integration/combined_fast/FAST.md)). It certifies on the official H100 in 751 s of
+training; seven more H100 seeds are running. If they certify, it becomes the file to judge.
 
 The other two frontier files ([OVERVIEW §4.1](OVERVIEW.md#41-the-models-at-the-frontier) compares all three):
 - [`integration/submission_stage1.py`](integration/submission_stage1.py), md5 `cfd7b61d7d3d4b76c606606ba8b8d9db`:
@@ -260,7 +267,8 @@ For stage 1 and general v3, the differences are listed under OVERVIEW §6's tabl
 of bar 3 has to move inside a training run, what is still designed in the self-practising file, and the cheapest test of
 each. It was written on Oct 25, with no runs. Its first test, one file with every certified variant of sp2, does not
 certify: the hour runs out before the climb finds the reduction ([COMBINED.md](integration/combined_sp2/COMBINED.md)). A
-second round with three fixes finds the round in the tiny core, but too late for the hour.
+second round with three fixes finds the round in the tiny core, but too late for the hour. Made fast without changing
+what it learns, the five-piece file certifies in 751 s of training ([FAST.md](integration/combined_fast/FAST.md)).
 
 ## 6. An hour's reading order
 
@@ -443,6 +451,20 @@ later ones follow them as they land. None changes a certified file or record.
     three).
   - **How general:** more than before, less than bar 3 asks. Each change is stated without a formula, but each was
     written after watching a formula fail, with the family in view.
+- **Every certified variant in one file** ([COMBINED.md](integration/combined_sp2/COMBINED.md),
+  [FAST.md](integration/combined_fast/FAST.md), code and records in
+  [`integration/combined_sp2/`](integration/combined_sp2/) and
+  [`integration/combined_fast/`](integration/combined_fast/)). The weak-check fix, the strict build, the learned loop,
+  the generated book and the generic instructions, built into one file by exact, asserted edits of the certified files.
+  - **Rounds 1 and 2:** the climb runs out of time before the reduction; with its acceptance setup shared and its counts
+    built by doubling, it finds the round, but past the hour.
+  - **Round 3:** each four-piece file certifies on the official H100, one without the generated book and one without the
+    generic instructions. Either piece alone fits; together they are late.
+  - **Made fast:** a Triton kernel runs every row's instruction sequence in one launch, and the climb gets 7.7 times
+    faster with every search, pick and unit of work unchanged, in the tiny core and line for line on the evaluator.
+    `submission_stage3_fast.py` certifies in 751 s of training; seeds 1–7 are running.
+  - **Still designed:** what sp2 still designs, less the pieces each variant took out; and the judge's questions of §5
+    stand as they were. About $50 in all.
 - **Bar 3's learner, cheaper and deeper** ([SCALE.md](bar3/scale/SCALE.md), code and records in
   [`bar3/scale/`](bar3/scale/)). The same learner on the bare counting machine, made cheaper and then given new kinds
   of practice problems.

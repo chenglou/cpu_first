@@ -150,7 +150,9 @@ line is out, and nothing above matters.
    ([COMBINED.md](integration/combined_sp2/COMBINED.md) §8; about $6): with those three changes the tiny core reaches
    the round after level 4, at 3,206 s, which projects past the hour on the H100, so there was no official run. Level
    4's second deep probe spends about 800 s on the book's second reduction, which the round does not use; whether to
-   change that rule is for the judge.
+   change that rule is for the judge. **Round 3 and the fast file:** both four-piece files certify, and the five-piece
+   file, made fast by engineering alone, certifies in 751 s of training ([FAST.md](integration/combined_fast/FAST.md)).
+   Step 2 is done.
 3. **The uncapped reduce search** (§2, item 3; at most about $8). If it finds the reduction: the 61-instruction climb in
    the tiny core, then in the combined file.
 4. **The subgoal score**: first as the cube's near-miss test (offline, about $1.6), then as the choosing rule (the tiny

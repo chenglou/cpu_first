@@ -44,6 +44,11 @@ The round came at about 460 s of training, the answer program at about 480 s, th
 ended at the step cap at 751 s of the 3,600. Its climb is round 2's own on the evaluator line for line: the same 72
 climb lines as round 2's file run with a two-hour budget (combined_sp2's relaxed run, same seed), where the round came
 at about 3,792 s.
+
+**Seeds 1-7 certify too** (§8): eight of eight seeds on the official H100, the manifest changed only in its seed, all
+checked by `tools/verify_records.py`. Every seed finds its answer program by 471-504 s of training and ends training
+by 838 s. The thin margin is the climb's work budget, round 2's and unchanged: on seeds 1, 4 and 6 it ran out in the
+answer program's last search level, after the programs were found.
 <!-- /PLAIN -->
 
 ## 1. Where the climb's seconds went
@@ -276,8 +281,8 @@ Everything is in `cpu_first/integration/combined_fast/`; nothing outside it was 
 | `core_c.py` | combined_sp2's tiny core, copied byte for byte (md5 `2e9c6a52`) |
 | `prof_c.py` | the profile (§1): core_c.py with timers |
 | `modal_fast.py` | the Modal launcher (app and Volume `combined-fast`): B200, H100, and an H100 in the evaluator's own environment for checks |
-| `checks/` | `check_fused.py`, `speed_fused.py`, `check_grouped_work.py`, `check_listing.py`, `compare_more.py`, `compare_official.py`; `logs/local_fast.log` (combined_sp2's local checks on this file) |
-| `records/` | the profiles (`prof_base_*`, `prof_fast_sync*`), the tiny cores (`core_fast_v1_measure`, `core_fast_v2_measure`, `core_fast_v2_h100`), the checks' logs, the official record (`combined_fast_official.json`) |
+| `checks/` | `check_fused.py`, `speed_fused.py`, `check_grouped_work.py`, `check_listing.py`, `compare_more.py`, `compare_official.py`, `summarize_seeds.py`; `logs/local_fast.log` (combined_sp2's local checks on this file) |
+| `records/` | the profiles (`prof_base_*`, `prof_fast_sync*`), the tiny cores (`core_fast_v1_measure`, `core_fast_v2_measure`, `core_fast_v2_h100`), the checks' logs, the official record (`combined_fast_official.json`) and seeds 1-7's (`combined_fast_h100_seed<N>.json`, §8) |
 
 From `cpu_first/`, with the sotaku venv's Python:
 
@@ -343,4 +348,67 @@ The official run, its record and its check:
 
 ```bash
 python3 tools/verify_records.py integration/combined_fast/records/combined_fast_official.json=integration/combined_fast/submission_stage3_fast.py
+```
+
+## 8. Seeds 1-7
+
+*Added 2026-10-26, on the coordinator's go-ahead (after commit 5f78072).* The file byte for byte (`91bb30b9`), once for
+each of seeds 1 to 7, the official manifest with only `runtime.seeds` changed, one H100 each, all seven at once,
+through the shared runner as s3i's seven H100 seeds were run (INTEGRATION.md: `--mode seeds --hardware h100`); the
+memory cap 48 GB, as this file's official run (s3i used the default 24 GB; these peaked at 14.7 GB). Records
+`records/combined_fast_h100_seed<N>.json`.
+
+**Every seed certifies.** `tools/verify_records.py` on the seven: "7 of 7 records check out", each embedding the
+file's md5, its manifest the official one but the seed, return code 0, the RESULT_JSON line equal to the result, T =
+64 on both ladders with every rung 768 of 768, and test 9,999 of 9,999, unseen T 10,002 of 10,002, unseen moduli 10,002
+of 10,002. With seed 74's official run, eight of eight.
+
+[`checks/summarize_seeds.py`](checks/summarize_seeds.py) reads each record's climb (the clock at a step is the
+evaluator's progress line before it plus the climb's own unit seconds, so "about"):
+
+| seed | climb starts | the answer program | frozen | training | evaluation | work at the round | work after the answer search |
+|---|---|---|---|---|---|---|---|
+| 74 (official) | step 563, about 54 s | step 630, about 476 s | step 829, about 520 s | 751 s | 362 s | 2.512e9 | 3.254e9 |
+| 1 | 584, 45 s | 653, 502 s | 852, 542 s | 733 s | 321 s | 2.686e9 | 3.332e9 (budget, its level 3) |
+| 2 | 584, 47 s | 653, 491 s | 852, 620 s | 838 s | 346 s | 2.747e9 | 2.864e9 |
+| 3 | 612, 57 s | 681, 480 s | 880, 602 s | 803 s | 321 s | 2.678e9 | 3.057e9 |
+| 4 | 653, 56 s | 719, 504 s | 918, 555 s | 744 s | 340 s | 2.751e9 | 3.321e9 (budget, its level 3) |
+| 5 | 609, 56 s | 677, 471 s | 876, 593 s | 796 s | 304 s | 2.643e9 | 2.772e9 |
+| 6 | 623, 57 s | 691, 503 s | 890, 540 s | 763 s | 350 s | 2.608e9 | 3.492e9 (budget, its level 3) |
+| 7 | 565, 54 s | 632, 498 s | 831, 544 s | 770 s | 376 s | 2.652e9 | 2.900e9 |
+
+On every seed the climb finds its round at level 4, the generated multiply-accumulate then a reduction
+(`LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X T.red.x+on.XN` and others like it, on x + o·N or x + x·N), and the answer
+program is `C.S[T.round<i> STA.X]` over three or four of its rounds (seed 4 also keeps `C.S[T.round3 T.eq.pair.AX]`).
+The answer program comes by 471-504 s of training and the freeze by 520-620 s; training ends at the step cap by 733-838
+s, under a quarter of the hour.
+
+**The work budget is the thin margin, and it is round 2's.** The climb reaches its round with 2.51-2.75e9 units of
+`CLIMB_WORK`'s 3.25e9 (77-85%). The answer program's search then costs 1.2e8 to 8.8e8, far more spread than the tiny
+core's 1.2e8. On seeds 1, 4 and 6 it reached the budget in its last level (cost 3; its record's stop reads "work budget
+at level 3"): the budget cut that level's expansion short after it had found its goal states, so the programs were
+found and accepted, and the acceptance's own work is counted after (to 3.33e9, 3.32e9 and 3.49e9). A seed whose goal
+states lay later in that level would have lost its answer program there. The speedups change no work count, so round
+2's file meets the budget at exactly the same points; it was set in round 2 from one tiny-core climb (1.22 times its
+2.651e9, COMBINED.md §8). Resetting it from these eight climbs would be a change to the file's rules, not engineering,
+so it was not tried.
+
+**Cost.** The seven runs' list-price estimate is $8.84 (walls 1,059-1,189 s; $4.73 billed so far, complete hours
+only), of the soft $15. `spend.py 4750` read $3,542.28 before the launch.
+
+```bash
+~/github/sotaku/venv/bin/python -m modal run --detach tools/modal_runner.py --mode seeds --file integration/combined_fast/submission_stage3_fast.py --seeds 1,2,3,4,5,6,7 --hardware h100 --memory-gb 48 --name combined_fast --out integration/combined_fast/records --run combined-fast-h100-seeds
+```
+
+```bash
+~/github/sotaku/venv/bin/python tools/modal_runner.py --mode fetch --run combined-fast-h100-seeds --out integration/combined_fast/records --wait
+```
+
+```bash
+python3 tools/verify_records.py integration/combined_fast/records/combined_fast_h100_seed{1,2,3,4,5,6,7}.json=integration/combined_fast/submission_stage3_fast.py
+```
+
+
+```bash
+python3 integration/combined_fast/checks/summarize_seeds.py integration/combined_fast/records/combined_fast_official.json integration/combined_fast/records/combined_fast_h100_seed{1,2,3,4,5,6,7}.json
 ```

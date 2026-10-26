@@ -1,0 +1,39 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-2lba6KdE5XuYVdUqEKat2C
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose/modal_compose.
+│   py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/__init__.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/bar3/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/library
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/one-layer-deeper/data/generated/squaring_mo
+│   d_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/self_practice
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/integration/lib
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors
+└── 🔨 Created function run_b200.
+spawned cp_book_min fc-01M5W6DHHQS3DKT8MG4SFV6Y47 06:29:23 {"MODULE": "bar3.scale.compose.core_compose", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "law", "LAWS": "lt;red;add;mul;acc.mul", "PATTERNS": "pair;x+on;x,o;o,x,d", "TAG": "cp_book_min"}
+spawned cp_bar3 fc-01M5W6DHNG361EHJ51JHNT7B15 06:29:23 {"MODULE": "bar3.scale.compose.core_compose", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "restrict,project,value,rest", "TAG": "cp_bar3"}
+spawned cp_bar3_lp fc-01M5W6DHSPRBNF9YSAR6KVVCZ1 06:29:24 {"MODULE": "bar3.scale.compose.core_compose", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lp", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "restrict,project,value,rest", "TAG": "cp_bar3_lp"}
+spawned cp_bar3_minus_red fc-01M5W6DHXSPZQ3MG528C3NG3N6 06:29:24 {"MODULE": "bar3.scale.compose.core_compose", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "law,restrict,project,value,rest", "LAWS": "lt;red;add;mul;acc.mul", "PATTERNS": "pair;x,o;o,x,d", "TAG": "cp_bar3_minus_red"}
+spawned cp_none fc-01M5W6DJ1QEZY51BF53PG51K9K 06:29:24 {"MODULE": "bar3.scale.compose.core_compose", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "1", "SECONDS": "2400", "SOURCES": "none", "TAG": "cp_none"}
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 10, 'search_s': 900.0, 'fuse': 4, 'patterns': ['pair', 'x+on', 'x,o', 'o,x,d'], 'laws': ['lt', 'red', 'add', 'mul', 'acc.mul'], 'target': 'small', 'sources': ['law'], 'round_too': True}
+device NVIDIA B200 config {'rule': 'lp', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 10, 'search_s': 900.0, 'fuse': 4, 'patterns': [], 'laws': None, 'target': 'small', 'sources': ['restrict', 'project', 'value', 'rest'], 'round_too': True}
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 10, 'search_s': 900.0, 'fuse': 4, 'patterns': [], 'laws': None, 'target': 'small', 'sources': ['restrict', 'project', 'value', 'rest'], 'round_too': True}
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 1, 'search_s': 900.0, 'fuse': 4, 'patterns': [], 'laws': None, 'target': 'small', 'sources': ['none'], 'round_too': True}
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 10, 'search_s': 900.0, 'fuse': 4, 'patterns': ['pair', 'x,o', 'o,x,d'], 'laws': ['lt', 'red', 'add', 'mul', 'acc.mul'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True}
+UNIT      2.4s +    2.4s L0 pose: 24 candidates on 12 roots | GPU peak 1.4 GiB
+UNIT      2.4s +    2.4s L0 pose: 44 candidates on 23 roots | GPU peak 1.4 GiB
+UNIT      2.2s +    2.2s L0 pose: 0 candidates on 0 roots | GPU peak 1.4 GiB
+[modal-client] 2026-10-26T06:29:34-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-2lba6KdE5XuYVdUqEKat2C

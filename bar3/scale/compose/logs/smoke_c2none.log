@@ -1,0 +1,8 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 16, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'root', 'deep_focus': True, 'look_budget': 10000, 'round_budget': 20000, 'levels': 1, 'search_s': 60.0, 'fuse': 1, 'patterns': [], 'laws': None, 'target': 'small', 'sources': ['none']}
+UNIT      8.6s +    8.6s L0 pose: 0 candidates on 0 roots
+UNIT      8.6s +    0.0s L0 choose (lpca): {}; picks []
+UNIT      8.6s +    0.0s L0 sleep: no new concept learnable; the next level poses practised ones' variants
+UNIT      8.7s +    0.1s L0 target: cost None levels [1, 32, 806, 20372] fits [0, 9, 9, 10] 0.1s budget: level 3 has 20372 > 20000 states [] full size None
+UNIT      8.7s +    0.0s climb done at level 1 (the level cap)
+TOTAL 8.7 s; rounds []
+LIB {}

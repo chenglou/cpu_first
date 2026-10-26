@@ -1,0 +1,44 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-VjGEPxGPHeXM9e82UM90Mq
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose/modal_compose.
+│   py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/__init__.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/bar3/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/one-layer-deeper/data/generated/squaring_mo
+│   d_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/library
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/self_practice
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/integration/lib
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors
+└── 🔨 Created function run_b200.
+spawned route_focus fc-01M5W906BW6G4XMPK511W8KC50 07:14:32 {"MODULE": "bar3.scale.compose.route", "REC": "/out/runs/cp_bar3_minus_red_clean.json", "FOCUS": "T.red.pair.AN|T.red.pair.AY", "SKIP_FULL": "1", "TAG": "route_focus"}
+device NVIDIA B200
+1. the target's root, setting (10,1): 8 probes, x'^2 < N' on 3; x' [3, 4, 1, 3, 4, 3, 0, 1] N' [5, 4, 5, 4, 6, 4, 4, 5] y [4, 0, 1, 1, 4, 1, 0, 1]
+1. the target's root, setting (10,2): 8 probes, x'^2 < N' on 0; x' [19, 22, 63, 33, 26, 14, 56, 38] N' [40, 71, 76, 63, 87, 46, 60, 60] y [1, 58, 17, 18, 67, 12, 16, 4]
+2. rst1@XN: N < X+X; setting (10,1): 8 probes, y = x'^2 on 0, y = x' on 0; setting (10,2): 8 probes, y = x'^2 on 0, y = x' on 1
+2. rst2@XN: X+X < N; setting (10,1): 8 probes, y = x'^2 on 8, y = x' on 5; setting (10,2): 8 probes, y = x'^2 on 3, y = x' on 0
+3. cp_bar3_minus_red_clean: its last logged near misses (level 9): fits [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]
+   logged 6, here 6: SHR.A T.red.pair.XA
+   logged 6, here 6: SHR.X CLA ADC.X
+   logged 6, here 6: SHR.X T.val.15.tgt.XN ADC.X
+   logged 6, here 6: CLA T.red.pair.AX ADC.S
+   x'^2 LDA.X STA.Y T.mul.x,o.XY: fits 3 of 16
+   x'^2 LDA.X STA.Y T.mul.x,o.YX: fits 3 of 16
+4. the rest from x'^2, CLA P[BRG.X B[T.red.pair.AN]] (cost 5): right on 16 of 16 probes, accepted at width 3: True
+4. the rest from x'^2, LDA.N P[BRG.X B[T.red.pair.AN]] (cost 5): right on 16 of 16 probes, accepted at width 3: True
+4. the rest from x'^2, LDA.N STA.Y P[BRG.X B[T.red.pair.AY]] (cost 6): right on 16 of 16 probes, accepted at width 3: True
+4. the rest from x'^2, STA.Y P[BRG.X B[T.red.pair.AY]] (cost 5): right on 6 of 16 probes, accepted at width 3: False
+4. the rest from x'^2, P[BRG.X B[T.red.pair.AN]] (cost 4): right on 6 of 16 probes, accepted at width 3: False
+[modal-client] 2026-10-26T07:14:42-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-VjGEPxGPHeXM9e82UM90Mq

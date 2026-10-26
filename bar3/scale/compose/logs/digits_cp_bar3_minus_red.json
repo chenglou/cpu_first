@@ -1,0 +1,872 @@
+[
+ {
+  "routine": "T.acc.mul.o,x,d.ANX",
+  "program": "LDH.X B3.4",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.acc.mul.o,x,d.ANY",
+  "program": "LDH.Y B3.4",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.acc.mul.o,x,d.AXN",
+  "program": "B8.2 STA.Y LDA.S T.acc.mul.o,x,d.AXY",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.acc.mul.o,x,d.AXY",
+  "program": "LDH.Y CLK P[MUL.X INC]",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.acc.mul.o,x,d.AYN",
+  "program": "B8.2 STA.X LDA.S T.acc.mul.o,x,d.AYX",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.acc.mul.o,x,d.AYX",
+  "program": "LDH.X CLK P[MUL.Y INC]",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.acc.mul.o,x,d.XYA",
+  "program": "SHL.X T.add.pair.AX STA.X SHR.A T.acc.mul.o,x,d.AYX",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.acc.mul.o,x,d.YXA",
+  "program": "SHL.Y T.add.pair.AY STA.Y SHR.A T.acc.mul.o,x,d.AXY",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.add.pair.AN",
+  "program": "CLC P[ADC.N INC]",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.add.pair.AN",
+  "program": "CLC P[ADC.N INC]",
+  "place": "AN",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.add.pair.AN",
+  "program": "CLC P[ADC.N INC]",
+  "place": "NA",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.add.pair.AX",
+  "program": "CLC P[ADC.X INC]",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.add.pair.AX",
+  "program": "CLC P[ADC.X INC]",
+  "place": "AX",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.add.pair.AX",
+  "program": "CLC P[ADC.X INC]",
+  "place": "XA",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.add.pair.AY",
+  "program": "CLC P[ADC.Y INC]",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.add.pair.AY",
+  "program": "CLC P[ADC.Y INC]",
+  "place": "AY",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.add.pair.AY",
+  "program": "CLC P[ADC.Y INC]",
+  "place": "YA",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.lt.pair.AN",
+  "program": "CLC P[SBB.N INC]",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.lt.pair.AN",
+  "program": "CLC P[SBB.N INC]",
+  "place": "AN",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.lt.pair.AN",
+  "program": "CLC P[SBB.N INC]",
+  "place": "NA",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.lt.pair.AX",
+  "program": "CLC P[SBB.X INC]",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.lt.pair.AX",
+  "program": "CLC P[SBB.X INC]",
+  "place": "AX",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.lt.pair.AX",
+  "program": "CLC P[SBB.X INC]",
+  "place": "XA",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.lt.pair.AY",
+  "program": "CLC P[SBB.Y INC]",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.lt.pair.AY",
+  "program": "CLC P[SBB.Y INC]",
+  "place": "AY",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.lt.pair.AY",
+  "program": "CLC P[SBB.Y INC]",
+  "place": "YA",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.mul.x,o.XY",
+  "program": "CLA W[B4.7]",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.mul.x,o.XY",
+  "program": "CLA W[B4.7]",
+  "place": "XY",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.mul.x,o.XY",
+  "program": "CLA W[B4.7]",
+  "place": "YX",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.mul.x,o.YX",
+  "program": "CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.mul.x,o.YX",
+  "program": "CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]",
+  "place": "YX",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.mul.x,o.YX",
+  "program": "CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]",
+  "place": "XY",
+  "clean": true,
+  "state": true,
+  "pair_state": true,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.red.pair.AN",
+  "program": "STA.S T.lt.pair.AN SEL.S",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.red.pair.AN",
+  "program": "STA.S T.lt.pair.AN SEL.S",
+  "place": "AN",
+  "clean": true,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.red.pair.AN",
+  "program": "STA.S T.lt.pair.AN SEL.S",
+  "place": "NA",
+  "clean": true,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.red.pair.AX",
+  "program": "STA.S T.lt.pair.AX SEL.S",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.red.pair.AX",
+  "program": "STA.S T.lt.pair.AX SEL.S",
+  "place": "AX",
+  "clean": true,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.red.pair.AX",
+  "program": "STA.S T.lt.pair.AX SEL.S",
+  "place": "XA",
+  "clean": true,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.red.pair.AY",
+  "program": "STA.S T.lt.pair.AY SEL.S",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.red.pair.AY",
+  "program": "STA.S T.lt.pair.AY SEL.S",
+  "place": "AY",
+  "clean": true,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.red.pair.AY",
+  "program": "STA.S T.lt.pair.AY SEL.S",
+  "place": "YA",
+  "clean": true,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.104.tgt.XN",
+  "program": "T.val.74.tgt.XN B4.1",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.104.tgt.XN",
+  "program": "T.val.74.tgt.XN B4.1",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.105.tgt.XN",
+  "program": "T.val.78.tgt.XN B4.1",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.105.tgt.XN",
+  "program": "T.val.78.tgt.XN B4.1",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.108.tgt.XN",
+  "program": "ADC.N SBB.N T.val.74.tgt.XN",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.108.tgt.XN",
+  "program": "ADC.N SBB.N T.val.74.tgt.XN",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.130.tgt.XN",
+  "program": "ADC.N SBB.N",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.130.tgt.XN",
+  "program": "ADC.N SBB.N",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.133.tgt.XN",
+  "program": "T.val.104.tgt.XN T.red.pair.AN",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.133.tgt.XN",
+  "program": "T.val.104.tgt.XN T.red.pair.AN",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.134.tgt.XN",
+  "program": "T.val.105.tgt.XN T.red.pair.AN",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.134.tgt.XN",
+  "program": "T.val.105.tgt.XN T.red.pair.AN",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.141.tgt.XN",
+  "program": "T.val.104.tgt.XN T.lt.pair.AX ADC.X",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.141.tgt.XN",
+  "program": "T.val.104.tgt.XN T.lt.pair.AX ADC.X",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.154.tgt.XN",
+  "program": "T.val.133.tgt.XN T.red.pair.AN",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.154.tgt.XN",
+  "program": "T.val.133.tgt.XN T.red.pair.AN",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.155.tgt.XN",
+  "program": "T.val.134.tgt.XN T.red.pair.AN",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.155.tgt.XN",
+  "program": "T.val.134.tgt.XN T.red.pair.AN",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.156.tgt.XN",
+  "program": "T.val.141.tgt.XN T.red.pair.AN",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.156.tgt.XN",
+  "program": "T.val.141.tgt.XN T.red.pair.AN",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.157.tgt.XN",
+  "program": "T.val.104.tgt.XN T.red.pair.AY",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.157.tgt.XN",
+  "program": "T.val.104.tgt.XN T.red.pair.AY",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.24.tgt.XN",
+  "program": "MUL.N B1.1",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.24.tgt.XN",
+  "program": "MUL.N B1.1",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.26.tgt.XN",
+  "program": "LDA.N B1.1",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.26.tgt.XN",
+  "program": "LDA.N B1.1",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.3.tgt.XN",
+  "program": "SHR.X B0.1",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.3.tgt.XN",
+  "program": "SHR.X B0.1",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.31.tgt.XN",
+  "program": "T.val.3.tgt.XN ADC.X SBB.X",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.31.tgt.XN",
+  "program": "T.val.3.tgt.XN ADC.X SBB.X",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.5.tgt.XN",
+  "program": "B0.1 SBB.X",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.5.tgt.XN",
+  "program": "B0.1 SBB.X",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.51.tgt.XN",
+  "program": "T.red.pair.AY CLC T.val.24.tgt.XN",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.51.tgt.XN",
+  "program": "T.red.pair.AY CLC T.val.24.tgt.XN",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.54.tgt.XN",
+  "program": "MUL.N CLK T.val.24.tgt.XN",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.54.tgt.XN",
+  "program": "MUL.N CLK T.val.24.tgt.XN",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.65.tgt.XN",
+  "program": "T.val.24.tgt.XN ADC.X SBB.X",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.65.tgt.XN",
+  "program": "T.val.24.tgt.XN ADC.X SBB.X",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.7.tgt.XN",
+  "program": "CLA ADC.S SBB.S",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.7.tgt.XN",
+  "program": "CLA ADC.S SBB.S",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.74.tgt.XN",
+  "program": "T.val.51.tgt.XN B3.1",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.74.tgt.XN",
+  "program": "T.val.51.tgt.XN B3.1",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.78.tgt.XN",
+  "program": "T.val.54.tgt.XN B3.1",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.78.tgt.XN",
+  "program": "T.val.54.tgt.XN B3.1",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.81.tgt.XN",
+  "program": "T.val.24.tgt.XN B3.1",
+  "place": "XN",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ },
+ {
+  "routine": "T.val.81.tgt.XN",
+  "program": "T.val.24.tgt.XN B3.1",
+  "place": "NX",
+  "clean": false,
+  "state": false,
+  "pair_state": false,
+  "x_mod_N": false,
+  "piece": false
+ }
+]

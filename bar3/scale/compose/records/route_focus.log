@@ -1,0 +1,21 @@
+device NVIDIA B200
+1. the target's root, setting (10,1): 8 probes, x'^2 < N' on 3; x' [3, 4, 1, 3, 4, 3, 0, 1] N' [5, 4, 5, 4, 6, 4, 4, 5] y [4, 0, 1, 1, 4, 1, 0, 1]
+1. the target's root, setting (10,2): 8 probes, x'^2 < N' on 0; x' [19, 22, 63, 33, 26, 14, 56, 38] N' [40, 71, 76, 63, 87, 46, 60, 60] y [1, 58, 17, 18, 67, 12, 16, 4]
+2. rst1@XN: N < X+X; setting (10,1): 8 probes, y = x'^2 on 0, y = x' on 0; setting (10,2): 8 probes, y = x'^2 on 0, y = x' on 1
+2. rst2@XN: X+X < N; setting (10,1): 8 probes, y = x'^2 on 8, y = x' on 5; setting (10,2): 8 probes, y = x'^2 on 3, y = x' on 0
+3. cp_bar3_minus_red_clean: its last logged near misses (level 9): fits [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]
+   logged 6, here 6: SHR.A T.red.pair.XA
+   logged 6, here 6: SHR.X CLA ADC.X
+   logged 6, here 6: SHR.X T.val.15.tgt.XN ADC.X
+   logged 6, here 6: CLA T.red.pair.AX ADC.S
+   x'^2 LDA.X STA.Y T.mul.x,o.XY: fits 3 of 16
+   x'^2 LDA.X STA.Y T.mul.x,o.YX: fits 3 of 16
+4. the rest from x'^2, CLA P[BRG.X B[T.red.pair.AN]] (cost 5): right on 16 of 16 probes, accepted at width 3: True
+4. the rest from x'^2, LDA.N P[BRG.X B[T.red.pair.AN]] (cost 5): right on 16 of 16 probes, accepted at width 3: True
+4. the rest from x'^2, LDA.N STA.Y P[BRG.X B[T.red.pair.AY]] (cost 6): right on 16 of 16 probes, accepted at width 3: True
+4. the rest from x'^2, STA.Y P[BRG.X B[T.red.pair.AY]] (cost 5): right on 6 of 16 probes, accepted at width 3: False
+4. the rest from x'^2, P[BRG.X B[T.red.pair.AN]] (cost 4): right on 6 of 16 probes, accepted at width 3: False
+5. the rest from x'^2, over the primitives and ['T.lt.pair.AN', 'T.red.pair.AN'] at 5,800,000 states: cost None, levels [1, 34, 913, 24411, 676545, 24285005], fits [0, 7, 8, 11, 16, 16], budget: level 5 streamed (over 5800000 states), 10 s, programs []
+5. the rest from x'^2, over the primitives and ['T.lt.pair.AY', 'T.red.pair.AY'] at 5,800,000 states: cost None, levels [1, 34, 930, 25268, 709936, 25522534], fits [0, 7, 7, 7, 9, 11], budget: level 5 streamed (over 5800000 states), 7 s, programs []
+
+EXIT 0

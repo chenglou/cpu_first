@@ -1,0 +1,20 @@
+device cpu
+1. the target's root, setting (10,1): 8 probes, x'^2 < N' on 6; x' [1, 2, 4, 3, 2, 1, 2, 2] N' [6, 5, 6, 7, 7, 4, 6, 5] y [1, 4, 4, 2, 4, 1, 4, 4]
+1. the target's root, setting (10,2): 8 probes, x'^2 < N' on 2; x' [40, 44, 42, 37, 22, 1, 50, 1] N' [60, 48, 56, 63, 68, 10, 83, 74] y [40, 16, 28, 46, 8, 1, 10, 1]
+2. rst1@XN: 1 < X; setting (10,1): 8 probes, y = x'^2 on 0, y = x' on 0; setting (10,2): 8 probes, y = x'^2 on 1, y = x' on 0
+2. rst2@XN: X < 2; setting (10,1): 8 probes, y = x'^2 on 8, y = x' on 8; setting (10,2): 8 probes, y = x'^2 on 8, y = x' on 8
+2. rst3@XN: N < X+X; setting (10,1): 8 probes, y = x'^2 on 0, y = x' on 0; setting (10,2): 8 probes, y = x'^2 on 0, y = x' on 0
+2. rst4@XN: X+X < N; setting (10,1): 8 probes, y = x'^2 on 7, y = x' on 6; setting (10,2): 8 probes, y = x'^2 on 4, y = x' on 0
+3. cp_bar3_minus_red_clean: its last logged near misses (level 5): fits [6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+   logged 6, here 2: SHR.X CLA ADC.X
+   logged 6, here 2: SHR.X T.val.15.tgt.XN ADC.X
+   logged 6, here 4: CLA T.red.pair.AX ADC.S
+   logged 5, here 6: LDA.X T.red.pair.AN
+   x'^2 LDA.X STA.Y T.mul.x,o.XY: fits 8 of 16
+   x'^2 LDA.X STA.Y T.mul.x,o.YX: fits 8 of 16
+4. the rest from x'^2, CLA P[BRG.X B[T.red.pair.AN]] (cost 5): right on 16 of 16 probes, accepted at width 3: True
+4. the rest from x'^2, LDA.N P[BRG.X B[T.red.pair.AN]] (cost 5): right on 16 of 16 probes, accepted at width 3: True
+4. the rest from x'^2, LDA.N STA.Y P[BRG.X B[T.red.pair.AY]] (cost 6): right on 16 of 16 probes, accepted at width 3: True
+4. the rest from x'^2, STA.Y P[BRG.X B[T.red.pair.AY]] (cost 5): right on 5 of 16 probes, accepted at width 3: False
+4. the rest from x'^2, P[BRG.X B[T.red.pair.AN]] (cost 4): right on 7 of 16 probes, accepted at width 3: False
+4. the rest from x'^2, searched at 20,000 states: cost None, levels [1, 48, 1928, 90655], fits [0, 7, 8, 11], budget: level 3 streamed (over 20000 states), 267 s, programs []

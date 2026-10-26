@@ -1,0 +1,28 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-PuOQEjmeAGlzrtZ28CxZkk
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose/modal_compose.
+│   py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/__init__.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/bar3/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/one-layer-deeper/data/generated/squaring_mo
+│   d_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/library
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/self_practice
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/integration/lib
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors
+└── 🔨 Created function run_b200.
+spawned cp_bar3_minus_red_clean fc-01M5W7DBQ9QSPMBWBSARHM6W6K 06:46:46 {"MODULE": "bar3.scale.compose.core_compose", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "law,restrict,project,value,rest", "LAWS": "lt;red;add;mul;acc.mul", "PATTERNS": "pair;x,o;o,x,d", "CLEAN_VALUES": "1", "TAG": "cp_bar3_minus_red_clean"}
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 10, 'search_s': 900.0, 'fuse': 4, 'patterns': ['pair', 'x,o', 'o,x,d'], 'laws': ['lt', 'red', 'add', 'mul', 'acc.mul'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True}
+[modal-client] 2026-10-26T06:46:56-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-PuOQEjmeAGlzrtZ28CxZkk

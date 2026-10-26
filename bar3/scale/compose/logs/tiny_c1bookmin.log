@@ -1,0 +1,18 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 10000, 'round_budget': 20000, 'levels': 2, 'search_s': 60.0, 'fuse': 1, 'patterns': ['pair', 'x+on', 'x,o', 'o,x,d'], 'laws': ['lt', 'red', 'add', 'mul', 'acc.mul'], 'target': 'small', 'sources': ['law'], 'round_too': True}
+UNIT      8.5s +    8.5s L0 pose: 23 candidates on 12 roots
+UNIT     10.7s +    2.2s L0 probe 12 roots 2.2s solved {'lt/pair@AX': 4} [('routines', 2.2)]
+UNIT     10.8s +    0.0s L0 choose (lpca): {'learnable': 1, 'unsolved': 22}; picks [('lt/pair@AX', 4, 'CLC P[SBB.X INC]')]
+UNIT     10.8s +    0.0s L0 sleep: T.lt.pair.AX=CLC P[SBB.X INC]
+UNIT     18.5s +    7.7s L0 target: cost None levels [1, 33, 856, 22161] fits [0, 6, 6, 6] 7.5s budget: level 3 has 22161 > 20000 states [] full size None | round: cost None levels [1, 33, 812, 17934, 510555] 0.2s budget: level 4 streamed (over 20000 states) []
+UNIT     18.6s +    0.1s L1 pose: 11 candidates on 11 roots
+UNIT     19.1s +    0.5s L1 probe 11 roots 0.5s solved {'red/pair@AX': 3} [('routines', 0.5)]
+UNIT     19.1s +    0.0s L1 deep: [('pair@AY', {'red': 0.5}), ('pair@AN', {'red': 0.3333333333333333}), ('pair@XA', {'red': 0.0}), ('pair@XY', {'red': 0.0}), ('pair@XN', {'red': 0.5}), ('pair@YA', {'red': 0.0}), ('pair@YN', {'red': 0.0}), ('pair@NA', {'red': 0.25}), ('pair@NX', {'red': 0.0}), ('pair@NY', {'red': 0.0})]
+UNIT     24.6s +    5.4s L1 deep ['pair@AY', 'pair@AN', 'pair@XA', 'pair@XY'] 5.4s solved {} [("deep ['T.lt.pair.AX']", 5.3)]
+UNIT     29.9s +    5.3s L1 deep ['pair@XN', 'pair@YA', 'pair@YN', 'pair@NA'] 5.3s solved {} [("deep ['T.lt.pair.AX']", 5.3)]
+UNIT     33.0s +    3.2s L1 deep ['pair@NX', 'pair@NY'] 3.2s solved {'red/pair@NX': 4} [("deep ['T.lt.pair.AX']", 3.2)]
+UNIT     33.0s +    0.0s L1 choose (lpca): {'learnable': 2, 'unsolved': 9}; picks [('red/pair@AX', 3, 'STA.S T.lt.pair.AX SEL.S')]
+UNIT     33.0s +    0.0s L1 sleep: T.red.pair.AX=STA.S T.lt.pair.AX SEL.S
+UNIT     45.4s +   12.4s L1 target: cost None levels [1, 34, 913, 31454] fits [0, 6, 6, 6] 12.1s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 34, 865, 19723, 577468] 0.3s budget: level 4 streamed (over 20000 states) []
+UNIT     45.4s +    0.0s climb done at level 2 (the level cap)
+TOTAL 45.4 s; rounds []
+LIB {"T.lt.pair.AX": "CLC P[SBB.X INC]", "T.red.pair.AX": "STA.S T.lt.pair.AX SEL.S"}

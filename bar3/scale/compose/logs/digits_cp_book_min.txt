@@ -1,0 +1,41 @@
+T.acc.mul.o,x,d.ANX                LDH.X B3.3                                           x,N in XN dirty: not a function of x and N
+T.acc.mul.o,x,d.ANY                LDH.Y B3.3                                           x,N in XN dirty: not a function of x and N
+T.acc.mul.o,x,d.AXY                LDH.Y CLK P[MUL.X INC]                               x,N in XN dirty: not a function of x and N
+T.acc.mul.o,x,d.AYX                LDH.X CLK P[MUL.Y INC]                               x,N in XN dirty: not a function of x and N
+T.add.pair.AN                      CLC P[ADC.N INC]                                     x,N in XN dirty: not a function of x and N
+T.add.pair.AN                      CLC P[ADC.N INC]                                     x,N in AN state True  pair True  x mod N False piece False
+T.add.pair.AN                      CLC P[ADC.N INC]                                     x,N in NA state True  pair True  x mod N False piece False
+T.add.pair.AX                      CLC P[ADC.X INC]                                     x,N in XN dirty: not a function of x and N
+T.add.pair.AX                      CLC P[ADC.X INC]                                     x,N in AX state True  pair True  x mod N False piece False
+T.add.pair.AX                      CLC P[ADC.X INC]                                     x,N in XA state True  pair True  x mod N False piece False
+T.add.pair.AY                      CLC P[ADC.Y INC]                                     x,N in XN dirty: not a function of x and N
+T.add.pair.AY                      CLC P[ADC.Y INC]                                     x,N in AY state True  pair True  x mod N False piece False
+T.add.pair.AY                      CLC P[ADC.Y INC]                                     x,N in YA state True  pair True  x mod N False piece False
+T.lt.pair.AN                       CLC P[SBB.N INC]                                     x,N in XN dirty: not a function of x and N
+T.lt.pair.AN                       CLC P[SBB.N INC]                                     x,N in AN state True  pair True  x mod N False piece False
+T.lt.pair.AN                       CLC P[SBB.N INC]                                     x,N in NA state True  pair True  x mod N False piece False
+T.lt.pair.AX                       CLC P[SBB.X INC]                                     x,N in XN dirty: not a function of x and N
+T.lt.pair.AX                       CLC P[SBB.X INC]                                     x,N in AX state True  pair True  x mod N False piece False
+T.lt.pair.AX                       CLC P[SBB.X INC]                                     x,N in XA state True  pair True  x mod N False piece False
+T.lt.pair.AY                       CLC P[SBB.Y INC]                                     x,N in XN dirty: not a function of x and N
+T.lt.pair.AY                       CLC P[SBB.Y INC]                                     x,N in AY state True  pair True  x mod N False piece False
+T.lt.pair.AY                       CLC P[SBB.Y INC]                                     x,N in YA state True  pair True  x mod N False piece False
+T.mul.x,o.XY                       CLA W[B4.6]                                          x,N in XN dirty: not a function of x and N
+T.mul.x,o.XY                       CLA W[B4.6]                                          x,N in XY state True  pair True  x mod N False piece False
+T.mul.x,o.XY                       CLA W[B4.6]                                          x,N in YX state True  pair True  x mod N False piece False
+T.mul.x,o.YX                       CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]                 x,N in XN dirty: not a function of x and N
+T.mul.x,o.YX                       CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]                 x,N in YX state True  pair True  x mod N False piece False
+T.mul.x,o.YX                       CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]                 x,N in XY state True  pair True  x mod N False piece False
+T.red.pair.AN                      STA.S T.lt.pair.AN SEL.S                             x,N in XN dirty: not a function of x and N
+T.red.pair.AN                      STA.S T.lt.pair.AN SEL.S                             x,N in AN state False pair False x mod N False piece False
+T.red.pair.AN                      STA.S T.lt.pair.AN SEL.S                             x,N in NA state False pair False x mod N False piece False
+T.red.pair.AX                      STA.S T.lt.pair.AX SEL.S                             x,N in XN dirty: not a function of x and N
+T.red.pair.AX                      STA.S T.lt.pair.AX SEL.S                             x,N in AX state False pair False x mod N False piece False
+T.red.pair.AX                      STA.S T.lt.pair.AX SEL.S                             x,N in XA state False pair False x mod N False piece False
+T.red.pair.AY                      STA.S T.lt.pair.AY SEL.S                             x,N in XN dirty: not a function of x and N
+T.red.pair.AY                      STA.S T.lt.pair.AY SEL.S                             x,N in AY state False pair False x mod N False piece False
+T.red.pair.AY                      STA.S T.lt.pair.AY SEL.S                             x,N in YA state False pair False x mod N False piece False
+T.red.x+on.XA                      STA.Y P[BRG.X B[T.red.pair.AY]]                      x,N in XN dirty: not a function of x and N
+T.red.x+on.XA                      STA.Y P[BRG.X B[T.red.pair.AY]]                      x,N in XA state True  pair True  x mod N True  piece True
+T.red.x+on.XA                      STA.Y P[BRG.X B[T.red.pair.AY]]                      x,N in AX state False pair False x mod N False piece False
+cp_book_min: 16 routines, 40 placements, 24 clean; 17 states, 0 more in a pair with x^2 mod N, 1 a piece of the round

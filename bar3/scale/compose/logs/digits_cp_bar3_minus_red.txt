@@ -1,0 +1,88 @@
+T.acc.mul.o,x,d.ANX                LDH.X B3.4                                           x,N in XN dirty: not a function of x and N
+T.acc.mul.o,x,d.ANY                LDH.Y B3.4                                           x,N in XN dirty: not a function of x and N
+T.acc.mul.o,x,d.AXN                B8.2 STA.Y LDA.S T.acc.mul.o,x,d.AXY                 x,N in XN dirty: not a function of x and N
+T.acc.mul.o,x,d.AXY                LDH.Y CLK P[MUL.X INC]                               x,N in XN dirty: not a function of x and N
+T.acc.mul.o,x,d.AYN                B8.2 STA.X LDA.S T.acc.mul.o,x,d.AYX                 x,N in XN dirty: not a function of x and N
+T.acc.mul.o,x,d.AYX                LDH.X CLK P[MUL.Y INC]                               x,N in XN dirty: not a function of x and N
+T.acc.mul.o,x,d.XYA                SHL.X T.add.pair.AX STA.X SHR.A T.acc.mul.o,x,d.AYX  x,N in XN dirty: not a function of x and N
+T.acc.mul.o,x,d.YXA                SHL.Y T.add.pair.AY STA.Y SHR.A T.acc.mul.o,x,d.AXY  x,N in XN dirty: not a function of x and N
+T.add.pair.AN                      CLC P[ADC.N INC]                                     x,N in XN dirty: not a function of x and N
+T.add.pair.AN                      CLC P[ADC.N INC]                                     x,N in AN state True  pair True  x mod N False piece False
+T.add.pair.AN                      CLC P[ADC.N INC]                                     x,N in NA state True  pair True  x mod N False piece False
+T.add.pair.AX                      CLC P[ADC.X INC]                                     x,N in XN dirty: not a function of x and N
+T.add.pair.AX                      CLC P[ADC.X INC]                                     x,N in AX state True  pair True  x mod N False piece False
+T.add.pair.AX                      CLC P[ADC.X INC]                                     x,N in XA state True  pair True  x mod N False piece False
+T.add.pair.AY                      CLC P[ADC.Y INC]                                     x,N in XN dirty: not a function of x and N
+T.add.pair.AY                      CLC P[ADC.Y INC]                                     x,N in AY state True  pair True  x mod N False piece False
+T.add.pair.AY                      CLC P[ADC.Y INC]                                     x,N in YA state True  pair True  x mod N False piece False
+T.lt.pair.AN                       CLC P[SBB.N INC]                                     x,N in XN dirty: not a function of x and N
+T.lt.pair.AN                       CLC P[SBB.N INC]                                     x,N in AN state True  pair True  x mod N False piece False
+T.lt.pair.AN                       CLC P[SBB.N INC]                                     x,N in NA state True  pair True  x mod N False piece False
+T.lt.pair.AX                       CLC P[SBB.X INC]                                     x,N in XN dirty: not a function of x and N
+T.lt.pair.AX                       CLC P[SBB.X INC]                                     x,N in AX state True  pair True  x mod N False piece False
+T.lt.pair.AX                       CLC P[SBB.X INC]                                     x,N in XA state True  pair True  x mod N False piece False
+T.lt.pair.AY                       CLC P[SBB.Y INC]                                     x,N in XN dirty: not a function of x and N
+T.lt.pair.AY                       CLC P[SBB.Y INC]                                     x,N in AY state True  pair True  x mod N False piece False
+T.lt.pair.AY                       CLC P[SBB.Y INC]                                     x,N in YA state True  pair True  x mod N False piece False
+T.mul.x,o.XY                       CLA W[B4.7]                                          x,N in XN dirty: not a function of x and N
+T.mul.x,o.XY                       CLA W[B4.7]                                          x,N in XY state True  pair True  x mod N False piece False
+T.mul.x,o.XY                       CLA W[B4.7]                                          x,N in YX state True  pair True  x mod N False piece False
+T.mul.x,o.YX                       CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]                 x,N in XN dirty: not a function of x and N
+T.mul.x,o.YX                       CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]                 x,N in YX state True  pair True  x mod N False piece False
+T.mul.x,o.YX                       CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]                 x,N in XY state True  pair True  x mod N False piece False
+T.red.pair.AN                      STA.S T.lt.pair.AN SEL.S                             x,N in XN dirty: not a function of x and N
+T.red.pair.AN                      STA.S T.lt.pair.AN SEL.S                             x,N in AN state False pair False x mod N False piece False
+T.red.pair.AN                      STA.S T.lt.pair.AN SEL.S                             x,N in NA state False pair False x mod N False piece False
+T.red.pair.AX                      STA.S T.lt.pair.AX SEL.S                             x,N in XN dirty: not a function of x and N
+T.red.pair.AX                      STA.S T.lt.pair.AX SEL.S                             x,N in AX state False pair False x mod N False piece False
+T.red.pair.AX                      STA.S T.lt.pair.AX SEL.S                             x,N in XA state False pair False x mod N False piece False
+T.red.pair.AY                      STA.S T.lt.pair.AY SEL.S                             x,N in XN dirty: not a function of x and N
+T.red.pair.AY                      STA.S T.lt.pair.AY SEL.S                             x,N in AY state False pair False x mod N False piece False
+T.red.pair.AY                      STA.S T.lt.pair.AY SEL.S                             x,N in YA state False pair False x mod N False piece False
+T.val.104.tgt.XN                   T.val.74.tgt.XN B4.1                                 x,N in XN dirty: not a function of x and N
+T.val.104.tgt.XN                   T.val.74.tgt.XN B4.1                                 x,N in NX dirty: not a function of x and N
+T.val.105.tgt.XN                   T.val.78.tgt.XN B4.1                                 x,N in XN dirty: not a function of x and N
+T.val.105.tgt.XN                   T.val.78.tgt.XN B4.1                                 x,N in NX dirty: not a function of x and N
+T.val.108.tgt.XN                   ADC.N SBB.N T.val.74.tgt.XN                          x,N in XN dirty: not a function of x and N
+T.val.108.tgt.XN                   ADC.N SBB.N T.val.74.tgt.XN                          x,N in NX dirty: not a function of x and N
+T.val.130.tgt.XN                   ADC.N SBB.N                                          x,N in XN dirty: not a function of x and N
+T.val.130.tgt.XN                   ADC.N SBB.N                                          x,N in NX dirty: not a function of x and N
+T.val.133.tgt.XN                   T.val.104.tgt.XN T.red.pair.AN                       x,N in XN dirty: not a function of x and N
+T.val.133.tgt.XN                   T.val.104.tgt.XN T.red.pair.AN                       x,N in NX dirty: not a function of x and N
+T.val.134.tgt.XN                   T.val.105.tgt.XN T.red.pair.AN                       x,N in XN dirty: not a function of x and N
+T.val.134.tgt.XN                   T.val.105.tgt.XN T.red.pair.AN                       x,N in NX dirty: not a function of x and N
+T.val.141.tgt.XN                   T.val.104.tgt.XN T.lt.pair.AX ADC.X                  x,N in XN dirty: not a function of x and N
+T.val.141.tgt.XN                   T.val.104.tgt.XN T.lt.pair.AX ADC.X                  x,N in NX dirty: not a function of x and N
+T.val.154.tgt.XN                   T.val.133.tgt.XN T.red.pair.AN                       x,N in XN dirty: not a function of x and N
+T.val.154.tgt.XN                   T.val.133.tgt.XN T.red.pair.AN                       x,N in NX dirty: not a function of x and N
+T.val.155.tgt.XN                   T.val.134.tgt.XN T.red.pair.AN                       x,N in XN dirty: not a function of x and N
+T.val.155.tgt.XN                   T.val.134.tgt.XN T.red.pair.AN                       x,N in NX dirty: not a function of x and N
+T.val.156.tgt.XN                   T.val.141.tgt.XN T.red.pair.AN                       x,N in XN dirty: not a function of x and N
+T.val.156.tgt.XN                   T.val.141.tgt.XN T.red.pair.AN                       x,N in NX dirty: not a function of x and N
+T.val.157.tgt.XN                   T.val.104.tgt.XN T.red.pair.AY                       x,N in XN dirty: not a function of x and N
+T.val.157.tgt.XN                   T.val.104.tgt.XN T.red.pair.AY                       x,N in NX dirty: not a function of x and N
+T.val.24.tgt.XN                    MUL.N B1.1                                           x,N in XN dirty: not a function of x and N
+T.val.24.tgt.XN                    MUL.N B1.1                                           x,N in NX dirty: not a function of x and N
+T.val.26.tgt.XN                    LDA.N B1.1                                           x,N in XN dirty: not a function of x and N
+T.val.26.tgt.XN                    LDA.N B1.1                                           x,N in NX dirty: not a function of x and N
+T.val.3.tgt.XN                     SHR.X B0.1                                           x,N in XN dirty: not a function of x and N
+T.val.3.tgt.XN                     SHR.X B0.1                                           x,N in NX dirty: not a function of x and N
+T.val.31.tgt.XN                    T.val.3.tgt.XN ADC.X SBB.X                           x,N in XN dirty: not a function of x and N
+T.val.31.tgt.XN                    T.val.3.tgt.XN ADC.X SBB.X                           x,N in NX dirty: not a function of x and N
+T.val.5.tgt.XN                     B0.1 SBB.X                                           x,N in XN dirty: not a function of x and N
+T.val.5.tgt.XN                     B0.1 SBB.X                                           x,N in NX dirty: not a function of x and N
+T.val.51.tgt.XN                    T.red.pair.AY CLC T.val.24.tgt.XN                    x,N in XN dirty: not a function of x and N
+T.val.51.tgt.XN                    T.red.pair.AY CLC T.val.24.tgt.XN                    x,N in NX dirty: not a function of x and N
+T.val.54.tgt.XN                    MUL.N CLK T.val.24.tgt.XN                            x,N in XN dirty: not a function of x and N
+T.val.54.tgt.XN                    MUL.N CLK T.val.24.tgt.XN                            x,N in NX dirty: not a function of x and N
+T.val.65.tgt.XN                    T.val.24.tgt.XN ADC.X SBB.X                          x,N in XN dirty: not a function of x and N
+T.val.65.tgt.XN                    T.val.24.tgt.XN ADC.X SBB.X                          x,N in NX dirty: not a function of x and N
+T.val.7.tgt.XN                     CLA ADC.S SBB.S                                      x,N in XN dirty: not a function of x and N
+T.val.7.tgt.XN                     CLA ADC.S SBB.S                                      x,N in NX dirty: not a function of x and N
+T.val.74.tgt.XN                    T.val.51.tgt.XN B3.1                                 x,N in XN dirty: not a function of x and N
+T.val.74.tgt.XN                    T.val.51.tgt.XN B3.1                                 x,N in NX dirty: not a function of x and N
+T.val.78.tgt.XN                    T.val.54.tgt.XN B3.1                                 x,N in XN dirty: not a function of x and N
+T.val.78.tgt.XN                    T.val.54.tgt.XN B3.1                                 x,N in NX dirty: not a function of x and N
+T.val.81.tgt.XN                    T.val.24.tgt.XN B3.1                                 x,N in XN dirty: not a function of x and N
+T.val.81.tgt.XN                    T.val.24.tgt.XN B3.1                                 x,N in NX dirty: not a function of x and N
+cp_bar3_minus_red: 42 routines, 87 placements, 22 clean; 16 states, 0 more in a pair with x^2 mod N, 0 a piece of the round

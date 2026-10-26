@@ -1,0 +1,10 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 16, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'root', 'deep_focus': True, 'look_budget': 10000, 'round_budget': 20000, 'levels': 1, 'search_s': 60.0, 'fuse': 1, 'patterns': ['pair', 'x,o', 'o,x,d'], 'laws': ['lt', 'red', 'add', 'mul', 'acc.mul'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest']}
+UNIT      8.3s +    8.3s L0 pose: 54 candidates on 29 roots
+UNIT     10.1s +    1.8s L0 probe 16 roots 1.8s solved {'val.0/tgt@XN': 1, 'val.1/tgt@XN': 1, 'val.2/tgt@XN': 1, 'val.3/tgt@XN': 2, 'val.4/tgt@XN': 0, 'val.5/tgt@XN': 1, 'val.6/tgt@XN': 2, 'val.7/tgt@XN': 2, 'val.8/tgt@XN': 2, 'val.9/tgt@XN': 2, 'val.10/tgt@XN': 2} [('routines', 1.6)]
+UNIT     15.5s +    5.4s L0 probe 13 roots 5.4s solved {} [('routines', 5.2)]
+UNIT     15.5s +    0.0s L0 choose (lpca): {'unsolved': 43, 'trivial': 5, 'learnable': 6}; picks [('val.3/tgt@XN', 2, 'LDA.X SHL.A'), ('val.6/tgt@XN', 2, 'LDA.X SBB.X'), ('val.7/tgt@XN', 2, 'LDA.N SBB.X'), ('val.8/tgt@XN', 2, 'CLA SBB.Y')]
+UNIT     15.5s +    0.0s L0 sleep: T.val.3.tgt.XN=LDA.X SHL.A; T.val.6.tgt.XN=LDA.X SBB.X; T.val.7.tgt.XN=LDA.N SBB.X; T.val.8.tgt.XN=CLA SBB.Y
+UNIT     21.3s +    5.7s L0 target: cost None levels [1, 36, 991, 34760] fits [0, 9, 9, 11] 5.7s budget: level 3 streamed (over 20000 states) [] full size None
+UNIT     21.3s +    0.0s climb done at level 1 (the level cap)
+TOTAL 21.3 s; rounds []
+LIB {"T.val.3.tgt.XN": "LDA.X SHL.A", "T.val.6.tgt.XN": "LDA.X SBB.X", "T.val.7.tgt.XN": "LDA.N SBB.X", "T.val.8.tgt.XN": "CLA SBB.Y"}

@@ -1,0 +1,10 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 16, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'root', 'deep_focus': True, 'look_budget': 10000, 'round_budget': 20000, 'levels': 1, 'search_s': 60.0, 'fuse': 1, 'patterns': [], 'laws': None, 'target': 'small', 'sources': ['restrict', 'project', 'value', 'rest']}
+UNIT      8.5s +    8.5s L0 pose: 30 candidates on 17 roots
+UNIT     15.1s +    6.6s L0 probe 16 roots 6.6s solved {'val.0/tgt@XN': 1, 'val.1/tgt@XN': 1, 'val.2/tgt@XN': 1, 'val.3/tgt@XN': 2, 'val.4/tgt@XN': 0, 'val.5/tgt@XN': 1, 'val.6/tgt@XN': 2, 'val.7/tgt@XN': 2, 'val.8/tgt@XN': 2, 'val.9/tgt@XN': 2, 'val.10/tgt@XN': 2} [('routines', 6.2)]
+UNIT     15.2s +    0.1s L0 probe 1 roots 0.1s solved {} [('routines', 0.1)]
+UNIT     15.2s +    0.0s L0 choose (lpca): {'unsolved': 19, 'trivial': 5, 'learnable': 6}; picks [('val.3/tgt@XN', 2, 'LDA.X SHL.A'), ('val.6/tgt@XN', 2, 'LDA.X SBB.X'), ('val.7/tgt@XN', 2, 'LDA.N SBB.X'), ('val.8/tgt@XN', 2, 'CLA SBB.Y')]
+UNIT     15.2s +    0.0s L0 sleep: T.val.3.tgt.XN=LDA.X SHL.A; T.val.6.tgt.XN=LDA.X SBB.X; T.val.7.tgt.XN=LDA.N SBB.X; T.val.8.tgt.XN=CLA SBB.Y
+UNIT     21.1s +    5.9s L0 target: cost None levels [1, 36, 991, 34760] fits [0, 9, 9, 11] 5.9s budget: level 3 streamed (over 20000 states) [] full size None
+UNIT     21.1s +    0.0s climb done at level 1 (the level cap)
+TOTAL 21.1 s; rounds []
+LIB {"T.val.3.tgt.XN": "LDA.X SHL.A", "T.val.6.tgt.XN": "LDA.X SBB.X", "T.val.7.tgt.XN": "LDA.N SBB.X", "T.val.8.tgt.XN": "CLA SBB.Y"}

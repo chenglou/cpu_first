@@ -1,0 +1,236 @@
+== cp_book_min: sources ['law'], rule lpca, laws ['lt', 'red', 'add', 'mul', 'acc.mul'], patterns ['pair', 'x+on', 'x,o', 'o,x,d']; 697.3 s, final True, rounds ['LDA.X STA.Y T.mul.x,o.XY STA.X LDA.N T.red.x+on.XA', 'LDA.X STA.Y T.mul.x,o.YX STA.X LDA.N T.red.x+on.XA']
+  L0: pool 24 {'learnable': 9, 'unsolved': 15}
+     lt/pair@AX                         cost 4  CLC P[SBB.X INC]                             the comparison
+     lt/pair@AY                         cost 4  CLC P[SBB.Y INC]                             the comparison
+     lt/pair@AN                         cost 4  CLC P[SBB.N INC]                             the comparison
+  L1: pool 12 {'learnable': 12}
+     red/pair@AX                        cost 3  STA.S T.lt.pair.AX SEL.S                     the link
+     red/pair@AY                        cost 3  STA.S T.lt.pair.AY SEL.S                     the link
+     red/pair@AN                        cost 3  STA.S T.lt.pair.AN SEL.S                     the link
+  L2: pool 12 {'learnable': 3, 'duplicate': 3, 'unsolved': 6}
+     add/pair@AX                        cost 4  CLC P[ADC.X INC]                             the addition
+     add/pair@AY                        cost 4  CLC P[ADC.Y INC]                             the addition
+     add/pair@AN                        cost 4  CLC P[ADC.N INC]                             the addition
+  L3: pool 48 {'unsolved': 44, 'learnable': 4}
+     acc.mul/o,x,d@AXY                  cost 5  LDH.Y CLK P[MUL.X INC]                       the multiply-add row
+     acc.mul/o,x,d@AYX                  cost 5  LDH.X CLK P[MUL.Y INC]                       the multiply-add row
+     acc.mul/o,x,d@ANX                  cost 5  LDH.X CLK P[MUL.N INC]                       the multiply-add row
+     acc.mul/o,x,d@ANY                  cost 5  LDH.Y CLK P[MUL.N INC]                       the multiply-add row
+  L4: pool 24 {'unsolved': 22, 'learnable': 2}
+     mul/x,o@XY                         cost 5  CLA W[T.acc.mul.o,x,d.AYX INC SHL.Y]         the multiply
+     mul/x,o@YX                         cost 5  CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]         the multiply
+  L5: pool 12 {'unsolved': 11, 'learnable': 1}
+     red/x+on@XA                        cost 5  STA.Y P[BRG.X B[T.red.pair.AY]]              the reduction
+     60.8s L0 target: cost None levels [1, 35, 986, 27608, 794483, 29222841] fits [0, 4, 4, 6, 6, 7] 18.1s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 35, 923, 22054, 500376, 14787947] 0.4s exhausted cost 5 []
+    107.7s L1 target: cost None levels [1, 38, 1182, 36342, 1148507, 45759807] fits [0, 4, 5, 6, 7, 7] 26.5s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 38, 1092, 28325, 698101, 22527421] 0.8s exhausted cost 5 []
+    159.6s L2 target: cost None levels [1, 41, 1384, 46090, 1575744, 67292607] fits [0, 4, 5, 6, 7, 8] 32.1s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 41, 1273, 35907, 967218, 33668311] 1.3s exhausted cost 5 []
+    305.0s L3 target: cost None levels [1, 45, 1699, 63491, 2421490, 112376438] fits [0, 4, 5, 6, 7, 8] 33.8s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 45, 1556, 49176, 1482041, 56361929] 2.5s exhausted cost 5; by calls: levels [1, 276, 56247] exhausted cost 2 []
+    438.9s L4 target: cost None levels [1, 47, 1835, 69792, 2672529, 125170696] fits [0, 4, 5, 6, 7, 12] 35.7s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 47, 1674, 53521, 1613371, 61548783] 5.1s exhausted cost 5; by calls: levels [1, 314, 71708] exhausted cost 2 []
+    697.3s L5 target: cost None levels [1, 48, 1915, 73923, 2858588, 135492361] fits [0, 4, 6, 6, 7, 12] 119.2s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost 2 calls levels [1, 48, 1748, 56904, 1739623, 67407766] 30.1s exhausted cost 5; by calls: levels [1, 331, 80782]  ['LDA.X STA.Y T.mul.x,o.XY STA.X LDA.
+== cp_bar3: sources ['restrict', 'project', 'value', 'rest'], rule lpca, laws None, patterns []; 543.0 s, final True, rounds []
+  L0: pool 44 {'unsolved': 24, 'trivial': 6, 'learnable': 14}
+     val.3/tgt@XN                       cost 3  SHR.X CLA ADC.X                              a near miss's value
+     val.5/tgt@XN                       cost 3  CLA ADC.X SBB.X                              a near miss's value
+     val.7/tgt@XN                       cost 3  CLA ADC.S SBB.S                              a near miss's value
+     val.10/tgt@XN                      cost 3  SHR.A ADC.X MUL.N                            a near miss's value
+  L1: pool 54 {'unsolved': 29, 'trivial': 6, 'learnable': 19}
+     val.24/tgt@XN                      cost 3  MUL.N ADC.Y T.val.3.tgt.XN                   a near miss's value
+     val.26/tgt@XN                      cost 3  LDA.N ADC.Y T.val.3.tgt.XN                   a near miss's value
+     val.31/tgt@XN                      cost 3  T.val.3.tgt.XN ADC.X SBB.X                   a near miss's value
+     val.33/tgt@XN                      cost 3  T.val.3.tgt.XN ADC.N SBB.N                   a near miss's value
+  L2: pool 52 {'unsolved': 28, 'trivial': 8, 'learnable': 16}
+     val.48/tgt@XN                      cost 3  MUL.N CLK T.val.24.tgt.XN                    a near miss's value
+     val.56/tgt@XN                      cost 3  T.val.24.tgt.XN ADC.X SBB.X                  a near miss's value
+     val.58/tgt@XN                      cost 3  T.val.26.tgt.XN ADC.X SBB.X                  a near miss's value
+     val.59/tgt@XN                      cost 3  SBB.X T.val.24.tgt.XN SBB.X                  a near miss's value
+  L3: pool 64 {'unsolved': 34, 'trivial': 11, 'learnable': 19}
+     val.77/tgt@XN                      cost 3  T.val.48.tgt.XN ADC.X SBB.X                  a near miss's value
+     val.79/tgt@XN                      cost 3  T.val.48.tgt.XN ADC.N SBB.N                  a near miss's value
+     val.82/tgt@XN                      cost 3  SBB.X SBB.N T.val.48.tgt.XN                  a near miss's value
+     val.85/tgt@XN                      cost 3  LDH.Y SBB.N T.val.48.tgt.XN                  a near miss's value
+  L4: pool 36 {'unsolved': 20, 'trivial': 9, 'learnable': 7}
+     val.106/tgt@XN                     cost 2  T.val.77.tgt.XN SEL.S                        a near miss's value
+     val.107/tgt@XN                     cost 2  T.val.79.tgt.XN SEL.S                        a near miss's value
+     val.109/tgt@XN                     cost 2  MUL.X T.val.48.tgt.XN                        a near miss's value
+     val.111/tgt@XN                     cost 2  SEL.S T.val.48.tgt.XN                        a near miss's value
+  L5: pool 38 {'unsolved': 21, 'trivial': 14, 'learnable': 3}
+     val.127/tgt@XN                     cost 2  MUL.X T.val.106.tgt.XN                       a near miss's value
+     val.129/tgt@XN                     cost 2  SEL.S T.val.106.tgt.XN                       a near miss's value
+     val.131/tgt@XN                     cost 2  STA.S T.val.106.tgt.XN                       a near miss's value
+  L6: pool 34 {'unsolved': 19, 'trivial': 15}
+  L7: pool 34 {'unsolved': 19, 'trivial': 15}
+     29.8s L0 target: cost None levels [1, 36, 1002, 27217, 743782, 26916617] fits [0, 6, 6, 7, 8, 8] 4.9s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 36, 952, 22414, 490856, 14351871] 0.3s exhausted cost 5 []
+    101.1s L1 target: cost None levels [1, 40, 1216, 34539, 960871, 36373264] fits [0, 7, 7, 8, 8, 9] 8.0s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 40, 1179, 29849, 685989, 21207116] 0.5s exhausted cost 5 []
+    190.1s L2 target: cost None levels [1, 44, 1460, 43896, 1251712, 49517929] fits [0, 8, 8, 8, 8, 10] 13.9s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 44, 1441, 39794, 957020, 31176849] 0.8s exhausted cost 5 []
+    298.5s L3 target: cost None levels [1, 48, 1739, 54934, 1586324, 65190274] fits [0, 8, 8, 8, 9, 10] 20.2s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 48, 1743, 51651, 1283385, 43768404] 1.3s exhausted cost 5; by calls: levels [1, 93, 7705] exhausted cost 2 []
+    359.1s L4 target: cost None levels [1, 52, 1993, 64685, 1881748, 80399913] fits [0, 8, 8, 8, 9, 10] 26.9s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 52, 2022, 62094, 1571767, 55897723] 1.8s exhausted cost 5; by calls: levels [1, 111, 11202] exhausted cost 2 []
+    436.4s L5 target: cost None levels [1, 55, 2216, 74498, 2231797, 100037987] fits [0, 8, 8, 8, 9, 10] 37.9s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 55, 2257, 72882, 1958505, 74276280] 2.6s exhausted cost 5; by calls: levels [1, 124, 14257] exhausted cost 2 []
+    505.7s L6 target: cost None levels [1, 55, 2216, 74498, 2231797, 100037987] fits [0, 8, 8, 8, 9, 10] 29.0s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 55, 2257, 72882, 1958505, 74276280] 2.5s exhausted cost 5; by calls: levels [1, 124, 14257] exhausted cost 2 []
+    543.0s L7 sleep: nothing learnable to practise; climb done
+== cp_bar3_lp: sources ['restrict', 'project', 'value', 'rest'], rule lp, laws None, patterns []; 704.3 s, final True, rounds []
+  L0: pool 44 {'unsolved': 24, 'trivial': 6, 'learnable': 14}
+     val.3/tgt@XN                       cost 3  SHR.X CLA ADC.X                              a near miss's value
+     val.5/tgt@XN                       cost 3  CLA ADC.X SBB.X                              a near miss's value
+     val.7/tgt@XN                       cost 3  CLA ADC.S SBB.S                              a near miss's value
+     val.10/tgt@XN                      cost 3  SHR.A ADC.X MUL.N                            a near miss's value
+  L1: pool 54 {'unsolved': 29, 'trivial': 6, 'learnable': 19}
+     val.24/tgt@XN                      cost 3  MUL.N ADC.Y T.val.3.tgt.XN                   a near miss's value
+     val.26/tgt@XN                      cost 3  LDA.N ADC.Y T.val.3.tgt.XN                   a near miss's value
+     val.31/tgt@XN                      cost 3  T.val.3.tgt.XN ADC.X SBB.X                   a near miss's value
+     val.33/tgt@XN                      cost 3  T.val.3.tgt.XN ADC.N SBB.N                   a near miss's value
+  L2: pool 52 {'unsolved': 28, 'trivial': 8, 'learnable': 16}
+     val.48/tgt@XN                      cost 3  MUL.N CLK T.val.24.tgt.XN                    a near miss's value
+     val.56/tgt@XN                      cost 3  T.val.24.tgt.XN ADC.X SBB.X                  a near miss's value
+     val.58/tgt@XN                      cost 3  T.val.26.tgt.XN ADC.X SBB.X                  a near miss's value
+     val.59/tgt@XN                      cost 3  SBB.X T.val.24.tgt.XN SBB.X                  a near miss's value
+  L3: pool 64 {'unsolved': 34, 'trivial': 11, 'learnable': 19}
+     val.77/tgt@XN                      cost 3  T.val.48.tgt.XN ADC.X SBB.X                  a near miss's value
+     val.79/tgt@XN                      cost 3  T.val.48.tgt.XN ADC.N SBB.N                  a near miss's value
+     val.82/tgt@XN                      cost 3  SBB.X SBB.N T.val.48.tgt.XN                  a near miss's value
+     val.85/tgt@XN                      cost 3  LDH.Y SBB.N T.val.48.tgt.XN                  a near miss's value
+  L4: pool 36 {'unsolved': 20, 'trivial': 9, 'learnable': 7}
+     val.106/tgt@XN                     cost 2  T.val.77.tgt.XN SEL.S                        a near miss's value
+     val.107/tgt@XN                     cost 2  T.val.79.tgt.XN SEL.S                        a near miss's value
+     val.109/tgt@XN                     cost 2  MUL.X T.val.48.tgt.XN                        a near miss's value
+     val.111/tgt@XN                     cost 2  SEL.S T.val.48.tgt.XN                        a near miss's value
+  L5: pool 38 {'unsolved': 21, 'trivial': 14, 'learnable': 3}
+     val.127/tgt@XN                     cost 2  MUL.X T.val.106.tgt.XN                       a near miss's value
+     val.129/tgt@XN                     cost 2  SEL.S T.val.106.tgt.XN                       a near miss's value
+     val.131/tgt@XN                     cost 2  STA.S T.val.106.tgt.XN                       a near miss's value
+  L6: pool 34 {'unsolved': 19, 'trivial': 15}
+  L7: pool 34 {'unsolved': 19, 'trivial': 15}
+  L8: pool 34 {'unsolved': 19, 'trivial': 15}
+  L9: pool 34 {'unsolved': 19, 'trivial': 15}
+     29.3s L0 target: cost None levels [1, 36, 1002, 27217, 743782, 26916617] fits [0, 6, 6, 7, 8, 8] 4.9s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 36, 952, 22414, 490856, 14351871] 0.3s exhausted cost 5 []
+    100.4s L1 target: cost None levels [1, 40, 1216, 34539, 960871, 36373264] fits [0, 7, 7, 8, 8, 9] 8.1s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 40, 1179, 29849, 685989, 21207116] 0.5s exhausted cost 5 []
+    188.1s L2 target: cost None levels [1, 44, 1460, 43896, 1251712, 49517929] fits [0, 8, 8, 8, 8, 10] 13.3s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 44, 1441, 39794, 957020, 31176849] 0.8s exhausted cost 5 []
+    295.8s L3 target: cost None levels [1, 48, 1739, 54934, 1586324, 65190274] fits [0, 8, 8, 8, 9, 10] 19.9s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 48, 1743, 51651, 1283385, 43768404] 1.3s exhausted cost 5; by calls: levels [1, 93, 7705] exhausted cost 2 []
+    354.6s L4 target: cost None levels [1, 52, 1993, 64685, 1881748, 80399913] fits [0, 8, 8, 8, 9, 10] 26.3s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 52, 2022, 62094, 1571767, 55897723] 1.8s exhausted cost 5; by calls: levels [1, 111, 11202] exhausted cost 2 []
+    432.3s L5 target: cost None levels [1, 55, 2216, 74498, 2231797, 100037987] fits [0, 8, 8, 8, 9, 10] 38.8s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 55, 2257, 72882, 1958505, 74276280] 2.5s exhausted cost 5; by calls: levels [1, 124, 14257] exhausted cost 2 []
+    500.1s L6 target: cost None levels [1, 55, 2216, 74498, 2231797, 100037987] fits [0, 8, 8, 8, 9, 10] 28.5s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 55, 2257, 72882, 1958505, 74276280] 2.5s exhausted cost 5; by calls: levels [1, 124, 14257] exhausted cost 2 []
+    567.8s L7 target: cost None levels [1, 55, 2216, 74498, 2231797, 100037987] fits [0, 8, 8, 8, 9, 10] 28.2s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 55, 2257, 72882, 1958505, 74276280] 2.5s exhausted cost 5; by calls: levels [1, 124, 14257] exhausted cost 2 []
+    635.9s L8 target: cost None levels [1, 55, 2216, 74498, 2231797, 100037987] fits [0, 8, 8, 8, 9, 10] 28.3s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 55, 2257, 72882, 1958505, 74276280] 2.5s exhausted cost 5; by calls: levels [1, 124, 14257] exhausted cost 2 []
+    704.2s L9 target: cost None levels [1, 55, 2216, 74498, 2231797, 100037987] fits [0, 8, 8, 8, 9, 10] 28.5s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 55, 2257, 72882, 1958505, 74276280] 2.5s exhausted cost 5; by calls: levels [1, 124, 14257] exhausted cost 2 []
+    704.2s climb done at level 10 (the level cap)
+== cp_bar3_clean: sources ['restrict', 'project', 'value', 'rest'], rule lpca, laws None, patterns []; 61.4 s, final True, rounds []
+  L0: pool 6 {'unsolved': 5, 'learnable': 1}
+     val.15/tgt@XN                      cost 2  LDA.X SHL.A                                  a near miss's value
+  L1: pool 6 {'unsolved': 5, 'trivial': 1}
+  L2: pool 6 {'unsolved': 5, 'trivial': 1}
+     16.3s L0 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 2.8s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 []
+     40.1s L1 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 2.0s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 []
+     61.4s L2 sleep: nothing learnable to practise; climb done
+== cp_bar3_minus_red: sources ['law', 'restrict', 'project', 'value', 'rest'], rule lpca, laws ['lt', 'red', 'add', 'mul', 'acc.mul'], patterns ['pair', 'x,o', 'o,x,d']; 1825.6 s, final True, rounds []
+  L0: pool 68 {'learnable': 23, 'unsolved': 39, 'trivial': 6}
+     lt/pair@AX                         cost 4  CLC P[SBB.X INC]                             the comparison
+     lt/pair@AY                         cost 4  CLC P[SBB.Y INC]                             the comparison
+     lt/pair@AN                         cost 4  CLC P[SBB.N INC]                             the comparison
+     val.3/tgt@XN                       cost 3  SHR.X CLA ADC.X                              a near miss's value
+     val.5/tgt@XN                       cost 3  CLA ADC.X SBB.X                              a near miss's value
+     val.7/tgt@XN                       cost 3  CLA ADC.S SBB.S                              a near miss's value
+  L1: pool 72 {'learnable': 32, 'unsolved': 32, 'trivial': 8}
+     red/pair@AX                        cost 3  STA.S T.lt.pair.AX SEL.S                     the link
+     red/pair@AY                        cost 3  STA.S T.lt.pair.AY SEL.S                     the link
+     red/pair@AN                        cost 3  STA.S T.lt.pair.AN SEL.S                     the link
+     val.24/tgt@XN                      cost 3  MUL.N ADC.Y T.val.3.tgt.XN                   a near miss's value
+     val.26/tgt@XN                      cost 3  LDA.N ADC.Y T.val.3.tgt.XN                   a near miss's value
+     val.31/tgt@XN                      cost 3  T.val.3.tgt.XN ADC.X SBB.X                   a near miss's value
+  L2: pool 60 {'learnable': 15, 'duplicate': 3, 'unsolved': 32, 'trivial': 10}
+     add/pair@AX                        cost 4  CLC P[ADC.X INC]                             the addition
+     add/pair@AY                        cost 4  CLC P[ADC.Y INC]                             the addition
+     add/pair@AN                        cost 4  CLC P[ADC.N INC]                             the addition
+     val.51/tgt@XN                      cost 3  T.red.pair.AY CLC T.val.24.tgt.XN            a near miss's value
+     val.54/tgt@XN                      cost 3  MUL.N CLK T.val.24.tgt.XN                    a near miss's value
+     val.65/tgt@XN                      cost 3  T.val.24.tgt.XN ADC.X SBB.X                  a near miss's value
+  L3: pool 94 {'unsolved': 63, 'learnable': 21, 'trivial': 10}
+     acc.mul/o,x,d@AXY                  cost 5  LDH.Y CLK P[MUL.X INC]                       the multiply-add row
+     acc.mul/o,x,d@AYX                  cost 5  LDH.X CLK P[MUL.Y INC]                       the multiply-add row
+     acc.mul/o,x,d@ANX                  cost 5  LDH.X CLK P[MUL.N INC]                       the multiply-add row
+     acc.mul/o,x,d@ANY                  cost 5  LDH.Y CLK P[MUL.N INC]                       the multiply-add row
+     val.74/tgt@XN                      cost 3  T.val.51.tgt.XN T.add.pair.AX SBB.X          a near miss's value
+     val.78/tgt@XN                      cost 3  T.val.54.tgt.XN T.add.pair.AX SBB.X          a near miss's value
+     val.81/tgt@XN                      cost 3  T.val.24.tgt.XN T.add.pair.AX SBB.X          a near miss's value
+  L4: pool 70 {'unsolved': 41, 'learnable': 18, 'trivial': 11}
+     mul/x,o@XY                         cost 5  CLA W[T.acc.mul.o,x,d.AYX INC SHL.Y]         the multiply
+     mul/x,o@YX                         cost 5  CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]         the multiply
+     val.104/tgt@XN                     cost 3  T.val.74.tgt.XN INC T.red.pair.AY            a near miss's value
+     val.105/tgt@XN                     cost 3  T.val.78.tgt.XN INC T.red.pair.AY            a near miss's value
+     val.108/tgt@XN                     cost 3  ADC.N SBB.N T.val.74.tgt.XN                  a near miss's value
+  L5: pool 40 {'unsolved': 22, 'trivial': 9, 'learnable': 9}
+     val.141/tgt@XN                     cost 3  T.val.104.tgt.XN T.lt.pair.AX ADC.X          a near miss's value
+     val.130/tgt@XN                     cost 2  ADC.N SBB.N                                  a near miss's value
+     val.133/tgt@XN                     cost 2  T.val.104.tgt.XN T.red.pair.AN               a near miss's value
+     val.134/tgt@XN                     cost 2  T.val.105.tgt.XN T.red.pair.AN               a near miss's value
+  L6: pool 36 {'unsolved': 20, 'trivial': 12, 'learnable': 4}
+     val.154/tgt@XN                     cost 2  T.val.133.tgt.XN T.red.pair.AN               a near miss's value
+     val.155/tgt@XN                     cost 2  T.val.134.tgt.XN T.red.pair.AN               a near miss's value
+     val.156/tgt@XN                     cost 2  T.val.141.tgt.XN T.red.pair.AN               a near miss's value
+     val.157/tgt@XN                     cost 2  T.val.104.tgt.XN T.red.pair.AY               a near miss's value
+  L7: pool 36 {'unsolved': 20, 'trivial': 16}
+  L8: pool 93 {'learnable': 41, 'trivial': 19, 'duplicate': 7, 'unsolved': 26}
+     acc.mul/o,x,d@AXN                  cost 5  STA.S LDA.N STA.Y LDA.S T.acc.mul.o,x,d.AXY  the multiply-add row
+     acc.mul/o,x,d@AYN                  cost 5  STA.S LDA.N STA.X LDA.S T.acc.mul.o,x,d.AYX  the multiply-add row
+     acc.mul/o,x,d@XYA                  cost 5  SHL.X T.add.pair.AX STA.X SHR.A T.acc.mul.o,x,d.AYX the multiply-add row
+     acc.mul/o,x,d@YXA                  cost 5  SHL.Y T.add.pair.AY STA.Y SHR.A T.acc.mul.o,x,d.AXY the multiply-add row
+  L9: pool 36 {'unsolved': 20, 'trivial': 16}
+     91.8s L0 target: cost None levels [1, 38, 1124, 32402, 947386, 36221894] fits [0, 6, 6, 7, 8, 8] 22.9s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 38, 1057, 26108, 606443, 18669374] 0.5s exhausted cost 5 []
+    261.1s L1 target: cost None levels [1, 44, 1515, 49443, 1614257, 69379994] fits [0, 7, 7, 8, 8, 9] 33.0s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 44, 1416, 39583, 1028228, 36049115] 1.2s exhausted cost 5 []
+    387.0s L2 target: cost None levels [1, 50, 1990, 73868, 2683081, 127709027] fits [0, 8, 8, 10, 10, 10] 52.4s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 50, 1870, 60925, 1819578, 71925851] 3.0s exhausted cost 5; by calls: levels [1, 169, 19873] exhausted cost 2 []
+    588.2s L3 target: cost None levels [1, 57, 2635, 112252, 6236503] fits [0, 10, 10, 10, 10] 26.7s budget: level 4 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 57, 2502, 95590, 3286114, 147401411] 7.9s exhausted cost 5; by calls: levels [1, 330, 88778] exhausted cost 2 []
+    786.3s L4 target: cost None levels [1, 62, 3117, 141291, 8291804] fits [0, 10, 10, 10, 11] 34.6s budget: level 4 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 62, 2969, 121187, 6088367] 1.4s budget: level 4 streamed (over 4000000 states); by calls: levels [1, 383, 120089] exhausted cost 2 []
+    916.8s L5 target: cost None levels [1, 66, 3505, 165620, 10182420] fits [0, 10, 10, 10, 11] 39.4s budget: level 4 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 66, 3385, 145922, 7722152] 1.8s budget: level 4 streamed (over 4000000 states); by calls: levels [1, 401, 134136] exhausted cost 2 []
+   1077.0s L6 target: cost None levels [1, 70, 3886, 188836, 12136575] fits [0, 10, 10, 10, 11] 47.4s budget: level 4 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 70, 3819, 171568, 9493726] 2.4s budget: level 4 streamed (over 4000000 states); by calls: levels [1, 417, 148185] exhausted cost 2 []
+   1226.5s L7 target: cost None levels [1, 70, 3886, 188836, 12136575] fits [0, 10, 10, 10, 11] 16.3s budget: level 4 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 70, 3819, 171568, 9493726] 2.3s budget: level 4 streamed (over 4000000 states); by calls: levels [1, 417, 148185] exhausted cost 2 []
+   1621.5s L8 target: cost None levels [1, 74, 4424, 235224, 16214224] fits [0, 10, 10, 10, 11] 58.2s budget: level 4 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 74, 4336, 212345, 12680606] 2.9s budget: level 4 streamed (over 4000000 states); by calls: levels [1, 578, 269769] exhausted cost 2 []
+   1825.6s L9 target: cost None levels [1, 74, 4424, 235224, 16214224] fits [0, 10, 10, 10, 11] 27.1s budget: level 4 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 74, 4336, 212345, 12680606] 2.8s budget: level 4 streamed (over 4000000 states); by calls: levels [1, 578, 269769] exhausted cost 2 []
+   1825.6s climb done at level 10 (the level cap)
+== cp_bar3_minus_red_clean: sources ['law', 'restrict', 'project', 'value', 'rest'], rule lpca, laws ['lt', 'red', 'add', 'mul', 'acc.mul'], patterns ['pair', 'x,o', 'o,x,d']; 1154.6 s, final True, rounds []
+  L0: pool 30 {'learnable': 10, 'unsolved': 20}
+     lt/pair@AX                         cost 4  CLC P[SBB.X INC]                             the comparison
+     lt/pair@AY                         cost 4  CLC P[SBB.Y INC]                             the comparison
+     lt/pair@AN                         cost 4  CLC P[SBB.N INC]                             the comparison
+     val.15/tgt@XN                      cost 2  LDA.X SHL.A                                  a near miss's value
+  L1: pool 18 {'learnable': 12, 'unsolved': 5, 'trivial': 1}
+     red/pair@AX                        cost 3  STA.S T.lt.pair.AX SEL.S                     the link
+     red/pair@AY                        cost 3  STA.S T.lt.pair.AY SEL.S                     the link
+     red/pair@AN                        cost 3  STA.S T.lt.pair.AN SEL.S                     the link
+  L2: pool 18 {'learnable': 3, 'duplicate': 3, 'unsolved': 11, 'trivial': 1}
+     add/pair@AX                        cost 4  CLC P[ADC.X INC]                             the addition
+     add/pair@AY                        cost 4  CLC P[ADC.Y INC]                             the addition
+     add/pair@AN                        cost 4  CLC P[ADC.N INC]                             the addition
+  L3: pool 42 {'unsolved': 37, 'learnable': 4, 'trivial': 1}
+     acc.mul/o,x,d@AXY                  cost 5  LDH.Y CLK P[MUL.X INC]                       the multiply-add row
+     acc.mul/o,x,d@AYX                  cost 5  LDH.X CLK P[MUL.Y INC]                       the multiply-add row
+     acc.mul/o,x,d@ANX                  cost 5  LDH.X CLK P[MUL.N INC]                       the multiply-add row
+     acc.mul/o,x,d@ANY                  cost 5  LDH.Y CLK P[MUL.N INC]                       the multiply-add row
+  L4: pool 18 {'unsolved': 15, 'learnable': 2, 'trivial': 1}
+     mul/x,o@XY                         cost 5  CLA W[T.acc.mul.o,x,d.AYX INC SHL.Y]         the multiply
+     mul/x,o@YX                         cost 5  CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]         the multiply
+  L5: pool 6 {'unsolved': 5, 'trivial': 1}
+  L6: pool 63 {'learnable': 41, 'trivial': 4, 'duplicate': 7, 'unsolved': 11}
+     acc.mul/o,x,d@AXN                  cost 5  STA.S LDA.N STA.Y LDA.S T.acc.mul.o,x,d.AXY  the multiply-add row
+     acc.mul/o,x,d@AYN                  cost 5  STA.S LDA.N STA.X LDA.S T.acc.mul.o,x,d.AYX  the multiply-add row
+     acc.mul/o,x,d@XYA                  cost 5  SHL.X T.add.pair.AX STA.X SHR.A T.acc.mul.o,x,d.AYX the multiply-add row
+     acc.mul/o,x,d@YXA                  cost 5  SHL.Y T.add.pair.AY STA.Y SHR.A T.acc.mul.o,x,d.AXY the multiply-add row
+  L7: pool 6 {'unsolved': 5, 'trivial': 1}
+  L8: pool 56 {'learnable': 40, 'duplicate': 8, 'unsolved': 7, 'trivial': 1}
+     lt/pair@XA                         cost 3  STA.Y LDA.X T.lt.pair.AY                     the comparison
+     red/pair@XA                        cost 3  STA.Y LDA.X T.red.pair.AY                    the link
+     lt/pair@YA                         cost 3  STA.X LDA.Y T.lt.pair.AX                     the comparison
+     red/pair@YA                        cost 3  STA.X LDA.Y T.red.pair.AX                    the link
+  L9: pool 4 {'unsolved': 4}
+     73.8s L0 target: cost None levels [1, 36, 1028, 29052, 841052, 31307970] fits [0, 4, 4, 6, 6, 7] 19.7s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 36, 964, 23260, 531470, 15900267] 0.5s exhausted cost 5 []
+    158.5s L1 target: cost None levels [1, 39, 1229, 38122, 1211590, 48832346] fits [0, 4, 5, 6, 7, 7] 27.7s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 39, 1138, 29803, 739717, 24155924] 0.8s exhausted cost 5 []
+    235.3s L2 target: cost None levels [1, 42, 1435, 48143, 1652947, 71294426] fits [0, 4, 5, 6, 7, 8] 37.0s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 42, 1322, 37577, 1017515, 35778607] 1.4s exhausted cost 5 []
+    386.2s L3 target: cost None levels [1, 46, 1757, 66122, 2532161, 118588850] fits [0, 4, 5, 6, 7, 8] 39.7s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 46, 1612, 51343, 1554802, 59649057] 2.6s exhausted cost 5; by calls: levels [1, 281, 58022] exhausted cost 2 []
+    522.2s L4 target: cost None levels [1, 48, 1895, 72589, 2791431, 131920641] fits [0, 4, 5, 6, 7, 12] 35.6s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 48, 1732, 55820, 1691138, 65087500] 5.5s exhausted cost 5; by calls: levels [1, 319, 73678] exhausted cost 2 []
+    604.2s L5 target: cost None levels [1, 48, 1895, 72589, 2791431, 131920641] fits [0, 4, 5, 6, 7, 12] 28.9s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 48, 1732, 55820, 1691138, 65087500] 5.4s exhausted cost 5; by calls: levels [1, 319, 73678] exhausted cost 2 []
+    851.8s L6 target: cost None levels [1, 52, 2261, 95286, 4021987] fits [0, 4, 5, 6, 7] 34.9s budget: level 4 has 4021987 > 4000000 states [] full size None | round: cost None levels [1, 52, 2079, 74724, 2529379, 107171264] 9.2s exhausted cost 5; by calls: levels [1, 480, 164603] exhausted cost 2 []
+    938.0s L7 target: cost None levels [1, 52, 2261, 95286, 4021987] fits [0, 4, 5, 6, 7] 15.9s budget: level 4 has 4021987 > 4000000 states [] full size None | round: cost None levels [1, 52, 2079, 74724, 2529379, 107171264] 9.1s exhausted cost 5; by calls: levels [1, 480, 164603] exhausted cost 2 []
+   1056.6s L8 target: cost None levels [1, 56, 2651, 121090, 6768672] fits [0, 4, 6, 6, 8] 26.3s budget: level 4 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 56, 2449, 96443, 3585629, 165923082] 13.9s exhausted cost 5; by calls: levels [1, 522, 208680] exhausted cost 2 []
+   1154.5s L9 target: cost None levels [1, 56, 2651, 121090, 6768672] fits [0, 4, 6, 6, 8] 17.1s budget: level 4 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 56, 2449, 96443, 3585629, 165923082] 13.9s exhausted cost 5; by calls: levels [1, 522, 208680] exhausted cost 2 []
+   1154.5s climb done at level 10 (the level cap)
+== cp_none: sources ['none'], rule lpca, laws None, patterns []; 3.6 s, final True, rounds []
+  L0: pool 0 {}
+      3.6s L0 target: cost None levels [1, 32, 805, 20162, 519798, 17583027] fits [0, 4, 4, 6, 6, 7] 1.4s budget: level 5 streamed (over 4000000 states) [] full size None
+      3.6s climb done at level 1 (the level cap)

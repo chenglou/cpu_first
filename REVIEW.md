@@ -75,11 +75,13 @@ The project measures itself against three bars
    alone, brings x³ and 10·x² from scratch ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md)). Frozen with that rule, it
    invents 5 of 10 formulas that none of its rules were written for, with its predictions written down before the runs
    ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md)). Given a loop over x's digits, it invents x mod N in base 2 by long
-   division's step, right up to nine digits ([DIGITS.md](bar3/scale/digits/DIGITS.md)). Run on one digit place, it
-   invents all four of stage 3's digit cells, each under at least one of its choosing rules; multiply-accumulate needs a
-   deeper search aimed at its piece the same way ([BRIDGE.md](bar3/bridge/BRIDGE.md), [CARRY.md](bar3/bridge/CARRY.md)).
-   At H1's size, the self-practising stage 3 learns 8 of 11 tasks of the family after three general changes to its
-   round's search ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
+   division's step, right up to nine digits ([DIGITS.md](bar3/scale/digits/DIGITS.md)). With its duplicate check made on
+   each problem's own rows and its ties broken by the subgoal score, it also invents 10·x² + 1
+   ([PICKS.md](bar3/scale/picks/PICKS.md)). Run on one digit place, it invents all four of stage 3's digit cells, each
+   under at least one of its choosing rules; multiply-accumulate needs a deeper search aimed at its piece the same way
+   ([BRIDGE.md](bar3/bridge/BRIDGE.md), [CARRY.md](bar3/bridge/CARRY.md)). At H1's size, the self-practising stage 3
+   learns 8 of 11 tasks of the family after three general changes to its round's search
+   ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
 
 Four rules are **gray** for fast2, as they were for s3i: 4, 7, 8 and 14 (§5). The write-ups flag them; they do not
 argue them away. Rules 2, 9 and 11 also need a word, for its Triton kernel.
@@ -875,6 +877,15 @@ fix.
   - **What came:** nothing new. Hardest first never picks the piece, since 24 and then 12 problems of the same cost
     stand ahead of it in pool order. All 11 earlier wins stand.
   - **The predictions:** no outcome would change, and none did. $0, run locally from the earlier stores.
+- **What the learner picks** ([PICKS.md](bar3/scale/picks/PICKS.md), code and records in
+  [`bar3/scale/picks/`](bar3/scale/picks/)). Three changes to how the frozen learner picks its practice, each behind its
+  own flag, with predictions written down first.
+  - **What came:** with the row check on, breaking hardest first's ties by the subgoal score picks 10X mod N in round 2,
+    and 10·x² + 1 comes, for the first time in any study. Its program is right on every pair to N = 120.
+  - **What didn't:** passing a subgoal's priority to its twin does not bring x² mod N in base 2, and it loses hardest
+    first's binary x mod N. A pick score that sees the big-x check cannot act: no look reaches the five-token program
+    that passes at big x.
+  - **The earlier wins:** all 11 stand under the tie-break. About $5.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

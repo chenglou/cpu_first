@@ -285,6 +285,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 25, 20:29 `a3acc38` | **bar 3's duplicate check on each problem's own rows**: it frees 10·x² + 1's piece, 10X mod N, but no rerun's picks change; hardest first's pool order still buries the piece, and x² mod N's twin is a true copy | [bar3/scale/rowcheck/ROWCHECK.md](bar3/scale/rowcheck/ROWCHECK.md) |
 | Oct 25, 22:48 `1f46707` | **two four-piece files certify**: the combined file without the generated book, and without the generic instructions, each on the official H100; given two hours, the five-piece file learns H1 but freezes 531 s past the hour | [integration/combined_sp2/COMBINED.md](integration/combined_sp2/COMBINED.md) §9 |
 | Oct 25, 22:48 `5f78072` | **every certified variant in one file, certified**: a Triton kernel and two other speedups make the five-piece climb 7.7 times faster with nothing learned changed, and it certifies in 751 s of training | [integration/combined_fast/FAST.md](integration/combined_fast/FAST.md) |
+| Oct 25, 23:15 `a2e4bac` | the fast five-piece file's seeds 1–7 certify on H100s too: 8 of 8, in 733–838 s of training; on three of them the answer program's search crossed the work budget after finding its programs | [integration/combined_fast/FAST.md](integration/combined_fast/FAST.md) §8 |
 
 ### The lessons that came out of the failures
 
@@ -527,7 +528,7 @@ ladders, every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002.
 |---|---|---|---|---|---|
 | [`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py) (`0e813144`) | **stage 3**: no skeleton, no menus; the round discovered in training (§4.7) | 207,374 | `s3i_official`: 1,340.3 (870) / 209.9 | 8 of 8 on H100s, official manifest (74 and 1–7): trained in 1,133–1,350 s, frozen by 982–1,149 s | "copy x, multiply, reduce", at step 671 on seed 74 |
 | [`integration/self_practice/submission_stage3_sp2.py`](integration/self_practice/submission_stage3_sp2.py) (`afc70fe9`) | **stage 3 with self-posed practice**: s3i with its curriculum replaced by a law book and a general choosing rule (§4.7) | 207,374 | `submission_stage3_sp2_official`: 1,276.7 (887) / 225.5 | 8 of 8 on B200s (74 and 1–7); its first version `submission_stage3_sp.py` (`f0ef5b06`) certified officially and on 7 of 8 | the same round, at step 688, by 1,029 s |
-| [`integration/combined_fast/submission_stage3_fast.py`](integration/combined_fast/submission_stage3_fast.py) (`91bb30b9`) | **every certified variant of sp2 in one file, made fast**: the weak-check fix, the strict build, the learned loop over T, the generated law book and the generic instructions (§4.8) | 207,370 | `combined_fast_official`: 751.4 (829) / 362.0 | seeds 1–7 on H100s running | the generated book's round, at step 629, by about 460 s |
+| [`integration/combined_fast/submission_stage3_fast.py`](integration/combined_fast/submission_stage3_fast.py) (`91bb30b9`) | **every certified variant of sp2 in one file, made fast**: the weak-check fix, the strict build, the learned loop over T, the generated law book and the generic instructions (§4.8) | 207,370 | `combined_fast_official`: 751.4 (829) / 362.0 | 8 of 8 on H100s, official manifest (74 and 1–7) | the generated book's round, at step 629, by about 460 s |
 | [`integration/submission_stage1.py`](integration/submission_stage1.py) (`cfd7b61d`) | **stage 1**: the tournament and the general lessons in one file | 222,113 | `s1_official`: 1,860.7 (716) / 56.1 | 8 of 8 on CPU | also learns y² + 1, 10·y², cubing, Montgomery's, 10·y² + 1, y² + 3 and M4 |
 | [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py) (`0805b7d3`) | **general lessons v3**: the answers choose whole digit codes (§4.6) | 11,589 | `v3k_h1_official`: 1,190.5 (645) / 42.3 | H1: 8 of 8 on B200s, run with an earlier v3 build (`v3f`) | also all 14 fixed-modulus practice sets, on relaxed budgets |
 
@@ -957,7 +958,9 @@ study's local checks pass on it. It is 869 bytes under the 256 KiB limit.
   launch, the one-primitive groups run through the same kernel, and one GPU walk to list the goal states make the tiny
   core's climb 7.7 times faster, with every search, pick and unit of work unchanged.
   `integration/combined_fast/submission_stage3_fast.py` (`91bb30b9`) certifies on the official H100 in 751 s of
-  training, and its climb is the five-piece file's own, line for line. Seeds 1–7 are running.
+  training, and its climb is the five-piece file's own, line for line. Seeds 1–7 certify too, 8 of 8 on H100s. On three
+  of them the answer program's search crossed the climb's work budget after it had found its programs, so a rebuild with
+  the budget set from all eight official climbs is under way.
 
 ## 5. The removal ladder
 
@@ -1133,9 +1136,9 @@ runs left its verdict as it was (§4.5), the law ablation has all its seed-1 arm
 (§4), and bar 3's cut runs are finished (§4, bar 3). Oct 25's two bar-3 studies have finished too: numbers given as
 digits, testing the theory note's predictions ([theory/LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md) §5), and the two
 practice sources the held-out test found missing (§4, bar 3). So have the combined file's second and third rounds and
-its fast version (§4.8), and bar 3's duplicate check on each problem's own rows (§4, bar 3). Running now: seeds 1–7 of
-the fast five-piece file on H100s (§4.8), and bar 3's three fixes to what the learner picks (`bar3/scale/picks/`, not
-committed yet).
+its fast version (§4.8), and bar 3's duplicate check on each problem's own rows (§4, bar 3). Running now: a rebuild of
+the fast five-piece file with its work budget set from all eight official climbs (§4.8), a rewrite of REVIEW.md around
+that file, and bar 3's three fixes to what the learner picks (`bar3/scale/picks/`, not committed yet).
 
 Everything else described here is committed.
 

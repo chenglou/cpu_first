@@ -1,0 +1,16 @@
+[tiny_alloc_h1] round 0: target probe mdl 92.6 best [8, 15, 15, 18, 18]; pool 297
+  alloc: budget 1.3M, spent 1.5M in 64 searches; picks [('value/L.X[MOV.A.X MOV.X.N] -> A', 15.13), ('law2/monus(X,pred(X))', 10.95)]
+  probes: trivial 13, learnable 43, alias 0, duplicate 27, unsolved 214
+  guided target: cost None bits, levels 21 []
+  picked: ['value/L.X[MOV.A.X MOV.X.N] -> A', 'law2/monus(X,pred(X))']
+    + T.val1 = L.X[MOV.A.X MOV.X.N]    (L.X[MOV.A.X MOV.X.N])
+    + T.law2 = INC.A Z.X[DEC.A]    (INC.A Z.X[DEC.A])
+  target: cost None levels [1, 19, 238, 2627, 70626] []
+[tiny_alloc_h1] round 1: target probe mdl 77.6 best [8, 18, 18, 20]; pool 219
+  alloc: budget 0.9M, spent 1.0M in 32 searches; picks []
+  probes: trivial 10, learnable 50, alias 0, duplicate 25, unsolved 134
+  guided target: cost None bits, levels 21 []
+  picked: []
+  target: cost None levels [1, 19, 238, 2627, 70626] []
+round 0: pool 297, budget 1310000, spent 1492240, searches 64, picked ['value/L.X[MOV.A.X MOV.X.N] -> A', 'law2/monus(X,pred(X))'], general False
+round 1: pool 219, budget 925000, spent 1027397, searches 32, picked [], general False

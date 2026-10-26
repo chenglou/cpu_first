@@ -1,0 +1,34 @@
+== alloc_pick="lp"
+  alloc: budget 1.3M, spent 1.5M in 64 searches; picks [('law2/mul(pred(X),N)', -0.1), ('law2/add(mul(X,N),X)', -0.1), ('law2/monus(mul(X,N),X)', -0.1), ('law2/succ(mul(X,N))', -0.1)]
+  alloc: budget 1.2M, spent 1.2M in 73 searches; picks [('law/add(X,N)/x', -0.09), ('law/add(X,X)/x', -0.09), ('law/add(N,N)/x', -0.09), ('law/monus(N,X)/x', -0.09)]
+round 0: pool 297, budget 1310000, spent 1492240, searches 64, picked ['law2/mul(pred(X),N)', 'law2/add(mul(X,N),X)', 'law2/monus(mul(X,N),X)', 'law2/succ(mul(X,N))'], general False
+round 1: pool 273, budget 1152000, spent 1225192, searches 73, picked ['law/add(X,N)/x', 'law/add(X,X)/x', 'law/add(N,N)/x', 'law/monus(N,X)/x'], general False
+== alloc_pick="k"
+  alloc: budget 1.3M, spent 1.5M in 64 searches; picks [('value/L.X[MOV.A.X MOV.X.N] -> A', 15.13), ('law2/monus(X,pred(X))', 10.95), ('value/L.N[MOV.A.N MOV.N.X] -> A', 7.52), ('law/succ(X)/x', None)]
+  alloc: budget 1.0M, spent 1.7M in 64 searches; picks [('law2/mul(pred(X),N)', None), ('law2/add(mul(X,N),X)', None), ('law2/monus(mul(X,N),X)', None), ('law2/succ(mul(X,N))', None)]
+round 0: pool 297, budget 1310000, spent 1492240, searches 64, picked ['value/L.X[MOV.A.X MOV.X.N] -> A', 'law2/monus(X,pred(X))', 'value/L.N[MOV.A.N MOV.N.X] -> A', 'law/succ(X)/x'], general False
+round 1: pool 231, budget 962000, spent 1706275, searches 64, picked ['law2/mul(pred(X),N)', 'law2/add(mul(X,N),X)', 'law2/monus(mul(X,N),X)', 'law2/succ(mul(X,N))'], general False
+== alloc_probe_all=true
+  alloc: budget 1.3M, spent 2.0M in 315 searches; picks [('value/L.X[MOV.A.X MOV.X.N] -> A', 15.13), ('law2/monus(X,pred(X))', 10.95), ('restrict/remainder[L.X[DEC.N MOV.A.N] -> N]/X<2', 9.61)]
+  alloc: budget 1.0M, spent 1.1M in 210 searches; picks []
+round 0: pool 297, budget 1310000, spent 2041217, searches 315, picked ['value/L.X[MOV.A.X MOV.X.N] -> A', 'law2/monus(X,pred(X))', 'restrict/remainder[L.X[DEC.N MOV.A.N] -> N]/X<2'], general False
+round 1: pool 228, budget 960000, spent 1056116, searches 210, picked [], general False
+rebuilt copies, flags off: the tiny record is unchanged
+== ct2a2
+  alloc: budget 1.3M, spent 1.5M in 64 searches; picks [('value/L.X[MOV.A.X MOV.X.N] -> A', 15.13), ('law2/monus(X,pred(X))', 10.95)]
+  picked: ['law2/mul(pred(X),N)', 'value/L.X[MOV.A.X MOV.X.N] -> A', 'law2/add(mul(X,N),X)', 'law2/monus(X,pred(X))']
+  alloc: budget 1.0M, spent 1.1M in 64 searches; picks []
+  picked: ['law/add(X,N)/x', 'law/div(N,X)/x+N', 'law2/mul(monus(N,X),X)', 'law2/mod(monus(N,X),N)']
+round 0: pool 297, budget 1310000, spent 1492240, searches 64, picked ['law2/mul(pred(X),N)', 'value/L.X[MOV.A.X MOV.X.N] -> A', 'law2/add(mul(X,N),X)', 'law2/monus(X,pred(X))'], general False
+round 1: pool 247, budget 1010000, spent 1140121, searches 64, picked ['law/add(X,N)/x', 'law/div(N,X)/x+N', 'law2/mul(monus(N,X),X)', 'law2/mod(monus(N,X),N)'], general False
+== ct2a2, subgoal ties off
+  picked: ['law2/mul(pred(X),N)', 'value/L.X[MOV.A.X MOV.X.N] -> A', 'law2/add(mul(X,N),X)', 'law2/monus(X,pred(X))']
+  picked: ['law/add(X,N)/x', 'law/div(N,X)/x+N', 'law2/mul(monus(N,X),X)', 'law2/mod(monus(N,X),N)']
+round 0: pool 297, budget 1310000, spent 1492240, searches 64, picked ['law2/mul(pred(X),N)', 'value/L.X[MOV.A.X MOV.X.N] -> A', 'law2/add(mul(X,N),X)', 'law2/monus(X,pred(X))'], general False
+round 1: pool 247, budget 1010000, spent 1140121, searches 64, picked ['law/add(X,N)/x', 'law/div(N,X)/x+N', 'law2/mul(monus(N,X),X)', 'law2/mod(monus(N,X),N)'], general False
+== kmax
+  alloc: budget 1.3M, spent 1.5M in 64 searches; picks [('law2/mul(pred(X),N)', -0.1), ('value/L.X[MOV.A.X MOV.X.N] -> A', 15.13), ('law/mul(X,N)/x', -0.1), ('law2/mod(N,add(X,N))', -0.1)]
+  alloc: budget 1.0M, spent 1.0M in 64 searches; picks [('law2/mul(monus(N,X),X)', 5.56), ('value/DEC.N T.val2 -> A', 5.56), ('value/MOV.A.X T.law1 -> A', -0.09), ('value/INC.N T.val2 -> A', -0.09)]
+round 0: pool 297, budget 1310000, spent 1492240, searches 64, picked ['law2/mul(pred(X),N)', 'value/L.X[MOV.A.X MOV.X.N] -> A', 'law/mul(X,N)/x', 'law2/mod(N,add(X,N))'], general False
+round 1: pool 238, budget 978000, spent 987461, searches 64, picked ['law2/mul(monus(N,X),X)', 'value/DEC.N T.val2 -> A', 'value/MOV.A.X T.law1 -> A', 'value/INC.N T.val2 -> A'], general False
+after kmax, flags off: the tiny record is unchanged

@@ -1,0 +1,66 @@
+replay: a finished climb with g3's official rounds and the 9 definitions they use (1s)
+LR step=1 phase=C io=4 loss=0.1051 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=-1000 rows_visited=200/200 pool=64 answers=1 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: none fit=[]  facts=
+/Users/chenglou/github/one-layer/cpu_first/integration/combined_sp2/checks/local_combined.py:412: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"STEP {step} loss {float(loss):.4f} phase {ctl.phase} io {ctl.io} counts {m.counts_kept()} ans_ok "
+STEP 1 loss 0.1051 phase C io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 0.0 streak 0 progs none 0.02s
+LR outer step=2 answer program: cost 3 levels [1, 28, 495, 9892] 125.7s  ['C.S[T.round3 STA.X]', 'C.S[T.round1 STA.X]', 'C.S[T.round4 STA.X]'] (36 rows of 3 counts, 3023 items, 599 loop bodies) [work +1.113e+08, 1.113e+08 in all]
+LR round_found step=2 programs: ['C.S[T.round1 STA.X]', 'C.S[T.round2 STA.X]', 'C.S[T.round3 STA.X]', 'C.S[T.round4 STA.X]'] rounds: {'T.round1': 'LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN', 'T.round2': 'LDA.X T.mul.x,o.AX STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y T.mul.x,o.XY STA.X T.red.x+on.XN', 'T.round4': 'LDA.X STA.Y T.mul.x,o.XY STA.Y T.red.x+on.YN'} library: {'T.lt.pair.AN': 'CLC P[SBB.N INC]', 'T.add.pair.AN': 'CLC P[ADC.N INC]', 'T.acc.mul.o,x,d.AXY': 'LDH.Y CLK P[MUL.X INC]', 'T.red.x+dn.AN': 'B[T.lt.pair.AN C[T.add.pair.AN]]', 'B4.1': 'SHL.A T.red.x+dn.AN', 'T.red.x+on.XN': 'LDA.N P[SHL.X B4.1]', 'T.red.x+on.YN': 'LDA.N P[SHL.Y B4.1]', 'T.mul.x,o.AX': 'CLK P[SHL.A SHL.Y T.acc.mul.o,x,d.AXY]', 'T.mul.x,o.XY': 'CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]', 'T.round1': 'LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN', 'T.round2': 'LDA.X T.mul.x,o.AX STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y T.mul.x,o.XY STA.X T.red.x+on.XN', 'T.round4': 'LDA.X STA.Y T.mul.x,o.XY STA.Y T.red.x+on.YN'}
+STEP 2 loss 0.0908 phase D io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 1 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 126.00s
+STEP 3 loss 0.0896 phase D io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 2 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.16s
+STEP 4 loss 0.0848 phase D io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 3 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.30s
+LR io_stage=5 T_resolved step=5 rows=25 hits=25 snapped_right=1.000 share=1.0000
+STEP 5 loss 0.0846 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 4 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 1.21s
+STEP 6 loss 0.0777 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 5 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.30s
+STEP 7 loss 0.0749 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 6 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.31s
+STEP 8 loss 0.0674 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 7 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.31s
+STEP 9 loss 0.0656 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 8 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.31s
+LR mined step=10 fact=x<N
+LR mined step=10 fact=T<N
+LR mined step=10 fact=N!=0
+LR mined step=10 fact=N<10^7
+LR mined step=10 fact=N<10^8
+LR mined step=10 fact=Nmod2!=0
+LR mined step=10 fact=Nmod2=1
+LR mined step=10 fact=Nmod5!=0
+LR mined step=10 fact=Nmod3!=0
+LR mined step=10 fact=x!=0
+LR mined step=10 fact=x<10^6
+LR mined step=10 fact=x<10^7
+LR mined step=10 fact=x<10^8
+LR mined step=10 fact=T!=0
+LR mined step=10 fact=T<10^2
+LR mined step=10 fact=T<10^3
+LR mined step=10 fact=T<10^4
+LR mined step=10 fact=T<10^5
+LR mined step=10 fact=T<10^6
+LR mined step=10 fact=T<10^7
+LR mined step=10 fact=T<10^8
+LR mined step=10 fact=Tmod5!=0
+LR mined step=10 fact=Tmod3!=0
+LR mined step=10 fact=T<y
+LR mined step=10 fact=y<N
+LR mined step=10 fact=y!=0
+LR mined step=10 fact=y<10^6
+LR mined step=10 fact=y<10^7
+LR mined step=10 fact=y<10^8
+LR step=10 phase=D io=5 loss=0.0619 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=1.0000 streak=8 facts_streak=1 order_digits=-1000 rows_visited=200/200 pool=640 answers=3 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) fit=[1.0, 1.0, 1.0, 1.0] rows=25 hits=25 snapped_right=1.000 share=1.0000 facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);N mod 2 = 1(since 10, fails 0);N mod 3 != 0(since 10, fails 0);N mod 5 != 0(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < y(since 10, fails 0);T mod 3 != 0(since 10, fails 0);T mod 5 != 0(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0);y != 0(since 10, fails 0);y < 10^6(since 10, fails 0);y < N(since 10, fails 0)
+STEP 10 loss 0.0619 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 9 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.17s
+STEP 11 loss 0.0619 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 10 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.32s
+LR mined step=12 fact=N<10^6
+STEP 12 loss 0.0565 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 11 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.17s
+STEP 13 loss 0.0564 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 12 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.17s
+STEP 14 loss 0.0548 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 13 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.32s
+LR mined step=15 fact=Tmod2=0
+STEP 15 loss 0.0482 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 14 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.17s
+LR mined step=16 fact=T<x
+STEP 16 loss 0.0512 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 15 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.10s
+STEP 17 loss 0.0456 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 16 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.10s
+STEP 18 loss 0.0435 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 17 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.18s
+STEP 19 loss 0.0443 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 18 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.18s
+LR step=20 phase=D io=5 loss=0.0419 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=1.0000 streak=18 facts_streak=11 order_digits=-1000 rows_visited=200/200 pool=1280 answers=6 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) fit=[1.0, 1.0, 1.0, 1.0] rows=25 hits=25 snapped_right=1.000 share=1.0000 facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);N mod 2 = 1(since 10, fails 0);N mod 3 != 0(since 10, fails 0);N mod 5 != 0(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < x(since 16, fails 1);T mod 3 != 0(since 10, fails 0);T mod 5 != 0(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0);y != 0(since 10, fails 0);y < 10^6(since 10, fails 0);y < N(since 10, fails 0)
+STEP 20 loss 0.0419 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 19 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.10s
+LR frozen step=21 history=[(2, 'answer_program', 4), (5, 'T_resolved', 25), (21, 'frozen', 20)] round: C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194)
+STEP 21 loss 0.0402 phase frozen io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 20 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.33s
+REPLAY FROZEN, the answer programs ['C.S[T.round1 STA.X]', 'C.S[T.round2 STA.X]', 'C.S[T.round3 STA.X]', 'C.S[T.round4 STA.X]'] in the buffers
+EXIT 0 after 135 s, peak 1.0 GiB

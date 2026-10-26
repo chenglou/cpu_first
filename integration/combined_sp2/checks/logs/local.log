@@ -1,0 +1,92 @@
+policy: the contest's static source policy passes; 261,275 bytes of 262,144 (0s)
+machines: 46 of test_count.py's programs and 33 with C blocks at P = 4, every machine from items and from instructions: 0 failing (4s)
+machines: counts 0-12 run that many times; 150 clears the probe (4s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN) T=1: machines agree True, outer True, one-hot True; the answer right True (5s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN) T=2: machines agree True, outer True, one-hot True; the answer right True (6s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN) T=4: machines agree True, outer True, one-hot None; the answer right True (8s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN) T=8: machines agree True, outer True, one-hot None; the answer right True (10s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN) T=16: machines agree True, outer True, one-hot None; the answer right True (14s)
+MACHINES OK
+isa: if1,k, 30 primitives ['SBB.X', 'SBB.Y', 'SBB.N', 'SBB.S', 'ADC.X', 'ADC.Y', 'ADC.N', 'ADC.S', 'MUL.X', 'MUL.Y', 'MUL.N', 'LDA.X', 'LDA.Y', 'LDA.N', 'LDA.S', 'STA.X', 'STA.Y', 'STA.S', 'CLA', 'CLC', 'CLK', 'LDH.X', 'LDH.Y', 'INC', 'SHL.A', 'SHL.X', 'SHL.Y', 'SHR.A', 'SHR.X', 'SHR.Y']; loops ('P', 'B', 'W', 'C') (14s)
+  lockstep primitives (10,1) P=2: 30 items, 720 rows: same (0s)
+  lockstep primitives (10,2) P=4: 30 items, 720 rows: same (0s)
+  lockstep primitives (10,8) P=16: 30 items, 720 rows: same (0s)
+isa: vocabulary to body cost 2: 1995 items, 28 C blocks (14s)
+  lockstep vocabulary (10,1): 1995 items, 3000 rows: same (0s)
+  lockstep vocabulary (10,2): 1995 items, 3000 rows: same (1s)
+  lockstep routines and nests (10,1): 147 items, 2000 rows: same (1s)
+  lockstep routines and nests (10,2): 147 items, 2000 rows: same (3s)
+  lockstep routines and nests (10,8): 147 items, 2000 rows: same (23s)
+isa: the outer machine vs run_prog, 41 programs at 16 places: 0 differ (43s)
+isa: the one-hot machine (items and instructions) vs run_items, 25 programs at 16 places: 0 differ (60s)
+isa: the hand-written round LDA.X STA.Y T.mul STA.X LDA.N T.red, T.link = STA.S T.lt C[LDA.S], T.red = STA.Y P[SHL.X SHL.A T.chain]: round_ok on 400 T = 1 rows True (61s)
+ISA OK
+designed: the buffers hold ['C.S[T.round1 STA.X]'] and 8 definitions; round_ops (4, 12205); parameters 207,370 (61s)
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (1.000)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=4 (no training ran)
+designed: depth_t_1 n=8: prediction path exact 1.000, run_outer exact 1.000 (0.2s) (61s)
+AUDIT count_loop_rows_used=11 (no training ran)
+designed: depth_t_8 n=8: prediction path exact 1.000, run_outer exact 1.000 (1.4s) (62s)
+AUDIT count_loop_rows_used=14 (no training ran)
+designed: depth_t_16 n=8: prediction path exact 1.000, run_outer exact 1.000 (2.7s) (65s)
+designed: depth_ood_n_t_2 n=8: prediction path exact 1.000, run_outer exact 1.000 (0.3s) (65s)
+AUDIT count_loop_rows_used=24 (no training ran)
+designed: depth_ood_n_t_64 n=8: prediction path exact 1.000, run_outer exact 1.000 (10.7s) (76s)
+DESIGNED ALL EXACT
+buffers: the count rows' buffers equal the learned loop's dict after each of 300 random batches: yes; kept {'00': 56, '01': 56, '11': 56, '02': 56, '22': 56, '03': 56, '04': 56, '08': 56, '09': 56} (76s)
+buffers: round_ops is answer_trace's (12205 instructions), round_src reads back the program and the 8 definitions it uses: True (76s)
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (1.000)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=7 (no training ran)
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (1.000)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=7 (no training ran)
+buffers: a fresh model loaded with the state dict gives the same logits: True; state 207,370 parameters, 336,487 buffer numbers (77s)
+BUFFERS OK
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (0.455) | C.S[T.round3 STA.X] (0.545)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=5 (no training ran)
+grad: depth_t_2 n=2 exact=1.000 (0.8s forward) (78s)
+grad: 15 tensors; with a gradient: 14 | none: [] | all zero: ['prog'] (80s)
+   a: max |grad| 8.721e-07
+   b: max |grad| 7.062e-05
+   aa: max |grad| 8.176e-06
+   ab: max |grad| 9.103e-08
+   ml: max |grad| 1.099e-33
+   mh: max |grad| 1.211e-34
+   dg: max |grad| 1.392e-04
+   u: max |grad| 7.101e-04
+   wc: max |grad| 2.462e-02
+   anc: max |grad| 7.530e-02
+   strd: max |grad| 6.363e-03
+   shape: max |grad| 1.272e-02
+   off: max |grad| 8.039e-16
+   absp: max |grad| 2.986e-16
+fix: check_fix_variants.check_sp2 with integration/combined_sp2/submission_stage3_combined.py as the fixed copy, g3 as the original, g3's official library (80s)
+  3. the acceptance machines at the verify sizes [1, 2, 3, 4] equal the original's: True
+  4. red on pair in XY: its routine 'B1.5 B1.2': original True, fix True; the alias 'LDA.X T.lt.pair.AY CLA C[LDA.X]': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 884,975)
+  4. red on x+on in XN: its routine 'LDA.N P[SHL.X B4.1]': original True, fix True; a loop of 10,000 subtractions 'LDA.X B[B[B[T.red.x+dn.AN]]]': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 870,071)
+  4. red on x+on in YN: its routine 'LDA.N P[SHL.Y B4.1]': original True, fix True; a loop of 10,000 subtractions 'LDA.Y B[B[B[T.red.x+dn.AN]]]': original True, fix False
+fix: above probes: 69/240 drawn at W = 1, 2, 3, 4; N < X < 2N and X - N the answer on 69/69 (124s)
+book: the law book's code (PATTERNS to the end of law_target) is book_gen_fix.py's, line for line: True (124s)
+book: check_books part 2 on this file: 41 concepts posed (every binding), 12407 probe targets equal the law's value (24s)
+EXIT 0 after 149 s, peak 1.4 GiB

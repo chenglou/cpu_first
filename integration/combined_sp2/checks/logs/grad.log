@@ -1,0 +1,24 @@
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (0.496) | C.S[T.round3 STA.X] (0.504)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=5 (no training ran)
+grad: depth_t_2 n=2 exact=1.000 (0.9s forward) (1s)
+grad: 15 tensors; with a gradient: 14 | none: [] | all zero: ['prog'] (2s)
+   a: max |grad| 8.721e-07
+   b: max |grad| 7.062e-05
+   aa: max |grad| 8.176e-06
+   ab: max |grad| 9.103e-08
+   ml: max |grad| 1.099e-33
+   mh: max |grad| 1.211e-34
+   dg: max |grad| 1.392e-04
+   u: max |grad| 7.101e-04
+   wc: max |grad| 2.462e-02
+   anc: max |grad| 7.530e-02
+   strd: max |grad| 6.363e-03
+   shape: max |grad| 9.994e-03
+   off: max |grad| 5.245e-16
+   absp: max |grad| 1.982e-16
+EXIT 0 after 4 s, peak 1.1 GiB

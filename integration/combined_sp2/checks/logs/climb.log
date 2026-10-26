@@ -1,0 +1,88 @@
+LR climb_starts step=1 cells: subtraction/addition/multiply snapped, right vs the truth (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+LR climb step=1 L0 pose: 104 candidates on 24 roots [work +0, 0 in all] (0.1s)
+LR step=1 phase=C io=5 loss=0.1051 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=-1000 rows_visited=200/200 pool=64 answers=1 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: none fit=[]  facts=
+/Users/chenglou/github/one-layer/cpu_first/integration/combined_sp2/checks/local_combined.py:450: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"STEP {step} loss {float(loss):.4f} phase {m.ctl.phase} answers t={int(m.ans_t)} "
+STEP 1 loss 0.1051 phase C answers t=1 1 pool 64 work 0 0.10s
+LR climb step=2 L0 probe 16 roots 21.9s solved {'lt/pair@AX': 4, 'sub/pair@AX': 4, 'lt/pair@AY': 4, 'sub/pair@AY': 4, 'lt/pair@AN': 4, 'sub/pair@AN': 4, 'min/x,x@AX': 0, 'max/x,x@AX': 0, 'min/x,x@AY': 0, 'max/x,x@AY': 0, 'min/x,x@AN': 0, 'max/x,x@AN': 0, 'min/x,x@XA': 0, 'max/x,x@XA': 0} [('routines', 13.5)] [work +1.213e+06, 1.213e+06 in all] (21.9s)
+STEP 2 loss 0.0908 phase C answers t=1 1 pool 128 work 1.213e+06 21.90s
+LR climb step=3 L0 probe 8 roots 0.0s solved {'min/x,x@XY': 1, 'max/x,x@XY': 1, 'min/x,x@XN': 1, 'max/x,x@XN': 1, 'min/x,x@YA': 0, 'max/x,x@YA': 0, 'min/x,x@YX': 1, 'max/x,x@YX': 1, 'min/x,x@YN': 1, 'max/x,x@YN': 1, 'min/x,x@NA': 0, 'max/x,x@NA': 0, 'min/x,x@NX': 1, 'max/x,x@NX': 1, 'min/x,x@NY': 1, 'max/x,x@NY': 1} [('routines', 0.0)] [work +3401, 1.217e+06 in all] (0.0s)
+STEP 3 loss 0.0896 phase C answers t=1 1 pool 192 work 1.217e+06 0.04s
+LR climb step=4 L0 choose (lpca): {'learnable': 4, 'unsolved': 74, 'duplicate': 2, 'trivial': 24}; picks [('lt/pair@AX', 4, 'CLC P[SBB.X INC]'), ('lt/pair@AY', 4, 'CLC P[SBB.Y INC]'), ('lt/pair@AN', 4, 'CLC P[SBB.N INC]'), ('sub/pair@AX', 4, 'CLC P[INC SBB.X]')] [work +7838, 1.224e+06 in all] (0.0s)
+STEP 4 loss 0.0848 phase C answers t=1 1 pool 256 work 1.224e+06 0.02s
+LR climb step=5 L0 sleep: B0.1=SBB.X INC; B0.2=P[B0.1]; B0.3=CLC B0.2; T.lt.pair.AX=B0.3; T.lt.pair.AY=CLC P[SBB.Y INC]; T.lt.pair.AN=CLC P[SBB.N INC]; T.sub.pair.AX=CLC P[INC SBB.X] [work +0, 1.224e+06 in all] (0.0s)
+STEP 5 loss 0.0846 phase C answers t=1 3 pool 320 work 1.224e+06 0.01s
+LR climb step=6 L0 target: no answers yet [work +0, 1.224e+06 in all] (0.0s)
+STEP 6 loss 0.0777 phase C answers t=1 3 pool 384 work 1.224e+06 0.01s
+LR climb step=7 L1 pose: 57 candidates on 12 roots [work +0, 1.224e+06 in all] (0.0s)
+STEP 7 loss 0.0749 phase C answers t=1 3 pool 448 work 1.224e+06 0.06s
+LR climb step=8 L1 probe 12 roots 39.1s solved {'red/pair@XY': 4} [('routines', 11.7)] [work +9.18e+06, 1.04e+07 in all] (39.1s)
+STEP 8 loss 0.0674 phase C answers t=1 3 pool 512 work 1.04e+07 39.08s
+LR climb step=9 L1 deep: [('pair@AX', {'eq': 0.75, 'min': 0.0, 'max': 0.0, 'red': 0.25, 'div': 0.25}), ('pair@AY', {'eq': 0.5, 'min': 0.0, 'max': 0.0, 'red': 0.0, 'div': 0.0}), ('pair@AN', {'eq': 0.75, 'min': 0.0, 'max': 0.0, 'red': 0.25, 'div': 0.5}), ('pair@XA', {'eq': 0.8, 'min': 0.0, 'max': 0.0, 'red': 0.6666666666666666, 'div': 0.75}), ('pair@XY', {'eq': 0.75, 'min': 0.25, 'max': 0.25}), ('pair@XN', {'eq': 0.75, 'min': 0.25, 'max': 0.25, 'red': 0.0, 'div': 0.0}), ('pair@YA', {'eq': 0.8333333333333334, 'min': 0.25, 'max': 0.0, 'red': 0.75, 'div': 0.75}), ('pair@YX', {'eq': 0.8333333333333334, 'min': 0.0, 'max': 0.0}), ('pair@YN', {'eq': 0.75, 'min': 0.0, 'max': 0.0, 'red': 0.75, 'div': 0.75}), ('pair@NA', {'eq': 0.75, 'min': 0.0, 'max': 0.0, 'red': 0.6666666666666666, 'div': 0.6666666666666666}), ('pair@NX', {'eq': 0.5, 'min': 0.0, 'max': 0.0, 'red': 0.6666666666666666, 'div': 0.6666666666666666}), ('pair@NY', {'eq': 0.5, 'min': 0.0, 'max': 0.0, 'red': 0.5, 'div': 0.5})] [work +0, 1.04e+07 in all] (0.0s)
+STEP 9 loss 0.0656 phase C answers t=1 3 pool 576 work 1.04e+07 0.01s
+LR mined step=10 fact=x<N
+LR mined step=10 fact=T<N
+LR mined step=10 fact=N!=0
+LR mined step=10 fact=N<10^7
+LR mined step=10 fact=N<10^8
+LR mined step=10 fact=Nmod2!=0
+LR mined step=10 fact=Nmod2=1
+LR mined step=10 fact=Nmod5!=0
+LR mined step=10 fact=Nmod3!=0
+LR mined step=10 fact=x!=0
+LR mined step=10 fact=x<10^6
+LR mined step=10 fact=x<10^7
+LR mined step=10 fact=x<10^8
+LR mined step=10 fact=T!=0
+LR mined step=10 fact=T<10^2
+LR mined step=10 fact=T<10^3
+LR mined step=10 fact=T<10^4
+LR mined step=10 fact=T<10^5
+LR mined step=10 fact=T<10^6
+LR mined step=10 fact=T<10^7
+LR mined step=10 fact=T<10^8
+LR mined step=10 fact=Tmod5!=0
+LR mined step=10 fact=Tmod3!=0
+LR climb step=10 L1 deep ['pair@AX', 'pair@AY', 'pair@AN', 'pair@XA'] 11.9s solved {'red/pair@AN': 4} [("deep ['T.lt.pair.AY']", 3.2), ('deep []', 1.6), ("deep ['T.lt.pair.AN']", 3.1), ("deep ['T.lt.pair.AX']", 3.1)] [work +5.512e+06, 1.592e+07 in all] (11.9s)
+LR mined step=10 fact=T<y
+LR mined step=10 fact=y<N
+LR mined step=10 fact=y!=0
+LR mined step=10 fact=y<10^6
+LR mined step=10 fact=y<10^7
+LR mined step=10 fact=y<10^8
+LR step=10 phase=C io=5 loss=0.0619 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=1 order_digits=-1000 rows_visited=200/200 pool=640 answers=3 counts={'01': 3, '02': 4, '04': 64, '08': 64} climb_level=1 solved=['lt/pair@AN', 'lt/pair@AX', 'lt/pair@AY', 'sub/pair@AX'] round: none fit=[]  facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);N mod 2 = 1(since 10, fails 0);N mod 3 != 0(since 10, fails 0);N mod 5 != 0(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < y(since 10, fails 0);T mod 3 != 0(since 10, fails 0);T mod 5 != 0(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0);y != 0(since 10, fails 0);y < 10^6(since 10, fails 0);y < N(since 10, fails 0)
+STEP 10 loss 0.0619 phase C answers t=1 3 pool 640 work 1.592e+07 11.91s
+LR climb step=11 L1 deep ['pair@XY', 'pair@XN', 'pair@YA', 'pair@YX'] 7.3s solved {'red/pair@XY': 4} [('deep []', 3.4), ("deep ['T.sub.pair.AX']", 3.1)] [work +2.223e+06, 1.814e+07 in all] (7.3s)
+STEP 11 loss 0.0619 phase C answers t=1 3 pool 704 work 1.814e+07 7.35s
+LR mined step=12 fact=N<10^6
+LR climb step=12 L1 deep ['pair@YN', 'pair@NA', 'pair@NX', 'pair@NY'] 8.7s solved {} [('deep []', 2.5), ("deep ['T.lt.pair.AN']", 3.1), ("deep ['T.sub.pair.AX']", 3.1)] [work +3.653e+06, 2.179e+07 in all] (8.7s)
+STEP 12 loss 0.0565 phase C answers t=1 3 pool 768 work 2.179e+07 8.71s
+LR climb step=13 L1 choose (lpca): {'unsolved': 55, 'learnable': 2}; picks [('red/pair@XY', 4, 'LDA.X T.lt.pair.AY C[LDA.X]')] [work +4363, 2.18e+07 in all] (0.0s)
+STEP 13 loss 0.0564 phase C answers t=1 3 pool 832 work 2.18e+07 0.03s
+LR climb step=14 L1 sleep: T.red.pair.XY=LDA.X T.lt.pair.AY C[LDA.X] [work +0, 2.18e+07 in all] (0.0s)
+STEP 14 loss 0.0548 phase C answers t=1 3 pool 896 work 2.18e+07 0.02s
+LR mined step=15 fact=Tmod2=0
+LR climb step=15 L1 target: no answers yet [work +0, 2.18e+07 in all] (0.0s)
+STEP 15 loss 0.0482 phase C answers t=1 3 pool 960 work 2.18e+07 0.02s
+LR mined step=16 fact=T<x
+LR climb step=16 climb done at level 2 (the level cap) [work +0, 2.18e+07 in all] (0.0s)
+STEP 16 loss 0.0512 phase C answers t=1 4 pool 1024 work 2.18e+07 0.03s
+STEP 17 loss 0.0456 phase C answers t=1 5 pool 1088 work 2.18e+07 0.03s
+STEP 18 loss 0.0435 phase C answers t=1 5 pool 1152 work 2.18e+07 0.02s
+STEP 19 loss 0.0443 phase C answers t=1 5 pool 1216 work 2.18e+07 0.02s
+LR step=20 phase=C io=5 loss=0.0419 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=11 order_digits=-1000 rows_visited=200/200 pool=1280 answers=6 counts={'01': 6, '02': 10, '04': 64, '08': 64} climb_level=2 solved=['lt/pair@AN', 'lt/pair@AX', 'lt/pair@AY', 'red/pair@XY', 'sub/pair@AX'] round: none fit=[]  facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);N mod 2 = 1(since 10, fails 0);N mod 3 != 0(since 10, fails 0);N mod 5 != 0(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < x(since 16, fails 1);T mod 3 != 0(since 10, fails 0);T mod 5 != 0(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0);y != 0(since 10, fails 0);y < 10^6(since 10, fails 0);y < N(since 10, fails 0)
+STEP 20 loss 0.0419 phase C answers t=1 6 pool 1280 work 2.18e+07 0.02s
+STEP 21 loss 0.0402 phase C answers t=1 6 pool 1344 work 2.18e+07 0.02s
+STEP 22 loss 0.0392 phase C answers t=1 7 pool 1408 work 2.18e+07 0.03s
+STEP 23 loss 0.0384 phase C answers t=1 7 pool 1472 work 2.18e+07 0.03s
+STEP 24 loss 0.0343 phase C answers t=1 7 pool 1536 work 2.18e+07 0.02s
+STEP 25 loss 0.0350 phase C answers t=1 7 pool 1600 work 2.18e+07 0.02s
+STEP 26 loss 0.0322 phase C answers t=1 9 pool 1664 work 2.18e+07 0.03s
+STEP 27 loss 0.0309 phase C answers t=1 13 pool 1728 work 2.18e+07 0.02s
+STEP 28 loss 0.0305 phase C answers t=1 13 pool 1792 work 2.18e+07 0.02s
+STEP 29 loss 0.0284 phase C answers t=1 13 pool 1856 work 2.18e+07 0.02s
+LR step=30 phase=C io=5 loss=0.0282 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=21 order_digits=-1000 rows_visited=200/200 pool=1920 answers=13 counts={'01': 13, '02': 18, '04': 64, '08': 64} climb_level=2 solved=['lt/pair@AN', 'lt/pair@AX', 'lt/pair@AY', 'red/pair@XY', 'sub/pair@AX'] round: none fit=[]  facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);N mod 2 = 1(since 10, fails 0);N mod 3 != 0(since 10, fails 0);N mod 5 != 0(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < x(since 16, fails 1);T mod 3 != 0(since 10, fails 0);T mod 5 != 0(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0);y != 0(since 10, fails 0);y < 10^6(since 10, fails 0);y < N(since 10, fails 0)
+STEP 30 loss 0.0282 phase C answers t=1 13 pool 1920 work 2.18e+07 0.02s
+climb: level 2, 8 definitions, work 2.18e+07; climb lines 16 (91s)
+EXIT 0 after 92 s, peak 3.7 GiB

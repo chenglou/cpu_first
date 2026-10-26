@@ -1,0 +1,60 @@
+LR climb_starts step=1 cells: subtraction/addition/multiply snapped, right vs the truth (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+LR climb step=1 L0 pose: 104 candidates on 24 roots [work +0, 0 in all] (0.1s)
+LR step=1 phase=C io=5 loss=0.1051 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=-1000 rows_visited=200/200 pool=64 answers=1 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: none fit=[]  facts=
+/Users/chenglou/github/one-layer/cpu_first/integration/combined_sp2/checks/local_combined.py:450: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"STEP {step} loss {float(loss):.4f} phase {m.ctl.phase} answers t={int(m.ans_t)} "
+STEP 1 loss 0.1051 phase C answers t=1 1 pool 64 work 0 0.10s
+LR climb step=2 L0 probe 16 roots 17.9s solved {'min/x,x@AX': 0, 'max/x,x@AX': 0, 'min/x,x@AY': 0, 'max/x,x@AY': 0, 'min/x,x@AN': 0, 'max/x,x@AN': 0, 'min/x,x@XA': 0, 'max/x,x@XA': 0} [('routines', 9.4)] [work +8.727e+05, 8.727e+05 in all] (17.9s)
+STEP 2 loss 0.0908 phase C answers t=1 1 pool 128 work 8.727e+05 17.88s
+LR climb step=3 L0 probe 8 roots 0.0s solved {'min/x,x@XY': 1, 'max/x,x@XY': 1, 'min/x,x@XN': 1, 'max/x,x@XN': 1, 'min/x,x@YA': 0, 'max/x,x@YA': 0, 'min/x,x@YX': 1, 'max/x,x@YX': 1, 'min/x,x@YN': 1, 'max/x,x@YN': 1, 'min/x,x@NA': 0, 'max/x,x@NA': 0, 'min/x,x@NX': 1, 'max/x,x@NX': 1, 'min/x,x@NY': 1, 'max/x,x@NY': 1} [('routines', 0.0)] [work +3401, 8.761e+05 in all] (0.0s)
+STEP 3 loss 0.0896 phase C answers t=1 1 pool 192 work 8.761e+05 0.04s
+LR climb step=4 L0 choose (lpca): {'unsolved': 80, 'trivial': 24}; picks [] [work +600.1, 8.767e+05 in all] (0.0s)
+STEP 4 loss 0.0848 phase C answers t=1 1 pool 256 work 8.767e+05 0.01s
+LR climb step=5 L0 sleep: no new concept learnable; the next level poses practised ones' variants [work +0, 8.767e+05 in all] (0.0s)
+STEP 5 loss 0.0846 phase C answers t=1 3 pool 320 work 8.767e+05 0.01s
+LR climb step=6 L0 target: no answers yet [work +0, 8.767e+05 in all] (0.0s)
+STEP 6 loss 0.0777 phase C answers t=1 3 pool 384 work 8.767e+05 0.01s
+LR climb step=7 L1 pose: 80 candidates on 12 roots [work +0, 8.767e+05 in all] (0.0s)
+STEP 7 loss 0.0749 phase C answers t=1 3 pool 448 work 8.767e+05 0.06s
+LR climb step=8 L1 probe 12 roots 13.3s solved {} [('routines', 13.3)] [work +4.209e+05, 1.298e+06 in all] (13.3s)
+STEP 8 loss 0.0674 phase C answers t=1 3 pool 512 work 1.298e+06 13.32s
+LR climb step=9 L1 choose (lpca): {'unsolved': 80}; picks [] [work +0, 1.298e+06 in all] (0.0s)
+STEP 9 loss 0.0656 phase C answers t=1 3 pool 576 work 1.298e+06 0.01s
+LR mined step=10 fact=x<N
+LR mined step=10 fact=T<N
+LR mined step=10 fact=N!=0
+LR mined step=10 fact=N<10^7
+LR mined step=10 fact=N<10^8
+LR mined step=10 fact=Nmod2!=0
+LR mined step=10 fact=Nmod2=1
+LR mined step=10 fact=Nmod5!=0
+LR mined step=10 fact=Nmod3!=0
+LR mined step=10 fact=x!=0
+LR mined step=10 fact=x<10^6
+LR mined step=10 fact=x<10^7
+LR mined step=10 fact=x<10^8
+LR mined step=10 fact=T!=0
+LR mined step=10 fact=T<10^2
+LR mined step=10 fact=T<10^3
+LR mined step=10 fact=T<10^4
+LR mined step=10 fact=T<10^5
+LR mined step=10 fact=T<10^6
+LR mined step=10 fact=T<10^7
+LR mined step=10 fact=T<10^8
+LR mined step=10 fact=Tmod5!=0
+LR mined step=10 fact=Tmod3!=0
+LR climb step=10 L1 sleep: nothing learnable to practise; climb done [work +0, 1.298e+06 in all] (0.0s)
+LR mined step=10 fact=T<y
+LR mined step=10 fact=y<N
+LR mined step=10 fact=y!=0
+LR mined step=10 fact=y<10^6
+LR mined step=10 fact=y<10^7
+LR mined step=10 fact=y<10^8
+LR step=10 phase=C io=5 loss=0.0619 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=1 order_digits=-1000 rows_visited=200/200 pool=640 answers=3 counts={'01': 3, '02': 4, '04': 64, '08': 64} climb_level=1 solved=[] round: none fit=[]  facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);N mod 2 = 1(since 10, fails 0);N mod 3 != 0(since 10, fails 0);N mod 5 != 0(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < y(since 10, fails 0);T mod 3 != 0(since 10, fails 0);T mod 5 != 0(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0);y != 0(since 10, fails 0);y < 10^6(since 10, fails 0);y < N(since 10, fails 0)
+STEP 10 loss 0.0619 phase C answers t=1 3 pool 640 work 1.298e+06 0.03s
+STEP 11 loss 0.0619 phase C answers t=1 3 pool 704 work 1.298e+06 0.02s
+LR mined step=12 fact=N<10^6
+STEP 12 loss 0.0565 phase C answers t=1 3 pool 768 work 1.298e+06 0.02s
+climb (tiny budgets): level 1, 0 definitions, work 1.298e+06; climb lines 10 (33s)
+EXIT 0 after 34 s, peak 3.5 GiB

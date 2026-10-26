@@ -1,0 +1,19 @@
+  guided target: cost None bits, levels 31 []
+  picked: ['law/eq(X,N)/x+QN', 'law2/add(add(X,N),N)', 'law2/add(add(X,X),X)', 'law2/div(N,monus(N,X))']
+    + M4.1 = DEC.N MOV.A.X CLR.X M1.2    (DEC.N MOV.A.X CLR.X INC.N L.N[INC.N] L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]])
+    + M4.2 = M0.3 M3.3 DEC.A DEC.A    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] MOV.T.N MOV.N.X MOV.X.T INC.N L.N[INC.N] L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]] DEC.A DEC.A)
+    + M4.3 = M1.3 MOV.X.A CLR.A M1.2    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] MOV.X.A CLR.A INC.N L.N[INC.N] L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]])
+    + M4.4 = T.mod(X,N)@x+qN INC.X M1.1 T.lt(N,X)@x+qN    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] INC.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] L.A[DEC.T MOV.A.T])
+    + T.law18 = MOV.A.X L.N[INC.A INC.A]    (MOV.A.X L.N[INC.A INC.A])
+    + T.law19 = MOV.A.X L.X[INC.A INC.A]    (MOV.A.X L.X[INC.A INC.A])
+  target: cost None levels [1, 49, 1865, 61491, 1894474, 71855069] []
+  guided target: cost None bits, levels 31 []
+  picked: ['law/eq(X,N)/x+QN', 'law2/add(add(X,N),N)', 'law2/add(add(X,X),X)', 'law2/div(N,monus(N,X))']
+    + M4.1 = DEC.N MOV.A.X CLR.X M1.2    (DEC.N MOV.A.X CLR.X INC.N L.N[INC.N] L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]])
+    + M4.2 = M0.3 M3.3 DEC.A DEC.A    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] MOV.T.N MOV.N.X MOV.X.T INC.N L.N[INC.N] L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]] DEC.A DEC.A)
+    + M4.3 = M1.3 MOV.X.A CLR.A M1.2    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] MOV.X.A CLR.A INC.N L.N[INC.N] L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]])
+    + M4.4 = T.mod(X,N)@x+qN INC.X M1.1 T.lt(N,X)@x+qN    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] INC.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] L.A[DEC.T MOV.A.T])
+    + T.law18 = MOV.A.X L.N[INC.A INC.A]    (MOV.A.X L.N[INC.A INC.A])
+    + T.law19 = MOV.A.X L.X[INC.A INC.A]    (MOV.A.X L.X[INC.A INC.A])
+  target: cost None levels [1, 49, 1865, 61491, 1894474, 71855069] []
+group done in 15400s on 32 cores; largest worker 10.3 GB

@@ -1,0 +1,45 @@
+  probes: trivial 131, learnable 130, alias 0, duplicate 51, unsolved 34
+  probes: trivial 131, learnable 130, alias 0, duplicate 51, unsolved 34
+  guided target: cost None bits, levels 31 []
+  picked: ['digit/target/U.X', 'digit/target/U.T', 'digit/target/T.X', 'law/max(X,N)/x+qN']
+    + M4.1 = MOV.X.U L.U[INC.X T.mod(X,N)@x+qN] MOV.U.A    (MOV.X.U L.U[INC.X MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.U.A)
+    + M4.2 = MOV.X.T L.T[INC.X T.mod(X,N)@x+qN] MOV.T.A    (MOV.X.T L.T[INC.X MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.T.A)
+    + M4.3 = T.absdiff(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.N L.T[MOV.A.X])
+    + T.dig17 = L.U[INC.U] MOV.X.U M0.3 MOV.U.A    (L.U[INC.U] MOV.X.U MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] MOV.U.A)
+    + T.dig18 = MOV.X.U L.X[INC.X T.mod(X,N)@x+qN] MOV.U.A    (MOV.X.U L.X[INC.X MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.U.A)
+    + T.dig19 = L.T[INC.T] MOV.X.T T.mod(X,N)@x+qN MOV.T.A    (L.T[INC.T] MOV.X.T MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.T.A)
+    + T.max(X,N)@x+qN = T.mod(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.A.N L.T[MOV.A.X])
+  target: cost None levels [1, 46, 1633, 49726, 1406484, 63251575] []
+  guided target: cost None bits, levels 31 []
+  picked: ['project/target/zero', 'law/max(X,N)/x+qN', 'law/eq(X,N)/x+QN', 'law/gcd(X,N)/x+QN']
+    + M4.1 = L.X[T.mod(X,N)@x+qN MOV.X.A] CLR.N T.law13    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] CLR.N MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] MOV.X.A CLR.A INC.N L.N[INC.N] L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]] DEC.A)
+    + M4.2 = DEC.N INC.U M1.3 T.law9    (DEC.N INC.U MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + M4.3 = M0.3 CLR.N M2.2 T.law15    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] CLR.N D.1[L.N[INC.A]] L.N[INC.N] INC.N L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]] L.A[DEC.X] D.1[L.N[INC.A]] MOV.A.X)
+    + M4.4 = T.absdiff(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.N L.T[MOV.A.X])
+    + T.pro17 = L.X[T.mod(X,N)@x+qN MOV.X.A] T.law15 M0.1    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] L.N[INC.N] INC.N L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]] L.A[DEC.X] D.1[L.N[INC.A]] MOV.A.X INC.A Z.N[CLR.A])
+    + T.max(X,N)@x+qN = T.mod(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.A.N L.T[MOV.A.X])
+    + T.eq(X,N)@x+QN = T.mod(X,N)@x+qN Z.A[MOV.U.T] MOV.A.U    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] Z.A[MOV.U.T] MOV.A.U)
+    + T.gcd(X,N)@x+QN = DEC.N M1.3 T.law9 CLR.N    (DEC.N MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A] CLR.N)
+  target: cost None levels [1, 51, 1916, 59951, 1709205, 67467970] []
+  guided target: cost None bits, levels 31 []
+  picked: ['project/target/zero', 'law/max(X,N)/x+qN', 'law/eq(X,N)/x+QN', 'law/gcd(X,N)/x+QN']
+    + M4.1 = L.X[T.mod(X,N)@x+qN MOV.X.A] CLR.N T.law13    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] CLR.N MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] MOV.X.A CLR.A INC.N L.N[INC.N] L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]] DEC.A)
+    + M4.2 = DEC.N INC.U M1.3 T.law9    (DEC.N INC.U MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + M4.3 = M0.3 CLR.N M2.2 T.law15    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] CLR.N D.1[L.N[INC.A]] L.N[INC.N] INC.N L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]] L.A[DEC.X] D.1[L.N[INC.A]] MOV.A.X)
+    + M4.4 = T.absdiff(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.N L.T[MOV.A.X])
+    + T.pro17 = L.X[T.mod(X,N)@x+qN MOV.X.A] T.law15 M0.1    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] L.N[INC.N] INC.N L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]] L.A[DEC.X] D.1[L.N[INC.A]] MOV.A.X INC.A Z.N[CLR.A])
+    + T.max(X,N)@x+qN = T.mod(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.A.N L.T[MOV.A.X])
+    + T.eq(X,N)@x+QN = T.mod(X,N)@x+qN Z.A[MOV.U.T] MOV.A.U    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] Z.A[MOV.U.T] MOV.A.U)
+    + T.gcd(X,N)@x+QN = DEC.N M1.3 T.law9 CLR.N    (DEC.N MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A] CLR.N)
+  target: cost None levels [1, 51, 1916, 59951, 1709205, 67467970] []
+  guided target: cost None bits, levels 31 []
+  picked: ['law/max(X,N)/x+qN', 'law/eq(X,N)/x+QN', 'law/gcd(X,N)/x+QN', 'law2/add(succ(X),N)']
+    + M4.1 = DEC.N INC.U M1.3 T.law9    (DEC.N INC.U MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + M4.2 = INC.N MOV.A.N D.1[INC.A]    (INC.N MOV.A.N D.1[INC.A])
+    + M4.3 = M0.3 CLR.N M2.2 T.law15    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] CLR.N D.1[L.N[INC.A]] L.N[INC.N] INC.N L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]] L.A[DEC.X] D.1[L.N[INC.A]] MOV.A.X)
+    + M4.4 = T.absdiff(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.N L.T[MOV.A.X])
+    + T.max(X,N)@x+qN = T.mod(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.A.N L.T[MOV.A.X])
+    + T.eq(X,N)@x+QN = T.mod(X,N)@x+qN Z.A[MOV.U.T] MOV.A.U    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] Z.A[MOV.U.T] MOV.A.U)
+    + T.gcd(X,N)@x+QN = DEC.N M1.3 T.law9 CLR.N    (DEC.N MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A] CLR.N)
+    + T.law20 = MOV.A.N L.X[INC.A] INC.A    (MOV.A.N L.X[INC.A] INC.A)
+  target: cost None levels [1, 51, 1914, 60259, 1735389, 67804039] []

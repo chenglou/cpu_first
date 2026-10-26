@@ -1,0 +1,17 @@
+  guided target: cost None bits, levels 32 []
+  picked: ['law/add(X,X)/x', 'law2/div(add(X,X),N)', 'law2/lt(add(X,X),N)', 'law/add(N,N)/x']
+    + M4.1 = T.absdiff(X,N)@x+qN MOV.N.A M2.2 T.law8    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[DEC.A]] MOV.N.A MOV.A.X L.N[DEC.A] L.X[DEC.N MOV.X.A] MOV.A.N L.X[DEC.A] L.X[INC.A] MOV.A.N MOV.N.X INC.N L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.add(X,X) = MOV.N.X T.add(X,N)    (MOV.N.X MOV.A.N L.X[INC.A])
+    + T.law18 = L.X[DEC.N DEC.N] Z.N[INC.A]    (L.X[DEC.N DEC.N] Z.N[INC.A])
+    + T.law19 = L.X[INC.X] M2.2 T.law8 MOV.A.T    (L.X[INC.X] MOV.A.X L.N[DEC.A] L.X[DEC.N MOV.X.A] MOV.A.N L.X[DEC.A] L.X[INC.A] MOV.A.N MOV.N.X INC.N L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.T)
+    + T.add(N,N) = MOV.X.N T.add(X,N)    (MOV.X.N MOV.A.N L.X[INC.A])
+  target: cost None levels [1, 43, 1338, 36497, 930651, 42004470] []
+  guided target: cost None bits, levels 32 []
+  picked: ['law/add(X,X)/x', 'law2/div(add(X,X),N)', 'law2/lt(add(X,X),N)', 'law/add(N,N)/x']
+    + M4.1 = T.absdiff(X,N)@x+qN MOV.N.A M2.2 T.law8    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[DEC.A]] MOV.N.A MOV.A.X L.N[DEC.A] L.X[DEC.N MOV.X.A] MOV.A.N L.X[DEC.A] L.X[INC.A] MOV.A.N MOV.N.X INC.N L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.add(X,X) = MOV.N.X T.add(X,N)    (MOV.N.X MOV.A.N L.X[INC.A])
+    + T.law18 = L.X[DEC.N DEC.N] Z.N[INC.A]    (L.X[DEC.N DEC.N] Z.N[INC.A])
+    + T.law19 = L.X[INC.X] M2.2 T.law8 MOV.A.T    (L.X[INC.X] MOV.A.X L.N[DEC.A] L.X[DEC.N MOV.X.A] MOV.A.N L.X[DEC.A] L.X[INC.A] MOV.A.N MOV.N.X INC.N L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.T)
+    + T.add(N,N) = MOV.X.N T.add(X,N)    (MOV.X.N MOV.A.N L.X[INC.A])
+  target: cost None levels [1, 43, 1338, 36497, 930651, 42004470] []
+group done in 13362s on 32 cores; largest worker 11.7 GB

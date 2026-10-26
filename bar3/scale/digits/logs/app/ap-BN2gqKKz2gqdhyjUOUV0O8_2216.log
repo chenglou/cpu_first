@@ -1,0 +1,23 @@
+  guided target: cost None bits, levels 32 []
+  picked: ['law/mod(N,X)/x', 'restrict/target/X<N', 'restrict/target/X<N·N', 'restrict/target/X+X<X·N']
+    + M2.1 = INC.T L.X[T.dig7] MOV.X.T M0.3    (INC.T L.X[L.T[INC.T] MOV.X.T MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.T.A] MOV.X.T MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M2.2 = M1.3 MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.mod(N,X) = MOV.A.N MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.res10 = INC.T L.X[T.dig7] MOV.X.T T.mod(X,N)@x+qN    (INC.T L.X[L.T[INC.T] MOV.X.T MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.T.A] MOV.X.T MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.res12 = INC.T L.X[T.dig7]    (INC.T L.X[L.T[INC.T] MOV.X.T MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.T.A])
+  target: cost None levels [1, 34, 961, 24637, 602985, 28743165] []
+  guided target: cost None bits, levels 32 []
+  picked: ['law/mod(N,X)/x', 'restrict/target/X<3', 'law2/mul(pred(X),X)', 'restrict/target/2<N']
+    + M2.1 = INC.A L.X[T.rec6]    (INC.A L.X[L.A[INC.A] MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M2.2 = CLR.N MOV.T.X D.1[M1.2 MOV.N.T]    (CLR.N MOV.T.X D.1[INC.N L.N[INC.N] L.N[L.X[DEC.N DEC.N] INC.A Z.N[DEC.A]] MOV.N.T])
+    + M2.3 = M1.3 MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.mod(N,X) = MOV.A.N MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.res10 = DEC.N M0.1 INC.N L.X[T.rec6]    (DEC.N INC.A Z.N[CLR.A] INC.N L.X[L.A[INC.A] MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.law11 = L.X[L.X[INC.A]] L.X[DEC.A]    (L.X[L.X[INC.A]] L.X[DEC.A])
+  target: cost None levels [1, 34, 948, 24745, 626815, 30207456] []
+[ct2a2_clean_u_src_dpow2_dg1] round 3: target probe mdl 13.9 best [12, 32, 32, 32, 32]; pool 289
+  subgoal: value/M2.1 T.law3 -> X {'law': 'div(g,2)', 'table': 990, 'how': 'g', 'pure': 1000, 'key': (1, 990)}
+[ct2a2_clean_u_ctl_dpow2_dg1] round 3: target probe mdl 13.9 best [12, 32, 32, 32, 32]; pool 351
+  subgoal: value/M2.1 -> A {'law': 'mod(g,N)', 'table': 967, 'how': 'g,N', 'pure': 1000, 'key': (1, 967)}
+  probes: trivial 72, learnable 145, alias 0, duplicate 60, unsolved 12
+  probes: trivial 101, learnable 159, alias 3, duplicate 70, unsolved 18

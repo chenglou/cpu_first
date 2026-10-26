@@ -1,0 +1,24 @@
+[ct2a2_clean_u_ctl_dpow2_dg1] round 3: target probe mdl 13.9 best [12, 32, 32, 32, 32]; pool 351
+  subgoal: value/M2.1 -> A {'law': 'mod(g,N)', 'table': 967, 'how': 'g,N', 'pure': 1000, 'key': (1, 967)}
+  probes: trivial 72, learnable 145, alias 0, duplicate 60, unsolved 12
+  probes: trivial 101, learnable 159, alias 3, duplicate 70, unsolved 18
+  guided target: cost None bits, levels 33 []
+  picked: ['law/mul(X,N)/x', 'law2/mul(pred(X),X)', 'law2/mul(add(X,N),N)', 'law/mul(X,X)/x']
+    + M3.1 = D.1[L.N[INC.A]]    (D.1[L.N[INC.A]])
+    + T.mul(X,N) = L.N[L.X[INC.A]]    (L.N[L.X[INC.A]])
+    + T.law14 = L.X[L.X[INC.A]] L.X[DEC.A]    (L.X[L.X[INC.A]] L.X[DEC.A])
+    + T.law15 = T.add(X,N) L.A[L.N[INC.T]] MOV.A.T    (MOV.A.N L.X[INC.A] L.A[L.N[INC.T]] MOV.A.T)
+    + T.mul(X,X) = L.X[L.X[INC.A]]    (L.X[L.X[INC.A]])
+  target: cost None levels [1, 37, 995, 23496, 525453, 23438866] []
+  guided target: cost None bits, levels 33 []
+  picked: ['law/mul(X,N)/x', 'law2/mul(pred(X),X)', 'law2/mul(add(X,N),N)', 'law/mul(X,X)/x']
+    + M3.1 = D.1[L.N[INC.A]]    (D.1[L.N[INC.A]])
+    + T.mul(X,N) = L.N[L.X[INC.A]]    (L.N[L.X[INC.A]])
+    + T.law14 = L.X[L.X[INC.A]] L.X[DEC.A]    (L.X[L.X[INC.A]] L.X[DEC.A])
+    + T.law15 = T.add(X,N) L.A[L.N[INC.T]] MOV.A.T    (MOV.A.N L.X[INC.A] L.A[L.N[INC.T]] MOV.A.T)
+    + T.mul(X,X) = L.X[L.X[INC.A]]    (L.X[L.X[INC.A]])
+  target: cost None levels [1, 37, 995, 23496, 525453, 23438866] []
+[ct2a2_clean_u_ctl_dxmod_dg1] round 4: target probe mdl 13.9 best [9, 32, 32, 32, 32]; pool 370
+[ct2a2_clean_u_src_dxmod_dg1] round 4: target probe mdl 13.9 best [9, 32, 32, 32, 32]; pool 391
+  probes: trivial 160, learnable 124, alias 1, duplicate 62, unsolved 23
+  probes: trivial 174, learnable 128, alias 1, duplicate 65, unsolved 23

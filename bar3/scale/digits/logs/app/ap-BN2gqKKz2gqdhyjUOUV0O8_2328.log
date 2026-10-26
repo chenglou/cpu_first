@@ -1,0 +1,28 @@
+[ct2a2_clean_u_ctl_dxmod_dg1] round 4: target probe mdl 13.9 best [9, 32, 32, 32, 32]; pool 370
+[ct2a2_clean_u_src_dxmod_dg1] round 4: target probe mdl 13.9 best [9, 32, 32, 32, 32]; pool 391
+  probes: trivial 160, learnable 124, alias 1, duplicate 62, unsolved 23
+  probes: trivial 174, learnable 128, alias 1, duplicate 65, unsolved 23
+  guided target: cost None bits, levels 32 []
+  picked: ['law/add(X,N)/x', 'law2/mul(add(X,N),N)', 'law2/mul(add(X,N),X)', 'law/add(X,X)/x']
+    + M3.1 = L.X[INC.A]    (L.X[INC.A])
+    + M3.2 = L.N[INC.X] L.N[M3.1]    (L.N[INC.X] L.N[L.X[INC.A]])
+    + M3.3 = L.N[M3.1] CLR.N M1.2    (L.N[L.X[INC.A]] CLR.N L.X[L.X[INC.A]] L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.add(X,N) = MOV.A.N M3.1    (MOV.A.N L.X[INC.A])
+    + T.law14 = L.N[INC.X] D.1[L.N[INC.A]]    (L.N[INC.X] D.1[L.N[INC.A]])
+    + T.law15 = L.X[INC.N] L.N[M3.1]    (L.X[INC.N] L.N[L.X[INC.A]])
+    + T.add(X,X) = MOV.A.X M3.1    (MOV.A.X L.X[INC.A])
+  target: cost None levels [1, 39, 1219, 34682, 940871, 41877261] []
+  guided target: cost None bits, levels 32 []
+  picked: ['law/add(X,N)/x', 'law2/mul(add(X,N),N)', 'law2/mul(add(X,N),X)', 'law/add(X,X)/x']
+    + M3.1 = L.X[INC.A]    (L.X[INC.A])
+    + M3.2 = L.N[INC.X] L.N[M3.1]    (L.N[INC.X] L.N[L.X[INC.A]])
+    + M3.3 = L.N[M3.1] CLR.N M1.2    (L.N[L.X[INC.A]] CLR.N L.X[L.X[INC.A]] L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.add(X,N) = MOV.A.N M3.1    (MOV.A.N L.X[INC.A])
+    + T.law14 = L.N[INC.X] D.1[L.N[INC.A]]    (L.N[INC.X] D.1[L.N[INC.A]])
+    + T.law15 = L.X[INC.N] L.N[M3.1]    (L.X[INC.N] L.N[L.X[INC.A]])
+    + T.add(X,X) = MOV.A.X M3.1    (MOV.A.X L.X[INC.A])
+  target: cost None levels [1, 39, 1219, 34682, 940871, 41877261] []
+[ct2a2_clean_u_ctl_dxsq_dg1] round 4: target probe mdl 13.9 best [10, 32, 32, 32]; pool 343
+[ct2a2_clean_u_src_dxsq_dg1] round 4: target probe mdl 13.9 best [10, 32, 32, 32]; pool 356
+  probes: trivial 131, learnable 126, alias 0, duplicate 47, unsolved 39
+  probes: trivial 138, learnable 128, alias 0, duplicate 47, unsolved 43

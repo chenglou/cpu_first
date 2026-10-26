@@ -1,0 +1,46 @@
+  guided target: cost None bits, levels 30 []
+  picked: ['law/gcd(X,N)/rows', 'law2/mul(succ(X),N)', 'law2/mul(pred(X),N)', 'law2/add(add(X,X),X)']
+    + M4.1 = L.N[L.X[INC.A]]    (L.N[L.X[INC.A]])
+    + M4.2 = CLR.N L.X[T.law2] T.div(X,N)@x+QN    (CLR.N L.X[INC.X INC.X L.N[DEC.X] Z.X[INC.A]] MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M4.3 = L.X[T.mod(X,N)@x+qN MOV.X.A] M2.1    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.U L.N[MOV.A.U]])
+    + T.law18 = MOV.A.N M4.1    (MOV.A.N L.N[L.X[INC.A]])
+    + T.law19 = DEC.X M4.1    (DEC.X L.N[L.X[INC.A]])
+    + T.law20 = MOV.A.X L.X[INC.A INC.A]    (MOV.A.X L.X[INC.A INC.A])
+  target: cost None levels [1, 50, 1869, 61033, 1853611, 78430415] []
+  guided target: cost None bits, levels 30 []
+  picked: ['law/gcd(X,N)/rows', 'law2/mul(succ(X),N)', 'law2/mul(pred(X),N)', 'law2/add(add(X,X),X)']
+    + M4.1 = L.N[L.X[INC.A]]    (L.N[L.X[INC.A]])
+    + M4.2 = CLR.N L.X[T.law2] T.div(X,N)@x+QN    (CLR.N L.X[INC.X INC.X L.N[DEC.X] Z.X[INC.A]] MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M4.3 = L.X[T.mod(X,N)@x+qN MOV.X.A] M2.1    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.U L.N[MOV.A.U]])
+    + T.law18 = MOV.A.N M4.1    (MOV.A.N L.N[L.X[INC.A]])
+    + T.law19 = DEC.X M4.1    (DEC.X L.N[L.X[INC.A]])
+    + T.law20 = MOV.A.X L.X[INC.A INC.A]    (MOV.A.X L.X[INC.A INC.A])
+  target: cost None levels [1, 48, 1752, 55409, 1625690, 77814939] []
+  guided target: cost None bits, levels 30 []
+  picked: ['law/gcd(X,N)/rows', 'law2/mul(succ(X),N)', 'law2/mul(pred(X),N)', 'law2/add(add(X,X),X)']
+    + M4.1 = L.N[L.X[INC.A]]    (L.N[L.X[INC.A]])
+    + M4.2 = CLR.N L.X[T.law2] T.div(X,N)@x+QN    (CLR.N L.X[INC.X INC.X L.N[DEC.X] Z.X[INC.A]] MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M4.3 = L.X[T.mod(X,N)@x+qN MOV.X.A] M2.1    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.U L.N[MOV.A.U]])
+    + T.law18 = MOV.A.N M4.1    (MOV.A.N L.N[L.X[INC.A]])
+    + T.law19 = DEC.X M4.1    (DEC.X L.N[L.X[INC.A]])
+    + T.law20 = MOV.A.X L.X[INC.A INC.A]    (MOV.A.X L.X[INC.A INC.A])
+  target: cost None levels [1, 48, 1752, 55409, 1625690, 77814939] []
+  guided target: cost None bits, levels 30 []
+  picked: ['law/gcd(X,N)/rows', 'law2/mul(succ(X),N)', 'law2/mul(pred(X),N)', 'law2/add(add(X,X),X)']
+    + M4.1 = L.N[L.X[INC.A]]    (L.N[L.X[INC.A]])
+    + M4.2 = CLR.N L.X[T.law2] T.div(X,N)@x+QN    (CLR.N L.X[INC.X INC.X L.N[DEC.X] Z.X[INC.A]] MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M4.3 = L.X[T.mod(X,N)@x+qN MOV.X.A] M2.1    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.U L.N[MOV.A.U]])
+    + T.law18 = MOV.A.N M4.1    (MOV.A.N L.N[L.X[INC.A]])
+    + T.law19 = DEC.X M4.1    (DEC.X L.N[L.X[INC.A]])
+    + T.law20 = MOV.A.X L.X[INC.A INC.A]    (MOV.A.X L.X[INC.A INC.A])
+  target: cost None levels [1, 50, 1910, 64135, 2017711, 84701256] []
+  guided target: cost None bits, levels 30 []
+  picked: ['law/gcd(X,N)/rows', 'law2/mul(succ(X),N)', 'law2/mul(pred(X),N)', 'law2/add(add(X,X),X)']
+    + M4.1 = L.N[L.X[INC.A]]    (L.N[L.X[INC.A]])
+    + M4.2 = CLR.N L.X[T.law2] T.div(X,N)@x+QN    (CLR.N L.X[INC.X INC.X L.N[DEC.X] Z.X[INC.A]] MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M4.3 = L.X[T.mod(X,N)@x+qN MOV.X.A] M2.1    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.U L.N[MOV.A.U]])
+    + T.law18 = MOV.A.N M4.1    (MOV.A.N L.N[L.X[INC.A]])
+    + T.law19 = DEC.X M4.1    (DEC.X L.N[L.X[INC.A]])
+    + T.law20 = MOV.A.X L.X[INC.A INC.A]    (MOV.A.X L.X[INC.A INC.A])
+  target: cost None levels [1, 50, 1910, 64135, 2017711, 84701256] []
+group done in 13620s on 32 cores; largest worker 11.0 GB

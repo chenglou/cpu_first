@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/Users/chenglou/github/one-layer/cpu_first/bar3/scale/heldout/watch_spend.py", line 63, in <module>
+    main()
+  File "/Users/chenglou/github/one-layer/cpu_first/bar3/scale/heldout/watch_spend.py", line 49, in main
+    billed, est = cost(app_id, since)
+  File "/Users/chenglou/github/one-layer/cpu_first/bar3/scale/heldout/watch_spend.py", line 30, in cost
+    for r in workspace_billing_report(start=since, resolution="h"):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/synchronicity/combined_types.py", line 33, in __call__
+    raise uc_exc.exc
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_billing.py", line 69, in _workspace_billing_report
+    async for pb_item in client.stub.WorkspaceBillingReport.unary_stream(request):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/_grpc_client.py", line 170, in unary_stream
+    async for response in self.client._call_stream(self.wrapped_method, request, metadata=metadata):
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 345, in _call_stream
+    yield await self._call_safely(stream.__anext__(), f"{grpclib_method.name}.recv")
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/modal/client.py", line 290, in _call_safely
+    return await request_task
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/stream.py", line 61, in __anext__
+    message = await self.recv_message()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 426, in recv_message
+    await self.recv_initial_metadata()
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 394, in recv_initial_metadata
+    self._raise_for_grpc_status(status, message, details)
+  File "/Users/chenglou/github/sotaku/venv/lib/python3.9/site-packages/grpclib/client.py", line 346, in _raise_for_grpc_status
+    raise GRPCError(status, message, details)
+grpclib.exceptions.GRPCError: (<Status.RESOURCE_EXHAUSTED: 8>, 'Rate limit exceeded for workspace billing report requests.', None)

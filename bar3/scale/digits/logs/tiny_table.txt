@@ -1,0 +1,16 @@
+Is the answer its own state over digits? (rows (answer(x), d, N) -> answer(x·B + d) a function)
+learner = on the learner's own rows (x < 70 at N <= 7 and x < 100 at N <= 10); theory = every x < 2,000 at N <= 7, as LARGE_NUMBERS.md §5.2 checked
+target                         §5.2  | unary            | base 2           | base 10         
+x mod N                        yes   | learner yes theory yes | learner yes theory yes | learner yes theory yes
+2x + 1                         yes   | learner yes theory yes | learner yes theory yes | learner yes theory yes
+2^x                            yes   | learner yes theory yes | learner yes theory yes | learner yes theory yes
+x²                             no    | learner no  theory no  | learner no  theory no  | learner no  theory no 
+x² + 1                         no    | learner no  theory no  | learner no  theory no  | learner no  theory no 
+x² − 1                         no    | learner no  theory no  | learner no  theory no  | learner no  theory no 
+x² + 3                         no    | learner no  theory no  | learner no  theory no  | learner no  theory no 
+10·x²                          no    | learner no  theory no  | learner no  theory no  | learner no  theory no 
+10·x² + 1                      no    | learner no  theory no  | learner no  theory no  | learner no  theory no 
+x³                             no    | learner no  theory no  | learner no  theory no  | learner no  theory no 
+Montgomery's x²·2⁻¹ (N odd)    no    | learner no  theory no  | learner no  theory no  | learner no  theory no 
+Fibonacci                      no    | learner no  theory no  | learner no  theory no  | learner no  theory no 
+disagreements with §5.2: 0

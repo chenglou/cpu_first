@@ -1,0 +1,7 @@
+lp_clean_b_src_dxmod_dg1.jsonl: round 3, target search: D.2[MOV.T.X T.dig15]
+    T.dig15 = L.A[INC.T INC.T] MOV.X.T T.mod(X,N)@x+qN   (digit/target/A.T: source digit, practised in round 3, cost 5)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)
+ct2a2_clean_b_src_dxmod_dg1.jsonl: round 1, target search: D.2[T.dig7]
+    T.dig7 = L.U[M1.2] T.mod(X,N)@x+qN MOV.U.A   (digit/target/U.X: source digit, practised in round 1, cost 5)
+    M1.2 = INC.X INC.X   (a merge, round 1)
+    T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]   (law/mod(X,N)/x+qN: source law, practised in round 0, cost 6)

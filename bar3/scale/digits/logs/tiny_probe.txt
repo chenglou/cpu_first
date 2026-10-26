@@ -1,0 +1,20 @@
+base  1 dxmod  digit/target/A.X         probe_a: cost 3, levels [1, 21, 262, 2896], 0s, stop ''
+      step: MOV.X.A INC.X T.mod
+      D.1[T.step]: rows k=10 1000/1000, big x 0%
+base  1 dxsq   digit/T.xm/A.X           probe_a: cost 3, levels [1, 21, 264, 2958], 0s, stop ''
+      step: MOV.X.A INC.X T.xm
+      D.1[T.step] MOV.X.A CLR.A L.X[L.X[INC.A]] L.A[MOV.X.A T.mod]: rows k=10 1000/1000, big x 0%
+base  1 dpow2  digit/target/A.X         probe_a: cost 4, levels [1, 21, 262, 2896, 83769], 0s, stop 'budget: level 4 streamed (over 30000 states)'
+      step: L.A[INC.A] MOV.X.A T.mod
+      INC.A D.1[T.step] MOV.X.A T.mod: rows k=10 1000/1000, big x 0%
+base  2 dxmod  digit/target/A.X         probe_a: cost 4, levels [1, 23, 348, 5028, 175298], 0s, stop 'budget: level 4 streamed (over 30000 states)'
+      step: L.A[INC.X INC.X] T.mod
+      D.2[T.step]: rows k=10 1000/1000, big x 100%
+base  2 dxsq   digit/T.xm/A.X           probe_a: cost 4, levels [1, 23, 353, 5205, 186253], 0s, stop 'budget: level 4 streamed (over 30000 states)'
+      step: L.A[INC.X INC.X] T.mod
+      D.2[T.step] MOV.X.A CLR.A L.X[L.X[INC.A]] L.A[MOV.X.A T.mod]: rows k=10 1000/1000, big x 100%
+base  2 dpow2  digit/target/A.X         probe_b: cost None, levels [1, 23, 348, 5030, 68849, 2366585], 3s, stop 'budget: level 5 streamed (over 1000000 states)'
+base 10 dxmod  digit/target/A.X         probe_b: cost None, levels [1, 24, 392, 6351, 98566, 3351645], 4s, stop 'budget: level 5 streamed (over 1000000 states)'
+base 10 dxsq   digit/T.xm/A.X           probe_b: cost None, levels [1, 25, 435, 7440, 120719, 4167518], 6s, stop 'budget: level 5 streamed (over 1000000 states)'
+base 10 dpow2  digit/target/A.X         probe_b: cost None, levels [1, 24, 392, 6351, 98531, 3348644], 3s, stop 'budget: level 5 streamed (over 1000000 states)'
+$NV -m bar3.scale.digits.tiny probe  18.99s user 0.77s system 99% cpu 19.809 total

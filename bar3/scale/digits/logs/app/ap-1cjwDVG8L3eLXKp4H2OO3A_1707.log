@@ -1,0 +1,14 @@
+[lp_clean_d_src_dxmod_dg1] round 0: target probe mdl 177.3 best [9, 10, 10, 11, 12]; pool 232
+[lp_clean_d_ctl_dxmod_dg1] round 0: target probe mdl 177.3 best [9, 10, 10, 11, 12]; pool 225
+[lp_clean_d_src_dxsq_dg1] round 0: target probe mdl 146.1 best [10, 14, 14, 15, 16]; pool 243
+  subgoal: law/mod(X,N)/rows {'law': 'mod(mul(g,g),N)', 'table': 945, 'how': 'g,N', 'pure': 1000, 'key': (1, 945)}
+[lp_clean_d_ctl_dxsq_dg1] round 0: target probe mdl 146.1 best [10, 14, 14, 15, 16]; pool 243
+  subgoal: law/mod(X,N)/rows {'law': 'mod(mul(g,g),N)', 'table': 945, 'how': 'g,N', 'pure': 1000, 'key': (1, 945)}
+[lp_clean_d_src_dpow2_dg1] round 0: target probe mdl 147.0 best [12, 12, 12, 15, 16]; pool 241
+  subgoal: value/D.10[DEC.N MOV.A.N] -> N {'law': None, 'table': 90, 'how': 'g,x', 'pure': 1000, 'key': (0, 90)}
+[lp_clean_d_ctl_dpow2_dg1] round 0: target probe mdl 147.0 best [12, 12, 12, 15, 16]; pool 234
+  subgoal: value/D.10[DEC.N MOV.A.N] -> N {'law': None, 'table': 90, 'how': 'g,x', 'pure': 1000, 'key': (0, 90)}
+  probes: trivial 13, learnable 103, alias 0, duplicate 49, unsolved 60
+  probes: trivial 13, learnable 103, alias 0, duplicate 49, unsolved 67
+  probes: trivial 10, learnable 107, alias 0, duplicate 44, unsolved 80
+  probes: trivial 10, learnable 107, alias 0, duplicate 44, unsolved 73

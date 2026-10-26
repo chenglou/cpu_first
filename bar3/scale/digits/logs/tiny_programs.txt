@@ -1,0 +1,27 @@
+The check at big x: N <= 10, 20 values of x with 6–8 digits per N; cap 10⁹; budget 100,000 steps. The rows at k = 7 and k = 10 on the target's machines (20,000 and 100,000 steps)
+
+x mod N
+  counting (L.X)         rows k=7 490/490  k=10 1000/1000  | big x: 0% right within the budget; 198 of 200 over 10⁷ steps | steps at x = 10³, 10⁴, 10⁵ (N = 7): 25,858, 258,572, 2,585,715
+      L.X[INC.A MOV.X.A T.mod]
+  unary digits (D.1)     rows k=7 490/490  k=10 1000/1000  | big x: 0% right within the budget; 198 of 200 over 10⁷ steps | steps at x = 10³, 10⁴, 10⁵ (N = 7): 25,858, 258,572, 2,585,715
+      D.1[INC.A MOV.X.A T.mod]
+  binary digits (D.2)    rows k=7 490/490  k=10 1000/1000  | big x: 100% right within the budget; max 1,401 steps | steps at x = 10³, 10⁴, 10⁵ (N = 7): 348, 467, 674
+      D.2[L.A[INC.X] L.A[INC.X] T.mod]
+  decimal digits (D.10)  rows k=7 490/490  k=10 1000/1000  | big x: 100% right within the budget; max 15,760 steps | steps at x = 10³, 10⁴, 10⁵ (N = 7): 1,159, 2,567, 3,456
+      D.10[MOV.T.A L.T[INC.X INC.X INC.X INC.X INC.X INC.X INC.X INC.X INC.X INC.X] T.mod L.A[MOV.X.A T.mod]]
+
+x² mod N
+  counting (L.X)         rows k=7 490/490  k=10 1000/1000 (dead at machine_for's steps) | big x: 0% right within the budget; 198 of 200 over 10⁷ steps | steps at x = 10³, 10⁴, 10⁵ (N = 7): 26,833, 259,008, 2,586,394
+      L.X[INC.A MOV.X.A T.mod] MOV.X.A CLR.A L.X[L.X[INC.A]] L.A[MOV.X.A T.mod]
+  binary digits (D.2)    rows k=7 490/490  k=10 1000/1000  | big x: 100% right within the budget; max 4,234 steps | steps at x = 10³, 10⁴, 10⁵ (N = 7): 1,323, 903, 1,353
+      D.2[L.A[INC.X] L.A[INC.X] T.mod] MOV.X.A CLR.A L.X[L.X[INC.A]] L.A[MOV.X.A T.mod]
+  decimal digits (D.10)  rows k=7 490/490  k=10 1000/1000 (dead at machine_for's steps) | big x: 100% right within the budget; max 17,245 steps | steps at x = 10³, 10⁴, 10⁵ (N = 7): 2,134, 3,003, 4,135
+      D.10[MOV.T.A L.T[INC.X INC.X INC.X INC.X INC.X INC.X INC.X INC.X INC.X INC.X] T.mod L.A[MOV.X.A T.mod]] MOV.X.A CLR.A L.X[L.X[INC.A]] L.A[MOV.X.A T.mod]
+
+2^x mod N
+  counting (L.X)         rows k=7 490/490  k=10 1000/1000  | big x: 0% right within the budget; 198 of 200 over 10⁷ steps | steps at x = 10³, 10⁴, 10⁵ (N = 7): 29,356, 293,356, 2,933,356
+      INC.A L.X[MOV.X.A L.A[INC.X] T.mod] MOV.X.A T.mod
+  unary digits (D.1)     rows k=7 490/490  k=10 1000/1000  | big x: 0% right within the budget; 198 of 200 over 10⁷ steps | steps at x = 10³, 10⁴, 10⁵ (N = 7): 29,356, 293,356, 2,933,356
+      INC.A D.1[MOV.X.A L.A[INC.X] T.mod] MOV.X.A T.mod
+  binary digits (D.2)    rows k=7 490/490  k=10 1000/1000 (dead at machine_for's steps) | big x: 100% right within the budget; max 42,412 steps | steps at x = 10³, 10⁴, 10⁵ (N = 7): 2,065, 2,246, 2,777
+      INC.A D.2[MOV.U.X MOV.X.A CLR.A L.X[L.X[INC.A]] L.A[MOV.X.A T.mod] L.U[MOV.X.A L.A[INC.X] T.mod]] MOV.X.A T.mod

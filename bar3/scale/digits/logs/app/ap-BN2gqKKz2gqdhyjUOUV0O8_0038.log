@@ -1,0 +1,30 @@
+[ct2a2_clean_u_ctl_dpow2_dg1] round 4: target probe mdl 14.0 best [12, 32, 32, 32]; pool 265
+  subgoal: value/M2.1 -> A {'law': 'mod(g,N)', 'table': 967, 'how': 'g,N', 'pure': 1000, 'key': (1, 967)}
+  guided target: cost None bits, levels 32 []
+  picked: ['law/gcd(X,N)/x+QN', 'value/M2.1 T.law3 -> X', 'law2/gcd(succ(X),N)', 'law/add(X,N)/x']
+    + M3.1 = L.N[INC.A]    (L.N[INC.A])
+    + M3.2 = INC.X L.X[T.mod(N,X)] M3.1    (INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + M3.3 = L.N[T.mod(N,X) M2.2] M3.1    (L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + T.val14 = M2.1 M1.1    (INC.T L.X[L.T[INC.T] MOV.X.T MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.T.A] MOV.X.T MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.X[INC.X MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.add(X,N) = MOV.A.N L.X[INC.A]    (MOV.A.N L.X[INC.A])
+  target: cost None levels [1, 38, 1223, 35278, 952793, 45708088] []
+[ct2a2_clean_u_src_dpow2_dg1] round 4: target probe mdl 14.0 best [12, 32, 32, 32]; pool 337
+  subgoal: value/T.val14 DEC.A -> A {'law': 'monus(g,div(g,2))', 'table': 991, 'how': 'g', 'pure': 1000, 'key': (1, 991)}
+  probes: trivial 81, learnable 135, alias 1, duplicate 31, unsolved 17
+  probes: trivial 89, learnable 146, alias 0, duplicate 84, unsolved 18
+  guided target: cost None bits, levels 32 []
+  picked: ['law/mul(N,N)/x', 'law2/eq(add(X,X),N)', 'law2/min(monus(N,X),X)', 'law/div(N,X)/x+N']
+    + M4.1 = M2.1 MOV.N.A M0.1    (MOV.A.N L.X[DEC.A] MOV.N.A MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + T.mul(N,N) = MOV.X.N T.mul(X,N)    (MOV.X.N L.N[L.X[INC.A]])
+    + T.law18 = L.X[M1.1 INC.X] INC.X T.monus(X,N)@x+qN    (L.X[L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] INC.X] INC.X MOV.A.X L.N[DEC.A])
+    + T.law19 = L.X[DEC.N] T.monus(X,N)@x+qN MOV.N.A T.monus(X,N)@x+qN    (L.X[DEC.N] MOV.A.X L.N[DEC.A] MOV.N.A MOV.A.X L.N[DEC.A])
+    + T.div(N,X)@x+N = INC.N M2.1    (INC.N MOV.A.N L.X[DEC.A])
+  target: cost None levels [1, 42, 1266, 33417, 830035, 39075387] []
+  guided target: cost None bits, levels 32 []
+  picked: ['law/mul(N,N)/x', 'law2/eq(add(X,X),N)', 'law2/min(monus(N,X),X)', 'law/div(N,X)/x+N']
+    + M4.1 = M2.1 MOV.N.A M0.1    (MOV.A.N L.X[DEC.A] MOV.N.A MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + T.mul(N,N) = MOV.X.N T.mul(X,N)    (MOV.X.N L.N[L.X[INC.A]])
+    + T.law18 = L.X[M1.1 INC.X] INC.X T.monus(X,N)@x+qN    (L.X[L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] INC.X] INC.X MOV.A.X L.N[DEC.A])
+    + T.law19 = L.X[DEC.N] T.monus(X,N)@x+qN MOV.N.A T.monus(X,N)@x+qN    (L.X[DEC.N] MOV.A.X L.N[DEC.A] MOV.N.A MOV.A.X L.N[DEC.A])
+    + T.div(N,X)@x+N = INC.N M2.1    (INC.N MOV.A.N L.X[DEC.A])
+  target: cost None levels [1, 42, 1266, 33417, 830035, 39075387] []

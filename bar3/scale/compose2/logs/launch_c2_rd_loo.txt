@@ -1,0 +1,38 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-yflupemrMgMmPD0vbgLDrR
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose2/modal_compose
+│   2.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/__init__.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/bar3/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose2
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/one-layer-deeper/data/generated/squaring_mo
+│   d_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/library
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/self_practice
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/integration/lib
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors
+└── 🔨 Created function run_b200.
+spawned c2_b2_rd_no_lawnear fc-01M5WEW1MEB35B9V1Q0276CDFD 08:57:07 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "7", "SECONDS": "2400", "SOURCES": "law,restrict,project,value,rest", "LAWS": "lt;red;add;mul;acc.mul", "PATTERNS": "pair;x,o;o,x,d", "CLEAN_VALUES": "1", "SUBGOAL": "1", "ROWCHECK": "1", "TIEBREAK": "1", "RESTRICT_ROWS": "1", "SPELL": "16", "REST_DEEP": "1", "TAG": "c2_b2_rd_no_lawnear"}
+spawned c2_b2_rd_no_subgoal fc-01M5WEW1RM19TTE3XY315YCEY2 08:57:07 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "7", "SECONDS": "2400", "SOURCES": "law,restrict,project,value,rest", "LAWS": "lt;red;add;mul;acc.mul", "PATTERNS": "pair;x,o;o,x,d", "CLEAN_VALUES": "1", "LAWNEAR": "1", "ROWCHECK": "1", "TIEBREAK": "1", "RESTRICT_ROWS": "1", "SPELL": "16", "REST_DEEP": "1", "TAG": "c2_b2_rd_no_subgoal"}
+spawned c2_b2_rd_no_spell fc-01M5WEW1WJRWDTXGT34V3EP2B7 08:57:07 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "7", "SECONDS": "2400", "SOURCES": "law,restrict,project,value,rest", "LAWS": "lt;red;add;mul;acc.mul", "PATTERNS": "pair;x,o;o,x,d", "CLEAN_VALUES": "1", "SUBGOAL": "1", "LAWNEAR": "1", "ROWCHECK": "1", "TIEBREAK": "1", "RESTRICT_ROWS": "1", "REST_DEEP": "1", "TAG": "c2_b2_rd_no_spell"}
+spawned c2_b2_rd_no_clean_values fc-01M5WEW20R58KR76Q356XBWG0D 08:57:08 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "7", "SECONDS": "2400", "SOURCES": "law,restrict,project,value,rest", "LAWS": "lt;red;add;mul;acc.mul", "PATTERNS": "pair;x,o;o,x,d", "SUBGOAL": "1", "LAWNEAR": "1", "ROWCHECK": "1", "TIEBREAK": "1", "RESTRICT_ROWS": "1", "SPELL": "16", "REST_DEEP": "1", "TAG": "c2_b2_rd_no_clean_values"}
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 7, 'search_s': 900.0, 'fuse': 4, 'patterns': ['pair', 'x,o', 'o,x,d'], 'laws': ['lt', 'red', 'add', 'mul', 'acc.mul'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'subgoal': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'rest_deep': True, 'spell': 16}
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 7, 'search_s': 900.0, 'fuse': 4, 'patterns': ['pair', 'x,o', 'o,x,d'], 'laws': ['lt', 'red', 'add', 'mul', 'acc.mul'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'subgoal': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'rest_deep': True}
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 7, 'search_s': 900.0, 'fuse': 4, 'patterns': ['pair', 'x,o', 'o,x,d'], 'laws': ['lt', 'red', 'add', 'mul', 'acc.mul'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'rest_deep': True, 'spell': 16}
+UNIT      2.2s +    2.2s L0 pose: 34 candidates on 20 roots | GPU peak 1.4 GiB
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 7, 'search_s': 900.0, 'fuse': 4, 'patterns': ['pair', 'x,o', 'o,x,d'], 'laws': ['lt', 'red', 'add', 'mul', 'acc.mul'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'subgoal': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'rest_deep': True, 'spell': 16}
+UNIT      2.3s +    2.3s L0 pose: 34 candidates on 20 roots | GPU peak 1.4 GiB
+[modal-client] 2026-10-26T08:57:18-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-yflupemrMgMmPD0vbgLDrR

@@ -1,0 +1,83 @@
+device NVIDIA B200 config {'rule': 'lp', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 10, 'search_s': 900.0, 'fuse': 4, 'patterns': [], 'laws': None, 'target': 'small', 'sources': ['restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'subgoal': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'spell': 16}
+UNIT      2.4s +    2.4s L0 pose: 10 candidates on 8 roots | GPU peak 1.4 GiB
+UNIT     14.8s +   12.4s L0 probe 8 roots 12.4s solved {'val.15/tgt@XN': 2} [('routines', 12.1)] | GPU peak 17.9 GiB
+UNIT     14.8s +    0.0s L0 choose (lp): {'unsolved': 9, 'learnable': 1}; picks [('val.15/tgt@XN', 2, 'LDA.X SHL.A')] | GPU peak 17.9 GiB
+UNIT     14.8s +    0.0s L0 sleep: T.val.15.tgt.XN=LDA.X SHL.A | GPU peak 17.9 GiB
+UNIT     17.2s +    2.4s L0 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 2.2s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 [] | GPU peak 17.9 GiB
+UNIT     18.2s +    1.0s L1 pose: 10 candidates on 8 roots | GPU peak 17.9 GiB
+UNIT     32.7s +   14.5s L1 probe 8 roots 14.5s solved {'val.36/tgt@XN': 1} [('routines', 12.5), ('primitives', 1.6)] | GPU peak 18.1 GiB
+UNIT     32.7s +    0.0s L1 deep: [('rst4@XN', {'target': 0.42857142857142855}), ('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rst2@XN', {'target': 0.36363636363636365}), ('rst1@XN', {'target': 0.35714285714285715}), ('rst5@XN', {'target': 0.3}), ('rst3@XN', {'target': 0.2857142857142857}), ('rst6@XN', {'target': 0.2222222222222222}), ('rest.36@XN', {'target': 0.09090909090909091})] | GPU peak 18.1 GiB
+UNIT     41.8s +    9.1s L1 deep ['rst4@XN', 'tgt@XN', 'rst2@XN', 'rst1@XN'] 9.1s solved {'val.36/tgt@XN': 1} [('deep []', 9.0)] | GPU peak 22.6 GiB
+UNIT     44.5s +    2.8s L1 deep ['rst5@XN', 'rst3@XN', 'rst6@XN', 'rest.36@XN'] 2.8s solved {} [('deep []', 2.8)] | GPU peak 22.6 GiB
+UNIT     44.5s +    0.0s L1 choose (lp): {'unsolved': 9, 'trivial': 1}; picks [] | GPU peak 22.6 GiB
+UNIT     44.5s +    0.0s L1 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.6 GiB
+UNIT     46.1s +    1.6s L1 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 1.4s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 [] | GPU peak 22.6 GiB
+UNIT     47.4s +    1.2s L2 pose: 10 candidates on 8 roots | GPU peak 22.6 GiB
+UNIT     60.8s +   13.5s L2 probe 8 roots 13.5s solved {'val.55/tgt@XN': 1} [('routines', 11.9), ('primitives', 1.5)] | GPU peak 22.6 GiB
+UNIT     60.8s +    0.0s L2 deep: [('rst4@XN', {'target': 0.42857142857142855}), ('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rest.55@XN', {'target': 0.38461538461538464}), ('rst2@XN', {'target': 0.36363636363636365}), ('rst1@XN', {'target': 0.35714285714285715}), ('rst5@XN', {'target': 0.3}), ('rst3@XN', {'target': 0.2857142857142857}), ('rst6@XN', {'target': 0.2222222222222222})] | GPU peak 22.6 GiB
+UNIT     69.5s +    8.7s L2 deep ['rst4@XN', 'tgt@XN', 'rest.55@XN', 'rst2@XN'] 8.7s solved {'val.55/tgt@XN': 1} [('deep []', 8.7)] | GPU peak 22.6 GiB
+UNIT     72.2s +    2.6s L2 deep ['rst1@XN', 'rst5@XN', 'rst3@XN', 'rst6@XN'] 2.6s solved {} [('deep []', 2.6)] | GPU peak 22.6 GiB
+UNIT     72.2s +    0.0s L2 choose (lp): {'unsolved': 9, 'trivial': 1}; picks [] | GPU peak 22.6 GiB
+UNIT     72.2s +    0.0s L2 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.6 GiB
+UNIT     74.0s +    1.9s L2 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 1.7s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 [] | GPU peak 22.6 GiB
+UNIT     75.0s +    1.0s L3 pose: 10 candidates on 8 roots | GPU peak 22.6 GiB
+UNIT     88.8s +   13.8s L3 probe 8 roots 13.8s solved {'val.74/tgt@XN': 1} [('routines', 12.0), ('primitives', 1.8)] | GPU peak 22.6 GiB
+UNIT     88.8s +    0.0s L3 deep: [('rst4@XN', {'target': 0.42857142857142855}), ('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rst2@XN', {'target': 0.36363636363636365}), ('rst1@XN', {'target': 0.35714285714285715}), ('rst5@XN', {'target': 0.3}), ('rst3@XN', {'target': 0.2857142857142857}), ('rest.74@XN', {'target': 0.23076923076923078}), ('rst6@XN', {'target': 0.2222222222222222})] | GPU peak 22.6 GiB
+UNIT     97.4s +    8.6s L3 deep ['rst4@XN', 'tgt@XN', 'rst2@XN', 'rst1@XN'] 8.6s solved {'val.74/tgt@XN': 1} [('deep []', 8.6)] | GPU peak 22.6 GiB
+UNIT    100.1s +    2.7s L3 deep ['rst5@XN', 'rst3@XN', 'rest.74@XN', 'rst6@XN'] 2.7s solved {} [('deep []', 2.7)] | GPU peak 22.6 GiB
+UNIT    100.1s +    0.0s L3 choose (lp): {'unsolved': 9, 'trivial': 1}; picks [] | GPU peak 22.6 GiB
+UNIT    100.1s +    0.0s L3 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.6 GiB
+UNIT    102.1s +    2.0s L3 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 1.9s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 [] | GPU peak 22.6 GiB
+UNIT    103.2s +    1.1s L4 pose: 10 candidates on 8 roots | GPU peak 22.6 GiB
+UNIT    116.8s +   13.5s L4 probe 8 roots 13.5s solved {'val.93/tgt@XN': 1} [('routines', 11.8), ('primitives', 1.7)] | GPU peak 22.6 GiB
+UNIT    116.8s +    0.0s L4 deep: [('rst4@XN', {'target': 0.42857142857142855}), ('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rst2@XN', {'target': 0.36363636363636365}), ('rst1@XN', {'target': 0.35714285714285715}), ('rst5@XN', {'target': 0.3}), ('rst3@XN', {'target': 0.2857142857142857}), ('rst6@XN', {'target': 0.2222222222222222}), ('rest.93@XN', {'target': 0.15384615384615385})] | GPU peak 22.6 GiB
+UNIT    125.4s +    8.6s L4 deep ['rst4@XN', 'tgt@XN', 'rst2@XN', 'rst1@XN'] 8.6s solved {'val.93/tgt@XN': 1} [('deep []', 8.6)] | GPU peak 22.6 GiB
+UNIT    128.1s +    2.7s L4 deep ['rst5@XN', 'rst3@XN', 'rst6@XN', 'rest.93@XN'] 2.7s solved {} [('deep []', 2.7)] | GPU peak 22.6 GiB
+UNIT    128.1s +    0.0s L4 choose (lp): {'unsolved': 9, 'trivial': 1}; picks [] | GPU peak 22.6 GiB
+UNIT    128.1s +    0.0s L4 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.6 GiB
+UNIT    129.8s +    1.7s L4 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 1.5s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 [] | GPU peak 22.6 GiB
+UNIT    131.0s +    1.3s L5 pose: 10 candidates on 8 roots | GPU peak 22.6 GiB
+UNIT    144.9s +   13.8s L5 probe 8 roots 13.8s solved {'val.112/tgt@XN': 1} [('routines', 12.1), ('primitives', 1.7)] | GPU peak 22.6 GiB
+UNIT    144.9s +    0.0s L5 deep: [('rst4@XN', {'target': 0.42857142857142855}), ('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rst2@XN', {'target': 0.36363636363636365}), ('rest.112@XN', {'target': 0.35714285714285715}), ('rst1@XN', {'target': 0.35714285714285715}), ('rst5@XN', {'target': 0.3}), ('rst3@XN', {'target': 0.2857142857142857}), ('rst6@XN', {'target': 0.2222222222222222})] | GPU peak 22.6 GiB
+UNIT    153.4s +    8.6s L5 deep ['rst4@XN', 'tgt@XN', 'rst2@XN', 'rest.112@XN'] 8.6s solved {'val.112/tgt@XN': 1} [('deep []', 8.6)] | GPU peak 22.6 GiB
+UNIT    156.1s +    2.6s L5 deep ['rst1@XN', 'rst5@XN', 'rst3@XN', 'rst6@XN'] 2.6s solved {} [('deep []', 2.6)] | GPU peak 22.6 GiB
+UNIT    156.1s +    0.0s L5 choose (lp): {'unsolved': 9, 'trivial': 1}; picks [] | GPU peak 22.6 GiB
+UNIT    156.1s +    0.0s L5 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.6 GiB
+UNIT    158.0s +    1.9s L5 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 1.7s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 [] | GPU peak 22.6 GiB
+UNIT    159.0s +    1.1s L6 pose: 10 candidates on 8 roots | GPU peak 22.6 GiB
+UNIT    172.5s +   13.5s L6 probe 8 roots 13.5s solved {'val.131/tgt@XN': 1} [('routines', 11.8), ('primitives', 1.6)] | GPU peak 22.6 GiB
+UNIT    172.5s +    0.0s L6 deep: [('rst4@XN', {'target': 0.42857142857142855}), ('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rest.131@XN', {'target': 0.4}), ('rst2@XN', {'target': 0.36363636363636365}), ('rst1@XN', {'target': 0.35714285714285715}), ('rst5@XN', {'target': 0.3}), ('rst3@XN', {'target': 0.2857142857142857}), ('rst6@XN', {'target': 0.2222222222222222})] | GPU peak 22.6 GiB
+UNIT    181.2s +    8.6s L6 deep ['rst4@XN', 'tgt@XN', 'rest.131@XN', 'rst2@XN'] 8.6s solved {'val.131/tgt@XN': 1} [('deep []', 8.6)] | GPU peak 22.6 GiB
+UNIT    183.8s +    2.6s L6 deep ['rst1@XN', 'rst5@XN', 'rst3@XN', 'rst6@XN'] 2.6s solved {} [('deep []', 2.6)] | GPU peak 22.6 GiB
+UNIT    183.8s +    0.0s L6 choose (lp): {'unsolved': 9, 'trivial': 1}; picks [] | GPU peak 22.6 GiB
+UNIT    183.8s +    0.0s L6 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.6 GiB
+UNIT    185.7s +    1.9s L6 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 1.8s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 [] | GPU peak 22.6 GiB
+UNIT    186.8s +    1.1s L7 pose: 10 candidates on 8 roots | GPU peak 22.6 GiB
+UNIT    200.2s +   13.3s L7 probe 8 roots 13.3s solved {'val.150/tgt@XN': 1} [('routines', 12.0), ('primitives', 1.2)] | GPU peak 22.6 GiB
+UNIT    200.2s +    0.0s L7 deep: [('rst4@XN', {'target': 0.42857142857142855}), ('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rest.150@XN', {'target': 0.36363636363636365}), ('rst2@XN', {'target': 0.36363636363636365}), ('rst1@XN', {'target': 0.35714285714285715}), ('rst5@XN', {'target': 0.3}), ('rst3@XN', {'target': 0.2857142857142857}), ('rst6@XN', {'target': 0.2222222222222222})] | GPU peak 22.6 GiB
+UNIT    209.3s +    9.1s L7 deep ['rst4@XN', 'tgt@XN', 'rest.150@XN', 'rst2@XN'] 9.1s solved {'val.150/tgt@XN': 1} [('deep []', 9.1)] | GPU peak 22.6 GiB
+UNIT    211.9s +    2.6s L7 deep ['rst1@XN', 'rst5@XN', 'rst3@XN', 'rst6@XN'] 2.6s solved {} [('deep []', 2.6)] | GPU peak 22.6 GiB
+UNIT    211.9s +    0.0s L7 choose (lp): {'unsolved': 9, 'trivial': 1}; picks [] | GPU peak 22.6 GiB
+UNIT    211.9s +    0.0s L7 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.6 GiB
+UNIT    213.7s +    1.8s L7 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 1.6s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 [] | GPU peak 22.6 GiB
+UNIT    215.0s +    1.3s L8 pose: 10 candidates on 8 roots | GPU peak 22.6 GiB
+UNIT    228.6s +   13.6s L8 probe 8 roots 13.6s solved {'val.169/tgt@XN': 1} [('routines', 11.9), ('primitives', 1.7)] | GPU peak 22.6 GiB
+UNIT    228.6s +    0.0s L8 deep: [('rst4@XN', {'target': 0.42857142857142855}), ('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rst2@XN', {'target': 0.36363636363636365}), ('rst1@XN', {'target': 0.35714285714285715}), ('rst5@XN', {'target': 0.3}), ('rst3@XN', {'target': 0.2857142857142857}), ('rest.169@XN', {'target': 0.2727272727272727}), ('rst6@XN', {'target': 0.2222222222222222})] | GPU peak 22.6 GiB
+UNIT    237.3s +    8.7s L8 deep ['rst4@XN', 'tgt@XN', 'rst2@XN', 'rst1@XN'] 8.7s solved {'val.169/tgt@XN': 1} [('deep []', 8.7)] | GPU peak 22.6 GiB
+UNIT    240.0s +    2.7s L8 deep ['rst5@XN', 'rst3@XN', 'rest.169@XN', 'rst6@XN'] 2.7s solved {} [('deep []', 2.7)] | GPU peak 22.6 GiB
+UNIT    240.0s +    0.0s L8 choose (lp): {'unsolved': 9, 'trivial': 1}; picks [] | GPU peak 22.6 GiB
+UNIT    240.0s +    0.0s L8 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.6 GiB
+UNIT    241.5s +    1.6s L8 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 1.4s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 [] | GPU peak 22.6 GiB
+UNIT    242.9s +    1.4s L9 pose: 10 candidates on 8 roots | GPU peak 22.6 GiB
+UNIT    256.4s +   13.5s L9 probe 8 roots 13.5s solved {'val.188/tgt@XN': 1} [('routines', 11.9), ('primitives', 1.6)] | GPU peak 22.6 GiB
+UNIT    256.4s +    0.0s L9 deep: [('rst4@XN', {'target': 0.42857142857142855}), ('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rst2@XN', {'target': 0.36363636363636365}), ('rst1@XN', {'target': 0.35714285714285715}), ('rst5@XN', {'target': 0.3}), ('rest.188@XN', {'target': 0.2857142857142857}), ('rst3@XN', {'target': 0.2857142857142857}), ('rst6@XN', {'target': 0.2222222222222222})] | GPU peak 22.6 GiB
+UNIT    265.1s +    8.7s L9 deep ['rst4@XN', 'tgt@XN', 'rst2@XN', 'rst1@XN'] 8.7s solved {'val.188/tgt@XN': 1} [('deep []', 8.7)] | GPU peak 22.6 GiB
+UNIT    267.8s +    2.7s L9 deep ['rst5@XN', 'rest.188@XN', 'rst3@XN', 'rst6@XN'] 2.7s solved {} [('deep []', 2.7)] | GPU peak 22.6 GiB
+UNIT    267.8s +    0.0s L9 choose (lp): {'unsolved': 9, 'trivial': 1}; picks [] | GPU peak 22.6 GiB
+UNIT    267.8s +    0.0s L9 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.6 GiB
+UNIT    269.7s +    1.9s L9 target: cost None levels [1, 33, 842, 21324, 554076, 19013832] fits [0, 4, 4, 6, 6, 7] 1.7s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 33, 798, 17352, 355347, 9744657] 0.2s exhausted cost 5 [] | GPU peak 22.6 GiB
+UNIT    269.7s +    0.0s climb done at level 10 (the level cap) | GPU peak 22.6 GiB
+TOTAL 269.7 s; rounds []
+LIB {"T.val.15.tgt.XN": "LDA.X SHL.A"}
+
+EXIT 0

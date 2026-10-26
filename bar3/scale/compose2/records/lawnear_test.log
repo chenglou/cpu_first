@@ -1,0 +1,8 @@
+1. the look's near misses: [(6, 2, 'SHR.A T.red.pair.XA'), (6, 3, 'SHR.X CLA ADC.X'), (6, 3, 'SHR.X T.val.15.tgt.XN ADC.X'), (6, 3, 'CLA T.red.pair.AX ADC.S'), (6, 3, 'T.acc.mul.o,x,d.YXA T.add.pair.AN SHR.A'), (6, 3, 'T.acc.mul.o,x,d.ANX T.red.pair.XA T.red.pair.AN'), (6, 3, 'T.red.pair.XA SHR.Y T.red.pair.AY'), (6, 3, 'SHR.A T.red.pair.XA T.red.pair.AY'), (6, 3, 'SHR.A INC T.red.pair.XA'), (6, 3, 'T.add.pair.AN SHR.A T.red.pair.XA'), (6, 3, 'T.add.pair.AX SHR.A T.red.pair.XA'), (6, 3, 'W[SHR.A] T.red.pair.XA'), (3, 3, 'LDA.X STA.Y T.mul.x,o.XY')]
+   LAWNEAR's: [(3, 3, 'LDA.X STA.Y T.mul.x,o.XY', 'A')]
+2. the values posed: {'val.0': 'SHR.A', 'val.1': 'SHR.A', 'val.2': 'SHR.A', 'val.3': 'SHR.A T.red.pair.XA', 'val.4': 'SHR.X', 'val.5': 'SHR.X CLA ADC.X', 'val.6': 'SHR.X T.val.15.tgt.XN ADC.X', 'val.7': 'T.acc.mul.o,x,d.YXA', 'val.8': 'T.acc.mul.o,x,d.YXA', 'val.9': 'T.acc.mul.o,x,d.YXA T.add.pair.AN', 'val.10': 'T.acc.mul.o,x,d.YXA T.add.pair.AN SHR.A', 'val.11': 'T.acc.mul.o,x,d.ANX', 'val.12': 'T.red.pair.XA SHR.Y T.red.pair.AY', 'val.13': 'SHR.A T.red.pair.XA T.red.pair.AY', 'val.14': 'SHR.A INC T.red.pair.XA', 'val.15': 'T.add.pair.AN', 'val.16': 'T.add.pair.AN SHR.A', 'val.17': 'T.add.pair.AN SHR.A T.red.pair.XA', 'val.18': 'T.add.pair.AX', 'val.19': 'T.add.pair.AX SHR.A', 'val.20': 'T.add.pair.AX SHR.A T.red.pair.XA', 'val.21': 'W[SHR.A]', 'val.22': 'W[SHR.A] T.red.pair.XA', 'val.23': 'LDA.X STA.Y T.mul.x,o.XY', 'val.24': 'LDA.X STA.Y T.mul.x,o.XY'}
+   the rests posed: ['rest.23@XN', 'rest.24@XN']
+3. the subgoal score: {'task': 'subgoal', 'level': 0, 'subgoal': 'val.23', 'depths': [1], 'rows': 153, 'top': [('val.23', (1, 0), 'mod(g,N)', ''), ('low', (0, 0), None, ''), ('val.24', (0, 0), None, '')]}
+PASS
+
+EXIT 0

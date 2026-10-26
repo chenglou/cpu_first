@@ -1,0 +1,35 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/chenglou92/main/ap-VdukrJkH3FphVS1bSUmMuk
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose2/modal_compose
+│   2.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/__init__.py
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/bar3/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/__init__.py
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/one-layer-deeper/data/generated/squaring_mo
+│   d_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose2
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/library
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/integration/self_practice
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/integration/lib
+├── 🔨 Created mount 
+│   /Users/chenglou/github/one-layer/cpu_first/bar3/scale/compose
+├── 🔨 Created mount /Users/chenglou/github/one-layer/cpu_first/anchors
+└── 🔨 Created function run_b200.
+spawned replay_cp_none fc-01M5WCCA40662TV3AD04EAETGN 08:13:34 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "1", "SECONDS": "2400", "SOURCES": "none", "TAG": "replay_cp_none"}
+spawned replay_cp_book_min fc-01M5WCCA811FFVDMFRCJE42D7P 08:13:35 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "law", "LAWS": "lt;red;add;mul;acc.mul", "PATTERNS": "pair;x+on;x,o;o,x,d", "TAG": "replay_cp_book_min"}
+spawned replay_cp_bar3_clean fc-01M5WCCACG2D790RVDCEHPKP02 08:13:35 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "restrict,project,value,rest", "CLEAN_VALUES": "1", "TAG": "replay_cp_bar3_clean"}
+spawned c2_b1 fc-01M5WCCAGNRMM65R01W3HC5NXW 08:13:35 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "restrict,project,value,rest", "CLEAN_VALUES": "1", "SUBGOAL": "1", "LAWNEAR": "1", "ROWCHECK": "1", "TIEBREAK": "1", "RESTRICT_ROWS": "1", "SPELL": "16", "TAG": "c2_b1"}
+spawned c2_b1_lp fc-01M5WCCAMTHC9RZC3STYK0F9E8 08:13:35 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lp", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "restrict,project,value,rest", "CLEAN_VALUES": "1", "SUBGOAL": "1", "LAWNEAR": "1", "ROWCHECK": "1", "TIEBREAK": "1", "RESTRICT_ROWS": "1", "SPELL": "16", "TAG": "c2_b1_lp"}
+spawned c2_b2 fc-01M5WCCARW97B0YV4S3EKDGQJ1 08:13:35 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lpca", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "law,restrict,project,value,rest", "LAWS": "lt;red;add;mul;acc.mul", "PATTERNS": "pair;x,o;o,x,d", "CLEAN_VALUES": "1", "SUBGOAL": "1", "LAWNEAR": "1", "ROWCHECK": "1", "TIEBREAK": "1", "RESTRICT_ROWS": "1", "SPELL": "16", "TAG": "c2_b2"}
+spawned c2_b2_lp fc-01M5WCCAX20SF2DAGR2T62JBBG 08:13:35 {"MODULE": "bar3.scale.compose2.core_c2", "TARGET": "small", "ROUND_TOO": "1", "RULE": "lp", "NP": "8", "DEEP_BY": "bindings", "DEEP_FOCUS": "closure", "LEVELS": "10", "SECONDS": "2400", "SOURCES": "law,restrict,project,value,rest", "LAWS": "lt;red;add;mul;acc.mul", "PATTERNS": "pair;x,o;o,x,d", "CLEAN_VALUES": "1", "SUBGOAL": "1", "LAWNEAR": "1", "ROWCHECK": "1", "TIEBREAK": "1", "RESTRICT_ROWS": "1", "SPELL": "16", "TAG": "c2_b2_lp"}
+[modal-client] 2026-10-26T08:13:45-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/chenglou92/main/ap-VdukrJkH3FphVS1bSUmMuk

@@ -1,0 +1,8 @@
+device cpu budget 20000
+1. CLA P[BRG.X B[T.red.pair.AN]] (cost 5): goal on the probes True, accepted True, state key 1707955313361935800
+1. LDA.N P[BRG.X B[T.red.pair.AN]] (cost 5): goal on the probes True, accepted True, state key 1707955313361935800
+2. the search over the primitives and ['T.lt.pair.AN', 'T.red.pair.AN']: found None, sizes [1, 34, 920, 31880], budget: level 3 streamed (over 20000 states), 0 s; aliases []
+3. the acceptor was handed 0 programs in 0 calls; CLA P[BRG.X B[T.red.pair.AN]] among them: False; LDA.N P[BRG.X B[T.red.pair.AN]] among them: False
+4. level 1: 34 held states, 0 of them goal states (a spelling for the first 50,000)
+4. level 2: 920 held states, 0 of them goal states (a spelling for the first 50,000)
+EXIT spell_test

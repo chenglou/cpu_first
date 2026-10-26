@@ -1,0 +1,16 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 10000, 'round_budget': 20000, 'levels': 2, 'search_s': 60.0, 'fuse': 1, 'patterns': [], 'laws': None, 'target': 'small', 'sources': ['restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True}
+UNIT      8.5s +    8.5s L0 pose: 9 candidates on 6 roots
+UNIT     10.0s +    1.5s L0 probe 6 roots 1.5s solved {'val.10/tgt@XN': 2, 'target/rst2@XN': 1} [('routines', 1.4)]
+UNIT     10.0s +    0.0s L0 choose (lpca): {'unsolved': 7, 'learnable': 1, 'trivial': 1}; picks [('val.10/tgt@XN', 2, 'LDA.X SHL.A')]
+UNIT     10.0s +    0.0s L0 sleep: T.val.10.tgt.XN=LDA.X SHL.A
+UNIT     11.6s +    1.5s L0 target: cost None levels [1, 33, 839, 21185] fits [0, 6, 6, 6] 1.3s budget: level 3 has 21185 > 20000 states [] full size None | round: cost None levels [1, 33, 799, 17226, 483968] 0.2s budget: level 4 streamed (over 20000 states) []
+UNIT     11.7s +    0.1s L1 pose: 8 candidates on 5 roots
+UNIT     13.7s +    2.0s L1 probe 5 roots 2.0s solved {'val.25/tgt@XN': 1} [('routines', 1.1), ('primitives', 0.9)]
+UNIT     13.7s +    0.0s L1 deep: [('tgt@XN', {'low': 0.18181818181818182, 'ltx': 0.8, 'eqx': 0.6666666666666666}), ('rst3@XN', {'target': 0.4666666666666667}), ('rst1@XN', {'target': 0.2857142857142857})]
+UNIT     15.7s +    2.0s L1 deep ['tgt@XN', 'rst3@XN', 'rst1@XN'] 2.0s solved {'val.25/tgt@XN': 1} [('deep []', 1.9)]
+UNIT     15.7s +    0.0s L1 choose (lpca): {'unsolved': 7, 'trivial': 1}; picks []
+UNIT     15.7s +    0.0s L1 sleep: no new concept learnable; the next level poses practised ones' variants
+UNIT     16.0s +    0.3s L1 target: cost None levels [1, 33, 839, 21185] fits [0, 6, 6, 6] 0.1s budget: level 3 has 21185 > 20000 states [] full size None | round: cost None levels [1, 33, 799, 17226, 483968] 0.2s budget: level 4 streamed (over 20000 states) []
+UNIT     16.0s +    0.0s climb done at level 2 (the level cap)
+TOTAL 16.0 s; rounds []
+LIB {"T.val.10.tgt.XN": "LDA.X SHL.A"}

@@ -1,0 +1,15 @@
+device NVIDIA B200 budget 10000000
+1. CLA P[BRG.X B[T.red.pair.AN]] (cost 5): goal on the probes True, accepted True, state key 3416324299514358285
+1. LDA.N P[BRG.X B[T.red.pair.AN]] (cost 5): goal on the probes True, accepted True, state key 3416324299514358285
+2. the search over the primitives and every routine (the composition vocabulary): found 5, sizes [1, 56, 2658, 121948, 5603746, 309592089], budget: level 5 streamed (over 10000000 states), 71 s; aliases [(4, ['LDA.X B[P[T.red.pair.AN]]', 'LDA.X B[B[T.red.pair.AN]]'])]
+3. the acceptor was handed 144 programs in 3 calls; CLA P[BRG.X B[T.red.pair.AN]] among them: True; LDA.N P[BRG.X B[T.red.pair.AN]] among them: True
+4. level 1: 56 held states, 0 of them goal states (a spelling for the first 50,000)
+4. level 2: 2658 held states, 0 of them goal states (a spelling for the first 50,000)
+4. level 3: 121948 held states, 0 of them goal states (a spelling for the first 50,000)
+4. level 4: 5603746 held states, 1 of them goal states (a spelling for the first 50,000)
+4. level 5: 36 held states, 36 of them goal states (a spelling for the first 50,000)
+5. CLA P[BRG.X B[T.red.pair.AN]]'s state is held at level 5 (index 30): 6 spellings, the first (the one tested) 'P[BRG.X] B[P[T.red.pair.AN]]'; the reduction among them: True; accepted: ['LDA.N P[BRG.X B[T.red.pair.AN]]', 'CLA P[BRG.X B[T.red.pair.AN]]']; the first tested: True
+5. LDA.N P[BRG.X B[T.red.pair.AN]]'s state is held at level 5 (index 30): 6 spellings, the first (the one tested) 'P[BRG.X] B[P[T.red.pair.AN]]'; the reduction among them: True; accepted: ['LDA.N P[BRG.X B[T.red.pair.AN]]', 'CLA P[BRG.X B[T.red.pair.AN]]']; the first tested: True
+EXIT spell_test
+
+EXIT 0

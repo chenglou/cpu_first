@@ -1,0 +1,6 @@
+c2_b2_rd T.red.pair.AN = STA.S T.lt.pair.AN SEL.S | T.lt.pair.AN = CLC P[SBB.N INC]
+   LDA.N P[BRG.X B[T.red.pair.AN]]: x mod N on 4719 of 4719 rows (x < 1,000, N < 100)
+   CLA P[BRG.X B[T.red.pair.AN]]: x mod N on 4719 of 4719 rows (x < 1,000, N < 100)
+c2_b2_lp_rd T.red.pair.AN = T.red.pair.AY B2.4 | T.lt.pair.AN = None
+   LDA.N P[BRG.X B[T.red.pair.AN]]: x mod N on 366 of 4719 rows (x < 1,000, N < 100)
+   CLA P[BRG.X B[T.red.pair.AN]]: x mod N on 366 of 4719 rows (x < 1,000, N < 100)

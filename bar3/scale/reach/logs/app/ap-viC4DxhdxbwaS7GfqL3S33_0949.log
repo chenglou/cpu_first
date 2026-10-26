@@ -1,0 +1,10 @@
+  guided target: cost None bits, levels 33 []
+  picked: ['law2/mul(add(X,N),N)', 'restrict/target/X+X<N·N', 'law2/mul(add(X,X),N)', 'value/T.mod(X,N)@x+QN -> T']
+    + M3.1 = L.N[MOV.N.A T.add(X,N)]    (L.N[MOV.N.A MOV.A.N L.X[INC.A]])
+    + M3.2 = T.mod(X,N)@x+QN MOV.A.T    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] MOV.A.T)
+    + T.law13 = T.add(X,N) L.A[L.N[INC.T]] MOV.A.T    (MOV.A.N L.X[INC.A] L.A[L.N[INC.T]] MOV.A.T)
+    + T.res14 = T.mod(X,N)@x+QN CLR.A T.law10    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] CLR.A L.X[L.X[INC.A]] MOV.X.A L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A])
+    + T.law15 = L.N[L.X[INC.A]] L.A[INC.A]    (L.N[L.X[INC.A]] L.A[INC.A])
+  target: cost None levels [1, 38, 1071, 26894, 634304, 28567472] []
+[ct2a2_clean_b_src_bigx_deep_dxsq_rh1] round 4: target probe mdl 2207.0 best [10, 32, 32, 32]; pool 325
+  probes: trivial 104, learnable 127, alias 1, duplicate 32, unsolved 61

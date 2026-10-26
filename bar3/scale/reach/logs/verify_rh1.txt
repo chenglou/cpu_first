@@ -1,0 +1,17 @@
+ct2a2_clean_b_src_bigx_deep_dxsq_rh1.jsonl: 5 rounds; the earlier run (ct2a2_clean_b_src): did not come; rounds with its picks, library and target search: [0, 1, 2, 3, 4]; did not come
+  round 0: fifth pick None; looks with an accepted target program: 0; picked ['law/monus(X,N)/x+N', 'law/mod(X,N)/x+qN', 'law/mod(N,X)/x+N', 'law/max(X,N)/x+qN']
+  round 1: fifth pick None; looks with an accepted target program: 0; picked ['law/mod(N,X)/x', 'law2/mod(N,pred(X))', 'law/mod(X,N)/x+QN', 'law2/mod(N,succ(X))']
+  round 2: fifth pick None; looks with an accepted target program: 0; picked ['law/absdiff(X,N)/x+qN', 'law2/mod(mul(X,X),N)', 'law2/mul(pred(X),X)', 'law/add(X,N)/x']
+  round 3: fifth pick None; looks with an accepted target program: 3; picked ['law2/mul(add(X,N),N)', 'restrict/target/X+X<N·N', 'law2/mul(add(X,X),N)', 'value/T.mod(X,N)@x+QN -> T']
+  round 4: fifth pick None; looks with an accepted target program: 6; picked ['law/add(X,X)/x', 'law2/div(add(X,X),N)', 'law2/lt(add(X,X),N)', 'law/add(N,N)/x']
+lp_clean_b_src_twin5_dxmod_rh1.jsonl: 4 rounds; the earlier run (lp_clean_b_src): came in round 3; rounds with its picks, library and target search: [0]; came in round 3: D.2[MOV.T.X T.dig16]; 12 primitive; rows 490/490 and 1000/1000, big x 100%; x < 10^9 at N <= 10 1000/1000, at N <= 40 1000/1000
+  round 0: fifth pick []; looks with an accepted target program: 0; picked ['law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)', 'law2/lt(add(X,X),N)']
+  round 1: fifth pick ['law2/div(succ(X),N)']; looks with an accepted target program: 0; picked ['law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)', 'law2/div(N,pred(X))', 'law2/div(succ(X),N)']
+  round 2: fifth pick []; looks with an accepted target program: 0; picked ['law/div(X,N)/x+QN', 'law2/gcd(succ(X),N)', 'law2/gcd(pred(X),N)', 'law2/mul(add(X,N),N)']
+  round 3: fifth pick []; looks with an accepted target program: 0; picked ['project/target/lowbit', 'digit/target/A.U', 'digit/target/A.T', 'law/max(X,N)/x+qN']
+lp_clean_b_src_twin5_dxsq_rh1.jsonl: 5 rounds; the earlier run (lp_clean_b_src): did not come; rounds with its picks, library and target search: [0]; did not come
+  round 0: fifth pick []; looks with an accepted target program: 0; picked ['law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)', 'law2/lt(add(X,X),N)']
+  round 1: fifth pick ['law/mod(X,N)/x+QN']; looks with an accepted target program: 0; picked ['law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)', 'law2/div(N,pred(X))', 'law/mod(X,N)/x+QN']
+  round 2: fifth pick []; looks with an accepted target program: 0; picked ['law/div(X,N)/x+QN', 'law2/gcd(succ(X),N)', 'law2/gcd(pred(X),N)', 'law2/mul(add(X,N),N)']
+  round 3: fifth pick []; looks with an accepted target program: 0; picked ['restrict/target/N·N<X+N', 'digit/T.mod(X,N)@x+QN/A.U', 'digit/T.mod(X,N)@x+QN/A.T', 'law/max(X,N)/x+qN']
+  round 4: fifth pick []; looks with an accepted target program: 0; picked ['law/lt(N,X)/x+QN', 'law/eq(X,N)/x+QN', 'law/lt(N,X)/rows', 'law2/mul(succ(X),N)']

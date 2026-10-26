@@ -1,0 +1,12 @@
+  probes: trivial 47, learnable 125, alias 1, duplicate 67, unsolved 55
+  probes: trivial 39, learnable 128, alias 1, duplicate 61, unsolved 23
+  picked: ['project/target/lowbit', 'digit/target/A.U', 'digit/target/A.T', 'law/max(X,N)/x+qN']
+    + M3.1 = L.A[INC.X INC.X] M0.3    (L.A[INC.X INC.X] MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M3.2 = L.X[T.mod(X,N)@x+qN MOV.X.A] D.2[M0.3]    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] D.2[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + M3.3 = DEC.X MOV.A.N MOV.U.X M2.2    (DEC.X MOV.A.N MOV.U.X INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.pro14 = L.X[T.mod(X,N)@x+qN MOV.X.A] D.2[MOV.A.X]    (L.X[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.X.A] D.2[MOV.A.X])
+    + T.dig15 = MOV.X.U M3.1    (MOV.X.U L.A[INC.X INC.X] MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + T.dig16 = L.A[INC.T INC.T] MOV.X.T T.mod(X,N)@x+qN    (L.A[INC.T INC.T] MOV.X.T MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.max(X,N)@x+qN = T.mod(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.A.N L.T[MOV.A.X])
+  target: cost 3 levels [1, 43, 1481, 47990] ['D.2[MOV.T.X T.dig16]']
+  general in round 3: D.2[MOV.T.X T.dig16] = D.2[MOV.T.X L.A[INC.T INC.T] MOV.X.T MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]

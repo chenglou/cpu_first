@@ -511,6 +511,15 @@ later ones follow them as they land. None changes a certified file or record.
   - **Not reached:** 10·x² + 1. The offset poses its piece, 10X mod N, and the learner solves it, but the duplicate
     check, run on random machine states on which both programs die, calls it a copy of 3X.
   - The nine earlier held-out wins stand. Run locally from the earlier stores, $0.
+- **The duplicate check, on each problem's own rows** ([ROWCHECK.md](bar3/scale/rowcheck/ROWCHECK.md), code and records
+  in [`bar3/scale/rowcheck/`](bar3/scale/rowcheck/)). The learner had thrown 10·x² + 1's piece, 10X mod N, away as a
+  copy of 3X: its duplicate check compares programs on 24 random machine states, and both run out of steps on all of
+  them. The check now counts a problem as a copy only when the other program is right on the problem's own rows.
+  - **What changed:** 10X mod N is learnable in rounds 2 and 3; x² mod N's twin stays a copy, rightly, since one program
+    solves both.
+  - **What came:** nothing new. Hardest first never picks the piece, since 24 and then 12 problems of the same cost
+    stand ahead of it in pool order. All 11 earlier wins stand.
+  - **The predictions:** no outcome would change, and none did. $0, run locally from the earlier stores.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

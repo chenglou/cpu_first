@@ -76,9 +76,9 @@ all cheap, are not counted.
 ### 1. Pre-registered
 
 `PREREG.md`, written 2026-10-25 13:28 PDT, read-only since (sha256
-`803c70358b2c27d293c1bd7b2ac8d7df0722392111cba90041dc63c42c8cde0c`). Its written time first read 13:30. It was
-corrected to the true time, then frozen and hashed again, within the minute and before anything else ran. It records
-what ran before it:
+`803c70358b2c27d293c1bd7b2ac8d7df0722392111cba90041dc63c42c8cde0c`). Its written time first read 13:30. It was corrected
+to the true time, then frozen and hashed again, within the minute and before anything else ran. PREREG.md says this
+section repeats its text unchanged; it does not, so read PREREG.md itself. It records what ran before it:
 - the pose test (no search);
 - the replays with the sources off;
 - the replays with them on, for the triangular numbers, under hardest first to round 2 and under anchored pairs to

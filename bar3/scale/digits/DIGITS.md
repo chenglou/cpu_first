@@ -87,7 +87,8 @@ stopped the rest:
 `PREREG.md`, written 2026-10-25 09:40 PDT before any learner run and before any search on this study's problems,
 read-only since (sha256 `cf6a37167535b40e0ae0d09d3ea55530af83af202875ab6db74a4cdf0dc6dbee`; its written time was
 corrected from 09:45 to 09:40 before anything ran). It holds the question, the machine, the learner's changes, the
-targets, the check at big x and its budget, the run plan and the predictions; §6 marks each.
+targets, the check at big x and its budget, the run plan and the predictions; §6 marks each. PREREG.md says this section
+repeats its text unchanged; it does not, so read PREREG.md itself.
 
 ### 2. What was built
 

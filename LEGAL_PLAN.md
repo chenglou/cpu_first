@@ -1,7 +1,8 @@
 # From bar 3 to a contest-legal entry: a plan
 
 *Written on Oct 25, 2026, while the digits study ran. Nothing in it was run and nothing was spent. Each fact cites the
-write-up it comes from. The tests are proposals, and their costs are estimates from those write-ups' records.*
+write-up it comes from. The tests are proposals, and their costs are estimates from those write-ups' records. Since
+then, step 2 of §4 has run; its result is there.*
 
 ## In plain words
 
@@ -138,7 +139,14 @@ line is out, and nothing above matters.
    does its job inside the run. **Test:** the combined climb in the tiny core (one B200), then one official H100 run,
    about $1.5–2 if it certifies and about $4 if it uses up the hour (SP_BREADTH.md §6). The tiny core trains nothing and
    its times do not carry over to the evaluator (GENERIC_OPS.md §2.1, §3), so the H100 run is the real test. If it does
-   not fit, which piece costs the time is the finding.
+   not fit, which piece costs the time is the finding. **Result, Oct 25: not certified**
+   ([COMBINED.md](integration/combined_sp2/COMBINED.md); about $15). The file builds, and every study's local checks
+   pass on it, but on the official H100 the hour ran out in level 4 of the climb, before the reduction. The time goes to
+   two pieces together, the generated book and the generic instructions: level 3 costs 11.5 times sp2's in the tiny
+   core, mostly in setting up the same acceptance probes again for each law. With the generic settings set back to
+   sp2's, the tiny core reaches the round, using 93% of the strict work budget. Next, none run: one acceptance setup
+   shared by the laws of each pattern and binding, large counts built by doubling, and a work budget set from the
+   combined climb's own count; then the tiny core again.
 3. **The uncapped reduce search** (§2, item 3; at most about $8). If it finds the reduction: the 61-instruction climb in
    the tiny core, then in the combined file.
 4. **The subgoal score**: first as the cube's near-miss test (offline, about $1.6), then as the choosing rule (the tiny

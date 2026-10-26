@@ -14,7 +14,8 @@ signal that brings x³ and 10·x² from scratch, and add-with-carry invented at 
 Oct 25 at about 10:30, adds the held-out test of the frozen bar-3 learner, which invents 5 of 10 formulas none of its
 rules were written for, and multiply-accumulate invented at one digit place, so that all four of stage 3's digit cells
 are now invented (§4, bar 3). At about 13:00 the same day it adds a pointer to a plan from bar 3 to a contest-legal
-entry, written without runs (§7).*
+entry, written without runs (§7), and at about 17:50 the plan's first test: one file with every certified variant of
+sp2, which does not certify (§4.8).*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -263,6 +264,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 25, 10:13 `307ab93` | **bar 3 on formulas no rule was written for**: frozen, with its predictions written down first, the learner invents 5 of 10, all in round 0 or 1, and 16 of 20 predictions hold; the misses need a step no source poses or a longer program | [bar3/scale/heldout/HELDOUT.md](bar3/scale/heldout/HELDOUT.md) |
 | Oct 25, 10:22 `9b640ef` | **bar 3 invents multiply-accumulate**: a deeper search aimed at its piece, where a clean program beats a cheaper one that uses up N, so all four of stage 3's digit cells are now invented; Montgomery's quotient digit is a table of one place | [bar3/bridge/CARRY.md](bar3/bridge/CARRY.md) §12–13 |
 | Oct 25, 12:59 `160bd0f` | a plan from bar 3 to a contest-legal entry: what has to move inside the training run, what is still designed in the self-practising file, the questions only a judge can settle, and the cheapest test of each; nothing run | [LEGAL_PLAN.md](LEGAL_PLAN.md) |
+| Oct 25, 17:51 `c185410` | **every certified variant of sp2 in one file, not certified**: it builds, and every study's local check passes on it, but on the official H100 the hour runs out in level 4 of the climb, before the reduction. The generated book and the generic instructions together make level 3 cost 11.5 times sp2's | [integration/combined_sp2/COMBINED.md](integration/combined_sp2/COMBINED.md) |
 
 ### The lessons that came out of the failures
 
@@ -879,6 +881,25 @@ the conditional subtraction, the chain and long division's "bring down" itself.
   say `SHL.X SHL.A` is BRG.X in two pieces; the write-up agrees, and notes that it is the form a place-by-place law
   gives BRG.X (GENERIC_OPS.md §7).
 
+**All of them in one file: not certified** ([COMBINED.md](integration/combined_sp2/COMBINED.md), Oct 25, step 2 of
+[LEGAL_PLAN.md](LEGAL_PLAN.md) §4). `integration/combined_sp2/submission_stage3_combined.py` (`11886419`) has five of
+the variants above: the weak-check fix, the strict build, the learned loop, the generated book and the generic
+instructions. It is built from the certified files by exact, asserted edits, a rebuild gives the same bytes, and every
+study's local checks pass on it. It is 869 bytes under the 256 KiB limit.
+- It does not certify. On the official H100 the hour ran out in level 4 of the climb, in the deep probes that look for
+  the reduction (training 3,713 s, 623 steps; test 7 of 9,999). In the tiny core the climb ran out of the strict build's
+  work budget at the same stage.
+- The time goes to two pieces together. In the tiny core, level 3 takes 225 s in sp2, 559 s with the generic
+  instructions and their rules, 363 s with the generated book, and 2,585 s with both: 2.9 times what multiplying the two
+  costs would give. Most of it is setting up acceptance checks. The book poses 9 laws on each of x + o·N and x + x·N, in
+  12 bindings each; at four digits each probe takes up to 9,999 of the learner's own additions to build; and each law
+  builds the same probes again.
+- Without the generic instructions it fits, barely. With their settings set back to sp2's, the tiny core reaches the
+  round after level 5, at 1,695 s, and the learned loop finds `C.S[T.round1 STA.X]`. But that climb uses 93% of the
+  strict work budget, which was set from sp2's smaller climbs.
+- Proposed, none run: one acceptance setup shared by the laws of each pattern and binding, which leaves the climb as it
+  is; large counts built by doubling; and the work budget set from the combined climb's own count. About $15 spent.
+
 ## 5. The removal ladder
 
 Each step removed one hand-written piece. To count, it had to certify on the untouched official manifest on an H100,
@@ -1053,16 +1074,17 @@ runs left its verdict as it was (§4.5), the law ablation has all its seed-1 arm
 (§4), and bar 3's cut runs are finished (§4, bar 3). Running now, since about 10:00 PT on Oct 25: bar 3's learner on
 numbers given as digits, in unary, base 10 and base 2, to test the theory note's predictions
 ([theory/LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md) §5): 36 runs on Modal, under a spend watcher that stops them all at
-$90. Its folder, `bar3/scale/digits/`, is not committed yet. Queued after it, approved on Oct 25: the two practice
-sources the held-out test found missing, a running sum's step and the answer less its answer at x = 0 (HELDOUT.md §7,
-SUBGOAL.md §8).
+$90. Its folder, `bar3/scale/digits/`, is not committed yet. Also running, on the laptop since the afternoon of Oct 25:
+the two practice sources the held-out test found missing, a running sum's step and the answer less its answer at x = 0
+(HELDOUT.md §7, SUBGOAL.md §8). Their folder, `bar3/scale/newton/`, is not committed yet either.
 
 Everything else described here is committed.
 
 **A plan from here to a contest-legal entry** ([LEGAL_PLAN.md](LEGAL_PLAN.md), Oct 25, no runs): what of bar 3 has to
 move inside a training run, what is still designed in the self-practising file, four questions only a judge can settle,
 and the cheapest test of each, in order. No training target may come from Python's arithmetic, so what moves from bar 3
-is a rule rebuilt on stage 3's machine, not bar 3's code.
+is a rule rebuilt on stage 3's machine, not bar 3's code. Its first test has run: one file with every certified variant
+of sp2 does not certify, because the hour runs out before the climb finds the reduction (§4.8).
 
 **Answered on Oct 23 and 24.**
 - **Which hand-made parts carry the result** (ABLATION_S3.md): two instructions, the step's two practice problems,
@@ -1187,7 +1209,7 @@ s3i: the service refused it ("Submissions are now closed"), so there is no hoste
 | [`handwired_bridge/`](handwired_bridge/) | the machine compiled by handwired into affine + ReGLU layers, loosened the same way ([HANDWIRED_BRIDGE.md](handwired_bridge/HANDWIRED_BRIDGE.md)); `h1/submission_wide_reglu.py`, which did not certify officially |
 | [`tournament/`](tournament/) | the wiring chosen inside training by tournaments ([TOURNAMENT.md](tournament/TOURNAMENT.md)): `submission_tournament.py` (step 13), the tiny machine `tiny.py`, records in `tournament/h1_records/` |
 | [`general_lessons/`](general_lessons/) | a law library, mined facts and answer-chosen lessons ([LESSONS.md](general_lessons/LESSONS.md)): `submission_general.py`, `submission_general_v2.py` and `submission_general_v3.py` (steps 14, 15 and 18); one fixed modulus in `fixed/` ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md)); records in `records/` and `fixed/records/` |
-| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/`. The ablation of s3i's hand-made parts ([ABLATION_S3.md](integration/ABLATION_S3.md), in `ablation_s3/`, its fixed checks in `ablation_s3/fix/`, and fixed copies of eight more certified files in a `fix/` folder of each one's study), and stage 3 with self-posed practice ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), in `self_practice/`: `submission_stage3_sp.py` and `submission_stage3_sp2.py`, step 19). The variants of §4.8: the loop over T learned ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), in `learned_loop/`), strict builds ([STRICT.md](integration/strict/STRICT.md), in `strict/`) and breadth at full size ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md), in `sp_breadth/`); which laws self-practice needs, with the smaller and generated books ([SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md), in `sp_ablation/`); and generic instructions in place of SEL.S and BRG.X ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md), in `generic_ops/`) |
+| [`integration/`](integration/) | the tournament, the general lessons and the library in one model ([INTEGRATION.md](integration/INTEGRATION.md)): `submission_stage1.py` (step 16), `submission_stage3_s3i.py` (step 17, the best model) and the earlier stage-3 builds, the climb's library in `lib/`, records in `records/`. The ablation of s3i's hand-made parts ([ABLATION_S3.md](integration/ABLATION_S3.md), in `ablation_s3/`, its fixed checks in `ablation_s3/fix/`, and fixed copies of eight more certified files in a `fix/` folder of each one's study), and stage 3 with self-posed practice ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md), in `self_practice/`: `submission_stage3_sp.py` and `submission_stage3_sp2.py`, step 19). The variants of §4.8: the loop over T learned ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), in `learned_loop/`), strict builds ([STRICT.md](integration/strict/STRICT.md), in `strict/`) and breadth at full size ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md), in `sp_breadth/`); which laws self-practice needs, with the smaller and generated books ([SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md), in `sp_ablation/`); and generic instructions in place of SEL.S and BRG.X ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md), in `generic_ops/`); and five of them in one file, not certified ([COMBINED.md](integration/combined_sp2/COMBINED.md), in `combined_sp2/`) |
 | [`HANDOVER.md`](HANDOVER.md) | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, what is tracked and what is on disk only |
 | [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |

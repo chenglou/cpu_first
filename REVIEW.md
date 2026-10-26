@@ -905,6 +905,9 @@ fix.
     T = 64. It needs the subgoal score's law view, a deeper probe aimed at the subgoal's rest, and a search that tests
     more than one spelling per state.
   - **What didn't:** bar 3's set alone, since the multiply is out of reach without the multiply-add row. About $30.
+- **Composition, round 3** ([COMPOSE3.md](bar3/scale/compose3/COMPOSE3.md), code and records in
+  [`bar3/scale/compose3/`](bar3/scale/compose3/)). Without the book's multiply-add row, bar 3's set never gets the
+  multiply; and round 2's winning setup fails on x³ and 10·x² + 1 mod N, so its route is shaped to x². About $8.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

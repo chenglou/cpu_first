@@ -1,0 +1,133 @@
+[lp_clean_deep_sub_ns_tri_nw1] round 0: target probe mdl 100.2 best [11, 14, 14, 17, 17, 17]; pool 272
+  ran probe_a rsum/A.X: cost None, 0s
+  ran probe_a rsum/A.U: cost None, 0s
+  ran probe_a rsum/A.T: cost None, 0s
+  ran probe_a rsum/U.X: cost None, 0s
+  ran probe_a rsum/U.T: cost None, 0s
+  ran probe_a rsum/T.X: cost None, 0s
+  ran probe_a rsum/T.U: cost None, 0s
+  ran probe_b rsum/A.X: cost None, 1s
+  ran probe_b rsum/A.U: cost None, 1s
+  ran probe_b rsum/A.T: cost None, 1s
+  ran probe_b rsum/U.X: cost None, 1s
+  ran probe_b rsum/U.T: cost None, 1s
+  ran probe_b rsum/T.X: cost None, 1s
+  ran probe_b rsum/T.U: cost None, 1s
+  probes: trivial 13, learnable 98, alias 0, duplicate 32, unsolved 129
+  guided target: cost None bits, levels 33 []
+  picked: ['law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)', 'law2/lt(add(X,X),N)']
+    + M0.1 = INC.U L.N[MOV.A.U]    (INC.U L.N[MOV.A.U])
+    + M0.2 = L.X[DEC.N DEC.N]    (L.X[DEC.N DEC.N])
+    + M0.3 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M0.4 = DEC.N L.X[DEC.N] M0.1    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U])
+    + M0.5 = MOV.A.N M0.2 L.N[DEC.A]    (MOV.A.N L.X[DEC.N DEC.N] L.N[DEC.A])
+    + T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.law2 = INC.X INC.X L.N[DEC.X] Z.X[INC.A]    (INC.X INC.X L.N[DEC.X] Z.X[INC.A])
+    + T.law4 = M0.2 INC.A Z.N[DEC.A]    (L.X[DEC.N DEC.N] INC.A Z.N[DEC.A])
+  target: cost None levels [1, 24, 414, 7172, 127697, 4827340] []
+[lp_clean_deep_sub_ns_tri_nw1] round 1: target probe mdl 85.7 best [11, 14, 17, 19, 19]; pool 277
+  ran probe_a rsum/A.X: cost 4, 0s
+  ran probe_a rsum/A.U: cost None, 0s
+  ran probe_a rsum/A.T: cost None, 0s
+  ran probe_a rsum/U.X: cost None, 0s
+  ran probe_a rsum/U.T: cost None, 0s
+  ran probe_a rsum/T.X: cost None, 0s
+  ran probe_a rsum/T.U: cost None, 0s
+  ran probe_b rsum/A.U: cost 5, 4s
+  ran probe_b rsum/A.T: cost 5, 5s
+  ran probe_b rsum/U.X: cost 5, 7s
+  ran probe_b rsum/U.T: cost None, 4s
+  ran probe_b rsum/T.X: cost 5, 7s
+  ran probe_b rsum/T.U: cost None, 4s
+  probes: trivial 14, learnable 130, alias 0, duplicate 35, unsolved 98
+  guided target: cost None bits, levels 31 []
+  picked: ['law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)', 'law2/div(N,pred(X))']
+    + M1.1 = DEC.X DEC.X INC.N L.N[M0.4]    (DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M1.2 = DEC.X M0.3 L.A[L.X[INC.A]]    (DEC.X MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.A[L.X[INC.A]])
+    + M1.3 = MOV.A.N MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M1.4 = MOV.A.N L.X[DEC.A] Z.A[M0.3]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + T.absdiff(X,N)@x+qN = MOV.A.N L.X[DEC.A] Z.A[T.mod(X,N)@x+qN]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.law7 = L.X[L.X[INC.A]] L.X[DEC.A]    (L.X[L.X[INC.A]] L.X[DEC.A])
+  target: cost None levels [1, 29, 618, 13022, 277927, 11925756] []
+[lp_clean_deep_sub_ns_tri_nw1] round 2: target probe mdl 84.4 best [11, 14, 17, 19, 20]; pool 269
+  ran probe_a rsum/A.X: cost 4, 1s
+  ran probe_a rsum/A.U: cost None, 0s
+  ran probe_a rsum/A.T: cost None, 0s
+  ran probe_a rsum/U.X: cost None, 1s
+  ran probe_a rsum/U.T: cost None, 0s
+  ran probe_a rsum/T.X: cost None, 1s
+  ran probe_a rsum/T.U: cost None, 0s
+  ran probe_b rsum/A.U: cost 5, 9s
+  ran probe_b rsum/A.T: cost 5, 8s
+  ran probe_b rsum/U.X: cost 5, 18s
+  ran probe_b rsum/U.T: cost None, 9s
+  ran probe_b rsum/T.X: cost 5, 19s
+  ran probe_b rsum/T.U: cost None, 10s
+  probes: trivial 18, learnable 148, alias 1, duplicate 30, unsolved 72
+  guided target: cost None bits, levels 30 []
+  picked: ['law/div(X,N)/x+QN', 'law2/gcd(succ(X),N)', 'law2/gcd(pred(X),N)', 'law2/mul(add(X,N),N)']
+    + M2.1 = L.N[M1.3] L.N[M0.1]    (L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.U L.N[MOV.A.U]])
+    + M2.2 = INC.N MOV.T.N MOV.N.X MOV.X.T M1.1    (INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M2.3 = L.N[INC.X] L.N[L.X[INC.A]]    (L.N[INC.X] L.N[L.X[INC.A]])
+    + T.div(X,N)@x+QN = MOV.T.X MOV.X.N MOV.N.T INC.X M1.1    (MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.law10 = INC.X L.X[M1.3] L.N[INC.A]    (INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + T.law11 = DEC.X L.N[M1.3] L.N[INC.A]    (DEC.X L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+  target: cost None levels [1, 35, 979, 27154, 739747, 36571629] []
+[lp_clean_deep_sub_ns_tri_nw1] round 3: target probe mdl 86.6 best [11, 14, 17, 19]; pool 268
+  ran probe_a rsum/A.X: cost None, 1s
+  ran probe_a rsum/A.U: cost None, 2s
+  ran probe_a rsum/A.T: cost None, 2s
+  ran probe_a rsum/U.X: cost None, 0s
+  ran probe_a rsum/U.T: cost None, 2s
+  ran probe_a rsum/T.X: cost None, 0s
+  ran probe_a rsum/T.U: cost None, 2s
+  ran probe_a offset/remainder/M0.4 -> N: cost None, 0s
+  ran probe_b rsum/A.X: cost 4, 2s
+  ran probe_b rsum/A.U: cost 5, 53s
+  ran probe_b rsum/A.T: cost 5, 47s
+  ran probe_b rsum/U.X: cost None, 2s
+  ran probe_b rsum/U.T: cost None, 52s
+  ran probe_b rsum/T.X: cost None, 3s
+  ran probe_b rsum/T.U: cost None, 50s
+  ran probe_b offset/remainder/M0.4 -> N: cost None, 62s
+  probes: trivial 19, learnable 141, alias 2, duplicate 30, unsolved 76
+  guided target: cost None bits, levels 30 []
+  picked: ['law2/mul(add(X,X),N)', 'law2/max(add(X,X),N)', 'law2/div(mul(X,X),N)', 'law2/mod(mul(X,X),N)']
+    + M3.1 = M0.2 MOV.U.X M2.3 CLR.N M2.2    (L.X[DEC.N DEC.N] MOV.U.X L.N[INC.X] L.N[L.X[INC.A]] CLR.N INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.2 = MOV.A.X T.law7 MOV.X.A CLR.A M2.2    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.A CLR.A INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M3.3 = MOV.A.X T.law7 MOV.X.N MOV.N.A M1.3    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] MOV.X.N MOV.N.A MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M3.4 = L.N[INC.N] L.N[L.X[INC.A]]    (L.N[INC.N] L.N[L.X[INC.A]])
+    + T.law13 = L.N[L.X[INC.A]] L.A[INC.A]    (L.N[L.X[INC.A]] L.A[INC.A])
+    + T.law14 = M0.2 L.X[INC.N INC.N] MOV.A.N    (L.X[DEC.N DEC.N] L.X[INC.N INC.N] MOV.A.N)
+    + T.law15 = L.X[L.X[INC.T]] MOV.X.T T.div(X,N)@x+QN    (L.X[L.X[INC.T]] MOV.X.T MOV.T.X MOV.X.N MOV.N.T INC.X DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + T.law16 = MOV.A.X T.law7 L.X[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.X L.X[L.X[INC.A]] L.X[DEC.A] L.X[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+  target: cost None levels [1, 43, 1460, 46715, 1438234, 77069902] []
+[lp_clean_deep_sub_ns_tri_nw1] round 4: target probe mdl 87.1 best [11, 14, 17, 19]; pool 247
+  ran probe_a rsum/A.X: cost None, 2s
+  ran probe_a rsum/A.U: cost None, 0s
+  ran probe_a rsum/A.T: cost None, 0s
+  ran probe_a rsum/U.X: cost None, 0s
+  ran probe_a rsum/U.T: cost None, 0s
+  ran probe_a rsum/T.X: cost None, 0s
+  ran probe_a rsum/T.U: cost None, 0s
+  ran probe_b rsum/A.X: cost 4, 6s
+  ran probe_b rsum/A.U: cost None, 4s
+  ran probe_b rsum/A.T: cost None, 4s
+  ran probe_b rsum/U.X: cost None, 7s
+  ran probe_b rsum/U.T: cost None, 4s
+  ran probe_b rsum/T.X: cost None, 7s
+  ran probe_b rsum/T.U: cost None, 4s
+  probes: trivial 20, learnable 136, alias 1, duplicate 26, unsolved 64
+  guided target: cost None bits, levels 30 []
+  picked: ['law/max(X,N)/x+qN', 'law/lt(N,X)/x+QN', 'law/eq(X,N)/x+QN', 'law2/mul(succ(X),N)']
+    + M4.1 = DEC.X MOV.A.N MOV.U.X M2.2    (DEC.X MOV.A.N MOV.U.X INC.N MOV.T.N MOV.N.X MOV.X.T DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M4.2 = INC.N M0.3 CLR.A M0.1    (INC.N MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] CLR.A INC.U L.N[MOV.A.U])
+    + M4.3 = INC.X L.N[L.X[INC.A]]    (INC.X L.N[L.X[INC.A]])
+    + M4.4 = M0.3 CLR.X T.law2 M0.5    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] CLR.X INC.X INC.X L.N[DEC.X] Z.X[INC.A] MOV.A.N L.X[DEC.N DEC.N] L.N[DEC.A])
+    + T.max(X,N)@x+qN = T.mod(X,N)@x+qN MOV.A.N L.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] MOV.A.N L.T[MOV.A.X])
+    + T.lt(N,X)@x+QN = M0.3 L.A[DEC.N MOV.A.N]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.A[DEC.N MOV.A.N])
+    + T.eq(X,N)@x+QN = T.mod(X,N)@x+qN L.A[CLR.T] MOV.A.T    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] L.A[CLR.T] MOV.A.T)
+    + T.law20 = MOV.A.N L.N[L.X[INC.A]]    (MOV.A.N L.N[L.X[INC.A]])
+  target: cost None levels [1, 48, 1758, 59766, 1951215, 114030773] []
+lp_clean_deep_sub_ns_tri_nw1: done in 453s; 1847 searches read from the stores, 70 run here
+exit 0

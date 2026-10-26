@@ -1,0 +1,9 @@
+round 2 (library of 17): offset/rrem/T.law5; rows X=0 N=1 -> 0; X=0 N=2 -> 0; X=1 N=2 -> 0; X=0 N=3 -> 0; X=1 N=3 -> 1; X=1 N=3 -> 1
+  probe_a: cost None, levels [1, 28, 648, 15071, 650538], 2s, stop 'budget: level 4 streamed (over 30000 states)'; programs []
+  probe_b: cost 5, levels [1, 28, 648, 15071, 350943, 15349930], 36s, stop 'budget: level 5 streamed (over 1000000 states)'; programs ['T.con2 MOV.A.X L.X[MOV.X.U M1.4]', 'MOV.A.X T.con2 L.X[MOV.X.U M1.4]', 'T.mod(X,N)@x+qN T.con2 L.X[MOV.X.U M1.4]']
+round 3 (library of 23): offset/rrem/T.law5; rows X=0 N=1 -> 0; X=0 N=2 -> 0; X=1 N=2 -> 0; X=0 N=3 -> 0; X=1 N=3 -> 1; X=1 N=3 -> 1
+  probe_a: cost None, levels [1, 34, 1017, 48219], 1s, stop 'budget: level 3 streamed (over 30000 states)'; programs []
+  probe_b: cost 5, levels [1, 34, 1017, 29837, 847565, 40857943], 126s, stop 'budget: level 5 streamed (over 1000000 states)'; programs ['T.con2 MOV.A.X L.X[MOV.X.U M1.4]', 'MOV.A.X T.con2 L.X[MOV.X.U M1.4]', 'T.mod(X,N)@x+qN T.con2 L.X[MOV.X.U M1.4]']
+the alias check: T.con2 MOV.A.X L.X[MOV.X.U M1.4] (10X mod N) and L.X[M0.2] (3X, law2/add(add(X,X),X)): same signature True
+  T.con2 MOV.A.X L.X[MOV.X.U M1.4]: dies on 24 of 24 test states (cap 98, 3450 steps); at N = 7, x = 1..6: [3, 6, 2, 5, 1, 4]
+  L.X[M0.2]: dies on 24 of 24 test states (cap 98, 3450 steps); at N = 7, x = 1..6: [3, 6, 9, 12, 15, 18]

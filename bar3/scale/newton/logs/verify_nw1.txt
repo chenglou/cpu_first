@@ -1,0 +1,16 @@
+ct2a2_clean_deep_sub_ns_tenrho_nw1.jsonl: 5 rounds; rounds with the earlier run's picks and library: [0, 1, 2, 3, 4]; did not come (the earlier run: did not)
+ct2a2_clean_deep_sub_ns_tri_nw1.jsonl: 2 rounds; rounds with the earlier run's picks and library: [0]; came in round 1: L.X[M1.4] = L.X[INC.U MOV.X.A L.U[INC.X MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] (11 primitive); every pair x < N <= 120: 5998/7260 (1262 out of steps) on machine_for(120), 7260/7260 with 10^9 steps
+  rsum/A.X: posed in rounds [0, 1]; learnable [(1, 4)]; picked []; other {}
+  rsum/A.U: posed in rounds [0, 1]; learnable [(1, 5)]; picked [1]; other {}
+  rsum/A.T: posed in rounds [0, 1]; learnable [(1, 5)]; picked []; other {}
+  rsum/U.X: posed in rounds [0, 1]; learnable [(1, 5)]; picked []; other {}
+  rsum/T.X: posed in rounds [0, 1]; learnable [(1, 5)]; picked []; other {}
+lp_clean_deep_sub_ns_tenrho_nw1.jsonl: 5 rounds; rounds with the earlier run's picks and library: [0, 1, 2, 3, 4]; did not come (the earlier run: did not)
+  offset/remainder/M1.4 -> A: posed in rounds [2]; learnable []; picked []; other {'duplicate': [(2, 5, 'law2/add(add(X,X),X)')]}
+  offset/rrem/T.law5: posed in rounds [3, 4]; learnable []; picked []; other {'duplicate': [(3, 5, 'law2/add(add(X,X),X)')]}
+lp_clean_deep_sub_ns_tri_nw1.jsonl: 5 rounds; rounds with the earlier run's picks and library: [0, 1, 2, 3, 4]; did not come (the earlier run: did not)
+  rsum/A.X: posed in rounds [0, 1, 2, 3, 4]; learnable [(1, 4), (2, 4), (3, 4), (4, 4)]; picked []; other {}
+  rsum/A.U: posed in rounds [0, 1, 2, 3, 4]; learnable [(1, 5), (2, 5), (3, 5)]; picked []; other {}
+  rsum/A.T: posed in rounds [0, 1, 2, 3, 4]; learnable [(1, 5), (2, 5), (3, 5)]; picked []; other {}
+  rsum/U.X: posed in rounds [0, 1, 2, 3, 4]; learnable [(1, 5), (2, 5)]; picked []; other {}
+  rsum/T.X: posed in rounds [0, 1, 2, 3, 4]; learnable [(1, 5), (2, 5)]; picked []; other {}

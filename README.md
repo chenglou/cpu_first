@@ -1,10 +1,10 @@
 # cpu_first — experiments for a CPU-first take on One Layer Deeper
 
-**The entry:** [`integration/combined_fast/submission_stage3_fast2.py`](integration/combined_fast/submission_stage3_fast2.py)
-(md5 `41b9a013ae9436d7b7a53e9e594a18db`, "fast2"). It is one training run that finds its own program: every certified
-variant of the self-practising stage-3 file combined, then made 7.7 times faster by engineering alone. It certifies
-H1 (T = 64 on both ladders, every split exact) on 8 of 8 official-manifest H100 runs, training in 759–883 s of the
-3,600; `python3 tools/verify_records.py` checks all eight records.
+**The entry:** [`submission_stage3_fast2.py`](integration/combined_fast/submission_stage3_fast2.py) in
+`integration/combined_fast/` (md5 `41b9a013ae9436d7b7a53e9e594a18db`, "fast2"). It is one training run that finds its
+own program: every certified variant of the self-practising stage-3 file combined, then made 7.7 times faster by
+engineering alone. It certifies H1 (T = 64 on both ladders, every split exact) on 8 of 8 official-manifest H100 runs,
+training in 759–883 s of the 3,600; `python3 tools/verify_records.py` checks all eight records.
 
 **Reviewing or judging the project? Start with [REVIEW.md](REVIEW.md)**: what is claimed, the one file to judge and its
 md5, how to check the official records and reproduce them, and the gray rules a judge should rule on.

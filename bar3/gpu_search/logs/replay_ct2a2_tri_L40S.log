@@ -1,0 +1,30 @@
+[ct2a2_clean_deep_sub_ns_tri_nw1] round 0: target probe mdl 100.2 best [11, 14, 14, 17, 17, 17]; pool 272
+  probes: trivial 13, learnable 98, alias 0, duplicate 32, unsolved 129
+  guided target: cost None bits, levels 34 []
+  picked: ['law/mod(X,N)/x+qN', 'law/lt(N,X)/x+QN', 'law2/mod(succ(X),X)', 'law/add(X,N)/x']
+    + M0.1 = INC.A Z.X[CLR.A]    (INC.A Z.X[CLR.A])
+    + M0.2 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.lt(N,X)@x+QN = INC.N L.X[DEC.N] Z.N[INC.A]    (INC.N L.X[DEC.N] Z.N[INC.A])
+    + T.law3 = INC.U L.X[MOV.A.T MOV.T.U]    (INC.U L.X[MOV.A.T MOV.T.U])
+    + T.add(X,N) = MOV.A.N L.X[INC.A]    (MOV.A.N L.X[INC.A])
+  target: cost None levels [1, 22, 333, 4769, 67719, 962312, 33887908] []
+[ct2a2_clean_deep_sub_ns_tri_nw1] round 1: target probe mdl 83.6 best [11, 15, 16, 19, 20]; pool 297
+  probes: trivial 22, learnable 118, alias 0, duplicate 28, unsolved 129
+  picked: ['law2/mod(N,pred(X))', 'rsum/A.U', 'restrict/remainder[T.lt(N,X)@x+QN -> N]/X<3', 'law2/min(add(X,X),N)']
+    + M1.1 = DEC.X MOV.A.N MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (DEC.X MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M1.2 = MOV.X.N L.N[M0.2] L.A[INC.X M0.2]    (MOV.X.N L.N[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] L.A[INC.X MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + M1.3 = INC.N L.X[INC.X] M0.2 T.mod(X,N)@x+qN    (INC.N L.X[INC.X] MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + M1.4 = INC.U MOV.X.A L.U[INC.X T.mod(X,N)@x+qN]    (INC.U MOV.X.A L.U[INC.X MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.law5 = INC.N L.N[T.lt(N,X)@x+QN T.mod(X,N)@x+qN] L.T[DEC.A]    (INC.N L.N[INC.N L.X[DEC.N] Z.N[INC.A] MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] L.T[DEC.A])
+    + T.rsu6 = L.U[INC.A] MOV.X.A INC.X T.mod(X,N)@x+qN    (L.U[INC.A] MOV.X.A INC.X MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.res7 = MOV.X.N L.X[M0.2] L.A[INC.X M0.2]    (MOV.X.N L.X[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]] L.A[INC.X MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + T.law8 = T.lt(N,X)@x+QN M0.2 M0.2 L.X[INC.A]    (INC.N L.X[DEC.N] Z.N[INC.A] MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.X[INC.A])
+  target: cost 2 levels [1, 29, 683] ['L.X[M1.4]']
+  general in round 1: L.X[M1.4] = L.X[INC.U MOV.X.A L.U[INC.X MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]]
+  searcher: {'wait_vocab_s': 23.179600477218628, 'search_s': 52.7286741733551, 'searches': 1020, 'jobs': 1522}
+ct2a2_clean_deep_sub_ns_tri_nw1 on cuda: 2 rounds in 82s, 1522 jobs in 1020 searches, 77s searching
+  round 0: DIFF ['guided', 'target', 'totals'] (picked ['law/mod(X,N)/x+qN', 'law/lt(N,X)/x+QN', 'law2/mod(succ(X),X)', 'law/add(X,N)/x'], general None)
+  round 1: DIFF ['corpus', 'status', 'totals'] (picked ['law2/mod(N,pred(X))', 'rsum/A.U', 'restrict/remainder[T.lt(N,X)@x+QN -> N]/X<3', 'law2/min(add(X,X),N)'], general L.X[M1.4])
+FAIL: 2 rounds differ
+[bar3.gpu_search.replay newton ct2a2_clean_deep_sub_ns tri nw1 /out/v1/records/ct2a2_clean_deep_sub_ns_tri_nw1.jsonl /out/v1/replay/ct2a2_clean_deep_sub_ns_tri_nw1_gpu.jsonl --engine=gpu --share --workers=10: 87s]

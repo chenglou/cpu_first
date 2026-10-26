@@ -1,0 +1,46 @@
+same                 cpu    1.44s  gpu    0.33s  found None  levels [1, 17, 183, 1754, 16579, 436652]  h1 target probe
+same                 cpu    0.02s  gpu    0.02s  found 3  levels [1, 17, 183, 1754]  probe_a law/add(X,N)/x
+same                 cpu    0.02s  gpu    0.17s  found 3  levels [1, 17, 184, 1798]  probe_a law/add(X,X)/x+qN
+same                 cpu    0.01s  gpu    0.01s  found 3  levels [1, 17, 184, 1798]  probe_a law/monus(N,X)/x+qN
+same                 cpu    0.01s  gpu    0.01s  found 3  levels [1, 17, 183, 1754]  probe_a law/mul(X,X)/x
+same                 cpu    0.13s  gpu    0.60s  found 4  levels [1, 17, 184, 1798, 46212]  probe_a law/div(X,N)/x+qN
+same                 cpu    0.12s  gpu    0.01s  found 4  levels [1, 17, 166, 1269, 9037]  probe_a law/mod(N,X)/x+N
+same                 cpu    0.00s  gpu    0.00s  found 1  levels [1, 17]  probe_a law/min(X,N)/x+N
+same                 cpu    0.13s  gpu    0.01s  found None  levels [1, 17, 184, 1798, 46212]  probe_a law/max(X,N)/x+qN
+same                 cpu    0.18s  gpu    0.01s  found None  levels [1, 17, 184, 1804, 46496]  probe_a law/lt(N,X)/x+QN
+same                 cpu    1.21s  gpu    0.02s  found None  levels [1, 17, 183, 1754, 16579, 436652]  probe_a law/gcd(X,N)/x
+same                 cpu    0.00s  gpu    0.00s  found 2  levels [1, 17, 166]  probe_a law/succ(X)/x+N
+same                 cpu    0.00s  gpu    0.00s  found 2  levels [1, 17, 184]  probe_a law/pred(X)/x+qN
+same                 cpu    0.55s  gpu    0.97s  found None  levels [1, 17, 166, 1213, 7643, 150556]  probe_a restrict/target/3<X
+same                 cpu    0.62s  gpu    1.11s  found None  levels [1, 17, 166, 1214, 7726, 155183]  probe_a restrict/target/N<X·X
+same                 cpu    0.99s  gpu    1.41s  found None  levels [1, 17, 183, 1753, 16540, 435376]  probe_a restrict/target/X·X<X+N
+same                 cpu    1.21s  gpu    0.02s  found None  levels [1, 17, 183, 1754, 16579, 436652]  probe_a project/target/eqx
+same                 cpu    1.56s  gpu    2.49s  found None  levels [1, 17, 184, 1759, 16421, 423747]  probe_a restrict/remainder[L.X[L.X[INC.A]] -> A]/3<N
+same                 cpu    0.81s  gpu    0.98s  found None  levels [1, 17, 166, 1212, 7610, 149182]  probe_a restrict/remainder[L.X[L.X[INC.A]] -> A]/N+N<X
+same                 cpu    0.83s  gpu    2.33s  found None  levels [1, 17, 166, 1264, 8989, 201758]  probe_a restrict/remainder[L.X[DEC.N MOV.A.N] -> A]/1<X+X
+same                 cpu    0.91s  gpu    1.40s  found None  levels [1, 17, 182, 1723, 16009, 419253]  probe_a restrict/remainder[L.X[DEC.N MOV.A.N] -> A]/X<3
+same                 cpu    0.01s  gpu    1.12s  found 3  levels [1, 17, 182, 1723]  probe_a restrict/remainder[L.X[DEC.N MOV.A.N] -> A]/X·X<N
+same                 cpu    0.58s  gpu    1.09s  found None  levels [1, 17, 166, 1219, 7772, 155067]  probe_a restrict/remainder[L.X[DEC.N MOV.A.N] -> N]/3<X
+same                 cpu    0.57s  gpu    1.09s  found None  levels [1, 17, 166, 1263, 8899, 196981]  probe_a restrict/remainder[L.X[DEC.N MOV.A.N] -> N]/X+X<N
+same                 cpu    0.63s  gpu    1.20s  found None  levels [1, 17, 166, 1302, 9775, 232901]  probe_a restrict/remainder[L.X[DEC.N MOV.A.N] -> N]/X·X<X+N
+same                 cpu    0.91s  gpu    0.02s  found None  levels [1, 17, 182, 1738, 16281, 429988]  probe_a restrict/remainder[L.N[MOV.A.N MOV.N.X] -> A]/X<3
+same                 cpu    0.01s  gpu    1.13s  found 3  levels [1, 16, 160, 1396]  probe_a restrict/remainder[L.N[MOV.A.N MOV.N.X] -> A]/X·N<3
+same                 cpu    0.66s  gpu    0.02s  found None  levels [1, 17, 167, 1243, 8150, 166758]  probe_a restrict/remainder[L.X[MOV.A.X INC.X] -> A]/3<X
+same                 cpu    0.81s  gpu    0.02s  found 5  levels [1, 17, 183, 1753, 16429, 429958]  probe_a restrict/remainder[L.X[MOV.A.X INC.X] -> A]/X+X<N
+same                 cpu    0.92s  gpu    0.02s  found None  levels [1, 17, 167, 1244, 8291, 175311]  probe_a restrict/remainder[L.X[MOV.A.X INC.X] -> X]/1<X
+same                 cpu    0.79s  gpu    1.44s  found None  levels [1, 17, 167, 1243, 8267, 174390]  probe_a restrict/remainder[L.X[MOV.A.X INC.X] -> X]/N<X+X
+same                 cpu    0.00s  gpu    0.01s  found 2  levels [1, 17, 183]  probe_a value/L.X[MOV.A.X MOV.X.N] -> X
+same                 cpu    0.01s  gpu    0.01s  found 3  levels [1, 17, 183, 1754]  probe_a dream/Z.X[DEC.X INC.N] Z.T[MOV.T.U] MOV.A.N
+same                 cpu    1.91s  gpu    0.03s  found None  levels [1, 17, 184, 1804, 17562, 469003]  probe_b(150k) law/mod(X,N)/x+QN
+same                 cpu    0.47s  gpu    1.07s  found None  levels [1, 17, 186, 1863, 48742]  lookahead ['T.look0']
+same                 cpu    0.78s  gpu    1.38s  found 4  levels [1, 18, 214, 2357, 64890]  lookahead ['T.look0', 'T.look1']
+same                 cpu    5.30s  gpu    6.76s  found None  levels [1, 45, 1882, 112816]  cube target probe, 34-routine library
+same                 cpu    2.88s  gpu    2.50s  found None  levels [1, 17, 183, 1726, 15874, 406130]  h1 target probe at N <= 26
+same                 cpu   20.11s  gpu    1.16s  found None  levels [1, 17, 184, 1804, 17562, 168317, 4589800]  probe_b law/mod(X,N)/x+QN
+same                 cpu   12.60s  gpu    1.82s  found None  levels [1, 17, 183, 1754, 16579, 154464, 4158426]  probe_b law/gcd(X,N)/x
+same                 cpu  131.15s  gpu    1.67s  found None  levels [1, 17, 183, 1754, 16579, 154464, 1410855, 39147995]  h1 target 3M
+0 differing records of 41; cpu 191.9s, gpu 35.4s on cuda
+multi: 93 jobs in 7 shared searches, 0 differing; gpu shared 4.9s
+PASS
+[exit 0]
+[bar3.gpu_search.check --big: 278s]

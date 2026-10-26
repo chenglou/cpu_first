@@ -1,0 +1,20 @@
+12 jobs on cuda ({})
+  DIFF target_probe target: ['near'] stored [1, 41, 1318, 64534] 'budget: level 3 streamed (over 30000 states)' gpu [1, 41, 1318, 64534] 'budget: level 3 streamed (over 30000 states)'
+  DIFF guided target: ['aliases'] stored [1, 0, 0, 0, 4, 6, 11, 0, 20, 29, 95, 102, 182, 193, 660, 1079, 2031, 2458, 4923, 8869, 18515, 28026, 47668, 77776, 149962, 260700, 452644, 734516, 1284315, 2238097, 5050900] 'budget: level 30 streamed (over 3000000 states)' gpu [1, 0, 0, 0, 4, 6, 11, 0, 20, 29, 95, 102, 182, 193, 660, 1079, 2031, 2458, 4923, 8869, 18515, 28026, 47668, 77776, 149962, 260700, 452644, 734516, 1284315, 2238097, 5050900] 'budget: level 30 streamed (over 3000000 states)'
+  DIFF target_probe target: ['near'] stored [1, 21, 303, 4269, 135041] 'budget: level 4 streamed (over 30000 states)' gpu [1, 21, 303, 4269, 135041] 'budget: level 4 streamed (over 30000 states)'
+  DIFF probe_a restrict/remainder[T.res6 -> A]/1<X+X: ['aliases'] stored [1, 31, 536, 8156, 290239] 'budget: level 4 streamed (over 30000 states)' gpu [1, 31, 536, 8156, 290239] 'budget: level 4 streamed (over 30000 states)'
+  DIFF target_probe target: ['near'] stored [1, 27, 466, 7342, 257617] 'budget: level 4 streamed (over 30000 states)' gpu [1, 27, 466, 7342, 257617] 'budget: level 4 streamed (over 30000 states)'
+  DIFF probe_a restrict/target/X+X<N: ['aliases'] stored [1, 39, 1113, 51827] 'budget: level 3 streamed (over 30000 states)' gpu [1, 39, 1113, 51827] 'budget: level 3 streamed (over 30000 states)'
+  DIFF probe_b project/target/zero: ['aliases'] stored [1, 41, 1326, 40856, 2041939] 'budget: level 4 streamed (over 1000000 states)' gpu [1, 41, 1326, 40856, 2041939] 'budget: level 4 streamed (over 1000000 states)'
+  DIFF target_probe target: ['near'] stored [1, 24, 365, 4834, 157489] 'budget: level 4 streamed (over 30000 states)' gpu [1, 24, 365, 4834, 157489] 'budget: level 4 streamed (over 30000 states)'
+  DIFF target_probe target: ['near'] stored [1, 32, 851, 22086, 978977] 'budget: level 4 streamed (over 30000 states)' gpu [1, 32, 851, 22086, 978977] 'budget: level 4 streamed (over 30000 states)'
+  DIFF target_probe target: ['near'] stored [1, 29, 618, 13022, 540435] 'budget: level 4 streamed (over 30000 states)' gpu [1, 29, 618, 13022, 540435] 'budget: level 4 streamed (over 30000 states)'
+  DIFF target_probe target: ['near'] stored [1, 29, 618, 13022, 540435] 'budget: level 4 streamed (over 30000 states)' gpu [1, 29, 618, 13022, 540435] 'budget: level 4 streamed (over 30000 states)'
+  DIFF target_probe target: ['near'] stored [1, 17, 183, 1754, 16579, 436652] 'budget: level 5 streamed (over 30000 states)' gpu [1, 17, 183, 1754, 16579, 436652] 'budget: level 5 streamed (over 30000 states)'
+done in 32s
+  guided         {'DIFF': 1}  stored cpu      53.6s  gpu      3.8s  (14.3x)
+  probe_a        {'DIFF': 2}  stored cpu       2.8s  gpu      8.3s  (0.3x)
+  probe_b        {'DIFF': 1}  stored cpu       1.1s  gpu      0.4s  (3.0x)
+  target_probe   {'DIFF': 8}  stored cpu      19.2s  gpu     19.3s  (1.0x)
+FAIL: 12 differing
+[bar3.gpu_search.equiv /out/v1/debug/eq_diff12.jsonl /out/v1/debug/diff12.jsonl.gz: 36s]

@@ -1,0 +1,47 @@
+56 jobs x 1, engine cpu, 16 at once
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 262, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/local/lib/python3.13/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+_pickle.PicklingError: Can't pickle <function _work at 0x2b56736c04a0>: attribute lookup _work on __main__ failed
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/modal_gpu.py", line 62, in _run
+    runpy.run_module(module, run_name="__main__")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 229, in run_module
+  File "<frozen runpy>", line 88, in _run_code
+  File "/root/bar3/gpu_search/timing.py", line 128, in <module>
+    main()
+    ~~~~^^
+  File "/root/bar3/gpu_search/timing.py", line 118, in main
+    for r in results:
+             ^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/process.py", line 617, in _chain_from_iterable_of_lists
+    for element in iterable:
+                   ^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.13/multiprocessing/queues.py", line 262, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/local/lib/python3.13/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+_pickle.PicklingError: Can't pickle <function _work at 0x2b56736c04a0>: attribute lookup _work on __main__ failed
+[bar3.gpu_search.timing cpu /out/v1/timing/t1_CPU16.jsonl /out/v1/jobs/newton_ct2a2_clean_deep_sub_ns_tenrho_nw1.jsonl.gz /out/v1/jobs/newton_ct2a2_clean_deep_sub_ns_tri_nw1.jsonl.gz /out/v1/jobs/newton_lp_clean_deep_sub_ns_tenrho_nw1.jsonl.gz /out/v1/jobs/newton_lp_clean_deep_sub_ns_tri_nw1.jsonl.gz /out/v1/jobs/picks_lp_clean_deep_sub_ns_rc_tie_tenrho_pk1.jsonl.gz /out/v1/jobs/picks_lp_clean_deep_sub_ns_rc_tie_tri_pk1.jsonl.gz /out/v1/jobs/rowcheck_lp_clean_deep_sub_ns_rc_tenrho_rc1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_floorsq_ctl1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_lucas_ctl1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_affine_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_cube_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_fib_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_floorsq_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_h1_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_lucas_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_minus1_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_mont_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_plus3_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_pow2_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_rho_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_ten_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_tenrho_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_three_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_tri_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_trib_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_x1sq_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_x2x_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_x3x_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_x4_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_three_ctl1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_x4_ctl1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_lucas_ctl1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_affine_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_cube_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_fib_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_floorsq_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_h1_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_lucas_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_minus1_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_mont_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_plus3_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_pow2_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_rho_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_ten_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_tenrho_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_three_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_tri_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_trib_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_x1sq_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_x2x_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_x3x_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_x4_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_three_ctl1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_x2x_ctl1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_x4_ctl1.jsonl.gz --per=8 --seed=1 --workers=16: 21s]

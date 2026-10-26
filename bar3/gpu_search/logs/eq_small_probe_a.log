@@ -1,0 +1,25 @@
+4000 jobs on cuda ({'kinds': 'probe_a', 'per': '4000', 'seed': '2', 'share': '1'})
+  205/4000 21s {('probe_a', 'same'): 205}
+  402/4000 56s {('probe_a', 'same'): 402}
+  615/4000 69s {('probe_a', 'same'): 615}
+  800/4000 81s {('probe_a', 'same'): 800}
+  1017/4000 91s {('probe_a', 'same'): 1017}
+  1200/4000 105s {('probe_a', 'same'): 1200}
+  1416/4000 129s {('probe_a', 'same'): 1416}
+  1601/4000 150s {('probe_a', 'same'): 1601}
+  1800/4000 160s {('probe_a', 'same'): 1800}
+  2000/4000 182s {('probe_a', 'same'): 2000}
+  2201/4000 211s {('probe_a', 'same'): 2201}
+  2400/4000 227s {('probe_a', 'same'): 2400}
+  2600/4000 230s {('probe_a', 'same'): 2600}
+  2810/4000 240s {('probe_a', 'same'): 2810}
+  3004/4000 252s {('probe_a', 'same'): 3004}
+  3200/4000 261s {('probe_a', 'same'): 3200}
+  3400/4000 274s {('probe_a', 'same'): 3400}
+  3600/4000 287s {('probe_a', 'same'): 3600}
+  3800/4000 289s {('probe_a', 'same'): 3800}
+  4000/4000 292s {('probe_a', 'same'): 4000}
+done in 292s
+  probe_a        {'same': 4000}  stored cpu    2322.6s  gpu    290.2s  (8.0x)
+PASS
+[bar3.gpu_search.equiv /out/v1/equiv/small_probe_a.jsonl /out/v1/jobs/newton_ct2a2_clean_deep_sub_ns_tenrho_nw1.jsonl.gz /out/v1/jobs/newton_ct2a2_clean_deep_sub_ns_tri_nw1.jsonl.gz /out/v1/jobs/newton_lp_clean_deep_sub_ns_tenrho_nw1.jsonl.gz /out/v1/jobs/newton_lp_clean_deep_sub_ns_tri_nw1.jsonl.gz /out/v1/jobs/picks_lp_clean_deep_sub_ns_rc_tie_tenrho_pk1.jsonl.gz /out/v1/jobs/picks_lp_clean_deep_sub_ns_rc_tie_tri_pk1.jsonl.gz /out/v1/jobs/rowcheck_lp_clean_deep_sub_ns_rc_tenrho_rc1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_floorsq_ctl1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_lucas_ctl1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_affine_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_cube_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_fib_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_floorsq_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_h1_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_lucas_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_minus1_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_mont_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_plus3_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_pow2_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_rho_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_ten_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_tenrho_s1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_three_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_tri_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_trib_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_x1sq_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_x2x_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_x3x_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_sub_x4_ho1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_three_ctl1.jsonl.gz /out/v1/jobs/subgoal_ct2a2_clean_deep_x4_ctl1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_lucas_ctl1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_affine_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_cube_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_fib_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_floorsq_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_h1_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_lucas_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_minus1_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_mont_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_plus3_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_pow2_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_rho_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_ten_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_tenrho_s1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_three_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_tri_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_trib_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_x1sq_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_x2x_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_x3x_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_sub_x4_ho1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_three_ctl1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_x2x_ctl1.jsonl.gz /out/v1/jobs/subgoal_lp_clean_deep_x4_ctl1.jsonl.gz --kinds=probe_a --per=4000 --seed=2 --share: 298s]

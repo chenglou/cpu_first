@@ -1,0 +1,8 @@
+12 jobs on cuda ({})
+done in 31s
+  guided         {'same': 1}  stored cpu      53.6s  gpu      3.8s  (14.0x)
+  probe_a        {'same': 2}  stored cpu       2.8s  gpu      8.1s  (0.3x)
+  probe_b        {'same': 1}  stored cpu       1.1s  gpu      0.4s  (3.0x)
+  target_probe   {'same': 8}  stored cpu      19.2s  gpu     19.1s  (1.0x)
+PASS
+[bar3.gpu_search.equiv /out/v1/debug/eq_diff12b.jsonl /out/v1/debug/diff12.jsonl.gz: 36s]

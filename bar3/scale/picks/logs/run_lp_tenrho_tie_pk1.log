@@ -1,0 +1,45 @@
+[lp_clean_deep_sub_ns_rc_tie_tenrho_pk1] round 0: target probe mdl 105.7 best [3, 13, 13, 13, 17, 17]; pool 244
+  subgoal: law2/mod(mul(X,X),N) {'law': None, 'table': 24, 'how': 'g,N', 'pure': 55, 'key': (0, 24)}
+  probes: trivial 8, learnable 101, alias 0, duplicate 29, unsolved 106
+  guided target: cost None bits, levels 35 []
+  picked: ['const/11->A', 'const/11->T', 'const/11->U', 'law/mod(X,N)/x+qN']
+    + M0.1 = INC.A INC.A MOV.T.A    (INC.A INC.A MOV.T.A)
+    + M0.2 = INC.A INC.A MOV.U.A INC.A L.A[L.A[INC.U]]    (INC.A INC.A MOV.U.A INC.A L.A[L.A[INC.U]])
+    + M0.3 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M0.4 = M0.1 INC.A L.A[L.A[INC.T]]    (INC.A INC.A MOV.T.A INC.A L.A[L.A[INC.T]])
+    + M0.5 = M0.1 INC.T L.T[L.T[INC.A]]    (INC.A INC.A MOV.T.A INC.T L.T[L.T[INC.A]])
+    + T.con1 = INC.T INC.T MOV.A.T INC.T L.T[L.T[INC.A]]    (INC.T INC.T MOV.A.T INC.T L.T[L.T[INC.A]])
+    + T.con2 = INC.U INC.U MOV.T.U INC.U L.U[L.U[INC.T]]    (INC.U INC.U MOV.T.U INC.U L.U[L.U[INC.T]])
+    + T.con3 = INC.U INC.U MOV.A.U INC.A L.A[L.A[INC.U]]    (INC.U INC.U MOV.A.U INC.A L.A[L.A[INC.U]])
+    + T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+  target: cost None levels [1, 23, 390, 6176, 97394, 1529403, 54147238] []
+[lp_clean_deep_sub_ns_rc_tie_tenrho_pk1] round 1: target probe mdl 99.2 best [3, 13, 13, 14, 18]; pool 274
+  subgoal: law2/mod(mul(X,X),N) {'law': None, 'table': 24, 'how': 'g,N', 'pure': 55, 'key': (0, 24)}
+  probes: trivial 10, learnable 110, alias 0, duplicate 32, unsolved 122
+  guided target: cost None bits, levels 33 []
+  picked: ['law2/mod(mul(X,X),N)', 'law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/lt(succ(X),N)']
+    + M1.1 = L.A[MOV.X.A T.mod(X,N)@x+qN]    (L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M1.2 = INC.U INC.X M0.3 MOV.X.U M0.3    (INC.U INC.X MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] MOV.X.U MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M1.3 = MOV.A.N L.X[DEC.A] Z.A[M0.3]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + M1.4 = L.X[L.X[INC.A]] M1.1    (L.X[L.X[INC.A]] L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.law5 = L.X[L.X[INC.A]] L.X[MOV.X.A T.mod(X,N)@x+qN]    (L.X[L.X[INC.A]] L.X[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.absdiff(X,N)@x+qN = MOV.A.N L.X[DEC.A] Z.A[T.mod(X,N)@x+qN]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.mod(N,X) = MOV.A.N MOV.N.X M1.1    (MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.law8 = INC.X T.mod(X,N)@x+qN DEC.X L.X[DEC.A]    (INC.X MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] DEC.X L.X[DEC.A])
+  target: cost None levels [1, 28, 648, 15120, 355006, 15584469] []
+[lp_clean_deep_sub_ns_rc_tie_tenrho_pk1] round 2: target probe mdl 39.0 best [3, 13, 18, 18, 26]; pool 321
+  subgoal: dream/Z.U[T.law5 M1.1] Z.X[M1.1 M0.2] {'law': None, 'table': 25, 'how': 'g,N', 'pure': 55, 'key': (0, 25)}
+  picks: twin [], rest {'rest': 'remainder/M1.4 -> A', 'after': 'T.law5', 'name': 'offset/remainder/M1.4 -> A', 'key': [1, 11]}
+  probes: trivial 18, learnable 152, alias 0, duplicate 35, unsolved 116
+  ran target target: cost 4, 7s
+  picked: ['offset/remainder/M1.4 -> A', 'law2/gcd(succ(X),N)', 'law2/gcd(pred(X),N)', 'law2/mul(add(X,N),N)']
+    + M2.1 = L.N[T.mod(N,X) MOV.X.A] M1.3    (L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.X.A] MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + M2.2 = MOV.A.X T.con2 L.X[MOV.X.U M1.4]    (MOV.A.X INC.U INC.U MOV.T.U INC.U L.U[L.U[INC.T]] L.X[MOV.X.U L.X[L.X[INC.A]] L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]])
+    + M2.3 = L.N[INC.X] L.N[L.X[INC.A]]    (L.N[INC.X] L.N[L.X[INC.A]])
+    + T.off9 = T.con2 T.mod(X,N)@x+qN L.X[MOV.X.U M1.4]    (INC.U INC.U MOV.T.U INC.U L.U[L.U[INC.T]] MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X] L.X[MOV.X.U L.X[L.X[INC.A]] L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]])
+    + T.law10 = INC.X L.X[T.mod(N,X)] L.N[INC.A]    (INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + T.law11 = DEC.X L.N[T.mod(N,X)] L.N[INC.A]    (DEC.X L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+  target: cost 4 levels [1, 33, 974, 28650, 821448] ['T.law5 M2.2 INC.X T.mod(X,N)@x+qN', 'T.law5 M2.2 INC.A M1.1', 'T.law5 M2.2 INC.X M0.3']
+  general in round 2: T.law5 M2.2 INC.X T.mod(X,N)@x+qN = L.X[L.X[INC.A]] L.X[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]] MOV.A.X INC.U INC.U MOV.T.U INC.U L.U[L.U[INC.T]] L.X[MOV.X.U L.X[L.X[INC.A]] L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] INC.X MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]
+lp_clean_deep_sub_ns_rc_tie_tenrho_pk1: done in 15s; 1259 searches read from the stores, 1 run here
+exit 0

@@ -1,0 +1,45 @@
+[lp_clean_b_src_twin_dxsq_pk1] round 0: target probe mdl 104.7 best [10, 14, 20, 20, 20]; pool 245
+[lp_clean_b_src_twin_dxmod_pk1] round 0: target probe mdl 136.0 best [9, 10, 16, 16, 17]; pool 234
+  probes: trivial 13, learnable 106, alias 0, duplicate 49, unsolved 66
+  guided target: cost None bits, levels 34 []
+  picked: ['law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)', 'law2/lt(add(X,X),N)']
+    + M0.1 = INC.U L.N[MOV.A.U]    (INC.U L.N[MOV.A.U])
+    + M0.2 = L.X[DEC.N DEC.N]    (L.X[DEC.N DEC.N])
+    + M0.3 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M0.4 = DEC.N L.X[DEC.N] M0.1    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U])
+    + M0.5 = MOV.A.N M0.2 L.N[DEC.A]    (MOV.A.N L.X[DEC.N DEC.N] L.N[DEC.A])
+    + T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.law2 = INC.X INC.X L.N[DEC.X] Z.X[INC.A]    (INC.X INC.X L.N[DEC.X] Z.X[INC.A])
+    + T.law4 = M0.2 INC.A Z.N[DEC.A]    (L.X[DEC.N DEC.N] INC.A Z.N[DEC.A])
+  target: cost None levels [1, 25, 456, 7818, 132797, 5107988] []
+  subgoal: law/mod(X,N)/rows {'law': 'mod(mul(g,g),N)', 'table': 945, 'how': 'g,N', 'pure': 1000, 'key': (1, 945)}
+  probes: trivial 10, learnable 104, alias 0, duplicate 45, unsolved 86
+  guided target: cost None bits, levels 34 []
+  picked: ['law/mod(X,N)/x+qN', 'law2/lt(succ(X),N)', 'law2/min(add(X,X),N)', 'law2/lt(add(X,X),N)']
+    + M0.1 = INC.U L.N[MOV.A.U]    (INC.U L.N[MOV.A.U])
+    + M0.2 = L.X[DEC.N DEC.N]    (L.X[DEC.N DEC.N])
+    + M0.3 = MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]    (MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X])
+    + M0.4 = DEC.N L.X[DEC.N] M0.1    (DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U])
+    + M0.5 = MOV.A.N M0.2 L.N[DEC.A]    (MOV.A.N L.X[DEC.N DEC.N] L.N[DEC.A])
+    + T.mod(X,N)@x+qN = MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]    (MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X])
+    + T.law2 = INC.X INC.X L.N[DEC.X] Z.X[INC.A]    (INC.X INC.X L.N[DEC.X] Z.X[INC.A])
+    + T.law4 = M0.2 INC.A Z.N[DEC.A]    (L.X[DEC.N DEC.N] INC.A Z.N[DEC.A])
+  target: cost None levels [1, 25, 456, 7818, 132797, 5107988] []
+[lp_clean_b_src_twin_dxmod_pk1] round 1: target probe mdl 25.1 best [9, 10, 16, 32, 32]; pool 275
+  subgoal: value/T.law2 -> X {'law': None, 'table': 36, 'how': 'g,x', 'pure': 1000, 'key': (0, 36)}
+  picks: twin ['law2/div(succ(X),N)'], rest {}
+  probes: trivial 42, learnable 142, alias 0, duplicate 56, unsolved 35
+[lp_clean_b_src_twin_dxsq_pk1] round 1: target probe mdl 95.3 best [10, 14, 20, 22, 22]; pool 287
+  subgoal: law/mod(X,N)/rows {'law': 'mod(mul(g,g),N)', 'table': 945, 'how': 'g,N', 'pure': 1000, 'key': (1, 945)}
+  picks: twin ['law/mod(X,N)/x+QN'], rest {}
+  probes: trivial 17, learnable 136, alias 0, duplicate 53, unsolved 81
+  guided target: cost None bits, levels 31 []
+  picked: ['law/absdiff(X,N)/x+qN', 'law/mod(N,X)/x', 'law2/mul(pred(X),X)', 'law2/div(succ(X),N)']
+    + M1.1 = DEC.X M0.3 L.A[L.X[INC.A]]    (DEC.X MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X] L.A[L.X[INC.A]])
+    + M1.2 = MOV.A.N MOV.N.X L.A[MOV.X.A T.mod(X,N)@x+qN]    (MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + M1.3 = MOV.A.N L.X[DEC.A] Z.A[M0.3]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + T.absdiff(X,N)@x+qN = MOV.A.N L.X[DEC.A] Z.A[T.mod(X,N)@x+qN]    (MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]])
+    + T.law7 = L.X[L.X[INC.A]] L.X[DEC.A]    (L.X[L.X[INC.A]] L.X[DEC.A])
+    + T.law8 = T.law2 MOV.A.X    (INC.X INC.X L.N[DEC.X] Z.X[INC.A] MOV.A.X)
+  target: cost None levels [1, 31, 710, 15006, 307167, 13294229] []
+[lp_clean_b_src_twin_dxmod_pk1] round 2: target probe mdl 19.6 best [9, 10, 31, 32, 32]; pool 258

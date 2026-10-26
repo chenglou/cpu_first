@@ -1,0 +1,21 @@
+  guided target: cost None bits, levels 31 []
+  picked: ['law2/gcd(succ(X),N)', 'law2/div(N,pred(X))', 'law2/gcd(pred(X),N)', 'law2/mul(add(X,N),N)']
+    + M2.1 = L.N[M1.2] M0.2 M1.3    (L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.X[DEC.N DEC.N] MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + M2.2 = DEC.X DEC.X INC.N L.N[M0.4]    (DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M2.3 = L.N[INC.X] L.N[L.X[INC.A]]    (L.N[INC.X] L.N[L.X[INC.A]])
+    + T.law9 = INC.X L.X[M1.2] L.N[INC.A]    (INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + T.law11 = DEC.X L.N[M1.2] L.N[INC.A]    (DEC.X L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+  target: cost None levels [1, 36, 1016, 26382, 650579, 30986577] []
+[lp_clean_b_src_twin_dxmod_pk1] round 3: target probe mdl 19.9 best [9, 15, 31, 32]; pool 252
+  subgoal: value/M0.3 -> A {'law': None, 'table': 55, 'how': 'g,N', 'pure': 1000, 'key': (0, 55)}
+  probes: trivial 41, learnable 132, alias 1, duplicate 61, unsolved 17
+  guided target: cost None bits, levels 31 []
+  picked: ['law2/gcd(succ(X),N)', 'law2/div(N,pred(X))', 'law2/gcd(pred(X),N)', 'law2/mul(add(X,N),N)']
+    + M2.1 = L.N[M1.2] M0.2 M1.3    (L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.X[DEC.N DEC.N] MOV.A.N L.X[DEC.A] Z.A[MOV.A.X L.N[MOV.N.A DEC.A] Z.N[MOV.A.X]])
+    + M2.2 = DEC.X DEC.X INC.N L.N[M0.4]    (DEC.X DEC.X INC.N L.N[DEC.N L.X[DEC.N] INC.U L.N[MOV.A.U]])
+    + M2.3 = L.N[INC.X] L.N[L.X[INC.A]]    (L.N[INC.X] L.N[L.X[INC.A]])
+    + T.law9 = INC.X L.X[M1.2] L.N[INC.A]    (INC.X L.X[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+    + T.law11 = DEC.X L.N[M1.2] L.N[INC.A]    (DEC.X L.N[MOV.A.N MOV.N.X L.A[MOV.X.A MOV.A.X L.N[MOV.T.A DEC.A] Z.T[MOV.A.X]]] L.N[INC.A])
+  target: cost None levels [1, 36, 1025, 26944, 672962, 31951801] []
+[lp_clean_b_src_twin_dxsq_pk1] round 3: target probe mdl 72.7 best [10, 22, 22, 25]; pool 294
+  probes: trivial 47, learnable 131, alias 1, duplicate 67, unsolved 48

@@ -1121,6 +1121,15 @@ fix. The legal file, now the file to judge, adds a sixth: bar 3's legal reader a
   3 and finds its round at level 4. `submission_stage3_legal.py` certifies on the official H100 and on seeds 1–7 on
   H100s, 8 runs of 8, training in 465–721 s against fast2's 759–883 s, and is now the file to judge (§2). Still
   designed: the three laws, the reader's grammar, the posing rule, and what fast2 designs. About $10.
+- **No book, offline** ([READING.md](bar3/scale/reading/READING.md)). Round 6 poses the comparison by cutting Horner's
+  step down to the link and the comparison, with practice answers from Python. x² mod N's round then comes at level 2
+  with no law in the book at all, right on both ladders: the comparison at level 0, the step, the link and the multiply
+  at level 1, and the reduction from its loop at level 2. It also comes with the comparison alone and with every one of
+  round 2's search fixes off, but not with the link alone, which is 6 tokens over the primitives. Posed as a sub-law,
+  x·o mod N comes at level 3 and the cube's round follows as two calls of it, with the book and without. 10·x² + 1
+  learns its constant 1 and x + 1 but gets no round even in a 7,200 s run, and anchored pairs' prior brings the row to
+  level 0 without mending their picks. Still hand-written: the source's tables of cuts, loops and the step's cuts, and
+  which sub-law to pose. About $72.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

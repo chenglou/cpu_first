@@ -322,6 +322,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 26 `ec312b6` | **legally, the book shrinks to three laws**: a legal reader poses the row, the step, the multiply and the reduction from x² mod N's law, and H1's round comes at level 4 with only the comparison, the link and the addition left in the book | [bar3/scale/legalloops/LEGALLOOPS.md](bar3/scale/legalloops/LEGALLOOPS.md) |
 | Oct 27 `355f62f` | offline, posing each cut's loop takes the book down to the comparison alone: x² mod N's round at level 2, right to T = 64; x³ and 10·x² + 1 still get no round | [bar3/scale/loops/LOOPS.md](bar3/scale/loops/LOOPS.md) |
 | Oct 27 `8e3c7fe` | **the legal file certifies 8 of 8**: fast2 with its generated law book replaced by three laws and bar 3's legal reader, every practice answer from the learner's own routines; training in 465–721 s | [integration/combined_legal/LEGAL_FILE.md](integration/combined_legal/LEGAL_FILE.md) |
+| Oct 27 `6be8a0e` | **offline, no book at all**: cutting Horner's step down to the link and the comparison poses the comparison, and x² mod N's round comes at level 2 with no law in the book, right to T = 64; the cube comes as two calls of x·o mod N; 10·x² + 1 learns its constant but gets no round | [bar3/scale/reading/READING.md](bar3/scale/reading/READING.md) |
 
 ### The lessons that came out of the failures
 
@@ -623,6 +624,15 @@ in the answer.
   comparison, the link and the addition, H1's round comes at level 4 in every arm with the reader, a level sooner than
   with book_min, and every round is right on both ladders, unseen moduli included. Still designed: the reader's grammar
   and its table of what each operation cuts to and loops over. About $7.
+- **No book, offline** ([READING.md](bar3/scale/reading/READING.md)). Round 6 poses the comparison by cutting Horner's
+  step down to the link and the comparison, with practice answers from Python. x² mod N's round then comes at level 2
+  with no law in the book at all, right on both ladders: the comparison at level 0, the step, the link and the multiply
+  at level 1, and the reduction from its loop at level 2. It also comes with the comparison alone and with every one of
+  round 2's search fixes off, but not with the link alone, which is 6 tokens over the primitives. Posed as a sub-law,
+  x·o mod N comes at level 3 and the cube's round follows as two calls of it, with the book and without. 10·x² + 1
+  learns its constant 1 and x + 1 but gets no round even in a 7,200 s run, and anchored pairs' prior brings the row to
+  level 0 without mending their picks. Still hand-written: the source's tables of cuts, loops and the step's cuts, and
+  which sub-law to pose. About $72.
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -1278,7 +1288,10 @@ fast version and fast2, now the file to judge (§4.8), and bar 3's duplicate che
 port of its search (§4, bar 3). So have the consolidation of bar 3's rules, the one-place cut of the target's laws, the
 GPU runner and the audit of bar 3's sources (§4, bar 3). The legal path's tests are done: a legal climb gets H1's round
 with the book cut to three laws (§4, bar 3). So has the offline loop study (§4, bar 3). So has the legal file, which
-certifies 8 of 8 (§4.8). Running now: bar 3's round 6, aiming at no book at all and at x³ and 10·x² + 1 (§4, bar 3).
+certifies 8 of 8 (§4.8). So has bar 3's round 6, which takes the book to nothing offline (§4, bar 3). Running now: the
+first step to bar 3's finish line, which the user set on Oct 27: a legal file with no practice book that certifies H1 8
+of 8 and, unchanged, learns at least a couple of other tasks of the family, with the reader's grammar widened beyond
+what H1 needs. The first step, not yet committed, is the legal file with that wider grammar.
 
 Everything else described here is committed.
 

@@ -1,0 +1,25 @@
+== r7_minus1_const1
+  round 0: LDA.X STA.Y T.w.pred.add.mul.w2.XYN T.red.x+on.XN T.lt.pair.AY: T=2 1000/1000, T=4 33309/33333, T=8 33273/33333
+  round 1: T.add.pair.XN STA.Y T.w.pred.add.mul.w2.XYN T.red.x+on.XN T.lt.pair.AY: T=2 1000/1000, T=4 33309/33333, T=8 33272/33333
+  round 2: LDA.X STA.Y T.w.pred.add.mul.w2.XYN T.red.x+on.XN T.red.pair.AY: T=2 1000/1000, T=4 33310/33333, T=8 33284/33333
+  round 3: T.add.pair.XN STA.Y T.w.pred.add.mul.w2.XYN T.red.x+on.XN T.red.pair.AY: T=2 1000/1000, T=4 33310/33333, T=8 33284/33333
+  round 4: LDA.X STA.Y T.w.pred.add.mul.w2.XYN STA.X T.red.x+on.XN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+  round 5: T.add.pair.XN STA.Y T.w.pred.add.mul.w2.XYN STA.X T.red.x+on.XN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+== r7_minus1_both
+  round 0: LDA.X STA.Y T.w.pred.add.mul.w2o.YXN T.red.x+on.XN T.lt.pair.AY: T=2 1000/1000, T=4 33309/33333, T=8 33273/33333
+  round 1: T.add.pair.XN STA.Y T.w.pred.add.mul.w2o.YXN T.red.x+on.XN T.lt.pair.AY: T=2 1000/1000, T=4 33309/33333, T=8 33272/33333
+  round 2: LDA.X STA.Y T.w.pred.add.mul.w2o.YXN T.red.x+on.XN T.red.pair.AY: T=2 1000/1000, T=4 33310/33333, T=8 33284/33333
+  round 3: T.add.pair.XN STA.Y T.w.pred.add.mul.w2o.YXN T.red.x+on.XN T.red.pair.AY: T=2 1000/1000, T=4 33310/33333, T=8 33284/33333
+  round 4: T.w.mod.pred.w1o.XN T.mul.x,o.XY T.add.x,d.AY STA.X T.red.x+on.XN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+  round 5: LDA.X STA.Y T.w.pred.add.mul.w2o.YXN STA.X T.red.x+on.XN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+  round 6: T.add.pair.XN STA.Y T.w.pred.add.mul.w2o.YXN STA.X T.red.x+on.XN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+== r7_rho
+  round 0: LDA.X STA.Y T.w.add1.mul.w2.XYN STA.X T.red.x+on.XN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+== r7_tenrho
+  round 0: LDA.X STA.Y T.w.mul10.mod.mul.w2.XYN ADC.X T.red.Bx+d.AN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+== r7_x3
+  round 0: LDA.X STA.Y T.w.mod.mul.w2.XYN T.w.mod.mul.w2.AYN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+  round 1: LDA.X STA.Y T.w.mod.mul.w2.AYN T.w.mod.mul.w2.AYN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+  round 2: T.red.x+on.XN STA.Y T.w.mod.mul.w2.AYN T.w.mod.mul.w2.AYN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+  round 3: LDA.X STA.Y T.w.mod.mul.w2.XYN T.w.mod.mul.w2.AYN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333
+  round 4: LDA.X STA.Y T.w.mod.mul.w2.XYN T.w.mod.mul.w2.AYN: T=2 1000/1000, T=4 33333/33333, T=8 33333/33333

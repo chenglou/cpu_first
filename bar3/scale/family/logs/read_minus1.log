@@ -1,0 +1,15 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 10000, 'round_budget': 20000, 'levels': 1, 'search_s': 60.0, 'fuse': 1, 'patterns': [], 'laws': ['lt', 'red', 'add'], 'target': 'small', 'sources': ['restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'subgoal': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'rest_deep': True, 'spell': 16, 'tiefollow': True, 'target_fn': 'minus1', 'slice': '1', 'loops': '1', 'down': '1', 'const': '1', 'subterms': '1'}
+UNIT      8.6s +    8.6s L0 pose: 149 candidates on 100 roots
+UNIT     18.2s +    9.5s L0 probe 16 roots 9.5s solved {} [('routines', 9.5)]
+UNIT     27.5s +    9.3s L0 probe 16 roots 9.3s solved {'add/x,d@AX': 4, 'add/x,d@AY': 4, 'add/x,d@XA': 4, 'add/x,d@YA': 4} [('routines', 9.3)]
+UNIT     29.2s +    1.8s L0 probe 16 roots 1.8s solved {'add/x,d@NA': 4} [('routines', 1.7)]
+UNIT     32.7s +    3.4s L0 probe 16 roots 3.4s solved {'add/pair@AX': 4, 'lt/pair@AX': 4, 'add/pair@XA': 4} [('routines', 3.4)]
+UNIT     33.9s +    1.3s L0 probe 16 roots 1.3s solved {} [('routines', 1.2)]
+UNIT     36.9s +    2.9s L0 probe 16 roots 2.9s solved {} [('routines', 2.8)]
+UNIT     38.8s +    1.9s L0 probe 4 roots 1.9s solved {} [('routines', 1.9)]
+UNIT     38.8s +    0.0s L0 choose (lpca): {'unsolved': 141, 'learnable': 4, 'duplicate': 4}; picks [('add/x,d@AX', 4, 'CLC P[ADC.X INC]'), ('add/x,d@AY', 4, 'CLC P[ADC.Y INC]'), ('add/x,d@NA', 4, 'CLC P[ADC.N INC]'), ('lt/pair@AX', 4, 'CLC P[SBB.X INC]')]
+UNIT     38.8s +    0.0s L0 sleep: T.add.x,d.AX=CLC P[ADC.X INC]; T.add.x,d.AY=CLC P[ADC.Y INC]; T.add.x,d.NA=CLC P[ADC.N INC]; T.lt.pair.AX=CLC P[SBB.X INC]
+UNIT     66.8s +   28.0s L0 target: cost None levels [1, 36, 1028, 37452] fits [0, 4, 4, 7] 28.0s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 36, 974, 31141] 0.0s budget: level 3 streamed (over 20000 states) []
+UNIT     66.8s +    0.0s climb done at level 1 (the level cap)
+TOTAL 66.8 s; rounds []
+LIB {"T.add.x,d.AX": "CLC P[ADC.X INC]", "T.add.x,d.AY": "CLC P[ADC.Y INC]", "T.add.x,d.NA": "CLC P[ADC.N INC]", "T.lt.pair.AX": "CLC P[SBB.X INC]"}

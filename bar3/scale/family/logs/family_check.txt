@@ -1,0 +1,23 @@
+windows of mod(mul(X,X),N): ['mod(mul(a,b),N)']: ok
+windows of mod(mul(mod(mul(X,X),N),X),N): ['mod(mul(a,b),N)', 'mul(mod(a,N),b)', 'mod(mul(mod(a,N),b),N)']: ok
+windows of mod(add(mul(mod(mul(X,X),N),10),1),N): ['mod(add(a,1),N)', 'add(mul(a,10),1)', 'mul(mod(a,N),10)', 'mod(mul(a,b),N)', 'mod(add(mul(a,10),1),N)', 'add(mul(mod(a,N),10),1)', 'mul(mod(mul(a,b),N),10)']: ok
+w.mod.mul/w2@XYN: 'T.mul.x,o.XY STA.X T.red.x+on.XN': probes True, accepted True, expected True: ok
+w.mod.mul/w2@XYN: 'T.mul.x,o.XY': probes False, accepted False, expected False: ok
+w.mod.mul10/w1@AN: 'SHL.A STA.X T.red.x+on.XN': probes True, accepted True, expected True: ok
+w.mod.mul10/w1@AN: 'SHL.A': probes False, accepted False, expected False: ok
+w.mod.add1/w1@AN: 'T.add.1.x,n.AN STA.X T.red.x+on.XN': probes True, accepted True, expected True: ok
+w.mod.add1/w1@AN: 'T.add.1.x,n.AN': probes False, accepted False, expected False: ok
+w.mod.add3/w1@AN: 'T.add.3.x,n.AN STA.X T.red.x+on.XN': probes True, accepted True, expected True: ok
+w.mod.add1.mul10/w1@AN: 'SHL.A T.add.1.x,n.AN STA.X T.red.x+on.XN': probes True, accepted True, expected True: ok
+w.mod.add1.mul10/w1@AN: 'SHL.A STA.X T.red.x+on.XN': probes False, accepted False, expected False: ok
+w.mod.add1.mul/w2@XYN: 'T.mul.x,o.XY T.add.1.x,n.AN STA.X T.red.x+on.XN': probes True, accepted True, expected True: ok
+w.mod.pred.add/w1@AN: 'STA.Y LDA.N T.add.pair.AY T.pred.A STA.X T.red.x+on.XN': probes True, accepted True, expected True: ok
+w.mod.pred.add/w1@AN: 'STA.X T.red.x+on.XN': probes False, accepted False, expected False: ok
+pred/x,n@AN: 'STA.Y T.const.1.n.N STA.X LDA.Y T.red.pair.AX': probes True, accepted True, expected True: ok
+pred/x,n@AN: 'STA.Y T.const.1.n.N STA.X LDA.Y T.lt.pair.AX': probes False, accepted False, expected False: ok
+w.mod.pred.add/w1@AN: 'STA.Y LDA.N T.add.pair.AY T.pred.A T.red.pair.AN': probes True, accepted True, expected True: ok
+w.mod.pred.add/w1o@AN: 'STA.Y LDA.N T.add.pair.AY T.pred.A T.red.pair.AN': probes False, accepted False, expected False: ok
+w.mod.pred.add/w1o@AN: 'STA.Y LDA.N T.add.pair.AY T.pred.A STA.X T.red.x+on.XN': probes True, accepted True, expected True: ok
+w.mod.mul/w2o@XYN: 'T.mul.x,o.XY STA.X T.red.x+on.XN': probes True, accepted True, expected True: ok
+w.mod.mul/w2o@XYN: 'T.mul.x,o.XY STA.X T.red.pair.AN': probes False, accepted False, expected False: ok
+ALL OK

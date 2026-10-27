@@ -1,0 +1,22 @@
+20,21c20,21
+< from bar3.scale.X import spcore_r as S                    # compose2: the copy
+< from bar3.scale.X import climb_r as CC
+---
+> from bar3.scale.X import spcore_f as S                    # compose2: the copy
+> from bar3.scale.X import climb_f as CC
+70c70
+<         from bar3.scale.X.oracle_r import SmallTarget      # compose2: the copy
+---
+>         from bar3.scale.X.oracle_f import SmallTarget      # compose2: the copy
+72c72
+<             from bar3.scale.X.clean_r import CleanTarget as SmallTarget
+---
+>             from bar3.scale.X.clean_f import CleanTarget as SmallTarget
+78a79,80
+>     if H.ROUNDT:                                                  # family: the answers at T = 2, 4 and 8
+>         c.more_answers = H.more_answers(load_rows, digits, dev)
+94c96,97
+<     for _k in ("DOWN", "SUBLAW", "CONST", "PRIOR"):                 # reading: its flags
+---
+>     for _k in ("DOWN", "SUBLAW", "CONST", "PRIOR", "SUBTERMS", "CONST1", "HOLES",
+>                "ROUNDT"):                                       # reading, family: their flags

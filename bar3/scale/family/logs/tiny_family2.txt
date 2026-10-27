@@ -1,0 +1,8 @@
+a: flags off 0
+a: same apart from times
+b: subterms 0
+b: same apart from times
+c: both fixes 0
+c: reading mod(pred(add(mul(X,X),N)),N) cuts ['const.1/n=const', 'pred/x,n=const', 'w.mod.pred/w1o=subterm', 'w.pred.add/w1o=subterm', 'w.add.mul/w2o=subterm', 'w.mod.pred.add/w1o=subterm', 'w.pred.add.mul/w2o=subterm']
+   pose: ['L0 pose: 165 candidates on 116 roots', 'L1 pose: 141 candidates on 116 roots']
+   picks: [(0, ['add/x,d@AX', 'add/x,d@AY', 'add/x,d@NA', 'lt/pair@AX']), (1, ['red/pair@AX', 'add/pair@XY', 'add/pair@XN', 'add/pair@YN'])]

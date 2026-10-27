@@ -1,0 +1,12 @@
+55a56,57
+> if H.SUBTERMS:                              # family: the windows' patterns
+>     PATTERNS.update(H.PATTERNS7)
+160a163
+>         self.p = pad(xt[2 * n:2 * n + self.n], P)        # family: a third row's x' (HOLES)
+173c176
+<         if name in ("x", "z", "o", "d"):
+---
+>         if name in ("x", "z", "o", "d", "p"):                # family: p (HOLES)
+855a859,860
+>                 if pat in H.PATTERNS7 and bd[-1] != "N":     # family: a window's modulus stays in N
+>                     continue

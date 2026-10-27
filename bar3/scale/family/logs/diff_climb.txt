@@ -1,0 +1,9 @@
+12c12,13
+< from bar3.scale.X.spcore_r import SelfClimb                    # compose2: the copy
+---
+> from bar3.scale.X.spcore_f import SelfClimb                    # compose2: the copy
+> from bar3.scale.X import hooks as H                            # family: ROUNDT
+30a32
+>         progs = H.round_filter(self, progs, answers)                # family: ROUNDT
+39a42
+>             rprogs = H.round_filter(self, rprogs, answers)          # family: ROUNDT

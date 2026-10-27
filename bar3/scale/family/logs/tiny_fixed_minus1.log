@@ -1,0 +1,33 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 10000, 'round_budget': 20000, 'levels': 2, 'search_s': 60.0, 'fuse': 1, 'patterns': [], 'laws': ['lt', 'red', 'add'], 'target': 'small', 'sources': ['restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'subgoal': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'rest_deep': True, 'spell': 16, 'tiefollow': True, 'target_fn': 'minus1', 'slice': '1', 'loops': '1', 'down': '1', 'const': '1', 'subterms': '1', 'const1': '1', 'holes': '1'}
+UNIT      8.5s +    8.5s L0 pose: 165 candidates on 116 roots
+UNIT     18.9s +   10.4s L0 probe 16 roots 10.4s solved {} [('routines', 10.4)]
+UNIT     29.6s +   10.7s L0 probe 16 roots 10.7s solved {'add/x,d@AX': 4, 'add/x,d@AY': 4, 'add/x,d@XA': 4, 'add/x,d@YA': 4} [('routines', 10.7)]
+UNIT     31.7s +    2.1s L0 probe 16 roots 2.1s solved {'add/x,d@NA': 4} [('routines', 2.1)]
+UNIT     35.9s +    4.2s L0 probe 16 roots 4.2s solved {'add/pair@AX': 4, 'lt/pair@AX': 4, 'add/pair@XA': 4} [('routines', 4.2)]
+UNIT     37.4s +    1.5s L0 probe 16 roots 1.5s solved {} [('routines', 1.5)]
+UNIT     38.8s +    1.4s L0 probe 16 roots 1.4s solved {} [('routines', 1.4)]
+UNIT     41.7s +    2.9s L0 probe 16 roots 2.9s solved {} [('routines', 2.8)]
+UNIT     44.0s +    2.3s L0 probe 4 roots 2.3s solved {} [('routines', 2.3)]
+UNIT     44.0s +    0.0s L0 choose (lpca): {'unsolved': 157, 'learnable': 4, 'duplicate': 4}; picks [('add/x,d@AX', 4, 'CLC P[ADC.X INC]'), ('add/x,d@AY', 4, 'CLC P[ADC.Y INC]'), ('add/x,d@NA', 4, 'CLC P[ADC.N INC]'), ('lt/pair@AX', 4, 'CLC P[SBB.X INC]')]
+UNIT     44.0s +    0.0s L0 sleep: T.add.x,d.AX=CLC P[ADC.X INC]; T.add.x,d.AY=CLC P[ADC.Y INC]; T.add.x,d.NA=CLC P[ADC.N INC]; T.lt.pair.AX=CLC P[SBB.X INC]
+UNIT     77.8s +   33.7s L0 target: cost None levels [1, 36, 1028, 37452] fits [0, 4, 4, 7] 33.7s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 36, 974, 31141] 0.0s budget: level 3 streamed (over 20000 states) []
+UNIT     78.1s +    0.4s L1 pose: 141 candidates on 116 roots
+UNIT     79.3s +    1.2s L1 probe 16 roots 1.2s solved {} [('routines', 1.2)]
+UNIT     80.6s +    1.3s L1 probe 16 roots 1.3s solved {} [('routines', 1.3)]
+UNIT     81.8s +    1.2s L1 probe 16 roots 1.2s solved {} [('routines', 1.2)]
+UNIT     83.0s +    1.2s L1 probe 16 roots 1.2s solved {'add/pair@AX': 1, 'red/pair@AX': 3, 'add/pair@AY': 1, 'add/pair@AN': 1, 'add/pair@XA': 1} [('routines', 1.2)]
+UNIT     84.1s +    1.1s L1 probe 16 roots 1.1s solved {'add/pair@XY': 2, 'add/pair@XN': 2, 'add/pair@YA': 1, 'add/pair@YX': 2, 'add/pair@YN': 2, 'add/pair@NA': 1, 'add/pair@NX': 2, 'add/pair@NY': 2} [('routines', 1.1)]
+UNIT     85.3s +    1.2s L1 probe 16 roots 1.2s solved {} [('routines', 1.2)]
+UNIT     86.6s +    1.3s L1 probe 16 roots 1.3s solved {} [('routines', 1.3)]
+UNIT     87.1s +    0.5s L1 probe 4 roots 0.5s solved {} [('routines', 0.5)]
+UNIT     87.1s +    0.0s L1 deep: [('tgt@XN', {'low': 0.0, 'zero': 0.0, 'ltx': 0.6666666666666666}), ('x,n@AX', {'pred': 0.42857142857142855}), ('x,n@AY', {'pred': 0.2727272727272727}), ('x,n@AN', {'pred': 0.2727272727272727}), ('x,n@XA', {'pred': 0.08333333333333333}), ('x,n@XY', {'pred': 0.0}), ('x,n@XN', {'pred': 0.0}), ('x,n@YA', {'pred': 0.0}), ('x,n@YX', {'pred': 0.0}), ('x,n@YN', {'pred': 0.0}), ('x,n@NA', {'pred':
+UNIT     90.2s +    3.2s L1 deep ['tgt@XN', 'x,n@AX', 'x,n@AY', 'x,n@AN'] 3.2s solved {} [('deep []', 3.1)]
+UNIT     93.1s +    2.9s L1 deep ['x,n@XA', 'x,n@XY', 'x,n@XN', 'x,n@YA'] 2.9s solved {} [('deep []', 2.9)]
+UNIT     96.1s +    2.9s L1 deep ['x,n@YX', 'x,n@YN', 'x,n@NA', 'x,n@NX'] 2.9s solved {} [('deep []', 2.9)]
+UNIT     97.0s +    0.9s L1 deep ['x,n@NY'] 0.9s solved {} [('deep []', 0.9)]
+UNIT     97.0s +    0.0s L1 choose (lpca): {'unsolved': 128, 'trivial': 6, 'learnable': 4, 'duplicate': 3}; picks [('red/pair@AX', 3, 'STA.S T.lt.pair.AX SEL.S'), ('add/pair@XY', 2, 'LDA.Y T.add.x,d.AX'), ('add/pair@XN', 2, 'LDA.N T.add.x,d.AX'), ('add/pair@YN', 2, 'LDA.N T.add.x,d.AY')]
+UNIT     97.0s +    0.0s L1 sleep: T.red.pair.AX=STA.S T.lt.pair.AX SEL.S; T.add.pair.XY=LDA.Y T.add.x,d.AX; T.add.pair.XN=LDA.N T.add.x,d.AX; T.add.pair.YN=LDA.N T.add.x,d.AY
+UNIT    129.4s +   32.4s L1 target: cost None levels [1, 40, 1214, 46137] fits [0, 4, 4, 7] 32.3s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 40, 1140, 38391] 0.1s budget: level 3 streamed (over 20000 states) []
+UNIT    129.4s +    0.0s climb done at level 2 (the level cap)
+TOTAL 129.4 s; rounds []
+LIB {"T.add.x,d.AX": "CLC P[ADC.X INC]", "T.add.x,d.AY": "CLC P[ADC.Y INC]", "T.add.x,d.NA": "CLC P[ADC.N INC]", "T.lt.pair.AX": "CLC P[SBB.X INC]", "T.red.pair.AX": "STA.S T.lt.pair.AX SEL.S", "T.add.pair.XY": "LDA.Y T.add.x,d.AX", "T.add.pair.XN": "LDA.N T.add.x,d.AX", "T.add.pair.YN": "LDA.N T.add.x,d.AY"}

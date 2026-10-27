@@ -1,0 +1,24 @@
+{
+ "lib": {
+  "T.lt.pair.AN": "CLC P[SBB.N INC]",
+  "T.lt.pair.AX": "CLC P[SBB.X INC]",
+  "T.red.pair.AN": "STA.S T.lt.pair.AN SEL.S",
+  "T.red.Bx+d.AN": "B[T.red.pair.AN]",
+  "T.red.pair.AX": "STA.S T.lt.pair.AX SEL.S",
+  "T.acc.mul.o,x,d.AXY": "LDH.Y CLK P[MUL.X INC]",
+  "T.mul.x,o.XY": "CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]",
+  "T.red.x+on.XN": "LDA.N P[BRG.X T.red.Bx+d.AN]",
+  "T.add.pair.AX": "CLC P[ADC.X INC]",
+  "T.add.pair.AY": "CLC P[ADC.Y INC]",
+  "T.const.1.n.N": "CLA STA.S T.lt.pair.AN CLA ADC.S",
+  "T.add.1.x,n.AN": "STA.X T.const.1.n.N T.add.pair.AX",
+  "T.add.3.x,n.AN": "T.add.1.x,n.AN T.add.1.x,n.AN T.add.1.x,n.AN",
+  "T.pred.A": "STA.Y T.const.1.n.N STA.X LDA.Y T.lt.pair.AX",
+  "T.w.mod.mul.w2.XYN": "T.mul.x,o.XY STA.X T.red.x+on.XN",
+  "T.w.mod.mul10.w1.AN": "SHL.A STA.X T.red.x+on.XN",
+  "T.w.mod.add1.w1.AN": "T.add.1.x,n.AN STA.X T.red.x+on.XN",
+  "T.w.mod.add3.w1.AN": "T.add.3.x,n.AN STA.X T.red.x+on.XN",
+  "T.w.mod.add1.mul10.w1.AN": "SHL.A T.add.1.x,n.AN STA.X T.red.x+on.XN",
+  "T.w.mod.pred.add.w1.AN": "STA.Y LDA.N T.add.pair.AY T.pred.A STA.X T.red.x+on.XN"
+ }
+}

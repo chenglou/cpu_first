@@ -1,0 +1,28 @@
+ten: exit 0
+rho: exit 0
+plus3: exit 0
+minus1: exit 0
+x2: exit 0
+x3: exit 0
+10x2p1: exit 0
+ten: mod(mul(mod(mul(X,X),N),10),N) (depth 4, constants [10])
+   cuts: ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'mul/x,o=mul', 'red/x+on=red', 'red/pair=link', 'lt/pair=cmp', 'const.10/n=const', 'mul.10/x,n=const', 'w.mod.mul10/w1=subterm', 'w.mul10.mod/w1=subterm', 'w.mod.mul/w2=subterm', 'w.mod.mul10.mod/w1=subterm', 'w.mul10.mod.mul/w2=subterm']
+   pose: ['L0 pose: 142 candidates on 116 roots']
+rho: mod(add(mul(X,X),1),N) (depth 3, constants [1, 2])
+   cuts: ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'add/x,d=add', 'red/Bx+d=step', 'mul/x,o=mul', 'add/pair=add', 'red/x+on=red', 'red/pair=link', 'lt/pair=cmp', 'const.1/n=const', 'add.1/x,n=const', 'w.mod.add1/w1=subterm', 'w.add1.mul/w2=subterm', 'w.mod.add1.mul/w2=subterm']
+   pose: ['L0 pose: 158 candidates on 116 roots']
+plus3: mod(add(mul(X,X),3),N) (depth 3, constants [3, 4, 1])
+   cuts: ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'add/x,d=add', 'red/Bx+d=step', 'mul/x,o=mul', 'add/pair=add', 'red/x+on=red', 'red/pair=link', 'lt/pair=cmp', 'const.3/n=const', 'add.3/x,n=const', 'w.mod.add3/w1=subterm', 'w.add3.mul/w2=subterm', 'w.mod.add3.mul/w2=subterm']
+   pose: ['L0 pose: 158 candidates on 116 roots']
+minus1: mod(pred(add(mul(X,X),N)),N) (depth 4, constants [])
+   cuts: ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'add/x,d=add', 'red/Bx+d=step', 'mul/x,o=mul', 'add/pair=add', 'red/x+on=red', 'red/pair=link', 'lt/pair=cmp', 'w.mod.pred/w1=subterm', 'w.pred.add/w1=subterm', 'w.add.mul/w2=subterm', 'w.mod.pred.add/w1=subterm', 'w.pred.add.mul/w2=subterm']
+   pose: ['L0 pose: 149 candidates on 100 roots']
+x2: mod(mul(X,X),N) (depth 2, constants [1])
+   cuts: ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'mul/x,o=mul', 'red/x+on=red', 'red/pair=link', 'lt/pair=cmp', 'w.mod.mul/w2=subterm']
+   pose: ['L0 pose: 112 candidates on 98 roots']
+x3: mod(mul(mod(mul(X,X),N),X),N) (depth 4, constants [1])
+   cuts: ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'mul/x,o=mul', 'red/x+on=red', 'red/pair=link', 'lt/pair=cmp', 'w.mod.mul/w2=subterm', 'w.mul.mod/w2=subterm', 'w.mod.mul.mod/w2=subterm']
+   pose: ['L0 pose: 124 candidates on 98 roots']
+10x2p1: mod(add(mul(mod(mul(X,X),N),10),1),N) (depth 5, constants [1, 11, 10])
+   cuts: ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'add/x,d=add', 'mul/x,o=mul', 'red/x+on=red', 'add/pair=add', 'red/pair=link', 'lt/pair=cmp', 'const.10/n=const', 'mul.10/x,n=const', 'const.1/n=const', 'add.1/x,n=const', 'w.mod.add1/w1=subterm', 'w.add1.mul10/w1=subterm', 'w.mul10.mod/w1=subterm', 'w.mod.mul/w2=subterm', 'w.mod.add1.mul10/w1=subterm', 'w.add1.mul10.mod/w1=subterm', 'w.mul10.mod.mul/w2=subterm']
+   pose: ['L0 pose: 186 candidates on 116 roots']

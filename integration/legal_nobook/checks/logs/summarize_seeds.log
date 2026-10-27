@@ -1,0 +1,32 @@
+== legal_nobook_official.json: seed [74], rc 0, md5 b42ec304; T 64 / 64; ood_n_t 10002/10002, ood_t 10002/10002, test 9999/9999
+   climb starts step 563 (about 52 s), answer program step 630 (about 318 s), frozen step 829 (about 362 s); climb work by then 1.865e+09; training 573.9 s (20000 steps), evaluation 398.3 s; peak RSS 13226 MB
+   programs ['C.S[T.round1 STA.X]', 'C.S[T.round2 STA.X]', 'C.S[T.round3 STA.X]']
+   rounds {'T.round1': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X T.red.x+on.XN', 'T.round2': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y CLA T.add.mul.o,x,o.YXA STA.X T.red.x+on.XN', 'T.round4': 'LDA.X STA.Y CLA T.add.mul.o,x,o.YXA STA.Y T.red.x+on.YN'}
+== legal_nobook_h100_seed1.json: seed [1], rc 0, md5 b42ec304; T 64 / 64; ood_n_t 10002/10002, ood_t 10002/10002, test 9999/9999
+   climb starts step 584 (about 44 s), answer program step 651 (about 256 s), frozen step 850 (about 289 s); climb work by then 1.137e+09; training 472.4 s (20000 steps), evaluation 294.9 s; peak RSS 12793 MB
+   programs ['C.S[T.round1 STA.X]', 'C.S[T.round3 STA.X]']
+   rounds {'T.round1': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y LDA.N STA.X T.red.x+on.YX', 'T.round2': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AYX STA.Y LDA.N STA.X T.red.x+on.YX', 'T.round3': 'LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.Y LDA.N STA.X T.red.x+on.YX', 'T.round4': 'LDA.X STA.Y LDA.N T.add.mul.o,x,o.AYX STA.Y LDA.N STA.X T.red.x+on.YX'}
+== legal_nobook_h100_seed2.json: seed [2], rc 0, md5 b42ec304; T 64 / 64; ood_n_t 10002/10002, ood_t 10002/10002, test 9999/9999
+   climb starts step 584 (about 43 s), answer program step 651 (about 275 s), frozen step 850 (about 402 s); climb work by then 1.266e+09; training 581.8 s (20000 steps), evaluation 296.3 s; peak RSS 13204 MB
+   programs ['C.S[T.round1 STA.X]', 'C.S[T.round2 STA.X]', 'C.S[T.round3 STA.X]']
+   rounds {'T.round1': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X T.red.x+on.XN', 'T.round2': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.X T.red.x+on.XN', 'T.round4': 'LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN'}
+== legal_nobook_h100_seed3.json: seed [3], rc 0, md5 b42ec304; T 64 / 64; ood_n_t 10002/10002, ood_t 10002/10002, test 9999/9999
+   climb starts step 612 (about 56 s), answer program step 675 (about 280 s), frozen step 874 (about 406 s); climb work by then 1.276e+09; training 594.5 s (20000 steps), evaluation 303.2 s; peak RSS 13812 MB
+   programs ['C.S[T.round1 STA.X]', 'C.S[T.round2 STA.X]', 'C.S[T.round3 STA.X]', 'C.S[T.round4 STA.X]']
+   rounds {'T.round1': 'LDA.X T.mul.x,o.XA STA.X T.red.x+on.XN', 'T.round2': 'LDA.X T.mul.x,o.XA STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X T.red.x+on.XN', 'T.round4': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN'}
+== legal_nobook_h100_seed4.json: seed [4], rc 0, md5 b42ec304; T 64 / 64; ood_n_t 10002/10002, ood_t 10002/10002, test 9999/9999
+   climb starts step 653 (about 62 s), answer program step 719 (about 344 s), frozen step 918 (about 397 s); climb work by then 1.695e+09; training 633.5 s (20000 steps), evaluation 395.3 s; peak RSS 13886 MB
+   programs ['C.S[T.round1 STA.X]', 'C.S[T.round2 STA.X]', 'C.S[T.round3 STA.X]', 'C.S[T.round4 STA.X]']
+   rounds {'T.round1': 'LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN', 'T.round2': 'LDA.X T.mul.x,o.AX STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X T.red.x+on.XN', 'T.round4': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN'}
+== legal_nobook_h100_seed5.json: seed [5], rc 0, md5 b42ec304; T 64 / 64; ood_n_t 10002/10002, ood_t 10002/10002, test 9999/9999
+   climb starts step 609 (about 49 s), answer program step 671 (about 282 s), frozen step 870 (about 408 s); climb work by then 1.525e+09; training 585.0 s (20000 steps), evaluation 289.5 s; peak RSS 13766 MB
+   programs ['C.S[T.round1 STA.X]', 'C.S[T.round2 STA.X]', 'C.S[T.round3 STA.X]', 'C.S[T.round4 STA.X]']
+   rounds {'T.round1': 'LDA.X T.mul.x,o.XA STA.X T.red.x+on.XN', 'T.round2': 'LDA.X T.mul.x,o.XA STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X T.red.x+on.XN', 'T.round4': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN'}
+== legal_nobook_h100_seed6.json: seed [6], rc 0, md5 b42ec304; T 64 / 64; ood_n_t 10002/10002, ood_t 10002/10002, test 9999/9999
+   climb starts step 623 (about 46 s), answer program step 689 (about 270 s), frozen step 888 (about 299 s); climb work by then 1.316e+09; training 476.5 s (20000 steps), evaluation 290.5 s; peak RSS 12743 MB
+   programs ['C.S[T.round1 STA.X]', 'C.S[T.round3 STA.X]']
+   rounds {'T.round1': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN', 'T.round2': 'LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN', 'T.round4': 'LDA.X STA.Y LDA.N T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN'}
+== legal_nobook_h100_seed7.json: seed [7], rc 0, md5 b42ec304; T 64 / 64; ood_n_t 10002/10002, ood_t 10002/10002, test 9999/9999
+   climb starts step 565 (about 69 s), answer program step 633 (about 343 s), frozen step 832 (about 389 s); climb work by then 1.68e+09; training 615.6 s (20000 steps), evaluation 626.3 s; peak RSS 12846 MB
+   programs ['C.S[T.round1 STA.X]', 'C.S[T.round3 STA.X]']
+   rounds {'T.round1': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN', 'T.round2': 'LDA.X STA.Y CLA T.add.mul.o,x,o.AYX STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN', 'T.round4': 'LDA.X STA.Y LDA.N T.add.mul.o,x,o.AYX STA.Y T.red.x+on.YN'}

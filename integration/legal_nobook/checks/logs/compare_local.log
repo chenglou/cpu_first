@@ -1,0 +1,20 @@
+policy: differs
+    -policy: the contest's static source policy passes; 261,465 bytes of 262,144
+    +policy: the contest's static source policy passes; 261,893 bytes of 262,144
+grad: the same (2 lines)
+machines: the same (7 lines)
+isa: the same (5 lines)
+designed: the same (6 lines)
+buffers: the same (3 lines)
+replay: the same (1 lines)
+climb: differs
+    -climb: level 2, 10 definitions, work 9.988e+06; climb lines 13
+    +climb: level 0, 3 definitions, work 1.201e+06; climb lines 4
+climb (tiny budgets): differs
+    -climb (tiny budgets): level 1, 0 definitions, work 1.213e+06; climb lines 9
+    +climb (tiny budgets): level 0, 0 definitions, work 0; climb lines 0
+fix: differs
+    -fix: check_fix_variants.check_sp2 with integration/legal_wide/submission_stage3_wide.py as the fixed copy, integration/generic_ops/submission_stage3_g3.py as the original, its official library
+    +fix: check_fix_variants.check_sp2 with integration/legal_nobook/submission_stage3_nobook.py as the fixed copy, integration/generic_ops/submission_stage3_g3.py as the original, its official library
+book: the same (2 lines)
+fix's details: the same (6 lines)

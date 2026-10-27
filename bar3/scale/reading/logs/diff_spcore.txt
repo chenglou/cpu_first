@@ -1,0 +1,11 @@
+53a54,55
+> if H.SUBLAW or H.CONST:                     # reading: the sub-law's and the constants' patterns
+>     PATTERNS.update(H.PATTERNS6)
+1221c1223
+<                            key=lambda p: -p[0])
+---
+>                            key=lambda p: (-p[0],) + H.prior_rank(self, p[1]))     # reading: PRIOR
+1229c1231
+<             for n in sorted(singles, key=lambda n: -singles[n]):
+---
+>             for n in sorted(singles, key=lambda n: (-singles[n],) + H.prior_rank(self, (n,))):   # reading: PRIOR

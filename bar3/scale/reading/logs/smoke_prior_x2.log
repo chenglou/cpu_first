@@ -1,0 +1,18 @@
+device cpu config {'rule': 'ct2a2', 'K': 4, 'NP': 8, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 10000, 'round_budget': 20000, 'levels': 1, 'search_s': 60.0, 'fuse': 1, 'patterns': ['pair'], 'laws': ['lt', 'red', 'add'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'spell': 16, 'tiefollow': True, 'slice': '1', 'loops': '1', 'prior': '1'}
+UNIT      9.0s +    9.0s L0 pose: 106 candidates on 92 roots
+UNIT     13.3s +    4.4s L0 probe 16 roots 4.4s solved {'lt/pair@AX': 4} [('routines', 4.3)]
+UNIT     23.0s +    9.7s L0 probe 16 roots 9.7s solved {} [('routines', 9.7)]
+UNIT     30.8s +    7.7s L0 probe 16 roots 7.7s solved {} [('routines', 7.7)]
+UNIT     32.6s +    1.8s L0 probe 16 roots 1.8s solved {} [('routines', 1.8)]
+UNIT     33.8s +    1.2s L0 probe 16 roots 1.2s solved {} [('routines', 1.2)]
+UNIT     36.8s +    3.0s L0 probe 12 roots 3.0s solved {'val.10/tgt@XN': 2} [('routines', 2.8)]
+UNIT     36.9s +    0.1s L0 look: 3 lookaheads; the target alone: cost None
+UNIT     44.5s +    7.6s L0 look ('lt/pair@AX',): cost None 7.6s
+UNIT     44.7s +    0.2s L0 look ('val.10/tgt@XN',): cost None 0.2s
+UNIT     46.8s +    2.0s L0 look ('lt/pair@AX', 'val.10/tgt@XN'): cost None 2.0s
+UNIT     46.8s +    0.0s L0 choose (ct2a2): {'learnable': 2, 'unsolved': 104}; picks [('lt/pair@AX', 4, 'CLC P[SBB.X INC]'), ('val.10/tgt@XN', 2, 'LDA.X SHL.A')]
+UNIT     46.8s +    0.0s L0 sleep: T.lt.pair.AX=CLC P[SBB.X INC]; T.val.10.tgt.XN=LDA.X SHL.A
+UNIT     57.2s +   10.4s L0 target: cost None levels [1, 34, 894, 30438] fits [0, 6, 6, 6] 10.2s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 34, 850, 18958, 547886] 0.2s budget: level 4 streamed (over 20000 states) []
+UNIT     57.2s +    0.0s climb done at level 1 (the level cap)
+TOTAL 57.2 s; rounds []
+LIB {"T.lt.pair.AX": "CLC P[SBB.X INC]", "T.val.10.tgt.XN": "LDA.X SHL.A"}

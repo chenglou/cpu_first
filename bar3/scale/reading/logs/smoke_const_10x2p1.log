@@ -1,0 +1,15 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 10000, 'round_budget': 20000, 'levels': 1, 'search_s': 60.0, 'fuse': 1, 'patterns': ['pair'], 'laws': ['lt', 'red', 'add'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'subgoal': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'rest_deep': True, 'spell': 16, 'tiefollow': True, 'target_fn': '10x2p1', 'slice': '1', 'loops': '1', 'const': '1'}
+UNIT     42.5s +   42.5s L0 pose: 147 candidates on 107 roots
+UNIT     46.8s +    4.3s L0 probe 16 roots 4.3s solved {'lt/pair@AX': 4} [('routines', 4.3)]
+UNIT     56.5s +    9.7s L0 probe 16 roots 9.7s solved {} [('routines', 9.7)]
+UNIT     64.7s +    8.2s L0 probe 16 roots 8.2s solved {'add/x,d@AX': 4, 'add/x,d@AY': 4, 'add/x,d@XA': 4, 'add/x,d@YA': 4, 'add/x,d@NA': 4} [('routines', 8.2)]
+UNIT     66.5s +    1.8s L0 probe 16 roots 1.8s solved {} [('routines', 1.8)]
+UNIT     67.7s +    1.2s L0 probe 16 roots 1.2s solved {} [('routines', 1.2)]
+UNIT     68.9s +    1.2s L0 probe 16 roots 1.2s solved {'mul.10/x,n@AX': 1, 'mul.10/x,n@AY': 1, 'mul.10/x,n@AN': 1, 'mul.10/x,n@XA': 2, 'mul.10/x,n@XY': 2, 'mul.10/x,n@XN': 2, 'mul.10/x,n@YA': 2, 'mul.10/x,n@YX': 2} [('routines', 1.2)]
+UNIT     71.2s +    2.2s L0 probe 11 roots 2.2s solved {'mul.10/x,n@YN': 2, 'mul.10/x,n@NA': 2, 'mul.10/x,n@NX': 2, 'mul.10/x,n@NY': 2} [('routines', 2.1)]
+UNIT     71.2s +    0.0s L0 choose (lpca): {'learnable': 7, 'unsolved': 129, 'duplicate': 8, 'trivial': 3}; picks [('lt/pair@AX', 4, 'CLC P[SBB.X INC]'), ('add/x,d@AX', 4, 'CLC P[ADC.X INC]'), ('add/x,d@AY', 4, 'CLC P[ADC.Y INC]'), ('add/x,d@NA', 4, 'CLC P[ADC.N INC]'), ('mul.10/x,n@XA', 2, 'LDA.X SHL.A'), ('mul.10/x,n@YA', 2, 'LDA.Y SHL.A'), ('mul.10/x,n@NA', 2, 'LDA.N SHL.A')]
+UNIT     71.2s +    0.0s L0 sleep: T.lt.pair.AX=CLC P[SBB.X INC]; T.add.x,d.AX=CLC P[ADC.X INC]; T.add.x,d.AY=CLC P[ADC.Y INC]; T.add.x,d.NA=CLC P[ADC.N INC]; T.mul.10.x,n.XA=LDA.X SHL.A; T.mul.10.x,n.YA=LDA.Y SHL.A; T.mul.10.x,n.NA=LDA.N SHL.A
+UNIT    112.0s +   40.9s L0 target: cost None levels [1, 39, 1156, 43759] fits [1, 2, 4, 5] 40.8s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 39, 1102, 36733] 0.0s budget: level 3 streamed (over 20000 states) []
+UNIT    112.0s +    0.0s climb done at level 1 (the level cap)
+TOTAL 112.0 s; rounds []
+LIB {"T.lt.pair.AX": "CLC P[SBB.X INC]", "T.add.x,d.AX": "CLC P[ADC.X INC]", "T.add.x,d.AY": "CLC P[ADC.Y INC]", "T.add.x,d.NA": "CLC P[ADC.N INC]", "T.mul.10.x,n.XA": "LDA.X SHL.A", "T.mul.10.x,n.YA": "LDA.Y SHL.A", "T.mul.10.x,n.NA": "LDA.N SHL.A"}

@@ -1,0 +1,16 @@
+{
+ "lib": {
+  "T.lt.pair.AN": "CLC P[SBB.N INC]",
+  "T.lt.pair.AX": "CLC P[SBB.X INC]",
+  "T.red.pair.AN": "STA.S T.lt.pair.AN SEL.S",
+  "T.red.pair.AX": "STA.S T.lt.pair.AX SEL.S",
+  "T.red.Bx+d.AN": "B[T.red.pair.AN]",
+  "T.acc.mul.o,x,d.AXY": "LDH.Y CLK P[MUL.X INC]",
+  "T.mul.x,o.XY": "CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]",
+  "T.red.x+on.XN": "LDA.N P[BRG.X T.red.Bx+d.AN]",
+  "T.add.pair.AX": "CLC P[ADC.X INC]",
+  "T.const.1.n.N": "CLA STA.S T.lt.pair.AN CLA ADC.S",
+  "T.mod.mul.x,o,n.XYN": "T.mul.x,o.XY STA.X T.red.x+on.XN",
+  "T.add.1.x,n.AN": "STA.X T.const.1.n.N T.add.pair.AX"
+ }
+}

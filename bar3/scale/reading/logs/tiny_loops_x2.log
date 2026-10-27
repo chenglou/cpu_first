@@ -1,0 +1,42 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 10000, 'round_budget': 20000, 'levels': 3, 'search_s': 60.0, 'fuse': 1, 'patterns': ['pair'], 'laws': ['lt', 'red', 'add'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'subgoal': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'rest_deep': True, 'spell': 16, 'tiefollow': True, 'slice': '1', 'loops': '1'}
+UNIT      8.7s +    8.7s L0 pose: 106 candidates on 92 roots
+UNIT     13.0s +    4.2s L0 probe 16 roots 4.2s solved {'lt/pair@AX': 4} [('routines', 4.2)]
+UNIT     22.4s +    9.4s L0 probe 16 roots 9.4s solved {} [('routines', 9.4)]
+UNIT     29.8s +    7.4s L0 probe 16 roots 7.4s solved {} [('routines', 7.4)]
+UNIT     31.5s +    1.7s L0 probe 16 roots 1.7s solved {} [('routines', 1.7)]
+UNIT     32.8s +    1.2s L0 probe 16 roots 1.2s solved {} [('routines', 1.2)]
+UNIT     35.6s +    2.8s L0 probe 12 roots 2.8s solved {'val.10/tgt@XN': 2} [('routines', 2.7)]
+UNIT     35.6s +    0.0s L0 choose (lpca): {'learnable': 2, 'unsolved': 104}; picks [('lt/pair@AX', 4, 'CLC P[SBB.X INC]'), ('val.10/tgt@XN', 2, 'LDA.X SHL.A')]
+UNIT     35.6s +    0.0s L0 sleep: T.lt.pair.AX=CLC P[SBB.X INC]; T.val.10.tgt.XN=LDA.X SHL.A
+UNIT     45.7s +   10.1s L0 target: cost None levels [1, 34, 894, 30438] fits [0, 6, 6, 6] 9.9s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 34, 850, 18958, 547886] 0.2s budget: level 4 streamed (over 20000 states) []
+UNIT     45.9s +    0.2s L1 pose: 94 candidates on 91 roots
+UNIT     46.7s +    0.7s L1 probe 16 roots 0.7s solved {'red/pair@AX': 3} [('routines', 0.7)]
+UNIT     47.4s +    0.7s L1 probe 16 roots 0.7s solved {} [('routines', 0.7)]
+UNIT     48.2s +    0.7s L1 probe 16 roots 0.7s solved {} [('routines', 0.7)]
+UNIT     48.9s +    0.7s L1 probe 16 roots 0.7s solved {} [('routines', 0.7)]
+UNIT     49.6s +    0.7s L1 probe 16 roots 0.7s solved {} [('routines', 0.7)]
+UNIT     51.1s +    1.5s L1 probe 11 roots 1.5s solved {'val.25/tgt@XN': 1} [('routines', 0.6), ('primitives', 0.9)]
+UNIT     51.1s +    0.0s L1 deep: [('tgt@XN', {'low': 0.0, 'ltx': 0.6, 'eqx': 0.3333333333333333}), ('pair@AY', {'red': 0.0}), ('pair@AN', {'red': 0.0}), ('pair@XA', {'red': 0.0}), ('pair@XY', {'red': 0.0}), ('pair@XN', {'red': 0.5}), ('pair@YA', {'red': 0.0}), ('pair@YN', {'red': 0.0}), ('pair@NA', {'red': 0.0}), ('pair@NX', {'red': 0.0}), ('pair@NY', {'red': 0.0})]
+UNIT     56.6s +    5.4s L1 deep ['tgt@XN', 'pair@AY', 'pair@AN', 'pair@XA'] 5.4s solved {'val.25/tgt@XN': 1} [('deep []', 0.9), ("deep ['T.lt.pair.AX']", 4.3)]
+UNIT     61.8s +    5.2s L1 deep ['pair@XY', 'pair@XN', 'pair@YA', 'pair@YN'] 5.2s solved {} [("deep ['T.lt.pair.AX']", 5.2)]
+UNIT     66.1s +    4.2s L1 deep ['pair@NA', 'pair@NX', 'pair@NY'] 4.2s solved {'red/pair@NX': 4} [("deep ['T.lt.pair.AX']", 4.2)]
+UNIT     66.1s +    0.0s L1 choose (lpca): {'learnable': 2, 'unsolved': 91, 'trivial': 1}; picks [('red/pair@AX', 3, 'STA.S T.lt.pair.AX SEL.S')]
+UNIT     66.1s +    0.0s L1 sleep: T.red.pair.AX=STA.S T.lt.pair.AX SEL.S
+UNIT     78.4s +   12.4s L1 target: cost None levels [1, 35, 953, 33315] fits [0, 6, 6, 6] 12.3s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 35, 905, 20844] 0.0s budget: level 3 has 20844 > 20000 states []
+UNIT     78.7s +    0.3s L2 pose: 95 candidates on 92 roots
+UNIT     79.8s +    1.1s L2 probe 16 roots 1.1s solved {} [('routines', 1.1)]
+UNIT     80.8s +    1.0s L2 probe 16 roots 1.0s solved {} [('routines', 1.0)]
+UNIT     81.8s +    1.0s L2 probe 16 roots 1.0s solved {} [('routines', 1.0)]
+UNIT     82.8s +    0.9s L2 probe 16 roots 0.9s solved {'red/Bx+d@AX': 2, 'red/Bx+d@YX': 3, 'red/Bx+d@NX': 3} [('routines', 0.9)]
+UNIT     83.8s +    1.0s L2 probe 16 roots 1.0s solved {} [('routines', 1.0)]
+UNIT     85.5s +    1.8s L2 probe 12 roots 1.8s solved {'val.40/tgt@XN': 1} [('routines', 0.9), ('primitives', 0.8)]
+UNIT     85.5s +    0.0s L2 deep: [('tgt@XN', {'low': 0.0, 'ltx': 0.6, 'eqx': 0.3333333333333333}), ('rst1@XN', {'target': 0.4}), ('rst3@XN', {'target': 0.38461538461538464}), ('Bx+d@AY', {'red': 0.07692307692307693}), ('Bx+d@AN', {'red': 0.07692307692307693}), ('Bx+d@XA', {'red': 0.0}), ('Bx+d@XY', {'red': 0.15384615384615385}), ('Bx+d@XN', {'red': 0.07142857142857142}), ('Bx+d@YA', {'red': 0.0}), ('Bx+d@YN', {'red': 0.2
+UNIT     92.8s +    7.2s L2 deep ['tgt@XN', 'rst1@XN', 'rst3@XN', 'Bx+d@AY'] 7.2s solved {'val.40/tgt@XN': 1} [('deep []', 0.9), ("deep ['T.lt.pair.AX']", 3.0), ("deep ['T.lt.pair.AX', 'T.red.pair.AX', 'T.val.10.tgt.XN']", 3.2)]
+UNIT    102.2s +    9.5s L2 deep ['Bx+d@AN', 'Bx+d@XA', 'Bx+d@XY', 'Bx+d@XN'] 9.5s solved {} [("deep ['T.lt.pair.AX', 'T.red.pair.AX', 'T.val.10.tgt.XN']", 9.5)]
+UNIT    111.7s +    9.5s L2 deep ['Bx+d@YA', 'Bx+d@YN', 'Bx+d@NA', 'Bx+d@NY'] 9.5s solved {'red/Bx+d@YA': 4, 'red/Bx+d@NA': 4} [("deep ['T.lt.pair.AX', 'T.red.pair.AX', 'T.val.10.tgt.XN']", 9.5)]
+UNIT    111.7s +    0.0s L2 choose (lpca): {'unsolved': 89, 'learnable': 5, 'trivial': 1}; picks [('red/Bx+d@AX', 2, 'B[T.red.pair.AX]')]
+UNIT    111.7s +    0.0s L2 sleep: T.red.Bx+d.AX=B[T.red.pair.AX]
+UNIT    214.3s +  102.6s L2 target: cost None levels [1, 36, 1013, 36381] fits [0, 6, 6, 6] 102.5s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 36, 962, 30332] 0.1s budget: level 3 streamed (over 20000 states) []
+UNIT    214.3s +    0.0s climb done at level 3 (the level cap)
+TOTAL 214.3 s; rounds []
+LIB {"T.lt.pair.AX": "CLC P[SBB.X INC]", "T.val.10.tgt.XN": "LDA.X SHL.A", "T.red.pair.AX": "STA.S T.lt.pair.AX SEL.S", "T.red.Bx+d.AX": "B[T.red.pair.AX]"}

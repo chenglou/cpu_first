@@ -1,0 +1,30 @@
+a: flags off 0
+a: same apart from times
+b: down 0
+c: sublaw 0
+d: const 0
+e: prior 0
+tiny_down_x2 config: {'slice': '1', 'loops': '1', 'down': '1', 'sublaw': None, 'const': None, 'prior': None, 'rule': 'lpca', 'sources': ['restrict', 'project', 'value', 'rest'], 'target_fn': None}
+   reading and cuts: [('mod(mul(X,X),N)', ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'mul/x,o=mul', 'red/x+on=red', 'red/pair=link', 'lt/pair=cmp'])]
+   pose: ['L0 pose: 106 candidates on 92 roots', 'L1 pose: 94 candidates on 91 roots', 'L2 pose: 83 candidates on 80 roots']
+   picks: [(0, ['lt/pair@AX', 'val.10/tgt@XN']), (1, ['red/pair@AX']), (2, ['red/Bx+d@AX'])]
+   routines: [('T.lt.pair.AX', 'CLC P[SBB.X INC]'), ('T.val.10.tgt.XN', 'LDA.X SHL.A'), ('T.red.pair.AX', 'STA.S T.lt.pair.AX SEL.S'), ('T.red.Bx+d.AX', 'B[T.red.pair.AX]')]
+   rounds: []
+smoke_sublaw_x3 config: {'slice': '1', 'loops': '1', 'down': None, 'sublaw': '1', 'const': None, 'prior': None, 'rule': 'lpca', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'target_fn': 'x3'}
+   reading and cuts: [('mod(mul(mod(mul(X,X),N),X),N)', ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'mul/x,o=mul', 'red/x+on=red', 'mod.mul/x,o,n=sublaw'])]
+   pose: ['L0 pose: 130 candidates on 116 roots']
+   picks: [(0, ['lt/pair@AX', 'val.5/tgt@XN'])]
+   routines: [('T.lt.pair.AX', 'CLC P[SBB.X INC]'), ('T.val.5.tgt.XN', 'LDA.X SHL.A')]
+   rounds: []
+smoke_const_10x2p1 config: {'slice': '1', 'loops': '1', 'down': None, 'sublaw': None, 'const': '1', 'prior': None, 'rule': 'lpca', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'target_fn': '10x2p1'}
+   reading and cuts: [('mod(add(mul(mod(mul(X,X),N),10),1),N)', ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'add/x,d=add', 'mul/x,o=mul', 'red/x+on=red', 'const.10/n=const', 'mul.10/x,n=const', 'const.1/n=const', 'add.1/x,n=const'])]
+   pose: ['L0 pose: 147 candidates on 107 roots']
+   picks: [(0, ['lt/pair@AX', 'add/x,d@AX', 'add/x,d@AY', 'add/x,d@NA', 'mul.10/x,n@XA', 'mul.10/x,n@YA', 'mul.10/x,n@NA'])]
+   routines: [('T.lt.pair.AX', 'CLC P[SBB.X INC]'), ('T.add.x,d.AX', 'CLC P[ADC.X INC]'), ('T.add.x,d.AY', 'CLC P[ADC.Y INC]'), ('T.add.x,d.NA', 'CLC P[ADC.N INC]'), ('T.mul.10.x,n.XA', 'LDA.X SHL.A'), ('T.mul.10.x,n.YA', 'LDA.Y SHL.A'), ('T.mul.10.x,n.NA', 'LDA.N SHL.A')]
+   rounds: []
+smoke_prior_x2 config: {'slice': '1', 'loops': '1', 'down': None, 'sublaw': None, 'const': None, 'prior': '1', 'rule': 'ct2a2', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'target_fn': None}
+   reading and cuts: [('mod(mul(X,X),N)', ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'mul/x,o=mul', 'red/x+on=red'])]
+   pose: ['L0 pose: 106 candidates on 92 roots']
+   picks: [(0, ['lt/pair@AX', 'val.10/tgt@XN'])]
+   routines: [('T.lt.pair.AX', 'CLC P[SBB.X INC]'), ('T.val.10.tgt.XN', 'LDA.X SHL.A')]
+   rounds: []

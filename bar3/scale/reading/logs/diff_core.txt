@@ -1,0 +1,18 @@
+20,21c20,21
+< from bar3.scale.X import spcore_l as S                    # compose2: the copy
+< from bar3.scale.X import climb_l as CC
+---
+> from bar3.scale.X import spcore_r as S                    # compose2: the copy
+> from bar3.scale.X import climb_r as CC
+70c70
+<         from bar3.scale.X.oracle_l import SmallTarget      # compose2: the copy
+---
+>         from bar3.scale.X.oracle_r import SmallTarget      # compose2: the copy
+72c72
+<             from bar3.scale.X.clean_l import CleanTarget as SmallTarget
+---
+>             from bar3.scale.X.clean_r import CleanTarget as SmallTarget
+93a94,96
+>     for _k in ("DOWN", "SUBLAW", "CONST", "PRIOR"):                 # reading: its flags
+>         if getattr(H, _k):
+>             flags[_k.lower()] = getattr(H, _k)

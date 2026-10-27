@@ -1,0 +1,24 @@
+reading x2: mod(mul(X,X),N): sub-laws {('mod', 'mul'): 1}, constants {}: ok
+reading x3: mod(mul(mod(mul(X,X),N),X),N): sub-laws {('mod', 'mul'): 2}, constants {}: ok
+reading 10x2p1: mod(add(mul(mod(mul(X,X),N),10),1),N): sub-laws {('mod', 'add'): 1, ('mod', 'mul'): 1}, constants {10: ['mul'], 1: ['add']}: ok
+lt/pair@AX: 'CLC P[SBB.X INC]': probes True, accepted True, expected True: ok
+lt/pair@AX: 'CLC P[ADC.X INC]': probes False, accepted False, expected False: ok
+red/pair@AX: 'STA.S T.lt.pair.AX SEL.S': probes True, accepted True, expected True: ok
+red/pair@AX: 'STA.S CLC P[SBB.X INC] SEL.S': probes True, accepted True, expected True: ok
+red/pair@AX: 'T.lt.pair.AX': probes False, accepted False, expected False: ok
+red/pair@AX: 'CLA': probes False, accepted False, expected False: ok
+red/Bx+d@AN: 'B[T.red.pair.AN]': probes True, accepted True, expected True: ok
+mod.mul/x,o,n@XYN: 'T.mul.x,o.XY STA.X T.red.x+on.XN': probes True, accepted True, expected True: ok
+mod.mul/x,o,n@XYN: 'T.mul.x,o.XY': probes False, accepted False, expected False: ok
+mod.mul/x,o,n@XYN: 'T.mul.x,o.XY STA.X CLA P[BRG.X T.red.pair.AN]': probes False, accepted False, expected False: ok
+const.1/n@N: 'CLA STA.S T.lt.pair.AN CLA ADC.S': probes True, accepted True, expected True: ok
+const.1/n@N: 'CLA STA.S CLC P[SBB.N INC] CLA ADC.S': probes True, accepted True, expected True: ok
+const.1/n@N: 'CLA ADC.S': probes False, accepted False, expected False: ok
+const.1/n@N: 'CLA': probes False, accepted False, expected False: ok
+const.10/n@N: 'T.const.1.n.N SHL.A': probes True, accepted True, expected True: ok
+add.1/x,n@AN: 'STA.X T.const.1.n.N T.add.pair.AX': probes True, accepted True, expected True: ok
+add.1/x,n@AN: 'T.add.pair.AX': probes False, accepted False, expected False: ok
+add.1/x,n@AN: 'STA.X T.const.1.n.N': probes False, accepted False, expected False: ok
+mul.10/x,n@AN: 'SHL.A': probes True, accepted True, expected True: ok
+mul.10/x,n@AN: 'CLA': probes False, accepted False, expected False: ok
+ALL OK

@@ -4,11 +4,18 @@ for the seconds. A job may set "engine": "py" to run the original (bar3/jobs.py)
 A job may also pose a problem of another shape (sources.py): "init" sets registers beyond X and N before the
 program runs (per probe; "every_init" and "check_init" for the acceptance instances), and "outs" names the registers
 that hold the answer (want[i] then lists one value per register).
+
+The flag LIB_ORDER (environment BAR3_LIB_ORDER=1, read on import, so worker processes started with it share it; off
+by default): the item enumeration reads the library in its order (the tokens' order picks each class's representative
+and the classes' order), but classes_for's cache key and same_search sort it, so two jobs with the same routines in
+other orders would share the first one's vocabulary (in one worker, or one shared search). With the flag both keep
+the library's order. Off, every key is as it was (bar3/gpu_search/GPU_SEARCH.md §9 checks the committed records).
 """
 
 from __future__ import annotations
 
 import json
+import os
 import time
 
 import numpy as np
@@ -20,6 +27,14 @@ from bar3 import search
 from bar3.scale import engine
 
 _CLASSES = {}
+LIB_ORDER = os.environ.get("BAR3_LIB_ORDER") == "1"
+
+
+def _lib_key(lib):
+    """A library in a cache key: by token, sorted, or (LIB_ORDER) in its own order, which the enumeration reads."""
+    if LIB_ORDER:
+        return json.dumps([[t, dsl.show(v)] for t, v in lib.items()])
+    return json.dumps({t: dsl.show(v) for t, v in sorted(lib.items())})
 
 
 class RProblem:
@@ -57,8 +72,7 @@ def classes_for(lib, kinds, k, max_body, costs=None):
     library), as bar3/jobs.classes_for. With `costs` (token or loop kind -> bits), each item costs the bits of its
     tokens and loop kinds instead of its token count, and a class is searched as its cheapest member: the search is
     then by description length under that model (learn.learned_costs), cheapest first."""
-    key = (json.dumps({t: dsl.show(v) for t, v in sorted(lib.items())}), tuple(kinds), k, max_body,
-           json.dumps(costs, sort_keys=True) if costs else "")
+    key = (_lib_key(lib), tuple(kinds), k, max_body, json.dumps(costs, sort_keys=True) if costs else "")
     if key not in _CLASSES:
         if len(_CLASSES) > 8:
             _CLASSES.clear()
@@ -153,8 +167,10 @@ SEARCH_SPACE = ("k", "xs", "Ns", "init", "lib", "kinds", "max_cost", "max_states
 
 
 def same_search(job):
-    """What fixes a job's search, apart from its goal: jobs with the same key build the same levels."""
-    return json.dumps([job.get(f) for f in SEARCH_SPACE], sort_keys=True)
+    """What fixes a job's search, apart from its goal: jobs with the same key build the same levels (with LIB_ORDER,
+    the library as (token, program) pairs, in its order)."""
+    fields = [list(job.get("lib", {}).items()) if f == "lib" and LIB_ORDER else job.get(f) for f in SEARCH_SPACE]
+    return json.dumps(fields, sort_keys=True)
 
 
 def search_jobs(jobs):

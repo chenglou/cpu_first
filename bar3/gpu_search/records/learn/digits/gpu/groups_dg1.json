@@ -1,0 +1,39 @@
+{
+ "fc-01M5XAG767W76D17V5S424R7A7": {
+  "runs": [
+   "lp_clean_b_src_dxmod_dg1"
+  ],
+  "engine": "gpu",
+  "seconds": 735,
+  "worker_peak_gb": 4.66,
+  "gpu_peak_gb": 7.53,
+  "stats": {
+   "vocabularies": 8,
+   "wait_vocab_s": 18.480549335479736,
+   "vocab_misses": 0,
+   "search_s": 597.5561833381653,
+   "searches": 296,
+   "general_shared": 0,
+   "jobs": 1287
+  }
+ },
+ "fc-01M5XBF9RN96TART7Q6REEJHYZ": {
+  "runs": [
+   "ct2a2_clean_b_src_dxmod_dg1"
+  ],
+  "engine": "gpu",
+  "lib_order": false,
+  "seconds": 279,
+  "worker_peak_gb": 4.57,
+  "gpu_peak_gb": 5.58,
+  "stats": {
+   "vocabularies": 706,
+   "wait_vocab_s": 12.647608518600464,
+   "vocab_misses": 0,
+   "search_s": 212.48728251457214,
+   "searches": 869,
+   "general_shared": 0,
+   "jobs": 1410
+  }
+ }
+}

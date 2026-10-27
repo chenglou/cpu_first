@@ -436,8 +436,13 @@ def bfs_multi(probs, classes, lib, m, max_cost=10, max_states=1_000_000, time_li
 
 
 def use(on=True):
-    """The flag: bar3/scale/jobs.py's searches run here (on) or on the compiled CPU engine (off), in this process."""
+    """The flag: bar3/scale/jobs.py's searches run here (on) or on the compiled CPU engine (off), in this process. The
+    digits study's target jobs (bar3/scale/digits/jobs.py) search through their own module's `engine`, so it is set
+    too when that module is loaded (load it first: it is read here, not later)."""
     import sys
     import bar3.scale.jobs as J
     J.engine = sys.modules[__name__] if on else E
     J._CLASSES.clear()
+    DJ = sys.modules.get("bar3.scale.digits.jobs")
+    if DJ is not None:
+        DJ.engine = J.engine

@@ -22,11 +22,13 @@ ROOT = HERE.parent.parent
 image = (modal.Image.debian_slim(python_version="3.13").apt_install("gcc")
          .pip_install("numpy==2.5.4", "numba==0.68.0", "torch==2.14.1"))
 for _d in ("library", "library/inventing", "bar3", "bar3/breadth", "bar3/scale", "bar3/scale/subgoal",
-           "bar3/scale/heldout", "bar3/scale/newton", "bar3/scale/rowcheck", "bar3/scale/picks", "bar3/gpu_search"):
+           "bar3/scale/heldout", "bar3/scale/newton", "bar3/scale/digits", "bar3/scale/rowcheck", "bar3/scale/picks",
+           "bar3/scale/reach", "bar3/scale/consolidate", "bar3/gpu_search"):
     for _f in sorted((ROOT / _d).glob("*.py")):
         image = image.add_local_file(_f, f"/root/{_d}/{_f.name}")
 for _f in ("bar3/breadth/records/lp_clean_h1_b1.jsonl", "bar3/breadth/records/seq_lp_clean_targets_b1.state.affine.json",
-           "bar3/scale/records/reach_h1_base.json", "bar3/scale/records/reach_ten_lib34.json"):
+           "bar3/scale/records/reach_h1_base.json", "bar3/scale/records/reach_ten_lib34.json",
+           "bar3/scale/digits/records/lp_clean_b_src_dxmod_dg1.jsonl"):
     image = image.add_local_file(ROOT / _f, f"/root/{_f}")
 vol = modal.Volume.from_name("bar3-gpu-search", create_if_missing=True)
 VERSION = "v1"
@@ -122,8 +124,16 @@ def run_cpu16(module: str, args: list, tag: str) -> str:
     return _run(module, args, tag)
 
 
+@app.function(cpu=16, memory=(65536, 98304), timeout=4 * 3600,
+              volumes={"/out": vol, "/cons": modal.Volume.from_name("bar3-consolidate")})
+def run_cpu16_cons(module: str, args: list, tag: str) -> str:
+    """run_cpu16 with the consolidate study's Volume at /cons, to read its stores (GPU_SEARCH.md §9; nothing is
+    written there)."""
+    return _run(module, args, tag)
+
+
 FNS = {"T4": run_t4, "L4": run_l4, "A10G": run_a10g, "L40S": run_l40s, "A100-80GB": run_a100, "H100": run_h100,
-       "B200": run_b200, "CPU16": run_cpu16, "L40S-C12": run_l40s_c12}
+       "B200": run_b200, "CPU16": run_cpu16, "L40S-C12": run_l40s_c12, "CPU16-cons": run_cpu16_cons}
 
 
 @app.local_entrypoint()

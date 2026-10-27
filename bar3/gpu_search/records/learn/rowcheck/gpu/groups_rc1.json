@@ -1,0 +1,39 @@
+{
+ "fc-01M5XAFCF58B6Z9WCWEE8955KT": "RemoteError('Function call was cancelled by user or a failure.')",
+ "fc-01M5XAFCM1H9F7ZMAQSCF91VQ4": {
+  "runs": [
+   "lp_clean_b_src_rc_dxsq_rc1"
+  ],
+  "engine": "gpu",
+  "seconds": 1060,
+  "worker_peak_gb": 4.58,
+  "gpu_peak_gb": 8.43,
+  "stats": {
+   "vocabularies": 11,
+   "wait_vocab_s": 30.68859624862671,
+   "vocab_misses": 0,
+   "search_s": 852.4110925197601,
+   "searches": 459,
+   "general_shared": 0,
+   "jobs": 1761
+  }
+ },
+ "fc-01M5XAFSYZQQR2N1A26Q7382GD": {
+  "runs": [
+   "lp_clean_deep_sub_ns_rc_tenrho_rc1"
+  ],
+  "engine": "gpu",
+  "seconds": 452,
+  "worker_peak_gb": 4.46,
+  "gpu_peak_gb": 7.76,
+  "stats": {
+   "vocabularies": 11,
+   "wait_vocab_s": 27.801448822021484,
+   "vocab_misses": 0,
+   "search_s": 358.24317741394043,
+   "searches": 828,
+   "general_shared": 0,
+   "jobs": 2093
+  }
+ }
+}

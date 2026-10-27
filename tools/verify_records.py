@@ -1,6 +1,7 @@
 """Checks official records against the files they certify (REVIEW.md). Standard library only; reads, never writes.
 
-    python3 tools/verify_records.py                        # the file to judge's 8 runs, s3i's 8, stage 1, general v3
+    python3 tools/verify_records.py                        # the file to judge's 8 runs, fast2's 8, s3i's 8, stage 1
+                                                           # and general v3
     python3 tools/verify_records.py REC.json[=FILE.py] ... # any records; FILE defaults to the record's submission_file
     python3 tools/verify_records.py --log RUN.log [REC]    # a run of your own: its RESULT_JSON line against REC.json
                                                            # (default: the file to judge's official record)
@@ -21,10 +22,14 @@ HERE = Path(__file__).resolve().parent.parent                       # cpu_first/
 COMP = HERE.parent / "one-layer-deeper"                              # the competition clone at 87e5c26
 MANIFEST = COMP / "benchmark" / "manifests" / "h100_hard_h1.json"
 DATA_MD5 = "a6414ec9fc6a5efce6414895b52d4eb7"                        # runner.data_md5 of every shared-runner record
-JUDGE = "integration/combined_fast/submission_stage3_fast2.py"         # the file to judge (REVIEW.md §2) ...
-JUDGE_RECORDS = "integration/combined_fast/records/combined_fast2"     # ... and its records: _official, _h100_seed<N>
+JUDGE = "integration/combined_legal/submission_stage3_legal.py"        # the file to judge (REVIEW.md §2) ...
+JUDGE_RECORDS = "integration/combined_legal/records/combined_legal"    # ... and its records: _official, _h100_seed<N>
+FAST2 = "integration/combined_fast/submission_stage3_fast2.py"         # the file to judge before it (REVIEW.md §2) ...
+FAST2_RECORDS = "integration/combined_fast/records/combined_fast2"     # ... and its records, named the same way
 FRONTIER = [(f"{JUDGE_RECORDS}_official.json", JUDGE)]
 FRONTIER += [(f"{JUDGE_RECORDS}_h100_seed{s}.json", JUDGE) for s in range(1, 8)]
+FRONTIER += [(f"{FAST2_RECORDS}_official.json", FAST2)]
+FRONTIER += [(f"{FAST2_RECORDS}_h100_seed{s}.json", FAST2) for s in range(1, 8)]
 FRONTIER += [("integration/records/s3i_official.json", "integration/submission_stage3_s3i.py"),
              ("integration/records/s1_official.json", "integration/submission_stage1.py"),
              ("general_lessons/fixed/records/v3k_h1_official.json", "general_lessons/submission_general_v3.py")]

@@ -1,0 +1,20 @@
+policy: differs
+    -policy: the contest's static source policy passes; 261,651 bytes of 262,144
+    +policy: the contest's static source policy passes; 261,801 bytes of 262,144
+grad: the same (2 lines)
+machines: the same (7 lines)
+isa: the same (5 lines)
+designed: the same (6 lines)
+buffers: differs
+    -buffers: a fresh model loaded with the state dict gives the same logits: True; state 207,370 parameters, 336,487 buffer numbers
+    +buffers: a fresh model loaded with the state dict gives the same logits: True; state 207,370 parameters, 860,783 buffer numbers
+replay: the same (1 lines)
+climb: the same (1 lines)
+climb (tiny budgets): the same (1 lines)
+fix: differs
+    -fix: check_fix_variants.check_sp2 with integration/legal_family/submission_stage3_family.py as the fixed copy, integration/generic_ops/submission_stage3_g3.py as the original, its official library
+    +fix: check_fix_variants.check_sp2 with integration/legal_wider/submission_stage3_wider.py as the fixed copy, integration/generic_ops/submission_stage3_g3.py as the original, its official library
+book: differs
+    -book: the law book's code (PATTERNS to the end of law_target) against sp_ablation/fix/book_gen_fix.py's: 105 lines differ
+    +book: the law book's code (PATTERNS to the end of law_target) against sp_ablation/fix/book_gen_fix.py's: 165 lines differ
+fix's details: the same (6 lines)

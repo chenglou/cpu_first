@@ -1,0 +1,21 @@
+/Users/chenglou/github/one-layer/cpu_first/integration/combined_sp2/checks/local_combined.py:428: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(f"STEP {step} loss {float(loss):.4f} phase {ctl.phase} io {ctl.io} counts {m.counts_kept()} ans_ok "
+      312.95 real       454.53 user        80.46 sys
+          3839705088  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              706734  page reclaims
+                  70  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                2030  voluntary context switches
+            15352745  involuntary context switches
+       9664831471530  instructions retired
+       2154713280560  cycles elapsed
+          3914059976  peak memory footprint

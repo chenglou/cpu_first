@@ -1,0 +1,398 @@
+policy: the contest's static source policy passes; 261,801 bytes of 262,144 (0s)
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (0.569) | C.S[T.round3 STA.X] (0.431)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=5 (no training ran)
+grad: depth_t_2 n=2 exact=1.000 (0.9s forward) (1s)
+grad: 15 tensors; with a gradient: 14 | none: [] | all zero: ['prog'] (3s)
+   a: max |grad| 8.721e-07
+   b: max |grad| 7.062e-05
+   aa: max |grad| 8.176e-06
+   ab: max |grad| 9.103e-08
+   ml: max |grad| 9.896e-34
+   mh: max |grad| 9.889e-35
+   dg: max |grad| 1.392e-04
+   u: max |grad| 7.101e-04
+   wc: max |grad| 2.462e-02
+   anc: max |grad| 7.530e-02
+   strd: max |grad| 6.363e-03
+   shape: max |grad| 1.181e-02
+   off: max |grad| 5.030e-16
+   absp: max |grad| 2.328e-16
+machines: 46 of test_count.py's programs and 33 with C blocks at P = 4, every machine from items and from instructions: 0 failing (7s)
+machines: counts 0-12 run that many times; 150 clears the probe (7s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN) T=1: machines agree True, outer True, one-hot True; the answer right True (8s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN) T=2: machines agree True, outer True, one-hot True; the answer right True (9s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN) T=4: machines agree True, outer True, one-hot None; the answer right True (10s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN) T=8: machines agree True, outer True, one-hot None; the answer right True (13s)
+machines: C.S[T.round1 STA.X] (T.round1 = LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN) T=16: machines agree True, outer True, one-hot None; the answer right True (17s)
+MACHINES OK
+isa: if1,k, 30 primitives ['SBB.X', 'SBB.Y', 'SBB.N', 'SBB.S', 'ADC.X', 'ADC.Y', 'ADC.N', 'ADC.S', 'MUL.X', 'MUL.Y', 'MUL.N', 'LDA.X', 'LDA.Y', 'LDA.N', 'LDA.S', 'STA.X', 'STA.Y', 'STA.S', 'CLA', 'CLC', 'CLK', 'LDH.X', 'LDH.Y', 'INC', 'SHL.A', 'SHL.X', 'SHL.Y', 'SHR.A', 'SHR.X', 'SHR.Y']; loops ('P', 'B', 'W', 'C') (17s)
+  lockstep primitives (10,1) P=2: 30 items, 720 rows: same (0s)
+  lockstep primitives (10,2) P=4: 30 items, 720 rows: same (0s)
+  lockstep primitives (10,8) P=16: 30 items, 720 rows: same (0s)
+isa: vocabulary to body cost 2: 1995 items, 28 C blocks (17s)
+  lockstep vocabulary (10,1): 1995 items, 3000 rows: same (1s)
+  lockstep vocabulary (10,2): 1995 items, 3000 rows: same (1s)
+  lockstep routines and nests (10,1): 147 items, 2000 rows: same (1s)
+  lockstep routines and nests (10,2): 147 items, 2000 rows: same (3s)
+  lockstep routines and nests (10,8): 147 items, 2000 rows: same (24s)
+isa: the outer machine vs run_prog, 41 programs at 16 places: 0 differ (47s)
+isa: the one-hot machine (items and instructions) vs run_items, 25 programs at 16 places: 0 differ (64s)
+isa: the hand-written round LDA.X STA.Y T.mul STA.X LDA.N T.red, T.link = STA.S T.lt C[LDA.S], T.red = STA.Y P[SHL.X SHL.A T.chain]: round_ok on 400 T = 1 rows True (65s)
+ISA OK
+designed: the buffers hold ['C.S[T.round1 STA.X]'] and 8 definitions; round_ops (4, 12205); parameters 207,370 (65s)
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (1.000)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=4 (no training ran)
+designed: depth_t_1 n=8: prediction path exact 1.000, run_outer exact 1.000 (0.2s) (65s)
+AUDIT count_loop_rows_used=11 (no training ran)
+designed: depth_t_8 n=8: prediction path exact 1.000, run_outer exact 1.000 (1.4s) (66s)
+AUDIT count_loop_rows_used=14 (no training ran)
+designed: depth_t_16 n=8: prediction path exact 1.000, run_outer exact 1.000 (2.9s) (69s)
+designed: depth_ood_n_t_2 n=8: prediction path exact 1.000, run_outer exact 1.000 (0.4s) (70s)
+AUDIT count_loop_rows_used=24 (no training ran)
+designed: depth_ood_n_t_64 n=8: prediction path exact 1.000, run_outer exact 1.000 (11.7s) (81s)
+DESIGNED ALL EXACT
+buffers: the count rows' buffers equal the learned loop's dict after each of 300 random batches: yes; kept {'00': 56, '01': 56, '11': 56, '02': 56, '22': 56, '03': 56, '04': 56, '08': 56, '09': 56} (81s)
+buffers: round_ops is answer_trace's (12205 instructions), round_src reads back the program and the 8 definitions it uses: True (81s)
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (1.000)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=7 (no training ran)
+CELLS right (vs the truth, report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+ROUND C.S[T.round1 STA.X] (1.000)
+MINED 
+SCHEDULE phase=frozen io=5 step=0 history=[]
+LAWS sub.order: a < b exactly when a - b borrows, on every top part; subtracting keeps, reverses or wraps the order [every mined order fact; the subtraction table]; sub.bijective: every row and column of the subtraction uses each digit once [the table]; sub.inverse: (a - b) + b = a [the registers; the addition table on every entry; the adder's practice]; sub.identity: a - 0 = a, a - a = 0 [the registers]; sub.zero_minus: 0 - a borrows when a != 0 [every mined nonzero fact]; add.commute: a + b = b + a [the registers]; mul.zero: a + x 0 + k = a + k [the multiply-accumulate table on every entry]; mul.ladder: a + x (h + 1) + k = (a + x h + k) + x [the multiply-accumulate table; the row's practice]; mul.distribute: x y = y additions of x [the multiply's practice]; red.identity: red(a) = a for a < N; red(N) = 0 [the link's practice (modx)]; red.step: one step moves the register by multiples of N until it is below N [the chain's and the step's practice (modB, step)]; red.invariant: red(a + Q N) = a for a < N [the reduction's practice (reduce), Q another row's x]
+IO shape=step reading=(0, 0, 1, 1) digit_tokens=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+AUDIT count_loop_rows_used=7 (no training ran)
+buffers: a fresh model loaded with the state dict gives the same logits: True; state 207,370 parameters, 860,783 buffer numbers (83s)
+BUFFERS OK
+replay: a finished climb with an official run's rounds (4) and the 9 definitions they use (84s)
+LR step=1 phase=C io=4 loss=0.1051 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=-1000 rows_visited=200/200 pool=64 answers=1 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: none fit=[]  facts=
+STEP 1 loss 0.1051 phase C io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 0.0 streak 0 progs none 0.01s
+LR outer step=2 answer program: cost 3 levels [1, 28, 495, 9892] 151.4s  ['C.S[T.round3 STA.X]', 'C.S[T.round1 STA.X]', 'C.S[T.round4 STA.X]'] (36 rows of 3 counts, 3023 items, 599 loop bodies) [work +1.113e+08, 1.113e+08 in all]
+LR round_found step=2 programs: ['C.S[T.round1 STA.X]', 'C.S[T.round2 STA.X]', 'C.S[T.round3 STA.X]', 'C.S[T.round4 STA.X]'] rounds: {'T.round1': 'LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN', 'T.round2': 'LDA.X T.mul.x,o.AX STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y T.mul.x,o.XY STA.X T.red.x+on.XN', 'T.round4': 'LDA.X STA.Y T.mul.x,o.XY STA.Y T.red.x+on.YN'} library: {'T.lt.pair.AN': 'CLC P[SBB.N INC]', 'T.add.pair.AN': 'CLC P[ADC.N INC]', 'T.acc.mul.o,x,d.AXY': 'LDH.Y CLK P[MUL.X INC]', 'T.red.x+dn.AN': 'B[T.lt.pair.AN C[T.add.pair.AN]]', 'B4.1': 'SHL.A T.red.x+dn.AN', 'T.red.x+on.XN': 'LDA.N P[SHL.X B4.1]', 'T.red.x+on.YN': 'LDA.N P[SHL.Y B4.1]', 'T.mul.x,o.AX': 'CLK P[SHL.A SHL.Y T.acc.mul.o,x,d.AXY]', 'T.mul.x,o.XY': 'CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]', 'T.round1': 'LDA.X T.mul.x,o.AX STA.X T.red.x+on.XN', 'T.round2': 'LDA.X T.mul.x,o.AX STA.Y T.red.x+on.YN', 'T.round3': 'LDA.X STA.Y T.mul.x,o.XY STA.X T.red.x+on.XN', 'T.round4': 'LDA.X STA.Y T.mul.x,o.XY STA.Y T.red.x+on.YN'}
+STEP 2 loss 0.0908 phase D io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 1 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 151.75s
+STEP 3 loss 0.0896 phase D io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 2 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.17s
+STEP 4 loss 0.0848 phase D io 4 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 3 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.34s
+LR io_stage=5 T_resolved step=5 rows=25 hits=25 snapped_right=1.000 share=1.0000
+STEP 5 loss 0.0846 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 4 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 1.32s
+STEP 6 loss 0.0777 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 5 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.32s
+STEP 7 loss 0.0749 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 6 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.33s
+STEP 8 loss 0.0674 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 7 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.33s
+STEP 9 loss 0.0656 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 8 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.33s
+LR mined step=10 fact=x<N
+LR mined step=10 fact=T<N
+LR mined step=10 fact=N!=0
+LR mined step=10 fact=N<10^7
+LR mined step=10 fact=N<10^8
+LR mined step=10 fact=x!=0
+LR mined step=10 fact=x<10^6
+LR mined step=10 fact=x<10^7
+LR mined step=10 fact=x<10^8
+LR mined step=10 fact=T!=0
+LR mined step=10 fact=T<10^2
+LR mined step=10 fact=T<10^3
+LR mined step=10 fact=T<10^4
+LR mined step=10 fact=T<10^5
+LR mined step=10 fact=T<10^6
+LR mined step=10 fact=T<10^7
+LR mined step=10 fact=T<10^8
+LR step=10 phase=D io=5 loss=0.0619 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=1.0000 streak=8 facts_streak=1 order_digits=-1000 rows_visited=200/200 pool=640 answers=3 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) fit=[1.0, 1.0, 1.0, 1.0] rows=25 hits=25 snapped_right=1.000 share=1.0000 facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0)
+STEP 10 loss 0.0619 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 9 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.18s
+STEP 11 loss 0.0619 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 10 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.34s
+LR mined step=12 fact=N<10^6
+STEP 12 loss 0.0565 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 11 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.18s
+STEP 13 loss 0.0564 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 12 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.18s
+STEP 14 loss 0.0548 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 13 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.34s
+STEP 15 loss 0.0482 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 14 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.18s
+LR mined step=16 fact=T<x
+STEP 16 loss 0.0512 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 15 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.11s
+STEP 17 loss 0.0456 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 16 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.11s
+STEP 18 loss 0.0435 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 17 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.19s
+STEP 19 loss 0.0443 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 18 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.19s
+LR step=20 phase=D io=5 loss=0.0419 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=1.0000 streak=18 facts_streak=11 order_digits=-1000 rows_visited=200/200 pool=1280 answers=6 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) fit=[1.0, 1.0, 1.0, 1.0] rows=25 hits=25 snapped_right=1.000 share=1.0000 facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < x(since 16, fails 1);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0)
+STEP 20 loss 0.0419 phase D io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 19 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.11s
+LR frozen step=21 history=[(2, 'answer_program', 4), (5, 'T_resolved', 25), (21, 'frozen', 20)] round: C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194)
+STEP 21 loss 0.0402 phase frozen io 5 counts {'01': 1, '04': 21, '08': 14} ans_ok 1.0 streak 20 progs C.S[T.round1 STA.X] (0.291) | C.S[T.round2 STA.X] (0.252) | C.S[T.round3 STA.X] (0.264) | C.S[T.round4 STA.X] (0.194) 0.35s
+REPLAY FROZEN, the answer programs ['C.S[T.round1 STA.X]', 'C.S[T.round2 STA.X]', 'C.S[T.round3 STA.X]', 'C.S[T.round4 STA.X]'] in the buffers
+LR climb_starts step=1 cells: subtraction/addition/multiply snapped, right vs the truth (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+LR step=1 phase=C io=5 loss=0.1051 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=-1000 rows_visited=200/200 pool=64 answers=1 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: none fit=[]  facts=
+STEP 1 loss 0.1051 phase C answers t=1 1 pool 64 work 0 0.01s
+STEP 2 loss 0.0908 phase C answers t=1 1 pool 128 work 0 0.01s
+STEP 3 loss 0.0896 phase C answers t=1 1 pool 192 work 0 0.01s
+STEP 4 loss 0.0848 phase C answers t=1 1 pool 256 work 0 0.01s
+STEP 5 loss 0.0846 phase C answers t=1 3 pool 320 work 0 0.01s
+STEP 6 loss 0.0777 phase C answers t=1 3 pool 384 work 0 0.01s
+STEP 7 loss 0.0749 phase C answers t=1 3 pool 448 work 0 0.01s
+STEP 8 loss 0.0674 phase C answers t=1 3 pool 512 work 0 0.01s
+STEP 9 loss 0.0656 phase C answers t=1 3 pool 576 work 0 0.01s
+LR mined step=10 fact=x<N
+LR mined step=10 fact=T<N
+LR mined step=10 fact=N!=0
+LR mined step=10 fact=N<10^7
+LR mined step=10 fact=N<10^8
+LR mined step=10 fact=x!=0
+LR mined step=10 fact=x<10^6
+LR mined step=10 fact=x<10^7
+LR mined step=10 fact=x<10^8
+LR mined step=10 fact=T!=0
+LR mined step=10 fact=T<10^2
+LR mined step=10 fact=T<10^3
+LR mined step=10 fact=T<10^4
+LR mined step=10 fact=T<10^5
+LR mined step=10 fact=T<10^6
+LR mined step=10 fact=T<10^7
+LR mined step=10 fact=T<10^8
+LR step=10 phase=C io=5 loss=0.0619 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=1 order_digits=-1000 rows_visited=200/200 pool=640 answers=3 counts={'01': 3, '02': 4, '04': 64, '08': 64} climb_level=0 solved=[] round: none fit=[]  facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0)
+STEP 10 loss 0.0619 phase C answers t=1 3 pool 640 work 0 0.02s
+STEP 11 loss 0.0619 phase C answers t=1 3 pool 704 work 0 0.02s
+LR mined step=12 fact=N<10^6
+STEP 12 loss 0.0565 phase C answers t=1 3 pool 768 work 0 0.02s
+STEP 13 loss 0.0564 phase C answers t=1 3 pool 832 work 0 0.02s
+STEP 14 loss 0.0548 phase C answers t=1 3 pool 896 work 0 0.02s
+STEP 15 loss 0.0482 phase C answers t=1 3 pool 960 work 0 0.02s
+LR mined step=16 fact=T<x
+STEP 16 loss 0.0512 phase C answers t=1 4 pool 1024 work 0 0.03s
+STEP 17 loss 0.0456 phase C answers t=1 5 pool 1088 work 0 0.03s
+STEP 18 loss 0.0435 phase C answers t=1 5 pool 1152 work 0 0.03s
+STEP 19 loss 0.0443 phase C answers t=1 5 pool 1216 work 0 0.03s
+LR step=20 phase=C io=5 loss=0.0419 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=11 order_digits=-1000 rows_visited=200/200 pool=1280 answers=6 counts={'01': 6, '02': 10, '04': 64, '08': 64} climb_level=0 solved=[] round: none fit=[]  facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < x(since 16, fails 1);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0)
+STEP 20 loss 0.0419 phase C answers t=1 6 pool 1280 work 0 0.03s
+STEP 21 loss 0.0402 phase C answers t=1 6 pool 1344 work 0 0.03s
+STEP 22 loss 0.0392 phase C answers t=1 7 pool 1408 work 0 0.03s
+STEP 23 loss 0.0384 phase C answers t=1 7 pool 1472 work 0 0.03s
+STEP 24 loss 0.0343 phase C answers t=1 7 pool 1536 work 0 0.03s
+STEP 25 loss 0.0350 phase C answers t=1 7 pool 1600 work 0 0.03s
+STEP 26 loss 0.0322 phase C answers t=1 9 pool 1664 work 0 0.03s
+LR climb step=27 L0 pose: 24 candidates on 12 roots; fact: answers below N on 9 rows (N:y 716113:610121 826409:607583 617621:506237 40301:32463 5969:632 6313:765 45649:40891 40301:39890 49949:26048): pose ['lt', 'red', 'add'] [work +0, 0 in all] (0.0s)
+STEP 27 loss 0.0309 phase C answers t=1 13 pool 1728 work 0 0.03s
+LR climb step=28 L0 probe 12 roots 21.4s solved {'lt/pair@AX': 4, 'lt/pair@AY': 4, 'lt/pair@AN': 4} [('routines', 12.5)] [work +1.198e+06, 1.198e+06 in all] (21.4s)
+STEP 28 loss 0.0305 phase C answers t=1 13 pool 1792 work 1.198e+06 21.48s
+LR climb step=29 L0 choose (lpca): {'learnable': 3, 'unsolved': 21}; picks [('lt/pair@AX', 4, 'CLC P[SBB.X INC]'), ('lt/pair@AY', 4, 'CLC P[SBB.Y INC]'), ('lt/pair@AN', 4, 'CLC P[SBB.N INC]')] [work +2808, 1.201e+06 in all] (0.0s)
+STEP 29 loss 0.0284 phase C answers t=1 13 pool 1856 work 1.201e+06 0.04s
+LR climb step=30 L0 sleep: T.lt.pair.AX=CLC P[SBB.X INC]; T.lt.pair.AY=CLC P[SBB.Y INC]; T.lt.pair.AN=CLC P[SBB.N INC] [work +0, 1.201e+06 in all] (0.0s)
+LR step=30 phase=C io=5 loss=0.0282 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=21 order_digits=-1000 rows_visited=200/200 pool=1920 answers=13 counts={'01': 13, '02': 18, '04': 64, '08': 64} climb_level=0 solved=['lt/pair@AN', 'lt/pair@AX', 'lt/pair@AY'] round: none fit=[]  facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);T < x(since 16, fails 1);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0)
+STEP 30 loss 0.0282 phase C answers t=1 13 pool 1920 work 1.201e+06 0.03s
+climb: level 0, 3 definitions, work 1.201e+06; climb lines 4 (264s)
+LR climb_starts step=1 cells: subtraction/addition/multiply snapped, right vs the truth (report only): sbb_d:200/200,sbb_c:200/200,adc_d:200/200,adc_c:200/200,mul_lo:10000/10000,mul_hi:10000/10000
+LR step=1 phase=C io=5 loss=0.1051 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=0 order_digits=-1000 rows_visited=200/200 pool=64 answers=1 counts={'01': 1, '04': 21, '08': 14} climb_level=0 solved=[] round: none fit=[]  facts=
+STEP 1 loss 0.1051 phase C answers t=1 1 pool 64 work 0 0.02s
+STEP 2 loss 0.0908 phase C answers t=1 1 pool 128 work 0 0.01s
+STEP 3 loss 0.0896 phase C answers t=1 1 pool 192 work 0 0.01s
+STEP 4 loss 0.0848 phase C answers t=1 1 pool 256 work 0 0.01s
+STEP 5 loss 0.0846 phase C answers t=1 3 pool 320 work 0 0.01s
+STEP 6 loss 0.0777 phase C answers t=1 3 pool 384 work 0 0.01s
+STEP 7 loss 0.0749 phase C answers t=1 3 pool 448 work 0 0.01s
+STEP 8 loss 0.0674 phase C answers t=1 3 pool 512 work 0 0.01s
+STEP 9 loss 0.0656 phase C answers t=1 3 pool 576 work 0 0.01s
+LR mined step=10 fact=x<N
+LR mined step=10 fact=T<N
+LR mined step=10 fact=N!=0
+LR mined step=10 fact=N<10^7
+LR mined step=10 fact=N<10^8
+LR mined step=10 fact=x!=0
+LR mined step=10 fact=x<10^6
+LR mined step=10 fact=x<10^7
+LR mined step=10 fact=x<10^8
+LR mined step=10 fact=T!=0
+LR mined step=10 fact=T<10^2
+LR mined step=10 fact=T<10^3
+LR mined step=10 fact=T<10^4
+LR mined step=10 fact=T<10^5
+LR mined step=10 fact=T<10^6
+LR mined step=10 fact=T<10^7
+LR mined step=10 fact=T<10^8
+LR step=10 phase=C io=5 loss=0.0619 exact=1.0000 table=1.0000 win=1.0000 cells_on=1 adc=1 mul=1 io_exact=True chosen=0.0000 ans_ok=0.0000 streak=0 facts_streak=1 order_digits=-1000 rows_visited=200/200 pool=640 answers=3 counts={'01': 3, '02': 4, '04': 64, '08': 64} climb_level=0 solved=[] round: none fit=[]  facts=N != 0(since 10, fails 0);N < 10^7(since 10, fails 0);T != 0(since 10, fails 0);T < 10^2(since 10, fails 0);T < N(since 10, fails 0);x != 0(since 10, fails 0);x < 10^6(since 10, fails 0);x < N(since 10, fails 0)
+STEP 10 loss 0.0619 phase C answers t=1 3 pool 640 work 0 0.02s
+STEP 11 loss 0.0619 phase C answers t=1 3 pool 704 work 0 0.02s
+LR mined step=12 fact=N<10^6
+STEP 12 loss 0.0565 phase C answers t=1 3 pool 768 work 0 0.02s
+climb (tiny budgets): level 0, 0 definitions, work 0; climb lines 0 (265s)
+fix: check_fix_variants.check_sp2 with integration/legal_wider/submission_stage3_wider.py as the fixed copy, integration/generic_ops/submission_stage3_g3.py as the original, its official library (266s)
+  3. the acceptance machines at the verify sizes [1, 2, 3, 4] equal the original's: False
+  4. red on pair in XY: its routine 'B1.5 B1.2': original True, fix True; the alias 'LDA.X T.lt.pair.AY CLA C[LDA.X]': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 884,975)
+  4. red on x+on in XN: its routine 'LDA.N P[SHL.X B4.1]': original True, fix True; a loop of 10,000 subtractions 'LDA.X B[B[B[T.red.x+dn.AN]]]': original True, fix False
+  2. red on x+on at W = 8: X = x + q N on 60/60 probes (q up to 870,071)
+  4. red on x+on in YN: its routine 'LDA.N P[SHL.Y B4.1]': original True, fix True; a loop of 10,000 subtractions 'LDA.Y B[B[B[T.red.x+dn.AN]]]': original True, fix False
+fix: above probes: 69/240 drawn at W = 1, 2, 3, 4; N < X < 2N and X - N the answer on 69/69 (311s)
+book: the law book's code (PATTERNS to the end of law_target) against sp_ablation/fix/book_gen_fix.py's: 165 lines differ
+    -OPERAND_REGS = ("A", "X", "Y", "N")       # a law's operands go to these registers in every injective way
+    -
+    -# The book, generated (integration/sp_ablation/SP_ABLATION.md §5). A pattern: the instance kinds (one data term per
+    -# operand; probe i is of kind i mod len), how many digits its numbers need beyond the operands' width w ("carry":
+    -# w + 1; "double": 2 w, wherever a number multiplies: the widest w that fits the registers), and a row filter ("ne":
+    -# only rows with x' != N', where the base form's bound needs x' < N').
+    -QS = ("1", "d", "o", "x")                 # the counts q of r + q b: one, a digit, another row's x, x itself
+    -NFORM = {"x+n": "1", "x+dn": "d", "x+on": "o", "x+xn": "x"}       # r + q N with r = x (x' <= N')
+    -BFORM = {"Bx+d": "x", "Bo+d": "o"}                                # r + q B with r = d (d < B)
+    +OPERAND_REGS = ("A", "X", "Y", "N")  # a law's operands go to these registers in every injective way
+    +
+    +# The book's grammar (integration/sp_ablation/SP_ABLATION.md §5; its base forms d + q B cut, LEGAL_FILE.md §2). A
+    +# pattern: the instance kinds (one data term per operand; probe i is of kind i mod len) and how many digits its
+    +# numbers need beyond the operands' width w ("carry": w + 1; "double": 2 w, wherever a number multiplies: the widest w
+    +# that fits the registers).
+    +QS = ("1", "d", "o", "x")  # the counts q of r + q b: one, a digit, another row's x, x itself
+    +NFORM = {"x+n": "1", "x+dn": "d", "x+on": "o", "x+xn": "x"}  # r + q N with r = x (x' <= N')
+    -PATTERNS.update({t: (((t, "n"),), "carry", "ne" if q == "x" else "") for t, q in BFORM.items()})
+    -OPS2 = {"lt": "c", "eq": "c", "min": "A", "max": "A", "red": "A", "div": "A", "add": "A", "sub": "A", "mul": "A"}
+    -OPS3 = {f"{f}.{g}": "A" for f in ("add", "mul") for g in ("add", "mul")}          # f(a, g(b, c))
+    +OPS2 = {"lt": "c", "red": "A", "add": "A", "mul": "A"}
+    +OPS3 = {f"{f}.{g}": "A" for f in ("add", "mul") for g in ("add", "mul")}  # f(a, g(b, c))
+    +PATTERNS.update({"n": ((("n",),), "same", ""), "x,n": ((("x", "n"),), "carry", ""),  # a reading's own (read_more,
+    +                 "w1": ((("x", "n"),), "double", ""), "w2": ((("x", "o", "n"),), "double", "")})  # not the book's)
+    +NBOUND = ("n", "x,n", "w1", "w2")  # (their last term, the modulus, bound to N)
+    -    """The routines the learner can call to build problems: (law, pattern) -> [(token, binding)], every practised
+    -    routine of that law on that pattern in the order practised. run() places operands in a routine's registers and
+    -    runs it on a fresh machine: the first one (data is built with it), or the i-th (a check passes when any of them
+    -    confirms it: a law's own pattern may not tell its routine from an alias, as "x if x < N, else 0" passes red's
+    -    pair pattern; one routine that is right is then enough)."""
+    +    """The routines the learner can call to build problems: (law, pattern) -> [(token, binding)], in the order
+    +    practised. run() runs the first (data is built with it) or the i-th (a check passes when any confirms it, as a
+    +    pattern may not tell a routine from its alias) on a fresh machine."""
+    -    """D + times v by the learner's own addition (times a count per row; the additions repeated, mul.ladder)."""
+    -    D = D.clone()
+    -    for k in range(int(times.max()) if times.numel() else 0):
+    -        more = torch.nonzero(times > k).flatten()
+    -        if more.numel():
+    -            D[more] = ops.run("add", "pair", st, lib, [D[more], v[more]], gen, device)[0]
+    -    return D
+    +    """D + times v by the learner's own addition (times a count per row: mul.ladder), by doubling (times_add)."""
+    +    return times_add(ops, st, lib, D, v, times, gen, device)
+    -    """Probes with N < X < 2N for the conditional subtraction's check (fix): X is N with its digit at a place j
+    -    raised by d, read from a single entry of the learned addition table with no carry (it comes before any adder, so
+    -    none is needed), and the answer X - N is d at place j. ok marks the probes where such a d was drawn (one try
+    -    each)."""
+    +    """Probes with N < X < 2N for the conditional subtraction's check (the fix, ABLATION_S3.md §8): X is N with its
+    +    digit at a place j raised by d, from one entry of the learned addition table with no carry, and the answer X - N is
+    +    d at place j; ok marks the probes where such a d was drawn (one try each)."""
+    -        if int(st.cells.adc_c[a, d, 0]) or (j == top and d >= a):      # a carry, or X would reach 2N
+    +        if int(st.cells.adc_c[a, d, 0]) or (j == top and d >= a):  # a carry, or X would reach 2N
+    -        if filt == "ne":
+    -            idx = torch.nonzero(~eq[:3 * n]).flatten()[:n]
+    -        self.above = getattr(st, "above", False) and pattern == "pair"     # fix: N < a < 2N (above_probes)
+    +        self.above = getattr(st, "above", False) and pattern == "pair"  # fix: N < a < 2N (above_probes)
+    -        elif name in NFORM:                    # x + q N: q additions of N to x (the learner's addition)
+    -            add_q = times_add if st.W == W else repeat_add      # fix: at the round's size by doubling
+    +        elif name in NFORM:  # x + q N: q additions of N to x (the learner's addition)
+    +            add_q = times_add if st.W == W else repeat_add  # fix: at the round's size by doubling
+    -        elif name in BFORM:                    # d + q B: q's digits moved up one place, d below
+    -            q = self.x if BFORM[name] == "x" else self.o
+    -            v = torch.cat([self.dv[:, None], q[:, :st.P - 1]], 1)
+    -        if self.above:                                          # fix: (N + d B^j, N)
+    +        if self.above:  # fix: (N + d B^j, N)
+    -        (r is x, q, the digits of the quotient by N, where those are read off), or None for a term of no such form
+    -        (o, a digit, a base form)."""
+    +        (r is x, q), or None for a term of no such form (o, a digit)."""
+    -        one, every = digit_string(zero + 1, self.st.P), torch.ones(self.n, dtype=torch.bool, device=self.device)
+    -            return zero.bool(), zero, self.z, every
+    +            return zero.bool(), zero
+    -            return zero.bool(), zero + 1, one, every
+    -        if name == "x":                        # x div N: 0, or 1 where x' = N'
+    -            return ~self.xz & ~self.eq, self.eq.long(), torch.where(self.eq[:, None], one, self.z), every
+    -        if name in NFORM:                      # (x + q N) div N: q's digits, but q + 1 where x' = N' (not read off)
+    -            q = self.count(NFORM[name])
+    -            qd = {"1": one, "d": self.d, "o": self.o, "x": self.x}[NFORM[name]]
+    -            return ~self.xz & ~self.eq, q + self.eq.long(), qd, ~self.eq
+    +            return zero.bool(), zero + 1
+    +        if name == "x":  # x div N: 0, or 1 where x' = N'
+    +            return ~self.xz & ~self.eq, self.eq.long()
+    +        if name in NFORM:  # (x + q N) div N: q, but q + 1 where x' = N'
+    +            return ~self.xz & ~self.eq, self.count(NFORM[name]) + self.eq.long()
+    -        if name in BFORM:
+    -            return (self.st.B - 1) + self.st.B * big
+    -    if d.above:                                                 # fix: red(N + d B^j) = d B^j, where one was drawn
+    +    if law in READ_LAWS:  # a reading's own law (read_target)
+    +        return read_target(law, d, ops, lib)
+    +    if d.above:  # fix: red(N + d B^j) = d B^j, where one was drawn
+    -    room = d.st.B ** P                          # a value fits the registers when below this
+    +    room = d.st.B ** P  # a value fits the registers when below this
+    -        got = None                              # (A or c, where it speaks), or the check's rows
+    -        if len(terms) == 3:                     # f(a, g(b, c)): the learner's addition, repeated for a count
+    +        got = None  # (A or c, where it speaks), or the check's rows
+    +        if len(terms) == 3:  # f(a, g(b, c)): the learner's addition, repeated for a count
+    -            if law in ("lt", "eq", "min", "max") and na and nb:       # the order of r + q N forms, by the facts
+    -                (ra, qa, _, _), (rb, qb, _, _) = na, nb
+    -                lt = (qa < qb) | ((qa == qb) & ~ra & rb)
+    -                same = (qa == qb) & (ra == rb)
+    -                if law in ("lt", "eq"):
+    -                    got = ("c", (lt if law == "lt" else same).long(), sel)
+    -                else:
+    -                    small = lt | same
+    -                    pick = small if law == "min" else ~small
+    -                    got = ("A", torch.where(pick[:, None], val(a), val(b)), sel)
+    -            elif law in ("red", "div") and a == b:                   # red.zero; a div a = 1 (a != 0)
+    -                if law == "red":
+    -                    got = ("A", d.z, sel)
+    -                elif a in ("x", "o"):
+    -                    got = ("A", digit_string(torch.ones(d.n, dtype=torch.long, device=dev), P),
+    -                           sel & ~(val(a) == 0).all(1))
+    -            elif law == "red" and b == "n" and na:                    # the division law: red(r + q N) = r
+    +            if law == "lt" and na and nb:  # the order of r + q N forms, by the facts
+    +                (ra, qa), (rb, qb) = na, nb
+    +                got = ("c", ((qa < qb) | ((qa == qb) & ~ra & rb)).long(), sel)
+    +            elif law == "red" and a == b:  # red.zero
+    +                got = ("A", d.z, sel)
+    +            elif law == "red" and b == "n" and na:  # the division law: red(r + q N) = r
+    -            elif law == "div" and b == "n" and na:                    # ... and its quotient q (where it is read off)
+    -                got = ("A", na[2], sel & na[3])
+    -            elif law == "red" and b == "n" and BFORM.get(a) == "x":   # d + x B < B N for x' < N': the chain's range
+    -                src = "x+dn" if ops.has("red", "x+dn") else "x+on"
+    -                got = ("A", ops.run("red", src, st, lib, [val(a), d.N], gen, dev)[0], sel)
+    -            elif law == "add" and b == "z":                           # add.identity
+    +            elif law == "add" and b == "z":  # add.identity
+    -            elif law == "add" and (a, b) == ("x", "n"):               # sub.inverse, by the learner's red and lt
+    +            elif law == "add" and (a, b) == ("x", "n"):  # sub.inverse, by the learner's red and lt
+    -            elif law == "sub" and a == b:                             # sub.self
+    -                got = ("A", d.z, sel)
+    -            elif law == "sub" and b == "z":                           # sub.identity
+    -                got = ("A", val(a), sel)
+    -            elif law == "sub" and b == "n" and a in NFORM:            # (x + q N) - N = x + (q - 1) N, q >= 1
+    -                q = d.count(NFORM[a])
+    -                got = ("A", repeat_add(ops, st, lib, d.x, d.N, (q - 1).clamp(min=0), gen, dev), sel & (q >= 1))
+    -            elif law == "mul" and b == "z":                           # mul.zero
+    -                got = ("A", d.z, sel)
+    -                got = ("A", repeat_add(ops, st, lib, d.z, val(a), d.count(b), gen, dev), sel)   # mul.distribute
+    +                got = ("A", repeat_add(ops, st, lib, d.z, val(a), d.count(b), gen, dev), sel)  # mul.distribute
+    -        def check(A_out, lib):                 # sub.inverse: red(a + b, b) = a and a + b >= b, for a < b
+    +        def check(A_out, lib):  # sub.inverse: red(a + b, b) = a and a + b >= b, for a < b
+    -            for i in range(ops.count("red", "pair")):     # any practised red that confirms it
+    +            for i in range(ops.count("red", "pair")):  # any practised red that confirms it
+    -    if "A" in t:                               # the answers must vary where the law speaks (else nothing to learn)
+    +    if "A" in t:  # the answers must vary where the law speaks (else nothing to learn)
+    -        self.name, self.targets = name, targets           # targets: one dict per setting (law_target's)
+    +        self.name, self.targets = name, targets  # targets: one dict per setting (law_target's)
+    -                m = (b.regs[:, A_] == t["A"].T.to(torch.uint8)[None]).all(1)          # [S, n]
+    +                m = (b.regs[:, A_] == t["A"].T.to(torch.uint8)[None]).all(1)  # [S, n]
+    -    def goals(self, ops, lib, laws):
+    +    def goals(self, ops, lib, laws, k=None):
+    -                ts = [law_target(law, d, ops, lib) for d in self.draws]
+    +                ts = [law_target(law, d, ops, lib) for d in self.draws[:k]]
+    -            if all(t is not None for t in ts):
+    +            if all(t is not None for t in ts) and any("check" in t or bool(t.get("Am", t.get("cm")).any())
+    +                                                      for t in ts):
+    -    def __init__(self, law, root, verify, rows, ops, lib, device, n=60, seed=11):
+    +    def __init__(self, law, root, verify, rows, ops, lib, device, n=60, seed=11, box=None):
+    -        r = Root(root.pattern, root.binding, verify, n, rows, ops, lib, device, seed)
+    -        g = r.goals(ops, lib, [law])
+    +        box = {"sets": verify} if box is None else box  # one acceptance root a call, shared by the root's laws
+    +        if "root" not in box:
+    +            box["root"] = Root(root.pattern, root.binding, box["sets"], n, rows, ops, lib, device, seed)
+    +        r = box["root"]
+    +        g = r.goals(ops, lib, [law], len(verify))
+    -        self.ops, self.version = ops, ops.version          # a check's verdicts change when routines join
+    +        self.ops, self.version = ops, ops.version  # a check's verdicts change when routines join (311s)
+book: check_books part 2 on this file: 17 concepts posed (every binding), 6204 probe targets equal the law's value (1s)

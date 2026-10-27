@@ -1,0 +1,11 @@
+old submission_stage3_family.py, new submission_stage3_wider_dev.py; ROUNDT 4096 / 4096
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN: verdict True / True, work 3.81036e+06 / 3.81036e+06, outputs equal; 7.3 s / 2.4 s
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN: verdict True / True, work 3.81036e+06 / 3.81036e+06, outputs equal; 7.5 s / 2.4 s  <-- NOT THE SAME
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN: verdict True / True, work 3.81036e+06 / 3.81036e+06, outputs equal; 7.2 s / 2.4 s  <-- NOT THE SAME
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN: verdict True / True, work 3.81036e+06 / 3.81036e+06, outputs equal; 7.2 s / 2.5 s
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.X LDA.N STA.Y T.red.x+on.XY: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.1 s / 2.4 s  <-- NOT THE SAME
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X LDA.N STA.Y T.red.x+on.XY: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.1 s / 2.4 s
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.XYA STA.X LDA.N STA.Y T.red.x+on.XY: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.2 s / 2.4 s
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.X LDA.N STA.Y T.red.x+on.XY: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.1 s / 2.4 s
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.Y LDA.N STA.X T.red.x+on.YX: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.2 s / 2.4 s  <-- NOT THE SAME
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y LDA.N STA.X T.red.x+on.YX: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.2 s / 2.5 s  <-- NOT THE SAME

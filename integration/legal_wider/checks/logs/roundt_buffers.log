@@ -1,0 +1,3 @@
+integration/legal_wider/submission_stage3_wider.py: ROUNDT 4096, ROUNDT_SLOTS 4; climb_unit: [(int(count_of(r[:1, 2, :K])), (r[:, 0], r[:, 1], r[:, 3])) # ROUNDT's rows (buffers) for r in (self.more_rows[j, :int(self.more_n[j])] for j in range(ROUNDT_SLOTS)) if len(r)]
+ROUNDT's rows from the buffers equal the family file's dict after each of 300 random batches: yes; kept (T, rows): [(2, 4096), (4, 4096), (8, 4096), (11, 2193)]
+a fresh model loaded with the state dict: ROUNDT's buffers equal: True; the same logits: True. State: 207,370 parameters, 860,783 buffer numbers here; at the start 1,019,008 numbers, of which ROUNDT's 524,296

@@ -1,0 +1,33 @@
+old submission_stage3_family.py, new submission_stage3_wider.py; ROUNDT 4096 / 4096
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN: verdict True / True, work 3.81036e+06 / 3.81036e+06, outputs equal; 7.3 s / 2.5 s
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN: verdict True / True, work 3.81036e+06 / 3.81036e+06, outputs equal; 7.6 s / 2.4 s
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN: verdict True / True, work 3.81036e+06 / 3.81036e+06, outputs equal; 7.2 s / 2.4 s
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN: verdict True / True, work 3.81036e+06 / 3.81036e+06, outputs equal; 7.2 s / 2.4 s
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.X LDA.N STA.Y T.red.x+on.XY: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.1 s / 3.1 s
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X LDA.N STA.Y T.red.x+on.XY: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 8.3 s / 2.4 s
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.XYA STA.X LDA.N STA.Y T.red.x+on.XY: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.1 s / 2.4 s
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.X LDA.N STA.Y T.red.x+on.XY: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.0 s / 2.3 s
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.Y LDA.N STA.X T.red.x+on.YX: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.0 s / 2.4 s
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y LDA.N STA.X T.red.x+on.YX: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 6.9 s / 2.6 s
+h1: LDA.X STA.Y LDA.N T.add.mul.o,x,o.XYA STA.Y LDA.N STA.X T.red.x+on.YX: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.1 s / 2.5 s
+h1: LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.Y LDA.N STA.X T.red.x+on.YX: verdict True / True, work 3.81106e+06 / 3.81106e+06, outputs equal; 7.1 s / 3.6 s
+cube: LDA.X STA.Y T.w.mod.mul.w2.XYN STA.Y T.w.mod.mul.w2.XYN: verdict True / True, work 7.62037e+06 / 7.62037e+06, outputs equal; 20.6 s / 6.9 s
+rho: LDA.X STA.Y T.w.add1.mul.w2.XYN STA.X LDA.N STA.Y T.red.x+on.XY: verdict True / True, work 3.83626e+06 / 3.83626e+06, outputs equal; 7.6 s / 2.7 s
+rho: LDA.X STA.Y T.w.add1.mul.w2.XYN STA.Y T.red.x+on.YN: verdict True / True, work 3.83556e+06 / 3.83556e+06, outputs equal; 7.7 s / 2.3 s
+rho: LDA.X STA.Y T.w.add1.mul.w2.XYN STA.Y LDA.N STA.X T.red.x+on.YX: verdict True / True, work 3.83626e+06 / 3.83626e+06, outputs equal; 7.3 s / 2.6 s
+minus1: LDA.N STA.Y LDA.X T.add.mul.o,x,d.ANY STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84957e+06 / 3.84957e+06, outputs equal; 7.7 s / 2.3 s
+minus1: LDA.N T.lt.pair.AX STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84852e+06 / 3.84852e+06, outputs equal; 7.7 s / 2.9 s
+minus1: T.red.pair.NX STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84887e+06 / 3.84887e+06, outputs equal; 7.6 s / 2.3 s
+minus1: LDA.X STA.Y LDA.N T.lt.pair.AY STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84922e+06 / 3.84922e+06, outputs equal; 7.1 s / 2.7 s
+minus1: LDA.X STA.Y T.red.pair.NY STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84957e+06 / 3.84957e+06, outputs equal; 7.7 s / 2.5 s
+minus1: LDA.X STA.Y LDA.N STA.X T.red.pair.XY STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.85027e+06 / 3.85027e+06, outputs equal; 7.3 s / 2.5 s
+minus1: LDA.N STA.Y T.red.pair.YX STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84957e+06 / 3.84957e+06, outputs equal; 7.2 s / 2.5 s
+minus1: LDA.X T.add.pair.AN STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84852e+06 / 3.84852e+06, outputs equal; 7.2 s / 2.4 s
+minus1: LDA.N T.add.pair.AX STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84852e+06 / 3.84852e+06, outputs equal; 7.2 s / 2.5 s
+minus1: LDA.N STA.Y LDA.X T.add.pair.AY STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84922e+06 / 3.84922e+06, outputs equal; 7.3 s / 2.4 s
+minus1: LDA.X STA.Y LDA.N T.add.pair.AY STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84922e+06 / 3.84922e+06, outputs equal; 7.5 s / 2.5 s
+minus1: STA.Y LDA.X T.add.mul.o,x,d.ANY STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict False / False, work 3.84922e+06 / 3.84922e+06, outputs equal; 7.3 s / 2.5 s
+minus1: LDA.X T.add.mul.o,x,d.ANY STA.Y STA.X T.w.mod.sub1.mul.w2.YXN: verdict True / True, work 3.84887e+06 / 3.84887e+06, outputs equal; 7.4 s / 2.5 s
+minus1 (level 5): LDA.X STA.Y T.w.sub1.mul.w2.XYN STA.Y T.red.x+on.YN: verdict False / False, work 1.64426e+06 / 1.64426e+06, outputs equal; 2.6 s / 1.1 s
+minus1 (level 5): LDA.X STA.Y T.w.sub1.mul.w2.YXN STA.Y T.red.x+on.YN: verdict False / False, work 1.64426e+06 / 1.64426e+06, outputs equal; 2.7 s / 1.1 s
+done: 0 rounds differ

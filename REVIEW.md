@@ -977,6 +977,13 @@ fix.
   the book's multiply-add row, nothing comes: the comparison, the link, the addition, the row and the multiply have no
   legal source but the book. So legally, bar 3 supplies the reduction; offline it also supplies the row and the
   multiply. About $20.
+- **Legally, three laws** ([LEGALLOOPS.md](bar3/scale/legalloops/LEGALLOOPS.md)). A legal reader tests candidate laws on
+  H1's answer rows with the learner's own routines (a product by repeated addition, a reduction by the link repeated)
+  and reads x² mod N as mod(mul(X, X), N). It then poses the multiply-add row and Horner's step, and the multiply and
+  the reduction as their loops, each answered by the book's own constructions. With the book cut to three laws, the
+  comparison, the link and the addition, H1's round comes at level 4 in every arm with the reader, a level sooner than
+  with book_min, and every round is right on both ladders, unseen moduli included. Still designed: the reader's grammar
+  and its table of what each operation cuts to and loops over. About $7.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

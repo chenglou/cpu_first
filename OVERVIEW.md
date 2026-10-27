@@ -318,6 +318,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 26 `5048c75` | an audit of bar 3's 14 practice sources against the rule that no training target may come from Python's arithmetic: which can run inside a training run, which need a redesign | [bar3/LEGAL_SOURCES.md](bar3/LEGAL_SOURCES.md) |
 | Oct 26 `a81712c` | the audit's decisive test: at full size, a law test on the learner's own routines picks x² alone and the reduction is found; the first spelling taken is a look-alike that fails on some unseen moduli, and the climb's own rule keeps a correct one | [bar3/scale/legal/LEGAL_TEST.md](bar3/scale/legal/LEGAL_TEST.md) |
 | Oct 26 `ef10ac1` | **a fully legal climb gets H1's round**: every practice answer from the data, identities or the learner's own routines; with the book's reduction cut to one step, bar 3's sources bring the round in seven arms, right to T = 64 on unseen moduli too; the row and the multiply still come only from the book | [bar3/scale/legalclimb/LEGALCLIMB.md](bar3/scale/legalclimb/LEGALCLIMB.md) |
+| Oct 26 `ec312b6` | **legally, the book shrinks to three laws**: a legal reader poses the row, the step, the multiply and the reduction from x² mod N's law, and H1's round comes at level 4 with only the comparison, the link and the addition left in the book | [bar3/scale/legalloops/LEGALLOOPS.md](bar3/scale/legalloops/LEGALLOOPS.md) |
 
 ### The lessons that came out of the failures
 
@@ -606,6 +607,13 @@ in the answer.
   the book's multiply-add row, nothing comes: the comparison, the link, the addition, the row and the multiply have no
   legal source but the book. So legally, bar 3 supplies the reduction; offline it also supplies the row and the
   multiply. About $20.
+- **Legally, three laws** ([LEGALLOOPS.md](bar3/scale/legalloops/LEGALLOOPS.md)). A legal reader tests candidate laws on
+  H1's answer rows with the learner's own routines (a product by repeated addition, a reduction by the link repeated)
+  and reads x² mod N as mod(mul(X, X), N). It then poses the multiply-add row and Horner's step, and the multiply and
+  the reduction as their loops, each answered by the book's own constructions. With the book cut to three laws, the
+  comparison, the link and the addition, H1's round comes at level 4 in every arm with the reader, a level sooner than
+  with book_min, and every round is right on both ladders, unseen moduli included. Still designed: the reader's grammar
+  and its table of what each operation cuts to and loops over. About $7.
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -1251,9 +1259,9 @@ fast version and fast2, now the file to judge (§4.8), and bar 3's duplicate che
 3). So have bar 3's three changes to what it picks (§4, bar 3). So have the next two, a deeper look and a fifth pick
 (§4, bar 3). So has the composition test (§4, bar 3). So have its second and third rounds (§4, bar 3). So has the GPU
 port of its search (§4, bar 3). So have the consolidation of bar 3's rules, the one-place cut of the target's laws, the
-GPU runner and the audit of bar 3's sources (§4, bar 3). Running now: a source that poses each cut's loop (the multiply
-from the row, the whole reduction from the step), and the legal path's tests are done: a fully legal climb gets the
-round with the book's reduction gone (§4, bar 3).
+GPU runner and the audit of bar 3's sources (§4, bar 3). The legal path's tests are done: a legal climb gets H1's round
+with the book cut to three laws (§4, bar 3). Running now: the offline loop study's last runs, and a stage-3 file built
+from fast2 with that three-law book and bar 3's legal reader, to be certified on the official H100 (§4, bar 3).
 
 Everything else described here is committed.
 

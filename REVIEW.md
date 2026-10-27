@@ -962,6 +962,13 @@ fix.
   sources read a target table that a training run does not have; the audit says which are legal as they are, which need
   a redesign, and which stay offline. It adds a question for a judge: may Python arithmetic choose what to practise if
   it computes no target? No runs.
+- **A legal law test at full size** ([LEGAL_TEST.md](bar3/scale/legal/LEGAL_TEST.md)). The audit's cheapest decisive
+  test, offline on one B200 from slice round 4's level-5 library. With H1's own T = 1 rows as the target and a law test
+  that runs only the learner's own routines, x² is picked alone (1 of 41,007 values), and the rest of the way finds the
+  reduction with the regular probe. The pre-registered round took the first of four accepted spellings, a look-alike
+  that fails on some unseen 24-bit moduli (757–764 of 768), which no training row can catch; the climb's own rule of
+  fewest steps, and a legal identity check, both keep a correct one. A legal climb from scratch is the next test. About
+  $3.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

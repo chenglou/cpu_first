@@ -316,6 +316,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 26 `05810dc` | **bar 3 supplies the multiply-add row too**: a source that cuts the target's laws to one digit place poses the row, and on stage 3's machine with the book less its reduction and row, x² mod N's round comes at level 5, right to T = 64; not yet for x³ or 10·x² + 1, and not without the book's multiply | [bar3/scale/slice/SLICE.md](bar3/scale/slice/SLICE.md) |
 | Oct 26 `827e784` | bar 3's studies run on the GPU search through one runner, seven whole runs record for record, runs in minutes instead of hours | [bar3/gpu_search/GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md) |
 | Oct 26 `5048c75` | an audit of bar 3's 14 practice sources against the rule that no training target may come from Python's arithmetic: which can run inside a training run, which need a redesign | [bar3/LEGAL_SOURCES.md](bar3/LEGAL_SOURCES.md) |
+| Oct 26 `a81712c` | the audit's decisive test: at full size, a law test on the learner's own routines picks x² alone and the reduction is found; the first spelling taken is a look-alike that fails on some unseen moduli, and the climb's own rule keeps a correct one | [bar3/scale/legal/LEGAL_TEST.md](bar3/scale/legal/LEGAL_TEST.md) |
 
 ### The lessons that came out of the failures
 
@@ -589,6 +590,13 @@ in the answer.
   apart. Near-miss values, the row check and the choosing rules are legal as they are; the slice cuts and the rests of
   the way need redesigns that take their answers from the book's constructions or the T = 1 rows. It also raises a new
   question for a judge: may Python arithmetic decide what to practise if it computes no target? No runs.
+- **A legal law test at full size** ([LEGAL_TEST.md](bar3/scale/legal/LEGAL_TEST.md)). The audit's cheapest decisive
+  test, offline on one B200 from slice round 4's level-5 library. With H1's own T = 1 rows as the target and a law test
+  that runs only the learner's own routines, x² is picked alone (1 of 41,007 values), and the rest of the way finds the
+  reduction with the regular probe. The pre-registered round took the first of four accepted spellings, a look-alike
+  that fails on some unseen 24-bit moduli (757–764 of 768), which no training row can catch; the climb's own rule of
+  fewest steps, and a legal identity check, both keep a correct one. A legal climb from scratch is the next test. About
+  $3.
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -1235,8 +1243,7 @@ fast version and fast2, now the file to judge (§4.8), and bar 3's duplicate che
 (§4, bar 3). So has the composition test (§4, bar 3). So have its second and third rounds (§4, bar 3). So has the GPU
 port of its search (§4, bar 3). So have the consolidation of bar 3's rules, the one-place cut of the target's laws, the
 GPU runner and the audit of bar 3's sources (§4, bar 3). Running now: a source that poses each cut's loop (the multiply
-from the row, the whole reduction from the step), and the audit's cheapest test, a legal law test at full size (§4, bar
-3).
+from the row, the whole reduction from the step), and the audit's cheapest test has passed with one miss (§4, bar 3).
 
 Everything else described here is committed.
 

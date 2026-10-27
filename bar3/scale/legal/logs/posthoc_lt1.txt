@@ -1,0 +1,28 @@
+1. the accepted spellings, in the order bfs_roots lists them: ['P[INC BRG.X T.red.Bx+d.AN]', 'P[BRG.X T.red.Bx+d.AN INC]', 'LDA.N P[BRG.X T.red.Bx+d.AN]', 'CLA P[BRG.X T.red.Bx+d.AN]']
+  choose_routine's key, P[INC BRG.X T.red.Bx+d.AN]: keeps its inputs False, registers touched 2, size 10, steps 448
+  choose_routine's key, P[BRG.X T.red.Bx+d.AN INC]: keeps its inputs False, registers touched 2, size 10, steps 448
+  choose_routine's key, LDA.N P[BRG.X T.red.Bx+d.AN]: keeps its inputs False, registers touched 2, size 10, steps 445
+  choose_routine's key, CLA P[BRG.X T.red.Bx+d.AN]: keeps its inputs False, registers touched 2, size 10, steps 445
+  P[INC BRG.X T.red.Bx+d.AN] on depth_ood_n_t_1, wrong rows: N's bits {24: 4}, N's digits {8: 4}
+  ladders, P[INC BRG.X T.red.Bx+d.AN]: seen moduli [768, 768, 768, 768, 768, 768, 768], unseen [764, 764, 759, 758, 758, 758, 757] (of 768)
+  P[BRG.X T.red.Bx+d.AN INC] on depth_t_1, wrong rows: N's bits {13: 2, 20: 1}, N's digits {4: 2, 6: 1}
+  P[BRG.X T.red.Bx+d.AN INC] on depth_ood_n_t_1, wrong rows: N's bits {14: 1, 22: 2, 24: 45}, N's digits {5: 1, 7: 13, 8: 34}
+  ladders, P[BRG.X T.red.Bx+d.AN INC]: seen moduli [765, 765, 761, 751, 752, 751, 749], unseen [720, 705, 685, 667, 650, 654, 648] (of 768)
+  ladders, LDA.N P[BRG.X T.red.Bx+d.AN]: seen moduli [768, 768, 768, 768, 768, 768, 768], unseen [768, 768, 768, 768, 768, 768, 768] (of 768)
+  ladders, CLA P[BRG.X T.red.Bx+d.AN]: seen moduli [768, 768, 768, 768, 768, 768, 768], unseen [768, 768, 768, 768, 768, 768, 768] (of 768)
+2. the identity check, red(r + q N') = r, 1,000 instances from the T = 1 rows' moduli:
+  N' as in the data, P[INC BRG.X T.red.Bx+d.AN]: 1000/1000 right
+  N' as in the data, P[BRG.X T.red.Bx+d.AN INC]: 999/1000 right
+  N' as in the data, LDA.N P[BRG.X T.red.Bx+d.AN]: 1000/1000 right
+  N' as in the data, CLA P[BRG.X T.red.Bx+d.AN]: 1000/1000 right
+  N' moved up one digit, P[INC BRG.X T.red.Bx+d.AN]: 997/1000 right
+  N' moved up one digit, P[BRG.X T.red.Bx+d.AN INC]: 964/1000 right
+  N' moved up one digit, LDA.N P[BRG.X T.red.Bx+d.AN]: 1000/1000 right
+  N' moved up one digit, CLA P[BRG.X T.red.Bx+d.AN]: 1000/1000 right
+       56.72 real        56.26 user         0.23 sys
+           212713472  maximum resident set size
+           154632864  peak memory footprint
+P[INC BRG.X T.red.Bx+d.AN] 400: True 1,000: True
+P[BRG.X T.red.Bx+d.AN INC] 400: False 1,000: False
+LDA.N P[BRG.X T.red.Bx+d.AN] 400: True 1,000: True
+CLA P[BRG.X T.red.Bx+d.AN] 400: True 1,000: True

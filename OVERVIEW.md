@@ -660,13 +660,14 @@ ladders, every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002.
 | [`integration/submission_stage1.py`](integration/submission_stage1.py) (`cfd7b61d`) | **stage 1**: the tournament and the general lessons in one file | 222,113 | `s1_official`: 1,860.7 (716) / 56.1 | 8 of 8 on CPU | also learns y² + 1, 10·y², cubing, Montgomery's, 10·y² + 1, y² + 3 and M4 |
 | [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py) (`0805b7d3`) | **general lessons v3**: the answers choose whole digit codes (§4.6) | 11,589 | `v3k_h1_official`: 1,190.5 (645) / 42.3 | H1: 8 of 8 on B200s, run with an earlier v3 build (`v3f`) | also all 14 fixed-modulus practice sets, on relaxed budgets |
 
-The file to judge is now fast2 ([REVIEW.md](REVIEW.md) §2): every certified variant of sp2 in one file, made fast, with
-its work budgets set from eight climbs. It certifies on the official run and seven more H100 seeds, and of all the
-certified files it has the least written by hand (§4.8). Before it, s3i was the file to judge; it keeps the most
-evidence on what each hand-made part does, with its ablation. sp2's seeds ran on B200s, which count as research, not
-certification. Two of s3i's checks are weak: in about 3% of runs its reduction check would accept a shortcut that fails
-at full size, and such a run cannot certify. None of its 8 seeds drew it. Copies of s3i and sp2 with both checks fixed
-replay all 17 of their runs exactly (§4.7), and the variants of §4.8 go further.
+The file to judge is now the legal file ([REVIEW.md](REVIEW.md) §2): fast2 with its generated law book replaced by three
+laws and bar 3's legal reader. It certifies on the official run and seven more H100 seeds, and of all the certified
+files it has the least written by hand (§4.8). Before it, fast2 was the file to judge: every certified variant of sp2 in
+one file, made fast, also 8 of 8. Before it, s3i was the file to judge; it keeps the most evidence on what each
+hand-made part does, with its ablation. sp2's seeds ran on B200s, which count as research, not certification. Two of
+s3i's checks are weak: in about 3% of runs its reduction check would accept a shortcut that fails at full size, and such
+a run cannot certify. None of its 8 seeds drew it. Copies of s3i and sp2 with both checks fixed replay all 17 of their
+runs exactly (§4.7), and the variants of §4.8 go further.
 
 The earlier frontier files are now steps of the ladder (§5): the wide model (step 11), its MLP-cell version (12), the
 tournament (13), and general lessons v1 and v2 (14, 15).

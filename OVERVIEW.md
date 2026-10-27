@@ -323,6 +323,9 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 27 `355f62f` | offline, posing each cut's loop takes the book down to the comparison alone: x² mod N's round at level 2, right to T = 64; x³ and 10·x² + 1 still get no round | [bar3/scale/loops/LOOPS.md](bar3/scale/loops/LOOPS.md) |
 | Oct 27 `8e3c7fe` | **the legal file certifies 8 of 8**: fast2 with its generated law book replaced by three laws and bar 3's legal reader, every practice answer from the learner's own routines; training in 465–721 s | [integration/combined_legal/LEGAL_FILE.md](integration/combined_legal/LEGAL_FILE.md) |
 | Oct 27 `6be8a0e` | **offline, no book at all**: cutting Horner's step down to the link and the comparison poses the comparison, and x² mod N's round comes at level 2 with no law in the book, right to T = 64; the cube comes as two calls of x·o mod N; 10·x² + 1 learns its constant but gets no round | [bar3/scale/reading/READING.md](bar3/scale/reading/READING.md) |
+| Oct 27 `22b859c` | the legal file's reader gets a wider grammar, subtract, power, constants and depth 3 (200 candidate laws instead of 35), still reads x² mod N and certifies 8 of 8 | [integration/legal_wide/WIDE.md](integration/legal_wide/WIDE.md) |
+| Oct 27 `f7dc5f8` | **a legal file with no law in its book certifies 8 of 8**: a designed rule reads off the answers that the law ends in a reduction by N and poses that step's parts, the comparison, the link and the addition; then the wide reading and the round, every practice answer from the learner's own routines; training 472–634 s | [integration/legal_nobook/NOBOOK.md](integration/legal_nobook/NOBOOK.md) |
+| Oct 27 `fe35373` | offline with no book, a rule that poses every window of the target's reading brings 6 of 7 family tasks unchanged (x², the cube, 10y², y² + 1, y² + 3, 10y² + 1), and y² − 1 with two more general changes | [bar3/scale/family/FAMILY.md](bar3/scale/family/FAMILY.md) |
 
 ### The lessons that came out of the failures
 
@@ -633,6 +636,14 @@ in the answer.
   learns its constant 1 and x + 1 but gets no round even in a 7,200 s run, and anchored pairs' prior brings the row to
   level 0 without mending their picks. Still hand-written: the source's tables of cuts, loops and the step's cuts, and
   which sub-law to pose. About $72.
+- **The family with no book, offline** ([FAMILY.md](bar3/scale/family/FAMILY.md)). Round 7 replaces round 6's
+  hand-written sub-law with a rule that names no task: every window of the target's reading, two or three operations,
+  becomes a law of its own, smallest first. With no book and nothing tuned per task, 6 of 7 family tasks come on stage
+  3's tiny core, with practice answers from Python: x² at level 2, the cube at 3, 10y² at 2, y² + 1 at 3, y² + 3 at 4
+  and 10y² + 1 at 3, each right on both ladders and at x = 0. y² − 1 comes with two more general changes: posing the 1
+  implied by the reader's pred and succ, and keeping a round only if it also matches the data's own answers at T = 2, 4
+  and 8, without which the first round kept is wrong whenever an input is 0. The round search never needed more than two
+  calls. The changes were found on these same tasks, so this is not a held-out test. About $85.
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -665,8 +676,10 @@ ladders, every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002.
 | [`integration/submission_stage3_s3i.py`](integration/submission_stage3_s3i.py) (`0e813144`) | **stage 3**: no skeleton, no menus; the round discovered in training (§4.7) | 207,374 | `s3i_official`: 1,340.3 (870) / 209.9 | 8 of 8 on H100s, official manifest (74 and 1–7): trained in 1,133–1,350 s, frozen by 982–1,149 s | "copy x, multiply, reduce", at step 671 on seed 74 |
 | [`integration/self_practice/submission_stage3_sp2.py`](integration/self_practice/submission_stage3_sp2.py) (`afc70fe9`) | **stage 3 with self-posed practice**: s3i with its curriculum replaced by a law book and a general choosing rule (§4.7) | 207,374 | `submission_stage3_sp2_official`: 1,276.7 (887) / 225.5 | 8 of 8 on B200s (74 and 1–7); its first version `submission_stage3_sp.py` (`f0ef5b06`) certified officially and on 7 of 8 | the same round, at step 688, by 1,029 s |
 | [`integration/combined_fast/submission_stage3_fast.py`](integration/combined_fast/submission_stage3_fast.py) (`91bb30b9`) | **every certified variant of sp2 in one file, made fast**: the weak-check fix, the strict build, the learned loop over T, the generated law book and the generic instructions (§4.8) | 207,370 | `combined_fast_official`: 751.4 (829) / 362.0 | 8 of 8 on H100s, official manifest (74 and 1–7) | the generated book's round, at step 629, by about 460 s |
-| [`integration/combined_fast/submission_stage3_fast2.py`](integration/combined_fast/submission_stage3_fast2.py) (`41b9a013`) | **the same, with its work budgets set from eight climbs**: the file to judge ([REVIEW.md](REVIEW.md) §2) | 207,370 | `combined_fast2_official`: 759.3 (829) / 377.3 | 8 of 8 on H100s, official manifest (74 and 1–7) | the same round, at step 629, by about 492 s |
+| [`integration/combined_fast/submission_stage3_fast2.py`](integration/combined_fast/submission_stage3_fast2.py) (`41b9a013`) | **the same, with its work budgets set from eight climbs**: the file to judge before the legal file ([REVIEW.md](REVIEW.md) §2) | 207,370 | `combined_fast2_official`: 759.3 (829) / 377.3 | 8 of 8 on H100s, official manifest (74 and 1–7) | the same round, at step 629, by about 492 s |
 | [`integration/combined_legal/submission_stage3_legal.py`](integration/combined_legal/submission_stage3_legal.py) (`e2fe7a68`) | **fast2 with three laws and bar 3's legal reader**: the generated book replaced by the comparison, the link and the addition, the rest posed from the law the reader finds in the data (§4.8) | 207,370 | `combined_legal_official`: 465.3 (813) / 295.3 | 8 of 8 on H100s, official manifest (74 and 1–7) | the round at level 4, the answer program by 272–349 s |
+| [`integration/legal_wide/submission_stage3_wide.py`](integration/legal_wide/submission_stage3_wide.py) (`3bb5ceeb`) | **the legal file with a wider grammar for its reader**: subtract, power, constants and depth 3 beside add, mul and mod (§4.8) | 207,370 | `legal_wide_official`: 554.1 (813) / 391.9 | 8 of 8 on H100s, official manifest (74 and 1–7) | the round at level 4, the answer program by 244–326 s |
+| [`integration/legal_nobook/submission_stage3_nobook.py`](integration/legal_nobook/submission_stage3_nobook.py) (`b42ec304`) | **no law in the book**: the wide file with its three laws replaced by a rule that reads from the answers what to practise first (§4.8) | 207,370 | `legal_nobook_official`: 573.9 (829) / 398.3 | 8 of 8 on H100s, official manifest (74 and 1–7) | the round at level 4, the answer program by 256–344 s |
 | [`integration/submission_stage1.py`](integration/submission_stage1.py) (`cfd7b61d`) | **stage 1**: the tournament and the general lessons in one file | 222,113 | `s1_official`: 1,860.7 (716) / 56.1 | 8 of 8 on CPU | also learns y² + 1, 10·y², cubing, Montgomery's, 10·y² + 1, y² + 3 and M4 |
 | [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py) (`0805b7d3`) | **general lessons v3**: the answers choose whole digit codes (§4.6) | 11,589 | `v3k_h1_official`: 1,190.5 (645) / 42.3 | H1: 8 of 8 on B200s, run with an earlier v3 build (`v3f`) | also all 14 fixed-modulus practice sets, on relaxed budgets |
 
@@ -1099,14 +1112,26 @@ study's local checks pass on it. It is 869 bytes under the 256 KiB limit.
   `integration/combined_fast/submission_stage3_fast.py` (`91bb30b9`) certifies on the official H100 in 751 s of
   training, and its climb is the five-piece file's own, line for line. Seeds 1–7 certify too, 8 of 8 on H100s. On three
   of them the answer program's search crossed the climb's work budget after it had found its programs, so it was rebuilt
-  with the budget set from all eight official climbs. That rebuild, fast2 (`41b9a013`), certifies 8 of 8 too and is now
-  the file to judge (REVIEW.md §2); the measurements showed the old budget had never cut anything.
+  with the budget set from all eight official climbs. That rebuild, fast2 (`41b9a013`), certifies 8 of 8 too and was the
+  file to judge until the legal file (REVIEW.md §2); the measurements showed the old budget had never cut anything.
 - **The legal file** ([LEGAL_FILE.md](integration/combined_legal/LEGAL_FILE.md)). fast2 with its generated law book
   replaced by three laws on the pair, the comparison, the link and the addition, plus bar 3's legal reader: once those
   three are routines, the reader finds the target's law, mod(mul(x, x), N), in the answer rows using only the learner's
   own routines, and poses the multiply-add row, Horner's step and their loops. `submission_stage3_legal.py` (`e2fe7a68`)
   certifies on 8 of 8 official-manifest H100 runs and trains in 465–721 s, faster than fast2. Still designed: the
   reader's grammar, the posing rule and the three laws.
+- **The wider grammar** ([WIDE.md](integration/legal_wide/WIDE.md)). The legal file's reader with subtract, power,
+  constants read as gaps and depth 3 beside add, mul and mod: 200 candidate laws instead of 35, tried in about half a
+  second. It still reads mod(mul(x, x), N) on every answer row at level 3 and finds the round at level 4.
+  `submission_stage3_wide.py` (`3bb5ceeb`) certifies on 8 of 8 official-manifest H100 runs, training in 478–658 s. About
+  $9.
+- **No law in the book** ([NOBOOK.md](integration/legal_nobook/NOBOOK.md)). The wide file with its three laws removed.
+  Before any routine exists, one designed rule reads the answers: every answer row is below N, compared digit by digit
+  with no number made, so the law ends in a reduction by N, and the reduction's step is posed cut to its parts, the
+  comparison, the link and the addition, each answered by facts, identities and the learner's own routines. The levels
+  are then the legal file's. `submission_stage3_nobook.py` (`b42ec304`) certifies on 8 of 8 official-manifest H100 runs,
+  training in 472–634 s. Still designed: that rule, which is family knowledge since every family task ends in mod N, the
+  step's cut table, the reader's grammar, the posing rule and what fast2 designs (NOBOOK.md §7). About $10.
 
 ## 5. The removal ladder
 
@@ -1282,16 +1307,18 @@ runs left its verdict as it was (§4.5), the law ablation has all its seed-1 arm
 (§4), and bar 3's cut runs are finished (§4, bar 3). Oct 25's two bar-3 studies have finished too: numbers given as
 digits, testing the theory note's predictions ([theory/LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md) §5), and the two
 practice sources the held-out test found missing (§4, bar 3). So have the combined file's second and third rounds, its
-fast version and fast2, now the file to judge (§4.8), and bar 3's duplicate check on each problem's own rows (§4, bar
-3). So have bar 3's three changes to what it picks (§4, bar 3). So have the next two, a deeper look and a fifth pick
-(§4, bar 3). So has the composition test (§4, bar 3). So have its second and third rounds (§4, bar 3). So has the GPU
-port of its search (§4, bar 3). So have the consolidation of bar 3's rules, the one-place cut of the target's laws, the
-GPU runner and the audit of bar 3's sources (§4, bar 3). The legal path's tests are done: a legal climb gets H1's round
-with the book cut to three laws (§4, bar 3). So has the offline loop study (§4, bar 3). So has the legal file, which
-certifies 8 of 8 (§4.8). So has bar 3's round 6, which takes the book to nothing offline (§4, bar 3). Running now: the
-first step to bar 3's finish line, which the user set on Oct 27: a legal file with no practice book that certifies H1 8
-of 8 and, unchanged, learns at least a couple of other tasks of the family, with the reader's grammar widened beyond
-what H1 needs. The first step, not yet committed, is the legal file with that wider grammar.
+fast version and fast2, the file to judge before the legal file (§4.8), and bar 3's duplicate check on each problem's
+own rows (§4, bar 3). So have bar 3's three changes to what it picks (§4, bar 3). So have the next two, a deeper look
+and a fifth pick (§4, bar 3). So has the composition test (§4, bar 3). So have its second and third rounds (§4, bar 3).
+So has the GPU port of its search (§4, bar 3). So have the consolidation of bar 3's rules, the one-place cut of the
+target's laws, the GPU runner and the audit of bar 3's sources (§4, bar 3). The legal path's tests are done: a legal
+climb gets H1's round with the book cut to three laws (§4, bar 3). So has the offline loop study (§4, bar 3). So has the
+legal file, which certifies 8 of 8 (§4.8). So has bar 3's round 6, which takes the book to nothing offline (§4, bar 3).
+Bar 3's finish line, which the user set on Oct 27, is a legal file with no practice book that certifies H1 8 of 8 and,
+unchanged, learns at least a couple of other tasks of the family, with the reader's grammar widened beyond what H1
+needs. Its first two steps are done: the wider grammar and the empty book each certify 8 of 8 (§4.8), and offline the
+family's seven tasks come with no book (§4, bar 3). Running now: the third, round 7's general rules brought into the
+no-book file, certified again on H1, then run unchanged at full size on the family's tasks and on two held-out ones.
 
 Everything else described here is committed.
 

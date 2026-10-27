@@ -1130,6 +1130,26 @@ fix. The legal file, now the file to judge, adds a sixth: bar 3's legal reader a
   learns its constant 1 and x + 1 but gets no round even in a 7,200 s run, and anchored pairs' prior brings the row to
   level 0 without mending their picks. Still hand-written: the source's tables of cuts, loops and the step's cuts, and
   which sub-law to pose. About $72.
+- **The wider grammar** ([WIDE.md](integration/legal_wide/WIDE.md)). The legal file's reader with subtract, power,
+  constants read as gaps and depth 3 beside add, mul and mod: 200 candidate laws instead of 35, tried in about half a
+  second. It still reads mod(mul(x, x), N) on every answer row at level 3 and finds the round at level 4.
+  `submission_stage3_wide.py` (`3bb5ceeb`) certifies on 8 of 8 official-manifest H100 runs, training in 478–658 s. About
+  $9.
+- **No law in the book** ([NOBOOK.md](integration/legal_nobook/NOBOOK.md)). The wide file with its three laws removed.
+  Before any routine exists, one designed rule reads the answers: every answer row is below N, compared digit by digit
+  with no number made, so the law ends in a reduction by N, and the reduction's step is posed cut to its parts, the
+  comparison, the link and the addition, each answered by facts, identities and the learner's own routines. The levels
+  are then the legal file's. `submission_stage3_nobook.py` (`b42ec304`) certifies on 8 of 8 official-manifest H100 runs,
+  training in 472–634 s. Still designed: that rule, which is family knowledge since every family task ends in mod N, the
+  step's cut table, the reader's grammar, the posing rule and what fast2 designs (NOBOOK.md §7). About $10.
+- **The family with no book, offline** ([FAMILY.md](bar3/scale/family/FAMILY.md)). Round 7 replaces round 6's
+  hand-written sub-law with a rule that names no task: every window of the target's reading, two or three operations,
+  becomes a law of its own, smallest first. With no book and nothing tuned per task, 6 of 7 family tasks come on stage
+  3's tiny core, with practice answers from Python: x² at level 2, the cube at 3, 10y² at 2, y² + 1 at 3, y² + 3 at 4
+  and 10y² + 1 at 3, each right on both ladders and at x = 0. y² − 1 comes with two more general changes: posing the 1
+  implied by the reader's pred and succ, and keeping a round only if it also matches the data's own answers at T = 2, 4
+  and 8, without which the first round kept is wrong whenever an input is 0. The round search never needed more than two
+  calls. The changes were found on these same tasks, so this is not a held-out test. About $85.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

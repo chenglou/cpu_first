@@ -951,6 +951,17 @@ fix.
   [`bar3/scale/consolidate/`](bar3/scale/consolidate/)). Its counts are formulas: the 16 won so far, each run once
   from scratch. One score for every choice keeps 1 of the 16; two general rules, one uniform search depth for every
   candidate and anchored pairs' picks, bring back 13 of 16, and most special rules were needed for no win. About $50.
+- **The target's laws cut to one digit place** ([SLICE.md](bar3/scale/slice/SLICE.md), code and records in
+  [`bar3/scale/slice/`](bar3/scale/slice/)). A source reads the target's law and poses each operation cut at one place.
+  On stage 3's machine with the book less its reduction and its multiply-add row, x² mod N's round comes at level 5,
+  right to T = 64: bar 3's pieces supply two of the book's laws. x³ and 10·x² + 1 get no round, and without the book's
+  multiply the multiply never comes. About $25.
+- **Bar 3's studies on the GPU** ([GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md) §8–§13). One runner runs a bar-3 study
+  on the GPU or the CPU; seven whole runs reproduce record for record, in minutes instead of hours. About $17.
+- **Bar 3's sources inside a training run** ([LEGAL_SOURCES.md](bar3/LEGAL_SOURCES.md)). Most of bar 3's 14 practice
+  sources read a target table that a training run does not have; the audit says which are legal as they are, which need
+  a redesign, and which stay offline. It adds a question for a judge: may Python arithmetic choose what to practise if
+  it computes no target? No runs.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

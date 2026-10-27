@@ -1,0 +1,18 @@
+policy: differs
+    -policy: the contest's static source policy passes; 261,216 bytes of 262,144
+    +policy: the contest's static source policy passes; 261,465 bytes of 262,144
+grad: the same (2 lines)
+machines: the same (7 lines)
+isa: the same (5 lines)
+designed: the same (6 lines)
+buffers: the same (3 lines)
+replay: the same (1 lines)
+climb: the same (1 lines)
+climb (tiny budgets): the same (1 lines)
+fix: differs
+    -fix: check_fix_variants.check_sp2 with integration/combined_legal/submission_stage3_legal.py as the fixed copy, integration/generic_ops/submission_stage3_g3.py as the original, its official library
+    +fix: check_fix_variants.check_sp2 with integration/legal_wide/submission_stage3_wide.py as the fixed copy, integration/generic_ops/submission_stage3_g3.py as the original, its official library
+book: differs
+    -book: the law book's code (PATTERNS to the end of law_target) against sp_ablation/fix/book_gen_fix.py's: 87 lines differ
+    +book: the law book's code (PATTERNS to the end of law_target) against sp_ablation/fix/book_gen_fix.py's: 92 lines differ
+fix's details: the same (6 lines)

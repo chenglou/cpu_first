@@ -1,0 +1,12 @@
+a: loops off 0
+a: same apart from times
+b: loops on 0
+c: x3 0
+tiny_loops_x2 config: {'slice': '1', 'loops': '1', 'laws': ['lt', 'red', 'add'], 'patterns': ['pair'], 'target_fn': None}
+   reading and cuts: [('mod(mul(X,X),N)', ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'mul/x,o=mul', 'red/x+on=red'])]
+   pose: ['L0 pose: 106 candidates on 92 roots', 'L1 pose: 94 candidates on 91 roots', 'L2 pose: 95 candidates on 92 roots']
+   lib: [('T.lt.pair.AX', 'CLC P[SBB.X INC]'), ('T.val.10.tgt.XN', 'LDA.X SHL.A'), ('T.red.pair.AX', 'STA.S T.lt.pair.AX SEL.S'), ('T.red.Bx+d.AX', 'B[T.red.pair.AX]')]
+smoke_loops_x3 config: {'slice': '1', 'loops': '1', 'laws': ['lt', 'red', 'add', 'mul'], 'patterns': ['pair', 'x,o'], 'target_fn': 'x3'}
+   reading and cuts: [('mod(mul(mod(mul(X,X),N),X),N)', ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'red/x+on=red'])]
+   pose: ['L0 pose: 94 candidates on 80 roots']
+   lib: [('T.lt.pair.AX', 'CLC P[SBB.X INC]'), ('T.val.5.tgt.XN', 'LDA.X SHL.A')]

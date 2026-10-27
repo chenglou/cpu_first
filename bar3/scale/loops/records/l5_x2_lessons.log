@@ -1,0 +1,282 @@
+device NVIDIA B200 config {'rule': 'ct2a2', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 10, 'search_s': 900.0, 'fuse': 4, 'patterns': ['pair'], 'laws': ['lt', 'red', 'add'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'spell': 16, 'tiefollow': True, 'slice': '1', 'loops': '1'}
+UNIT      4.5s +    4.5s L0 pose: 106 candidates on 92 roots | GPU peak 1.4 GiB
+UNIT     43.2s +   38.7s L0 probe 16 roots 38.7s solved {'lt/pair@AX': 4, 'lt/pair@AY': 4, 'lt/pair@AN': 4, 'lt/pair@XY': 5, 'lt/pair@XN': 5, 'lt/pair@YX': 5, 'lt/pair@YN': 5, 'lt/pair@NX': 5, 'lt/pair@NY': 5, 'acc.mul/o,x,d@AXY': 5, 'acc.mul/o,x,d@AYX': 5} [('routines', 38.6)] | GPU peak 23.6 GiB
+UNIT     53.0s +    9.8s L0 probe 16 roots 9.8s solved {'acc.mul/o,x,d@ANX': 5, 'acc.mul/o,x,d@ANY': 5} [('routines', 9.7)] | GPU peak 23.8 GiB
+UNIT     62.5s +    9.5s L0 probe 16 roots 9.5s solved {} [('routines', 9.5)] | GPU peak 23.8 GiB
+UNIT     72.1s +    9.6s L0 probe 16 roots 9.6s solved {} [('routines', 9.6)] | GPU peak 24.4 GiB
+UNIT     82.1s +   10.0s L0 probe 16 roots 10.0s solved {} [('routines', 9.9)] | GPU peak 24.4 GiB
+UNIT     99.2s +   17.1s L0 probe 12 roots 17.1s solved {'val.15/tgt@XN': 2} [('routines', 16.6)] | GPU peak 24.4 GiB
+UNIT    100.0s +    0.8s L0 look: 39 lookaheads; the target alone: cost None | GPU peak 24.4 GiB
+UNIT    108.0s +    8.1s L0 look ('lt/pair@AX',): cost None 8.0s | GPU peak 24.4 GiB
+UNIT    111.9s +    3.8s L0 look ('lt/pair@AY',): cost None 3.8s | GPU peak 24.4 GiB
+UNIT    115.7s +    3.8s L0 look ('lt/pair@AN',): cost None 3.8s | GPU peak 24.4 GiB
+UNIT    119.8s +    4.1s L0 look ('lt/pair@XY',): cost None 4.1s | GPU peak 24.4 GiB
+UNIT    123.4s +    3.5s L0 look ('lt/pair@XN',): cost None 3.5s | GPU peak 24.4 GiB
+UNIT    132.2s +    8.8s L0 look ('lt/pair@YX',): cost None 8.8s | GPU peak 24.4 GiB
+UNIT    136.4s +    4.2s L0 look ('lt/pair@YN',): cost None 4.2s | GPU peak 24.4 GiB
+UNIT    144.9s +    8.5s L0 look ('lt/pair@NX',): cost None 8.5s | GPU peak 24.4 GiB
+UNIT    148.7s +    3.8s L0 look ('lt/pair@NY',): cost None 3.8s | GPU peak 24.4 GiB
+UNIT    152.9s +    4.1s L0 look ('acc.mul/o,x,d@AXY',): cost None 4.1s | GPU peak 24.4 GiB
+UNIT    157.6s +    4.7s L0 look ('acc.mul/o,x,d@AYX',): cost None 4.7s | GPU peak 24.4 GiB
+UNIT    161.6s +    4.0s L0 look ('acc.mul/o,x,d@ANX',): cost None 4.0s | GPU peak 24.4 GiB
+UNIT    165.7s +    4.1s L0 look ('acc.mul/o,x,d@ANY',): cost None 4.1s | GPU peak 24.4 GiB
+UNIT    167.7s +    1.9s L0 look ('val.15/tgt@XN',): cost None 1.9s | GPU peak 24.4 GiB
+UNIT    173.8s +    6.1s L0 look ('lt/pair@AX', 'lt/pair@XY'): cost None 6.1s | GPU peak 24.4 GiB
+UNIT    177.9s +    4.1s L0 look ('lt/pair@AX', 'lt/pair@XN'): cost None 4.1s | GPU peak 24.4 GiB
+UNIT    181.7s +    3.8s L0 look ('lt/pair@AY', 'lt/pair@XY'): cost None 3.8s | GPU peak 24.4 GiB
+UNIT    185.6s +    3.9s L0 look ('lt/pair@AY', 'lt/pair@XN'): cost None 3.9s | GPU peak 24.4 GiB
+UNIT    189.5s +    3.9s L0 look ('lt/pair@AN', 'lt/pair@XY'): cost None 3.9s | GPU peak 24.4 GiB
+UNIT    193.4s +    3.8s L0 look ('lt/pair@AN', 'lt/pair@XN'): cost None 3.8s | GPU peak 24.4 GiB
+UNIT    197.9s +    4.5s L0 look ('lt/pair@XY', 'lt/pair@XN'): cost None 4.5s | GPU peak 24.4 GiB
+UNIT    202.3s +    4.5s L0 look ('lt/pair@XY', 'lt/pair@YX'): cost None 4.4s | GPU peak 24.4 GiB
+UNIT    206.6s +    4.2s L0 look ('lt/pair@XY', 'lt/pair@YN'): cost None 4.2s | GPU peak 24.4 GiB
+UNIT    210.8s +    4.2s L0 look ('lt/pair@XY', 'lt/pair@NX'): cost None 4.2s | GPU peak 24.4 GiB
+UNIT    215.2s +    4.4s L0 look ('lt/pair@XY', 'lt/pair@NY'): cost None 4.4s | GPU peak 24.4 GiB
+UNIT    219.3s +    4.1s L0 look ('lt/pair@XY', 'acc.mul/o,x,d@AXY'): cost None 4.1s | GPU peak 24.4 GiB
+UNIT    223.2s +    3.9s L0 look ('lt/pair@XY', 'acc.mul/o,x,d@AYX'): cost None 3.9s | GPU peak 24.4 GiB
+UNIT    227.1s +    3.9s L0 look ('lt/pair@XY', 'acc.mul/o,x,d@ANX'): cost None 3.9s | GPU peak 24.4 GiB
+UNIT    231.1s +    4.0s L0 look ('lt/pair@XY', 'acc.mul/o,x,d@ANY'): cost None 4.0s | GPU peak 24.4 GiB
+UNIT    235.2s +    4.1s L0 look ('lt/pair@XY', 'val.15/tgt@XN'): cost None 4.1s | GPU peak 24.4 GiB
+UNIT    239.0s +    3.8s L0 look ('lt/pair@XN', 'lt/pair@YX'): cost None 3.8s | GPU peak 24.4 GiB
+UNIT    242.8s +    3.8s L0 look ('lt/pair@XN', 'lt/pair@YN'): cost None 3.8s | GPU peak 24.4 GiB
+UNIT    246.7s +    3.9s L0 look ('lt/pair@XN', 'lt/pair@NX'): cost None 3.9s | GPU peak 24.4 GiB
+UNIT    250.6s +    3.9s L0 look ('lt/pair@XN', 'lt/pair@NY'): cost None 3.9s | GPU peak 24.4 GiB
+UNIT    254.5s +    3.8s L0 look ('lt/pair@XN', 'acc.mul/o,x,d@AXY'): cost None 3.8s | GPU peak 24.4 GiB
+UNIT    258.4s +    3.9s L0 look ('lt/pair@XN', 'acc.mul/o,x,d@AYX'): cost None 3.9s | GPU peak 24.4 GiB
+UNIT    262.3s +    4.0s L0 look ('lt/pair@XN', 'acc.mul/o,x,d@ANX'): cost None 4.0s | GPU peak 24.4 GiB
+UNIT    266.4s +    4.1s L0 look ('lt/pair@XN', 'acc.mul/o,x,d@ANY'): cost None 4.1s | GPU peak 24.4 GiB
+UNIT    270.2s +    3.8s L0 look ('lt/pair@XN', 'val.15/tgt@XN'): cost None 3.8s | GPU peak 24.4 GiB
+UNIT    270.2s +    0.0s L0 choose (ct2a2): {'learnable': 14, 'unsolved': 92}; picks [('lt/pair@AX', 4, 'CLC P[SBB.X INC]'), ('lt/pair@XY', 5, 'CLC P[LDA.X SBB.Y INC]'), ('lt/pair@XN', 5, 'CLC LDA.X P[SBB.N INC]'), ('lt/pair@AY', 4, 'CLC P[SBB.Y INC]')] | GPU peak 24.4 GiB
+UNIT    270.2s +    0.0s L0 sleep: B0.1=SBB.Y INC; T.lt.pair.AX=CLC P[SBB.X INC]; T.lt.pair.XY=CLC P[LDA.X B0.1]; T.lt.pair.XN=CLC LDA.X P[SBB.N INC]; T.lt.pair.AY=CLC P[B0.1] | GPU peak 24.4 GiB
+UNIT    289.0s +   18.8s L0 target: cost None levels [1, 36, 1017, 28073, 789945, 28550384] fits [0, 4, 4, 6, 6, 7] 18.4s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 36, 952, 22509, 501926, 14616748] 0.5s exhausted cost 5 [] | GPU peak 24.4 GiB
+UNIT    294.6s +    5.6s L1 pose: 102 candidates on 92 roots | GPU peak 24.4 GiB
+UNIT    317.8s +   23.2s L1 probe 16 roots 23.2s solved {'red/pair@AX': 3, 'red/pair@AY': 3, 'lt/pair@AN': 2, 'red/pair@AN': 4, 'lt/pair@XA': 2, 'red/pair@XA': 5, 'red/pair@XY': 4, 'red/pair@XN': 4, 'lt/pair@YA': 3, 'red/pair@YA': 5, 'lt/pair@YX': 2, 'red/pair@YX': 4, 'lt/pair@YN': 3, 'red/pair@YN': 5, 'lt/pair@NA': 3, 'red/pair@NA': 5, 'lt/pair@NX': 2, 'red/pair@NX': 4, 'lt/pair@NY': 2, 'red/pair@NY': 4, 'acc.mul/o,x,d@A | GPU peak 24.4 GiB
+UNIT    351.3s +   33.4s L1 probe 16 roots 33.4s solved {'acc.mul/o,x,d@ANX': 5, 'acc.mul/o,x,d@ANY': 5} [('routines', 33.4)] | GPU peak 26.3 GiB
+UNIT    384.5s +   33.2s L1 probe 16 roots 33.2s solved {} [('routines', 33.2)] | GPU peak 26.6 GiB
+UNIT    415.0s +   30.5s L1 probe 16 roots 30.5s solved {'red/Bx+d@AX': 4, 'red/Bx+d@AY': 4, 'red/Bx+d@XY': 5, 'red/Bx+d@YX': 5, 'red/Bx+d@NX': 5, 'red/Bx+d@NY': 5} [('routines', 30.5)] | GPU peak 26.9 GiB
+UNIT    448.2s +   33.2s L1 probe 16 roots 33.2s solved {} [('routines', 33.2)] | GPU peak 26.9 GiB
+UNIT    488.3s +   40.1s L1 probe 12 roots 40.1s solved {'val.35/tgt@XN': 2} [('routines', 37.6), ('primitives', 2.2)] | GPU peak 26.9 GiB
+UNIT    488.3s +    0.0s L1 deep: [('x+on@AX', {'red': 0.5384615384615384}), ('x+on@AY', {'red': 0.5384615384615384}), ('x+on@AN', {'red': 0.16666666666666666}), ('x+on@XA', {'red': 0.2857142857142857}), ('x+on@XY', {'red': 0.3333333333333333}), ('x+on@XN', {'red': 0.2857142857142857}), ('x+on@YA', {'red': 0.18181818181818182}), ('x+on@YX', {'red': 0.38461538461538464}), ('x+on@YN', {'red': 0.15384615384615385}), ('x+on@N | GPU peak 26.9 GiB
+UNIT    503.6s +   15.3s L1 deep ['x+on@AX', 'x+on@AY', 'x+on@AN', 'x+on@XA'] 15.3s solved {} [("deep ['T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XN']", 15.0)] | GPU peak 26.9 GiB
+UNIT    518.4s +   14.8s L1 deep ['x+on@XY', 'x+on@XN', 'x+on@YA', 'x+on@YX'] 14.8s solved {} [("deep ['T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XN']", 14.8)] | GPU peak 26.9 GiB
+UNIT    533.2s +   14.7s L1 deep ['x+on@YN', 'x+on@NA', 'x+on@NX', 'x+on@NY'] 14.7s solved {} [("deep ['T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XN']", 14.7)] | GPU peak 26.9 GiB
+UNIT    539.4s +    6.3s L1 look: 90 lookaheads; the target alone: cost None | GPU peak 26.9 GiB
+UNIT    545.5s +    6.0s L1 look ('red/pair@AX',): cost None 6.0s | GPU peak 26.9 GiB
+UNIT    551.1s +    5.6s L1 look ('red/pair@AY',): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    556.7s +    5.6s L1 look ('lt/pair@AN',): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    562.4s +    5.8s L1 look ('red/pair@AN',): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    568.0s +    5.5s L1 look ('lt/pair@XA',): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    573.7s +    5.7s L1 look ('red/pair@XA',): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    579.5s +    5.8s L1 look ('red/pair@XY',): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    585.0s +    5.6s L1 look ('red/pair@XN',): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    590.5s +    5.5s L1 look ('lt/pair@YA',): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    596.3s +    5.8s L1 look ('red/pair@YA',): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    601.9s +    5.6s L1 look ('lt/pair@YX',): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    607.6s +    5.7s L1 look ('red/pair@YX',): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    613.3s +    5.7s L1 look ('lt/pair@YN',): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    619.2s +    5.8s L1 look ('red/pair@YN',): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    625.1s +    6.0s L1 look ('lt/pair@NA',): cost None 6.0s | GPU peak 26.9 GiB
+UNIT    630.8s +    5.7s L1 look ('red/pair@NA',): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    636.4s +    5.5s L1 look ('lt/pair@NX',): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    641.9s +    5.5s L1 look ('red/pair@NX',): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    647.5s +    5.6s L1 look ('lt/pair@NY',): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    653.2s +    5.6s L1 look ('red/pair@NY',): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    659.0s +    5.8s L1 look ('acc.mul/o,x,d@AXY',): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    664.7s +    5.6s L1 look ('acc.mul/o,x,d@AYX',): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    670.5s +    5.8s L1 look ('acc.mul/o,x,d@ANX',): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    676.0s +    5.5s L1 look ('acc.mul/o,x,d@ANY',): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    681.7s +    5.7s L1 look ('red/Bx+d@AX',): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    687.5s +    5.7s L1 look ('red/Bx+d@AY',): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    693.2s +    5.7s L1 look ('red/Bx+d@XY',): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    698.9s +    5.6s L1 look ('red/Bx+d@YX',): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    704.4s +    5.6s L1 look ('red/Bx+d@NX',): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    710.1s +    5.6s L1 look ('red/Bx+d@NY',): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    716.0s +    5.9s L1 look ('val.35/tgt@XN',): cost None 5.9s | GPU peak 26.9 GiB
+UNIT    721.6s +    5.6s L1 look ('red/pair@AX', 'red/pair@XA'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    727.5s +    5.8s L1 look ('red/pair@AX', 'red/pair@YA'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    733.2s +    5.7s L1 look ('red/pair@AY', 'red/pair@XA'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    738.9s +    5.7s L1 look ('red/pair@AY', 'red/pair@YA'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    744.4s +    5.5s L1 look ('lt/pair@AN', 'red/pair@XA'): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    750.0s +    5.6s L1 look ('lt/pair@AN', 'red/pair@YA'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    755.7s +    5.7s L1 look ('red/pair@AN', 'red/pair@XA'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    761.4s +    5.7s L1 look ('red/pair@AN', 'red/pair@YA'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    767.5s +    6.0s L1 look ('lt/pair@XA', 'red/pair@XA'): cost None 6.0s | GPU peak 26.9 GiB
+UNIT    773.3s +    5.8s L1 look ('lt/pair@XA', 'red/pair@YA'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    779.0s +    5.7s L1 look ('red/pair@XA', 'red/pair@XY'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    784.6s +    5.6s L1 look ('red/pair@XA', 'red/pair@XN'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    790.1s +    5.5s L1 look ('red/pair@XA', 'lt/pair@YA'): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    795.7s +    5.5s L1 look ('red/pair@XA', 'red/pair@YA'): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    801.5s +    5.8s L1 look ('red/pair@XA', 'lt/pair@YX'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    807.3s +    5.8s L1 look ('red/pair@XA', 'red/pair@YX'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    813.1s +    5.8s L1 look ('red/pair@XA', 'lt/pair@YN'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    818.7s +    5.6s L1 look ('red/pair@XA', 'red/pair@YN'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    824.5s +    5.8s L1 look ('red/pair@XA', 'lt/pair@NA'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    830.2s +    5.6s L1 look ('red/pair@XA', 'red/pair@NA'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    836.0s +    5.8s L1 look ('red/pair@XA', 'lt/pair@NX'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    841.6s +    5.6s L1 look ('red/pair@XA', 'red/pair@NX'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    847.4s +    5.8s L1 look ('red/pair@XA', 'lt/pair@NY'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    853.5s +    6.0s L1 look ('red/pair@XA', 'red/pair@NY'): cost None 6.0s | GPU peak 26.9 GiB
+UNIT    859.3s +    5.8s L1 look ('red/pair@XA', 'acc.mul/o,x,d@AXY'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    865.0s +    5.7s L1 look ('red/pair@XA', 'acc.mul/o,x,d@AYX'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    870.7s +    5.7s L1 look ('red/pair@XA', 'acc.mul/o,x,d@ANX'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    876.3s +    5.5s L1 look ('red/pair@XA', 'acc.mul/o,x,d@ANY'): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    881.9s +    5.6s L1 look ('red/pair@XA', 'red/Bx+d@AX'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    887.6s +    5.7s L1 look ('red/pair@XA', 'red/Bx+d@AY'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    893.5s +    5.9s L1 look ('red/pair@XA', 'red/Bx+d@XY'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    899.5s +    6.0s L1 look ('red/pair@XA', 'red/Bx+d@YX'): cost None 6.0s | GPU peak 26.9 GiB
+UNIT    905.3s +    5.8s L1 look ('red/pair@XA', 'red/Bx+d@NX'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    910.9s +    5.6s L1 look ('red/pair@XA', 'red/Bx+d@NY'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    916.5s +    5.6s L1 look ('red/pair@XA', 'val.35/tgt@XN'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    922.3s +    5.7s L1 look ('red/pair@XY', 'red/pair@YA'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    928.1s +    5.8s L1 look ('red/pair@XN', 'red/pair@YA'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    934.0s +    5.9s L1 look ('lt/pair@YA', 'red/pair@YA'): cost None 5.9s | GPU peak 26.9 GiB
+UNIT    939.8s +    5.7s L1 look ('red/pair@YA', 'lt/pair@YX'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    945.7s +    5.7s L1 look ('red/pair@YA', 'red/pair@YX'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    951.5s +    5.7s L1 look ('red/pair@YA', 'lt/pair@YN'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    957.3s +    5.8s L1 look ('red/pair@YA', 'red/pair@YN'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT    963.0s +    5.7s L1 look ('red/pair@YA', 'lt/pair@NA'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    968.7s +    5.6s L1 look ('red/pair@YA', 'red/pair@NA'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    974.3s +    5.5s L1 look ('red/pair@YA', 'lt/pair@NX'): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    980.2s +    5.6s L1 look ('red/pair@YA', 'red/pair@NX'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT    985.8s +    5.6s L1 look ('red/pair@YA', 'lt/pair@NY'): cost None 5.5s | GPU peak 26.9 GiB
+UNIT    991.5s +    5.7s L1 look ('red/pair@YA', 'red/pair@NY'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT    997.5s +    6.0s L1 look ('red/pair@YA', 'acc.mul/o,x,d@AXY'): cost None 6.0s | GPU peak 26.9 GiB
+UNIT   1003.4s +    5.9s L1 look ('red/pair@YA', 'acc.mul/o,x,d@AYX'): cost None 5.9s | GPU peak 26.9 GiB
+UNIT   1009.3s +    5.9s L1 look ('red/pair@YA', 'acc.mul/o,x,d@ANX'): cost None 5.9s | GPU peak 26.9 GiB
+UNIT   1015.1s +    5.8s L1 look ('red/pair@YA', 'acc.mul/o,x,d@ANY'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT   1020.8s +    5.7s L1 look ('red/pair@YA', 'red/Bx+d@AX'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT   1026.5s +    5.7s L1 look ('red/pair@YA', 'red/Bx+d@AY'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT   1032.2s +    5.7s L1 look ('red/pair@YA', 'red/Bx+d@XY'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT   1038.1s +    5.8s L1 look ('red/pair@YA', 'red/Bx+d@YX'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT   1043.9s +    5.8s L1 look ('red/pair@YA', 'red/Bx+d@NX'): cost None 5.8s | GPU peak 26.9 GiB
+UNIT   1049.6s +    5.7s L1 look ('red/pair@YA', 'red/Bx+d@NY'): cost None 5.7s | GPU peak 26.9 GiB
+UNIT   1055.3s +    5.6s L1 look ('red/pair@YA', 'val.35/tgt@XN'): cost None 5.6s | GPU peak 26.9 GiB
+UNIT   1055.3s +    0.0s L1 choose (ct2a2): {'learnable': 31, 'unsolved': 71}; picks [('red/pair@AX', 3, 'STA.S T.lt.pair.AX SEL.S'), ('red/pair@XA', 5, 'STA.Y LDA.X STA.S T.lt.pair.AY SEL.S'), ('red/pair@YA', 5, 'STA.X LDA.Y STA.S T.lt.pair.AX SEL.S'), ('red/pair@AY', 3, 'STA.S T.lt.pair.AY SEL.S')] | GPU peak 26.9 GiB
+UNIT   1055.3s +    0.0s L1 sleep: B1.1=T.lt.pair.AY SEL.S; B1.2=STA.S B1.1; B1.3=T.lt.pair.AX SEL.S; B1.4=STA.S B1.3; T.red.pair.AX=B1.4; T.red.pair.XA=STA.Y LDA.X B1.2; T.red.pair.YA=STA.X LDA.Y T.red.pair.AX; T.red.pair.AY=B1.2 | GPU peak 26.9 GiB
+UNIT   1080.1s +   24.8s L1 target: cost None levels [1, 40, 1283, 39695, 1248480, 49959356] fits [0, 4, 6, 6, 8, 9] 23.8s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 40, 1191, 31470, 784496, 25558147] 1.0s exhausted cost 5 [] | GPU peak 26.9 GiB
+UNIT   1087.4s +    7.2s L2 pose: 108 candidates on 91 roots | GPU peak 26.9 GiB
+UNIT   1100.2s +   12.8s L2 probe 16 roots 12.8s solved {'add/pair@AX': 4, 'add/pair@AY': 4, 'lt/pair@AN': 2, 'red/pair@AN': 3, 'add/pair@AN': 4, 'lt/pair@XA': 1, 'add/pair@XA': 4, 'red/pair@XY': 2, 'add/pair@XY': 4, 'red/pair@XN': 2, 'add/pair@XN': 4, 'lt/pair@YA': 1, 'add/pair@YA': 4, 'lt/pair@YX': 2, 'red/pair@YX': 2, 'add/pair@YX': 4, 'lt/pair@YN': 2, 'red/pair@YN': 2, 'add/pair@YN': 4, 'lt/pair@NA': 3, 'red/pair@NA': | GPU peak 26.9 GiB
+UNIT   1108.4s +    8.1s L2 probe 16 roots 8.1s solved {} [('routines', 8.1)] | GPU peak 26.9 GiB
+UNIT   1116.4s +    8.0s L2 probe 16 roots 8.0s solved {} [('routines', 8.0)] | GPU peak 26.9 GiB
+UNIT   1123.8s +    7.4s L2 probe 16 roots 7.4s solved {'red/Bx+d@AX': 2, 'red/Bx+d@AY': 2, 'red/Bx+d@AN': 4, 'red/Bx+d@XA': 3, 'red/Bx+d@XY': 3, 'red/Bx+d@XN': 4, 'red/Bx+d@YA': 3, 'red/Bx+d@YX': 3, 'red/Bx+d@YN': 4, 'red/Bx+d@NA': 4, 'red/Bx+d@NX': 3, 'red/Bx+d@NY': 3} [('routines', 7.4)] | GPU peak 26.9 GiB
+UNIT   1134.2s +   10.3s L2 probe 16 roots 10.3s solved {} [('routines', 10.3)] | GPU peak 26.9 GiB
+UNIT   1142.5s +    8.3s L2 probe 11 roots 8.3s solved {} [('routines', 8.3)] | GPU peak 26.9 GiB
+UNIT   1142.6s +    0.0s L2 deep: [('rst4@XN', {'target': 0.42857142857142855}), ('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rst1@XN', {'target': 0.35714285714285715}), ('x,d@AX', {'mul': 0.16666666666666666}), ('x,d@AY', {'mul': 0.0}), ('x,d@AN', {'mul': 0.07692307692307693}), ('x,d@XA', {'mul': 0.25}), ('x,d@XY', {'mul': 0.2727272727272727}), ('x,d@XN', {'mul': 0.16666666666666666}), ('x,d@YA', {'mul': 0.3333 | GPU peak 26.9 GiB
+UNIT   1176.2s +   33.6s L2 deep ['rst4@XN', 'tgt@XN', 'rst1@XN', 'x,d@AX'] 33.6s solved {} [('deep []', 10.3), ("deep ['T.lt.pair.AX']", 8.9), ("deep ['T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XN', 'T.red.pair.AX', 'T.red.pair.XA', 'T.red.pair.YA']", 13.3)] | GPU peak 26.9 GiB
+UNIT   1200.2s +   24.0s L2 deep ['x,d@AY', 'x,d@AN', 'x,d@XA', 'x,d@XY'] 24.0s solved {} [("deep ['T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XN', 'T.red.pair.AX', 'T.red.pair.XA', 'T.red.pair.YA']", 24.0)] | GPU peak 26.9 GiB
+UNIT   1224.1s +   23.9s L2 deep ['x,d@XN', 'x,d@YA', 'x,d@YX', 'x,d@YN'] 23.9s solved {} [("deep ['T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XN', 'T.red.pair.AX', 'T.red.pair.XA', 'T.red.pair.YA']", 23.9)] | GPU peak 26.9 GiB
+UNIT   1245.3s +   21.2s L2 deep ['x,d@NA', 'x,d@NX', 'x,d@NY'] 21.2s solved {} [("deep ['T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XN', 'T.red.pair.AX', 'T.red.pair.XA', 'T.red.pair.YA']", 21.2)] | GPU peak 26.9 GiB
+UNIT   1253.2s +    7.8s L2 look: 90 lookaheads; the target alone: cost None | GPU peak 26.9 GiB
+UNIT   1261.6s +    8.4s L2 look ('add/pair@AX',): cost None 8.4s | GPU peak 26.9 GiB
+UNIT   1269.2s +    7.6s L2 look ('add/pair@AY',): cost None 7.6s | GPU peak 26.9 GiB
+UNIT   1277.1s +    7.8s L2 look ('lt/pair@AN',): cost None 7.8s | GPU peak 26.9 GiB
+UNIT   1285.5s +    8.4s L2 look ('red/pair@AN',): cost None 8.4s | GPU peak 26.9 GiB
+UNIT   1293.3s +    7.7s L2 look ('add/pair@AN',): cost None 7.7s | GPU peak 26.9 GiB
+UNIT   1300.7s +    7.4s L2 look ('red/pair@XY',): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1308.1s +    7.3s L2 look ('add/pair@XY',): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1315.4s +    7.2s L2 look ('red/pair@XN',): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1322.7s +    7.3s L2 look ('add/pair@XN',): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1329.9s +    7.2s L2 look ('lt/pair@YX',): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1337.1s +    7.2s L2 look ('red/pair@YX',): cost None 7.1s | GPU peak 26.9 GiB
+UNIT   1346.2s +    9.0s L2 look ('lt/pair@YN',): cost None 9.0s | GPU peak 26.9 GiB
+UNIT   1353.5s +    7.3s L2 look ('add/pair@YN',): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1361.3s +    7.8s L2 look ('lt/pair@NA',): cost None 7.8s | GPU peak 26.9 GiB
+UNIT   1369.2s +    7.8s L2 look ('red/pair@NA',): cost None 7.8s | GPU peak 26.9 GiB
+UNIT   1377.1s +    7.9s L2 look ('lt/pair@NX',): cost None 7.9s | GPU peak 26.9 GiB
+UNIT   1385.2s +    8.1s L2 look ('red/pair@NX',): cost None 8.1s | GPU peak 26.9 GiB
+UNIT   1392.7s +    7.4s L2 look ('lt/pair@NY',): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1400.0s +    7.3s L2 look ('red/pair@NY',): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1407.2s +    7.2s L2 look ('red/Bx+d@AX',): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1414.9s +    7.6s L2 look ('red/Bx+d@AY',): cost None 7.6s | GPU peak 26.9 GiB
+UNIT   1422.6s +    7.7s L2 look ('red/Bx+d@AN',): cost None 7.7s | GPU peak 26.9 GiB
+UNIT   1430.5s +    7.9s L2 look ('red/Bx+d@XA',): cost None 7.9s | GPU peak 26.9 GiB
+UNIT   1437.9s +    7.4s L2 look ('red/Bx+d@XY',): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1445.3s +    7.3s L2 look ('red/Bx+d@XN',): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1452.9s +    7.6s L2 look ('red/Bx+d@YA',): cost None 7.6s | GPU peak 26.9 GiB
+UNIT   1460.4s +    7.5s L2 look ('red/Bx+d@YX',): cost None 7.5s | GPU peak 26.9 GiB
+UNIT   1468.8s +    8.3s L2 look ('red/Bx+d@YN',): cost None 8.3s | GPU peak 26.9 GiB
+UNIT   1476.8s +    8.0s L2 look ('red/Bx+d@NA',): cost None 8.0s | GPU peak 26.9 GiB
+UNIT   1484.1s +    7.2s L2 look ('red/Bx+d@NX',): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1491.1s +    7.0s L2 look ('red/Bx+d@NY',): cost None 7.0s | GPU peak 26.9 GiB
+UNIT   1499.0s +    7.8s L2 look ('add/pair@AX', 'add/pair@AY'): cost None 7.8s | GPU peak 26.9 GiB
+UNIT   1506.2s +    7.2s L2 look ('add/pair@AX', 'lt/pair@AN'): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1513.2s +    7.0s L2 look ('add/pair@AX', 'red/pair@AN'): cost None 7.0s | GPU peak 26.9 GiB
+UNIT   1520.8s +    7.5s L2 look ('add/pair@AX', 'add/pair@AN'): cost None 7.5s | GPU peak 26.9 GiB
+UNIT   1529.0s +    8.2s L2 look ('add/pair@AX', 'red/pair@XY'): cost None 8.2s | GPU peak 26.9 GiB
+UNIT   1536.6s +    7.6s L2 look ('add/pair@AX', 'add/pair@XY'): cost None 7.6s | GPU peak 26.9 GiB
+UNIT   1544.8s +    8.1s L2 look ('add/pair@AX', 'red/pair@XN'): cost None 8.1s | GPU peak 26.9 GiB
+UNIT   1552.9s +    8.1s L2 look ('add/pair@AX', 'add/pair@XN'): cost None 8.1s | GPU peak 26.9 GiB
+UNIT   1560.4s +    7.5s L2 look ('add/pair@AX', 'lt/pair@YX'): cost None 7.5s | GPU peak 26.9 GiB
+UNIT   1567.8s +    7.4s L2 look ('add/pair@AX', 'red/pair@YX'): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1575.2s +    7.4s L2 look ('add/pair@AX', 'lt/pair@YN'): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1582.7s +    7.4s L2 look ('add/pair@AX', 'add/pair@YN'): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1590.2s +    7.5s L2 look ('add/pair@AX', 'lt/pair@NA'): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1597.8s +    7.6s L2 look ('add/pair@AX', 'red/pair@NA'): cost None 7.6s | GPU peak 26.9 GiB
+UNIT   1605.2s +    7.4s L2 look ('add/pair@AX', 'lt/pair@NX'): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1613.4s +    7.8s L2 look ('add/pair@AX', 'red/pair@NX'): cost None 7.7s | GPU peak 26.9 GiB
+UNIT   1620.8s +    7.4s L2 look ('add/pair@AX', 'lt/pair@NY'): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1628.1s +    7.2s L2 look ('add/pair@AX', 'red/pair@NY'): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1635.2s +    7.1s L2 look ('add/pair@AX', 'red/Bx+d@AX'): cost None 7.1s | GPU peak 26.9 GiB
+UNIT   1642.5s +    7.3s L2 look ('add/pair@AX', 'red/Bx+d@AY'): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1649.8s +    7.2s L2 look ('add/pair@AX', 'red/Bx+d@AN'): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1657.1s +    7.2s L2 look ('add/pair@AX', 'red/Bx+d@XA'): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1664.9s +    7.7s L2 look ('add/pair@AX', 'red/Bx+d@XY'): cost None 7.7s | GPU peak 26.9 GiB
+UNIT   1672.6s +    7.7s L2 look ('add/pair@AX', 'red/Bx+d@XN'): cost None 7.6s | GPU peak 26.9 GiB
+UNIT   1680.0s +    7.4s L2 look ('add/pair@AX', 'red/Bx+d@YA'): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1687.3s +    7.2s L2 look ('add/pair@AX', 'red/Bx+d@YX'): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1694.6s +    7.3s L2 look ('add/pair@AX', 'red/Bx+d@YN'): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1701.7s +    7.0s L2 look ('add/pair@AX', 'red/Bx+d@NA'): cost None 7.0s | GPU peak 26.9 GiB
+UNIT   1708.9s +    7.2s L2 look ('add/pair@AX', 'red/Bx+d@NX'): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1716.0s +    7.1s L2 look ('add/pair@AX', 'red/Bx+d@NY'): cost None 7.1s | GPU peak 26.9 GiB
+UNIT   1723.1s +    7.0s L2 look ('add/pair@AY', 'lt/pair@AN'): cost None 7.0s | GPU peak 26.9 GiB
+UNIT   1730.9s +    7.8s L2 look ('add/pair@AY', 'red/pair@AN'): cost None 7.8s | GPU peak 26.9 GiB
+UNIT   1738.1s +    7.1s L2 look ('add/pair@AY', 'add/pair@AN'): cost None 7.1s | GPU peak 26.9 GiB
+UNIT   1745.2s +    7.1s L2 look ('add/pair@AY', 'red/pair@XY'): cost None 7.1s | GPU peak 26.9 GiB
+UNIT   1752.5s +    7.2s L2 look ('add/pair@AY', 'add/pair@XY'): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1759.6s +    7.0s L2 look ('add/pair@AY', 'red/pair@XN'): cost None 7.0s | GPU peak 26.9 GiB
+UNIT   1767.0s +    7.3s L2 look ('add/pair@AY', 'add/pair@XN'): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1774.0s +    7.0s L2 look ('add/pair@AY', 'lt/pair@YX'): cost None 7.0s | GPU peak 26.9 GiB
+UNIT   1781.2s +    7.1s L2 look ('add/pair@AY', 'red/pair@YX'): cost None 7.1s | GPU peak 26.9 GiB
+UNIT   1788.9s +    7.6s L2 look ('add/pair@AY', 'lt/pair@YN'): cost None 7.6s | GPU peak 26.9 GiB
+UNIT   1796.5s +    7.6s L2 look ('add/pair@AY', 'add/pair@YN'): cost None 7.6s | GPU peak 26.9 GiB
+UNIT   1804.2s +    7.6s L2 look ('add/pair@AY', 'lt/pair@NA'): cost None 7.6s | GPU peak 26.9 GiB
+UNIT   1811.4s +    7.2s L2 look ('add/pair@AY', 'red/pair@NA'): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1818.9s +    7.4s L2 look ('add/pair@AY', 'lt/pair@NX'): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1826.8s +    7.8s L2 look ('add/pair@AY', 'red/pair@NX'): cost None 7.8s | GPU peak 26.9 GiB
+UNIT   1834.0s +    7.2s L2 look ('add/pair@AY', 'lt/pair@NY'): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1841.2s +    7.1s L2 look ('add/pair@AY', 'red/pair@NY'): cost None 7.1s | GPU peak 26.9 GiB
+UNIT   1848.9s +    7.7s L2 look ('add/pair@AY', 'red/Bx+d@AX'): cost None 7.7s | GPU peak 26.9 GiB
+UNIT   1857.0s +    8.0s L2 look ('add/pair@AY', 'red/Bx+d@AY'): cost None 8.0s | GPU peak 26.9 GiB
+UNIT   1864.0s +    7.0s L2 look ('add/pair@AY', 'red/Bx+d@AN'): cost None 7.0s | GPU peak 26.9 GiB
+UNIT   1871.5s +    7.4s L2 look ('add/pair@AY', 'red/Bx+d@XA'): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1879.7s +    7.8s L2 look ('add/pair@AY', 'red/Bx+d@XY'): cost None 7.8s | GPU peak 26.9 GiB
+UNIT   1887.0s +    7.3s L2 look ('add/pair@AY', 'red/Bx+d@XN'): cost None 7.3s | GPU peak 26.9 GiB
+UNIT   1894.8s +    7.7s L2 look ('add/pair@AY', 'red/Bx+d@YA'): cost None 7.7s | GPU peak 26.9 GiB
+UNIT   1902.0s +    7.2s L2 look ('add/pair@AY', 'red/Bx+d@YX'): cost None 7.2s | GPU peak 26.9 GiB
+UNIT   1909.5s +    7.4s L2 look ('add/pair@AY', 'red/Bx+d@YN'): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1916.9s +    7.4s L2 look ('add/pair@AY', 'red/Bx+d@NA'): cost None 7.4s | GPU peak 26.9 GiB
+UNIT   1925.0s +    8.0s L2 look ('add/pair@AY', 'red/Bx+d@NX'): cost None 8.0s | GPU peak 26.9 GiB
+UNIT   1932.9s +    7.9s L2 look ('add/pair@AY', 'red/Bx+d@NY'): cost None 7.9s | GPU peak 26.9 GiB
+UNIT   1933.0s +    0.0s L2 choose (ct2a2): {'learnable': 31, 'trivial': 2, 'duplicate': 7, 'unsolved': 68}; picks [('add/pair@AX', 4, 'CLC P[ADC.X INC]'), ('add/pair@AY', 4, 'CLC P[ADC.Y INC]'), ('lt/pair@AN', 2, 'STA.X T.lt.pair.XN'), ('red/pair@AN', 3, 'STA.Y LDA.N T.red.pair.YA')] | GPU peak 26.9 GiB
+UNIT   1933.0s +    0.0s L2 sleep: T.add.pair.AX=CLC P[ADC.X INC]; T.add.pair.AY=CLC P[ADC.Y INC]; T.lt.pair.AN=STA.X T.lt.pair.XN; T.red.pair.AN=STA.Y LDA.N T.red.pair.YA | GPU peak 26.9 GiB
+UNIT   1978.9s +   45.8s L2 target: cost None levels [1, 44, 1572, 53773, 1864584, 81616361] fits [0, 4, 6, 6, 8, 9] 43.9s budget: level 5 streamed (over 4000000 states) [] full size None | round: cost None levels [1, 44, 1448, 42325, 1170809, 41987074] 1.9s exhausted cost 5 [] | GPU peak 26.9 GiB
+UNIT   1992.5s +   13.6s L3 pose: 108 candidates on 92 roots | GPU peak 26.9 GiB
+UNIT   2008.7s +   16.2s L3 probe 16 roots 16.2s solved {'add/pair@AN': 2, 'add/pair@XA': 1, 'red/pair@XY': 2, 'add/pair@XY': 2, 'red/pair@XN': 2, 'add/pair@XN': 2, 'add/pair@YA': 1, 'lt/pair@YX': 2, 'red/pair@YX': 2, 'add/pair@YX': 2, 'lt/pair@YN': 2, 'red/pair@YN': 2, 'add/pair@YN': 2, 'lt/pair@NA': 2, 'red/pair@NA': 3, 'add/pair@NA': 3, 'lt/pair@NX': 2, 'red/pair@NX': 2, 'add/pair@NX': 2, 'lt/pair@NY': 2, 'red/pair@NY' | GPU peak 26.9 GiB
+UNIT   2025.1s +   16.3s L3 probe 16 roots 16.3s solved {} [('routines', 16.3)] | GPU peak 26.9 GiB
+UNIT   2041.0s +   15.8s L3 probe 16 roots 15.8s solved {'red/Bx+d@AX': 2, 'red/Bx+d@AY': 2} [('routines', 15.8)] | GPU peak 26.9 GiB
+UNIT   2054.3s +   13.3s L3 probe 16 roots 13.3s solved {'red/Bx+d@AN': 2, 'red/Bx+d@XA': 3, 'red/Bx+d@XY': 3, 'red/Bx+d@XN': 3, 'red/Bx+d@YA': 3, 'red/Bx+d@YX': 3, 'red/Bx+d@YN': 3, 'red/Bx+d@NA': 4, 'red/Bx+d@NX': 3, 'red/Bx+d@NY': 3} [('routines', 13.3)] | GPU peak 26.9 GiB
+UNIT   2073.2s +   18.8s L3 probe 16 roots 18.8s solved {} [('routines', 18.8)] | GPU peak 26.9 GiB
+UNIT   2093.1s +   19.9s L3 probe 12 roots 19.9s solved {'val.71/tgt@XN': 1, 'val.72/tgt@XN': 2, 'val.73/tgt@XN': 3} [('routines', 16.4), ('primitives', 3.1)] | GPU peak 26.9 GiB
+UNIT   2093.2s +    0.0s L3 deep: [('tgt@XN', {'low': 0.4166666666666667, 'ltx': 0.0}), ('rst1@XN', {'target': 0.35714285714285715}), ('rst3@XN', {'target': 0.2857142857142857}), ('o,x,d@AXY', {'acc.mul': 0.25}), ('o,x,d@AXN', {'acc.mul': 0.23076923076923078}), ('o,x,d@AYX', {'acc.mul': 0.15384615384615385}), ('o,x,d@AYN', {'acc.mul': 0.21428571428571427}), ('o,x,d@ANX', {'acc.mul': 0.18181818181818182}), ('o,x,d@ANY', {' | GPU peak 26.9 GiB
+UNIT   2136.9s +   43.6s L3 deep ['tgt@XN', 'rst1@XN', 'rst3@XN', 'o,x,d@AXY'] 43.6s solved {'val.71/tgt@XN': 1, 'val.72/tgt@XN': 2, 'val.73/tgt@XN': 3, 'acc.mul/o,x,d@AXY': 5} [('deep []', 9.7), ("deep ['T.lt.pair.AX']", 7.3), ("deep ['T.add.pair.AX', 'T.add.pair.AY', 'T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XY', 'T.red.pair.AN', 'T.red.pair.AX', 'T.red.pair.AY', 'T.red.pair.XA', 'T.red.pair.YA']", 25.7)] | GPU peak 26.9 GiB
+UNIT   2184.1s +   47.1s L3 deep ['o,x,d@AXN', 'o,x,d@AYX', 'o,x,d@AYN', 'o,x,d@ANX'] 47.1s solved {'acc.mul/o,x,d@AYX': 5, 'acc.mul/o,x,d@ANX': 5} [("deep ['T.add.pair.AX', 'T.add.pair.AY', 'T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XY', 'T.red.pair.AN', 'T.red.pair.AX', 'T.red.pair.AY', 'T.red.pair.XA', 'T.red.pair.YA']", 47.1)] | GPU peak 26.9 GiB
+UNIT   2231.1s +   46.9s L3 deep ['o,x,d@ANY', 'o,x,d@XAY', 'o,x,d@XAN', 'o,x,d@XYA'] 46.9s solved {'acc.mul/o,x,d@ANY': 5} [("deep ['T.add.pair.AX', 'T.add.pair.AY', 'T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XY', 'T.red.pair.AN', 'T.red.pair.AX', 'T.red.pair.AY', 'T.red.pair.XA', 'T.red.pair.YA']", 46.9)] | GPU peak 26.9 GiB
+UNIT   2276.6s +   45.5s L3 deep ['o,x,d@XYN', 'o,x,d@XNA', 'o,x,d@XNY', 'o,x,d@YAX'] 45.5s solved {} [("deep ['T.add.pair.AX', 'T.add.pair.AY', 'T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XY', 'T.red.pair.AN', 'T.red.pair.AX', 'T.red.pair.AY', 'T.red.pair.XA', 'T.red.pair.YA']", 45.5)] | GPU peak 26.9 GiB
+UNIT   2322.5s +   45.8s L3 deep ['o,x,d@YAN', 'o,x,d@YXA', 'o,x,d@YXN', 'o,x,d@YNA'] 45.8s solved {} [("deep ['T.add.pair.AX', 'T.add.pair.AY', 'T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XY', 'T.red.pair.AN', 'T.red.pair.AX', 'T.red.pair.AY', 'T.red.pair.XA', 'T.red.pair.YA']", 45.8)] | GPU peak 26.9 GiB
+UNIT   2368.3s +   45.8s L3 deep ['o,x,d@YNX', 'o,x,d@NAX', 'o,x,d@NAY', 'o,x,d@NXA'] 45.8s solved {} [("deep ['T.add.pair.AX', 'T.add.pair.AY', 'T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XY', 'T.red.pair.AN', 'T.red.pair.AX', 'T.red.pair.AY', 'T.red.pair.XA', 'T.red.pair.YA']", 45.8)] | GPU peak 26.9 GiB
+UNIT   2408.6s +   40.3s L3 deep ['o,x,d@NXY', 'o,x,d@NYA', 'o,x,d@NYX'] 40.3s solved {} [("deep ['T.add.pair.AX', 'T.add.pair.AY', 'T.lt.pair.AX', 'T.lt.pair.AY', 'T.lt.pair.XY', 'T.red.pair.AN', 'T.red.pair.AX', 'T.red.pair.AY', 'T.red.pair.XA', 'T.red.pair.YA']", 40.3)] | GPU peak 26.9 GiB
+DEADLINE
+TOTAL 2408.6 s; rounds []
+LIB {"B0.1": "SBB.Y INC", "T.lt.pair.AX": "CLC P[SBB.X INC]", "T.lt.pair.XY": "CLC P[LDA.X B0.1]", "T.lt.pair.XN": "CLC LDA.X P[SBB.N INC]", "T.lt.pair.AY": "CLC P[B0.1]", "B1.1": "T.lt.pair.AY SEL.S", "B1.2": "STA.S B1.1", "B1.3": "T.lt.pair.AX SEL.S", "B1.4": "STA.S B1.3", "T.red.pair.AX": "B1.4", "T.red.pair.XA": "STA.Y LDA.X B1.2", "T.red.pair.YA": "STA.X LDA.Y T.red.pair.AX", "T.red.pair.AY": "B1.2", "T.add.pair.AX": "CLC P[ADC.X INC]", "T.add.pair.AY": "CLC P[ADC.Y INC]", "T.lt.pair.AN": "STA.X T.lt.pair.XN", "T.red.pair.AN": "STA.Y LDA.N T.red.pair.YA"}
+
+EXIT 0

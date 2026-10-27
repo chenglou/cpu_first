@@ -1,0 +1,11 @@
+mul/x,o@XY: 'CLA W[T.acc.mul.o,x,d.AXY INC SHL.X]': probes True, accepted True, expected True: ok
+mul/x,o@XY: 'CLA T.acc.mul.o,x,d.AXY': probes False, accepted False, expected False: ok
+mul/x,o@XY: 'W[T.acc.mul.o,x,d.AXY INC SHL.X]': probes False, accepted False, expected False: ok
+red/x+on@XA: 'STA.Y P[BRG.X T.red.Bx+d.AY]': probes True, accepted True, expected True: ok
+red/x+on@XN: 'CLA P[BRG.X T.red.Bx+d.AN]': probes True, accepted True, expected True: ok
+red/x+on@XN: 'LDA.N P[BRG.X T.red.Bx+d.AN]': probes True, accepted True, expected True: ok
+red/x+on@XN: 'CLA P[BRG.X T.red.pair.AN]': probes False, accepted False, expected False: ok
+red/x+on@XN: 'LDA.X': probes False, accepted False, expected False: ok
+add/pair@AY: 'CLC P[ADC.Y INC]': probes True, accepted True, expected True: ok
+add/pair@AY: 'P[ADC.Y INC]': probes False, accepted False, expected False: ok
+ALL OK

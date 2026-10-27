@@ -969,6 +969,14 @@ fix.
   that fails on some unseen 24-bit moduli (757–764 of 768), which no training row can catch; the climb's own rule of
   fewest steps, and a legal identity check, both keep a correct one. A legal climb from scratch is the next test. About
   $3.
+- **A fully legal climb** ([LEGALCLIMB.md](bar3/scale/legalclimb/LEGALCLIMB.md)). The same full-size mode inside the
+  climb's level loop, so that every practice answer is a data row, a fact, an identity or the learner's own routine, and
+  every law test runs the learner's routines. With book_min's reduction cut to one step, bar 3's sources bring H1's
+  round at level 5 in seven arms, seeds 1–3 among them, each right on both ladders, unseen moduli included. With no
+  reduction at all it comes only when the law test accepts 3 exact rows (one run). Without bar 3's sources, or without
+  the book's multiply-add row, nothing comes: the comparison, the link, the addition, the row and the multiply have no
+  legal source but the book. So legally, bar 3 supplies the reduction; offline it also supplies the row and the
+  multiply. About $20.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

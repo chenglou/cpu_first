@@ -317,6 +317,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 26 `827e784` | bar 3's studies run on the GPU search through one runner, seven whole runs record for record, runs in minutes instead of hours | [bar3/gpu_search/GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md) |
 | Oct 26 `5048c75` | an audit of bar 3's 14 practice sources against the rule that no training target may come from Python's arithmetic: which can run inside a training run, which need a redesign | [bar3/LEGAL_SOURCES.md](bar3/LEGAL_SOURCES.md) |
 | Oct 26 `a81712c` | the audit's decisive test: at full size, a law test on the learner's own routines picks x² alone and the reduction is found; the first spelling taken is a look-alike that fails on some unseen moduli, and the climb's own rule keeps a correct one | [bar3/scale/legal/LEGAL_TEST.md](bar3/scale/legal/LEGAL_TEST.md) |
+| Oct 26 `ef10ac1` | **a fully legal climb gets H1's round**: every practice answer from the data, identities or the learner's own routines; with the book's reduction cut to one step, bar 3's sources bring the round in seven arms, right to T = 64 on unseen moduli too; the row and the multiply still come only from the book | [bar3/scale/legalclimb/LEGALCLIMB.md](bar3/scale/legalclimb/LEGALCLIMB.md) |
 
 ### The lessons that came out of the failures
 
@@ -597,6 +598,14 @@ in the answer.
   that fails on some unseen 24-bit moduli (757–764 of 768), which no training row can catch; the climb's own rule of
   fewest steps, and a legal identity check, both keep a correct one. A legal climb from scratch is the next test. About
   $3.
+- **A fully legal climb** ([LEGALCLIMB.md](bar3/scale/legalclimb/LEGALCLIMB.md)). The same full-size mode inside the
+  climb's level loop, so that every practice answer is a data row, a fact, an identity or the learner's own routine, and
+  every law test runs the learner's routines. With book_min's reduction cut to one step, bar 3's sources bring H1's
+  round at level 5 in seven arms, seeds 1–3 among them, each right on both ladders, unseen moduli included. With no
+  reduction at all it comes only when the law test accepts 3 exact rows (one run). Without bar 3's sources, or without
+  the book's multiply-add row, nothing comes: the comparison, the link, the addition, the row and the multiply have no
+  legal source but the book. So legally, bar 3 supplies the reduction; offline it also supplies the row and the
+  multiply. About $20.
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -1243,7 +1252,8 @@ fast version and fast2, now the file to judge (§4.8), and bar 3's duplicate che
 (§4, bar 3). So has the composition test (§4, bar 3). So have its second and third rounds (§4, bar 3). So has the GPU
 port of its search (§4, bar 3). So have the consolidation of bar 3's rules, the one-place cut of the target's laws, the
 GPU runner and the audit of bar 3's sources (§4, bar 3). Running now: a source that poses each cut's loop (the multiply
-from the row, the whole reduction from the step), and the audit's cheapest test has passed with one miss (§4, bar 3).
+from the row, the whole reduction from the step), and the legal path's tests are done: a fully legal climb gets the
+round with the book's reduction gone (§4, bar 3).
 
 Everything else described here is committed.
 

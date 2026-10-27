@@ -1,0 +1,61 @@
+device NVIDIA B200 config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 1000000, 'fallback_budget': 1000000, 'deep_budget': 5800000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 300000, 'round_budget': 4000000, 'levels': 10, 'search_s': 900.0, 'fuse': 4, 'patterns': ['pair'], 'laws': ['lt', 'red'], 'target': 'round', 'sources': ['law'], 'round_too': True, 'spell': 16, 'read': '1'}
+UNIT      0.3s +    0.3s L0 pose: 24 candidates on 12 roots | GPU peak 0.0 GiB
+UNIT     35.3s +   35.0s L0 probe 12 roots 35.0s solved {'lt/pair@AX': 4, 'lt/pair@AY': 4, 'lt/pair@AN': 4, 'lt/pair@XY': 5, 'lt/pair@XN': 5, 'lt/pair@YX': 5, 'lt/pair@YN': 5, 'lt/pair@NX': 5, 'lt/pair@NY': 5} [('routines', 33.3)] | GPU peak 22.1 GiB
+UNIT     35.3s +    0.1s L0 choose (lpca): {'learnable': 9, 'unsolved': 15}; picks [('lt/pair@AX', 4, 'CLC P[SBB.X INC]'), ('lt/pair@AY', 4, 'CLC P[SBB.Y INC]'), ('lt/pair@AN', 4, 'CLC P[SBB.N INC]')] | GPU peak 22.1 GiB
+UNIT     35.3s +    0.0s L0 sleep: T.lt.pair.AX=CLC P[SBB.X INC]; T.lt.pair.AY=CLC P[SBB.Y INC]; T.lt.pair.AN=CLC P[SBB.N INC] | GPU peak 22.1 GiB
+UNIT     35.7s +    0.4s L0 round: cost None levels [1, 35, 923, 22054, 500376, 14787947] 0.4s exhausted cost 5 [] | GPU peak 22.1 GiB
+UNIT     35.7s +    0.0s L1 pose: 12 candidates on 12 roots | GPU peak 22.1 GiB
+UNIT     58.4s +   22.7s L1 probe 12 roots 22.7s solved {'red/pair@AX': 3, 'red/pair@AY': 3, 'red/pair@AN': 3, 'red/pair@XA': 5, 'red/pair@XY': 4, 'red/pair@XN': 4, 'red/pair@YA': 5, 'red/pair@YX': 4, 'red/pair@YN': 4, 'red/pair@NA': 5, 'red/pair@NX': 4, 'red/pair@NY': 4} [('routines', 15.3)] | GPU peak 22.1 GiB
+UNIT     58.4s +    0.0s L1 deep: [] | GPU peak 22.1 GiB
+UNIT     58.5s +    0.1s L1 choose (lpca): {'learnable': 12}; picks [('red/pair@AX', 3, 'STA.S T.lt.pair.AX SEL.S'), ('red/pair@AY', 3, 'STA.S T.lt.pair.AY SEL.S'), ('red/pair@AN', 3, 'STA.S T.lt.pair.AN SEL.S')] | GPU peak 22.1 GiB
+UNIT     58.5s +    0.0s L1 sleep: T.red.pair.AX=STA.S T.lt.pair.AX SEL.S; T.red.pair.AY=STA.S T.lt.pair.AY SEL.S; T.red.pair.AN=STA.S T.lt.pair.AN SEL.S | GPU peak 22.1 GiB
+UNIT     59.3s +    0.8s L1 round: cost None levels [1, 38, 1092, 28325, 698101, 22527421] 0.8s exhausted cost 5 [] | GPU peak 22.1 GiB
+UNIT     59.3s +    0.0s L2 pose: 0 candidates on 0 roots | GPU peak 22.1 GiB
+UNIT     59.3s +    0.0s L2 deep: [] | GPU peak 22.1 GiB
+UNIT     59.3s +    0.0s L2 choose (lpca): {}; picks [] | GPU peak 22.1 GiB
+UNIT     59.3s +    0.0s L2 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.1 GiB
+UNIT     60.1s +    0.8s L2 round: cost None levels [1, 38, 1092, 28325, 698101, 22527421] 0.8s exhausted cost 5 [] | GPU peak 22.1 GiB
+UNIT     60.1s +    0.0s L3 pose: 18 candidates on 9 roots | GPU peak 22.1 GiB
+UNIT     70.3s +   10.2s L3 probe 9 roots 10.2s solved {'lt/pair@XA': 3, 'red/pair@XA': 3, 'lt/pair@XY': 2, 'red/pair@XY': 2, 'lt/pair@XN': 2, 'red/pair@XN': 2, 'lt/pair@YA': 3, 'red/pair@YA': 3, 'lt/pair@YX': 2, 'red/pair@YX': 2, 'lt/pair@YN': 2, 'red/pair@YN': 2, 'lt/pair@NA': 3, 'red/pair@NA': 3, 'lt/pair@NX': 2, 'red/pair@NX': 2, 'lt/pair@NY': 2, 'red/pair@NY': 2} [('routines', 1.4)] | GPU peak 22.1 GiB
+UNIT     70.3s +    0.0s L3 deep: [] | GPU peak 22.1 GiB
+UNIT     70.4s +    0.1s L3 choose (lpca): {'learnable': 18}; picks [('lt/pair@XA', 3, 'STA.Y LDA.X T.lt.pair.AY'), ('red/pair@XA', 3, 'STA.Y LDA.X T.red.pair.AY'), ('lt/pair@YA', 3, 'STA.X LDA.Y T.lt.pair.AX'), ('red/pair@YA', 3, 'STA.X LDA.Y T.red.pair.AX')] | GPU peak 22.1 GiB
+UNIT     70.4s +    0.0s L3 sleep: B3.1=LDA.Y T.red.pair.AX; B3.2=STA.X B3.1; B3.3=LDA.X T.red.pair.AY; B3.4=STA.Y B3.3; T.lt.pair.XA=STA.Y LDA.X T.lt.pair.AY; T.red.pair.XA=B3.4; T.lt.pair.YA=STA.X LDA.Y T.lt.pair.AX; T.red.pair.YA=B3.2 | GPU peak 22.1 GiB
+UNIT     71.9s +    1.6s L3 round: cost None levels [1, 42, 1353, 39211, 1083158, 38699116] 1.6s exhausted cost 5 [] | GPU peak 22.1 GiB
+UNIT     71.9s +    0.0s L4 pose: 0 candidates on 0 roots | GPU peak 22.1 GiB
+UNIT     71.9s +    0.0s L4 deep: [] | GPU peak 22.1 GiB
+UNIT     71.9s +    0.0s L4 choose (lpca): {}; picks [] | GPU peak 22.1 GiB
+UNIT     71.9s +    0.0s L4 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.1 GiB
+UNIT     73.5s +    1.5s L4 round: cost None levels [1, 42, 1353, 39211, 1083158, 38699116] 1.5s exhausted cost 5 [] | GPU peak 22.1 GiB
+UNIT     73.5s +    0.0s L5 pose: 14 candidates on 7 roots | GPU peak 22.1 GiB
+UNIT     80.3s +    6.8s L5 probe 7 roots 6.8s solved {'lt/pair@XY': 2, 'red/pair@XY': 2, 'lt/pair@XN': 2, 'red/pair@XN': 2, 'lt/pair@YX': 2, 'red/pair@YX': 2, 'lt/pair@YN': 2, 'red/pair@YN': 2, 'lt/pair@NA': 3, 'red/pair@NA': 3, 'lt/pair@NX': 2, 'red/pair@NX': 2, 'lt/pair@NY': 2, 'red/pair@NY': 2} [('routines', 1.5)] | GPU peak 22.1 GiB
+UNIT     80.3s +    0.0s L5 deep: [] | GPU peak 22.1 GiB
+UNIT     80.4s +    0.2s L5 choose (lpca): {'learnable': 14}; picks [('lt/pair@NA', 3, 'STA.X LDA.N T.lt.pair.AX'), ('red/pair@NA', 3, 'STA.X LDA.N T.red.pair.AX'), ('lt/pair@XY', 2, 'LDA.X T.lt.pair.AY'), ('red/pair@XY', 2, 'LDA.X T.red.pair.AY')] | GPU peak 22.1 GiB
+UNIT     80.4s +    0.0s L5 sleep: B5.1=T.red.pair.XA LDA.N; B5.2=LDA.Y T.red.pair.XA; B5.3=T.lt.pair.YA LDA.N; B5.4=B5.3 T.red.pair.AX; B5.5=T.lt.pair.XA LDA.N; B5.6=LDA.X T.red.pair.AY; B5.7=LDA.N T.red.pair.AY; B5.8=STA.Y B5.7; B5.9=LDA.N T.red.pair.AX; B5.10=STA.X B5.9; T.lt.pair.NA=STA.X LDA.N T.lt.pair.AX; T.red.pair.NA=B5.10; T.lt.pair.XY=LDA.X T.lt.pair.AY; T.red.pair.XY=B5.6 | GPU peak 22.1 GiB
+UNIT     82.9s +    2.5s L5 round: cost None levels [1, 46, 1573, 47745, 1380044, 52096872] 2.5s exhausted cost 5; by calls: levels [1, 145, 13227] exhausted cost 2 [] | GPU peak 22.1 GiB
+UNIT     82.9s +    0.0s L6 pose: 0 candidates on 0 roots | GPU peak 22.1 GiB
+UNIT     82.9s +    0.0s L6 deep: [] | GPU peak 22.1 GiB
+UNIT     82.9s +    0.0s L6 choose (lpca): {}; picks [] | GPU peak 22.1 GiB
+UNIT     82.9s +    0.0s L6 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.1 GiB
+UNIT     85.4s +    2.5s L6 round: cost None levels [1, 46, 1573, 47745, 1380044, 52096872] 2.5s exhausted cost 5; by calls: levels [1, 145, 13227] exhausted cost 2 [] | GPU peak 22.1 GiB
+UNIT     85.4s +    0.0s L7 pose: 10 candidates on 5 roots | GPU peak 22.1 GiB
+UNIT     90.8s +    5.4s L7 probe 5 roots 5.4s solved {'lt/pair@XN': 2, 'red/pair@XN': 2, 'lt/pair@YX': 2, 'red/pair@YX': 2, 'lt/pair@YN': 2, 'red/pair@YN': 2, 'lt/pair@NX': 2, 'red/pair@NX': 2, 'lt/pair@NY': 2, 'red/pair@NY': 2} [('routines', 0.3)] | GPU peak 22.1 GiB
+UNIT     90.8s +    0.0s L7 deep: [] | GPU peak 22.1 GiB
+UNIT     90.9s +    0.1s L7 choose (lpca): {'learnable': 10}; picks [('lt/pair@XN', 2, 'LDA.X T.lt.pair.AN'), ('red/pair@XN', 2, 'LDA.X T.red.pair.AN'), ('lt/pair@YX', 2, 'LDA.Y T.lt.pair.AX'), ('red/pair@YX', 2, 'LDA.Y T.red.pair.AX')] | GPU peak 22.1 GiB
+UNIT     90.9s +    0.0s L7 sleep: B7.1=LDA.X T.red.pair.YA; B7.2=LDA.N T.red.pair.XA; B7.3=LDA.Y T.red.pair.AX; B7.4=LDA.X T.red.pair.AN; T.lt.pair.XN=LDA.X T.lt.pair.AN; T.red.pair.XN=B7.4; T.lt.pair.YX=LDA.Y T.lt.pair.AX; T.red.pair.YX=B7.3 | GPU peak 22.1 GiB
+UNIT     94.1s +    3.2s L7 round: cost None levels [1, 49, 1706, 52260, 1518362, 58709520] 3.2s exhausted cost 5; by calls: levels [1, 158, 17271] exhausted cost 2 [] | GPU peak 22.1 GiB
+UNIT     94.1s +    0.0s L8 pose: 0 candidates on 0 roots | GPU peak 22.1 GiB
+UNIT     94.1s +    0.0s L8 deep: [] | GPU peak 22.1 GiB
+UNIT     94.1s +    0.0s L8 choose (lpca): {}; picks [] | GPU peak 22.1 GiB
+UNIT     94.2s +    0.0s L8 sleep: no new concept learnable; the next level poses practised ones' variants | GPU peak 22.1 GiB
+UNIT     97.4s +    3.2s L8 round: cost None levels [1, 49, 1706, 52260, 1518362, 58709520] 3.2s exhausted cost 5; by calls: levels [1, 158, 17271] exhausted cost 2 [] | GPU peak 22.1 GiB
+UNIT     97.4s +    0.0s L9 pose: 6 candidates on 3 roots | GPU peak 22.1 GiB
+UNIT    102.4s +    5.0s L9 probe 3 roots 5.0s solved {'lt/pair@YN': 2, 'red/pair@YN': 2, 'lt/pair@NX': 2, 'red/pair@NX': 2, 'lt/pair@NY': 2, 'red/pair@NY': 2} [('routines', 0.2)] | GPU peak 22.1 GiB
+UNIT    102.4s +    0.0s L9 deep: [] | GPU peak 22.1 GiB
+UNIT    102.5s +    0.1s L9 choose (lpca): {'learnable': 6}; picks [('lt/pair@YN', 2, 'LDA.Y T.lt.pair.AN'), ('red/pair@YN', 2, 'LDA.Y T.red.pair.AN'), ('lt/pair@NX', 2, 'LDA.N T.lt.pair.AX'), ('red/pair@NX', 2, 'LDA.N T.red.pair.AX')] | GPU peak 22.1 GiB
+UNIT    102.5s +    0.0s L9 sleep: B9.1=LDA.X T.red.pair.NA; B9.2=LDA.N T.red.pair.YA; B9.3=LDA.Y T.red.pair.AN; B9.4=LDA.N T.red.pair.AX; T.lt.pair.YN=LDA.Y T.lt.pair.AN; T.red.pair.YN=B9.3; T.lt.pair.NX=LDA.N T.lt.pair.AX; T.red.pair.NX=B9.4 | GPU peak 22.1 GiB
+UNIT    106.7s +    4.2s L9 round: cost None levels [1, 53, 1866, 57536, 1676289, 66346800] 4.2s exhausted cost 5; by calls: levels [1, 163, 19485] exhausted cost 2 [] | GPU peak 22.1 GiB
+UNIT    106.7s +    0.0s climb done at level 10 (the level cap) | GPU peak 22.1 GiB
+TOTAL 106.7 s; rounds []
+LIB {"T.lt.pair.AX": "CLC P[SBB.X INC]", "T.lt.pair.AY": "CLC P[SBB.Y INC]", "T.lt.pair.AN": "CLC P[SBB.N INC]", "T.red.pair.AX": "STA.S T.lt.pair.AX SEL.S", "T.red.pair.AY": "STA.S T.lt.pair.AY SEL.S", "T.red.pair.AN": "STA.S T.lt.pair.AN SEL.S", "B3.1": "LDA.Y T.red.pair.AX", "B3.2": "STA.X B3.1", "B3.3": "LDA.X T.red.pair.AY", "B3.4": "STA.Y B3.3", "T.lt.pair.XA": "STA.Y LDA.X T.lt.pair.AY", "T.red.pair.XA": "B3.4", "T.lt.pair.YA": "STA.X LDA.Y T.lt.pair.AX", "T.red.pair.YA": "B3.2", "B5.1": "T.red.pair.XA LDA.N", "B5.2": "LDA.Y T.red.pair.XA", "B5.3": "T.lt.pair.YA LDA.N", "B5.4": "B5.3 T.red.pair.AX", "B5.5": "T.lt.pair.XA LDA.N", "B5.6": "LDA.X T.red.pair.AY", "B5.7": "LDA.N T.red.pair.AY", "B5.8": "STA.Y B5.7", "B5.9": "LDA.N T.red.pair.AX", "B5.10": "STA.X B5.9", "T.lt.pair.NA": "STA.X LDA.N T.lt.pair.AX", "T.red.pair.NA": "B5.10", "T.lt.pair.XY": "LDA.X T.lt.pair.AY", "T.red.pair.XY": "B5.6", "B7.1": "LDA.X T.red.pair.YA", "B7.2": "LDA.N T.red.pair.XA", "B7.3": "LDA.Y T.red.pair.AX", "B7.4": "LDA.X T.red.pair.AN", "T.lt.pair.XN": "LDA.X T.lt.pair.AN", "T.red.pair.XN": "B7.4", "T.lt.pair.YX": "LDA.Y T.lt.pair.AX", "T.red.pair.YX": "B7.3", "B9.1": "LDA.X T.red.pair.NA", "B9.2": "LDA.N T.red.pair.YA", "B9.3": "LDA.Y T.red.pair.AN", "B9.4": "LDA.N T.red.pair.AX", "T.lt.pair.YN": "LDA.Y T.lt.pair.AN", "T.red.pair.YN": "B9.3", "T.lt.pair.NX": "LDA.N T.lt.pair.AX", "T.red.pair.NX": "B9.4"}
+
+EXIT 0

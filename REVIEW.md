@@ -460,7 +460,8 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
 6. **No hard-coded weights: yes.** All 15 parameter tensors start at 0.1 times a random normal (`INIT`, line 40), and
    the buffers start empty. No `torch.load`. The file also holds the true digit tables (`Cells`, line 359), used only by
    the "designed" plumbing mode (`MODE` is "learned", line 32) and by the log's report-only "right vs the truth" counts
-   (`exact_cells`, line 3732); nothing the model computes reads them.
+   (`exact_cells`, line 3732); nothing the model computes reads them. Rule 6 also says trainable weights must "be
+   updated during training". No record shows which of the 15 tensors moved before the freeze.
 7. **No hard-coded algorithm in the forward pass: gray, less than for s3i.**
    - The forward pass runs the answer program the training run found, such as `C.S[T.round1 STA.X]`, from the buffers,
      on one-hot digits through the learned tables (`predict_ste`, line 4310). Its rounds, such as
@@ -479,7 +480,7 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
        learner's own routines (SP_ABLATION.md §5.2);
      - the choosing rule (`SP_RULE` = "lpca", line 52), picked after bar 3's own rules failed, by watching whether the
        round came (SELF_PRACTICE.md §6);
-     - the search's sizes and rules (lines 52–83), among them seven that the generic instructions needed, each found by
+     - the search's sizes and rules (lines 52–112), among them seven that the generic instructions needed, each found by
        watching whether the round came: five in how the search picks and orders its probes, acceptance at four digits,
        and routines that leave the other registers alone first (GENERIC_OPS.md §7);
      - where the round and the answer program are looked for (lines 76–81 and 94–101), and T's 2-digit field (`K`,
@@ -520,15 +521,19 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
        `runs`, `which_run` and `selected`, lines 4094–4129).
    - The kernel is outside autograd, but not on the prediction's path: it runs the climb's searches, on integers.
 
-   *Are the final logits "produced entirely by the submitted model from its inputs and learned PyTorch state", with
-   "an unbroken gradient path from the loss to the parameters responsible for the prediction"?*
+   *Are the final logits "produced entirely by the submitted model from its inputs and learned PyTorch state, with
+   all input-dependent computation inside the autograd graph and an unbroken gradient path from the loss to the
+   parameters responsible for the prediction"? The middle clause bears on (d).*
 9. **Everything on the GPU: yes, with a word.** The parameters, the buffers and every machine are on the GPU: the
    climb's searches (the Triton kernel, line 1013, or the old machine), training's checks (replayed from CUDA graphs)
-   and the prediction's one-hot machine. There is no `.cpu()` and no numpy in the file. Python holds the bookkeeping:
-   the schedule, the climb's programs as tuples, its library and BPE over program text. The host reads small results
-   back from the GPU (program indices and counts) to steer the search, and traces each program's instructions from its
-   text into opcode columns on the GPU. That is s3i's arrangement (OVERVIEW §6). *Does that bookkeeping count as
-   computation off the GPU?*
+   and the prediction's one-hot machine. There is no `.cpu()` and no numpy in the file. It does build a few constant
+   tables on the CPU and copy them to the GPU before use: two hash tables drawn at import (`_MULT` and `_SALT`, lines
+   600 and 2573), the instruction set's opcode tables (`_Ops`, line 774), and the true digit tables each `Cells`
+   starts with (line 359), which `snapped_cells` (line 3904) replaces with the learned ones. Python holds the
+   bookkeeping: the schedule, the climb's programs as tuples, its library and BPE over program text. The host reads
+   small results back from the GPU (program indices and counts) to steer the search, and traces each program's
+   instructions from its text into opcode columns on the GPU. That is s3i's arrangement (OVERVIEW §6). *Does that
+   bookkeeping count as computation off the GPU?*
 10. **OOM or timeout fails: ok.** Neither happened on the eight runs. Their peak host memory was 13.8–14.7 GB. Rule 10
     is about GPU memory, and the records give no peak for it.
 11. **3,600 s of H100 training, compilation included: yes, on every seed.** The eight runs trained 759–883 s, to the
@@ -544,6 +549,10 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
     - None of the named mechanisms: no `backward` or `grad` call, no custom autograd function, no file read, no number
       made up. No training target is computed with Python's arithmetic: every practice target is a fact, an identity
       or the learner's own routine (SELF_PRACTICE.md §2.2).
+    - The loss calls the model's lesson methods, never the model itself, and starts no optimizer or scheduler step.
+      But its `control` (line 4778) sets flags that both read: `ctl.reset` (line 4812), which makes Adam clear its
+      moments in its own step (line 4904), and `ctl.phase`, whose "frozen" the scheduler turns into a learning rate
+      of 0 (line 4917).
     - But the climb is a program search inside the training forward pass (`climb_unit`, line 4488, called from
       `lessons`, line 4550), one unit a step. On the official run it ran from step 563 to step 630, from about 57 s to
       about 492 s of the 759 s of training. What it found, the programs, carries from step to step in buffers.
@@ -554,7 +563,8 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
       facts on N, x and T feed the lessons (lines 4567–4568); the others, such as divisibility by 2, 3 and 5, and
       every fact about the answers, are only logged.
     - The rules call "parameter-free work" valid and allow iterative mechanisms (rule 4, and the note after the
-      rules).
+      rules). That note is about depth ("Depth is deliberately unconstrained."), so a judge may read "parameter-free
+      work" as depth in the forward pass, not as a search whose result carries from step to step.
 
     *Is a search inside the forward pass, whose result carries from step to step, "hidden training work"? Are a
     grammar of laws and a rule for choosing among them a task-specific solver written as lessons?*
@@ -565,16 +575,19 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
 **The questions, in the order [LEGAL_PLAN.md](LEGAL_PLAN.md) §3 asks them.** Ask the first one first: if it goes
 against the entry, the whole stage-3 line is out, and nothing else here matters.
 1. **Rules 8 and 14:** the climb is a program search inside the training forward pass, its result kept in buffers. The
-   rules call "parameter-free work" valid and allow iterative mechanisms. Is a search whose result carries from step to
-   step "hidden training work"?
+   rules call "parameter-free work" valid and allow iterative mechanisms, though in a note on depth (rule 14 above).
+   Is a search whose result carries from step to step "hidden training work"?
 2. **Rule 8:** training returns zero logits, and the damped gradient all but vanishes on the deepest paths. The batch's
    answer rows would fit through the real path, at 200 to 400 s a run, but would teach nothing once the round
    reproduces them; the whole batch does not fit in an H100 (STRICT.md §5).
 3. **Rule 4:** the model keeps rows across batches, as buffers, and its own schedule: phases A–D and the freeze.
 4. **Rule 7:** the instruction set, the grammar and the search's rules were chosen knowing the task family. When does
    what is left count as general?
-5. **Bar 2** (the project's own bar, not a rule): of what is still designed ([LEGAL_PLAN.md](LEGAL_PLAN.md) §2 lists
-   it, with a cheapest test for each), which parts would you call the algorithm?
+5. **Bar 2** (the project's own bar, not a rule): of what is still designed, which parts would you call the algorithm?
+   Rule 7 above lists fast2's. [LEGAL_PLAN.md](LEGAL_PLAN.md) §2 lists sp2's, with a cheapest test where there is one.
+   Of those, fast2 replaces the 11-law list with a grammar (item 1), SEL.S and BRG.X with an if block and shifts
+   (item 3) and the countdown with the count loop (item 4), and has neither the late table lessons (item 7) nor the
+   clock (item 8).
 
 **Where s3i differs** (OVERVIEW §6 has its table; line numbers are s3i's):
 - Rule 4: it reads the clock. `build_optimizer` (line 3425) sets a deadline from the budget the evaluator passes in;
@@ -886,7 +899,7 @@ fix.
     predictions were written. Under hardest first the step loses to pool order.
   - **Not reached:** 10·x² + 1. The offset poses its piece, 10X mod N, and the learner solves it, but the duplicate
     check, run on random machine states on which both programs die, calls it a copy of 3X.
-  - The nine earlier held-out wins stand. Run locally from the earlier stores, $0.
+  - The nine earlier held-out winning runs stand. Run locally from the earlier stores, $0.
 - **The duplicate check, on each problem's own rows** ([ROWCHECK.md](bar3/scale/rowcheck/ROWCHECK.md), code and records
   in [`bar3/scale/rowcheck/`](bar3/scale/rowcheck/)). The learner had thrown 10·x² + 1's piece, 10X mod N, away as a
   copy of 3X: its duplicate check compares programs on 24 random machine states, and both run out of steps on all of
@@ -894,8 +907,8 @@ fix.
   - **What changed:** 10X mod N is learnable in rounds 2 and 3; x² mod N's twin stays a copy, rightly, since one program
     solves both.
   - **What came:** nothing new. Hardest first never picks the piece, since 24 and then 12 problems of the same cost
-    stand ahead of it in pool order. All 11 earlier wins stand (the nine held-out runs, and binary x mod N under both
-    rules).
+    stand ahead of it in pool order. All 11 earlier winning runs stand (the nine held-out ones, and binary x mod N
+    under both rules).
   - **The predictions:** 6 of 7 held. No outcome would change, and none did; the one that failed said some picks would
     change. $0, run locally from the earlier stores.
 - **What the learner picks** ([PICKS.md](bar3/scale/picks/PICKS.md), code and records in
@@ -907,13 +920,13 @@ fix.
   - **What didn't:** passing a subgoal's priority to its twin does not bring x² mod N in base 2, and it loses hardest
     first's binary x mod N. A pick score that sees the big-x check cannot act: no look reaches the five-token program
     that passes at big x.
-  - **The earlier wins:** all 11 stand under the tie-break. About $5.
+  - **The earlier wins:** all 11 winning runs stand under the tie-break. About $5.
 - **How far its looks reach** ([REACH.md](bar3/scale/reach/REACH.md), code and records in
   [`bar3/scale/reach/`](bar3/scale/reach/)). Two more changes aimed at x² mod N at big x.
   - **What came:** nothing new. A deeper look finds the five-token program that passes at big x, but anchored pairs
     picks from pairs whose looks stay shallow. The twin as a fifth pick keeps hardest first's binary x mod N, but the
     square is never practised in time.
-  - **The earlier wins:** all 12 stand. About $7.
+  - **The earlier wins:** all 12 winning runs stand: those 11, and 10·x² + 1's. About $7.
 - **Composition on stage 3's machine** ([COMPOSE.md](bar3/scale/compose/COMPOSE.md), code and records in
   [`bar3/scale/compose/`](bar3/scale/compose/)). Stage 3's tiny core with its law book removed and bar 3's sources
   posing the practice: can they replace the 5-law book?
@@ -935,9 +948,9 @@ fix.
   searches run about 95 times faster on an L40S or an H100 but only 3–10 times cheaper, and a whole learner run is
   1.6–1.9 times cheaper: about half to one more instruction of depth for the same money. About $8.
 - **Consolidation** ([CONSOLIDATE.md](bar3/scale/consolidate/CONSOLIDATE.md), code and records in
-  [`bar3/scale/consolidate/`](bar3/scale/consolidate/)). One score for every choice keeps 1 of 16 earlier wins; two
-  general rules, one uniform search depth for every candidate and anchored pairs' picks, bring back 13 of 16, and most
-  special rules were needed for no win. About $50.
+  [`bar3/scale/consolidate/`](bar3/scale/consolidate/)). Its counts are formulas: the 16 won so far, each run once
+  from scratch. One score for every choice keeps 1 of the 16; two general rules, one uniform search depth for every
+  candidate and anchored pairs' picks, bring back 13 of 16, and most special rules were needed for no win. About $50.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

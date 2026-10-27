@@ -319,6 +319,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 26 `a81712c` | the audit's decisive test: at full size, a law test on the learner's own routines picks x² alone and the reduction is found; the first spelling taken is a look-alike that fails on some unseen moduli, and the climb's own rule keeps a correct one | [bar3/scale/legal/LEGAL_TEST.md](bar3/scale/legal/LEGAL_TEST.md) |
 | Oct 26 `ef10ac1` | **a fully legal climb gets H1's round**: every practice answer from the data, identities or the learner's own routines; with the book's reduction cut to one step, bar 3's sources bring the round in seven arms, right to T = 64 on unseen moduli too; the row and the multiply still come only from the book | [bar3/scale/legalclimb/LEGALCLIMB.md](bar3/scale/legalclimb/LEGALCLIMB.md) |
 | Oct 26 `ec312b6` | **legally, the book shrinks to three laws**: a legal reader poses the row, the step, the multiply and the reduction from x² mod N's law, and H1's round comes at level 4 with only the comparison, the link and the addition left in the book | [bar3/scale/legalloops/LEGALLOOPS.md](bar3/scale/legalloops/LEGALLOOPS.md) |
+| Oct 27 `355f62f` | offline, posing each cut's loop takes the book down to the comparison alone: x² mod N's round at level 2, right to T = 64; x³ and 10·x² + 1 still get no round | [bar3/scale/loops/LOOPS.md](bar3/scale/loops/LOOPS.md) |
 
 ### The lessons that came out of the failures
 
@@ -582,6 +583,12 @@ in the answer.
   bar 3's pieces now supply two of the book's laws. x³ and 10·x² + 1 get the row and the multiply but no round, since
   both need the whole reduction as a routine first; and without the book's multiply, the multiply never comes, because
   it is the row's loop, not a cut. About $25.
+- **Each cut's loop, offline** ([LOOPS.md](bar3/scale/loops/LOOPS.md)). A source poses each cut's loop: the multiply
+  from the row, the whole reduction from Horner's step, with practice answers from Python. x² mod N's round then comes
+  at level 2 with the book down to the comparison alone, right on both ladders, and with every one of round 2's search
+  fixes off. With no book at all the multiply still comes, but nothing poses the comparison. x³ and 10·x² + 1 get the
+  whole reduction but no round: the cube needs four calls where the round's search reaches two, and 10·x² + 1 has no
+  constant 1. About $93.
 - **Bar 3's studies on the GPU** ([GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md), §8–§13). One runner runs any
   registered bar-3 study on the GPU or the CPU. Seven whole runs reproduce record for record, both digits inventions
   among them, and a run takes 5–34 minutes instead of 2.5–3.8 hours at about three quarters of the cost. A cache key
@@ -1260,8 +1267,8 @@ fast version and fast2, now the file to judge (§4.8), and bar 3's duplicate che
 (§4, bar 3). So has the composition test (§4, bar 3). So have its second and third rounds (§4, bar 3). So has the GPU
 port of its search (§4, bar 3). So have the consolidation of bar 3's rules, the one-place cut of the target's laws, the
 GPU runner and the audit of bar 3's sources (§4, bar 3). The legal path's tests are done: a legal climb gets H1's round
-with the book cut to three laws (§4, bar 3). Running now: the offline loop study's last runs, and a stage-3 file built
-from fast2 with that three-law book and bar 3's legal reader, to be certified on the official H100 (§4, bar 3).
+with the book cut to three laws (§4, bar 3). So has the offline loop study (§4, bar 3). Running now: a stage-3 file
+built from fast2 with that three-law book and bar 3's legal reader, to be certified on the official H100 (§4, bar 3).
 
 Everything else described here is committed.
 

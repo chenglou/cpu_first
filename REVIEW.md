@@ -956,6 +956,12 @@ fix.
   On stage 3's machine with the book less its reduction and its multiply-add row, x² mod N's round comes at level 5,
   right to T = 64: bar 3's pieces supply two of the book's laws. x³ and 10·x² + 1 get no round, and without the book's
   multiply the multiply never comes. About $25.
+- **Each cut's loop, offline** ([LOOPS.md](bar3/scale/loops/LOOPS.md)). A source poses each cut's loop: the multiply
+  from the row, the whole reduction from Horner's step, with practice answers from Python. x² mod N's round then comes
+  at level 2 with the book down to the comparison alone, right on both ladders, and with every one of round 2's search
+  fixes off. With no book at all the multiply still comes, but nothing poses the comparison. x³ and 10·x² + 1 get the
+  whole reduction but no round: the cube needs four calls where the round's search reaches two, and 10·x² + 1 has no
+  constant 1. About $93.
 - **Bar 3's studies on the GPU** ([GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md) §8–§13). One runner runs a bar-3 study
   on the GPU or the CPU; seven whole runs reproduce record for record, in minutes instead of hours. About $17.
 - **Bar 3's sources inside a training run** ([LEGAL_SOURCES.md](bar3/LEGAL_SOURCES.md)). Most of bar 3's 14 practice

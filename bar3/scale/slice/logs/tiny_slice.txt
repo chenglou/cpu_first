@@ -1,0 +1,15 @@
+tiny slice x2 0
+smoke slice x3 0
+smoke slice 10x2p1 0
+tiny_slice_x2 config slice: 1 | reading: [('mod(mul(X,X),N)', ['mul', 'mod'], 2, [1], 0.0)]
+   cuts: ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step']
+   pose lines: [': 70 candidates on 67 roots', ': 71 candidates on 68 roots', ': 82 candidates on 68 roots']
+   lib: [('T.lt.pair.AX', 'CLC P[SBB.X INC]'), ('T.val.10.tgt.XN', 'LDA.X SHL.A'), ('T.red.pair.AX', 'STA.S T.lt.pair.AX SEL.S'), ('T.red.Bx+d.AX', 'B[T.red.pair.AX]')]
+smoke_slice_x3 config slice: 1 | reading: [('mod(mul(mod(mul(X,X),N),X),N)', ['mul', 'mod'], 4, [1], 0.1)]
+   cuts: ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step']
+   pose lines: [': 82 candidates on 68 roots']
+   lib: [('T.lt.pair.AX', 'CLC P[SBB.X INC]'), ('T.val.5.tgt.XN', 'LDA.X SHL.A')]
+smoke_slice_10x2p1 config slice: 1 | reading: [('mod(add(mul(mod(mul(X,X),N),10),1),N)', ['mul', 'mod', 'add'], 5, [1, 11, 10], 30.7)]
+   cuts: ['acc.mul/o,x,d=row', 'mul/x,d=xd', 'red/Bx+d=step', 'add/x,d=add']
+   pose lines: [': 91 candidates on 67 roots']
+   lib: [('T.lt.pair.AX', 'CLC P[SBB.X INC]'), ('T.add.x,d.AX', 'CLC P[ADC.X INC]'), ('T.add.x,d.AY', 'CLC P[ADC.Y INC]'), ('T.add.x,d.NA', 'CLC P[ADC.N INC]')]

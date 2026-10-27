@@ -1,0 +1,10 @@
+    depth 2: 24 chains
+x2: constants [1]; law mod(mul(X,X),N) (depth 2), operations ['mul', 'mod']; 0.0 s; 145 distinct rows
+    depth 2: 24 chains
+    depth 3: 200 chains
+    depth 4: 1810 chains
+x3: constants [1]; law mod(mul(mod(mul(X,X),N),X),N) (depth 4), operations ['mul', 'mod']; 0.1 s; 145 distinct rows
+    depth 2: 82 chains
+    depth 3: 1867 chains
+    depth 4: 42148 chains
+10x2p1: constants [1, 11, 10]; law None (depth None), operations []; 13.6 s; 145 distinct rows

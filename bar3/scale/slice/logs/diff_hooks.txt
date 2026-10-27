@@ -1,0 +1,90 @@
+312a313,401
+> 
+> 
+> # ---------------------------------------------------------------------------------------------------- SLICE
+> SLICE = os.environ.get("SLICE", "")              # slice: the cuts posed ("1": every cut of CUTS); "" off
+> CUTS = {                                          # an operation of the target's law -> its cuts at one digit place,
+>     "mul": (("acc.mul", "o,x,d", "row"),          #   as (law, pattern) on this machine: one operand at one digit,
+>             ("mul", "x,d", "xd")),                #   the rest carried (the row a + x d), or nothing carried (x d);
+>     "mod": (("red", "Bx+d", "step"),),            #   the dividend at one digit from the top: (B r + d) mod N;
+>     "add": (("add", "x,d", "add"),),              #   one operand at one digit: x + d
+> }
+> SLICE_PAIRS = {}                                  # (law, pattern) -> cut, once the target's law is read
+> SLICE_DEPTH = 5                                   # the law reader's depth (lawread.read)
+> 
+> 
+> def _target_rows(climb, rows):
+>     """(x, N, t, capacity) per row: the target's probes and acceptance rows, as subgoal_scores reads them."""
+>     t = climb.target
+>     tr = t.root(climb, rows)
+>     ar = _acc_root(t, climb, rows)
+>     sts = list(climb.settings) + list(climb.verify)
+>     draws = list(tr.draws) + list(ar.draws)
+>     xs = [x for d in draws for x in d.xs]
+>     Ns = [n for d in draws for n in d.Ns]
+>     ys = [y for d in draws for y in d.ys]
+>     caps = [st.B ** st.P for st, d in zip(sts, draws) for _ in range(d.n)]
+>     return xs, Ns, ys, caps
+> 
+> 
+> def slice_read(climb, rows):
+>     """SLICE: the target's law read once on its rows (lawread.read), SLICE_PAIRS set to the cuts of its operations
+>     that SLICE names and the book does not pose itself; recorded as a "slice" record."""
+>     if getattr(climb, "_slice_read", False) or climb.target is None:
+>         return
+>     climb._slice_read = True
+>     import time as _time
+>     from bar3.scale.compose3 import lawread
+>     from bar3.scale.compose3.spcore_c3 import LAW_BOOK
+>     t0 = _time.time()
+>     xs, Ns, ys, caps = _target_rows(climb, rows)
+>     law, ops, depth = lawread.read(xs, Ns, ys, caps, depth=SLICE_DEPTH)
+>     names = {c for cs in CUTS.values() for _, _, c in cs} if SLICE == "1" else set(SLICE.split(","))
+>     for op in ops:
+>         for lw, pat, cut in CUTS.get(op, ()):
+>             book = lw in climb.laws and pat in climb.patterns and pat in LAW_BOOK[lw][1]
+>             if cut in names and not book:
+>                 SLICE_PAIRS[(lw, pat)] = cut
+>     climb.records.append(dict(task="slice", level=climb.level, law=law, ops=ops, depth=depth,
+>                               constants=lawread.constants(xs, Ns, ys, caps), rows=len(set(zip(xs, Ns))),
+>                               cuts=[f"{lw}/{pat}={c}" for (lw, pat), c in SLICE_PAIRS.items()],
+>                               seconds=round(_time.time() - t0, 1)))
+> 
+> 
+> def pose_laws(climb, rows):
+>     """[(pattern, laws)] the pose phase poses: the book's laws by pattern, then (SLICE) the target's cuts."""
+>     from bar3.scale.compose3.spcore_c3 import LAW_BOOK
+>     book = [(pat, [lw for lw in climb.laws if pat in LAW_BOOK[lw][1]]) for pat in climb.patterns]
+>     if not SLICE:
+>         return book
+>     slice_read(climb, rows)
+>     out = dict(book)
+>     for (lw, pat) in SLICE_PAIRS:
+>         ls = out.setdefault(pat, [])
+>         if lw not in ls:
+>             ls.append(lw)
+>     return list(out.items())
+> 
+> 
+> def slice_target(law, d):
+>     """SLICE: a cut's answers on a draw (spcore_c3.Draw: x, o, the digits d, N), by Python's integers, in the law
+>     target's form ({"A": digits [n, P], "Am": mask}); None when they do not vary."""
+>     B, P, dev = d.st.B, d.st.P, d.device
+>     val = lambda t: [sum(int(v) * B ** i for i, v in enumerate(r)) for r in t.tolist()]   # noqa: E731
+>     dv = d.dv.tolist()
+>     key = (law, d.pattern)
+>     if key == ("acc.mul", "o,x,d"):
+>         ys = [o + x * e for o, x, e in zip(val(d.o), val(d.x), dv)]
+>     elif key == ("mul", "x,d"):
+>         ys = [x * e for x, e in zip(val(d.x), dv)]
+>     elif key == ("red", "Bx+d"):
+>         ys = [v % n for v, n in zip(val(d.term("Bx+d", None, None)), val(d.N))]
+>     elif key == ("add", "x,d"):
+>         ys = [x + e for x, e in zip(val(d.x), dv)]
+>     else:
+>         raise ValueError(key)
+>     assert all(0 <= y < B ** P for y in ys), key
+>     A = torch.tensor([[(y // B ** i) % B for i in range(P)] for y in ys], dtype=torch.long, device=dev)
+>     if bool((A == A[:1]).all()):
+>         return None
+>     return {"A": A, "Am": torch.ones(d.n, dtype=torch.bool, device=dev)}

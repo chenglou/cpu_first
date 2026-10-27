@@ -1,0 +1,16 @@
+acc.mul/o,x,d@AXY: 'LDH.Y CLK P[MUL.X INC]': probes True, accepted True, expected True: ok
+acc.mul/o,x,d@AYX: 'LDH.X CLK P[MUL.Y INC]': probes True, accepted True, expected True: ok
+acc.mul/o,x,d@AXY: 'LDH.Y P[MUL.X INC]': probes False, accepted False, expected False: ok
+acc.mul/o,x,d@AXY: 'CLA LDH.Y CLK P[MUL.X INC]': probes False, accepted False, expected False: ok
+mul/x,d@XY: 'CLA LDH.Y CLK P[MUL.X INC]': probes True, accepted True, expected True: ok
+mul/x,d@XY: 'LDH.Y CLK P[MUL.X INC]': probes False, accepted False, expected False: ok
+add/x,d@XY: 'LDA.X CLC P[ADC.Y INC]': probes True, accepted True, expected True: ok
+add/x,d@XY: 'LDA.X P[ADC.Y INC]': probes False, accepted False, expected False: ok
+red/Bx+d@AN: 'B[T.red.pair.AN]': probes True, accepted True, expected True: ok
+red/Bx+d@XN: 'LDA.X B[T.red.pair.AN]': probes True, accepted True, expected True: ok
+red/Bx+d@XN: 'LDA.X T.red.pair.AN': probes False, accepted False, expected False: ok
+red/Bx+d@XN: 'LDA.X': probes False, accepted False, expected False: ok
+x2: 157 distinct rows; constants [1]; law mod(mul(X,X),N) (depth 2), operations ['mul', 'mod']; 0.0 s
+x3: 157 distinct rows; constants [1]; law mod(mul(mod(mul(X,X),N),X),N) (depth 4), operations ['mul', 'mod']; 0.1 s
+10x2p1: 157 distinct rows; constants [1, 11, 10]; law mod(add(mul(mod(mul(X,X),N),10),1),N) (depth 5), operations ['mul', 'mod', 'add']; 29.3 s
+ALL OK

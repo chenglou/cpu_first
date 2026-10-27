@@ -1,0 +1,13 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 10000, 'round_budget': 20000, 'levels': 1, 'search_s': 60.0, 'fuse': 1, 'patterns': ['pair', 'x,o'], 'laws': ['lt', 'red', 'add', 'mul'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'subgoal': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'rest_deep': True, 'spell': 16, 'tiefollow': True, 'target_fn': 'x3', 'slice': '1'}
+UNIT      8.7s +    8.7s L0 pose: 82 candidates on 68 roots
+UNIT     12.9s +    4.2s L0 probe 16 roots 4.2s solved {'lt/pair@AX': 4} [('routines', 4.2)]
+UNIT     22.8s +    9.9s L0 probe 16 roots 9.9s solved {} [('routines', 9.9)]
+UNIT     30.4s +    7.6s L0 probe 16 roots 7.6s solved {} [('routines', 7.6)]
+UNIT     31.9s +    1.5s L0 probe 16 roots 1.5s solved {'val.5/tgt@XN': 2} [('routines', 1.4)]
+UNIT     34.1s +    2.2s L0 probe 4 roots 2.2s solved {} [('routines', 2.2)]
+UNIT     34.1s +    0.0s L0 choose (lpca): {'learnable': 2, 'unsolved': 80}; picks [('lt/pair@AX', 4, 'CLC P[SBB.X INC]'), ('val.5/tgt@XN', 2, 'LDA.X SHL.A')]
+UNIT     34.1s +    0.0s L0 sleep: T.lt.pair.AX=CLC P[SBB.X INC]; T.val.5.tgt.XN=LDA.X SHL.A
+UNIT     45.6s +   11.4s L0 target: cost None levels [1, 34, 894, 30438] fits [0, 7, 7, 7] 11.2s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 34, 850, 18958, 547886] 0.3s budget: level 4 streamed (over 20000 states) []
+UNIT     45.6s +    0.0s climb done at level 1 (the level cap)
+TOTAL 45.6 s; rounds []
+LIB {"T.lt.pair.AX": "CLC P[SBB.X INC]", "T.val.5.tgt.XN": "LDA.X SHL.A"}

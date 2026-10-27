@@ -1,0 +1,13 @@
+device cpu config {'rule': 'lpca', 'K': 4, 'NP': 8, 'probe_budget': 20000, 'fallback_budget': 20000, 'deep_budget': 50000, 'deep_k': 8, 'macro_after': 12, 'macro_cost': 2, 'deep_by': 'bindings', 'deep_focus': 'closure', 'look_budget': 10000, 'round_budget': 20000, 'levels': 1, 'search_s': 60.0, 'fuse': 1, 'patterns': ['pair', 'x,o'], 'laws': ['lt', 'red', 'add', 'mul'], 'target': 'small', 'sources': ['law', 'restrict', 'project', 'value', 'rest'], 'round_too': True, 'clean_values': True, 'subgoal': True, 'lawnear': True, 'rowcheck': True, 'tiebreak': True, 'restrict_rows': True, 'rest_deep': True, 'spell': 16, 'tiefollow': True, 'target_fn': '10x2p1', 'slice': '1'}
+UNIT     39.3s +   39.3s L0 pose: 91 candidates on 67 roots
+UNIT     43.7s +    4.4s L0 probe 16 roots 4.4s solved {'lt/pair@AX': 4} [('routines', 4.4)]
+UNIT     53.2s +    9.4s L0 probe 16 roots 9.4s solved {} [('routines', 9.4)]
+UNIT     61.0s +    7.8s L0 probe 16 roots 7.8s solved {'add/x,d@AX': 4, 'add/x,d@AY': 4, 'add/x,d@XA': 4, 'add/x,d@YA': 4, 'add/x,d@NA': 4} [('routines', 7.8)]
+UNIT     61.6s +    0.6s L0 probe 16 roots 0.6s solved {} [('routines', 0.5)]
+UNIT     63.8s +    2.1s L0 probe 3 roots 2.1s solved {} [('routines', 2.1)]
+UNIT     63.8s +    0.0s L0 choose (lpca): {'learnable': 4, 'unsolved': 85, 'duplicate': 2}; picks [('lt/pair@AX', 4, 'CLC P[SBB.X INC]'), ('add/x,d@AX', 4, 'CLC P[ADC.X INC]'), ('add/x,d@AY', 4, 'CLC P[ADC.Y INC]'), ('add/x,d@NA', 4, 'CLC P[ADC.N INC]')]
+UNIT     63.8s +    0.0s L0 sleep: T.lt.pair.AX=CLC P[SBB.X INC]; T.add.x,d.AX=CLC P[ADC.X INC]; T.add.x,d.AY=CLC P[ADC.Y INC]; T.add.x,d.NA=CLC P[ADC.N INC]
+UNIT     94.0s +   30.2s L0 target: cost None levels [1, 36, 1028, 37452] fits [1, 2, 4, 5] 30.2s budget: level 3 streamed (over 20000 states) [] full size None | round: cost None levels [1, 36, 974, 31141] 0.0s budget: level 3 streamed (over 20000 states) []
+UNIT     94.0s +    0.0s climb done at level 1 (the level cap)
+TOTAL 94.0 s; rounds []
+LIB {"T.lt.pair.AX": "CLC P[SBB.X INC]", "T.add.x,d.AX": "CLC P[ADC.X INC]", "T.add.x,d.AY": "CLC P[ADC.Y INC]", "T.add.x,d.NA": "CLC P[ADC.N INC]"}

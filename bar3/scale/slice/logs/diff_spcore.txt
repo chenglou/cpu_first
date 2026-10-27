@@ -1,0 +1,10 @@
+0a1
+> 
+207a209,210
+>     if (law, d.pattern) in H.SLICE_PAIRS:               # slice: a cut of the target's law, answered by Python
+>         return H.slice_target(law, d)
+847,848c850
+<         for pat in self.patterns:
+<             laws = [l for l in self.laws if pat in LAW_BOOK[l][1]]
+---
+>         for pat, laws in H.pose_laws(self, rows):          # slice: the book's laws by pattern, then the cuts

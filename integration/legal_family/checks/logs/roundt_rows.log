@@ -1,0 +1,6 @@
+climb_unit: [(T, (r[:, 0], r[:, 1], r[:, 3])) for r in ctl.more.values() # ROUNDT's rows for T in [int(count_of(r[:1, 2, :K]))] if T > 1] 
+keep_counts: ctl.more[s] = torch.cat([ctl.more.get(s, new[:0]), new[slot == s]])[-ROUNDT:]
+the counts kept: {1: 600, 2: 600, 4: 600, 8: 600} | ROUNDT's T: [2, 4, 8]
+  LDA.X STA.Y LDA.N T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN: ROUNDT True
+  LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN: ROUNDT True
+  x^2 with no reduction: ROUNDT False

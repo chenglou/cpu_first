@@ -1,0 +1,14 @@
+/Users/chenglou/github/one-layer/cpu_first/integration/legal_nobook/records/t_nobook.json: 51 units; /Users/chenglou/github/one-layer/cpu_first/integration/legal_family/records/t_family_h1.json: 52 units; the first 17 the same (line and work)
+  old: work 443396 L3 pose: 96 candidates on 96 roots; read mod(mul(x,x),N) on 400 of 400 answer rows, 200 laws tried, Ts
+  new: work 487353 L3 pose: 102 candidates on 102 roots; read mod(mul(x,x),N) on 400 of 400 answer rows, 200 laws tried, Ts, poses ['w.mod.mul/w2']
+  old: work 1.80012e+07 L3 probe 16 roots Ts solved {'red/x+dn@AX': 4, 'red/x+dn@AY': 4, 'red/x+dn@AN': 4, 'red/x+dn@XA': 4, 'red/x+dn@XY': 3, 'red/x+dn@XN': 3, 'red/x+dn@YA': 4, 'red/x+dn@YX': 3, 'red/x+dn@YN': 3, 'red/x+dn@NX': 4, 'red/x+dn@NY': 4} [('routines', T), ('primitives', 
+  new: work 1.80012e+07 L3 probe 16 roots Ts solved {'red/x+dn@AX': 4, 'red/x+dn@AY': 4, 'red/x+dn@AN': 4, 'red/x+dn@XA': 4, 'red/x+dn@XY': 3, 'red/x+dn@XN': 3, 'red/x+dn@YA': 4, 'red/x+dn@YX': 3, 'red/x+dn@YN': 3, 'red/x+dn@NX': 4, 'red/x+dn@NY': 4} [('routines', T), ('primitives', 
+  level 0 picks the same: ['lt/pair@AX', 'lt/pair@AY', 'lt/pair@AN']
+  level 1 picks the same: ['red/pair@XY', 'red/pair@XN', 'red/pair@YX', 'red/pair@YN', 'red/pair@NX', 'red/pair@NY']
+  level 2 picks the same: ['add/pair@AX', 'add/pair@AY', 'add/pair@AN']
+  level 3 picks the same: ['add.mul/o,x,d@AXY', 'add.mul/o,x,d@AYX', 'add.mul/o,x,d@ANX', 'add.mul/o,x,d@ANY', 'red/x+dn@AX', 'red/x+dn@AY', 'red/x+dn@AN']
+  level 4 picks the same: ['red/x+on@XY', 'red/x+on@YX', 'red/x+on@YN', 'add.mul/o,x,o@AXY', 'add.mul/o,x,o@XYA', 'mul/x,d@XY', 'mul/x,d@YX', 'mul/x,d@NX', 'mul/x,d@NY']
+  library: 50 and 50 entries; only old []; only new []; differing []
+  rounds the same: True (12, 12)
+  answer programs: ['C.S[T.round1 STA.X]', 'C.S[T.round3 STA.X]'] | ['C.S[T.round1 STA.X]', 'C.S[T.round3 STA.X]']
+  the climb's work: 1.22213e+09 and 1.3198e+09; seconds 223.1 and 274.2

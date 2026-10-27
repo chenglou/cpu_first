@@ -1,0 +1,11 @@
+/Users/chenglou/github/one-layer/cpu_first/integration/legal_family/submission_stage3_family.py: READ_WINDOW (3, 2) CONST_OPS ('add', 'sub', 'mul') ROUNDT 4096
+T values of the training data: [(1, 1000), (2, 1000), (4, 33333), (8, 33333), (16, 33333)]
+  the data's answers: LDA.X STA.Y LDA.N T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN: ROUNDT True (7.2 s)
+  the data's answers: LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN: ROUNDT True (7.2 s)
+  the data's answers: LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN: ROUNDT True (7.1 s)
+  the data's answers: LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN: ROUNDT True (7.2 s)
+  one answer of T = 4 changed: LDA.X STA.Y LDA.N T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN: ROUNDT False (2.5 s)
+  one answer of T = 4 changed: LDA.X STA.Y CLA T.add.mul.o,x,o.XYA STA.Y T.red.x+on.YN: ROUNDT False (2.7 s)
+  one answer of T = 4 changed: LDA.X STA.Y LDA.N T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN: ROUNDT False (2.6 s)
+  one answer of T = 4 changed: LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.Y T.red.x+on.YN: ROUNDT False (2.6 s)
+  x^2 with no reduction: ROUNDT False

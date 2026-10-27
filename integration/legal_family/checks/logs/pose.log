@@ -1,0 +1,79 @@
+/Users/chenglou/github/one-layer/cpu_first/integration/legal_family/submission_stage3_family.py: READ_WINDOW (3, 2) CONST_OPS ('add', 'sub', 'mul') ROUNDT 4096
+h1: fact N ['lt', 'red', 'add']; read mod(mul(x,x),N) on 400 of 400 rows, 200 laws, 0.3 s; its own ['w.mod.mul/w2']
+  pose: 102 candidates on 102 roots, 0.4 s; {'red/x+dn': 12, 'red/x+on': 12, 'mul/x,d': 12, 'mul/x,o': 12, 'add.mul/o,x,d': 24, 'add.mul/o,x,o': 24, 'w.mod.mul/w2': 6}
+  red/x+dn: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  red/x+on: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,d: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,o: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  add.mul/o,x,d: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.mul/o,x,o: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  w.mod.mul/w2: 12 draws, 0 disagree with Python; the file answers 76 rows, Python's integers stay in range on 96
+cube: fact N ['lt', 'red', 'add']; read mod(mul(mul(x,x),x),N) on 158 of 400 rows, 1140 laws, 1.0 s; its own ['w.mod.mul/w2']
+  pose: 102 candidates on 102 roots, 1.1 s; {'red/x+dn': 12, 'red/x+on': 12, 'mul/x,d': 12, 'mul/x,o': 12, 'add.mul/o,x,d': 24, 'add.mul/o,x,o': 24, 'w.mod.mul/w2': 6}
+  red/x+dn: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  red/x+on: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,d: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,o: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  add.mul/o,x,d: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.mul/o,x,o: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  w.mod.mul/w2: 12 draws, 0 disagree with Python; the file answers 76 rows, Python's integers stay in range on 96
+ten: fact N ['lt', 'red', 'add']; read None on 0 of 400 rows, 1140 laws, 1.0 s; its own []
+  pose: 0 candidates on 0 roots, 1.0 s; {}
+rho: fact N ['lt', 'red', 'add']; read mod(add(mul(x,x),1),N) on 400 of 400 rows, 3825 laws, 3.1 s; its own ['const.1/n', 'add.1/x,n', 'w.mod.add1/w1', 'w.add1.mul/w2', 'w.mod.add1.mul/w2']
+  pose: 163 candidates on 109 roots, 3.3 s; {'red/x+dn': 12, 'red/x+on': 12, 'mul/x,d': 12, 'mul/x,o': 12, 'add.mul/o,x,d': 24, 'add.add/o,x,d': 24, 'add.mul/o,x,o': 24, 'add.add/o,x,o': 24, 'const.1/n': 1, 'add.1/x,n': 3, 'w.mod.add1/w1': 3, 'w.add1.mul/w2': 6, 'w.mod.add1.mul/w2': 6}
+  red/x+dn: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  red/x+on: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,d: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,o: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  add.mul/o,x,d: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.add/o,x,d: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.mul/o,x,o: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.add/o,x,o: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  const.1/n: 2 draws, 0 disagree with Python; the file answers 16 rows, Python's integers stay in range on 16
+  add.1/x,n: 6 draws, 0 disagree with Python; the file answers 48 rows, Python's integers stay in range on 48
+  w.mod.add1/w1: 6 draws, 0 disagree with Python; the file answers 48 rows, Python's integers stay in range on 48
+  w.add1.mul/w2: 12 draws, 0 disagree with Python; the file answers 76 rows, Python's integers stay in range on 96
+  w.mod.add1.mul/w2: 12 draws, 0 disagree with Python; the file answers 75 rows, Python's integers stay in range on 96
+plus3: fact N ['lt', 'red', 'add']; read mod(add(mul(x,x),3),N) on 400 of 400 rows, 8025 laws, 5.4 s; its own ['const.3/n', 'add.3/x,n', 'w.mod.add3/w1', 'w.add3.mul/w2', 'w.mod.add3.mul/w2']
+  pose: 163 candidates on 109 roots, 5.6 s; {'red/x+dn': 12, 'red/x+on': 12, 'mul/x,d': 12, 'mul/x,o': 12, 'add.mul/o,x,d': 24, 'add.add/o,x,d': 24, 'add.mul/o,x,o': 24, 'add.add/o,x,o': 24, 'const.3/n': 1, 'add.3/x,n': 3, 'w.mod.add3/w1': 3, 'w.add3.mul/w2': 6, 'w.mod.add3.mul/w2': 6}
+  red/x+dn: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  red/x+on: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,d: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,o: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  add.mul/o,x,d: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.add/o,x,d: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.mul/o,x,o: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.add/o,x,o: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  const.3/n: 2 draws, 0 disagree with Python; the file answers 16 rows, Python's integers stay in range on 16
+  add.3/x,n: 6 draws, 0 disagree with Python; the file answers 48 rows, Python's integers stay in range on 48
+  w.mod.add3/w1: 6 draws, 0 disagree with Python; the file answers 47 rows, Python's integers stay in range on 48
+  w.add3.mul/w2: 12 draws, 0 disagree with Python; the file answers 76 rows, Python's integers stay in range on 96
+  w.mod.add3.mul/w2: 12 draws, 0 disagree with Python; the file answers 72 rows, Python's integers stay in range on 96
+minus1: fact N ['lt', 'red', 'add']; read mod(sub(mul(x,x),1),N) on 400 of 400 rows, 3825 laws, 3.2 s; its own ['const.1/n', 'sub.1/x,n', 'w.mod.sub1/w1', 'w.sub1.mul/w2', 'w.mod.sub1.mul/w2']
+  pose: 115 candidates on 109 roots, 3.4 s; {'red/x+dn': 12, 'red/x+on': 12, 'mul/x,d': 12, 'mul/x,o': 12, 'add.mul/o,x,d': 24, 'add.mul/o,x,o': 24, 'const.1/n': 1, 'sub.1/x,n': 3, 'w.mod.sub1/w1': 3, 'w.sub1.mul/w2': 6, 'w.mod.sub1.mul/w2': 6}
+  red/x+dn: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  red/x+on: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,d: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,o: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  add.mul/o,x,d: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.mul/o,x,o: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  const.1/n: 2 draws, 0 disagree with Python; the file answers 16 rows, Python's integers stay in range on 16
+  sub.1/x,n: 6 draws, 0 disagree with Python; the file answers 42 rows, Python's integers stay in range on 42
+  w.mod.sub1/w1: 6 draws, 0 disagree with Python; the file answers 45 rows, Python's integers stay in range on 45
+  w.sub1.mul/w2: 12 draws, 0 disagree with Python; the file answers 78 rows, Python's integers stay in range on 78
+  w.mod.sub1.mul/w2: 12 draws, 0 disagree with Python; the file answers 58 rows, Python's integers stay in range on 78
+tenrho: fact N ['lt', 'red', 'add']; read None on 0 of 400 rows, 1140 laws, 1.0 s; its own []
+  pose: 0 candidates on 0 roots, 1.0 s; {}
+plusy: fact N ['lt', 'red', 'add']; read mod(add(mul(x,x),x),N) on 400 of 400 rows, 1140 laws, 1.0 s; its own ['w.mod.add/w2']
+  pose: 150 candidates on 102 roots, 1.2 s; {'red/x+dn': 12, 'red/x+on': 12, 'mul/x,d': 12, 'mul/x,o': 12, 'add.mul/o,x,d': 24, 'add.add/o,x,d': 24, 'add.mul/o,x,o': 24, 'add.add/o,x,o': 24, 'w.mod.add/w2': 6}
+  red/x+dn: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  red/x+on: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,d: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  mul/x,o: 24 draws, 0 disagree with Python; the file answers 192 rows, Python's integers stay in range on 192
+  add.mul/o,x,d: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.add/o,x,d: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.mul/o,x,o: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  add.add/o,x,o: 48 draws, 0 disagree with Python; the file answers 384 rows, Python's integers stay in range on 384
+  w.mod.add/w2: 12 draws, 0 disagree with Python; the file answers 94 rows, Python's integers stay in range on 96
+three2: fact N ['lt', 'red', 'add']; read None on 0 of 400 rows, 1140 laws, 1.0 s; its own []
+  pose: 0 candidates on 0 roots, 1.0 s; {}

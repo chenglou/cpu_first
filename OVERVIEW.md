@@ -312,6 +312,10 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 26, 11:17 `0d7be26` | composition round 3: bar 3's sources do not pose the multiply-add row, and round 2's winning setup fails on x³ and 10·x² + 1 mod N, so its route is shaped to x² | [bar3/scale/compose3/COMPOSE3.md](bar3/scale/compose3/COMPOSE3.md) |
 | Oct 26, 13:21 `6a8c758` | bar 3's search on a GPU: identical results on 18,708 stored searches and two whole runs, about 95 times faster, but only 3–10 times cheaper, which buys about half to one more instruction of depth | [bar3/gpu_search/GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md) |
 | Oct 26, 14:30 `f2a1621` | **bar 3's rules consolidated**: one score for every choice keeps 1 of 16 earlier wins, but two general rules, a uniform search depth for every candidate and anchored pairs' picks, bring back 13 of 16; the twin, the fifth pick, the deeper look and the big-x score were needed for none | [bar3/scale/consolidate/CONSOLIDATE.md](bar3/scale/consolidate/CONSOLIDATE.md) |
+| Oct 26 `b49e265` | REVIEW.md checked by a strict outside read: 27 errors and overclaims fixed, the record checker still 18 of 18 | [REVIEW.md](REVIEW.md) |
+| Oct 26 `05810dc` | **bar 3 supplies the multiply-add row too**: a source that cuts the target's laws to one digit place poses the row, and on stage 3's machine with the book less its reduction and row, x² mod N's round comes at level 5, right to T = 64; not yet for x³ or 10·x² + 1, and not without the book's multiply | [bar3/scale/slice/SLICE.md](bar3/scale/slice/SLICE.md) |
+| Oct 26 `827e784` | bar 3's studies run on the GPU search through one runner, seven whole runs record for record, runs in minutes instead of hours | [bar3/gpu_search/GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md) |
+| Oct 26 `5048c75` | an audit of bar 3's 14 practice sources against the rule that no training target may come from Python's arithmetic: which can run inside a training run, which need a redesign | [bar3/LEGAL_SOURCES.md](bar3/LEGAL_SOURCES.md) |
 
 ### The lessons that came out of the failures
 
@@ -568,6 +572,23 @@ in the answer.
   probe every candidate at one uniform depth, then practise four a round ranked by anchored pairs. The twin, the fifth
   pick, the deeper look and the big-x score were needed for no win, and the subgoal's tie-break only for 10·x² + 1 under
   hardest first. About $50.
+- **The target's laws cut to one digit place** ([SLICE.md](bar3/scale/slice/SLICE.md)). A source reads the target's law
+  (x² mod N as mod(mul(X, X), N)) and poses each operation cut at one place: the multiply as the row a + x·d, the
+  reduction as Horner's step. On stage 3's machine with the book less its reduction and its row, x² mod N then gets the
+  row at level 0 and the round at level 5, right to T = 64, with neither the book's row nor round 2's deeper probe. So
+  bar 3's pieces now supply two of the book's laws. x³ and 10·x² + 1 get the row and the multiply but no round, since
+  both need the whole reduction as a routine first; and without the book's multiply, the multiply never comes, because
+  it is the row's loop, not a cut. About $25.
+- **Bar 3's studies on the GPU** ([GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md), §8–§13). One runner runs any
+  registered bar-3 study on the GPU or the CPU. Seven whole runs reproduce record for record, both digits inventions
+  among them, and a run takes 5–34 minutes instead of 2.5–3.8 hours at about three quarters of the cost. A cache key
+  that ignored the library's order is fixed behind a flag; no committed record was affected. About $17.
+- **Bar 3's sources inside a training run** ([LEGAL_SOURCES.md](bar3/LEGAL_SOURCES.md)). An audit of the 14 practice
+  sources against the rule that no training target may come from Python's arithmetic. Most read a target table that a
+  run does not have: H1's training rows are 1,000 random prompts at full size, never x = 0 and almost never two rows one
+  apart. Near-miss values, the row check and the choosing rules are legal as they are; the slice cuts and the rests of
+  the way need redesigns that take their answers from the book's constructions or the T = 1 rows. It also raises a new
+  question for a judge: may Python arithmetic decide what to practise if it computes no target? No runs.
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -1212,9 +1233,10 @@ practice sources the held-out test found missing (§4, bar 3). So have the combi
 fast version and fast2, now the file to judge (§4.8), and bar 3's duplicate check on each problem's own rows (§4, bar
 3). So have bar 3's three changes to what it picks (§4, bar 3). So have the next two, a deeper look and a fifth pick
 (§4, bar 3). So has the composition test (§4, bar 3). So have its second and third rounds (§4, bar 3). So has the GPU
-port of its search (§4, bar 3). So has the consolidation of bar 3's rules (§4, bar 3). Running now: a composition test
-of a source that cuts the target's laws to one digit place, as bar 3 cut the law book's to invent stage 3's cells (§4,
-bar 3).
+port of its search (§4, bar 3). So have the consolidation of bar 3's rules, the one-place cut of the target's laws, the
+GPU runner and the audit of bar 3's sources (§4, bar 3). Running now: a source that poses each cut's loop (the multiply
+from the row, the whole reduction from the step), and the audit's cheapest test, a legal law test at full size (§4, bar
+3).
 
 Everything else described here is committed.
 
@@ -1360,7 +1382,7 @@ s3i: the service refused it ("Submissions are now closed"), so there is no hoste
 | [`HANDOVER.md`](HANDOVER.md) | the hygiene pass before handing the repo over: secrets and private paths, links, checksums, what is tracked and what is on disk only |
 | [`litmus/`](litmus/) | the wide model run unchanged on 26 other tasks ([LITMUS.md](litmus/LITMUS.md)), with the per-task variants that fixed some |
 | [`library/`](library/) | search and compression that rediscovers the skeleton ([LIBRARY.md](library/LIBRARY.md)), and the inventing test ([INVENTING.md](library/INVENTING.md), code in `library/inventing/`) |
-| [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/`. Stage 3's digit instructions invented at one place, and the s3i variant that uses one ([BRIDGE.md](bar3/bridge/BRIDGE.md), in `bridge/`); add-with-carry, from the round the spend limit had cut off, and multiply-accumulate, with a deeper search aimed at its piece ([CARRY.md](bar3/bridge/CARRY.md)). The learner made ten times cheaper, then given new kinds of practice problems ([SCALE.md](bar3/scale/SCALE.md), in `scale/`), and a signal that sees a piece before it is solved ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md), in `scale/subgoal/`), tested on ten formulas no rule was written for ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md), in `scale/heldout/`); then x as digits ([DIGITS.md](bar3/scale/digits/DIGITS.md), in `scale/digits/`) and two sources from Newton's differences ([NEWTON.md](bar3/scale/newton/NEWTON.md), in `scale/newton/`); and the duplicate check on each problem's own rows ([ROWCHECK.md](bar3/scale/rowcheck/ROWCHECK.md), in `scale/rowcheck/`); and changes to what the learner picks ([PICKS.md](bar3/scale/picks/PICKS.md), in `scale/picks/`) and how far its looks reach ([REACH.md](bar3/scale/reach/REACH.md), in `scale/reach/`); and a first composition test on stage 3's machine ([COMPOSE.md](bar3/scale/compose/COMPOSE.md), in `scale/compose/`) and its second round ([COMPOSE2.md](bar3/scale/compose2/COMPOSE2.md), in `scale/compose2/`) and third ([COMPOSE3.md](bar3/scale/compose3/COMPOSE3.md), in `scale/compose3/`); and the search on a GPU ([GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md), in `gpu_search/`); and its rules consolidated ([CONSOLIDATE.md](bar3/scale/consolidate/CONSOLIDATE.md), in `scale/consolidate/`) |
+| [`bar3/`](bar3/) | the self-practising learner: choosing its own practice ([PRACTICE.md](bar3/PRACTICE.md)) and breadth over nine formulas ([BREADTH.md](bar3/BREADTH.md)); records in `records/` and `breadth/records/`. Stage 3's digit instructions invented at one place, and the s3i variant that uses one ([BRIDGE.md](bar3/bridge/BRIDGE.md), in `bridge/`); add-with-carry, from the round the spend limit had cut off, and multiply-accumulate, with a deeper search aimed at its piece ([CARRY.md](bar3/bridge/CARRY.md)). The learner made ten times cheaper, then given new kinds of practice problems ([SCALE.md](bar3/scale/SCALE.md), in `scale/`), and a signal that sees a piece before it is solved ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md), in `scale/subgoal/`), tested on ten formulas no rule was written for ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md), in `scale/heldout/`); then x as digits ([DIGITS.md](bar3/scale/digits/DIGITS.md), in `scale/digits/`) and two sources from Newton's differences ([NEWTON.md](bar3/scale/newton/NEWTON.md), in `scale/newton/`); and the duplicate check on each problem's own rows ([ROWCHECK.md](bar3/scale/rowcheck/ROWCHECK.md), in `scale/rowcheck/`); and changes to what the learner picks ([PICKS.md](bar3/scale/picks/PICKS.md), in `scale/picks/`) and how far its looks reach ([REACH.md](bar3/scale/reach/REACH.md), in `scale/reach/`); and a first composition test on stage 3's machine ([COMPOSE.md](bar3/scale/compose/COMPOSE.md), in `scale/compose/`) and its second round ([COMPOSE2.md](bar3/scale/compose2/COMPOSE2.md), in `scale/compose2/`) and third ([COMPOSE3.md](bar3/scale/compose3/COMPOSE3.md), in `scale/compose3/`); and the search on a GPU ([GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md), in `gpu_search/`); and its rules consolidated ([CONSOLIDATE.md](bar3/scale/consolidate/CONSOLIDATE.md), in `scale/consolidate/`); the target's laws cut to one digit place ([SLICE.md](bar3/scale/slice/SLICE.md), in `scale/slice/`); and an audit of its sources against rule 14 ([LEGAL_SOURCES.md](bar3/LEGAL_SOURCES.md)) |
 | [`theory/`](theory/) | what is already known about computing and learning with large numbers: classical (digit automata, repeated squaring, Montgomery reduction, the time-lock puzzle H1 is), learning theory and neural theory (extrapolation, log space, clock and discrete-log features), mapped onto this project, with two local checks in `checks/` ([LARGE_NUMBERS.md](theory/LARGE_NUMBERS.md)) |
 | [`nca/`](nca/) | long division as a shader: identical local cells ([NCA.md](nca/NCA.md)), the follow-up trained long with weight decay or agreement (NCA.md §9), and with optimizers that can rest at the rule (NCA.md §10); records in `runs/` and `records/` |
 | [`tools/`](tools/) | the shared Modal runner and the measured seed policy ([tools/README.md](tools/README.md)) |

@@ -4,7 +4,7 @@
 rewritten 2026-10-25/26 for a new file to judge, fast2, the five-piece stage-3 file made fast. It points into
 [OVERVIEW.md](OVERVIEW.md), [COMBINED.md](integration/combined_sp2/COMBINED.md) and
 [FAST.md](integration/combined_fast/FAST.md) instead of repeating their tables. The checks in §3 and §4.3 were rerun on
-2026-10-26. Nothing here has been submitted to the hosted evaluator.*
+2026-10-26. The hosted evaluator has scored nothing here (§1).*
 
 <!-- To swap the file to judge: its path is in "In plain words", §2, §3, §4.1-§4.3 and §7; its md5 in §2; its bytes
 and lines in §2 and §5 (rule 1); its records in §3, §4.1 and §4.2; its seconds, memory and seeds in "In plain words",
@@ -13,7 +13,9 @@ numbers in §2, §4.1, §5 and §6; and tools/verify_records.py (JUDGE, JUDGE_RE
 
 
 The rules are the competition's own: [one-layer-deeper/README.md §Rules](../one-layer-deeper/README.md#rules), at
-commit `87e5c26` ("Releasing H1"). Links into `../one-layer-deeper/` work once that clone sits next to this folder.
+commit `87e5c26` ("Releasing H1"). Everything here that reads the competition's files expects that clone at
+`../one-layer-deeper`, checked out at `87e5c26` (§4.1 has the commands): the links into it, the record checker (§3),
+the builders and the source check (§4.3), and our runner (§4.2).
 
 ## In plain words
 
@@ -29,8 +31,8 @@ those it composes a round (copy x, multiply, reduce by N) and an answer program 
 by running that program on its learned tables.
 
 **The evidence.** On the contest's unmodified evaluator and manifest, on one H100, it certifies on the manifest's seed
-and on seven more seeds, 8 runs of 8: T = 64 on both ladders, every test split exact, trained in 759–883 s of the
-3,600 (§3).
+and, with only the seed changed, on seven more: 8 runs of 8, T = 64 on both ladders, every test split exact, trained
+in 759–883 s of the 3,600 (§3).
 
 **What to rule on.** Whether a training run that searches for its own program is within the contest's rules, above all
 rules 4, 7, 8 and 14 (§5). And, for the project's own bar, whether what people still chose (the instruction set, the
@@ -43,8 +45,8 @@ The project measures itself against three bars
 
 1. **Certify H1 with learned parts: done.** Every step of the removal ladder certifies T = 64 on both ladders of the
    untouched official manifest on an H100. From step 11 on, no hand-written arithmetic runs in training or in the
-   answer: every table that computes is learned from a random start, though until step 17 the datapath around those
-   tables is still written by hand.
+   answer: every table that computes is learned from a random start, though the datapath around those tables is
+   still written by hand before step 17, and in step 18, which branches from step 15 (OVERVIEW §5).
 2. **Nothing a strict judge would call the hand-written algorithm: the entry is fast2, and the call is the judge's.**
    In fast2 the program the forward pass runs ("copy x, multiply, reduce", T times) is found by search inside the
    training run and kept in the model's buffers; no datapath and no menu of wirings is in the file.
@@ -74,20 +76,22 @@ The project measures itself against three bars
    [BREADTH.md](bar3/BREADTH.md)). Aiming one deeper search at the piece the target factors through, found from the rows
    alone, brings x³ and 10·x² from scratch ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md)). Frozen with that rule, it
    invents 5 of 10 formulas that none of its rules were written for, with its predictions written down before the runs
-   ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md)). Given a loop over x's digits, it invents x mod N in base 2 by long
-   division's step, right up to nine digits ([DIGITS.md](bar3/scale/digits/DIGITS.md)). With its duplicate check made on
-   each problem's own rows and its ties broken by the subgoal score, it also invents 10·x² + 1
+   ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md)). Given a loop over x's digits and a source that poses one more digit's
+   step, it invents x mod N in base 2 by long division's step, right up to nine digits
+   ([DIGITS.md](bar3/scale/digits/DIGITS.md)). With its duplicate check made on each problem's own rows, its ties broken
+   by the subgoal score and the two-source study's offset posing the piece, it also invents 10·x² + 1 from scratch
    ([PICKS.md](bar3/scale/picks/PICKS.md)). Run on one digit place, it invents all four of stage 3's digit cells, each
-   under at least one of its choosing rules; multiply-accumulate needs a deeper search aimed at its piece the same way
-   ([BRIDGE.md](bar3/bridge/BRIDGE.md), [CARRY.md](bar3/bridge/CARRY.md)). At H1's size, the self-practising stage 3
-   learns 8 of 11 tasks of the family after three general changes to its round's search
-   ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
+   under at least one of its choosing rules; multiply-accumulate needs two new ways of posing its piece and a deeper
+   search aimed at it the same way ([BRIDGE.md](bar3/bridge/BRIDGE.md), [CARRY.md](bar3/bridge/CARRY.md)). At H1's
+   size, the self-practising stage 3 learns 8 of 11 tasks of the family after three general changes to its round's
+   search ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)).
 
 Four rules are **gray** for fast2, as they were for s3i: 4, 7, 8 and 14 (§5). The write-ups flag them; they do not
-argue them away. Rules 2, 9 and 11 also need a word, for its Triton kernel.
+argue them away. Rules 2 and 11 also need a word for its Triton kernel, and rules 5 and 9 for what stays in Python.
 
 Not claimed:
-- nothing was submitted to the hosted evaluator, before or after the deadline;
+- a result from the hosted evaluator: the project's one attempt to submit, s3i after the deadline on Oct 24, was
+  refused ("Submissions are now closed"; OVERVIEW §6, §7);
 - the leaderboard count in [REPORT.md](REPORT.md) §0 (3 of 146 entries certified) comes from the public leaderboard at
   the time and has no record behind it;
 - runs on B200s, CPUs or relaxed budgets are research; only official-manifest H100 runs count as certification here;
@@ -99,7 +103,8 @@ Not claimed:
 **[`integration/combined_fast/submission_stage3_fast2.py`](integration/combined_fast/submission_stage3_fast2.py)**,
 md5 `41b9a013ae9436d7b7a53e9e594a18db` ("fast2"). 4,940 lines, 258,349 bytes (3,795 under the 256 KiB limit), 207,370
 learned numbers in 15 parameter tensors, Adam. Its docstring (lines 1–8) is round 2's file's, with one pointer added to
-FAST.md §9 for the budgets: it names the five pieces and the write-up of each, and says nothing of the speedups.
+FAST.md §9 for the budgets: it names the five pieces and the write-up of each, and says nothing of the speedups. It
+also still says that `make_combined.py --round 2` writes the file; `make_fast.py --fast2` does (below).
 
 **What it is.** sp2, the self-practising stage-3 file, with the five variants of it that each certified alone: the
 weak-check fix, the strict build, the learned loop over T, the generated law book and the generic instructions
@@ -149,8 +154,8 @@ applied to the eight official climbs measured with no budget: research runs of t
 eight certified too (`integration/combined_fast/records/research/fast_budget0_h100_seed<N>.json`;
 [FAST.md](integration/combined_fast/FAST.md) §9).
 - `CLIMB_WORK` = 4.3e9 units (line 85): 1.22 times the largest climb, 3.492e9 on seed 6, the answer program's search
-  included.
-- `SEARCH_WORK` = 8e8 (line 84): twice the largest search, 3.913e8 on seed 3.
+  included, rounded up from 4.26e9 (`integration/combined_fast/checks/logs/measure_work.log`).
+- `SEARCH_WORK` = 8e8 (line 84): twice the largest search, 3.913e8 on seed 3, rounded up from 7.83e8.
 - The largest climb uses 81% of `CLIMB_WORK`. To reach it after the latest round seen, an answer program's search would
   have to spend 1.75 times the most any seed spent.
 - A climb that spent it all would still end inside the hour: at the research runs' 0.13–0.16 s per million units,
@@ -159,9 +164,10 @@ eight certified too (`integration/combined_fast/records/research/fast_budget0_h1
   (`integration/combined_fast/checks/logs/compare_fast2.log`).
 
 The fast file kept round 2's budgets, 3.25e9 and 7e8, set from one tiny-core climb. On seeds 1, 4 and 6 its climb's
-count passed `CLIMB_WORK` inside the answer program's last search level. The budget is read only between blocks of a
-level, and it was passed in the last one, so it cut nothing: every certified climb of the fast file equals its
-budget-free run line for line, those three apart only in the stop's label (FAST.md §8;
+count passed `CLIMB_WORK` inside the answer program's last search level, and on seed 74 it passed it by 0.1%
+(3.254e9), in the batch that held the programs (FAST.md §5). The budget is read only between blocks of a level, and
+it was passed in the last one, so it cut nothing: every certified climb of the fast file equals its budget-free run
+line for line, seeds 1, 4 and 6 apart only in the stop's label (FAST.md §8;
 `integration/combined_fast/checks/logs/compare_budget0.log`). A search that passed it one block sooner would have lost
 the rest of its level: that is the margin fast2 widens.
 
@@ -220,9 +226,10 @@ first recipe for step 1), not stage 1's.
 
 **What a record holds.** One JSON per evaluator run: `submission` (the exact source sent, as `submission.py`),
 `manifest` (as passed; the shared runner's records also name `manifest_file`), the evaluator's full `stdout`, whose
-last `RESULT_JSON=` line is the evaluator's own result, `result` (that line, parsed), `gpu`, `returncode`, and for
-records written by [`tools/modal_runner.py`](tools/modal_runner.py) also `submission_md5` (checked inside the
-container before the run) and `runner.data_md5`, an md5 over the generated H1 folder the run read.
+last `RESULT_JSON=` line is the evaluator's own result, `result` (that line, parsed), `gpu`, `returncode` and
+`wall_seconds`, and for records written by [`tools/modal_runner.py`](tools/modal_runner.py) also `submission_md5`
+(checked inside the container before the run), `runner.data_md5`, an md5 over the generated H1 folder the run read,
+and `usage`, whose `peak_session_rss_mb` is the peak host memory quoted in §4 and §5.
 
 **One command** (standard library only, from this folder, with the competition clone next to it):
 
@@ -261,7 +268,8 @@ md5 integration/combined_fast/submission_stage3_fast2.py      # Linux: md5sum
 - `LR climb step=629 L4 round: cost 2 calls`: the round, found at level 4 as two routine calls;
 - `LR outer step=630 answer program: cost 3`: the answer program's search, the programs it found
   (`C.S[T.round<i> STA.X]`), and the climb's work so far (`3.254e+09 in all`, 76% of `CLIMB_WORK`);
-- `LR round_found step=630`: the answer programs, and the four rounds they call, going into the buffers;
+- `LR round_found step=630`: the three answer programs, the four rounds found and the library; the programs and the
+  three rounds they call go into the buffers (`ROUND_SOURCE` below reads them back);
 - `LR frozen step=829 history=[…]`: the freeze, with every phase change and its step;
 - at evaluation: `ROUND` (the tournament's weights), `ROUND_SOURCE (the buffers)` (the programs as read back from the
   buffers), and `AUDIT` (how many rows of the subtraction table the count downs used, and how many of those training
@@ -314,7 +322,7 @@ python3 ../cpu_first/tools/verify_records.py --log fast2_run.log
 - The run takes about 20 minutes (the eight records' wall times: 1,143–1,273 s).
 - `--log` compares your `RESULT_JSON=` line with `combined_fast2_official`: the certified T, every rung and the splits.
   Times will differ: the eight H100 runs trained in 759–883 s.
-- The run's path is reproducible in practice. The official climb is the same 72 lines in four runs on different H100s
+- The run's path is reproducible in practice. The official climb is the same 72 lines in four separate H100 runs
   (§2), and no decision reads the clock: the searches stop by work budgets, the same count on every host (STRICT.md
   §2). A slower host takes longer for the same climb.
 - For s3i, copy its file instead, and compare with `--log s3i_run.log integration/records/s3i_official.json`. Its run
@@ -458,7 +466,8 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
      on one-hot digits through the learned tables (`predict_ste`, line 4310). Its rounds, such as
      `LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X T.red.x+xn.XN`, call routines the climb solved and kept: the generated
      multiply-accumulate of two numbers, then a long division built from the if block and the shifts. No datapath, no
-     menu, no countdown, no SEL.S and no BRG.X is in the file.
+     menu and no countdown is in the file. SEL.S and BRG.X are not in its instruction set; their code is still in the
+     machines, switched off by `COND` and `BRING` (lines 162 and 169).
    - Still designed, knowing the task family:
      - the instruction set (lines 162–177): five registers of base-10 digits with one pointer, a borrow, a multiplier
        digit and its carry; 30 instructions that read the learned tables at the pointer, move whole registers, shift
@@ -473,8 +482,8 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
      - the search's sizes and rules (lines 52–83), among them seven that the generic instructions needed, each found by
        watching whether the round came: five in how the search picks and orders its probes, acceptance at four digits,
        and routines that leave the other registers alone first (GENERIC_OPS.md §7);
-     - where the round and the answer program are looked for, and T's 2-digit field, which is what tells T from x
-       (LEARNED_LOOP.md §6);
+     - where the round and the answer program are looked for (lines 76–81 and 94–101), and T's 2-digit field (`K`,
+       line 38), which is what tells T from x (LEARNED_LOOP.md §6, §7);
      - the reader (stage 1's: 24 reading hypotheses, 3 pointer shapes) and the cells' shapes (three tables).
    - A judge may say `SHL.X SHL.A` is BRG.X in two pieces. GENERIC_OPS.md §7 agrees, and notes that it is the form a
      place-by-place law gives BRG.X. A judge may also say the count loop is the countdown made into an instruction
@@ -507,7 +516,8 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
        earlier files' tests (OVERVIEW §6, LEARNED_LOOP.md §4). The count loop's count down over 16 places makes the
        path deeper than sp2's countdown;
      - (c) the programs are a discrete result of search, kept in buffers; only the choice among them is a parameter;
-     - (d) which reading hypothesis a prompt uses is decided by designed run-detection logic (stage 1's reader).
+     - (d) which reading hypothesis a prompt uses is decided by designed run-detection logic (stage 1's reader:
+       `runs`, `which_run` and `selected`, lines 4094–4129).
    - The kernel is outside autograd, but not on the prediction's path: it runs the climb's searches, on integers.
 
    *Are the final logits "produced entirely by the submitted model from its inputs and learned PyTorch state", with
@@ -519,11 +529,12 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
    back from the GPU (program indices and counts) to steer the search, and traces each program's instructions from its
    text into opcode columns on the GPU. That is s3i's arrangement (OVERVIEW §6). *Does that bookkeeping count as
    computation off the GPU?*
-10. **OOM or timeout fails: ok.** Neither happened on the eight runs. Their peak host memory was 13.8–14.7 GB.
+10. **OOM or timeout fails: ok.** Neither happened on the eight runs. Their peak host memory was 13.8–14.7 GB. Rule 10
+    is about GPU memory, and the records give no peak for it.
 11. **3,600 s of H100 training, compilation included: yes, on every seed.** The eight runs trained 759–883 s, to the
-    file's 20,000-step cap, and froze by 538–641 s. Triton compiles the kernel inside the run, once for each set of its
-    compile-time constants, so that time is in these figures; it was not measured apart. A climb that spent its whole
-    work budget would still freeze by about 910 s (§2).
+    file's 20,000-step cap, and froze by 546–658 s (the progress line just after each freeze). Triton compiles the
+    kernel inside the run, once for each set of its compile-time constants, so that time is in these figures; it was
+    not measured apart. A climb that spent its whole work budget would still freeze by about 910 s (§2).
 12. **A custom loss returns one finite differentiable scalar: yes.** `token_training_loss` (line 4870). It also keeps
     answered rows and advances the schedule (rule 4).
 13. **Evaluation within half the training allowance; certification: yes.** Evaluation took 334–407 s of the 1,800
@@ -539,8 +550,9 @@ and why the rest stayed. Where s3i differs, the end of this section says so.
     - Its practice problems are made from the batch rows' own digits and the generated law book, and the answer
       program's search reads answered rows that the loss kept from the labels.
     - A miner computes relations over each batch's read numbers inside the model (`relations` and `Miner`, lines
-      3496–3564). Only its order and nonzero facts feed the lessons (lines 4567–4568); the others, such as
-      divisibility by 2, 3 and 5, are only logged.
+      3496–3564), and the loss runs it on the answers too (`mine_answers`, line 4245). Only its order and nonzero
+      facts on N, x and T feed the lessons (lines 4567–4568); the others, such as divisibility by 2, 3 and 5, and
+      every fact about the answers, are only logged.
     - The rules call "parameter-free work" valid and allow iterative mechanisms (rule 4, and the note after the
       rules).
 
@@ -576,8 +588,9 @@ against the entry, the whole stage-3 line is out, and nothing else here matters.
 - Rule 8: its gradient test reached all 16 tensors on the earlier build s3g, whose prediction path s3i keeps
   (INTEGRATION §3, §5). With s3i's own four programs, 14 of 16 get a gradient: the addition table's two get exactly 0,
   since the chosen program calls no addition (STRICT.md §3).
-- Rule 14: its lessons also include the old table lessons, joining `LATE_AFTER` = 100 steps after the digit laws, with
-  the width-dependent fact "a wrapped x − N is large" among them (`ANCHOR_WRAP`, line 70).
+- Rule 14: its lessons also include the old table lessons, joining `LATE_AFTER` = 100 steps after the digit laws
+  (line 68), with the width-dependent fact "a wrapped x − N is large" among them (`sub.wrap`, in `table_lessons` at
+  line 2881; the `ANCHOR_WRAP` constant on line 70 is never read, ABLATION_S3.md §3).
 - Rule 11: it froze by 982–1,149 s on its eight H100 runs and trained 1,133–1,350 s.
 
 **What to do about them.** [LEGAL_PLAN.md](LEGAL_PLAN.md) §4 puts these questions first, then orders the rest by cost.
@@ -637,12 +650,13 @@ fix.
     (+277 s and +321 s on seeds 74 and 1); not re-searching solved twins (+364 s, +416 s); BPE merges (+282 s,
     +291 s; an earlier +546 s had counted a search whose time swings 0.5× to 5.5× between runs); the T = 1 filter on
     the round's answers (+82 steps on seed 74, none on seed 1).
-  - **Not needed:** the search's routines-first order; the late table lessons, the wrap-around fact (`ANCHOR_WRAP`)
-    among them; the step problem alone; the multiply's row problem (one seed); a round cost limit above 5 (at 4
-    there is no round).
-  - **How firm:** every failed arm searched its whole cost-5 reach without the missing piece, so more training time
-    would not rescue it. A wider search, every program up to cost 6, found nothing for any of the six parts it
-    applies to. Occam's tie-break was not a search's reach but the weak check below.
+  - **Not needed:** the search's routines-first order; the late table lessons, the wrap-around fact (`sub.wrap`) among
+    them; the step problem alone; the multiply's row problem (one seed); a round cost limit above 5 (at 4 there is no
+    round).
+  - **How firm:** every failed run of the seven needed parts searched its whole cost-5 reach without the missing
+    piece, so more training time would not rescue it (ABLATION_S3.md §4). A wider search, every program up to cost
+    6, found nothing for any of the six parts it applies to. Occam's tie-break was not a search's reach but the weak
+    check below.
   - **Two weak checks in s3i, and a fix**
     ([ABLATION_S3.md §8](integration/ABLATION_S3.md#8-fixing-the-two-weak-checks)).
     - The reduction's check can accept a repeated subtraction that is right only for small quotients. It slips
@@ -673,15 +687,17 @@ fix.
     B200 seeds.
   - `submission_stage3_sp2.py` certifies on the official manifest (round by 1,029 s) and on all 8 seeds.
   - **Still designed:** the law book, the choosing rule (picked after bar 3's own rules failed, by watching whether
-    the round came), the instruction set and the search sizes.
+    the round came), the instruction set, the search sizes, where the round is looked for, and the rest of stage 3
+    (the reader, the cells, the countdown, the tournament).
   - The other formulas are still not learned.
 - **The shader follow-up** ([NCA.md](nca/NCA.md) §9, code and records in [`nca/`](nca/)). The NCA probe is one
   identical tiny cell repeated over a grid, each wired only to its neighbours, trained from random weights on lessons
-  alone. Two known cures for memorization were tried on it, far past the point where it fits: long training with
-  weight decay ("trimming", the setting in which networks that had memorized modular arithmetic later found the
-  rule), and agreement (a weight moves only where groups of questions, or the grid's columns, push it the same way;
-  or it speeds up while its gradient keeps its sign). 72 runs from random weights, 4 seeds per arm (50,000 steps at
-  (3, 2, 1), 20,000 at (3, 3, 2)), and 20 started at the compiled rule.
+  alone. Two known cures for memorization were tried on it, far past the point where it fits at (3, 2, 1) (at
+  (3, 3, 2) no run fits even the soft path): long training with weight decay ("trimming", the setting in which
+  networks that had memorized modular arithmetic later found the rule), and agreement (a weight moves only where
+  groups of questions, or the grid's columns, push it the same way; or it speeds up while its gradient keeps its
+  sign). 72 runs from random weights, 4 seeds per arm (50,000 steps at (3, 2, 1), 20,000 at (3, 3, 2)), and 20
+  started at the compiled rule.
   - **Result:** none certifies, none fits the training questions on snapped digits (the best any run reaches is 62
     of the 99 at (3, 2, 1)), and one size up every run stays at chance from start to end: no late jump.
   - **Why:** decay holds the weights small, small weights pass blurred digits, and a blurred code fits the training
@@ -690,10 +706,10 @@ fix.
   - **Optimizers that can rest at the rule** (§10, 104 runs). Adam moves every weight by about half its learning rate
     even where every lesson is met, so §10 tried Adam with eps 1e-4 and plain SGD. Started at the compiled rule with
     every lesson met, both keep it and certify, 4 of 4 seeds each, and every arm with weight decay leaves it. Where
-    the lessons still pull, plain SGD keeps the training answers but drifts one size up, in exactly the situations
-    the training grid never shows. From random, every arm still memorizes: one size up no run gets beyond chance.
-    13 runs from random, cut off by Modal's spend limit, were finished from their checkpoints once it was raised:
-    the verdict held, and only numbers read at a run's end moved.
+    the lessons still pull, only plain SGD at a small learning rate keeps the training answers, and it drifts one size
+    up, 99.7–99.9% of its errors in situations the training grid never shows. From random, every arm still
+    memorizes: one size up no run gets beyond chance. 13 runs from random, cut off by Modal's spend limit, were
+    finished from their checkpoints once it was raised: the verdict held, and only numbers read at a run's end moved.
 - **The loop over T, learned** ([LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), code and records in
   [`integration/learned_loop/`](integration/learned_loop/)). sp2's hand-written countdown, its gate, and the round
   search's assumption that the answer at T = t is the round run t times are removed. The machine gets one generic
@@ -803,24 +819,27 @@ fix.
 - **Bar 3's learner, cheaper and deeper** ([SCALE.md](bar3/scale/SCALE.md), code and records in
   [`bar3/scale/`](bar3/scale/)). The same learner on the bare counting machine, made cheaper and then given new kinds
   of practice problems.
-  - **Cheaper, with the same choices:** a compiled search, searches shared between problems, and the cheaper
-    choosing rule cut the breadth study from 515 search-hours to 51. 50 of its 54 runs make the same choices in every
-    round; the other 4 differ only where the original had stopped a search at its time limit.
+  - **Cheaper, with the same choices:** the compiled search alone cut the breadth study from 515 search-hours to 51,
+    and 50 of its 54 runs make the same choices in every round; the other 4 differ only where the original had stopped
+    a search at its time limit. With searches shared between problems and the cheaper choosing rule, round 0 on the
+    ten formulas went from 67.8 search-hours to 3.95.
   - **That buys about one instruction:** each extra instruction multiplies the distinct machine states by 9–10 (by
     about 40 over a carried library), and the missed formulas need 13–22 instructions from the first pieces.
   - **But what became affordable reached further.** Run along a sequence of formulas, each solved one kept as a
     routine, the pairs rule invents 10·x², 10·x² + 1 and x³, each in the first round of its step: 10·x² is "x² mod N
     (carried), then the rest of the way". A new practice source, steps that move two numbers at once, gives Fibonacci
-    from scratch. At N ≤ 26 and N ≤ 50 the unchanged learner finds the same programs as at N ≤ 7. Hardest first's
-    own sequence, finished after the spend-limit cut, misses 10·x² + 1 but then invents x³, Montgomery's (round 3)
-    and Fibonacci (round 1).
-  - **Not reached:** Montgomery's and Fibonacci in the anchored-pairs sequences (5 rounds; their Fibonacci programs
-    are right but take more steps than the general check allows), and 10·x², 10·x² + 1 and x³ from scratch, until
-    the subgoal study below.
+    from scratch. Unchanged, the learner invents x² mod N, x² ± 1, 2x + 1 and Fibonacci at N ≤ 26 (not x² + 3 in
+    2 rounds), and x² mod N, 2x + 1 and Fibonacci at N ≤ 50, each by the algorithm it found at N ≤ 7. Hardest
+    first's own sequence, finished after the spend-limit cut, misses 10·x² + 1 but then invents x³, Montgomery's
+    (round 3) and Fibonacci (round 1).
+  - **Not reached:** Montgomery's and Fibonacci in the anchored-pairs sequences (5 rounds; with the new sources their
+    Fibonacci programs are right up to N = 40 but take more steps than the general check allows, and with the breadth
+    study's sources nothing poses the step), and 10·x², 10·x² + 1 and x³ from scratch, until the subgoal study
+    (x³ and 10·x²) and the picks study (10·x² + 1) below.
   - **Bounds on the search space:** fewer instances with counterexamples, merging symmetric registers, dead
     registers, meet in the middle and a lower value cap each save at most 1.7×, against the 9–10× each instruction
-    costs. The runs Modal's spend limit cut off were finished from their stores, each the same as before in every
-    round they share (184 search-hours, $21.92).
+    costs. The runs Modal's spend limit cut off that had stores were finished from them, each the same as before in
+    every round they share (184 search-hours, $21.92); the depth-2 law book's runs, with no store, were not rerun.
 - **A signal that sees a piece before it is solved** ([SUBGOAL.md](bar3/scale/subgoal/SUBGOAL.md), code and records
   in [`bar3/scale/subgoal/`](bar3/scale/subgoal/)). The learner scores each problem it poses by whether the target
   factors through it, from the rows alone: the target is a function of the problem's answer and N, or one law of the
@@ -836,8 +855,8 @@ fix.
   - **What did the work:** the deeper search, aimed by the score (1.6 of 47 search-hours). Breaking ties by the
     score changed some picks but no outcome. About $12.
 - **Tested on formulas none of its rules were written for** ([HELDOUT.md](bar3/scale/heldout/HELDOUT.md), code and
-  records in [`bar3/scale/heldout/`](bar3/scale/heldout/)). Each rule so far was written after watching one of the
-  tracked formulas fail. So the learner, frozen with the subgoal, was run from scratch on ten new formulas under both
+  records in [`bar3/scale/heldout/`](bar3/scale/heldout/)). The learner was built and tuned on a handful of formulas
+  (HELDOUT.md). So, frozen with the subgoal, it was run from scratch on ten new formulas under both
   choosing rules, with a prediction for each written down before any run (`PREREG.md`, its hash recorded).
   - **What came:** 5 of 10, in 9 of 20 runs, all in round 0 or 1: (x² + x), (x + 1)², 3·x² and x⁴ mod N under both
     rules, and 2^x mod N under anchored pairs. Every program is right on every pair up to N = 120.
@@ -875,13 +894,16 @@ fix.
   - **What changed:** 10X mod N is learnable in rounds 2 and 3; x² mod N's twin stays a copy, rightly, since one program
     solves both.
   - **What came:** nothing new. Hardest first never picks the piece, since 24 and then 12 problems of the same cost
-    stand ahead of it in pool order. All 11 earlier wins stand.
-  - **The predictions:** no outcome would change, and none did. $0, run locally from the earlier stores.
+    stand ahead of it in pool order. All 11 earlier wins stand (the nine held-out runs, and binary x mod N under both
+    rules).
+  - **The predictions:** 6 of 7 held. No outcome would change, and none did; the one that failed said some picks would
+    change. $0, run locally from the earlier stores.
 - **What the learner picks** ([PICKS.md](bar3/scale/picks/PICKS.md), code and records in
   [`bar3/scale/picks/`](bar3/scale/picks/)). Three changes to how the frozen learner picks its practice, each behind its
   own flag, with predictions written down first.
   - **What came:** with the row check on, breaking hardest first's ties by the subgoal score picks 10X mod N in round 2,
-    and 10·x² + 1 comes, for the first time in any study. Its program is right on every pair to N = 120.
+    and 10·x² + 1 comes from scratch, for the first time in any study. Its program is right on every pair to N = 120
+    given 10⁹ steps; on the standard machine for N = 120, 2,199 of the 7,260 pairs run out of steps.
   - **What didn't:** passing a subgoal's priority to its twin does not bring x² mod N in base 2, and it loses hardest
     first's binary x mod N. A pick score that sees the big-x check cannot act: no look reaches the five-token program
     that passes at big x.
@@ -909,8 +931,9 @@ fix.
   [`bar3/scale/compose3/`](bar3/scale/compose3/)). Without the book's multiply-add row, bar 3's set never gets the
   multiply; and round 2's winning setup fails on x³ and 10·x² + 1 mod N, so its route is shaped to x². About $8.
 - **The search on a GPU** ([GPU_SEARCH.md](bar3/gpu_search/GPU_SEARCH.md), code and records in
-  [`bar3/gpu_search/`](bar3/gpu_search/)). Identical results on 18,708 stored searches and two whole runs, about 95
-  times faster, but only 3–10 times cheaper: about half to one more instruction of depth for the same money. About $8.
+  [`bar3/gpu_search/`](bar3/gpu_search/)). Identical results on 18,708 stored searches and two whole runs. Its big
+  searches run about 95 times faster on an L40S or an H100 but only 3–10 times cheaper, and a whole learner run is
+  1.6–1.9 times cheaper: about half to one more instruction of depth for the same money. About $8.
 - **Consolidation** ([CONSOLIDATE.md](bar3/scale/consolidate/CONSOLIDATE.md), code and records in
   [`bar3/scale/consolidate/`](bar3/scale/consolidate/)). One score for every choice keeps 1 of 16 earlier wins; two
   general rules, one uniform search depth for every candidate and anchored pairs' picks, bring back 13 of 16, and most
@@ -922,10 +945,11 @@ fix.
   - Bar 3's learner, unchanged, on a counting machine with no digits, carries or wrap-around, invented the select (what
     SEL.S does at one place) and subtract-with-borrow, and, in the round that Modal's spend limit had cut off,
     add-with-carry: it adds, compares with the base and subtracts it once ([CARRY.md](bar3/bridge/CARRY.md)).
-    Multiply-accumulate, whose carry must count, came once a deeper search was aimed at its piece as in the subgoal
-    study: a score read off the rows names the piece the target loops over, and in that search a clean program beats a
-    cheaper one that uses up N. Hardest first then invents it in round 1; the pairs signal does not in 2 rounds
-    (CARRY.md §12). Each invented program, compiled to a base-10 table, is exactly stage 3's cell.
+    Multiply-accumulate, whose carry must count, came once two new pose rules (the conjunctions and the widening) posed
+    its piece and a deeper search was aimed at it as in the subgoal study: a score read off the rows names the piece
+    the target loops over, and in that search a clean program beats a cheaper one that uses up N. Hardest first then
+    invents it in round 1; the pairs signal does not in 2 rounds (CARRY.md §12). Each invented program, compiled to a
+    base-10 table, is exactly stage 3's cell.
   - `submission_stage3_bridge.py` (md5 `85ff74c5faf902c1ede7a9f07d059026`) is s3i with 36 instructions: subtract, add
     and multiply-accumulate at the pointer against each register, their tables learned as s3i learns them, and the
     invented select in place of SEL.S. It certifies on the official H100 manifest (training 1,839 s, against s3i's

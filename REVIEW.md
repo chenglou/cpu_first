@@ -2,13 +2,14 @@
 
 *Written 2026-10-23 for an outside judge of One Layer Deeper H1 (learn x^(2^T) mod N from prompt/answer pairs),
 rewritten 2026-10-25/26 for fast2, the five-piece stage-3 file made fast, and on 2026-10-27 for the legal file, fast2
-with its generated law book replaced by three laws and bar 3's legal reader, and then for the family file, the legal
-file with no law in its book and round 7's general rules. It points into [OVERVIEW.md](OVERVIEW.md),
-[FAMILY_FILE.md](integration/legal_family/FAMILY_FILE.md), [NOBOOK.md](integration/legal_nobook/NOBOOK.md),
-[WIDE.md](integration/legal_wide/WIDE.md), [LEGAL_FILE.md](integration/combined_legal/LEGAL_FILE.md),
-[FAST.md](integration/combined_fast/FAST.md) and [COMBINED.md](integration/combined_sp2/COMBINED.md) instead of
-repeating their tables. The record checks of §3 and the builders and source checks of §4.3 were rerun on 2026-10-27.
-The hosted evaluator has scored nothing here (§1).*
+with its generated law book replaced by three laws and bar 3's legal reader, then for the family file, the legal file
+with no law in its book and round 7's general rules, and then for the wider file, the family file with ROUNDT's rows in
+its buffers and a wider reader. It points into [OVERVIEW.md](OVERVIEW.md),
+[WIDER.md](integration/legal_wider/WIDER.md), [FAMILY_FILE.md](integration/legal_family/FAMILY_FILE.md),
+[NOBOOK.md](integration/legal_nobook/NOBOOK.md), [WIDE.md](integration/legal_wide/WIDE.md),
+[LEGAL_FILE.md](integration/combined_legal/LEGAL_FILE.md), [FAST.md](integration/combined_fast/FAST.md) and
+[COMBINED.md](integration/combined_sp2/COMBINED.md) instead of repeating their tables. The record checks of §3 and the
+builders and source checks of §4.3 were rerun on 2026-10-27. The hosted evaluator has scored nothing here (§1).*
 
 <!-- To swap the file to judge: its path is in "In plain words", §2, §3, §4.1-§4.3, §6 and §7; its md5 in §2; its bytes
 and lines in §2 and §5 (rule 1); its records in §3, §4.1 and §4.2; its seconds, memory and seeds in "In plain words",
@@ -29,7 +30,7 @@ the builders and the source check (§4.3), and our runner (§4.2).
 prompt and answer pairs in one hour of training on one H100. A run certifies when every prompt is exactly right up to
 T = 64, on moduli seen in training and on unseen ones.
 
-**The entry.** One file, [`submission_stage3_family.py`](integration/legal_family/submission_stage3_family.py) (§2). Its
+**The entry.** One file, [`submission_stage3_wider.py`](integration/legal_wider/submission_stage3_wider.py) (§2). Its
 model is a small digit machine whose digit tables (subtract, add, multiply-accumulate) start random and are learned from
 general laws. Inside the training run it poses itself practice problems, searches for short programs of the machine's
 instructions that solve them, and keeps the solved ones as routines. Its law book is empty. Before any routine exists,
@@ -38,21 +39,22 @@ reduction by N, and the reduction's step is posed cut to its parts, the comparis
 borrows) and the addition. Once those are routines, it reads the target's law from the same rows, computing every
 candidate with those routines, and finds mod(mul(x, x), N). That law poses the rest: the multiply and the reduction, one
 digit at a time and then looped over the digits, and the law's window (x·o) mod N as a law of its own. From its routines
-it composes a round (copy x, multiply, reduce by N), kept only if it also gives the kept answers at T = 2, 4 and 8, and
-an answer program that runs the round T times. It answers by running that program on its learned tables.
+it composes a round (copy x, multiply, reduce by N), kept only if it also gives the answers at T = 2, 4 and 8 that its
+buffers keep, and an answer program running the round T times. It answers by running that program on its learned tables.
 
 **The evidence.** On the contest's unmodified evaluator and manifest, on one H100, it certifies on the manifest's seed
-and, with only the seed changed, on seven more: 8 runs of 8, T = 64 on both ladders, every test split exact, trained
-in 562–986 s of the 3,600 (§3). The same file, byte for byte, one H100 each, learns 4 of 8 other tasks of H1's family
-at full size: y² + y, y² + 1, the cube and y² − 1. It does not learn y² + 3, 10y², 10y² + 1 or 3y² + 2. Only y² + y and
-3y² + 2 were held out, chosen before any run; round 7's rules, which the file uses, were found on the other six (§2).
-The file it was built from, the legal file, certified 8 of 8 the same way and stays as the earlier file to judge, with
-fast2 before it (§2).
+and, with only the seed changed, on seven more: 8 runs of 8, T = 64 on both ladders, every test split exact, trained in
+509–777 s of the 3,600 (§3). The same file, byte for byte, one H100 each, learns 7 of 8 other tasks of H1's family at
+full size: y² + y, y² + 1, the cube, y² − 1, y² + 3, 10y² and 10y² + 1, but not 3y² + 2. All eight were known when its
+reader was designed, so none of this tests generality. Two tasks drawn at random and held out for it, 8y³ + 8y + 3 and
+2y³ + 9y + 9, it neither reads nor learns: 0 of 2. Of the four tasks ever held out for it or the family file, two each,
+it learns one: y² + y, held out for the family file (§2). The family file, which it was built from, certified 8 of 8 the
+same way and stays as the earlier file to judge; the legal file and fast2 came before it (§2).
 
 **What to rule on.** Whether a training run that searches for its own program is within the contest's rules, above all
 rules 4, 7, 8 and 14 (§5). And, for the project's own bar, whether what people still chose (the instruction set, the
-residue rule, the reader's grammar, the rules for windows, constants and rounds, the search's rules, the prompt's
-reader and the schedule) amounts to writing the algorithm by hand.
+residue rule, the reader's grammar and its polynomial stage, the rules for windows, constants and rounds, the search's
+rules, the prompt's reader and the schedule) amounts to writing the algorithm by hand.
 
 ## 1. What is claimed
 
@@ -63,8 +65,8 @@ The project measures itself against three bars
    untouched official manifest on an H100. From step 11 on, no hand-written arithmetic runs in training or in the
    answer: every table that computes is learned from a random start, though the datapath around those tables is
    still written by hand before step 17, and in step 18, which branches from step 15 (OVERVIEW §5).
-2. **Nothing a strict judge would call the hand-written algorithm: the entry is the family file, and the call is the
-   judge's.** In the family file the program the forward pass runs ("copy x, multiply, reduce", T times) is found by
+2. **Nothing a strict judge would call the hand-written algorithm: the entry is the wider file, and the call is the
+   judge's.** In the wider file the program the forward pass runs ("copy x, multiply, reduce", T times) is found by
    search inside the training run and kept in the model's buffers; no datapath and no menu of wirings is in the file.
    Against s3i, the first file to judge, four more kinds of hand-made pieces are gone. Each was first removed in a
    study of its own, whose file certified alone on the official manifest (OVERVIEW
@@ -79,27 +81,31 @@ The project measures itself against three bars
      the multiply's carry digit take their place, and the run builds the step from them
      ([GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md));
    - the clock, and the rows and programs held in Python: work budgets and buffers take their place
-     ([STRICT.md](integration/strict/STRICT.md)). The family file keeps one set of rows in Python again, ROUNDT's
-     (§5, rule 4).
+     ([STRICT.md](integration/strict/STRICT.md)). The family file kept ROUNDT's rows in Python again; the wider file
+     moves them into buffers too (§5, rule 4).
 
    The legal file went one step further on the first of these. Its book was three laws on the pair, and the rest of what
    it practised was posed by the law the run read from its own answer rows, with its own routines: bar 3's legal reader
    ([LEGALLOOPS.md](bar3/scale/legalloops/LEGALLOOPS.md)), which the legal file was the first to certify
-   ([LEGAL_FILE.md](integration/combined_legal/LEGAL_FILE.md)). The family file takes the book to nothing, in three
+   ([LEGAL_FILE.md](integration/combined_legal/LEGAL_FILE.md)). The family file took the book to nothing, in three
    phases, each certified 8 of 8: a wider grammar for the reader ([WIDE.md](integration/legal_wide/WIDE.md)); the three
    laws replaced by the residue rule, which reads from the answers that the law ends in a reduction by N and poses the
    reduction's step cut to its parts ([NOBOOK.md](integration/legal_nobook/NOBOOK.md)); and round 7's general rules,
    ported legally: the reading's windows and constants posed as laws of their own, and a round kept only if it also
-   gives the kept answers at T = 2, 4 and 8 ([FAMILY_FILE.md](integration/legal_family/FAMILY_FILE.md)). Every practice
+   gives the kept answers at T = 2, 4 and 8, ROUNDT ([FAMILY_FILE.md](integration/legal_family/FAMILY_FILE.md)). The
+   wider file, a fourth phase, keeps ROUNDT's rows in its buffers and runs ROUNDT faster with the same verdicts, and
+   widens the reader: x's polynomials of up to three Horner steps, each constant posed with 1 and its doublings, and a
+   law too big for a size counted as saying nothing there ([WIDER.md](integration/legal_wider/WIDER.md)). Every practice
    answer comes from a fact, an identity or the learner's own routines; every value the law reader compares comes from
    the learner's routines, and the residue rule compares the answers' own digits with N's and x's. Its two weak practice
    checks are fixed too ([ABLATION_S3.md §8](integration/ABLATION_S3.md#8-fixing-the-two-weak-checks)). Still designed,
    knowing the task family: the instruction set, the residue rule and the step's cut table, the reader's grammar (x and
-   N as inputs, constants only as gaps; add, sub, mul, pow and mod; depth 3), the window and constants rules, ROUNDT,
-   the cut and loop rule and the catalogue of law forms that answer what is posed, the choosing rule, the search's sizes
-   and rules (several found by watching whether the round came), the count loop and T's 2-digit field, the prompt's
-   reader, the cells' shapes and the schedule (§5, rule 7). An ablation on the official manifest shows what s3i's result
-   rests on (§7); none of fast2, the legal file and the family file has an ablation of its own.
+   N as inputs, constants only as gaps; add, sub, mul, pow and mod; depth 3) and its polynomial stage, the window and
+   constants rules with the constants' doublings and the empty target, ROUNDT and its four slots, the cut and loop rule
+   and the catalogue of law forms that answer what is posed, the choosing rule, the search's sizes and rules (several
+   found by watching whether the round came), the count loop and T's 2-digit field, the prompt's reader, the cells'
+   shapes and the schedule (§5, rule 7). An ablation on the official manifest shows what s3i's result rests on (§7);
+   none of fast2, the legal file, the family file and the wider file has an ablation of its own.
 3. **A general algorithm learner: results at a tiny size, and first steps at full size.** A learner that picks its own
    practice problems invents x² mod N for x < N ≤ 7 (and ≤ 26) on a bare counting machine; unchanged, it invents 4 of 9
    other formulas, and 2 more once its solved formulas carry over ([PRACTICE.md](bar3/PRACTICE.md),
@@ -112,18 +118,20 @@ The project measures itself against three bars
    by the subgoal score and the two-source study's offset posing the piece, it also invents 10·x² + 1 from scratch
    ([PICKS.md](bar3/scale/picks/PICKS.md)). Run on one digit place, it invents all four of stage 3's digit cells, each
    under at least one of its choosing rules; multiply-accumulate needs two new ways of posing its piece and a deeper
-   search aimed at it the same way ([BRIDGE.md](bar3/bridge/BRIDGE.md), [CARRY.md](bar3/bridge/CARRY.md)). At H1's
-   size, the self-practising stage 3 learns 8 of 11 tasks of the family after three general changes to its round's
-   search ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)). Bar 3's legal reader, which reads a target's law
-   from its answer rows with the learner's own routines, now runs inside the file to judge (2. above), and that file,
-   byte for byte, learns 4 of 8 family tasks at full size: y² + y (held out), y² + 1, the cube and y² − 1. It does not
-   learn y² + 3, 10y², 10y² + 1 or 3y² + 2 (held out). Only the two held-out tasks, chosen before any run, are a fair
-   test of its generality, since round 7's rules were found on the other six; one of the two is learned
+   search aimed at it the same way ([BRIDGE.md](bar3/bridge/BRIDGE.md), [CARRY.md](bar3/bridge/CARRY.md)). At H1's size,
+   the self-practising stage 3 learns 8 of 11 tasks of the family after three general changes to its round's search
+   ([SP_BREADTH.md](integration/sp_breadth/SP_BREADTH.md)). Bar 3's legal reader, which reads a target's law from its
+   answer rows with the learner's own routines, now runs inside the file to judge (2. above). That file, byte for byte,
+   learns 7 of 8 family tasks at full size: y² + y, y² + 1, the cube, y² − 1, y² + 3, 10y² and 10y² + 1, but not
+   3y² + 2. All eight were known when its reader was widened, so they do not test generality
+   ([WIDER.md](integration/legal_wider/WIDER.md) §6). Only held-out tasks do: of the two drawn at random for it after it
+   was fixed, 8y³ + 8y + 3 and 2y³ + 9y + 9, it reads and learns neither, 0 of 2. Of the four tasks held out for the
+   family file and for it, it learns one, y² + y, held out for the family file
    ([FAMILY_FILE.md](integration/legal_family/FAMILY_FILE.md) §7).
 
-Four rules are **gray** for the family file, as they were for the legal file, fast2 and s3i: 4, 7, 8 and 14 (§5). The
-write-ups flag them; they do not argue them away. Rules 2 and 11 also need a word for its Triton kernel, and rules 5
-and 9 for what stays in Python.
+Four rules are **gray** for the wider file, as they were for the family file, the legal file, fast2 and s3i: 4, 7, 8
+and 14 (§5). The write-ups flag them; they do not argue them away. Rules 2 and 11 also need a word for its Triton
+kernel, and rules 5 and 9 for what stays in Python.
 
 Not claimed:
 - a result from the hosted evaluator: the project's one attempt to submit, s3i after the deadline on Oct 24, was
@@ -132,115 +140,142 @@ Not claimed:
   the time and has no record behind it;
 - runs on B200s, CPUs or relaxed budgets are research; only official-manifest H100 runs count as certification here.
   The family runs use H1's manifest on their own data, so they are research too: they show what the file learns (§3);
-- that the family result shows generality beyond its two held-out tasks: round 7's rules were found on the other six
-  (§2);
-- the family file's work budgets are fast2's, set from fast2's eight climbs; its own eight climbs use at most 39% of
+- that the family result shows generality: all eight family tasks were known when the reader was widened, and the two
+  tasks held out for this file are learned 0 of 2 (§2);
+- the wider file's work budgets are fast2's, set from fast2's eight climbs; its own eight climbs use at most 39% of
   `CLIMB_WORK`, and that the budgets hold on every other seed is not shown (§2);
-- that the family file's climb repeats line for line in a second run of the same seed: fast2's did, in four runs
-  (§2), but the family file has one run a seed.
+- that the wider file's climb repeats in a second run of the wider file itself: each seed ran once. Its eight climbs do
+  log the family file's climb lines, seconds masked, seed for seed, as fast2's official climb logged the same 72 lines
+  in four files' runs (§2).
 
 ## 2. The file to judge, and the others
 
-**[`integration/legal_family/submission_stage3_family.py`](integration/legal_family/submission_stage3_family.py)**,
-md5 `457216d746d7a21e854a2d2d3673c9d6` ("the family file"). 5,113 lines, 261,651 bytes (493 under the 256 KiB limit),
-207,370 learned numbers in 15 parameter tensors, Adam. Its docstring (lines 1–9) says what it is and where it is
-written up. Its first line is still the legal file's: it names LEGAL_FILE.md and says that `make_legal.py` writes the
-file, where `make_family.py` does (below).
+**[`integration/legal_wider/submission_stage3_wider.py`](integration/legal_wider/submission_stage3_wider.py)**, md5
+`59060b5cd7a7b536e25302e1d5be7ef7` ("the wider file"). 5,173 lines, 261,801 bytes (343 under the 256 KiB limit), 207,370
+learned numbers in 15 parameter tensors, Adam. Its docstring (lines 1–10) says what it is and where it is written up;
+its first line names WIDER.md and `make_wider.py`, which writes the file (below).
 
-**What it is.** The legal file (below) taken to an empty law book in three phases, each a file of its own, built by
-asserted edits of the one before and certified 8 of 8 on H100s (§7):
-- **phase A, a wider reader** ([WIDE.md](integration/legal_wide/WIDE.md) §2): the law reader (`LawReader`, line 2795;
-  `READ_OPS`, line 2792) tries chains of add, sub, mul, pow and mod over x and N, depth 1 to 3, and, when none fits,
-  with the data's constants among the leaves, read as gaps: a number by which a reduction mod N misses every answer.
-  Every value is still the learner's routines': its addition; its comparison's difference, kept where its addition
-  gives the minuend back; repeated addition by doubling; and its link by doubling. On H1's rows it weighs 200
-  candidates where the legal file's reader weighed 35;
-- **phase B, no law in the book** (`BOOK`, line 94; [NOBOOK.md](integration/legal_nobook/NOBOOK.md) §2): before any
-  routine exists, the residue rule (`read_fact`, line 3141) compares each kept answer with N and with x, digit by digit
-  from the top place, and makes no number. If every answer is below N, the law ends in a reduction by N, so the
-  reduction's step x + d·N is posed cut to its parts on the pair: the comparison, the link and the addition
-  (`STEP_PARTS`, line 95). The wide reading follows once those three are routines (`read_law` and `pose`, lines 3129
-  and 3151);
-- **phase C, round 7's pieces** ([FAMILY_FILE.md](integration/legal_family/FAMILY_FILE.md) §2): every window of the
-  reading, a connected run of 2 or 3 of its operations, becomes a law of its own, its holes (at most two) its operands
-  and its modulus N (`windows` and `read_more`, lines 2957 and 3005; `READ_WINDOW`, line 97). Each constant of the
-  reading is made from N, and x + c, x − c and x·c are posed (`CONST_OPS`, line 98); that also gives round 7's 1 for
-  x − 1, which the legal reader writes as a leaf. And a round is kept only if it also gives the newest 4,096 kept
-  answers of every count T > 1, run T times; on H1's data those are T = 2, 4 and 8 (ROUNDT: `round_t`, line 3503;
-  `ROUNDT`, line 99). The windows' and the constants' answers are the reader's own arithmetic, the learner's routines
-  (`read_target`, line 3029).
+**What it is.** The family file (below, the end of phases A–C) with phase D's changes, made by asserted edits
+([WIDER.md](integration/legal_wider/WIDER.md) §2):
+- **ROUNDT's rows in the buffers** (`more_rows`, `more_n` and `more_s`, lines 4111–4113; `ROUNDT_SLOTS` = 4, line
+  98): `keep_counts` (line 4842) keeps the newest 4,096 rows of each count T > 1, at most 4 counts, in registered
+  buffers, where the family file kept them in a Python dict outside the state dict. They count in the model's state,
+  which grows from 494,712 to 1,019,008 numbers at the start, and a fresh model loaded from the state dict gives the
+  same logits;
+- **ROUNDT on the round machine** (`round_t`, line 3548): each round runs from its trace on a `RoundMachine`, a CUDA
+  graph, from `run_prog`'s own random draws, with its work counted as `run_prog` counts it. On 31 rounds, old and new
+  ROUNDT give the same verdicts, every output bit for bit, and the same work
+  ([`checks/roundt_same_local.py`](integration/legal_wider/checks/roundt_same_local.py)), and the round searches that
+  check rounds run 2.6–7 times faster;
+- **a third reading stage** (`LawReader.poly` and `tail`, lines 2927 and 2944; `READ_POLY` = 3 and `READ_CHUNK`, lines
+  103–104): when the chains over x and N and the gaps read nothing, x's polynomials by Horner's rule. From x, up to 3
+  steps, each multiplying by x or by a constant 2..10, or adding x or a constant 1..10; then the reduction mod N, the
+  last constant by the gap. Every value is the learner's routines', as before;
+- **constants with what they are built from** (`builds`, line 3040, called by `read_more`, line 3051): each constant of
+  a reading is posed with 1 and its doublings below it (for 3: 1 and 2; for 10: 1, 2, 4 and 8), each made by the
+  learner's addition and checked by its comparison;
+- **the empty target** (`read_target`, lines 3080–3081; `Root.goals`, line 2385): a reading's own law at a size too
+  small for it (10 is no 1-digit number) says nothing there, instead of being dropped at every size.
 
-Everything else is the legal file's, and through it fast2's: the cut and loop rule (`read_pairs`, line 2929), the
-grammar's target rules, the weak-check fix, the strict build, the learned loop over T, the generic instructions, the
-Triton kernel and the work budgets. Against the no-book file, an AST comparison with the docstrings left out finds 13
-functions changed and 12 new, all the port's (FAMILY_FILE.md §2).
+The rest is room, with no change in behaviour: the padding before trailing comments squeezed, the builder asserting the
+AST unchanged, and nine docstrings and a settings comment cut to a pointer. Everything else is the family file's, and
+through it the no-book, wide and legal files' and fast2's. Against the family file, an AST comparison with the
+docstrings left out finds 13 functions changed and 3 new, `poly`, `tail` and `builds` (WIDER.md §2).
 
-**What its runs show** (FAMILY_FILE.md §4–§7).
-- **H1, 8 of 8.** Every run reads every kept answer below N at level 0 (64–69 rows) and practises the comparison, the
-  link and the addition at levels 0–2. At level 3 it reads mod(mul(x, x), N) on every answer row kept by then (140–168
-  rows, 200 laws tried in under a second) and poses its cuts and loops and its window (x·o) mod N. It finds its round at
-  level 4 by two routine calls, and its answer program, `C.S[T.round<i> STA.X]`, the next step, within 3 steps of the
-  no-book file's on every seed: by about 322–639 s of training, against the no-book file's 256–344 s and the legal
-  file's 272–349 s. Training ends at the step cap in 562–986 s (the official run: 783.3 s, then 367.6 s of evaluation),
-  against the no-book file's 472–634 s. Almost all the extra time is ROUNDT's: the round search after level 4 takes
-  187 s on the official run and 344 s on seed 5, against the no-book file's 14 s and 21 s, since it accepts 12 rounds at
-  once and runs each 14 times at full size on up to 4,096 rows of each count (FAMILY_FILE.md §6). In the tiny core,
-  which runs the climb alone on fixed rows on a B200, H1's climb is the no-book file's unit for unit for its first 17
-  units, and every level's picks, the library, the 12 rounds and the answer programs are the same; the window's probes
-  add 8% work (FAMILY_FILE.md §4).
-- **The family at full size, 4 of 8** (FAMILY_FILE.md §7). The same file, byte for byte, one H100 each, seed 74, on H1's
-  manifest with only its name and data root changed; each task's data is SP_BREADTH's, and the two held-out tasks' were
-  made by `tasks_family.py` with H1's generator. Learned, each passing H1's checks on its own data (T = 64 on both
-  ladders, every rung 768/768, every split exact), in 631–1,534 s of training: y² + y (held out; H1's round with x in
-  place of 0), y² + 1 (its window x·o + 1, with a 1 it made from N), the cube (two calls of its window (x·o) mod N) and
-  y² − 1 (ROUNDT threw out the rounds that are wrong at 0, and the round kept adds N to x first). Not learned: y² + 3
-  (it never makes the constant 3, and its probes spend the climb's work budget), and 10y², 10y² + 1 and 3y² + 2 (held
-  out), where the reader reads nothing: 10 is a factor, not a gap, and the other two need depth 4.
-- **What that shows.** Only the two held-out tasks, y² + y and 3y² + 2, chosen before any run, are a fair test of
-  generality, and the file learns one of them. Round 7's rules were found on the other six, offline
-  ([FAMILY.md](bar3/scale/family/FAMILY.md)), so the three of those six that are learned show that the port works, not
-  that the rules generalize. The four failures are this file's own, not round 7's: three at the reader's grammar
-  (round 7 read 10y² and 10y² + 1 offline with a numpy reading) and y² + 3 at the work budget (round 7 made its 3
-  offline; FAMILY_FILE.md, "In plain words").
+**What its runs show** (WIDER.md §4–§6).
+- **H1, 8 of 8.** The climbs are the family file's: on every seed, every climb line equals the family file's, seconds
+  masked (`integration/combined_fast/checks/compare_official.py` on the two records). Every run reads every kept answer
+  below N at level 0 (64–69 rows), practises the comparison, the link and the addition at levels 0–2, and reads
+  mod(mul(x, x), N) at level 3 on every answer row kept by then (140–168 rows, 200 laws tried in under a second). It
+  finds its round at level 4 by two routine calls and its answer program the next step, by about 284–348 s of training,
+  and freezes 199 steps later. Training ends at the step cap in 509–777 s (the official run: 522.1 s, then 271.0 s of
+  evaluation), against the family file's 562–986 s and the no-book file's 472–634 s: the round search after level 4,
+  with ROUNDT's checks, now takes 6–51 s against 36–344 s. In the tiny core, H1's, y² + y's and the cube's climbs are
+  the family file's in every unit, line and work (WIDER.md §4).
+- **The family at full size, 7 of 8** (WIDER.md §6). The same file, byte for byte, one H100 each, seed 74, on H1's
+  manifest with only its name and data root changed; each task's data is that of the family file's runs, for six tasks
+  SP_BREADTH's. Learned, each passing H1's checks on its own data (T = 64 on both ladders, every rung 768/768, every
+  split exact), in 520–816 s of training: the family file's four, y² + y, y² + 1, the cube and y² − 1 (y² − 1 in 816 s,
+  against 1,534 s), and three more. y² + 3 makes its 1, posed with its 3, then 3 as 1 + 1 + 1. 10y² is read by the third
+  stage; the empty target poses its ×10, which the climb learns as a one-digit shift. 10y² + 1 is read the same way. Not
+  learned: 3y² + 2, which is read and posed, but the climb's work budget runs out at the level that learns its window;
+  that run trained to its 20,000 steps in 2,951 s.
+- **What that shows.** All eight family tasks were known when the reader was widened: 10y², 3y², 10y² + 1 and 3y² + 2
+  were the brief's own targets, and the doublings were made for y² + 3's 3. So the family's gains are no test of
+  generality; only held-out tasks are. Two were drawn at random after the file was fixed: from y ← a·y^k + b·y + c mod N
+  with k in {2, 3}, a in 1..9 and b and c in 0..9, less the six of them run before (H1, y² + y, y² + 1, the cube, y² + 3
+  and 3y² + 2), 1,794 tasks. The seed was not chosen: it is the repository's HEAD when phase D began, `ab49f60` read as
+  a hexadecimal number (179,609,440), and [`checks/draw_heldout.py`](integration/legal_wider/checks/draw_heldout.py)
+  draws the same pair again ([PREREG.md](integration/legal_wider/PREREG.md)). The pair, 8y³ + 8y + 3 and 2y³ + 9y + 9,
+  both need four Horner steps, and the reader stops at three, so the file reads neither and learns neither: 0 of 2. One
+  more step, in an arm that is not the file, reads both, but its tiny cores ran out of work budget with no round. Of the
+  four tasks held out in phases C and D, the file learns one, y² + y, which the family file learned too.
 
-**How it is built.** It is a generated file, built in six steps; each asserts its input's md5 and rebuilds its file
+**How it is built.** It is a generated file, built in seven steps; each asserts its input's md5 and rebuilds its file
 byte for byte (§4.3):
-- [`make_family.py`](integration/legal_family/make_family.py) reads the no-book file from git (commit `f7dc5f8`, md5
-  `b42ec304` asserted) and applies 53 exact edits, each asserted to match once: 1 for the docstring, 15 for the port
-  and 37 for room (docstrings and one comment that a design doc explains, the rules between a class's methods, and the
-  no-book file's STEP_ADD switch, always on), none of the room edits changing behaviour. It then checks that the file
-  parses, compiles, reads no undefined global and passes the contest's source policy;
-- [`make_nobook.py`](integration/legal_nobook/make_nobook.py) builds the no-book file from the wide file (md5
-  `3bb5ceeb` asserted) by 12 edits, and [`make_wide.py`](integration/legal_wide/make_wide.py) the wide file from the
-  legal file (from git at `8e3c7fe`, md5 `e2fe7a68` asserted) by 16;
+- [`make_wider.py`](integration/legal_wider/make_wider.py) reads the family file from git (commit `ce9f118`, md5
+  `457216d7` asserted) and applies 29 exact edits, each asserted to match once: 1 for the docstring, 5 for the buffers,
+  1 for ROUNDT, 10 for the reader and 12 for room. It then checks that the file parses, compiles, reads no undefined
+  global and passes the contest's source policy;
+- [`make_family.py`](integration/legal_family/make_family.py) builds the family file from the no-book file (from git at
+  `f7dc5f8`, md5 `b42ec304` asserted) by 53 edits;
+- [`make_nobook.py`](integration/legal_nobook/make_nobook.py) builds the no-book file from the wide file (md5 `3bb5ceeb`
+  asserted) by 12, and [`make_wide.py`](integration/legal_wide/make_wide.py) the wide file from the legal file (from git
+  at `8e3c7fe`, md5 `e2fe7a68` asserted) by 16;
 - `make_legal.py`, `make_fast.py --fast2` and `make_combined.py --round 2` build the legal file, fast2 and round 2's
   file (below).
 
-**How it got here.** The legal file (below) showed that bar 3's legal reader could carry a contest file with a book of
-three laws. Phase A widened the reader's grammar, and phase B emptied the book (WIDE.md, NOBOOK.md). Round 7, offline,
-then found four general pieces that bring SP_BREADTH's family on stage 3's tiny core, with practice answers from
-Python (FAMILY.md), and phase C ported them legally. Phase C's predictions were written down before any of its GPU
-runs ([PREREG.md](integration/legal_family/PREREG.md), read-only, its hash recorded). Every one about H1 held; of the
-family's, y² + 3 (predicted learned, at low confidence) and y² − 1 (predicted not learned, at medium) came out the
-other way (FAMILY_FILE.md §8). H1's tiny core found the round, and H1's official run and seeds 1–7, each run once,
-all certified (FAMILY_FILE.md §4–§6).
+**How it got here.** REVIEW.md flagged the family file's ROUNDT rows, kept outside the state dict (rules 4 and 5), and
+the family file missed 10y², 10y² + 1 and 3y² + 2 at its reader and y² + 3 at its work budget. Phase D's brief: the rows
+into buffers, a cheaper ROUNDT that keeps the same rounds, and a wider reader, every new law still answered by the
+learner's routines. Its predictions were written down before any of its GPU runs (PREREG.md, frozen at 15:01:27 PDT, and
+PREREG_ADDENDUM1.md before the run of the arm it adds; read-only, their hashes recorded). Every one about the H100 runs
+held. Three about the tiny cores came out the other way: y² − 1's tiny core is not the family file's, since the empty
+target poses one more law, and the addendum's arm shows ROUNDT is not the cause; 3y² + 2's tiny core found no round; and
+10y²'s and 10y² + 1's, predicted to find none, found theirs (WIDER.md §7). After the freeze two tools changed, both
+outside the file: `make_wider.py` gained `--skip` to build the addendum's arm, and `modal_wider.py` now sends
+`research/` to the tiny cores. The file still rebuilds byte for byte (WIDER.md §1).
 
 **The work budgets.** The file never reads the clock. Each search, and the climb as a whole, stops after a budget of
 machine work, counted by the search's own cost model (STRICT.md §2). The readings' routine calls, the answers of the
-laws they pose and ROUNDT's runs of the round are counted the same way, inside the climb's budget: level 3's pose,
-the reading included, did 4.9e5 units on the official run. The budgets are fast2's, unchanged: `CLIMB_WORK` = 4.3e9
-and `SEARCH_WORK` = 8e8 (lines 77–78), set from fast2's eight climbs (below).
-- The family file's eight H1 climbs spend 1.37e9–1.68e9 units, at most 39% of `CLIMB_WORK` (seed 1), and their
-  largest search 2.78e8, 35% of `SEARCH_WORK` (seed 4), measured as fast2's were
-  (`integration/combined_fast/checks/measure_work.py` on the eight records). No run stops on a work budget.
-- A climb that spent the whole budget would still end inside the hour. The eight climbs ran at 0.16–0.40 s per
-  million units, ROUNDT's checks included (from the climb's start to the answer program, by the times
+laws they pose and ROUNDT's runs of the round, counted as `run_prog` counts them, all count inside the climb's budget:
+level 3's pose, the reading included, did 4.9e5 units on the official run. The budgets are fast2's, unchanged:
+`CLIMB_WORK` = 4.3e9 and `SEARCH_WORK` = 8e8 (lines 78–79), set from fast2's eight climbs (below).
+- The wider file's eight H1 climbs spend 1.37e9–1.68e9 units, at most 39% of `CLIMB_WORK` (seed 1), and their largest
+  search 2.78e8, 35% of `SEARCH_WORK` (seed 4), measured as fast2's were
+  (`integration/combined_fast/checks/measure_work.py` on the eight records), the family file's numbers on every seed.
+  No run stops on a work budget.
+- A climb that spent the whole budget would still end inside the hour. The eight climbs ran at 0.14–0.21 s per million
+  units, ROUNDT's checks included (from the climb's start to the answer program, by the times
   `integration/combined_fast/checks/summarize_seeds.py` reads off the eight records), so 4.3e9 units take at most
-  about 1,720 s; with the latest start (about 64 s) and the longest wait from the answer program to the freeze (about
-  130 s), such a run would freeze by about 1,900 s. On the family, y² + 3's climb did spend its whole budget, and that
-  run went on, never frozen, to its 20,000 steps in 3,183 s (FAMILY_FILE.md §7).
+  about 915 s; with the latest start (about 75 s) and the longest wait from the answer program to the freeze (under
+  140 s), such a run would freeze by about 1,100 s. On the family, 3y² + 2's climb did spend its whole budget, and that
+  run went on, never frozen, to its 20,000 steps in 2,951 s; the held-out pair's runs, which read nothing, trained
+  until the hour ran out (WIDER.md §6).
 
-**The earlier file to judge, the legal file:**
+**The earlier file to judge, the family file:**
+**[`integration/legal_family/submission_stage3_family.py`](integration/legal_family/submission_stage3_family.py)**,
+md5 `457216d746d7a21e854a2d2d3673c9d6`, the file to judge on 2026-10-27 until the wider file. 5,113 lines, 261,651
+bytes. It is the legal file (below) taken to an empty law book in three phases, each a file of its own, built by
+asserted edits of the one before and certified 8 of 8 on H100s (§7):
+- **phase A, a wider reader** ([WIDE.md](integration/legal_wide/WIDE.md) §2): chains of add, sub, mul, pow and mod
+  over x and N, depth 1 to 3, and, when none fits, with the data's constants among the leaves, read as gaps; on H1's
+  rows 200 candidates where the legal file's reader weighed 35;
+- **phase B, no law in the book** ([NOBOOK.md](integration/legal_nobook/NOBOOK.md) §2): before any routine exists,
+  the residue rule compares each kept answer with N and with x, digit by digit, and makes no number. If every answer is
+  below N, the reduction's step x + d·N is posed cut to its parts: the comparison, the link and the addition;
+- **phase C, round 7's pieces** ([FAMILY_FILE.md](integration/legal_family/FAMILY_FILE.md) §2): every window of the
+  reading, a connected run of 2 or 3 of its operations, posed as a law of its own; each constant of the reading made
+  from N, with x + c, x − c and x·c; and ROUNDT, which keeps a round only if it also gives the newest 4,096 kept answers
+  of every count T > 1, run T times. It kept those rows in a Python dict outside the state dict, and ran each round
+  through `run_prog`, instruction by instruction.
+
+It certifies 8 of 8 on H100s, training in 562–986 s (§3), slower than the no-book file's 472–634 s because of ROUNDT.
+Byte for byte, it learns 4 of 8 family tasks at full size: y² + y, y² + 1, the cube and y² − 1. Of its two held-out
+tasks it learns y² + y, not 3y² + 2, which its reader cannot read; round 7's rules, which it ported, were found on the
+other six (FAMILY_FILE.md §7). Its docstring's first line was still the legal file's.
+
+**The file to judge before it, the legal file:**
 **[`integration/combined_legal/submission_stage3_legal.py`](integration/combined_legal/submission_stage3_legal.py)**,
 md5 `e2fe7a681bc981ce844fc8c826132d47`, the file to judge on 2026-10-27 until the family file. 5,000 lines, 261,216
 bytes. It is fast2 (below) with its generated law book replaced, by 18 asserted edits of fast2's committed bytes
@@ -251,7 +286,7 @@ bytes. It is fast2 (below) with its generated law book replaced, by 18 asserted 
   from the kept answer rows of the smallest T, at most 3 times. Its candidates are chains of add, mul and mod over x
   and N, depth 1, then 2, every value computed by the learner's own routines: its addition, repeated addition by
   doubling, and its link repeated until its comparison says "below", at most 1,000 times;
-- **the cut and loop rule** (its `read_pairs`, line 2882), which the family file keeps: each operation of the law read,
+- **the cut and loop rule** (its `read_pairs`, line 2882), which the later files keep: each operation of the law read,
   f and f added into a sum, on the grammar's patterns whose count is a digit (the operation cut to one place) or
   another row's number (its loop over the digits). For mod(mul(x, x), N): the multiply-add row o + x·d, x·d, their
   loops, Horner's step red(x + d·N) and the reduction red(x + o·N).
@@ -266,13 +301,13 @@ machine that followed: a law test at full size on H1's own rows ([LEGAL_TEST.md]
 fully legal climb ([LEGALCLIMB.md](bar3/scale/legalclimb/LEGALCLIMB.md)), and the legal reader, with which three laws
 were enough ([LEGALLOOPS.md](bar3/scale/legalloops/LEGALLOOPS.md)).
 
-**The file to judge before it, fast2:**
+**The file to judge before that, fast2:**
 **[`integration/combined_fast/submission_stage3_fast2.py`](integration/combined_fast/submission_stage3_fast2.py)**,
 md5 `41b9a013ae9436d7b7a53e9e594a18db`, the file to judge from 2026-10-26 until the legal file. 4,940 lines, 258,349
 bytes. It is sp2, the self-practising stage-3 file, with the five variants of it that each certified alone: the
 weak-check fix, the strict build, the learned loop over T, the generated law book and the generic instructions
 ([COMBINED.md](integration/combined_sp2/COMBINED.md) §1–§2 say where they meet). Then engineering that changes nothing
-it learns ([FAST.md](integration/combined_fast/FAST.md)), all of which the legal file and the family file keep:
+it learns ([FAST.md](integration/combined_fast/FAST.md)), all of which the legal, family and wider files keep:
 - a Triton kernel runs each row's whole instruction sequence of the search's machine in one GPU launch, step for step
   as the old machine did, on integers;
 - the short sequences the search ran one instruction at a time go through the same kernel, with their machine work
@@ -310,15 +345,15 @@ numbers in 16 parameter tensors, Adam. It is a generated file: [`make_stage3.py`
 from [`stage3_template.py`](integration/stage3_template.py) (1,008 lines),
 [`lib/libcore.py`](integration/lib/libcore.py) (1,877 lines) and stage 1's reader, and rebuilding it from those sources
 gives the same bytes (§4.3). Its docstring (lines 1–35) is the best one-page summary of stage 3.
-- It still has what fast2 removed, and the legal and family files with it: hand-picked practice problems, the
-  countdown, SEL.S and BRG.X, the clock, and rows and programs held in Python (the end of §5 lists where it differs).
+- It still has what fast2 removed, and the files after fast2 with it: hand-picked practice problems, the countdown,
+  SEL.S and BRG.X, the clock, and rows and programs held in Python (the end of §5 lists where it differs).
 - It stays here because it has the most evidence about what the line rests on: the official run, seven more H100
   seeds, and an ablation on the official manifest that removes each hand-made part in turn (§7).
 - Two of its practice checks are weak: on about 3% of runs, none of its 8 certified seeds among them, the reduction's
   accepts a shortcut that fails at full size, and the conditional subtraction's never tests x between N and 2N. A fixed
   copy, [`fix/submission_stage3_s3i_fix.py`](integration/ablation_s3/fix/submission_stage3_s3i_fix.py) (md5
   `09a8263cf09321fef9ba3d4ffbc2aea6`), only adds the missing probes and replays all 8 certified runs field for field
-  (§7). fast2, the legal file and the family file have the fix.
+  (§7). fast2 and every file after it have the fix.
 
 **For context** (OVERVIEW [§4.1](OVERVIEW.md#41-the-models-at-the-frontier) and §4.8 compare them):
 - [`integration/self_practice/submission_stage3_sp2.py`](integration/self_practice/submission_stage3_sp2.py), md5
@@ -326,9 +361,10 @@ gives the same bytes (§4.3). Its docstring (lines 1–35) is the best one-page 
   laws ([SELF_PRACTICE.md](integration/SELF_PRACTICE.md)). 250,643 bytes. It certifies on the official manifest and on
   all 8 B200 seeds. Its parent, [`submission_stage3_sp.py`](integration/self_practice/submission_stage3_sp.py) (md5
   `f0ef5b069ef2e1bd9dc337798d246ba4`), certifies on the official manifest and on 7 of 8 seeds. fast2 is sp2 with
-  five variants, the legal file is fast2 with three laws and the law reader, and the family file is the legal file
-  with a wider reader, no law in its book and round 7's rules.
-- The family file's two steps from the legal file, each certified 8 of 8 on H100s (§7): the wide file,
+  five variants, the legal file is fast2 with three laws and the law reader, the family file is the legal file with a
+  wider reader, no law in its book and round 7's rules, and the wider file is the family file with ROUNDT's rows in its
+  buffers and a wider reader still.
+- The two steps between the legal file and the family file, each certified 8 of 8 on H100s (§7): the wide file,
   [`integration/legal_wide/submission_stage3_wide.py`](integration/legal_wide/submission_stage3_wide.py) (md5
   `3bb5ceebf1de115501efc3398af8a457`), and the no-book file,
   [`integration/legal_nobook/submission_stage3_nobook.py`](integration/legal_nobook/submission_stage3_nobook.py) (md5
@@ -350,6 +386,8 @@ with its md5 and record.
 
 The official records, one JSON per evaluator run on the untouched official manifest (`h100_hard_h1.json`), and the
 seed runs on that manifest with only `runtime.seeds` changed:
+- **The wider file:** [`legal_wider_official.json`](integration/legal_wider/records/legal_wider_official.json) and
+  `legal_wider_h100_seed1.json` … `seed7.json`, all in `integration/legal_wider/records/`, all on H100s.
 - **The family file:** [`legal_family_official.json`](integration/legal_family/records/legal_family_official.json) and
   `legal_family_h100_seed1.json` … `seed7.json`, all in `integration/legal_family/records/`, all on H100s.
 - **The legal file:** [`combined_legal_official.json`](integration/combined_legal/records/combined_legal_official.json)
@@ -370,19 +408,21 @@ first recipe for step 1), not stage 1's.
 **What a record holds.** One JSON per evaluator run: `submission` (the exact source sent, as `submission.py`),
 `manifest` (as passed; the shared runner's records also name `manifest_file`), the evaluator's full `stdout`, whose
 last `RESULT_JSON=` line is the evaluator's own result, `result` (that line, parsed), `gpu`, `returncode` and
-`wall_seconds`, and for records written by [`tools/modal_runner.py`](tools/modal_runner.py) or its copy (below) also
+`wall_seconds`, and for records written by [`tools/modal_runner.py`](tools/modal_runner.py) or its copies (below) also
 `submission_md5` (checked inside the container before the run), `runner.data_md5`, an md5 over the generated data
 folder the run read, and `usage`, whose `peak_session_rss_mb` is the peak host memory quoted in §4 and §5.
 
-**The runner's copy.** Every family-file record, H1's included, ran through a copy of the shared runner,
-[`integration/legal_family/modal_runner_family.py`](integration/legal_family/modal_runner_family.py) (md5
-`36a999e066e2cb369fba7342e85e98fc`, each record's `runner.tool_md5`). `make_runner.py` writes it from
-`tools/modal_runner.py` (md5 asserted) by five asserted edits: the two held-out tasks built into its image and its task
-list, the tool's name in the record, its paths and its docstring. H1's eight runs went through it, the official one with
-the official manifest untouched, and read the same H1 folder as every shared-runner record (data md5 `a6414ec9…`). One
-fix was made after the pre-registration froze, outside the submission: the copy's path line, which failed at import in
-the container on its first launch, before any job ran. The official run then went out with `--force`, since that launch
-had registered the record's name (FAMILY_FILE.md §7).
+**The runner's copies.** Every wider-file record, H1's included, ran through a copy of the shared runner,
+[`integration/legal_wider/modal_runner_wider.py`](integration/legal_wider/modal_runner_wider.py) (md5
+`796f8a747a4848d738be53b95c31a70e`, each record's `runner.tool_md5`). Its `make_runner.py` writes it from
+`tools/modal_runner.py` (md5 asserted) by five asserted edits: the held-out tasks built into its image and its task list
+(the family file's two and the pair drawn for the wider file), the tool's name in the record, its paths and its
+docstring. H1's eight runs went through it, the official one with the official manifest untouched, and read the same H1
+folder as every shared-runner record (data md5 `a6414ec9…`). The family file's records ran through an earlier copy,
+[`integration/legal_family/modal_runner_family.py`](integration/legal_family/modal_runner_family.py) (md5 `36a999e0…`),
+made the same way with that file's two held-out tasks. One fix was made to it after its pre-registration froze, outside
+the submission: its path line, which failed at import in the container on its first launch, before any job ran; the
+official run then went out with `--force`, since that launch had registered the record's name (FAMILY_FILE.md §7).
 
 **One command** (standard library only, from this folder, with the competition clone next to it):
 
@@ -390,14 +430,14 @@ had registered the record's name (FAMILY_FILE.md §7).
 python3 tools/verify_records.py
 ```
 
-For each of the 34 records above (the family file's eight, the legal file's eight, fast2's eight, s3i's eight, stage
-1's and general v3's) it prints: the md5 of the embedded source against the file's md5 now; the manifest against the
-competition's `h100_hard_h1.json` (identical, or differing only in `runtime.seeds` for the seed runs); whether the
-`RESULT_JSON=` line in `stdout` equals `result`; T on both ladders; every rung's count; the three splits; the times. On
-2026-10-27 all 34 checked out ("34 of 34 records check out"): md5s equal, T = 64 on both ladders, every rung 768/768,
-test 9,999/9,999, ood_t and ood_n_t 10,002/10,002. Any other record: `python3 tools/verify_records.py REC.json=FILE.py`.
-For example, the wide and no-book files' eight each, the fast file's eight, and the self-practice files' official
-records (all check out the same way):
+For each of the 42 records above (the wider file's eight, the family file's eight, the legal file's eight, fast2's
+eight, s3i's eight, stage 1's and general v3's) it prints: the md5 of the embedded source against the file's md5 now;
+the manifest against the competition's `h100_hard_h1.json` (identical, or differing only in `runtime.seeds` for the seed
+runs); whether the `RESULT_JSON=` line in `stdout` equals `result`; T on both ladders; every rung's count; the three
+splits; the times. On 2026-10-27 all 42 checked out ("42 of 42 records check out"): md5s equal, T = 64 on both ladders,
+every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002. Any other record:
+`python3 tools/verify_records.py REC.json=FILE.py`. For example, the wide and no-book files' eight each, the fast file's
+eight, and the self-practice files' official records (all check out the same way):
 
 ```bash
 W=integration/legal_wide; R=$W/records/legal_wide
@@ -414,40 +454,45 @@ python3 tools/verify_records.py $S/records/runner/submission_stage3_sp_official.
 Or by hand, for one record:
 
 ```bash
-python3 - integration/legal_family/records/legal_family_official.json <<'EOF'
+python3 - integration/legal_wider/records/legal_wider_official.json <<'EOF'
 import hashlib, json, sys
 print(hashlib.md5(json.load(open(sys.argv[1]))["submission"].encode()).hexdigest())
 EOF
-md5 integration/legal_family/submission_stage3_family.py      # Linux: md5sum
+md5 integration/legal_wider/submission_stage3_wider.py      # Linux: md5sum
 ```
 
-**The family's eight records** (`family_<task>_h100.json`, in `integration/legal_family/records/`: plusy, rho, cube,
-minus1, plus3, ten, tenrho and three2) are not in the default. Each ran on its task's own data, so the checker flags
-its manifest, whose `data.data_root` and `name` differ from H1's (`litmus_<task>`, `litmus-<task>`), and prints BAD.
-Check them with the same command and read the lines it prints (with no `=FILE.py`, the checker takes the file each
-record names, here the family file):
+**The family's records** are not in the default: the wider file's ten (`wider_<task>_h100.json`, in
+`integration/legal_wider/records/`: plusy, rho, cube, minus1, plus3, ten, tenrho, three2, and the drawn pair
+poly_8_3_8_3 and poly_2_3_9_9), and the family file's eight (`family_<task>_h100.json`, in
+`integration/legal_family/records/`). Each ran on its task's own data, so the checker flags its manifest, whose
+`data.data_root` and `name` differ from H1's (`litmus_<task>`, `litmus-<task>`), and prints BAD. Check them with the
+same command and read the lines it prints (with no `=FILE.py`, the checker takes the file each record names):
 
 ```bash
+R=integration/legal_wider/records/wider
+python3 tools/verify_records.py ${R}_{plusy,rho,cube,minus1,plus3,ten,tenrho,three2,poly_8_3_8_3,poly_2_3_9_9}_h100.json
 R=integration/legal_family/records/family
 python3 tools/verify_records.py ${R}_{plusy,rho,cube,minus1,plus3,ten,tenrho,three2}_h100.json
 ```
 
-In every record the embedded source's md5 is the family file's and the `RESULT_JSON=` line equals `result`. The four
-learned tasks (plusy, rho, cube, minus1) show T = 64 on both ladders, every rung 768/768 and every split exact; the
-others show no certified T and at most 12 of 9,999 test rows. The data md5 on each record's last line is its task's
-folder's: for the six tasks that are not held out it equals their SP_BREADTH records'
-(`integration/sp_breadth/records/g3_<task>_h100.json`), and plusy's and three2's folders were made by
-`tasks_family.py` in the runner copy's image (FAMILY_FILE.md §7).
+In every record the embedded source's md5 is its file's and the `RESULT_JSON=` line equals `result`. The wider file's
+seven learned tasks (all but three2 of the family) show T = 64 on both ladders, every rung 768/768 and every split
+exact; three2 and the pair show no certified T and at most 19 of 9,999 test rows. The family file's four learned tasks
+(plusy, rho, cube, minus1) show the same, and its other four at most 12 of 9,999. The data md5 on each record's last
+line is its task's folder's. For the eight family tasks the wider file's runs read the same folders as the family
+file's, and for the six of them that neither file held out, the same as their SP_BREADTH records'
+(`integration/sp_breadth/records/g3_<task>_h100.json`); plusy's and three2's folders were made by `tasks_family.py`, and
+the pair's by `tasks_wider.py`, in the runner copies' images (FAMILY_FILE.md §7, WIDER.md §6).
 
-**What to look for in the family file's log** (`stdout` of `legal_family_official`):
+**What to look for in the wider file's log** (`stdout` of `legal_wider_official`):
 - `LR climb_starts step=563`: the climb starts, with every cell right;
 - `LR climb step=576 L0 pose: 22 candidates on 12 roots; fact: answers below N on 65 rows (N:y …)`: the residue rule,
   once 64 answer rows are kept, with every row it read; it poses the comparison, the link and the addition;
 - `LR climb step=593 L3 pose: 102 candidates on 102 roots; read mod(mul(x,x),N) on 141 of 141 answer rows, 200 laws
-  tried, 0.6s, poses ['w.mod.mul/w2']`: the law reader, at the start of level 3, the window it poses, and its cuts and
+  tried, 0.4s, poses ['w.mod.mul/w2']`: the law reader, at the start of level 3, the window it poses, and its cuts and
   loops, in every binding;
-- `LR climb step=631 L4 round: cost 2 calls`: the round, found at level 4 as two routine calls; most of its 186.8 s
-  are ROUNDT's checks;
+- `LR climb step=631 L4 round: cost 2 calls`: the round, found at level 4 as two routine calls, in 24.1 s with ROUNDT's
+  checks (the family file's took 186.8 s);
 - `LR outer step=632 answer program: cost 3`: the answer program's search, the programs it found
   (`C.S[T.round<i> STA.X]`), and the climb's work so far (`1.448e+09 in all`, 34% of `CLIMB_WORK`);
 - `LR round_found step=632`: the three answer programs, the four rounds found and the library; the programs and the
@@ -457,25 +502,27 @@ folder's: for the six tasks that are not held out it equals their SP_BREADTH rec
   buffers), and `AUDIT` (how many rows of the subtraction table the count downs used, and how many of those training
   never visited: 0).
 
-In the legal file's log: `LR climb step=580 L3 pose: 96 candidates on 96 roots; read mod(mul(x,x),N) on 23 of 79
-answer rows, 35 laws tried` (its law reader, with no residue rule before it), `LR climb step=613 L4 round: cost 2
-calls`, `LR outer step=614 answer program: cost 3` (`1.278e+09 in all`, 30% of `CLIMB_WORK`) and
-`LR frozen step=813`. In fast2's log: `LR climb step=629 L4 round: cost 2 calls` (its round),
-`LR outer step=630 answer program: cost 3` (three answer programs, and `3.254e+09 in all`, 76% of `CLIMB_WORK`) and
-`LR frozen step=829`. In s3i's log:
+The family file's log has the same climb lines at the same steps, seconds masked, on every seed
+(`integration/combined_fast/checks/compare_official.py`); there the reading took 0.6 s and the round's search 186.8 s.
+In the legal file's log: `LR climb step=580 L3 pose: 96 candidates on 96 roots; read mod(mul(x,x),N) on 23 of 79 answer
+rows, 35 laws tried` (its law reader, with no residue rule before it), `LR climb step=613 L4 round: cost 2 calls`,
+`LR outer step=614 answer program: cost 3` (`1.278e+09 in all`, 30% of `CLIMB_WORK`) and `LR frozen step=813`. In
+fast2's log: `LR climb step=629 L4 round: cost 2 calls` (its round), `LR outer step=630 answer program: cost 3` (three
+answer programs, and `3.254e+09 in all`, 76% of `CLIMB_WORK`) and `LR frozen step=829`. In s3i's log:
 `LR climb step=671 L6 round: cost 5` (the round found, as one of several equivalent spellings), `LR frozen step=870`
 (the freeze), the `ROUND` line (the four programs the tournament holds, with their weights), and the
 `SCHEDULE … history=[…]` line (every phase change, with its step).
 
 Three things that look odd but are not:
-- `exact_accuracy` reads 0.9999999892 on ood_t and ood_n_t in all four files' official records, although
+- `exact_accuracy` reads 0.9999999892 on ood_t and ood_n_t in all five files' official records, although
   `correct_examples` is 10,002 of 10,002. The evaluator sums float32 batch means, and the shortfall is exactly one
   float32 rounding (2⁻²⁴) on the last batch of 1,810 rows. The counts are what certification uses.
 - `final_train_loss` is −0.0: after the freeze the loss is the parameters' sum times 0.0, exactly zero with the sum's
   sign.
-- Training reports 783.3 s for the family file (465.3 s for the legal file, 759.3 s for fast2, 1,340.3 s for s3i),
-  though the model froze at step 831 (813, 829, 870): the evaluator keeps stepping, at learning rate 0, to the file's
-  20,000 steps. The progress line just after the freeze (step 900) reads 559.1 s (308.1 s, 545.7 s, 1,143.0 s).
+- Training reports 522.1 s for the wider file (783.3 s for the family file, 465.3 s for the legal file, 759.3 s for
+  fast2, 1,340.3 s for s3i), though the model froze at step 831 (831, 813, 829, 870): the evaluator keeps stepping, at
+  learning rate 0, to the file's 20,000 steps. The progress line just after the freeze (step 900) reads 345.4 s
+  (559.1 s, 308.1 s, 545.7 s, 1,143.0 s).
 
 [OVERVIEW §9](OVERVIEW.md#9-where-docs-and-records-disagree) lists every place a write-up and a record disagree.
 
@@ -489,31 +536,34 @@ uv venv .venv && source .venv/bin/activate && uv sync
 bash scripts/generate_datasets.sh        # every tier; the H1 block alone (lines 282-301) is enough
 python3 ../cpu_first/tools/verify_records.py --data \
   data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2
-mkdir -p /tmp/family && cp ../cpu_first/integration/legal_family/submission_stage3_family.py /tmp/family/submission.py
+mkdir -p /tmp/wider && cp ../cpu_first/integration/legal_wider/submission_stage3_wider.py /tmp/wider/submission.py
 CUDA_VISIBLE_DEVICES=0 python -m benchmark.runner --manifest benchmark/manifests/h100_hard_h1.json \
-  --submission-file /tmp/family/submission.py --include-structured-metrics | tee family_run.log
-python3 ../cpu_first/tools/verify_records.py --log family_run.log
+  --submission-file /tmp/wider/submission.py --include-structured-metrics | tee wider_run.log
+python3 ../cpu_first/tools/verify_records.py --log wider_run.log
 ```
 
-- **The family file needs Triton and a C compiler at run time.** On Linux, `uv sync` installs the evaluator's pinned
+- **The wider file needs Triton and a C compiler at run time.** On Linux, `uv sync` installs the evaluator's pinned
   torch 2.12.1 and, with it, Triton 3.7.1 (both in the clone's `uv.lock`). Triton builds a small C launcher with the
   host's C compiler the first time it runs a kernel. The evaluator's own image has one (`build-essential`, in the
   clone's `modal_runner.py`, line 49), and so does our runner's (§4.2). The file checks only that Triton imports
-  (`_fused`, line 949).
+  (`_fused`, line 947).
 - **Without Triton** the file runs its search's machine one instruction at a time (`_ustep`). That gives the same
   states (FAST.md §3), but slowly: round 2's file, whose same path replayed CUDA graphs, needed about 3,792 s of
-  training to reach its round on an H100 (COMBINED.md §9), and the fallback has no graphs (FAST.md §6). The family
+  training to reach its round on an H100 (COMBINED.md §9), and the fallback has no graphs (FAST.md §6). The wider
   file's official climb does 0.44 times fast2's work (1.448e9 units against 3.254e9); the fallback was not run on it.
 - The `--data` line should print `a6414ec9fc6a5efce6414895b52d4eb7`, the H1 folder every H1 record of the shared
-  runner and its copy read (this checkout's own H1 folder gives it too).
+  runner and its copies read (this checkout's own H1 folder gives it too).
 - The copy only gives the file rule 1's name; the bytes are unchanged.
-- The run takes about 14 to 23 minutes (the eight records' wall times: 856–1,360 s).
-- `--log` compares your `RESULT_JSON=` line with `legal_family_official`: the certified T, every rung and the
-  splits. Times will differ: the eight H100 runs trained in 562–986 s.
+- The run takes about 13 to 23 minutes (the eight records' wall times: 799–1,353 s).
+- `--log` compares your `RESULT_JSON=` line with `legal_wider_official`: the certified T, every rung and the
+  splits. Times will differ: the eight H100 runs trained in 509–777 s.
 - No decision reads the clock: the searches stop by work budgets, the same count on every host (STRICT.md §2), and the
   readings' routine calls and ROUNDT's runs count in the climb's. A slower host takes longer for the same climb.
-  fast2's official climb was the same 72 lines in four separate H100 runs (§2); the family file has one run a seed,
-  so that is not shown for it.
+  fast2's official climb was the same 72 lines in four separate H100 runs (§2), and each of the wider file's eight
+  climbs is the family file's on the same seed, line for line, seconds masked (§2).
+- For the family file, copy its file instead, and compare with
+  `--log family_run.log integration/legal_family/records/legal_family_official.json`. Its run took about 14 to 23
+  minutes (wall times 856–1,360 s), and its eight H100 runs trained in 562–986 s.
 - For the legal file, copy its file instead, and compare with
   `--log legal_run.log integration/combined_legal/records/combined_legal_official.json`. Its run took about 13 to 19
   minutes (wall times 766–1,130 s), and its eight H100 runs trained in 465–721 s.
@@ -531,46 +581,49 @@ python3 ../cpu_first/tools/verify_records.py --log family_run.log
 `build-essential`, `uv sync --frozen` on the clone's lock file), regenerates every dataset with
 `scripts/generate_datasets.sh`, sends the file as bytes, checks its md5 in the container, and runs the untouched
 manifest on an H100. It needs a Modal account, the Modal client 1.2.6, and the competition clone at
-`../one-layer-deeper` (or `ONE_LAYER_DEEPER=<path>`). The family file's records came from its copy,
-`integration/legal_family/modal_runner_family.py`, which differs only in the two held-out tasks built into its image
-and its task list, its paths, its docstring and the tool's name in its records (§3):
+`../one-layer-deeper` (or `ONE_LAYER_DEEPER=<path>`). The wider file's records came from its copy,
+`integration/legal_wider/modal_runner_wider.py`, which differs only in the held-out tasks built into its image and its
+task list, its paths, its docstring and the tool's name in its records (§3):
 
 ```bash
-R=integration/legal_family/modal_runner_family.py
-python -m modal run --detach $R --mode official --file integration/legal_family/submission_stage3_family.py \
-  --name family_judge --out /tmp/judge_records --run family-judge
-python $R --mode fetch --out /tmp/judge_records --run family-judge --wait
-python $R --mode compare integration/legal_family/records/legal_family_official.json \
-  /tmp/judge_records/family_judge.json
-python -m modal run --detach $R --mode plan --plan integration/legal_family/plans/family.json \
-  --out /tmp/judge_records --run family-tasks
+R=integration/legal_wider/modal_runner_wider.py
+python -m modal run --detach $R --mode official --file integration/legal_wider/submission_stage3_wider.py \
+  --name wider_judge --out /tmp/judge_records --run wider-judge
+python $R --mode fetch --out /tmp/judge_records --run wider-judge --wait
+python $R --mode compare integration/legal_wider/records/legal_wider_official.json \
+  /tmp/judge_records/wider_judge.json
+python -m modal run --detach $R --mode plan --plan integration/legal_wider/plans/family.json \
+  --out /tmp/judge_records --run wider-tasks
 ```
 
-The last command runs the eight family tasks, one H100 each, with a cap of 48 GB each (`plans/family.json`); they peaked
-at 17.1 GB. H1's eight runs had the runner's default cap, 24 GB, and peaked at 13.8 GB. For the legal file or fast2, run
-`tools/modal_runner.py`, which wrote their records, with its file and record and `--memory-gb 48`, the cap their runs
-had; for s3i, give its file and record and leave the cap at its default. [tools/README.md](tools/README.md) has the
+The last command runs the eight family tasks and the drawn pair, one H100 each, with a cap of 48 GB each
+(`plans/family.json`); they peaked at 18.9 GB. H1's eight runs had the runner's default cap, 24 GB, and peaked at
+17.5 GB. For the family file, use its own copy, `integration/legal_family/modal_runner_family.py`, with its file,
+record and plan. For the legal file or fast2, run `tools/modal_runner.py`, which wrote their records, with its file and
+record and `--memory-gb 48`, the cap their runs had; for s3i, give its file and record and leave the cap at its
+default. [tools/README.md](tools/README.md) has the
 other modes, the limits, and the runner's own validation against stored records. The write-ups' commands say
 `~/github/sotaku/venv/bin/python`: that is the author's virtualenv, and any Python with torch, numpy and that Modal
 client does.
 
 ### 4.3 Cheap checks (CPU)
 
-- **The family file is built by its builder** (about a second; it reads the no-book file from this checkout's git
-  history, and the contest's source policy from the clone next to it). This is `make_family.py`, without writing
+- **The wider file is built by its builder** (about a second; it reads the family file from this checkout's git
+  history, and the contest's source policy from the clone next to it). This is `make_wider.py`, without writing
   anything:
 
   ```bash
   python3 - <<'EOF'
   import hashlib, importlib.util as u
-  s = u.spec_from_file_location("m", "integration/legal_family/make_family.py")
+  s = u.spec_from_file_location("m", "integration/legal_wider/make_wider.py")
   m = u.module_from_spec(s); s.loader.exec_module(m)
   print(hashlib.md5(m.build()[0].encode()).hexdigest())
   EOF
   ```
 
-  It prints the family file's md5. With `integration/legal_nobook/make_nobook.py` the same lines print the no-book
-  file's (`b42ec30422c182c0972aebca5be0c470`), with `integration/legal_wide/make_wide.py` the wide file's
+  It prints the wider file's md5. With `integration/legal_family/make_family.py` the same lines print the family
+  file's (`457216d746d7a21e854a2d2d3673c9d6`), with `integration/legal_nobook/make_nobook.py` the no-book file's
+  (`b42ec30422c182c0972aebca5be0c470`), with `integration/legal_wide/make_wide.py` the wide file's
   (`3bb5ceebf1de115501efc3398af8a457`), and with `integration/combined_legal/make_legal.py` the legal file's. With
   `integration/combined_fast/make_fast.py` and `m.build(fast2=True)[0]` they print fast2's (`m.build()[0]` the fast
   file's), and with `integration/combined_sp2/make_combined.py` and `m.build(round_=2)[0]` round 2's,
@@ -590,7 +643,7 @@ client does.
 - **The competition's static source policy** (the check the CLI and the evaluator run before importing a file):
 
   ```bash
-  python3 - integration/legal_family/submission_stage3_family.py <<'EOF'
+  python3 - integration/legal_wider/submission_stage3_wider.py <<'EOF'
   import sys
   sys.path.insert(0, "../one-layer-deeper")
   from submission_validation import validate_submission_source
@@ -598,100 +651,113 @@ client does.
   EOF
   ```
 
-  It prints `submission.py` (a failure raises) for the family file, the legal file, fast2, the fast file and the three
-  other frontier files.
-- **The local checks** (CPU, about 5 minutes and 4.6 GiB; they need torch and the H1 data): combined_sp2's
+  It prints `submission.py` (a failure raises) for the wider file, the family file, the legal file, fast2, the fast file
+  and the three other frontier files.
+- **The local checks** (CPU, about 5 minutes and 3.8 GB; they need torch and the H1 data): combined_sp2's
   [`checks/local_combined.py`](integration/combined_sp2/checks/local_combined.py) runs each piece's own checks on a
   file: the source policy, the machines, the instruction set, the designed path, the buffers and the state dict, the
-  gradient test of rule 8, the fix, the book, a tiny-budget climb and a replay. FAMILY_FILE.md §12 has the command
-  (`COMBINED_FILE` picks the file), and `integration/legal_family/checks/logs/local_family.log` its output on the
-  family file. [`checks/compare_local.py`](integration/legal_family/checks/compare_local.py) sets that beside the
-  no-book file's output: every part gives the same results but the size, the fix's line naming the file, and the book,
-  whose code differs from book_gen_fix's by 105 lines against 92 (the port's patterns and dispatch), as they should
-  (FAMILY_FILE.md §3). On a CPU the kernel never runs; its own checks need a GPU (FAST.md §3).
-- **The readings and ROUNDT alone:** [`checks/family_local.py`](integration/legal_family/checks/family_local.py) runs
-  the readings and the pose after them on the legal file's tiny-core state at its level 3, with each task's answers on
-  H1's 400 answer rows of T = 1, made by Python's integers outside any run. H1's law is read on all 400 rows, the
-  family's as FAMILY_FILE.md §3 lists them (none for 10y², 10y² + 1 and 3y² + 2), and every posed law's answers equal
-  Python's integers on every draw: 60 law-pattern pairs, 0 disagreements. `MODE=roundt` and `checks/roundt_rows.py`
-  check ROUNDT: the no-book file's four H1 rounds pass it on 1,000, 4,096 and 4,096 rows of T = 2, 4 and 8, and each
-  fails with one answer of T = 4 changed (FAMILY_FILE.md §3).
+  gradient test of rule 8, the fix, the book, a tiny-budget climb and a replay. WIDER.md §12 has the command
+  (`COMBINED_FILE` picks the file), and `integration/legal_wider/checks/logs/local_wider.log` its output on the wider
+  file. [`checks/compare_local.py`](integration/legal_wider/checks/compare_local.py) sets that beside the family file's
+  output: every part gives the same results but the size, the buffers (860,783 numbers against 336,487, ROUNDT's
+  524,296 more, a fresh model from the state dict giving the same logits), the fix's line naming the file, and the
+  book, whose code differs from book_gen_fix's by 165 lines against 105 (`Root.goals` and the comment squeeze), as they
+  should (WIDER.md §3). On a CPU the kernel never runs; its own checks need a GPU (FAST.md §3).
+- **The readings and ROUNDT alone** (WIDER.md §3):
+  [`checks/wider_local.py`](integration/legal_wider/checks/wider_local.py) runs the readings and the pose after them on
+  the legal file's tiny-core state at its level 3, with each task's answers on H1's 400 answer rows of T = 1, made by
+  Python's integers outside any run. H1, the cube, y² + 1, y² − 1 and y² + y read and pose as in the family file, line
+  for line; y² + 3 also poses 1 and 2; 10y², 10y² + 1 and 3y² + 2 are read now; and all 115 posed law-pattern pairs
+  agree with Python's integers on every draw. On the held-out pair it reads nothing.
+  [`checks/roundt_same_local.py`](integration/legal_wider/checks/roundt_same_local.py) runs the old ROUNDT and the new
+  on 31 rounds: the same verdicts, every output bit for bit, the same work.
+  [`checks/roundt_buffers.py`](integration/legal_wider/checks/roundt_buffers.py) checks, after each of 300 random
+  batches, that the rows `climb_unit` reads from the buffers equal the family file's dict, and that a fresh model
+  loaded with the state dict has the same buffers and gives the same logits.
 - **For s3i**, the plumbing and gradient checks are in [INTEGRATION §7](integration/INTEGRATION.md#7-reproduce).
 
 ## 5. The gray areas: what a judge should rule on
 
-Each of the contest's 16 rules in turn, for the family file. "Gray" means a reasonable reader could object; the point
-is flagged, not argued away. Line numbers are the family file's. REVIEW.md as of commit `afbd36e` takes every rule for
-the legal file, at the legal file's line numbers, and as of commit `43da60f` for fast2, at fast2's; where they differ
-from the family file, the end of this section says so.
+Each of the contest's 16 rules in turn, for the wider file. "Gray" means a reasonable reader could object; the point
+is flagged, not argued away. Line numbers are the wider file's. REVIEW.md as of commit `ab49f60` takes every rule for
+the family file, at the family file's line numbers, as of commit `afbd36e` for the legal file, and as of commit
+`43da60f` for fast2; where they differ from the wider file, the end of this section says so.
 [OVERVIEW §6](OVERVIEW.md#6-rules-116-for-the-best-model) does the same for s3i, and
 [STRICT.md](integration/strict/STRICT.md) §1 takes the gray points one at a time, with what the strict build changed
 and why the rest stayed. Where s3i differs, the end of this section says so too.
 
 1. **One `submission.py` exporting one `Submission`: yes.** The file is sent as `submission.py`, in UTF-8. It has one
-   `SUBMISSION` (line 5106): the model and optimizer factories, a token loss, batch sizes of 512 and 2,048, and a cap
-   of 20,000 steps (lines 129–131). It is 261,651 bytes of the 262,144 allowed, and the contest's static source policy
+   `SUBMISSION` (line 5166): the model and optimizer factories, a token loss, batch sizes of 512 and 2,048, and a cap
+   of 20,000 steps (lines 129–131). It is 261,801 bytes of the 262,144 allowed, and the contest's static source policy
    passes (§4.3).
 2. **Self-contained: yes, with a word on Triton.** It imports the standard library (`itertools`, `math`, `time`,
-   `zlib`, `array`, `collections`), `torch`, the public `benchmark` API and `triton` (lines 11–31). No numpy, no files,
+   `zlib`, `array`, `collections`), `torch`, the public `benchmark` API and `triton` (lines 12–32). No numpy, no files,
    no network.
    - Triton is not named in the evaluator's `pyproject.toml`. It is pinned in its `uv.lock` (3.7.1) as a Linux
      dependency of the pinned torch 2.12.1, and `uv sync --frozen` installs it.
-   - The import sits in a `try` (lines 25–29): without Triton the file runs the old machine, which gives the same
+   - The import sits in a `try` (lines 26–30): without Triton the file runs the old machine, which gives the same
      states but slowly (§4.1).
    - Triton builds a small C launcher with the host's C compiler, which the evaluator's image installs
      (`build-essential`).
 
    *Does a dependency pinned through torch count as a "pinned evaluator dependency"?*
-3. **The participant defines the model, optimizer, loss, batch sizes and steps: yes.** Adam (`LR` = 0.05, line 42),
-   which clears its moments once, in its own step, when the schedule enters phase B (`Adam`, line 5067); a scheduler
-   that sets the learning rate to 0 once the model is frozen (`Schedule`, line 5083); and the loss
-   (`token_training_loss`, line 5044). The answer program runs its round as many times as T says, at most 100
+3. **The participant defines the model, optimizer, loss, batch sizes and steps: yes.** Adam (`LR` = 0.05, line 43),
+   which clears its moments once, in its own step, when the schedule enters phase B (`Adam`, line 5127); a scheduler
+   that sets the learning rate to 0 once the model is frozen (`Schedule`, line 5143); and the loss
+   (`token_training_loss`, line 5104). The answer program runs its round as many times as T says, at most 100
    (`LOOP_CAP`, line 179): recurrence and adaptive computation, which rule 3 allows.
 4. **The evaluator owns the loop, data order, backward passes, clipping, cadence, seeds and deadline: gray.**
    - The evaluator is untouched: one forward, one loss and one backward a step, no extra passes, no batch reuse.
-   - No decision reads the clock or the budget. `build_optimizer` (line 5101) reads only the device type, and the clock
-     (`_clock`, line 1435) only stamps the log's seconds, the readings' records among them. Each search stops after
+   - No decision reads the clock or the budget. `build_optimizer` (line 5161) reads only the device type, and the clock
+     (`_clock`, line 1433) only stamps the log's seconds, the readings' records among them. Each search stops after
      `SEARCH_WORK` = 8e8 units of machine work, and the climb, the readings' routine calls and ROUNDT's runs included,
-     after `CLIMB_WORK` = 4.3e9 (lines 77–78), counted by the search's own cost model, the same on every host
+     after `CLIMB_WORK` = 4.3e9 (lines 78–79), counted by the search's own cost model, the same on every host
      (STRICT.md §2).
-   - But the model keeps its own schedule as Python state (`Control`, line 3982): the prompt reader's stages, phases
+   - But the model keeps its own schedule as Python state (`Control`, line 4036): the prompt reader's stages, phases
      A–D (the subtraction table, the other cells, the climb, the tournament), and a freeze that sets the learning rate
      to 0 once every check has held for 200 steps (`FREEZE_WIN`, line 128). That is early stopping on the model's own
-     checks. The loss advances it (`control`, line 4952, called at line 5063).
-   - And it keeps rows across batches, as buffers (lines 4048–4057): up to 4,096 read rows for its practice problems
-     (`POOL`), 512 answered rows of the smallest T for the round's search and the readings (`ANS_POOL`), and the
-     newest 64 answered rows of each count for the answer program's search (`count_rows`, `COUNT_EACH`). It draws its
-     practice probes from them with its own seeded generator. The answered rows come in through the loss, which reads
-     the labels (`keep_answers` and `keep_counts`, lines 4772 and 4787).
-   - ROUNDT keeps more, and not as buffers. `keep_counts` also keeps the newest 4,096 answered rows of each count it
-     keeps (on H1, T = 1, 2, 4 and 8) as tensors on the GPU in a Python dict on `Control`, `more` (lines 4022 and 4805),
-     and `climb_unit` hands those of T > 1 to the round search (line 4674). They are outside the state dict, where the
-     strict build had put the rows the climb keeps (STRICT.md); FAMILY_FILE.md does not say so. The readings keep no
-     rows of their own, but for the residue rule's record of the rows it read, as text for the log (rule 14).
+     checks. The loss advances it (`control`, line 5012, called at line 5123).
+   - And it keeps rows across batches, all of them as buffers (lines 4101–4113): up to 4,096 read rows for its practice
+     problems (`POOL`), 512 answered rows of the smallest T for the round's search and the readings (`ANS_POOL`), the
+     newest 64 answered rows of each count for the answer program's search (`count_rows`, `COUNT_EACH`), and ROUNDT's,
+     the newest 4,096 answered rows of each count T > 1, at most 4 counts (`more_rows`, `more_n` and `more_s`; on H1,
+     T = 2, 4 and 8). It draws its practice probes from them with its own seeded generator. The answered rows come in
+     through the loss, which reads the labels (`keep_answers` and `keep_counts`, lines 4827 and 4842; ROUNDT's at lines
+     4859–4865), and `climb_unit` hands ROUNDT's to the round search from the buffers (line 4729). The family file had
+     kept ROUNDT's rows in a Python dict outside the state dict; the wider file moved them (WIDER.md §8).
+   - What stays outside the state dict (WIDER.md §8): the climb's working state on `Control` (`ctl.climb`: its library
+     and routines, the readings and what they pose, its probes and records), as an optimizer's state would be
+     (STRICT.md §1), and the schedule; module-level state a run changes: `READ_LAWS` (line 2972, a reading's own laws
+     and their trees), the law book's added entries (`LAW_BOOK.setdefault` in `read_more`, line 3058), the work counter
+     `WORK` (line 1424) and the caches `_TRACES` (line 703) and `_OUTER` (line 1393); `ctl.climb.more`, views of
+     ROUNDT's buffers made again at each climb unit; and ROUNDT's round machines, built for each check and dropped.
+     WIDER.md calls none of it rows of the data. Two parts do hold what came from rows: the climb's probes, cut from the
+     kept rows' digits as they always were, and the residue rule's record of the 64–69 rows it read, as text, for the
+     log (rule 14).
 
    *Is a model that keeps its own schedule and a memory of past rows, and stops its own learning, within rule 4?*
-5. **At most 500,000,000 parameters; buffers count: yes.** 207,370 parameters in 15 tensors (lines 4031–4046). Every
-   record counts 494,712 numbers of model state at the start: the parameters, and 287,342 numbers of buffers for the
-   kept rows. The buffers that hold the answer programs grow once those are found: 336,487 buffer numbers in all in the
-   local check on the family file, with the generic instructions' official rounds
-   (`integration/legal_family/checks/logs/local_family.log`). There, a fresh model loaded with the state dict gives
-   the same logits.
+5. **At most 500,000,000 parameters; buffers count: yes.** 207,370 parameters in 15 tensors (lines 4084–4099). Every H1
+   record counts 1,019,008 numbers of model state at the start: the parameters; 287,342 numbers of the family file's
+   buffers, the kept rows (`pool_rows` 65,536, `ans_rows` 12,288, `count_rows` 204,800), their sizes and counts (4,709)
+   and the answer program's 9, empty at the start; and ROUNDT's 524,296 (`more_rows`, 4 × 4,096 × 4 × 8 = 524,288,
+   `more_n` and `more_s`, 4 each). The buffers that hold the answer programs grow once those are found: 860,783 buffer
+   numbers in all in the local check on the wider file, with the generic instructions' official rounds
+   (`integration/legal_wider/checks/logs/local_wider.log`). There, a fresh model loaded with the state dict gives the
+   same logits, and `integration/legal_wider/checks/roundt_buffers.py` shows the same for ROUNDT's buffers
+   (WIDER.md §3, §8).
    - While it searches, the climb's working state (its routines, merges and probes, and the laws read with what they
      pose) stays in Python, outside the state dict, as an optimizer's state would (STRICT.md §1); what the model answers
-     with is in the buffers. ROUNDT's kept rows are outside the state dict too (rule 4): at most 4,096 rows of four
-     8-digit numbers for each count kept, so at most 524,288 numbers on H1's four counts, far below the limit if they
-     were counted.
+     with, and every row it keeps, is in the buffers (rule 4).
 
    *Should the climb's working state count?*
-6. **No hard-coded weights: yes.** All 15 parameter tensors start at 0.1 times a random normal (`INIT`, line 41), and
+6. **No hard-coded weights: yes.** All 15 parameter tensors start at 0.1 times a random normal (`INIT`, line 42), and
    the buffers start empty. No `torch.load`. The file also holds the true digit tables (`Cells`, line 361), used only by
-   the "designed" plumbing mode (`MODE` is "learned", line 33) and by the log's report-only "right vs the truth" counts
-   (`exact_cells`, line 3924); nothing the model computes reads them. Rule 6 also says trainable weights must "be
+   the "designed" plumbing mode (`MODE` is "learned", line 34) and by the log's report-only "right vs the truth" counts
+   (`exact_cells`, line 3978); nothing the model computes reads them. Rule 6 also says trainable weights must "be
    updated during training". No record shows which of the 15 tensors moved before the freeze.
 7. **No hard-coded algorithm in the forward pass: gray, less than for s3i.**
    - The forward pass runs the answer program the training run found, such as `C.S[T.round1 STA.X]`, from the buffers,
-     on one-hot digits through the learned tables (`predict_ste`, line 4485). Its rounds, such as
+     on one-hot digits through the learned tables (`predict_ste`, line 4540). Its rounds, such as
      `LDA.X STA.Y CLA T.add.mul.o,x,o.AXY STA.X T.red.x+on.XN`, call routines the climb solved and kept: the
      multiply-add row looped over the digits (a multiply of two numbers), then the reduction, Horner's loop over long
      division's step, which is "ten times: subtract N, and add it back if that borrowed", built from the comparison,
@@ -704,74 +770,85 @@ and why the rest stayed. Where s3i differs, the end of this section says so too.
        through the carry, clear the flags, load the multiplier digit or move the pointer; loops by the register's
        length, the base and the operand's width; the if block on the borrow; and the count loop, whose stop rule is the
        old countdown's (LEARNED_LOOP.md §7);
-     - the residue rule (`read_fact`, line 3141): if every kept answer is below one prompt field, compared digit by
-       digit from the top place (`compare`, line 3696), the law ends in a reduction by that field, and the reduction's
+     - the residue rule (`read_fact`, line 3188): if every kept answer is below one prompt field, compared digit by
+       digit from the top place (`compare`, line 3751), the law ends in a reduction by that field, and the reduction's
        step is posed cut to its parts. It names no task, but it is family knowledge: every task of the family ends in
        mod N, so on the family it fires as on H1, which is not generality. It decides what to practise and computes no
        target, which is the open question LEGAL_SOURCES.md §6 raises for a judge (rule 14; NOBOOK.md §7);
-     - the step's cut table (`STEP_PARTS`, line 95): the comparison, the link and the addition, round 6's cuts of the
+     - the step's cut table (`STEP_PARTS`, line 93): the comparison, the link and the addition, round 6's cuts of the
        step with the addition for its sum;
-     - the reader's grammar (`LawReader`, line 2795; `READ_OPS`, line 2792; `READ_MIN`, `READ_POW`, `READ_DEPTH` and
-       `READ_TRIES`, lines 101–104): x and N as its leaves, not T; constants only as gaps by which a reduction mod N
+     - the reader's grammar (`LawReader`, line 2793; `READ_OPS`, line 2790; `READ_MIN`, `READ_POW`, `READ_DEPTH` and
+       `READ_TRIES`, lines 99–102): x and N as its leaves, not T; constants only as gaps by which a reduction mod N
        misses every answer; add, sub, mul, pow and mod, each with its construction; depth 3; the order of its tries;
        and where a value counts as computable (WIDE.md §2). It widens the legal file's (add, mul and mod, depth 2),
-       which was chosen knowing that H1's law is a depth-2 chain of those operations. A law outside it is not read:
-       10y² (a factor, not a gap), 10y² + 1 and 3y² + 2 (depth 4), on which the climb practises the step's three laws
-       only (FAMILY_FILE.md §7);
-     - the window rule (`windows` and `read_more`, lines 2957 and 3005; `READ_WINDOW`, line 97): runs of 2 or 3 of the
+       which was chosen knowing that H1's law is a depth-2 chain of those operations;
+     - its polynomial stage (`LawReader.poly` and `tail`, lines 2927 and 2944; `READ_POLY` = 3 and `READ_CHUNK`, lines
+       103–104), tried only when the first two stages read nothing: 21 steps from x, each multiplying by x or by a
+       constant 2..10 or adding x or a constant 1..10 (the machine's digits and its base), at most three of them, the
+       value reduced mod N at the end and the last constant read as the gap. Three steps reach every a·y² + b·y + c with
+       a, b ≤ 10, and a·y³ + b·y + c only when a = 1 or b = 0. It was added with the family's missed tasks in view: the
+       brief named 10y², 3y², 10y² + 1 and 3y² + 2. A law outside the reader's three stages is not read, as the drawn
+       pair is not (four Horner steps), and then the climb practises the step's three laws only (WIDER.md §2, §6);
+     - the window rule (`windows` and `read_more`, lines 2993 and 3051; `READ_WINDOW`, line 95): runs of 2 or 3 of the
        reading's operations with at most 2 holes, named a and b in order, N and the constants kept, posed smallest
-       first on the reading's own patterns (`n`, `x,n`, `w1` and `w2`, lines 2032–2034) with the modulus bound to N;
-     - the constants rule (`constants` and `read_more`, lines 2995 and 3005; `CONST_OPS`, line 98): each constant of
-       the reading made from N, and the reading's add, sub and mul with it;
-     - ROUNDT (`round_t`, line 3503; `ROUNDT`, line 99): a round must also give the newest 4,096 kept answers of every
-       count T > 1, run T times; which counts are kept (those that read the same both ways, `keep_counts`, line 4787)
-       and how many rows. Round 7 found it on y² − 1, whose first round was wrong where an input is 0 (FAMILY.md);
-     - the cut and loop rule (`read_pairs`, line 2929): an operation's laws f and add.f, on the patterns whose count is
+       first on the reading's own patterns (`n`, `x,n`, `w1` and `w2`, lines 2030–2032) with the modulus bound to N;
+     - the constants rule (`constants` and `read_more`, lines 3030 and 3051; `CONST_OPS`, line 96): each constant of
+       the reading made from N, and the reading's add, sub and mul with it; and the doublings (`builds`, line 3040): 1
+       and its doublings below each constant, posed before it, each made by the learner's addition and stopped by its
+       comparison, for y² + 3's 3 (WIDER.md §2);
+     - the empty target (`read_target`, lines 3080–3081; `Root.goals`, line 2385): a reading's own law at a size too
+       small for it says nothing there, and a law is kept for practice only if it says something at some size;
+     - ROUNDT (`round_t`, line 3548; `ROUNDT`, line 97; `ROUNDT_SLOTS`, line 98): a round must also give the newest
+       4,096 kept answers of every count T > 1, run T times; which counts are kept (those that read the same both ways,
+       at most four, the first seen: `keep_counts`, line 4842) and how many rows. Round 7 found it on y² − 1, whose
+       first round was wrong where an input is 0 (FAMILY.md);
+     - the cut and loop rule (`read_pairs`, line 2965): an operation's laws f and add.f, on the patterns whose count is
        a digit (the cut) or another row's number (the loop); mod is posed as the book's red;
-     - the catalogue of law forms, which now answers only what the readings pose (lines 2014–2030, `Draw` at 2134,
-       `law_target` at 2228): numbers r + q·b from the division law, the counts 1, d, o and x, the compositions of +
+     - the catalogue of law forms, which now answers only what the readings pose (lines 2012–2028, `Draw` at 2131,
+       `law_target` at 2225): numbers r + q·b from the division law, the counts 1, d, o and x, the compositions of +
        and ×, and targets from facts, identities and the learner's own routines (SP_ABLATION.md §5.2);
-     - what fast2 designs: the choosing rule (`SP_RULE` = "lpca", line 53), picked after bar 3's own rules failed, by
-       watching whether the round came (SELF_PRACTICE.md §6); the search's sizes and rules (lines 53–93 and 105–114),
+     - what fast2 designs: the choosing rule (`SP_RULE` = "lpca", line 54), picked after bar 3's own rules failed, by
+       watching whether the round came (SELF_PRACTICE.md §6); the search's sizes and rules (lines 54–91 and 105–114),
        among them seven that the generic instructions needed, each found by watching whether the round came: five in
        how the search picks and orders its probes, acceptance at four digits, and routines that leave the other
-       registers alone first (GENERIC_OPS.md §7); where the round and the answer program are looked for (lines 71–75
-       and 85–92), and T's 2-digit field (`K`, line 39), which is what tells T from x (LEARNED_LOOP.md §6, §7); stage
+       registers alone first (GENERIC_OPS.md §7); where the round and the answer program are looked for (lines 72–76
+       and 83–90), and T's 2-digit field (`K`, line 40), which is what tells T from x (LEARNED_LOOP.md §6, §7); stage
        1's reader of the prompt (24 reading hypotheses, 3 pointer shapes), the cells' shapes (three tables) and the
        schedule.
    - A judge may say `SHL.X SHL.A` is BRG.X in two pieces. GENERIC_OPS.md §7 agrees, and notes that it is the form a
      place-by-place law gives BRG.X. A judge may also say the count loop is the countdown made into an instruction
-     (LEARNED_LOOP.md §7), that the reader's grammar is the family's laws written as a search space, and that the
-     residue rule is the family's "mod N" written as a rule.
+     (LEARNED_LOOP.md §7), that the reader's grammar and its polynomial stage are the family's laws written as a search
+     space, and that the residue rule is the family's "mod N" written as a rule.
    - The Triton kernel adds no algorithm. It runs the old machine's instructions, to byte-for-byte the same states
-     (FAST.md §3), and every digit it writes is a lookup in the learned tables or a move (`_lock_k`, line 1013). It runs
-     only the climb's searches; the answer is computed on the one-hot machine (`SteMachine`, line 1833).
+     (FAST.md §3), and every digit it writes is a lookup in the learned tables or a move (`_lock_k`, line 1011). It runs
+     only the climb's searches; the answer is computed on the one-hot machine (`SteMachine`, line 1831).
 
-   *Did the algorithm move into the instruction set, the residue rule, the reader's grammar, the rules for windows,
-   constants and rounds, the cut and loop rule and the search's rules, and does that count as hard-coding it?*
+   *Did the algorithm move into the instruction set, the residue rule, the reader's grammar and its polynomial stage,
+   the rules for windows, constants and rounds, the cut and loop rule and the search's rules, and does that count as
+   hard-coding it?*
 8. **Final logits from the model, inside autograd, with an unbroken gradient path: yes at evaluation, with gray
    edges.**
    - At evaluation the forward runs the prompt's reader, the answer program from the buffers and the writer on one-hot
-     digits through straight-through tables (`predict_ste`, line 4485, and `SteMachine`, line 1833). The tournament
+     digits through straight-through tables (`predict_ste`, line 4540, and `SteMachine`, line 1831). The tournament
      (`prog`, one logit a program) is a straight-through choice among up to four answer programs.
-   - The gradient test on the family file (combined_sp2's `checks/local_combined.py grad`, CPU; its output, the same
-     as the no-book file's, is in `integration/legal_family/checks/logs/local_family.log`): the reader and the cells at
+   - The gradient test on the wider file (combined_sp2's `checks/local_combined.py grad`, CPU; its output, the same
+     as the family file's, is in `integration/legal_wider/checks/logs/local_wider.log`): the reader and the cells at
      the truth, two answer programs over the generic instructions' official rounds, and the right tokens' logits on 2
      rows of depth_t_2 as the objective. 14 of the 15 tensors get a nonzero gradient. The tournament's gets exactly 0,
      since its two programs give the same answer and a softmax's derivatives sum to zero (LEARNED_LOOP.md §4). The
      multiply tables' gradients are about 1e-33: damped.
    - Gray (STRICT.md §1, §3 and §5):
-     - (a) in training the forward returns zero logits (line 4454), so the lessons teach, not the final logits. The
+     - (a) in training the forward returns zero logits (line 4509), so the lessons teach, not the final logits. The
        real answer inside autograd on a training batch does not fit in an H100's 80 GB (512 rows at T = 16). On the
        batch's answer rows, where it would fit, it is exact once the round is found, so it would teach nothing
        (measured on the strict sp2 file, STRICT.md §5);
-     - (b) the gradient is damped by 0.1 at each lookup (`GRAD_DAMP`, line 35) so that it does not overflow, and on the
+     - (b) the gradient is damped by 0.1 at each lookup (`GRAD_DAMP`, line 36) so that it does not overflow, and on the
        deepest paths it all but vanishes: about 1e-33 on the multiply tables above, and exactly 0 in float32 in some
        earlier files' tests (OVERVIEW §6, LEARNED_LOOP.md §4). The count loop's count down over 16 places makes the
        path deeper than sp2's countdown;
      - (c) the programs are a discrete result of search, kept in buffers; only the choice among them is a parameter;
      - (d) which reading hypothesis a prompt uses is decided by designed run-detection logic (stage 1's reader:
-       `runs`, `which_run` and `selected`, lines 4286–4319).
+       `runs`, `which_run` and `selected`, lines 4341–4374).
    - The kernel is outside autograd, but not on the prediction's path: it runs the climb's searches, on integers. So
      do the readings and ROUNDT: they run inside the climb, the readings choosing what to practise and ROUNDT which
      rounds the search accepts, not what to answer.
@@ -780,29 +857,31 @@ and why the rest stayed. Where s3i differs, the end of this section says so too.
    all input-dependent computation inside the autograd graph and an unbroken gradient path from the loss to the
    parameters responsible for the prediction"? The middle clause bears on (d).*
 9. **Everything on the GPU: yes, with a word.** The parameters, the buffers and every machine are on the GPU: the
-   climb's searches (the Triton kernel, line 1013, or the old machine), the readings' routine calls, ROUNDT's runs and
-   its kept rows, training's checks (replayed from CUDA graphs) and the prediction's one-hot machine. There is no
-   `.cpu()` and no numpy in the file. It does build a few constant tables on the CPU and copy them to the GPU before
-   use: two hash tables drawn at import (`_MULT` and `_SALT`, lines 601 and 2517), the instruction set's opcode tables
-   (`_Ops`, line 775), and the true digit tables each `Cells` starts with (line 361), which `snapped_cells` (line 4096)
-   replaces with the learned ones. Python holds the bookkeeping: the schedule, the climb's programs as tuples, its
-   library and BPE over program text, the readings' loops over their candidates, the laws' text and the windows' trees
-   parsed from it. The host reads small results back from the GPU (program indices and counts, the readings' bits,
-   row counts and constants, and ROUNDT's counts and bits: rule 14) to steer the search, and traces each program's
-   instructions from its text into opcode columns on the GPU. That is s3i's arrangement (OVERVIEW §6). *Does that
-   bookkeeping count as computation off the GPU?*
-10. **OOM or timeout fails: ok.** Neither happened on the eight runs. Their peak host memory was 12.7–13.8 GB. Rule 10
+   climb's searches (the Triton kernel, line 1011, or the old machine), the readings' routine calls, ROUNDT's runs on
+   the round machine and its kept rows, training's checks (replayed from CUDA graphs) and the prediction's one-hot
+   machine. There is no `.cpu()` and no numpy in the file. It does build a few constant tables on the CPU and copy them
+   to the GPU before use: two hash tables drawn at import (`_MULT` and `_SALT`, lines 601 and 2515), the instruction
+   set's opcode tables (`_Ops`, line 775), and the true digit tables each `Cells` starts with (line 361), which
+   `snapped_cells` (line 4152) replaces with the learned ones; and the polynomial stage's constants, the digit strings
+   1 to 10, the machine's digits and base, made from Python's small integers as `READ_POW` is a number (WIDER.md §10).
+   Python holds the bookkeeping: the schedule, the climb's programs as tuples, its library and BPE over program text,
+   the readings' loops over their candidates, the laws' text and the windows' trees parsed from it. The host reads
+   small results back from the GPU (program indices and counts, the readings' bits, row counts and constants, and
+   ROUNDT's counts, slots and bits: rule 14) to steer the search, and traces each program's instructions from its text
+   into opcode columns on the GPU. That is s3i's arrangement (OVERVIEW §6). *Does that bookkeeping count as computation
+   off the GPU?*
+10. **OOM or timeout fails: ok.** Neither happened on the eight runs. Their peak host memory was 13.9–17.5 GB. Rule 10
     is about GPU memory, and the records give no peak for it.
-11. **3,600 s of H100 training, compilation included: yes, on every seed.** The eight runs trained 562–986 s, to the
-    file's 20,000-step cap, and froze by 368–786 s (the progress line just after each freeze). That is slower than
-    the no-book file's 472–634 s, almost all of it ROUNDT's checks in the round search (§2). Triton compiles the
-    kernel inside the run, once for each set of its compile-time constants, so that time is in these figures; it was
-    not measured apart. A climb that spent its whole work budget would still freeze by about 1,900 s (§2). On the
-    family, the three runs that read no law trained until the hour ran out, when the evaluator stopped them
-    (FAMILY_FILE.md §7).
-12. **A custom loss returns one finite differentiable scalar: yes.** `token_training_loss` (line 5044). It also keeps
+11. **3,600 s of H100 training, compilation included: yes, on every seed.** The eight runs trained 509–777 s, to the
+    file's 20,000-step cap, and froze by 325–494 s (the progress line just after each freeze), against the family
+    file's 562–986 s, whose ROUNDT ran each round instruction by instruction (§2). Triton compiles the kernel inside the
+    run, once for each set of its compile-time constants, so that time is in these figures; it was not measured apart.
+    A climb that spent its whole work budget would still freeze by about 1,100 s (§2). On the family, 3y² + 2's run,
+    whose climb did spend its budget, trained to its 20,000 steps in 2,951 s, and the drawn pair's runs, which read no
+    law, trained until the hour ran out, when the evaluator stopped them (WIDER.md §6).
+12. **A custom loss returns one finite differentiable scalar: yes.** `token_training_loss` (line 5104). It also keeps
     answered rows and advances the schedule (rule 4).
-13. **Evaluation within half the training allowance; certification: yes.** Evaluation took 289–394 s of the 1,800
+13. **Evaluation within half the training allowance; certification: yes.** Evaluation took 271–623 s of the 1,800
     allowed; T = 64 on both ladders on all eight runs, every rung 768 of 768.
 14. **No data inspection, augmentation, task-specific solvers, custom training loops, participant backward passes or
     hidden training work: gray, and the main question.**
@@ -810,56 +889,63 @@ and why the rest stayed. Where s3i differs, the end of this section says so too.
       made up. No practice answer comes from Python's arithmetic. Every value the law reader compares is the learner's
       routines', and the residue rule compares the data's own digits (below).
     - **How every practice answer is made.** From facts, identities and the learner's own routines, the same rules
-      for every law (`law_target`, line 2228; SELF_PRACTICE.md §2.2):
+      for every law (`law_target`, line 2225; SELF_PRACTICE.md §2.2):
       - the comparison's, by the order facts of r + q·N forms; the link's, by the division law's identities and the
         fix's probes N < X < 2N, made from one entry of the learned addition table; the addition's, by its identity
         and a check run by the learner's link and comparison on the candidate's own output (NOBOOK.md §2);
       - the cuts and loops (the multiply-add row, x·d, their loops, Horner's step and the reduction), by repeated
         addition by doubling over the learner's addition, and by the division law with x + d·N made by the learner's
         addition (LEGAL_FILE.md §2);
-      - the windows' and constants' (`read_target`, line 3029): the law's tree computed by the reader's operations at
+      - the windows' and constants' (`read_target`, line 3075): the law's tree computed by the reader's operations at
         the draw's size, which are the learner's routines (add by its addition; sub by its comparison's difference,
         kept where its addition gives the minuend back; mul by repeated addition by doubling; mod by its link by
         doubling); rows where a value on the way is not computed are masked, and a constant's answers are its digits
-        as the reading's text holds them (FAMILY_FILE.md §2, §10; PREREG.md).
+        as the reading's text holds them (FAMILY_FILE.md §2, §10). A constant's doublings are made by the learner's
+        addition from 1, while its comparison says below the constant, and named from their digits, read back as
+        text; those digits are their answers (`builds`, line 3040). A law at a size too small for it gives an empty
+        target: no answer at that size (WIDER.md §2, §10).
     - The loss calls the model's lesson methods, never the model itself, and starts no optimizer or scheduler step.
-      But its `control` (line 4952) sets flags that both read: `ctl.reset` (line 4986), which makes Adam clear its
-      moments in its own step (line 5077), and `ctl.phase`, whose "frozen" the scheduler turns into a learning rate
-      of 0 (line 5090).
-    - But the climb is a program search inside the training forward pass (`climb_unit`, line 4659, called from
-      `lessons`, line 4723), one unit a step. On the official run it ran from step 563 to step 632, from about 54 s to
-      about 506 s of the 783 s of training. What it found, the programs, carries from step to step in buffers.
+      But its `control` (line 5012) sets flags that both read: `ctl.reset` (line 5046), which makes Adam clear its
+      moments in its own step (line 5137), and `ctl.phase`, whose "frozen" the scheduler turns into a learning rate
+      of 0 (line 5150).
+    - But the climb is a program search inside the training forward pass (`climb_unit`, line 4714, called from
+      `lessons`, line 4778), one unit a step. On the official run it ran from step 563 to step 632, from about 42 s to
+      about 303 s of the 522 s of training. What it found, the programs, carries from step to step in buffers.
     - Its practice problems are made from the batch rows' own digits and what the readings pose. The readings and the
       round's search read the answered rows of the smallest T, ROUNDT the answered rows of every count T > 1, and the
-      answer program's search those of each count, all kept by the loss from the labels.
-    - **The readings** (`read_fact` and `read_law`, lines 3141 and 3129, inside `pose`) test the labels and let what
+      answer program's search those of each count, all kept in buffers by the loss from the labels.
+    - **The readings** (`read_fact` and `read_law`, lines 3188 and 3176, inside `pose`) test the labels and let what
       they find decide what the climb practises next. Where Python still touches them (NOBOOK.md §8, WIDE.md §8,
-      LEGAL_FILE.md §8 and FAMILY_FILE.md §10):
+      LEGAL_FILE.md §8, FAMILY_FILE.md §10 and WIDER.md §10):
       - the residue rule's decision is `compare` on the GPU: per row, the highest place where an answer's digits and
         a field's differ, and the two digits there. One bit per field is read back, and no number is made from the
         digits. The rows it read are read back as text (N:y) for the record and the log only;
       - every value the law reader compares is an output of the learner's addition, comparison or link, run by the
         machine on its learned cells, or of repeated addition or the link by doubling over them; its test is digit
-        equality with the answer rows. Python runs the loop over the candidates, depth by depth, and keeps the law's
-        text, the count of laws tried and the (law, pattern) names it poses. Distinct values are found by hashing
-        each candidate's digits and rows on the GPU, and the hashes, row counts and exactness bits are read back, a
-        small result per candidate; no digit is read back but for the constants' names, which also give the
-        constants' digits;
-      - a window's tree is parsed from the reading's text (`tree`, line 2939), and its name and the constants' digits
+        equality with the answer rows. Python runs the loop over the candidates, depth by depth and then Horner step by
+        Horner step, and keeps the law's text, the count of laws tried and the (law, pattern) names it poses. Distinct
+        values are found by hashing each candidate's digits and rows on the GPU, and the hashes, row counts and
+        exactness bits are read back, a small result per candidate; no digit is read back but for the gaps' and the
+        doublings' digits, which name the constants and give their digits;
+      - the polynomial stage's constants 1 to 10 are digit strings made from Python's small integers, the machine's own
+        digits and base, as `READ_POW` is a number; every value made from them is the learner's routines';
+      - a window's tree is parsed from the reading's text (`tree`, line 2975), and its name and the constants' digits
         are made from that text; every value of the tree is computed by the learner's routines through the reader;
       - beyond selections (a value's digits are zeroed on the rows it is not computed on) and counts of rows, the
         designed arithmetic on the rows is counts read off digits: the multiply's loop count, which `count_of` (line
-        1784) reads off the multiplier's digits and whose bits `times_add` (line 2098) takes for the doubling; a
+        1782) reads off the multiplier's digits and whose bits `times_add` (line 2096) takes for the doubling; a
         power's count, read the same way and compared with `READ_POW`; and ROUNDT's T (below). Each is read with
         torch's integers on the GPU, as fast2's practice constructions already read theirs, and each counts operations;
         none is compared with an answer. Which rows a value counts on is set by digit facts: the operands' top places
         are zero, the divisor is not.
-    - **ROUNDT** (`round_t`, line 3503) decides which rounds the search accepts, not what to practise, against labels
+    - **ROUNDT** (`round_t`, line 3548) decides which rounds the search accepts, not what to practise, against labels
       the loss kept. Its T is read off each kept count's digits by `count_of` and passed to the host as a Python int
-      (`climb_unit`, line 4674), and the round runs T times on the GPU; one bit per candidate (right on every row, or
-      not) is read back (FAMILY_FILE.md §10).
+      (`climb_unit`, line 4729), and the round runs T times on the round machine, on the GPU; one bit per count (right
+      on every row, or not) is read back. A count's slot is found by its index, its digits read by place as the answer
+      program's pool already indexes counts, and only a count above 1 (by `count_of`) gets one; its rows are copied
+      within the GPU's buffers (`keep_counts`, lines 4859–4865; WIDER.md §10).
     - A miner computes relations over each batch's read numbers N, x and T inside the model (`relations` and `Miner`,
-      lines 3706–3763). Only its order and nonzero facts feed the lessons (lines 4740–4741); the others, equality,
+      lines 3761–3818). Only its order and nonzero facts feed the lessons (lines 4795–4796); the others, equality,
       constancy and ranges, are only logged. The legal file's miner also ran on the answers and tested divisibility by
       2, 3 and 5, all only logged; the wide file cut both (WIDE.md §2).
     - The rules call "parameter-free work" valid and allow iterative mechanisms (rule 4, and the note after the
@@ -867,9 +953,9 @@ and why the rest stayed. Where s3i differs, the end of this section says so too.
       work" as depth in the forward pass, not as a search whose result carries from step to step.
 
     *Is a search inside the forward pass, whose result carries from step to step, "hidden training work"? Are a
-    residue rule, a reader's grammar and the rules for windows, constants, cuts and loops a task-specific solver
-    written as lessons? Is a law read from the labels, by a designed rule or by the learner's own routines, "data
-    inspection"?*
+    residue rule, a reader's grammar with its polynomial stage and the rules for windows, constants, cuts and loops a
+    task-specific solver written as lessons? Is a law read from the labels, by a designed rule or by the learner's own
+    routines, "data inspection"?*
 15. **Repeated rule-breaking: does not apply.** The write-ups flag their own gray areas, and the hosted evaluator has
     scored nothing: the one attempt, after the deadline, was refused (OVERVIEW §7).
 16. **The Hard metric recorder: yes.** It is not touched.
@@ -883,14 +969,15 @@ against the entry, the whole stage-3 line is out, and nothing else here matters.
 2. **Rule 8:** training returns zero logits, and the damped gradient all but vanishes on the deepest paths. The batch's
    answer rows would fit through the real path, at 200 to 400 s a run, but would teach nothing once the round
    reproduces them; the whole batch does not fit in an H100 (STRICT.md §5).
-3. **Rule 4:** the model keeps rows across batches, as buffers and, for ROUNDT, as tensors held in Python, and its own
+3. **Rule 4:** the model keeps rows across batches, all of them as buffers now, ROUNDT's included, and its own
    schedule: phases A–D and the freeze.
-4. **Rule 7:** the instruction set, the residue rule, the reader's grammar, the rules for windows, constants and
-   rounds, and the search's rules were chosen knowing the task family. When does what is left count as general? On the
-   family the same file learns 4 of 8 tasks at full size, but only its two held-out tasks test that, and it learns one
-   of them (§2).
+4. **Rule 7:** the instruction set, the residue rule, the reader's grammar and its polynomial stage, the rules for
+   windows, constants and rounds, and the search's rules were chosen knowing the task family. When does what is left
+   count as general? On the family the same file learns 7 of 8 tasks at full size, but all eight were known when the
+   reader was widened; of the two tasks drawn and held out for it, it learns neither, and of the four tasks held out in
+   phases C and D, one (§2).
 5. **Rule 14, LEGAL_SOURCES.md's question:** may a decision about practice use Python's arithmetic on the training rows,
-   if no target does? In the family file, what to practise is decided by two readings of the labels. The residue rule is
+   if no target does? In the wider file, what to practise is decided by two readings of the labels. The residue rule is
    a designed rule that compares the answers' digits with N's and x's and makes no number. The law reader's values are
    all the learner's routines' on the learned cells, and it decides by digit equality with the labels. Beyond selections
    and counts of rows, designed arithmetic touches the rows only in counts read off digits on the GPU, the multiply's, a
@@ -899,13 +986,23 @@ against the entry, the whole stage-3 line is out, and nothing else here matters.
    above). What is left to rule on is those counts, and whether a law read from the labels, by a designed rule or by the
    learner's own routines, may choose what to practise at all.
 6. **Bar 2** (the project's own bar, not a rule): of what is still designed, which parts would you call the algorithm?
-   Rule 7 above lists the family file's. [LEGAL_PLAN.md](LEGAL_PLAN.md) §2 lists sp2's, with a cheapest test where
+   Rule 7 above lists the wider file's. [LEGAL_PLAN.md](LEGAL_PLAN.md) §2 lists sp2's, with a cheapest test where
    there is one. Of those, fast2 replaces the 11-law list with a grammar (item 1), SEL.S and BRG.X with an if block and
    shifts (item 3) and the countdown with the count loop (item 4), and has neither the late table lessons (item 7) nor
    the clock (item 8). The legal file goes on with item 1: three laws, and what the law reader poses, in place of the
    grammar's whole book; the family file takes item 1 to an empty book, its first laws posed by the residue rule.
 
-**Where the legal file differs** (line numbers are the legal file's):
+**Where the family file differs** (line numbers are the family file's):
+- Rules 4 and 5: ROUNDT's rows, the newest 4,096 of each count kept, were tensors in a Python dict on `Control`
+  (`Control.more`, lines 4022 and 4805), outside the state dict; its model state at the start was 494,712 numbers.
+- Rule 7: its reader had no polynomial stage, so it read nothing for 10y², 10y² + 1 and 3y² + 2; its constants were
+  posed without their doublings, and y² + 3 never made its 3; and a law too big for a size was dropped at every size
+  (FAMILY_FILE.md §7). Its ROUNDT ran each round through `run_prog`, instruction by instruction (`round_t`, line 3503).
+- Rules 10, 11, 13 and 14, in numbers: its peak host memory was 12.7–13.8 GB; its eight runs trained 562–986 s and
+  froze by 368–786 s; its evaluations took 289–394 s; its official climb ran from step 563 to step 632, from about
+  54 s to about 506 s.
+
+**Where the legal file differs as well** (line numbers are the legal file's):
 - Rule 7: its book is three laws on the pair, the comparison, the link and the addition, posed from the start
   (`BOOK`, line 101); it has no residue rule, no step's cut table, no window or constants rule and no ROUNDT. Its
   reader's grammar is narrower (`LawReader`, line 2818; `READ_OPS`, line 2815; `READ_MIN`, `READ_LINKS` and
@@ -947,10 +1044,10 @@ against the entry, the whole stage-3 line is out, and nothing else here matters.
 
 **What to do about them.** [LEGAL_PLAN.md](LEGAL_PLAN.md) §4 puts these questions first, then orders the rest by cost.
 Its step 2, one file with every certified variant, is fast2. The legal file goes past it on the law book by bar 3's
-legal path, and the family file takes that book to nothing (§2). Its steps 3 to 5 have not run: the reduction's search
-without its cap, the first step toward letting the climb take its digit instructions from every one-place slice of a law
-(at most about $8); bar 3's subgoal score, as a near-miss test and then as the choosing rule; and one official run with
-the freeze removed, training to the deadline (about $4).
+legal path, the family file takes that book to nothing, and the wider file keeps every row in its buffers (§2). Its
+steps 3 to 5 have not run: the reduction's search without its cap, the first step toward letting the climb take its
+digit instructions from every one-place slice of a law (at most about $8); bar 3's subgoal score, as a near-miss test
+and then as the choosing rule; and one official run with the freeze removed, training to the deadline (about $4).
 
 ## 6. An hour's reading order
 
@@ -959,18 +1056,19 @@ the freeze removed, training to the deadline (about $4).
   [§2](OVERVIEW.md#2-why-it-is-hard): the task, and why exact answers defeat ordinary training.
 - **15–25:** OVERVIEW [§4](OVERVIEW.md#4-where-it-stands-three-bars-and-the-models-at-the-frontier),
   [§4.7](OVERVIEW.md#47-discovering-the-skeleton-library-learning-then-stage-3) and
-  [§4.8](OVERVIEW.md#48-variants-of-stage-3-that-go-further): the bars, stage 3, and the variants the family file is
+  [§4.8](OVERVIEW.md#48-variants-of-stage-3-that-go-further): the bars, stage 3, and the variants the wider file is
   made of.
-- **25–35:** FAMILY_FILE.md's "In plain words", §2, §6–§7 and §9–§10, then NOBOOK.md's "In plain words" and §7–§8:
-  what the family file changes, its runs on H1 and on the family, what it designs, where it touches Python, and the
-  empty book it starts from.
-- **35–45:** the family file itself: the docstring (lines 1–9), the constants (33–133; the book, the step's parts, the
-  windows, the constants, ROUNDT and the reader's at 94–104), `LAWS` (141), the instruction set (164–179), the kernel
-  `_lock_k` (1013), the grammar (`PATTERNS` at 2022, `Draw` at 2134, `law_target` at 2228), the law reader
-  (`LawReader` at 2795, `read_pairs` at 2929, `read_more` at 3005, `read_target` at 3029), `SelfClimb` (3040:
-  `read_law` at 3129, `read_fact` at 3141, `pose` at 3151, `round_t` at 3503, `search_outer` at 3553), `Control`
-  (3982), `LibraryMachine` (4025: `_forward` at 4442, `climb_unit` at 4659, `lessons` at 4723, `keep_counts` at 4787,
-  `control` at 4952), and the loss, the optimizer and `SUBMISSION` (5044–5113).
+- **25–35:** WIDER.md's "In plain words", §2, §6 and §8–§10, then FAMILY_FILE.md's "In plain words" and §9–§10 and
+  NOBOOK.md §7: what the wider file changes, its runs on H1, on the family and on the drawn pair, what it designs and
+  where it touches Python, and the files it starts from.
+- **35–45:** the wider file itself: the docstring (lines 1–10), the constants (34–133; the book, the step's parts, the
+  windows, the constants, ROUNDT and its slots and the reader's at 92–104), `LAWS` (141), the instruction set
+  (164–179), the kernel `_lock_k` (1011), the grammar (`PATTERNS` at 2020, `Draw` at 2131, `law_target` at 2225), the
+  law reader (`LawReader` at 2793, `poly` at 2927, `read_pairs` at 2965, `builds` at 3040, `read_more` at 3051,
+  `read_target` at 3075), `SelfClimb` (3087: `read_law` at 3176, `read_fact` at 3188, `pose` at 3198, `round_t` at
+  3548, `search_outer` at 3608), `Control` (4036), `LibraryMachine` (4078: its buffers at 4101–4113, `_forward` at
+  4497, `climb_unit` at 4714, `lessons` at 4778, `keep_counts` at 4842, `control` at 5012), and the loss, the optimizer
+  and `SUBMISSION` (5104–5173).
 - **45–50:** `python3 tools/verify_records.py`, and the log lines of §3: the records against the file.
 - **50–60:** §5 here, then [LEGAL_PLAN.md](LEGAL_PLAN.md) §2–§3,
   [LEGAL_SOURCES.md §6](bar3/LEGAL_SOURCES.md#6-a-question-for-the-judge) and [STRICT.md](integration/strict/STRICT.md)
@@ -982,9 +1080,9 @@ With more time: INTEGRATION's ["In plain words"](integration/INTEGRATION.md#in-p
 (what s3i's result rests on); the studies of each piece, [SELF_PRACTICE.md](integration/SELF_PRACTICE.md),
 [LEARNED_LOOP.md](integration/learned_loop/LEARNED_LOOP.md), [GENERIC_OPS.md](integration/generic_ops/GENERIC_OPS.md),
 [SP_ABLATION.md](integration/sp_ablation/SP_ABLATION.md) §5 and [LEGALLOOPS.md](bar3/scale/legalloops/LEGALLOOPS.md);
-LEGAL_FILE.md, WIDE.md and round 7's [FAMILY.md](bar3/scale/family/FAMILY.md) (the steps from fast2 to the family file);
-FAST.md's "In plain words" and §9 (the speedups and budgets it keeps); COMBINED.md (how fast2's five pieces were put
-together); OVERVIEW [§5](OVERVIEW.md#5-the-removal-ladder) (each hand-written piece removed in turn),
+LEGAL_FILE.md, WIDE.md, NOBOOK.md and round 7's [FAMILY.md](bar3/scale/family/FAMILY.md) (the steps from fast2 to the
+family file); FAST.md's "In plain words" and §9 (the speedups and budgets it keeps); COMBINED.md (how fast2's five
+pieces were put together); OVERVIEW [§5](OVERVIEW.md#5-the-removal-ladder) (each hand-written piece removed in turn),
 [§6](OVERVIEW.md#6-rules-116-for-the-best-model), [§7](OVERVIEW.md#7-status-and-open-questions) and
 [§9](OVERVIEW.md#9-where-docs-and-records-disagree); and bar 3's [PRACTICE.md](bar3/PRACTICE.md) and
 [BREADTH.md](bar3/BREADTH.md). [README.md](README.md) indexes every file and folder.
@@ -994,8 +1092,9 @@ together); OVERVIEW [§5](OVERVIEW.md#5-the-removal-ladder) (each hand-written p
 Three studies were still running when this file was first written. All three have finished and are committed, and
 later ones follow them as they land. None changes a certified file or record. fast2 is built from five of them: the
 strict builds, the learned loop, the law ablation's generated book, the generic instructions and the s3i ablation's
-fix. The legal file adds a sixth: bar 3's legal reader and its three laws. The family file, now the file to judge,
-takes the legal file three steps on: the wider grammar, no law in the book and round 7's rules, legally.
+fix. The legal file adds a sixth: bar 3's legal reader and its three laws. The family file takes the legal file three
+steps on: the wider grammar, no law in the book and round 7's rules, legally. The wider file, now the file to judge,
+takes it one more: ROUNDT's rows in the buffers, and a wider reader.
 
 - **The s3i ablation** ([ABLATION_S3.md](integration/ABLATION_S3.md), code and records in
   [`integration/ablation_s3/`](integration/ablation_s3/)). Each hand-made part was removed in turn and the model
@@ -1381,14 +1480,27 @@ takes the legal file three steps on: the wider grammar, no law in the book and r
   three of the reading's operations posed as a law of its own, each constant of the reading made from N with x + c,
   x − c and x·c, and a round kept only if it also gives the kept answers of every count T > 1, run T times (ROUNDT).
   `submission_stage3_family.py` (`457216d7`) certifies on 8 of 8 official-manifest H100 runs, training in 562–986 s,
-  slower than the no-book file's 472–634 s because of ROUNDT, and is now the file to judge (§2). The same file, byte for
-  byte, one H100 each, on SP_BREADTH's data for six tasks and new data for two held-out ones, learns 4 of 8 family tasks
-  at full size: y² + y (held out), y² + 1, the cube and y² − 1, each right to T = 64 on both ladders with every split
+  slower than the no-book file's 472–634 s because of ROUNDT, and was the file to judge until the wider file (§2). It
+  keeps ROUNDT's rows in a Python dict, outside the state dict, which REVIEW.md flagged. The same file, byte for byte,
+  one H100 each, on SP_BREADTH's data for six tasks and new data for two held-out ones, learns 4 of 8 family tasks at
+  full size: y² + y (held out), y² + 1, the cube and y² − 1, each right to T = 64 on both ladders with every split
   exact. It does not learn y² + 3, which never makes its 3 within the climb's work budget, or 10y², 10y² + 1 and 3y² + 2
   (held out), which the reader cannot read: 10 is a factor, not a gap, and the other two need depth 4. Only the two
   held-out tasks, chosen before any run, test generality: round 7's rules were found on the other six. Still designed:
   the window rule, the constants rule, ROUNDT's rows and the reading's own patterns, beside the no-book file's list
   (FAMILY_FILE.md §9). About $40.
+- **ROUNDT in the buffers and a wider reader** ([WIDER.md](integration/legal_wider/WIDER.md), code and records in
+  [`integration/legal_wider/`](integration/legal_wider/)). The family file with ROUNDT's rows in registered buffers,
+  counted in the state dict (1,019,008 numbers at the start), and ROUNDT run on the round machine with the same verdicts
+  and work on 31 rounds; a third reading stage, x's polynomials of up to three Horner steps; each constant posed with 1
+  and its doublings; and a law too big for a size counted as saying nothing there. `submission_stage3_wider.py`
+  (`59060b5c`) certifies on 8 of 8 official-manifest H100 runs, training in 509–777 s, and is now the file to judge
+  (§2). Byte for byte, one H100 each, it learns 7 of 8 family tasks at full size, the family file's four and y² + 3,
+  10y² and 10y² + 1, but not 3y² + 2, whose climb runs out of work budget; all eight were known when the reader was
+  widened, so they do not test generality. Two tasks drawn at random after the file was fixed, 8y³ + 8y + 3 and
+  2y³ + 9y + 9, need four Horner steps, so it reads and learns neither, 0 of 2; of the four tasks held out for the
+  family file and for it, it learns one, y² + y. Still designed: the polynomial stage, the doublings, the empty target
+  and ROUNDT's four slots, beside the family file's list (WIDER.md §9). About $43.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

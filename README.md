@@ -1,14 +1,15 @@
 # cpu_first — experiments for a CPU-first take on One Layer Deeper
 
-**The entry:** [`submission_stage3_family.py`](integration/legal_family/submission_stage3_family.py) in
-`integration/legal_family/` (md5 `457216d746d7a21e854a2d2d3673c9d6`, "the family file"). It is one training run that
-finds its own program: fast2, every certified variant of the self-practising stage-3 file combined and made fast, with
-no law in its book. A designed rule reads from the answer rows that the law ends in mod N and poses that reduction's
-parts; bar 3's legal reader then reads the target's law with the learner's own routines and poses its pieces. It
-certifies H1 (T = 64 on both ladders, every split exact) on 8 of 8 official-manifest H100 runs, training in 562–986 s
-of the 3,600; `python3 tools/verify_records.py` checks all eight records, then those of the two files to judge before
-it, the legal file and fast2. The same file, byte for byte, learns 4 of 8 other tasks of H1's family at full size, one
-of the two held out among them.
+**The entry:** [`submission_stage3_wider.py`](integration/legal_wider/submission_stage3_wider.py) in
+`integration/legal_wider/` (md5 `59060b5cd7a7b536e25302e1d5be7ef7`, "the wider file"). It is one training run that finds
+its own program: fast2, every certified variant of the self-practising stage-3 file combined and made fast, with no law
+in its book. A designed rule reads from the answer rows that the law ends in mod N and poses that reduction's parts;
+bar 3's legal reader then reads the target's law with the learner's own routines and poses its pieces. It certifies H1
+(T = 64 on both ladders, every split exact) on 8 of 8 official-manifest H100 runs, training in 509–777 s of the 3,600;
+`python3 tools/verify_records.py` checks all eight records, then those of the three files to judge before it: the family
+file, the legal file and fast2. The same file, byte for byte, learns 7 of 8 other tasks of H1's family at full size, all
+eight known when its reader was designed, and neither of two tasks drawn at random and held out. Of the four tasks held
+out for it and the family file, it learns one: y² + y.
 
 **Reviewing or judging the project? Start with [REVIEW.md](REVIEW.md)**: what is claimed, the one file to judge and its
 md5, how to check the official records and reproduce them, and the gray rules a judge should rule on.

@@ -1,7 +1,9 @@
 # Proposed additions to ~/github/tips-for-running-modal/AGENTS.md
 
-A draft, not applied. These come from building `modal_runner.py` here and testing it on Modal (client 1.2.6,
-2026-10-22). Each bullet is written to paste under the AGENTS.md section named in its heading.
+Applied on 2026-10-28, with the lessons of the following week, in tips-for-running-modal e40e54e
+(https://github.com/chenglou/tips-for-running-modal). Kept as the record of what this work added. These come from
+building `modal_runner.py` here and testing it on Modal (client 1.2.6, 2026-10-22). Each bullet is written to
+paste under the AGENTS.md section named in its heading.
 
 ## Launching Jobs
 

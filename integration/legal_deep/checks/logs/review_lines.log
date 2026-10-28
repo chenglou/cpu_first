@@ -1,0 +1,288 @@
+REVIEW  155                                   1 -> 1 (the docstring, lines 1-10; its first line names DEEP.md and make_deep.py)
+REVIEW  155                                  10 -> 10   | """
+REVIEW  160  more_s                        4111 -> 4117   | self.register_buffer("more_rows", torch.zeros(ROUNDT_SLOTS, ROUN
+REVIEW  160  more_s                        4113 -> 4119   | self.register_buffer("more_s", torch.zeros(ROUNDT_SLOTS, dtype=t
+REVIEW  160  ROUNDT_SLOTS                    98 -> 98   | ROUNDT_SLOTS = 4       # ... rows of each of at most this many c
+REVIEW  161                                4842 -> 4846   | def keep_counts(self, aux: dict, yd: Tensor) -> None:
+REVIEW  165  round_t                       3548 -> 3561   | def round_t(self, p, lib):
+REVIEW  170  tail                          2927 -> 2920   | def poly(self):
+REVIEW  170  tail                          2944 -> 2937   | def tail(self, vals):
+REVIEW  170  READ_CHUNK                     103 -> 103 (READ_POLY = 4)
+REVIEW  170  READ_CHUNK                     104 -> 104   | READ_CHUNK = 512
+REVIEW  174  builds                        3040 -> 3038   | def builds(c, r):
+REVIEW  174  read_more                     3051 -> 3049   | def read_more(law, r):
+REVIEW  177  read_target                   3080 -> 3084   | if int(m.sum()) < 2:  # a size too small for it (as 10 for 1-dig
+REVIEW  177  read_target                   3081 -> 3085   | return {"A": v * 0, "Am": m & False}  # nothing there (Root.goal
+REVIEW  177  Root.goals                    2385 -> 2380   | if all(t is not None for t in ts) and any("check" in t or bool(t
+REVIEW  243                                  78 -> 78   | SEARCH_WORK = 800_000_000   # one search's work budget, in WORK'
+REVIEW  243                                  79 -> 79 (CLIMB_WORK = 13_000_000_000)
+REVIEW  690                                5166 -> 5170   | SUBMISSION = Submission(
+REVIEW  691                                 129 -> 129   | BATCH = 512
+REVIEW  691                                 131 -> 131   | MAX_STEPS = 20000
+REVIEW  694                                  12 -> 12   | from __future__ import annotations
+REVIEW  694                                  32 -> 32   | from benchmark import ModelSpec, OptimizerBundle, OptimizerSpec,
+REVIEW  698                                  26 -> 26   | try:
+REVIEW  698                                  30 -> 30   | triton = None
+REVIEW  704  LR                              43 -> 43   | LR = 0.05              # Adam on the logits
+REVIEW  705  Adam                          5127 -> 5131   | class Adam(torch.optim.Adam):
+REVIEW  706  Schedule                      5143 -> 5147   | class Schedule:
+REVIEW  707  token_training_loss           5104 -> 5108   | def token_training_loss(batch: TokenLossBatch) -> Tensor:
+REVIEW  708  LOOP_CAP                       179 -> 179   | LOOP_CAP = 100                                       # a count l
+REVIEW  711                                5161 -> 5165   | def build_optimizer(model: nn.Module, spec: OptimizerSpec) -> Op
+REVIEW  712  _clock                        1433 -> 1433   | def _clock():
+REVIEW  714                                  78 -> 78   | SEARCH_WORK = 800_000_000   # one search's work budget, in WORK'
+REVIEW  714                                  79 -> 79 (CLIMB_WORK = 13_000_000_000)
+REVIEW  716  Control                       4036 -> 4042   | class Control:
+REVIEW  718  FREEZE_WIN                     128 -> 128   | FREEZE_WIN = 200       # phase D: freeze after this many consecu
+REVIEW  719  control                       5012 -> 5016   | def control(self, aux: dict, loss: float) -> None:
+REVIEW  719                                5123 -> 5127   | model.control(aux, float(loss.detach()))
+REVIEW  720                                4101 -> 4107   | self.register_buffer("pool_rows", torch.zeros(POOL, 2, W, dtype=
+REVIEW  720                                4113 -> 4119   | self.register_buffer("more_s", torch.zeros(ROUNDT_SLOTS, dtype=t
+REVIEW  725  keep_counts                   4827 -> 4831   | def keep_answers(self, aux: dict, yd: Tensor) -> None:
+REVIEW  725  keep_counts                   4842 -> 4846   | def keep_counts(self, aux: dict, yd: Tensor) -> None:
+REVIEW  725                                4859 -> 4863   | for s in rows:  # ROUNDT's (buffers): the newest ROUNDT of each 
+REVIEW  725                                4865 -> 4869   | self.more_rows[j[0], :r.shape[0]], self.more_n[j[0]], self.more_
+REVIEW  726                                4729 -> 4733   | ctl.climb.more = [(int(count_of(r[:1, 2, :K])), (r[:, 0], r[:, 1
+REVIEW  730                                2972 -> 2965   | READ_LAWS = {}  # a reading's own laws (read_more) -> their tree
+REVIEW  731  read_more                     3058 -> 3056   | LAW_BOOK.setdefault(name, ("A", (pat,)))
+REVIEW  732                                1424 -> 1424   | WORK = [0.0]  # the machine work done so far, in the units of ap
+REVIEW  732                                 703 -> 703   | _TRACES = {}  # (P, B, W, id(lib)) -> (lib, {item: (instructions
+REVIEW  732                                1393 -> 1393   | _OUTER = {}  # (instructions, P, B, rows, device) -> OuterMachin
+REVIEW  739                                4084 -> 4090   | self.a = nn.Parameter(INIT * torch.randn(10, 10, 2, 10))  # subt
+REVIEW  739                                4099 -> 4105   | self.absp = nn.Parameter(INIT * torch.randn(4, W, self.LPM))
+REVIEW  753  INIT                            42 -> 42   | INIT = 0.1             # std of the initial logits
+REVIEW  754  Cells                          361 -> 361   | class Cells:
+REVIEW  755  MODE                            34 -> 34   | MODE = "learned"       # "learned" | "designed" (the reader and 
+REVIEW  756  exact_cells                   3978 -> 3984   | def exact_cells(device):
+REVIEW  760  predict_ste                   4540 -> 4544   | def predict_ste(self, e: Tensor, end: Tensor, k: Tensor, L: int)
+REVIEW  766                                 164 -> 164   | COND = 'if1'      # "sel": SEL.S, A := S where the borrow is set
+REVIEW  766                                 171 -> 171   | BRING = False    # BRG.X: A's places up one, X's top digit into 
+REVIEW  768                                 164 -> 164   | COND = 'if1'      # "sel": SEL.S, A := S where the borrow is set
+REVIEW  768                                 179 -> 179   | LOOP_CAP = 100                                       # a count l
+REVIEW  773  read_fact                     3188 -> 3192   | def read_fact(self, answers):
+REVIEW  774  compare                       3751 -> 3759   | def compare(A: Tensor, B: Tensor) -> Tensor:
+REVIEW  778  STEP_PARTS                      93 -> 93   | STEP_PARTS = ("lt", "red", "add")  # a reduction's step x + d F 
+REVIEW  780  LawReader                     2793 -> 2785   | class LawReader:
+REVIEW  780  READ_OPS                      2790 -> 2782   | READ_OPS = {"add": "add", "sub": "sub", "mul": "mul", "pow": "mu
+REVIEW  781  READ_TRIES                      99 -> 99   | READ_MIN = 4           # the target's law, read (LawReader): exa
+REVIEW  781  READ_TRIES                     102 -> 102   | READ_TRIES = 3         # ... addition; then x's polynomials (Law
+REVIEW  785  tail                          2927 -> 2920   | def poly(self):
+REVIEW  785  tail                          2944 -> 2937   | def tail(self, vals):
+REVIEW  785  READ_CHUNK                     103 -> 103 (READ_POLY = 4)
+REVIEW  785  READ_CHUNK                     104 -> 104   | READ_CHUNK = 512
+REVIEW  792  read_more                     2993 -> 2991 (windows(t, least=2): reduced1's one-operation windows)
+REVIEW  792  read_more                     3051 -> 3049   | def read_more(law, r):
+REVIEW  792  READ_WINDOW                     95 -> 95   | READ_WINDOW = (3, 2)   # a reading's windows (read_more): at mos
+REVIEW  794  w2                            2030 -> 2028   | PATTERNS.update({"n": ((("n",),), "same", ""), "x,n": ((("x", "n
+REVIEW  794  w2                            2032 -> 2030   | NBOUND = ("n", "x,n", "w1", "w2")  # (their last term, the modul
+REVIEW  795  read_more                     3030 -> 3028   | def constants(t, out):
+REVIEW  795  read_more                     3051 -> 3049   | def read_more(law, r):
+REVIEW  795  CONST_OPS                       96 -> 96   | CONST_OPS = ("add", "sub", "mul")  # its operations posed with e
+REVIEW  796  builds                        3040 -> 3038   | def builds(c, r):
+REVIEW  799  read_target                   3080 -> 3084   | if int(m.sum()) < 2:  # a size too small for it (as 10 for 1-dig
+REVIEW  799  read_target                   3081 -> 3085   | return {"A": v * 0, "Am": m & False}  # nothing there (Root.goal
+REVIEW  799  Root.goals                    2385 -> 2380   | if all(t is not None for t in ts) and any("check" in t or bool(t
+REVIEW  801  round_t                       3548 -> 3561   | def round_t(self, p, lib):
+REVIEW  801  ROUNDT                          97 -> 97   | ROUNDT = 4096          # a round must also give the answers of e
+REVIEW  801  ROUNDT_SLOTS                    98 -> 98   | ROUNDT_SLOTS = 4       # ... rows of each of at most this many c
+REVIEW  803  keep_counts                   4842 -> 4846   | def keep_counts(self, aux: dict, yd: Tensor) -> None:
+REVIEW  805  read_pairs                    2965 -> 2958   | def read_pairs(ops_):
+REVIEW  807                                2012 -> 2010   | OPERAND_REGS = ("A", "X", "Y", "N")  # a law's operands go to th
+REVIEW  807                                2028 -> 2026   | for ar, ops_ in ((2, OPS2), (3, OPS3)) for law, ans in ops_.item
+REVIEW  807  Draw                          2131 -> 2129   | class Draw:
+REVIEW  808  law_target                    2225 -> 2223   | def law_target(law, d, ops, lib):
+REVIEW  810  SP_RULE                         54 -> 54   | SP_RULE = "lpca"       # the choosing rule: concepts, hardest by
+REVIEW  811                                  54 -> 54   | SP_RULE = "lpca"       # the choosing rule: concepts, hardest by
+REVIEW  811                                  91 -> 91   | FUSE = 4               # a search runs up to this many chunks of
+REVIEW  811                                 105 -> 105   | SP = dict(rule=SP_RULE, K=SP_K, NP=SP_NP, probe_budget=SP_PROBE,
+REVIEW  811                                 114 -> 114   | PROG_SLOTS = 4         # the answer programs the tournament hold
+REVIEW  814                                  72 -> 72   | ROUND_STATES = 2_000_000       # the round's search: states stor
+REVIEW  814                                  76 -> 76   | SP_CALLS_FIRST = True  # ... and that search by calls runs first
+REVIEW  815  K                               40 -> 40   | K = 2                  # T's field: its slots (the count's digit
+REVIEW  823  _lock_k                       1011 -> 1011   | def _lock_k(R, C, H, K, PP, PS, OFF, COLS, LR, RM, TB, ALU, S, n
+REVIEW  824  SteMachine                    1831 -> 1831   | class SteMachine:
+REVIEW  832  predict_ste                   4540 -> 4544   | def predict_ste(self, e: Tensor, end: Tensor, k: Tensor, L: int)
+REVIEW  832  SteMachine                    1831 -> 1831   | class SteMachine:
+REVIEW  841                                4509 -> 4515   | return torch.zeros(rows, L, V, device=dev), aux
+REVIEW  845  GRAD_DAMP                       36 -> 36   | GRAD_DAMP = 0.1        # the prediction path's gradient is multi
+REVIEW  851  selected                      4341 -> 4347   | def runs(self, e: Tensor, end: Tensor):
+REVIEW  851  selected                      4374 -> 4380   | return torch.where(okn & okx & (rn != rx), lut[rn, dn, rx, dx], 
+REVIEW  860                                1011 -> 1011   | def _lock_k(R, C, H, K, PP, PS, OFF, COLS, LR, RM, TB, ALU, S, n
+REVIEW  863  _SALT                          601 -> 601   | _MULT = torch.randint(-(1 << 62), 1 << 62, (8192,), generator=_G
+REVIEW  863  _SALT                         2515 -> 2510   | _SALT = torch.randint(-(1 << 62), 1 << 62, (8192,), generator=to
+REVIEW  864  _Ops                           775 -> 775   | class _Ops:
+REVIEW  864                                 361 -> 361   | class Cells:
+REVIEW  865                                4152 -> 4158   | def snapped_cells(self) -> Cells:
+REVIEW  882                                5104 -> 5108   | def token_training_loss(batch: TokenLossBatch) -> Tensor:
+REVIEW  892  law_target                    2225 -> 2223   | def law_target(law, d, ops, lib):
+REVIEW  899  read_target                   3075 -> 3079   | def read_target(law, d, ops, lib):
+REVIEW  905  builds                        3040 -> 3038   | def builds(c, r):
+REVIEW  908                                5012 -> 5016   | def control(self, aux: dict, loss: float) -> None:
+REVIEW  908                                5046 -> 5050   | ctl.phase, ctl.reset, ctl.in_phase = "B", True, 0
+REVIEW  909                                5137 -> 5141   | if self.ctl.reset:
+REVIEW  910                                5150 -> 5154   | if self.ctl.phase == "frozen":
+REVIEW  911  climb_unit                    4714 -> 4718   | def climb_unit(self, Nd: Tensor, Xd: Tensor) -> None:
+REVIEW  912  lessons                       4778 -> 4782   | def lessons(self, Nd, Xd, Cd, small, width, e, end, k, code) -> 
+REVIEW  917  read_law                      3188 -> 3192   | def read_fact(self, answers):
+REVIEW  917  read_law                      3176 -> 3180   | def read_law(self, answers):
+REVIEW  932  tree                          2975 -> 2973   | def tree(s):
+REVIEW  935                                1782 -> 1782   | def count_of(d):
+REVIEW  936                                2096 -> 2094   | def times_add(ops, st, lib, D, v, times, gen, device):
+REVIEW  941  round_t                       3548 -> 3561   | def round_t(self, p, lib):
+REVIEW  943  climb_unit                    4729 -> 4733   | ctl.climb.more = [(int(count_of(r[:1, 2, :K])), (r[:, 0], r[:, 1
+REVIEW  946  keep_counts                   4859 -> 4863   | for s in rows:  # ROUNDT's (buffers): the newest ROUNDT of each 
+REVIEW  946  keep_counts                   4865 -> 4869   | self.more_rows[j[0], :r.shape[0]], self.more_n[j[0]], self.more_
+REVIEW  947  Miner                         3761 -> 3769   | def relations(terms: dict, pairs: bool = True) -> dict:
+REVIEW  947  Miner                         3818 -> 3826   | return ";".join(f"{k}(since {self.first.get(k, '?')}, fails {sel
+REVIEW  948                                4795 -> 4799   | orders = [(a, b) for a in ORDER_TERMS for b in ORDER_TERMS if a 
+REVIEW  948                                4796 -> 4800   | nonzero = [a for a in ORDER_TERMS if usable and ctl.miner.holds(
+REVIEW 1064                                   1 -> 1 (the docstring, lines 1-10; its first line names DEEP.md and make_deep.py)
+REVIEW 1064                                  10 -> 10   | """
+REVIEW 1064                                  34 -> 34   | MODE = "learned"       # "learned" | "designed" (the reader and 
+REVIEW 1064                                 133 -> 133   | EPS = 1e-6
+REVIEW 1065                                  92 -> 92   | BOOK = ((), ())        # the law book: no law; read_fact and the
+REVIEW 1065                                 104 -> 104   | READ_CHUNK = 512
+REVIEW 1065  LAWS                           141 -> 141   | LAWS = {
+REVIEW 1066                                 164 -> 164   | COND = 'if1'      # "sel": SEL.S, A := S where the borrow is set
+REVIEW 1066                                 179 -> 179   | LOOP_CAP = 100                                       # a count l
+REVIEW 1066  _lock_k                       1011 -> 1011   | def _lock_k(R, C, H, K, PP, PS, OFF, COLS, LR, RM, TB, ALU, S, n
+REVIEW 1066  PATTERNS                      2020 -> 2018   | PATTERNS = {"pair": ((("x", "n"), ("n", "x"), ("x", "x"), ("x", 
+REVIEW 1066  Draw                          2131 -> 2129   | class Draw:
+REVIEW 1066  law_target                    2225 -> 2223   | def law_target(law, d, ops, lib):
+REVIEW 1067  LawReader                     2793 -> 2785   | class LawReader:
+REVIEW 1067  poly                          2927 -> 2920   | def poly(self):
+REVIEW 1067  read_pairs                    2965 -> 2958   | def read_pairs(ops_):
+REVIEW 1067  builds                        3040 -> 3038   | def builds(c, r):
+REVIEW 1067  read_more                     3051 -> 3049   | def read_more(law, r):
+REVIEW 1068  read_target                   3075 -> 3079   | def read_target(law, d, ops, lib):
+REVIEW 1068  SelfClimb                     3087 -> 3091   | class SelfClimb:
+REVIEW 1068  read_law                      3176 -> 3180   | def read_law(self, answers):
+REVIEW 1068  read_fact                     3188 -> 3192   | def read_fact(self, answers):
+REVIEW 1068  pose                          3198 -> 3202   | def pose(self, rows, answers=None):
+REVIEW 1069  search_outer                  3608 -> 3619   | def search_outer(self, rows, rounds, stop_at=None, budget=1_000_
+REVIEW 1069  Control                       4036 -> 4042   | class Control:
+REVIEW 1069  LibraryMachine                4078 -> 4084   | class LibraryMachine(nn.Module):
+REVIEW 1069                                4101 -> 4107   | self.register_buffer("pool_rows", torch.zeros(POOL, 2, W, dtype=
+REVIEW 1069                                4113 -> 4119   | self.register_buffer("more_s", torch.zeros(ROUNDT_SLOTS, dtype=t
+REVIEW 1070  climb_unit                    4714 -> 4718   | def climb_unit(self, Nd: Tensor, Xd: Tensor) -> None:
+REVIEW 1070  lessons                       4778 -> 4782   | def lessons(self, Nd, Xd, Cd, small, width, e, end, k, code) -> 
+REVIEW 1070  keep_counts                   4842 -> 4846   | def keep_counts(self, aux: dict, yd: Tensor) -> None:
+REVIEW 1070  control                       5012 -> 5016   | def control(self, aux: dict, loss: float) -> None:
+REVIEW 1071  SUBMISSION                    5104 -> 5108   | def token_training_loss(batch: TokenLossBatch) -> Tensor:
+REVIEW 1071  SUBMISSION                    5173 -> 5177   | )
+
+Every family-file line REVIEW cites there, and this file's line:
+    1 -> 1 (the docstring, lines 1-10; its first line names DEEP.md and make_deep.py)
+   10 -> 10
+   12 -> 12
+   26 -> 26
+   30 -> 30
+   32 -> 32
+   34 -> 34
+   36 -> 36
+   40 -> 40
+   42 -> 42
+   43 -> 43
+   54 -> 54
+   72 -> 72
+   76 -> 76
+   78 -> 78
+   79 -> 79 (CLIMB_WORK = 13_000_000_000)
+   91 -> 91
+   92 -> 92
+   93 -> 93
+   95 -> 95
+   96 -> 96
+   97 -> 97
+   98 -> 98
+   99 -> 99
+  102 -> 102
+  103 -> 103 (READ_POLY = 4)
+  104 -> 104
+  105 -> 105
+  114 -> 114
+  128 -> 128
+  129 -> 129
+  131 -> 131
+  133 -> 133
+  141 -> 141
+  164 -> 164
+  171 -> 171
+  179 -> 179
+  361 -> 361
+  601 -> 601
+  703 -> 703
+  775 -> 775
+ 1011 -> 1011
+ 1393 -> 1393
+ 1424 -> 1424
+ 1433 -> 1433
+ 1782 -> 1782
+ 1831 -> 1831
+ 2012 -> 2010
+ 2020 -> 2018
+ 2028 -> 2026
+ 2030 -> 2028
+ 2032 -> 2030
+ 2096 -> 2094
+ 2131 -> 2129
+ 2225 -> 2223
+ 2385 -> 2380
+ 2515 -> 2510
+ 2790 -> 2782
+ 2793 -> 2785
+ 2927 -> 2920
+ 2944 -> 2937
+ 2965 -> 2958
+ 2972 -> 2965
+ 2975 -> 2973
+ 2993 -> 2991 (windows(t, least=2): reduced1's one-operation windows)
+ 3030 -> 3028
+ 3040 -> 3038
+ 3051 -> 3049
+ 3058 -> 3056
+ 3075 -> 3079
+ 3080 -> 3084
+ 3081 -> 3085
+ 3087 -> 3091
+ 3176 -> 3180
+ 3188 -> 3192
+ 3198 -> 3202
+ 3548 -> 3561
+ 3608 -> 3619
+ 3751 -> 3759
+ 3761 -> 3769
+ 3818 -> 3826
+ 3978 -> 3984
+ 4036 -> 4042
+ 4078 -> 4084
+ 4084 -> 4090
+ 4099 -> 4105
+ 4101 -> 4107
+ 4111 -> 4117
+ 4113 -> 4119
+ 4152 -> 4158
+ 4341 -> 4347
+ 4374 -> 4380
+ 4509 -> 4515
+ 4540 -> 4544
+ 4714 -> 4718
+ 4729 -> 4733
+ 4778 -> 4782
+ 4795 -> 4799
+ 4796 -> 4800
+ 4827 -> 4831
+ 4842 -> 4846
+ 4859 -> 4863
+ 4865 -> 4869
+ 5012 -> 5016
+ 5046 -> 5050
+ 5104 -> 5108
+ 5123 -> 5127
+ 5127 -> 5131
+ 5137 -> 5141
+ 5143 -> 5147
+ 5150 -> 5154
+ 5161 -> 5165
+ 5166 -> 5170
+ 5173 -> 5177

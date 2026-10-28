@@ -1,0 +1,29 @@
+record                                 climb from          round         frozen   end s     work  unit s    s/M worst s/M
+legal_wider_h100_seed1              584      67 s   653    192 s   852    321 s     509 1.68e+09     229  0.137     0.317
+legal_wider_h100_seed2              584      83 s   649    250 s   848    487 s     777 1.37e+09     278  0.202     0.352
+legal_wider_h100_seed3              612     110 s   676    298 s   875    489 s     720 1.48e+09     266  0.179     0.375
+legal_wider_h100_seed4              653     136 s   716    230 s   915    367 s     581  1.5e+09     257  0.171     0.344
+legal_wider_h100_seed5              609      85 s   673    280 s   872    473 s     690 1.44e+09     276  0.192     0.343
+legal_wider_h100_seed6              623     120 s   687    292 s   886    362 s     581 1.39e+09     256  0.184     0.336
+legal_wider_h100_seed7              565      98 s   632    192 s   831    360 s     579 1.45e+09     253  0.175     0.362
+legal_wider_official                563     111 s   632    205 s   831    341 s     522 1.45e+09     250  0.173     0.336
+wider_cube_h100                     563     111 s   641    276 s   840    493 s     664  3.7e+09     373  0.101     0.339
+wider_minus1_h100                   563     115 s   644    365 s   843    648 s     816 3.76e+09     559  0.149     0.337
+wider_plus3_h100                    563     125 s   639    286 s   838    491 s     680 3.13e+09     387  0.124     0.319
+wider_plusy_h100                    563     113 s   632    207 s   831    341 s     520 1.45e+09     241  0.166     0.316
+wider_poly_2_3_9_9_h100             563      93 s     -      - s     -      - s    3547 1.97e+09    3129  1.591     1.616
+wider_poly_8_3_8_3_h100             563      82 s     -      - s     -      - s    3590    2e+09    3164  1.583     1.612
+wider_rho_h100                      563     130 s   637    294 s   836    517 s     720 3.61e+09     410  0.114     0.339
+wider_ten_h100                      563     126 s   641    304 s   840    530 s     749 2.86e+09     407  0.143     0.382
+wider_tenrho_h100                   565     119 s   640    278 s   839    484 s     677 2.81e+09     381  0.136     0.352
+wider_three2_h100                   563     133 s     -      - s     -      - s    2951 4.36e+09     516  0.118     0.377
+by kind of unit, every record: work, seconds, s/M overall, the worst single unit's s/M (units of 1e6+)
+  round again        3.77e+09      6079 s   1.613   1.628
+  probe              1.91e+10      3007 s   0.157   3.049
+  round              1.64e+09      1276 s   0.779   1.893
+  deep               1.21e+10       981 s   0.081   1.205
+  answer program      4.7e+09       164 s   0.035   0.075
+  pose               2.56e+07        86 s   3.381   3.269
+  choose              2.1e+07        38 s   1.821   1.971
+  sleep                     0         0 s   0.000   0.000
+all units: 0.101-1.591 s per million units; the slowest stretch of at least 5e+08 units: 1.616

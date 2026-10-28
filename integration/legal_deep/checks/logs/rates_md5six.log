@@ -1,0 +1,16 @@
+record                                 climb from          round         frozen   end s     work  unit s    s/M worst s/M
+deep_poly_7_2_9_5_h100              563     137 s   673    822 s   872   1081 s    1282 1.09e+10     978  0.090     0.373
+deep_poly_2_3_6_8_h100              563     115 s   659    578 s   858    897 s    1120    1e+10     802  0.080     0.348
+deep_poly_4_3_4_5_h100              563     135 s   657    664 s   856   1086 s    1327 7.61e+09     930  0.122     0.387
+deep_poly_2_2_9_3_h100              563     133 s   673    562 s   872    739 s     947 4.76e+09     621  0.130     0.400
+deep_poly_7_3_6_4_h100              563     135 s   661    931 s   860   1440 s    1686 1.27e+10    1327  0.104     0.416
+deep_poly_7_3_1_0_h100              563     124 s   647    554 s   846   1014 s    1223 8.02e+09     910  0.113     0.321
+by kind of unit, every record: work, seconds, s/M overall, the worst single unit's s/M (units of 1e6+)
+  probe              2.69e+10      2647 s   0.098   2.741
+  deep               2.06e+10      1404 s   0.068   1.400
+  round              2.13e+09      1238 s   0.580   1.821
+  answer program     4.34e+09       132 s   0.030   0.080
+  pose               2.58e+07        89 s   3.468   3.974
+  choose             3.21e+07        58 s   1.816   1.999
+  sleep                     0         0 s   0.000   0.000
+all units: 0.080-0.130 s per million units; the slowest stretch of at least 5e+08 units: 0.416

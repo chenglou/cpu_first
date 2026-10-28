@@ -29,7 +29,8 @@ and bar 3's legal reader certifies 8 of 8 (§4.8). Later on Oct 27 the reader ge
 emptied, each certifying 8 of 8, and with round 7's general rules the file with no book certifies 8 of 8 again and
 learns 4 of 8 family tasks at full size, one of two held-out tasks among them. That evening a tidier, wider version,
 with no data rows outside the state dict, certifies 8 of 8 and learns 7 of 8 family tasks but neither of two new
-held-out ones; it is now the file to judge (§4.8).*
+held-out ones. Late that night a reader of four steps certifies 8 of 8 again and learns all 22 other tasks it is run on,
+among them six drawn at random with the file's own md5 as the seed; it is now the file to judge (§4.8).*
 - *What was checked against the run records (`runs/`, `ablation/runs/`, `anchors/records/`, `bridge/h1/records/`,
   `tournament/h1_records/`, `general_lessons/records/`, `general_lessons/fixed/records/`, `integration/records/`,
   `integration/ablation_s3/records/`, `integration/self_practice/records/runner/`, `handwired_bridge/h1/records/`,
@@ -331,7 +332,8 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 27 `f7dc5f8` | **a legal file with no law in its book certifies 8 of 8**: a designed rule reads off the answers that the law ends in a reduction by N and poses that step's parts, the comparison, the link and the addition; then the wide reading and the round, every practice answer from the learner's own routines; training 472–634 s | [integration/legal_nobook/NOBOOK.md](integration/legal_nobook/NOBOOK.md) |
 | Oct 27 `fe35373` | offline with no book, a rule that poses every window of the target's reading brings 6 of 7 family tasks unchanged (x², the cube, 10y², y² + 1, y² + 3, 10y² + 1), and y² − 1 with two more general changes | [bar3/scale/family/FAMILY.md](bar3/scale/family/FAMILY.md) |
 | Oct 27 `ce9f118` | **bar 3's finish line**: with no law in its book and round 7's general rules, one legal file certifies H1 8 of 8 and, byte for byte, learns 4 of 8 family tasks at full size, one of two held-out tasks among them | [integration/legal_family/FAMILY_FILE.md](integration/legal_family/FAMILY_FILE.md) |
-| Oct 27 `80082c0` | ROUNDT's rows moved into buffers, ROUNDT made cheaper and the reader widened: H1 8 of 8 again, 7 of 8 family tasks learned, but neither of two held-out tasks drawn at random; now the file to judge | [integration/legal_wider/WIDER.md](integration/legal_wider/WIDER.md) |
+| Oct 27 `80082c0` | ROUNDT's rows moved into buffers, ROUNDT made cheaper and the reader widened: H1 8 of 8 again, 7 of 8 family tasks learned, but neither of two held-out tasks drawn at random | [integration/legal_wider/WIDER.md](integration/legal_wider/WIDER.md) |
+| Oct 27 `a88fc45` | **four steps deep**: H1 8 of 8 again, and byte for byte all 22 other tasks it is run on, among them 12 held out, six of them drawn with the fixed file's md5 as the seed (6 of 6); now the file to judge | [integration/legal_deep/DEEP.md](integration/legal_deep/DEEP.md) |
 
 ### The lessons that came out of the failures
 
@@ -687,20 +689,23 @@ ladders, every rung 768/768, test 9,999/9,999, ood_t and ood_n_t 10,002/10,002.
 | [`integration/legal_wide/submission_stage3_wide.py`](integration/legal_wide/submission_stage3_wide.py) (`3bb5ceeb`) | **the legal file with a wider grammar for its reader**: subtract, power, constants and depth 3 beside add, mul and mod (§4.8) | 207,370 | `legal_wide_official`: 554.1 (813) / 391.9 | 8 of 8 on H100s, official manifest (74 and 1–7) | the round at level 4, the answer program by 244–326 s |
 | [`integration/legal_nobook/submission_stage3_nobook.py`](integration/legal_nobook/submission_stage3_nobook.py) (`b42ec304`) | **no law in the book**: the wide file with its three laws replaced by a rule that reads from the answers what to practise first (§4.8) | 207,370 | `legal_nobook_official`: 573.9 (829) / 398.3 | 8 of 8 on H100s, official manifest (74 and 1–7) | the round at level 4, the answer program by 256–344 s |
 | [`integration/legal_family/submission_stage3_family.py`](integration/legal_family/submission_stage3_family.py) (`457216d7`) | **no book and round 7's rules**: the file to judge before the wider file ([REVIEW.md](REVIEW.md) §2): the no-book file with windows of the reading posed as laws, constants made from N and rounds checked at T = 2, 4 and 8 (§4.8) | 207,370 | `legal_family_official`: 783.3 (831) / 367.6 | 8 of 8 on H100s, official manifest (74 and 1–7) | the round at level 4; byte for byte it also learns y² + y (held out), y² + 1, the cube and y² − 1 at full size |
-| [`integration/legal_wider/submission_stage3_wider.py`](integration/legal_wider/submission_stage3_wider.py) (`59060b5c`) | **tidier and wider, and the file to judge** ([REVIEW.md](REVIEW.md) §2): the family file with ROUNDT's rows in buffers, a cheaper ROUNDT and a reader of polynomials up to three steps (§4.8) | 207,370 | `legal_wider_official`: 522.1 (831) / 271.0 | 8 of 8 on H100s, official manifest (74 and 1–7) | byte for byte it also learns 7 of 8 family tasks, none of the 2 held out |
+| [`integration/legal_wider/submission_stage3_wider.py`](integration/legal_wider/submission_stage3_wider.py) (`59060b5c`) | **tidier and wider**: the file to judge before the deep file ([REVIEW.md](REVIEW.md) §2): the family file with ROUNDT's rows in buffers, a cheaper ROUNDT and a reader of polynomials up to three steps (§4.8) | 207,370 | `legal_wider_official`: 522.1 (831) / 271.0 | 8 of 8 on H100s, official manifest (74 and 1–7) | byte for byte it also learns 7 of 8 family tasks, none of the 2 held out |
+| [`integration/legal_deep/submission_stage3_deep.py`](integration/legal_deep/submission_stage3_deep.py) (`56acca73`) | **four steps deep, and the file to judge** ([REVIEW.md](REVIEW.md) §2): the wider file with a four-step reader, windows reduced mod N and x kept between calls (§4.8) | 207,370 | `legal_deep_official`: 519.3 (831) / 270.6 | 8 of 8 on H100s, official manifest (74 and 1–7) | byte for byte it also learns all 22 other tasks it was run on, 12 of them held out |
 | [`integration/submission_stage1.py`](integration/submission_stage1.py) (`cfd7b61d`) | **stage 1**: the tournament and the general lessons in one file | 222,113 | `s1_official`: 1,860.7 (716) / 56.1 | 8 of 8 on CPU | also learns y² + 1, 10·y², cubing, Montgomery's, 10·y² + 1, y² + 3 and M4 |
 | [`general_lessons/submission_general_v3.py`](general_lessons/submission_general_v3.py) (`0805b7d3`) | **general lessons v3**: the answers choose whole digit codes (§4.6) | 11,589 | `v3k_h1_official`: 1,190.5 (645) / 42.3 | H1: 8 of 8 on B200s, run with an earlier v3 build (`v3f`) | also all 14 fixed-modulus practice sets, on relaxed budgets |
 
-The file to judge is now the wider file ([REVIEW.md](REVIEW.md) §2): the legal file taken to an empty law book, with a
-wider reader, round 7's general rules, and no data rows outside the state dict. It certifies on the official run and
-seven more H100 seeds, and the same file, byte for byte, learns 7 of 8 tasks of the family at full size, though none of
-the two held out (§4.8). Before it, the family file was the file to judge, learning 4 of 8 and one of its two held-out
-tasks; before that, the legal file: fast2 with its generated law book replaced by three laws and bar 3's legal reader,
-also 8 of 8. Before that, fast2: every certified variant of sp2 in one file, made fast, also 8 of 8. Before it, s3i was
-the file to judge; it keeps the most evidence on what each hand-made part does, with its ablation. sp2's seeds ran on
-B200s, which count as research, not certification. Two of s3i's checks are weak: in about 3% of runs its reduction check
-would accept a shortcut that fails at full size, and such a run cannot certify. None of its 8 seeds drew it. Copies of
-s3i and sp2 with both checks fixed replay all 17 of their runs exactly (§4.7), and the variants of §4.8 go further.
+The file to judge is now the deep file ([REVIEW.md](REVIEW.md) §2): the legal file taken to an empty law book, with a
+reader of four steps, round 7's general rules, and no data rows outside the state dict. It certifies on the official run
+and seven more H100 seeds, and the same file, byte for byte, learns all 22 other tasks it was run on at full size, among
+them six held out and drawn with its own md5 as the seed (§4.8). Before it, the wider file was the file to judge,
+learning 7 of 8 family tasks but neither of its two held-out ones; before that, the family file, learning 4 of 8 and one
+of its two held-out tasks; before that, the legal file: fast2 with its generated law book replaced by three laws and bar
+3's legal reader, also 8 of 8. Before that, fast2: every certified variant of sp2 in one file, made fast, also 8 of 8.
+Before it, s3i was the file to judge; it keeps the most evidence on what each hand-made part does, with its ablation.
+sp2's seeds ran on B200s, which count as research, not certification. Two of s3i's checks are weak: in about 3% of runs
+its reduction check would accept a shortcut that fails at full size, and such a run cannot certify. None of its 8 seeds
+drew it. Copies of s3i and sp2 with both checks fixed replay all 17 of their runs exactly (§4.7), and the variants of
+§4.8 go further.
 
 The earlier frontier files are now steps of the ladder (§5): the wide model (step 11), its MLP-cell version (12), the
 tournament (13), and general lessons v1 and v2 (14, 15).
@@ -1156,11 +1161,22 @@ study's local checks pass on it. It is 869 bytes under the 256 KiB limit.
   buffers, so that no data row is kept outside the state dict, a cheaper ROUNDT that keeps the same rounds, and a wider
   reader: x's polynomials up to three steps, each constant posed with 1 and its doublings, and a law too big for a size
   counted as saying nothing there. `submission_stage3_wider.py` (`59060b5c`) certifies on 8 of 8 official-manifest H100
-  runs, training in 509–777 s, and is now the file to judge (REVIEW.md §2). Byte for byte it learns 7 of the 8 family
-  tasks, y² + 3, 10y² and 10y² + 1 among them, but not 3y² + 2, whose climb runs out of work. All eight were known when
-  the reader was designed, so they show no generality. The two held-out tasks, drawn at random from a space stated
-  before any run, 8y³ + 8y + 3 and 2y³ + 9y + 9, are neither read nor learned: the reader stops at three steps and they
-  need four. Across both rounds, 1 of the 4 held-out tasks is learned. About $43.
+  runs, training in 509–777 s, and was the file to judge until the deep file (REVIEW.md §2). Byte for byte it learns 7
+  of the 8 family tasks, y² + 3, 10y² and 10y² + 1 among them, but not 3y² + 2, whose climb runs out of work. All eight
+  were known when the reader was designed, so they show no generality. The two held-out tasks, drawn at random from a
+  space stated before any run, 8y³ + 8y + 3 and 2y³ + 9y + 9, are neither read nor learned: the reader stops at three
+  steps and they need four. Across both rounds, 1 of the 4 held-out tasks is learned. About $43.
+- **Four steps deep** ([DEEP.md](integration/legal_deep/DEEP.md)). The wider file with a reader of four steps, which
+  reads all 1,800 tasks of the space y ← a·y^k + b·y + c mod N (k 2 or 3, a 1 to 9, b and c 0 to 9); windows checked
+  wherever a multi-digit product fits; windows reduced mod N in Horner order; a second round search with x kept in S
+  when a law reuses x; and a work budget of 13e9 units. `submission_stage3_deep.py` (`56acca73`) certifies on 8 of 8
+  official-manifest H100 runs, training in 502–741 s, and is now the file to judge (REVIEW.md §2). Byte for byte, one
+  H100 each, it learns all 22 other tasks it was run on, each right to T = 64 on both ladders with every split exact:
+  the 8 family tasks, phase D's pair, and 12 tasks held out. Six of those were drawn with the fixed file's own md5 as
+  the seed, so the design could not be tuned toward them: the clean test, 6 of 6, four of them needing four steps, which
+  puts at least 61% of the space within reach (95%, one-sided). The other six used a seed known while the design was
+  made. The margins are thin: the heaviest answer search came at 1.273e10 of its 1.3e10 units, and a run that used the
+  whole budget would train for about 3,510 s of the 3,600. About $125.
 
 ## 5. The removal ladder
 
@@ -1349,8 +1365,9 @@ needs. Its first two steps are done: the wider grammar and the empty book each c
 family's seven tasks come with no book (§4, bar 3). The third is done too: round 7's general rules brought into the
 no-book file, which certifies H1 8 of 8 again and, byte for byte, learns 4 of 8 family tasks at full size, one of the
 two held-out ones among them. A last round, phase D, moved ROUNDT's rows into buffers and widened the reader: H1 8 of 8
-again and 7 of 8 family tasks, but neither of two held-out tasks drawn at random; its file is now the file to judge
-(§4.8). Nothing is running.
+again and 7 of 8 family tasks, but neither of two held-out tasks drawn at random. Phase E read four steps deep and kept
+x between calls: H1 8 of 8, and all 22 other tasks it was run on, the six drawn with its own md5 as the seed among them;
+its file is now the file to judge (§4.8). Nothing is running.
 
 Everything else described here is committed.
 

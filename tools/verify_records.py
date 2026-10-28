@@ -1,8 +1,8 @@
 """Checks official records against the files they certify (REVIEW.md). Standard library only; reads, never writes.
 
-    python3 tools/verify_records.py                        # the file to judge's 8 runs, then the family file's 8,
-                                                           # the legal file's 8, fast2's 8, s3i's 8, stage 1 and
-                                                           # general v3
+    python3 tools/verify_records.py                        # the file to judge's 8 runs, then the wider file's 8,
+                                                           # the family file's 8, the legal file's 8, fast2's 8,
+                                                           # s3i's 8, stage 1 and general v3
     python3 tools/verify_records.py REC.json[=FILE.py] ... # any records; FILE defaults to the record's submission_file
     python3 tools/verify_records.py --log RUN.log [REC]    # a run of your own: its RESULT_JSON line against REC.json
                                                            # (default: the file to judge's official record)
@@ -23,16 +23,20 @@ HERE = Path(__file__).resolve().parent.parent                       # cpu_first/
 COMP = HERE.parent / "one-layer-deeper"                              # the competition clone at 87e5c26
 MANIFEST = COMP / "benchmark" / "manifests" / "h100_hard_h1.json"
 DATA_MD5 = "a6414ec9fc6a5efce6414895b52d4eb7"                        # runner.data_md5 of every shared-runner H1 record
-JUDGE = "integration/legal_wider/submission_stage3_wider.py"           # the file to judge (REVIEW.md §2) ...
-JUDGE_RECORDS = "integration/legal_wider/records/legal_wider"          # ... and its records: _official, _h100_seed<N>
-FAMILY = "integration/legal_family/submission_stage3_family.py"        # the file to judge before it (REVIEW.md §2) ...
+JUDGE = "integration/legal_deep/submission_stage3_deep.py"             # the file to judge (REVIEW.md §2) ...
+JUDGE_RECORDS = "integration/legal_deep/records/legal_deep"            # ... and its records: _official, _h100_seed<N>
+WIDER = "integration/legal_wider/submission_stage3_wider.py"           # the file to judge before it (REVIEW.md §2) ...
+WIDER_RECORDS = "integration/legal_wider/records/legal_wider"          # ... and its records, named the same way
+FAMILY = "integration/legal_family/submission_stage3_family.py"        # the file to judge before that ...
 FAMILY_RECORDS = "integration/legal_family/records/legal_family"       # ... and its records, named the same way
-LEGAL = "integration/combined_legal/submission_stage3_legal.py"        # the file to judge before that ...
+LEGAL = "integration/combined_legal/submission_stage3_legal.py"        # and before that ...
 LEGAL_RECORDS = "integration/combined_legal/records/combined_legal"    # ... and its records, named the same way
-FAST2 = "integration/combined_fast/submission_stage3_fast2.py"         # and before that ...
+FAST2 = "integration/combined_fast/submission_stage3_fast2.py"         # and before the legal file ...
 FAST2_RECORDS = "integration/combined_fast/records/combined_fast2"     # ... and its records, named the same way
 FRONTIER = [(f"{JUDGE_RECORDS}_official.json", JUDGE)]
 FRONTIER += [(f"{JUDGE_RECORDS}_h100_seed{s}.json", JUDGE) for s in range(1, 8)]
+FRONTIER += [(f"{WIDER_RECORDS}_official.json", WIDER)]
+FRONTIER += [(f"{WIDER_RECORDS}_h100_seed{s}.json", WIDER) for s in range(1, 8)]
 FRONTIER += [(f"{FAMILY_RECORDS}_official.json", FAMILY)]
 FRONTIER += [(f"{FAMILY_RECORDS}_h100_seed{s}.json", FAMILY) for s in range(1, 8)]
 FRONTIER += [(f"{LEGAL_RECORDS}_official.json", LEGAL)]

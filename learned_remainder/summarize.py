@@ -1,4 +1,4 @@
-"""Summaries and the table audit of run records (cpu_first/runs/learned_remainder/<name>.json).
+"""Summaries and the table audit of run records (cpu_first/history/runs/learned_remainder/<name>.json).
 
     python summarize.py NAME [NAME ...]      # one block per record
     python summarize.py --table NAME ...     # one markdown row per record
@@ -14,7 +14,7 @@ import re
 import sys
 from pathlib import Path
 
-RUNS = Path(__file__).resolve().parent.parent / "runs" / "learned_remainder"
+RUNS = Path(__file__).resolve().parent.parent / "history" / "runs" / "learned_remainder"
 
 
 def truth():

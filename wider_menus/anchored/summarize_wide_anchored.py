@@ -1,6 +1,6 @@
-"""Tables of WIDE_ANCHORED.md from the run records (cpu_first/runs/wider_menus/<name>.json) and the diagnostic logs
-(wider_menus/anchored/logs/<name>.log): learned_wiring/anchored/summarize_anchored.py's tables for the wide file, on
-wider_menus/summarize_wide.py's parse (which also names the division chain and the multiply grouping).
+"""Tables of WIDE_ANCHORED.md from the run records (cpu_first/history/runs/wider_menus/<name>.json) and the diagnostic
+logs (wider_menus/anchored/logs/<name>.log): history/learned_wiring/anchored/summarize_anchored.py's tables for the wide
+file, on wider_menus/summarize_wide.py's parse (which also names the division chain and the multiply grouping).
 
     python summarize_wide_anchored.py runs              # the anchored file's records, then submission_wide.py's
     python summarize_wide_anchored.py audit             # the coverage audit of each record
@@ -21,7 +21,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path[:0] = [str(HERE.parent), str(HERE.parent.parent / "learned_wiring" / "anchored")]
+sys.path[:0] = [str(HERE.parent), str(HERE.parent.parent / "history" / "learned_wiring" / "anchored")]
 import summarize_wide as sw  # noqa: E402
 import summarize_anchored as sa  # noqa: E402
 

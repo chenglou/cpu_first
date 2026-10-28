@@ -173,8 +173,8 @@ chain's single links:
   hard machine.
 
 **Why TINYCORE's blurring did not bite.** TINYCORE found that soft chains of repeated subtractions blur as they get
-longer: four chained soft subtractions at base 5 reached only 0.30–0.46 ([TINYCORE.md](../tinycore/TINYCORE.md) §4).
-Here no lesson needs a long soft chain while the table is still vague:
+longer: four chained soft subtractions at base 5 reached only 0.30–0.46 ([TINYCORE.md](../history/tinycore/TINYCORE.md)
+§4). Here no lesson needs a long soft chain while the table is still vague:
 - phase A's checks are single links on hard inputs;
 - phase B's soft chains follow the hard machine's own chain length, on a table that phase A has already made nearly
   right;
@@ -306,8 +306,8 @@ Following LEARNED_REMAINDER.md §6, with item 2 done:
 ## 8. Reproduce
 Everything heavy runs on Modal. Launch the runner from the one-layer-deeper repository root: it builds the competition
 image from it and regenerates H1 inside with the official generator arguments. Results land on the Modal Volume
-`learned-remainder`, and `wait_fetch.py` downloads them to `cpu_first/runs/learned_remainder/<name>.json` (full log,
-RESULT_JSON, the exact submission source).
+`learned-remainder`, and `wait_fetch.py` downloads them to `cpu_first/history/runs/learned_remainder/<name>.json` (full
+log, RESULT_JSON, the exact submission source).
 
 The final file as it is:
 
@@ -360,7 +360,7 @@ Files:
   - `probe_barrier.py`: the loss along the move of row (0, 0, 1);
   - `neg_links.py`: negative links under the exact and the stalled table.
 
-  They need torch and the H1 jsonl files (`H1_DATA`, as in `cpu_first/h1.py`). `stub/` stands in for the evaluator's
-  `benchmark` API.
+  They need torch and the H1 jsonl files (`H1_DATA`, as in `cpu_first/history/h1.py`). `stub/` stands in for the
+  evaluator's `benchmark` API.
 - **`submission.py`, `modal_learned_remainder.py`.** Untouched (md5 of `submission.py`:
   `bd477b9aadc9fcf34f428f728b5bea20`).

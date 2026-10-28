@@ -15,9 +15,9 @@ builders and source checks of §4.3 were rerun on 2026-10-27. The hosted evaluat
 <!-- To swap the file to judge: its path is in "In plain words", §2, §3, §4.1-§4.3, §6 and §7; its md5 in §2; its bytes
 and lines in §2 and §5 (rule 1); its records in §3, §4.1 and §4.2; its seconds, memory and seeds in "In plain words",
 §2, §3, §4.1, §4.2, §5 (rules 10, 11, 13, 14) and §7; its work budgets in §1, §2 and §5 (rules 4, 11); its line
-numbers in §2, §4.1, §5 and §6; the README's top paragraph; and tools/verify_records.py (JUDGE, JUDGE_RECORDS; the
-earlier files' records follow them). The file it replaces moves to §2's "earlier file", §3's and §4's second places,
-§5's last paragraphs (with the commit whose REVIEW.md takes its rules) and §7. -->
+numbers in §2, §4.1, §5 and §6; the README's paragraph on the entry; and tools/verify_records.py (JUDGE,
+JUDGE_RECORDS; the earlier files' records follow them). The file it replaces moves to §2's "earlier file", §3's and
+§4's second places, §5's last paragraphs (with the commit whose REVIEW.md takes its rules) and §7. -->
 
 
 The rules are the competition's own: [one-layer-deeper/README.md §Rules](../one-layer-deeper/README.md#rules), at
@@ -151,8 +151,8 @@ Triton kernel, and rules 5 and 9 for what stays in Python.
 Not claimed:
 - a result from the hosted evaluator: the project's one attempt to submit, s3i after the deadline on Oct 24, was
   refused ("Submissions are now closed"; OVERVIEW §6, §7);
-- the leaderboard count in [REPORT.md](REPORT.md) §0 (3 of 146 entries certified) comes from the public leaderboard at
-  the time and has no record behind it;
+- the leaderboard count in [REPORT.md](history/REPORT.md) §0 (3 of 146 entries certified) comes from the public
+  leaderboard at the time and has no record behind it;
 - runs on B200s, CPUs or relaxed budgets are research; only official-manifest H100 runs count as certification here.
   The task runs use H1's manifest on their own data, so they are research too: they show what the file learns (§3);
 - generality beyond the stated space: every task run is a recurrence y ← a·y^k + b·y + c mod N with k 2 or 3 and small
@@ -460,8 +460,8 @@ seed runs on that manifest with only `runtime.seeds` changed:
 - **General v3:** [`v3k_h1_official.json`](general_lessons/fixed/records/v3k_h1_official.json); its other H1 seeds ran
   the `v3f` build on B200s ([FIXED_MODULUS.md](general_lessons/fixed/FIXED_MODULUS.md)).
 
-Careful with one name: `runs/learned_remainder/s1_official.json` is a different, failed run (the removal ladder's
-first recipe for step 1), not stage 1's.
+Careful with one name: `history/runs/learned_remainder/s1_official.json` is a different, failed run (the removal
+ladder's first recipe for step 1), not stage 1's.
 
 **What a record holds.** One JSON per evaluator run: `submission` (the exact source sent, as `submission.py`),
 `manifest` (as passed; the shared runner's records also name `manifest_file`), the evaluator's full `stdout`, whose
@@ -595,6 +595,9 @@ Three things that look odd but are not:
 ## 4. How to reproduce
 
 ### 4.1 With the competition's own evaluator (one H100, no Modal)
+
+These run from the folder that holds this repo as `cpu_first`. This repo shares its name with the competition's, so
+clone it under that name, as the README's "How to check" does.
 
 ```bash
 git clone https://github.com/tilde-research/one-layer-deeper.git && cd one-layer-deeper && git checkout 87e5c26
@@ -1063,7 +1066,7 @@ why the rest stayed. Where s3i differs, the end of this section says so too.
     scored nothing: the one attempt, after the deadline, was refused (OVERVIEW §7).
 16. **The Hard metric recorder: yes.** It is not touched.
 
-**The questions, in the order [LEGAL_PLAN.md](LEGAL_PLAN.md) §3 asks them, then
+**The questions, in the order [LEGAL_PLAN.md](history/LEGAL_PLAN.md) §3 asks them, then
 [LEGAL_SOURCES.md §6](bar3/LEGAL_SOURCES.md#6-a-question-for-the-judge)'s.** Ask the first one first: if it goes
 against the entry, the whole stage-3 line is out, and nothing else here matters.
 1. **Rules 8 and 14:** the climb is a program search inside the training forward pass, its result kept in buffers. The
@@ -1089,7 +1092,7 @@ against the entry, the whole stage-3 line is out, and nothing else here matters.
    constants' digits (rule 14 above). What is left to rule on is those counts, and whether a law read from the labels,
    by a designed rule or by the learner's own routines, may choose what to practise at all.
 6. **Bar 2** (the project's own bar, not a rule): of what is still designed, which parts would you call the algorithm?
-   Rule 7 above lists the deep file's. [LEGAL_PLAN.md](LEGAL_PLAN.md) §2 lists sp2's, with a cheapest test where
+   Rule 7 above lists the deep file's. [LEGAL_PLAN.md](history/LEGAL_PLAN.md) §2 lists sp2's, with a cheapest test where
    there is one. Of those, fast2 replaces the 11-law list with a grammar (item 1), SEL.S and BRG.X with an if block and
    shifts (item 3) and the countdown with the count loop (item 4), and has neither the late table lessons (item 7) nor
    the clock (item 8). The legal file goes on with item 1: three laws, and what the law reader poses, in place of the
@@ -1154,13 +1157,13 @@ against the entry, the whole stage-3 line is out, and nothing else here matters.
   line 2881; the `ANCHOR_WRAP` constant on line 70 is never read, ABLATION_S3.md §3).
 - Rule 11: it froze by 982–1,149 s on its eight H100 runs and trained 1,133–1,350 s.
 
-**What to do about them.** [LEGAL_PLAN.md](LEGAL_PLAN.md) §4 puts these questions first, then orders the rest by cost.
-Its step 2, one file with every certified variant, is fast2. The legal file goes past it on the law book by bar 3's
-legal path, the family file takes that book to nothing, the wider file keeps every row in its buffers, and the deep file
-reads four Horner steps and keeps x where a law needs it twice (§2). Its steps 3 to 5 have not run: the reduction's
-search without its cap, the first step toward letting the climb take its digit instructions from every one-place slice
-of a law (at most about $8); bar 3's subgoal score, as a near-miss test and then as the choosing rule; and one official
-run with the freeze removed, training to the deadline (about $4).
+**What to do about them.** [LEGAL_PLAN.md](history/LEGAL_PLAN.md) §4 puts these questions first, then orders the rest by
+cost. Its step 2, one file with every certified variant, is fast2. The legal file goes past it on the law book by
+bar 3's legal path, the family file takes that book to nothing, the wider file keeps every row in its buffers, and the
+deep file reads four Horner steps and keeps x where a law needs it twice (§2). Its steps 3 to 5 have not run: the
+reduction's search without its cap, the first step toward letting the climb take its digit instructions from every
+one-place slice of a law (at most about $8); bar 3's subgoal score, as a near-miss test and then as the choosing rule;
+and one official run with the freeze removed, training to the deadline (about $4).
 
 ## 6. An hour's reading order
 
@@ -1183,7 +1186,7 @@ run with the freeze removed, training to the deadline (about $4).
   (4042), `LibraryMachine` (4084: its buffers at 4107–4119, `_forward` at 4503, `climb_unit` at 4718, `lessons` at 4782,
   `keep_counts` at 4846, `control` at 5016), and the loss, the optimizer and `SUBMISSION` (5108–5177).
 - **45–50:** `python3 tools/verify_records.py`, and the log lines of §3: the records against the file.
-- **50–60:** §5 here, then [LEGAL_PLAN.md](LEGAL_PLAN.md) §2–§3,
+- **50–60:** §5 here, then [LEGAL_PLAN.md](history/LEGAL_PLAN.md) §2–§3,
   [LEGAL_SOURCES.md §6](bar3/LEGAL_SOURCES.md#6-a-question-for-the-judge) and [STRICT.md](integration/strict/STRICT.md)
   §1: what is still designed, the judge's questions, and each gray point item by item.
 
@@ -1199,7 +1202,8 @@ two draws); FAST.md's "In plain words" and §9 (the speedups and budgets it keep
 were put together); OVERVIEW [§5](OVERVIEW.md#5-the-removal-ladder) (each hand-written piece removed in turn),
 [§6](OVERVIEW.md#6-rules-116-for-the-best-model), [§7](OVERVIEW.md#7-status-and-open-questions) and
 [§9](OVERVIEW.md#9-where-docs-and-records-disagree); and bar 3's [PRACTICE.md](bar3/PRACTICE.md) and
-[BREADTH.md](bar3/BREADTH.md). [README.md](README.md) indexes every file and folder.
+[BREADTH.md](bar3/BREADTH.md). [OVERVIEW §8](OVERVIEW.md#8-where-everything-is) maps every folder, and
+[history/README.md](history/README.md) indexes the early work file by file.
 
 ## 7. Later studies
 
@@ -1267,11 +1271,11 @@ product rule, reduced windows, rounds that keep x and a bigger budget.
     the round came), the instruction set, the search sizes, where the round is looked for, and the rest of stage 3
     (the reader, the cells, the countdown, the tournament).
   - The other formulas are still not learned.
-- **The shader follow-up** ([NCA.md](nca/NCA.md) §9, code and records in [`nca/`](nca/)). The NCA probe is one
-  identical tiny cell repeated over a grid, each wired only to its neighbours, trained from random weights on lessons
-  alone. Two known cures for memorization were tried on it, far past the point where it fits at (3, 2, 1) (at
-  (3, 3, 2) no run fits even the soft path): long training with weight decay ("trimming", the setting in which
-  networks that had memorized modular arithmetic later found the rule), and agreement (a weight moves only where
+- **The shader follow-up** ([NCA.md](history/nca/NCA.md) §9, code and records in [`history/nca/`](history/nca/)). The
+  NCA probe is one identical tiny cell repeated over a grid, each wired only to its neighbours, trained from random
+  weights on lessons alone. Two known cures for memorization were tried on it, far past the point where it fits at
+  (3, 2, 1) (at (3, 3, 2) no run fits even the soft path): long training with weight decay ("trimming", the setting in
+  which networks that had memorized modular arithmetic later found the rule), and agreement (a weight moves only where
   groups of questions, or the grid's columns, push it the same way; or it speeds up while its gradient keeps its
   sign). 72 runs from random weights, 4 seeds per arm (50,000 steps at (3, 2, 1), 20,000 at (3, 3, 2)), and 20
   started at the compiled rule.
@@ -1660,6 +1664,6 @@ product rule, reduced windows, rounds that keep x and a bigger budget.
 
 ## 8. About this checkout
 
-[HANDOVER.md](HANDOVER.md) has the hygiene pass: what is tracked and what is on disk only, the scan for secrets and
-private data (no credentials anywhere; the author's home path and Modal workspace name appear in run logs), the link
+[HANDOVER.md](history/HANDOVER.md) has the hygiene pass: what is tracked and what is on disk only, the scan for secrets
+and private data (no credentials anywhere; the author's home path and Modal workspace name appear in run logs), the link
 check, the checksums, and the files proposed for removal. It was last brought up to date on 2026-10-26.

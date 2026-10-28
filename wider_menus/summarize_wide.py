@@ -1,5 +1,5 @@
-"""Summaries of the wide-menu run records (cpu_first/runs/wider_menus/<name>.json), a copy of
-learned_wiring/summarize_wiring.py.
+"""Summaries of the wide-menu run records (cpu_first/history/runs/wider_menus/<name>.json), a copy of
+history/learned_wiring/summarize_wiring.py.
 
     python summarize_wide.py NAME [NAME ...]          # one block per record
     python summarize_wide.py --table NAME [NAME ...]  # one markdown row per record
@@ -19,7 +19,7 @@ import re
 import sys
 from pathlib import Path
 
-RUNS = Path(__file__).resolve().parent.parent / "runs" / "wider_menus"
+RUNS = Path(__file__).resolve().parent.parent / "history" / "runs" / "wider_menus"
 
 
 def truth():

@@ -1,5 +1,5 @@
 """Local checks of submission_adder.py (small: well under 1 GB, under a minute at batch <= 64). Needs the H1 jsonl files
-(H1_DATA, as in cpu_first/h1.py) and torch; ../chain_local/stub stands in for the evaluator's `benchmark` API.
+(H1_DATA, as in cpu_first/history/h1.py) and torch; ../chain_local/stub stands in for the evaluator's `benchmark` API.
   python local_adder.py designed                        # exact table: the learned-adder check passes, a + b is exact
   python local_adder.py train STEPS B [SEED] [K=V ...]  # a short training run at batch B; K=V overrides a constant
 Every 25 steps the train mode prints the snapped table against true subtraction and against the consistent wrong tables

@@ -1,5 +1,5 @@
 """Local checks of submission_chain.py (small: well under 1 GB, under a minute). Needs the H1 jsonl files (H1_DATA, as
-in cpu_first/h1.py) and torch; `stub/` stands in for the evaluator's `benchmark` API.
+in cpu_first/history/h1.py) and torch; `stub/` stands in for the evaluator's `benchmark` API.
   python local_chain.py designed             # exact table: the chain must reproduce every answer of the depth rungs
   python local_chain.py train STEPS B [SEED] # a short training run at batch B with the file's defaults
 """

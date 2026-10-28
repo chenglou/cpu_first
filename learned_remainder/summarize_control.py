@@ -1,4 +1,4 @@
-"""Summaries of submission_control.py's run records (cpu_first/runs/learned_remainder/<name>.json): summarize.py's result
+"""Summaries of submission_control.py's run records (cpu_first/history/runs/learned_remainder/<name>.json): summarize.py's result
 and table audit, plus the commit gate and the countdown's rows.
 
     python summarize_control.py NAME [NAME ...]      # one block per record

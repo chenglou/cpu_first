@@ -43,10 +43,10 @@ The version with a hand-written adder in the squaring (the stand-in used until t
 certified, officially (17.7 s evaluation) and on 12 of 12 CPU seeds.
 
 **How the times table learns: not from the answers.** The only labels come after the remainder. One wrong digit in the
-square shifts it by an amount that the remainder turns into a pseudorandom answer ([REPORT.md](../REPORT.md) §2). On a
-small version of the problem (3-digit numbers, an exact remainder), the answers taught nothing from scratch: 0 to 4 of
-the 100 entries came out right. Starting from a nearly right table, they broke right entries more often than they
-repaired wrong ones.
+square shifts it by an amount that the remainder turns into a pseudorandom answer ([REPORT.md](../history/REPORT.md)
+§2). On a small version of the problem (3-digit numbers, an exact remainder), the answers taught nothing from scratch: 0
+to 4 of the 100 entries came out right. Starting from a nearly right table, they broke right entries more often than
+they repaired wrong ones.
 
 What teaches it is the definition of multiplication, checked on each training row's own numbers x and N, with no
 label:
@@ -390,8 +390,8 @@ Same as CHAIN.md §6, except:
 ## 9. Reproduce
 Everything heavy runs on Modal. The launcher is the existing [`modal_chain.py`](modal_chain.py), unchanged, with
 `--file submission_square.py`, started from the one-layer-deeper repository root. Records land on the Modal Volume
-`learned-remainder`; [`wait_fetch.py`](wait_fetch.py) downloads them to `cpu_first/runs/learned_remainder/<name>.json`
-(full log, RESULT_JSON, the exact submission source).
+`learned-remainder`; [`wait_fetch.py`](wait_fetch.py) downloads them to
+`cpu_first/history/runs/learned_remainder/<name>.json` (full log, RESULT_JSON, the exact submission source).
 
 The final file as it is (learned adder):
 
@@ -445,7 +445,7 @@ Files:
   - `local_square.py designed`: the plumbing check, with `ADDER=designed` in the environment for the stand-in;
   - `local_square.py train STEPS B SEED`: a short training run that prints both tables' errors at the end.
 
-  They need torch and, for `local_square.py`, the H1 jsonl files (`H1_DATA`, as in `cpu_first/h1.py`). `stub/` stands
-  in for the evaluator's `benchmark` API.
+  They need torch and, for `local_square.py`, the H1 jsonl files (`H1_DATA`, as in `cpu_first/history/h1.py`). `stub/`
+  stands in for the evaluator's `benchmark` API.
 - **Untouched:** `submission_chain.py` (md5 `ed360cb107e644615e30c910ba6f6a2d`), `submission.py` (md5
   `bd477b9aadc9fcf34f428f728b5bea20`), `modal_chain.py`, `summarize.py`, `wait_fetch.py`.

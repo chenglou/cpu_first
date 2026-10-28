@@ -1,7 +1,7 @@
 # Every certified variant of sp2 in one file
 
-*Written 2026-10-25, step 2 of [LEGAL_PLAN.md](../../LEGAL_PLAN.md) §4; rounds 2 and 3 (§8, §9) the same evening.
-Folder `cpu_first/integration/combined_sp2/`. Every input is a certified file or a study builder, read and
+*Written 2026-10-25, step 2 of [LEGAL_PLAN.md](../../history/LEGAL_PLAN.md) §4; rounds 2 and 3 (§8, §9) the same
+evening. Folder `cpu_first/integration/combined_sp2/`. Every input is a certified file or a study builder, read and
 md5-asserted, never written.*
 
 ## In plain words

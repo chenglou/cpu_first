@@ -103,8 +103,8 @@ Evaluation snaps the learned table to its argmax and runs the whole machine on i
 ## 3. Stage 1: how the table learns, and what broke on the way
 
 ### 3.1 The recipe that certified
-The starting point was TINYCORE's recipe ([TINYCORE.md](../tinycore/TINYCORE.md)), adjusted by microlab's test of it
-([FINDINGS_quotient_shared.md](../microlab/FINDINGS_quotient_shared.md)):
+The starting point was TINYCORE's recipe ([TINYCORE.md](../history/tinycore/TINYCORE.md)), adjusted by microlab's test
+of it ([FINDINGS_quotient_shared.md](../history/microlab/FINDINGS_quotient_shared.md)):
 - **Fixed slot meanings.** One shared subtractor; trial s subtracts the exact digits of s·N.
 - **Lessons (gray).** For each training row, a made-up dividend v = q·N + x with q a random k-digit number. Since x < N
   its remainder is x, which the prompt contains, so no label is used. The datapath starts from v // 10^k and divides in
@@ -245,8 +245,8 @@ What broke on the way:
   - As one step after the identity's plateau it works: 200/200 rows.
 - **The swapped borrow code traps the identity too.** It fails the check only at place 0. Three of four local seeds, and
   the first official Stage 2 run, landed there (identity check at 0.06, real rows 0% exact). That run was cancelled at
-  step ~6,000; its log is `runs/learned_remainder/s2_idans_official_v1_cancelled.log`. Weighting the lowest place 5× in
-  the check moves those seeds to the true code.
+  step ~6,000; its log is `history/runs/learned_remainder/s2_idans_official_v1_cancelled.log`. Weighting the lowest
+  place 5× in the check moves those seeds to the true code.
 - **The identity's plateau varies by seed** (0.79–0.86), so phase A ends at 80% or after 300 steps, whichever comes
   first.
 - **There are more such stalls than (r, r, 1).** Under the first recipe, the identity-only run on seed 1 (no answers)
@@ -329,8 +329,8 @@ In rough order of how cheap a certification-gated attempt looks:
 
 Everything heavy runs on Modal; the runner must be launched from the one-layer-deeper repository root (it builds the
 competition image from it and regenerates H1 inside with the official generator arguments). Results land on the Modal
-Volume `learned-remainder`; `wait_fetch.py` downloads them to `cpu_first/runs/learned_remainder/<name>.json` (full
-log, RESULT_JSON, the exact submission source).
+Volume `learned-remainder`; `wait_fetch.py` downloads them to `cpu_first/history/runs/learned_remainder/<name>.json`
+(full log, RESULT_JSON, the exact submission source).
 
 Stage 2, the final file as it is:
 

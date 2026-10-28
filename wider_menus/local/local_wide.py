@@ -1,4 +1,4 @@
-"""Checks of a wide-menu submission outside the evaluator (a copy of learned_wiring/local/local_wiring.py whose
+"""Checks of a wide-menu submission outside the evaluator (a copy of history/learned_wiring/local/local_wiring.py whose
 constants are set in the source before it loads: the menus are made at import from DIV_LEVEL, MUL_LEVEL, IO_MODE). Needs the H1 jsonl files (H1_DATA) and torch; learned_remainder/chain_local/stub stands in for the
 evaluator's `benchmark` API. Locally only the small commands (under a minute, well under 1 GB); the rest runs on Modal
 (modal_diag.py).

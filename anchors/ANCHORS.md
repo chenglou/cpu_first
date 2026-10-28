@@ -66,7 +66,8 @@ on each. On none of them did the table settle on a wrong number system, as the s
 did on 1 of 4 (mod 5). It also certifies with the old table lessons switched off altogether (4 of 4 seeds, the
 learned-adder check among them), so there too the order of the numbers does the whole job.
 
-**What is still hand-written** in the core file (as in [`submission_simple.py`](../ablation/submission_simple.py)):
+**What is still hand-written** in the core file (as in
+[`submission_simple.py`](../history/ablation/submission_simple.py)):
 - reading and writing the digits, squaring, the long-division layout, the chain of subtractions, the stop rule and the
   loop over T;
 - the lessons themselves: the statements "x < N on every top part", "order is kept, reversed or wrapped", "a column
@@ -412,9 +413,9 @@ inputs. So within this study's budgets (600 steps at batch 64) no amount of answ
 Answers can only finish a table that something else has nearly made. That is the role the earlier recipes gave them.
 
 ## 5. The recipe and the file
-[`submission_anchors.py`](submission_anchors.py) is [`submission_simple.py`](../ablation/submission_simple.py)'s machine
-(datapath unchanged: reading, squaring, the chain, the stop rule, the loop over T, the writer) with a new training
-recipe:
+[`submission_anchors.py`](submission_anchors.py) is [`submission_simple.py`](../history/ablation/submission_simple.py)'s
+machine (datapath unchanged: reading, squaring, the chain, the stop rule, the loop over T, the writer) with a new
+training recipe:
 1. **Every step: x < N on every top part.** For every place j, x[j:] − N[j:] (the numbers formed by the digits from
    place j up, P − j places, no borrow in) borrows exactly when the two digit strings differ there, and
    N[j:] − x[j:] never borrows. Soft ripples of the cell's borrow outputs; only the borrows read them.
@@ -517,7 +518,7 @@ Same as ABLATION.md §10 / ADDER.md §9 for the datapath, with these changes:
 
 ## 8. Reproduce
 Everything heavy runs on Modal. Local commands are the small ones (each under a minute, well under 1 GB); they need
-torch and the H1 jsonl files (`H1_DATA`, as in `cpu_first/h1.py`).
+torch and the H1 jsonl files (`H1_DATA`, as in `cpu_first/history/h1.py`).
 
 The official runs and the CPU seeds go through the deployed app `anchors` (`modal_anchors.py`: the competition image,
 H1 regenerated with the official generator arguments, the untouched manifest for GPU jobs, `device: cpu` and the seed

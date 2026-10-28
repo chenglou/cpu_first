@@ -358,7 +358,7 @@ Following CHAIN.md §7, whose item 2 (the stop rule) and the loop counter of its
 ## 9. Reproduce
 Everything heavy runs on Modal. Launch from the one-layer-deeper repository root. The runner is CHAIN.md's
 `modal_chain.py`, unchanged, with `--file submission_control.py` (app `learned-chain`, Volume `learned-remainder`).
-`wait_fetch.py` downloads the records to `cpu_first/runs/learned_remainder/<name>.json`.
+`wait_fetch.py` downloads the records to `cpu_first/history/runs/learned_remainder/<name>.json`.
 
 The certified file as it is:
 

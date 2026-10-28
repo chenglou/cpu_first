@@ -1,7 +1,7 @@
 """Local checks of submission_io.py (small: well under 1 GB, under a minute). Needs torch and the H1 jsonl files (H1_DATA,
-as in cpu_first/h1.py); `stub/` stands in for the evaluator's `benchmark` API. Batches are built like the evaluator's
-(inputs padded with 0, labels left-aligned with -100, target positions right-aligned) and scored like it (argmax of
-the logits at the target positions, exact per row).
+as in cpu_first/history/h1.py); `stub/` stands in for the evaluator's `benchmark` API. Batches are built like the
+evaluator's (inputs padded with 0, labels left-aligned with -100, target positions right-aligned) and scored like it
+(argmax of the logits at the target positions, exact per row).
   python local_io.py designed              # exact table + I/O set at the true reading: every depth rung's answers
   python local_io.py train STEPS B [SEED]  # a short training run at batch B with the file's defaults
 """

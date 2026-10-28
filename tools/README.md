@@ -115,12 +115,12 @@ driver leaves the calls it already spawned running; `--mode resume` picks them u
 ## Validation (2026-10-22, records in `validation/records/`, plans in `validation/plans/`)
 
 - **Official H100 run.** `--mode official --file learned_remainder/submission.py` (md5 `bd477b9a`) against
-  `runs/learned_remainder/final_s2_official.json`: `--mode compare` finds no difference in any field. Both runs
+  `history/runs/learned_remainder/final_s2_official.json`: `--mode compare` finds no difference in any field. Both runs
   have T = 64 on both ladders, every rung at 768/768, exact splits, the same split losses, 20,000 steps, a freeze at
   step 499, and the same final loss and state sizes. The training traces (201 points) and the logs without timings
   (41 lines) are identical. Training took 181.3 s against 181.9 s, on the same H100 driver (610.57.04).
 - **A CPU-seed plan.** `validation/plans/v2_p3_cpu_seeds.json` reruns the source stored in the eight
-  `runs/learned_remainder/p3_s1v2_cpu_seed*.json` records (`fd26b584`) with each record's manifest. All 8 match
+  `history/runs/learned_remainder/p3_s1v2_cpu_seed*.json` records (`fd26b584`) with each record's manifest. All 8 match
   their records in every field, traces and logs included (this file's CPU training came out the same on every host;
   wide_anchored's did not, below). Host speed differed: 6 of the 8 trained 1.1–1.7x slower than on Oct 20 (195–357 s
   against 196–242 s). They used about 7 cores, like the fast ones, but needed 1.3–1.7x the CPU-seconds.

@@ -104,7 +104,7 @@ could object; the point is flagged, not argued away.
 ### 1. Results
 
 **Official runs** (Modal H100, the untouched official manifest `h100_hard_h1.json`, seed 74; records in
-`cpu_first/runs/learned_remainder/<name>.json` with the full log and the exact source):
+`cpu_first/history/runs/learned_remainder/<name>.json` with the full log and the exact source):
 
 | run | what | max T seen / unseen moduli | rungs | test, ood_t, ood_n_t | tables at evaluation | frozen at step | train s | eval s |
 |---|---|---|---|---|---|---|---|---|
@@ -319,8 +319,8 @@ not recover with the facts at step 300 (e1) or at step 225 (e2 "C"). With the ha
 reading is chosen, it reaches 200/200 at step 300.
 
 The rows that went wrong in e1 are the known trap families: (0, 0, 1) (the run of 9s), (r, 0, 1) and (r, r, 1). A
-parallel ablation of `submission_adder.py`'s recipe (`cpu_first/ablation/`, its `probe_trap.py`; its finding, not
-re-derived here) explains why waiting is what hurts:
+parallel ablation of `submission_adder.py`'s recipe (`cpu_first/history/ablation/`, its `probe_trap.py`; its finding,
+not re-derived here) explains why waiting is what hurts:
 - R − 0 = R and R − R = 0 create those families through soft borrows;
 - with (0, 0, 1) wrong, the learned-adder check (D − N) − (0 − N) = D and 0 + N = N have a barrier that holds it;
 - the hand-written check, "(x − N) − N does not borrow" and R + N = N + R slope back down to the truth.
@@ -376,7 +376,7 @@ See §3.
 Everything heavy runs on Modal. Launch from the one-layer-deeper repository root; the existing `modal_chain.py` (app
 `learned-chain`, Volume `learned-remainder`, unchanged) takes `--file`. It builds the competition image, regenerates H1
 inside with the official generator arguments, and writes each record to the Volume. `wait_fetch.py` downloads the
-records to `cpu_first/runs/learned_remainder/<name>.json`.
+records to `cpu_first/history/runs/learned_remainder/<name>.json`.
 
 ```bash
 cd ~/github/one-layer/one-layer-deeper

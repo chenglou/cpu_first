@@ -17,7 +17,7 @@ HERE = Path(__file__).resolve().parent
 REC = HERE / "records"
 CLIMB = HERE / "lib" / "records"
 GEN = HERE.parent / "general_lessons" / "records"
-TOUR = HERE.parent / "tournament" / "h1_records"
+TOUR = HERE.parent / "history" / "tournament" / "h1_records"
 TASK_NAMES = {"h1": "H1: x^(2^T) mod N", "rho": "y^2 + 1", "ten": "10 y^2", "cube": "x^(3^T) (y^3)",
               "mont": "Montgomery: y^2 10^-8 mod N", "tenrho": "10 y^2 + 1 (held out)", "plus3": "y^2 + 3 (held out)",
               "minus1": "y^2 - 1 (held out)", "m4": "M4 (practice tier, every T = 8)"}

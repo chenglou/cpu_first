@@ -10,7 +10,8 @@
 
 For each record: the md5 of the source it embeds against the file's md5 now, its manifest against the competition's
 benchmark/manifests/h100_hard_h1.json (../one-layer-deeper), the evaluator's RESULT_JSON line in its stdout against
-its result, the certified T on both ladders, every rung's count, the three splits, and the run's times.
+its result, the certified T on both ladders, every rung's count, the three splits, and the run's times. A path the
+early work had before it moved into history/ (runs/..., tournament/...) is looked up there.
 """
 from __future__ import annotations
 
@@ -47,6 +48,11 @@ FRONTIER += [("integration/records/s3i_official.json", "integration/submission_s
              ("integration/records/s1_official.json", "integration/submission_stage1.py"),
              ("general_lessons/fixed/records/v3k_h1_official.json", "general_lessons/submission_general_v3.py")]
 FRONTIER += [(f"integration/records/s3i_h100_seed{s}.json", "integration/submission_stage3_s3i.py") for s in range(1, 8)]
+
+
+def at(p: str | None) -> str | None:
+    """p as given, or under history/ when it names an early file by its place before the move."""
+    return f"history/{p}" if p and not (HERE / p).exists() and (HERE / "history" / p).exists() else p
 
 
 def md5(b: bytes) -> str:
@@ -91,8 +97,9 @@ def manifest_diff(m: dict | str) -> dict:
 
 
 def check(rec_path: str, file_path: str | None) -> bool:
+    rec_path = at(rec_path)
     r = json.loads((HERE / rec_path).read_text())
-    file_path = file_path or r.get("submission_file")
+    file_path = at(file_path or r.get("submission_file"))
     emb = md5(r["submission"].encode("utf-8")) if "submission" in r else "none (the record embeds no source)"
     now = md5((HERE / file_path).read_bytes()) if file_path else None
     diff = manifest_diff(r.get("manifest") or "benchmark/manifests/h100_hard_h1.json")   # SpecBit's: no field
@@ -118,6 +125,7 @@ def check(rec_path: str, file_path: str | None) -> bool:
 
 def compare_log(log: str, rec_path: str = FRONTIER[0][0]) -> bool:
     mine = result_json(Path(log).read_text())
+    rec_path = at(rec_path)
     ref = json.loads((HERE / rec_path).read_text())["result"]
     if mine is None:
         print(f"no RESULT_JSON= line in {log}")

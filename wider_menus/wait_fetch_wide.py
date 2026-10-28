@@ -1,5 +1,5 @@
 """Wait until the named run records are on the `wider-menus` Volume (records/), download them to
-cpu_first/runs/wider_menus/, print a summary line each (a copy of learned_wiring/wait_fetch.py).
+cpu_first/history/runs/wider_menus/, print a summary line each (a copy of history/learned_wiring/wait_fetch.py).
 
     python wait_fetch.py NAME [NAME ...]        (polls every 60 s, up to 4 h)
 """
@@ -10,7 +10,7 @@ from pathlib import Path
 
 import modal
 
-RUNS = Path(__file__).resolve().parent.parent / "runs" / "wider_menus"
+RUNS = Path(__file__).resolve().parent.parent / "history" / "runs" / "wider_menus"
 
 
 def summary(rec: dict) -> str:

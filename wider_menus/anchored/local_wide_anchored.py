@@ -1,6 +1,6 @@
 """Training diagnostics of a wide-menu submission (WIDE_ANCHORED.md: submission_wide_anchored.py, or submission_wide.py
-for comparison) outside the evaluator: learned_wiring/anchored/local_anchored.py on wider_menus/local/local_wide.py's
-training loop, with what the anchors' schedule needs watched:
+for comparison) outside the evaluator: history/learned_wiring/anchored/local_anchored.py on
+wider_menus/local/local_wide.py's training loop, with what the anchors' schedule needs watched:
   * the reader against the truth: the share of the batch's rows whose snapped reading of N, x and T equals the row's
     own modulus, x and T (the data's fields, read here outside the submission), of rows read as N = 0, and of rows
     whose read x is below their read N (what the borrow facts assume);

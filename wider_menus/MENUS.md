@@ -3,7 +3,7 @@
 ## In plain words
 
 <!-- PLAIN -->
-**The question.** The H1 machine already learns its own wiring ([WIRING.md](../learned_wiring/WIRING.md)): each
+**The question.** The H1 machine already learns its own wiring ([WIRING.md](../history/learned_wiring/WIRING.md)): each
 connection is a switch that picks one option from a short menu, and those menus held the connections of long
 division and schoolbook squaring plus a few hundred to a few thousand wrong ones. How general can the menus get before
 the machine stops finding a right wiring? And do they still single out long division and schoolbook squaring?
@@ -409,8 +409,8 @@ multiply's column rules run the routed ladder on every rung of every row j, the 
 <!-- H1 -->
 #### 4.1 The file
 
-`submission_wide.py` is `learned_wiring/submission_io3.py` (WIRING.md stage 3) with its two menus replaced by the
-grammar of §1, at levels 4 (division) and 3 (multiply), and these changes:
+`submission_wide.py` is `history/learned_wiring/submission_io3.py` (WIRING.md stage 3) with its two menus replaced by
+the grammar of §1, at levels 4 (division) and 3 (multiply), and these changes:
 - **the machine on digits**: the division with per-row switch codes (any source on either port, add or subtract, the
   zero tests and "A < N" through the table's own borrows, the bring-in's move and insert, the post-move, the final
   correction, the readout); N's multiples from the machine's own row 0 (the learned product cell, the argmax column
@@ -598,11 +598,11 @@ cd ~/github/one-layer/cpu_first
 ~/github/sotaku/venv/bin/python -m wider_menus.summarize
 ```
 
-**H1.** `modal_wide.py` is a copy of `learned_wiring/modal_wiring.py` with its own app and Volume (`wider-menus`); it
-sends the file byte for byte to the unmodified evaluator, with the untouched official manifest (`--mode official`)
-or with the manifest's device and seed changed (`--mode plan`). `--set` rewrites constants of the source (the
-record keeps the exact source). `wait_fetch_wide.py` fetches the records to `cpu_first/runs/wider_menus/`, and
-`summarize_wide.py` reads them.
+**H1.** `modal_wide.py` is a copy of `history/learned_wiring/modal_wiring.py` with its own app and Volume
+(`wider-menus`); it sends the file byte for byte to the unmodified evaluator, with the untouched official manifest
+(`--mode official`) or with the manifest's device and seed changed (`--mode plan`). `--set` rewrites constants of the
+source (the record keeps the exact source). `wait_fetch_wide.py` fetches the records to
+`cpu_first/history/runs/wider_menus/`, and `summarize_wide.py` reads them.
 
 ```bash
 cd ~/github/one-layer/one-layer-deeper
@@ -614,7 +614,7 @@ cd ../cpu_first/wider_menus
 ~/github/sotaku/venv/bin/python summarize_wide.py --stage wide
 ```
 
-Local checks of the file (`local/local_wide.py`, a copy of `learned_wiring/local/local_wiring.py` that sets
+Local checks of the file (`local/local_wide.py`, a copy of `history/learned_wiring/local/local_wiring.py` that sets
 constants in the source before it loads, since the menus are made at import):
 
 ```bash
@@ -640,12 +640,12 @@ Files in `cpu_first/wider_menus/`:
 - `exact_wide.py`, `modal_exact.py`, `check_grammar.py`, `runs/exact/`: the exact counts;
 - `modal_wide.py`, `wait_fetch_wide.py`, `summarize_wide.py`, `plans/`: the H1 runs; `local/`: the harness, the
   diagnostics and their logs; `logs/`: the launchers' output;
-- records: `cpu_first/runs/wider_menus/<name>.json` (RESULT_JSON, the full log, the exact source, the manifest).
+- records: `cpu_first/history/runs/wider_menus/<name>.json` (RESULT_JSON, the full log, the exact source, the manifest).
 
-No file outside `wider_menus/` (and `runs/wider_menus/`) was changed. The certified files of the other pieces keep
-their md5s (checked at the end): `learned_wiring/submission_io3.py` `c2331362…`, `submission_div.py` `11cccf13…`,
-`submission_sq.py` `781928ea…`, `learned_wiring/modal_wiring.py` `aad49070…`,
+No file outside `wider_menus/` (and `history/runs/wider_menus/`) was changed. The certified files of the other pieces
+keep their md5s (checked at the end): `history/learned_wiring/submission_io3.py` `c2331362…`, `submission_div.py`
+`11cccf13…`, `submission_sq.py` `781928ea…`, `history/learned_wiring/modal_wiring.py` `aad49070…`,
 `learned_remainder/submission_combined.py` `4f5cecc7…`, `learned_remainder/modal_chain.py` `ad5fbd9c…`,
-`ablation/submission_simple.py` `f374ec70…`, `anchors/submission_anchors.py` `a9e20f66…`,
+`history/ablation/submission_simple.py` `f374ec70…`, `anchors/submission_anchors.py` `a9e20f66…`,
 `anchors/submission_combined_anchors.py` `8887fdae…`.
 <!-- /REPRO -->

@@ -1,5 +1,5 @@
-"""An integration file's training step from phase C on (tournament/local/phase_c_check.py, made per lesson set): every
-table and the reader at the truth (MODE "designed"), every lesson set's tournament blocks, the gate table, the
+"""An integration file's training step from phase C on (history/tournament/local/phase_c_check.py, made per lesson set):
+every table and the reader at the truth (MODE "designed"), every lesson set's tournament blocks, the gate table, the
 selector and the round's switches re-randomized, the schedule set to phase C; then the evaluator's step (forward,
 token_training_loss, backward, Adam, the scheduler) on batches of the real H1 training rows, until the model freezes or
 STEPS. Exercises each set's chain tournament, its I/O lessons, the selector and round by the answers, and the freeze.

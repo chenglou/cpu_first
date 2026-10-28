@@ -1,17 +1,17 @@
 """A wide-menu submission (cpu_first/wider_menus/submission_*.py, --file) through the unmodified One Layer Deeper
 evaluator on Modal.
 
-A copy of learned_wiring/modal_wiring.py with its own app (`wider-menus`), Volume (`wider-menus`, folder records/) and
-records folder (cpu_first/runs/wider_menus/). Same competition image (H1 is regenerated inside it with
-the official generator arguments, so its build is cached). Every run writes its record (RESULT_JSON, the full log, the
-exact submission source, the manifest) to the Volume, so detached runs survive the client and wait_fetch.py fetches
+A copy of history/learned_wiring/modal_wiring.py with its own app (`wider-menus`), Volume (`wider-menus`, folder
+records/) and records folder (cpu_first/history/runs/wider_menus/). Same competition image (H1 is regenerated inside it
+with the official generator arguments, so its build is cached). Every run writes its record (RESULT_JSON, the full log,
+the exact submission source, the manifest) to the Volume, so detached runs survive the client and wait_fetch.py fetches
 them. Run from the one-layer-deeper repo root:
 
     modal run --detach /path/to/modal_wiring.py --file submission_div.py --mode official --name div_official
     modal run --detach /path/to/modal_wiring.py --file submission_div.py --mode official --name div_s0 \\
         --set '{"MODE": "\\"designed\\""}'
     modal run --detach /path/to/modal_wiring.py --file submission_div.py --mode plan --plan p.json
-    modal run /path/to/modal_wiring.py --mode fetch                                    # Volume -> runs/learned_wiring
+    modal run /path/to/modal_wiring.py --mode fetch                              # Volume -> history/runs/learned_wiring
 
 `--set` rewrites `CONSTANT = ...` lines of the submission (JSON {CONSTANT: python source}); with --mode official the
 manifest file stays untouched, so a set run is the official evaluation of that exact source (saved in the record).
@@ -31,7 +31,7 @@ from pathlib import Path
 import modal
 
 HERE = Path(__file__).resolve().parent
-RUNS = HERE.parent / "runs" / "wider_menus"
+RUNS = HERE.parent / "history" / "runs" / "wider_menus"
 REMOTE = "/workspace/one-layer-benchmark"
 H1_DIR = "data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2"
 H1_ARGS = (

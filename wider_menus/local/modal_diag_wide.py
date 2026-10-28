@@ -1,6 +1,6 @@
-"""Run local/local_wide.py variants in parallel on Modal CPU containers (a copy of learned_wiring/local/modal_diag.py
-with its own app `wider-menus-diag` and Volume `wider-menus`: the same cached competition image, whose build
-regenerates H1). Run from the one-layer-deeper repo root:
+"""Run local/local_wide.py variants in parallel on Modal CPU containers (a copy of
+history/learned_wiring/local/modal_diag.py with its own app `wider-menus-diag` and Volume `wider-menus`: the same cached
+competition image, whose build regenerates H1). Run from the one-layer-deeper repo root:
 
     modal run /path/to/wider_menus/local/modal_diag_wide.py --plan plan.json      # spawns, then collects the logs
     modal run /path/to/wider_menus/local/modal_diag_wide.py --fetch 1 --prefix d1  # logs already on the Volume

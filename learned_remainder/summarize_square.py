@@ -1,4 +1,5 @@
-"""Summaries and the table audits of submission_square.py's run records (cpu_first/runs/learned_remainder/<name>.json).
+"""Summaries and the table audits of submission_square.py's run records
+(cpu_first/history/runs/learned_remainder/<name>.json).
 
     python summarize_square.py NAME [NAME ...]      # one block per record
     python summarize_square.py --table NAME ...     # one markdown row per record

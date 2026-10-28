@@ -1,5 +1,5 @@
-"""Summaries of submission_io.py run records (cpu_first/runs/learned_remainder/<name>.json): the evaluator's result,
-the subtractor audit (summarize.py), the I/O schedule, and the snapped I/O the submission printed at its first
+"""Summaries of submission_io.py run records (cpu_first/history/runs/learned_remainder/<name>.json): the evaluator's
+result, the subtractor audit (summarize.py), the I/O schedule, and the snapped I/O the submission printed at its first
 evaluation batch (IO lines), checked here, outside the submission, against the true reading of every depth prompt.
     python summarize_io.py NAME [NAME ...]
 """

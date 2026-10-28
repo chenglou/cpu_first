@@ -1,6 +1,6 @@
 """How exact the learned addition is on its own, from the snapped table a run printed (TABLE lines of its record).
 
-    python adder_exact.py NAME [NAME ...]     # records in cpu_first/runs/learned_remainder/<name>.json
+    python adder_exact.py NAME [NAME ...]     # records in cpu_first/history/runs/learned_remainder/<name>.json
     python adder_exact.py --exact             # the true subtraction table (the reference)
 
 For each table: its rows against true subtraction r - m - c (computed here, outside the submission), then the learned
@@ -15,7 +15,7 @@ sys.path[:0] = [os.path.join(os.path.dirname(HERE), "chain_local", "stub"), os.p
 import torch
 import submission_adder as sa
 
-RUNS = os.path.join(os.path.dirname(os.path.dirname(HERE)), "runs", "learned_remainder")
+RUNS = os.path.join(os.path.dirname(os.path.dirname(HERE)), "history", "runs", "learned_remainder")
 
 
 def table_from(name):

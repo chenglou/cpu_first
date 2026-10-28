@@ -365,7 +365,7 @@ Same as CHAIN.md §6, plus:
 ## 9. Reproduce
 
 Everything heavy runs on Modal. Launch from the one-layer-deeper repository root; records land on the Volume
-`learned-remainder`, and `wait_fetch.py` downloads them to `cpu_first/runs/learned_remainder/<name>.json`.
+`learned-remainder`, and `wait_fetch.py` downloads them to `cpu_first/history/runs/learned_remainder/<name>.json`.
 
 ```bash
 ~/github/sotaku/venv/bin/python -m modal run --detach /path/to/cpu_first/learned_remainder/modal_chain.py --mode official --name io_official --file submission_io.py
@@ -399,7 +399,7 @@ Files:
   the plumbing check).
 - **`plans/io1_cpu.json`**: the CPU seed plan.
 - **`io_local/`**: the small local checks, each under a minute and under 1 GB (they need torch and the H1 jsonl files,
-  `H1_DATA` as in `cpu_first/h1.py`; `IO_CACHE` optionally caches the parsed splits outside the repository):
+  `H1_DATA` as in `cpu_first/history/h1.py`; `IO_CACHE` optionally caches the parsed splits outside the repository):
   - `local_io.py designed`: the plumbing check against every depth rung;
   - `local_io.py train STEPS B [SEED]`: a short training run, then every depth rung;
   - `contrast.py`: §6's three pointer mechanisms;

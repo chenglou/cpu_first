@@ -274,7 +274,7 @@ def codes_table() -> str:
 
 def times_table() -> str:
     """Seconds to every hundredth step (the evaluator's progress lines), against the best model's official run."""
-    base = json.loads((HERE.parent / "runs" / "wider_menus" / "wide_anchored_official.json").read_text())
+    base = json.loads((HERE.parent / "history" / "runs" / "wider_menus" / "wide_anchored_official.json").read_text())
     recs = [("wide_anchored_official (the best model, H100)", base)] + \
         [(f"{p.stem}", json.loads(p.read_text())) for p in sorted(RECORDS.glob("*.json"))
          if p.stat().st_size > 1000 and not re.match(r"gen_[em]\d+_", p.stem)]   # the tiers stall early: not timed

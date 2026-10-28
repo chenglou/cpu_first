@@ -1,12 +1,12 @@
 """Builds integration/submission_stage1.py (INTEGRATION.md, stage 1: the general lessons + the tournament) from three
 certified files, which it never modifies:
 
-    tournament/submission_tournament.py      (ours: md5 7ae547d9...; the MLP cells, the chain at free attention's
-                                              width, the division's wiring as tournaments, the link and loop laws,
-                                              the moved-up rows)
-    general_lessons/submission_general.py    (theirs: md5 ddfdc065...; the law library, the miner, the answer-chosen
-                                              lesson sets, the shared round menu)
-    wider_menus/submission_wide_anchored.py  (their common ancestor: md5 c82b11fa...)
+    history/tournament/submission_tournament.py  (ours: md5 7ae547d9...; the MLP cells, the chain at free attention's
+                                                  width, the division's wiring as tournaments, the link and loop laws,
+                                                  the moved-up rows)
+    general_lessons/submission_general.py        (theirs: md5 ddfdc065...; the law library, the miner, the
+                                                  answer-chosen lesson sets, the shared round menu)
+    wider_menus/submission_wide_anchored.py      (their common ancestor: md5 c82b11fa...)
 
 Step 1 is `git merge-file` of the two over their ancestor (deterministic for these inputs: 14 conflicts). Step 2
 resolves each conflict (RESOLVE, in order: "A" ours, "B" theirs, or new text). Step 3 replaces whole methods where the
@@ -27,7 +27,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-OURS = ROOT / "tournament" / "submission_tournament.py"
+OURS = ROOT / "history" / "tournament" / "submission_tournament.py"
 THEIRS = ROOT / "general_lessons" / "submission_general.py"
 BASE = ROOT / "wider_menus" / "submission_wide_anchored.py"
 OUT = HERE / "submission_stage1.py"

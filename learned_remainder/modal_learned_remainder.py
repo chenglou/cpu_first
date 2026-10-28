@@ -1,14 +1,14 @@
 """cpu_first/learned_remainder/submission.py through the unmodified One Layer Deeper evaluator on Modal.
 
-Adapted from cpu_first/unfold_small/modal_unfold_small.py (same competition image: H1 is regenerated inside it with the
-official generator arguments, so its build is cached). Every run writes its record (RESULT_JSON, the full log, the
-exact submission source, the manifest) to the Modal Volume `learned-remainder`, so detached runs survive the client.
+Adapted from cpu_first/history/unfold_small/modal_unfold_small.py (same competition image: H1 is regenerated inside it
+with the official generator arguments, so its build is cached). Every run writes its record (RESULT_JSON, the full log,
+the exact submission source, the manifest) to the Modal Volume `learned-remainder`, so detached runs survive the client.
 Run from the one-layer-deeper repo root:
 
     modal run --detach /path/to/modal_learned_remainder.py --mode official --name s1_official   # h100_hard_h1.json untouched
     modal run --detach /path/to/modal_learned_remainder.py --mode official --name s0 --set '{"MODE": "\\"designed\\""}'
     modal run --detach /path/to/modal_learned_remainder.py --mode plan --plan p.json              # variants, one container each
-    modal run /path/to/modal_learned_remainder.py --mode fetch                                     # Volume -> runs/learned_remainder
+    modal run /path/to/modal_learned_remainder.py --mode fetch                                     # Volume -> history/runs/learned_remainder
 
 `--set` rewrites `CONSTANT = ...` lines of the submission (JSON {CONSTANT: python source}); with --mode official the
 manifest file stays untouched, so a set run is the official evaluation of that exact source (saved in the record).
@@ -28,7 +28,7 @@ from pathlib import Path
 import modal
 
 HERE = Path(__file__).resolve().parent
-RUNS = HERE.parent / "runs" / "learned_remainder"
+RUNS = HERE.parent / "history" / "runs" / "learned_remainder"
 REMOTE = "/workspace/one-layer-benchmark"
 H1_DIR = "data/generated/squaring_mod_final_variable_n_t_grouped_bidirectional_plus1k_t1_t2"
 H1_ARGS = (

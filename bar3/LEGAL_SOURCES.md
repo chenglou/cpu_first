@@ -12,9 +12,9 @@ restricted, projected, its near misses and the rest of the way from them; recurr
 now the target's laws cut to one digit place. Offline, every answer they give is computed with Python's or numpy's
 arithmetic. On stage 3's digit machine these sources have begun replacing the law book's laws. To count, they must be
 rebuilt inside a legal training run, where no training target may be computed that way (rule 14;
-[LEGAL_PLAN.md](../LEGAL_PLAN.md) §1; [SELF_PRACTICE.md](../integration/SELF_PRACTICE.md) §2.2). A target may come from
-the data's rows, from facts and identities, or from the learner's own routines. Which sources can move as they are,
-which need a redesign, and what would the redesign cost?
+[LEGAL_PLAN.md](../history/LEGAL_PLAN.md) §1; [SELF_PRACTICE.md](../integration/SELF_PRACTICE.md) §2.2). A target may
+come from the data's rows, from facts and identities, or from the learner's own routines. Which sources can move as they
+are, which need a redesign, and what would the redesign cost?
 
 **What decides most verdicts: in a run, the target's table does not exist.**
 - Offline, bar 3 computes the target on every pair x < N for small N. The composition harness computes x'² mod N' on

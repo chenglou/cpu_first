@@ -384,7 +384,7 @@ Same as CHAIN.md §6, except:
 ## 11. Reproduce
 Everything heavy runs on Modal, launched from the one-layer-deeper repository root. The official runs use CHAIN.md's
 runner with its `--file` option (no change to `modal_chain.py`); records land on the Volume `learned-remainder` and
-`wait_fetch.py` downloads them to `cpu_first/runs/learned_remainder/` (full log, RESULT_JSON, the exact source).
+`wait_fetch.py` downloads them to `cpu_first/history/runs/learned_remainder/` (full log, RESULT_JSON, the exact source).
 
 The final file as it is (70-step warm start):
 
@@ -449,6 +449,6 @@ Files:
     and `plans/sweep4.json` (the final file and its warm-start lengths); `summarize_logs.py`, `table_rows.py`; `logs/`
     and the sweeps' one-line summaries `logs_sweep*.txt`.
 
-  They need torch and the H1 jsonl files (`H1_DATA`, as in `cpu_first/h1.py`); `../chain_local/stub/` stands in for
-  the evaluator's `benchmark` API.
+  They need torch and the H1 jsonl files (`H1_DATA`, as in `cpu_first/history/h1.py`); `../chain_local/stub/` stands in
+  for the evaluator's `benchmark` API.
 - **`submission.py`, `submission_chain.py`, `modal_chain.py`.** Untouched (md5 `bd477b9a…`, `ed360cb1…`, `ad5fbd9c…`).

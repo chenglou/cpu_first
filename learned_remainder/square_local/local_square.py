@@ -1,5 +1,5 @@
 """Local checks of submission_square.py (small: well under 1 GB, under a minute). Needs the H1 jsonl files (H1_DATA, as
-in cpu_first/h1.py) and torch; `stub/` stands in for the evaluator's `benchmark` API.
+in cpu_first/history/h1.py) and torch; `stub/` stands in for the evaluator's `benchmark` API.
   python local_square.py designed             # exact tables: squares of random 8-digit numbers, then every depth rung
   python local_square.py train STEPS B [SEED] # a short training run at batch B with the file's defaults
 """

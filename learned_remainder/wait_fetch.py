@@ -9,7 +9,7 @@ from pathlib import Path
 
 import modal
 
-RUNS = Path(__file__).resolve().parent.parent / "runs" / "learned_remainder"
+RUNS = Path(__file__).resolve().parent.parent / "history" / "runs" / "learned_remainder"
 
 
 def summary(rec: dict) -> str:

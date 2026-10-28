@@ -1,5 +1,5 @@
 """Local checks of submission_control.py (small: well under 1 GB, under a minute). Needs the H1 jsonl files (H1_DATA, as
-in cpu_first/h1.py) and torch; chain_local/stub stands in for the evaluator's `benchmark` API.
+in cpu_first/history/h1.py) and torch; chain_local/stub stands in for the evaluator's `benchmark` API.
   python local_control.py designed [SPLIT ...]        # exact table and gate: the machine must reproduce every answer
   python local_control.py train STEPS B [SEED] [K=V]  # a short training run at batch B (K=V: set a constant)
 """

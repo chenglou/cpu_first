@@ -7,8 +7,9 @@
   the long division, 3·10^7 ways to lay out the squaring and 3 reader shapes. But its subtraction table still got its
   start from a hand-written adder, as in WIRING.md's stage 3: from the first step until 70 steps after the reader had
   worked out the prompt, the table was checked against it.
-- [ANCHORED.md](../learned_wiring/ANCHORED.md) removed that warm start from stage 3. The table learns what the digits
-  mean from the order of the numbers instead: x < N gives the borrows, and two laws of subtraction then fix every digit.
+- [ANCHORED.md](../history/learned_wiring/ANCHORED.md) removed that warm start from stage 3. The table learns what the
+  digits mean from the order of the numbers instead: x < N gives the borrows, and two laws of subtraction then fix every
+  digit.
 
 [`submission_wide_anchored.py`](submission_wide_anchored.py) is the wide-menu file with the same change: the
 hand-written adder is deleted, and the anchors' lessons take its place. Nothing else changed: the menus, the datapath,
@@ -201,8 +202,8 @@ whole story there.
 
 The official run and the CPU seeds go through MENUS.md's unchanged runner `modal_wide.py` (app and Volume
 `wider-menus`), with the file passed by name; `wait_fetch_wide.py` downloads the records to
-`cpu_first/runs/wider_menus/<name>.json`. The CPU seeds run as two plans, because the runner caps a plan at 7 CPU
-containers.
+`cpu_first/history/runs/wider_menus/<name>.json`. The CPU seeds run as two plans, because the runner caps a plan at 7
+CPU containers.
 
 ```bash
 cd ~/github/one-layer/one-layer-deeper && ~/github/sotaku/venv/bin/python -m modal run --detach ../cpu_first/wider_menus/modal_wide.py --mode official --name wide_anchored_official --file submission_wide_anchored.py
@@ -239,7 +240,7 @@ In `cpu_first/wider_menus/`:
 - `WIDE_ANCHORED.md`: this write-up;
 - `anchored/`: `local_wide_anchored.py`, `modal_diag_wide_anchored.py`, `summarize_wide_anchored.py`, `plans/`
   (`wide_anchored_cpu_a.json` and `_b.json`: the CPU seeds; `w1.json`: the diagnostics), `logs/`;
-- records: `cpu_first/runs/wider_menus/wide_anchored_*.json`.
+- records: `cpu_first/history/runs/wider_menus/wide_anchored_*.json`.
 
-The certified files are untouched: `submission_wide.py` (`43db5606…`), `learned_wiring/submission_anchored.py`
+The certified files are untouched: `submission_wide.py` (`43db5606…`), `history/learned_wiring/submission_anchored.py`
 (`6328a7d2…`) and the earlier ones.

@@ -1,7 +1,7 @@
 """Run wider_menus/anchored/local_wide_anchored.py (WIDE_ANCHORED.md's training diagnostics) in parallel on Modal CPU
-containers (a copy of learned_wiring/anchored/modal_diag_anchored.py with its own app `wider-menus-anchored` and Volume
-`wider-menus-anchored`: the same cached competition image, whose build regenerates H1). Run from the one-layer-deeper
-repo root:
+containers (a copy of history/learned_wiring/anchored/modal_diag_anchored.py with its own app `wider-menus-anchored` and
+Volume `wider-menus-anchored`: the same cached competition image, whose build regenerates H1). Run from the
+one-layer-deeper repo root:
 
     modal run --detach /path/to/wider_menus/anchored/modal_diag_wide_anchored.py --plan plan.json  # spawns, collects
     modal run /path/to/wider_menus/anchored/modal_diag_wide_anchored.py --fetch 1 --prefix w1       # logs on the Volume

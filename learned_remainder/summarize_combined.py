@@ -1,4 +1,4 @@
-"""Summaries and audits of submission_combined.py's run records (cpu_first/runs/learned_remainder/<name>.json).
+"""Summaries and audits of submission_combined.py's run records (cpu_first/history/runs/learned_remainder/<name>.json).
 
     python summarize_combined.py NAME [NAME ...]      # one block per record
     python summarize_combined.py --table NAME ...     # one markdown row per record

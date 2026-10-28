@@ -99,7 +99,7 @@ designed law book with a general choosing rule can stand in for the hand-picked 
 ### 1.1 What the file is
 
 [`submission_stage1.py`](submission_stage1.py) is built by [`make_stage1.py`](make_stage1.py) from three certified files:
-the tournament file ([TOURNAMENT.md](../tournament/TOURNAMENT.md): MLP digit cells, the division's chain at free
+the tournament file ([TOURNAMENT.md](../history/tournament/TOURNAMENT.md): MLP digit cells, the division's chain at free
 attention's width, the division's wiring as tournaments, the link and loop laws, the moved-up rows), the general file
 ([LESSONS.md](../general_lessons/LESSONS.md): the law library, the mined facts, the answer-chosen lesson sets, the shared
 round menu) and their common ancestor ([`submission_wide_anchored.py`](../wider_menus/submission_wide_anchored.py)). The

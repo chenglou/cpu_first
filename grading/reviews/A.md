@@ -1,0 +1,9 @@
+# Blind review of A.py (= Sahil Verma 9fa00118, rank 3)
+Classification: (a) hard-codes the target algorithm. Score 2/10.
+- Mechanism: hand-written parsing by marker tokens; N and x each read both directions (4 readings); T direction by checking against the hard-coded eval ladder (88, 202-224).
+  63,525 signed quartic polynomials x 4 readings = 254,100 hypotheses. For each, the forward computes f^T(x mod N) mod N exactly (int64 Horner mulmod, no_grad).
+  Output: a softmax(w) mixture of the hypotheses' one-hot answer digits, placed by a learned 32-way alignment mixture.
+  The loss turns labels into integers stored on the model (640-667). The next forward keeps hypotheses that reproduce all 64 sampled rows exactly (471-525); CE on w plus top-K pruning settle the rest; eval takes the top-1.
+- Rule 7 violation (with the asserted-present hypothesis, the forward is literally x % N then T squarings mod N); rule 8 violation (all input-dependent compute under no_grad; gradient only to selection weights; state set by label matching); rule 9 minor concern (host Python lists and .item() loops); 12/14 violation (label-derived integers written onto the model via aux, then an exhaustive no-grad search over 254k programs = hidden training work and task-specific solver; data inspection: smallest modulus prunes the grid). No training target from the code's own arithmetic (CE and prune targets are supplied labels), but every candidate prediction comes from that arithmetic.
+- For: symmetric over all readings, rules and alignments; labels decide; on cubing it would pick a different rule; real gradient path to w.
+- Against: candidate set built around the answer; target rule named and asserted present; reduction and T loop fixed; T read via the eval ladder; mostly exact-match search on labels passed into the model.

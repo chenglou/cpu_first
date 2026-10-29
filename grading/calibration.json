@@ -1,0 +1,407 @@
+[
+ {
+  "id": "309222da",
+  "name": "cal_309222da_maxwells",
+  "submission_md5": "8ff11447b1bf0297103d185f91812555",
+  "gpu": "NVIDIA H100 80GB HBM3, 610.57.04",
+  "network": "blocked (OSError)",
+  "data_md5": "a6414ec9fc6a5efce6414895b52d4eb7",
+  "returncode": 0,
+  "stored": {
+   "max_t": null,
+   "ood_max_t": null,
+   "mean_exact_accuracy": 0.0038003000460014006,
+   "splits": {
+    "ood_n_t": 4,
+    "ood_t": 4,
+    "test": 106
+   },
+   "rungs": [
+    13,
+    13,
+    13,
+    13,
+    0,
+    0,
+    0
+   ],
+   "ood_rungs": [
+    7,
+    7,
+    7,
+    7,
+    0,
+    0,
+    0
+   ],
+   "steps": 126228,
+   "training_seconds": 3600.0274699859997,
+   "model_state_elements": 324141,
+   "final_train_loss": 9.031999588012695
+  },
+  "rerun": {
+   "max_t": null,
+   "ood_max_t": null,
+   "mean_exact_accuracy": 0.0038003000460014006,
+   "splits": {
+    "ood_n_t": 4,
+    "ood_t": 4,
+    "test": 106
+   },
+   "rungs": [
+    13,
+    13,
+    13,
+    13,
+    0,
+    0,
+    0
+   ],
+   "ood_rungs": [
+    7,
+    7,
+    7,
+    7,
+    0,
+    0,
+    0
+   ],
+   "steps": 308479,
+   "training_seconds": 3600.00623984,
+   "model_state_elements": 324141,
+   "final_train_loss": 7.006999969482422
+  },
+  "same": {
+   "max_t": true,
+   "ood_max_t": true,
+   "splits": true,
+   "rungs": true,
+   "ood_rungs": true,
+   "model_state_elements": true
+  }
+ },
+ {
+  "id": "86e9acf2",
+  "name": "cal_86e9acf2_yashkant",
+  "submission_md5": "1b330d942149824b47b9218aeafe678f",
+  "gpu": "NVIDIA H100 80GB HBM3, 610.57.04",
+  "network": "blocked (OSError)",
+  "data_md5": "a6414ec9fc6a5efce6414895b52d4eb7",
+  "returncode": 0,
+  "stored": {
+   "max_t": 64,
+   "ood_max_t": 64,
+   "mean_exact_accuracy": 1.0,
+   "splits": {
+    "ood_n_t": 10002,
+    "ood_t": 10002,
+    "test": 9999
+   },
+   "rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "ood_rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "steps": 16586,
+   "training_seconds": 3600.590323387,
+   "model_state_elements": 66137,
+   "final_train_loss": 1.0576914548873901
+  },
+  "rerun": {
+   "max_t": 64,
+   "ood_max_t": 64,
+   "mean_exact_accuracy": 1.0,
+   "splits": {
+    "ood_n_t": 10002,
+    "ood_t": 10002,
+    "test": 9999
+   },
+   "rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "ood_rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "steps": 17305,
+   "training_seconds": 3600.042936901,
+   "model_state_elements": 66137,
+   "final_train_loss": 2.2977226763032377e-05
+  },
+  "same": {
+   "max_t": true,
+   "ood_max_t": true,
+   "splits": true,
+   "rungs": true,
+   "ood_rungs": true,
+   "model_state_elements": true
+  }
+ },
+ {
+  "id": "9fa00118",
+  "name": "cal_9fa00118_vsahil",
+  "submission_md5": "fb86169e4d0ec53d666482aa413909bb",
+  "gpu": "NVIDIA H100 80GB HBM3, 610.57.04",
+  "network": "blocked (OSError)",
+  "data_md5": "a6414ec9fc6a5efce6414895b52d4eb7",
+  "returncode": 0,
+  "stored": {
+   "max_t": 64,
+   "ood_max_t": 64,
+   "mean_exact_accuracy": 1.0,
+   "splits": {
+    "ood_n_t": 10002,
+    "ood_t": 10002,
+    "test": 9999
+   },
+   "rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "ood_rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "steps": 26718,
+   "training_seconds": 3600.048632802,
+   "model_state_elements": 254149,
+   "final_train_loss": 3.2054565963335335e-05
+  },
+  "rerun": {
+   "max_t": 64,
+   "ood_max_t": 64,
+   "mean_exact_accuracy": 1.0,
+   "splits": {
+    "ood_n_t": 10002,
+    "ood_t": 10002,
+    "test": 9999
+   },
+   "rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "ood_rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "steps": 35318,
+   "training_seconds": 3600.062227021,
+   "model_state_elements": 254149,
+   "final_train_loss": 3.2056002964964136e-05
+  },
+  "same": {
+   "max_t": true,
+   "ood_max_t": true,
+   "splits": true,
+   "rungs": true,
+   "ood_rungs": true,
+   "model_state_elements": true
+  }
+ },
+ {
+  "id": "d83efe07",
+  "name": "cal_d83efe07_codereclaimers",
+  "submission_md5": "33324112f64b794662c116bf5a612aef",
+  "gpu": "NVIDIA H100 80GB HBM3, 610.57.04",
+  "network": "blocked (OSError)",
+  "data_md5": "a6414ec9fc6a5efce6414895b52d4eb7",
+  "returncode": 0,
+  "stored": {
+   "max_t": 64,
+   "ood_max_t": 64,
+   "mean_exact_accuracy": 1.0,
+   "splits": {
+    "ood_n_t": 10002,
+    "ood_t": 10002,
+    "test": 9999
+   },
+   "rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "ood_rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "steps": 69301,
+   "training_seconds": 3600.0021825559998,
+   "model_state_elements": 313886637,
+   "final_train_loss": 6.9016876220703125
+  },
+  "rerun": {
+   "max_t": 64,
+   "ood_max_t": 64,
+   "mean_exact_accuracy": 1.0,
+   "splits": {
+    "ood_n_t": 10002,
+    "ood_t": 10002,
+    "test": 9999
+   },
+   "rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "ood_rungs": [
+    768,
+    768,
+    768,
+    768,
+    768,
+    768,
+    768
+   ],
+   "steps": 69585,
+   "training_seconds": 3600.019373905,
+   "model_state_elements": 313886637,
+   "final_train_loss": 6.939319610595703
+  },
+  "same": {
+   "max_t": true,
+   "ood_max_t": true,
+   "splits": true,
+   "rungs": true,
+   "ood_rungs": true,
+   "model_state_elements": true
+  }
+ },
+ {
+  "id": "f5d75083",
+  "name": "cal_f5d75083_alirezashirvani",
+  "submission_md5": "77d89302e4eed74ace364a1b08e95827",
+  "gpu": "NVIDIA H100 80GB HBM3, 610.57.04",
+  "network": "blocked (OSError)",
+  "data_md5": "a6414ec9fc6a5efce6414895b52d4eb7",
+  "returncode": 0,
+  "stored": {
+   "max_t": null,
+   "ood_max_t": null,
+   "mean_exact_accuracy": 0.10377929414617126,
+   "splits": {
+    "ood_n_t": 1,
+    "ood_t": 3108,
+    "test": 5
+   },
+   "rungs": [
+    98,
+    96,
+    243,
+    264,
+    240,
+    226,
+    227
+   ],
+   "ood_rungs": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "steps": 15846,
+   "training_seconds": 3600.192849303,
+   "model_state_elements": 195997691,
+   "final_train_loss": 7.989440441131592
+  },
+  "rerun": {
+   "max_t": null,
+   "ood_max_t": null,
+   "mean_exact_accuracy": 0.10914486769612775,
+   "splits": {
+    "ood_n_t": 4,
+    "ood_t": 3268,
+    "test": 3
+   },
+   "rungs": [
+    91,
+    95,
+    266,
+    272,
+    242,
+    242,
+    242
+   ],
+   "ood_rungs": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "steps": 13569,
+   "training_seconds": 3600.101082897,
+   "model_state_elements": 195997691,
+   "final_train_loss": 8.277800559997559
+  },
+  "same": {
+   "max_t": true,
+   "ood_max_t": true,
+   "splits": false,
+   "rungs": false,
+   "ood_rungs": true,
+   "model_state_elements": true
+  }
+ }
+]

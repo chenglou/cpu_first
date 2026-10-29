@@ -13,6 +13,9 @@ designed parts of it, which REVIEW.md lists; and its margins of budget and time 
 
 **Start here.** [REVIEW.md](REVIEW.md) is for a judge: what is claimed, how to check it, what is still designed, and the
 rules to rule on. [OVERVIEW.md](OVERVIEW.md) tells the whole story and has the map of every folder.
+[grading/GRADING.md](grading/GRADING.md) grades the entry against the contest's archive of every submission. It ties
+the top three on score. Our runner reproduces the hosted evaluator's stored results. And in a blind review next to the
+top three, it's the only one not judged to hard-code the target.
 
 **How to check.** This repo shares its name with the competition's, and the scripts look for the competition's clone at
 `../one-layer-deeper`, so clone this one under another name. The record checker needs only Python's standard library;
@@ -29,6 +32,7 @@ cd cpu_first && python3 tools/verify_records.py   # 50 of 50 records check out
 - [`integration/`](integration/): the H1 model from its first stage to the entry, with its builders, checks and records
 - [`bar3/`](bar3/): the self-practising learner on a bare counting machine; the entry's law reader comes from it
 - [`tools/`](tools/): the shared Modal runner and `verify_records.py`
+- [`grading/`](grading/): the entry graded against the contest's archive, with five past submissions rerun
 - [`theory/`](theory/): what is already known about computing and learning with large numbers
 - [`history/`](history/): the early experiments, write-ups and records ([history/README.md](history/README.md)); six
   early folders stay at the top level because the code above still loads them: `anchors/`, `general_lessons/`,

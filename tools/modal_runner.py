@@ -36,7 +36,8 @@ returncode, wall_seconds, manifest_file, manifest, stdout, stderr, result, submi
 submission_file, file_md5, set, hardware, runner (run tag, call id, attempt, data md5, timeout) and usage (CPU
 seconds, peak memory). Workers copy their log's tail and memory use to runs/TAG/live/ every minute for --mode peek
 and status. Hardware: b200 (the default for seeds and plan jobs, the fastest measured), h200 (replays the official
-H100 runs exactly, faster), h100 ("H100!", the only hardware for official runs) and cpu. Seed policy: tools/README.md.
+H100 runs exactly, faster), h100 ("H100!", the only hardware for official runs), h100_sealed (h100 without network or other Modal resources, for
+other people's files; records say whether the network was blocked) and cpu. Seed policy: tools/README.md.
 """
 
 from __future__ import annotations
@@ -238,6 +239,14 @@ def _evaluate(tag: str, job: dict) -> dict:
     gpu = subprocess.run(["nvidia-smi", "--query-gpu=name,driver_version", "--format=csv,noheader"],
                          capture_output=True, text=True).stdout.strip() if os.path.exists("/usr/bin/nvidia-smi") else ""
     data_md5 = _data_md5(Path(REMOTE, m["data"]["data_root"]))
+    network = None
+    if job["hardware"].endswith("_sealed"):                 # record that the seal holds, not just that it was asked for
+        import socket
+        try:
+            socket.create_connection(("1.1.1.1", 443), timeout=3).close()
+            network = "open"
+        except OSError as exc:
+            network = f"blocked ({type(exc).__name__})"
     ru0, cg0, t0 = resource.getrusage(resource.RUSAGE_CHILDREN), _cgroup(), time.time()
     log, err = work / "stdout.log", work / "stderr.log"
     killed, peak, copied = None, 0, t0
@@ -287,7 +296,7 @@ def _evaluate(tag: str, job: dict) -> dict:
                       "run": tag, "call_id": me, "container": os.environ.get("MODAL_TASK_ID"), "attempt": attempt,
                       "data_md5": data_md5, "started_at": t0, "timeout_seconds": limit,
                       "timed_out": bool(killed and killed.startswith("timeout")), "memory_cap_gb": cap / 2**30,
-                      "killed": killed, "leftover_processes": leftover},
+                      "killed": killed, "leftover_processes": leftover, "network": network},
            "usage": dict(_usage(ru0, cg0, wall), peak_session_rss_mb=round(peak / 2**20))}
     record.parent.mkdir(parents=True, exist_ok=True)
     part = record.with_name(f".{name}.json.part")
@@ -321,8 +330,13 @@ def run_cpu(tag: str, job: dict) -> dict:
     return _evaluate(tag, job)
 
 
-HARDWARE = {"b200": run_b200, "h200": run_h200, "h100": run_h100, "cpu": run_cpu}
-GPUS = {"b200", "h200", "h100"}
+@app.function(gpu="H100!", memory=_GPU_MEMORY, block_network=True, restrict_modal_access=True, **_WORKER)
+def run_h100_sealed(tag: str, job: dict) -> dict:   # other people's files: no network, no other Modal resources
+    return _evaluate(tag, job)
+
+
+HARDWARE = {"b200": run_b200, "h200": run_h200, "h100": run_h100, "cpu": run_cpu, "h100_sealed": run_h100_sealed}
+GPUS = {"b200", "h200", "h100", "h100_sealed"}
 
 
 def _poll(call) -> object:
@@ -754,6 +768,7 @@ def _resume(tag: str, force: bool) -> None:
 
 
 PRICE = {"cpu_core": 0.0000131, "memory_gib": 0.00000222, "b200": 0.001736, "h200": 0.001261, "h100": 0.001097,
+         "h100_sealed": 0.001097,
          "a10": 0.000306, "l4": 0.000222, "t4": 0.000164}   # $/s, modal.com/pricing on 2026-10-22; CPU per physical
                                                              # core; CPU and memory billed at max(request, use)
 REQUEST = {"cpu": (8, 16), "cpu4": (4, 16)}   # (cores, GiB) of run_cpu and the retired run_cpu4; GPU functions: 4 GiB

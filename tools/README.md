@@ -47,7 +47,7 @@ A plan is a JSON list of jobs. Its keys are a superset of the existing plans' ke
 | `set` | `{CONSTANT: python source}` |
 | `manifest` | `{section: {key: value}}` overrides, or `null` for the official file |
 | `seed` | shorthand for `{"runtime": {"seeds": [seed]}}` |
-| `hardware` | `b200` (the default), `h200`, `h100` (pinned `H100!`, never an H200) or `cpu` (8 cores: the earlier runners' CPU container); see the policy below. The old `"gpu": true` means `h100` and `"gpu": false` means `cpu`. Without either key, a job whose own manifest sets `runtime.device` to `cpu` (the old plans' way to ask for CPU) runs on `cpu`; any other job takes the run's `--hardware`, else `b200`. `--mode official` always uses `h100`, the contest's one-H100 evaluation |
+| `hardware` | `b200` (the default), `h200`, `h100` (pinned `H100!`, never an H200), `h100_sealed` (an `h100` with `block_network` and `restrict_modal_access`, for other people's files; each record's `runner.network` says whether the network was blocked) or `cpu` (8 cores: the earlier runners' CPU container); see the policy below. The old `"gpu": true` means `h100` and `"gpu": false` means `cpu`. Without either key, a job whose own manifest sets `runtime.device` to `cpu` (the old plans' way to ask for CPU) runs on `cpu`; any other job takes the run's `--hardware`, else `b200`. `--mode official` always uses `h100`, the contest's one-H100 evaluation |
 | `memory_gb`, `timeout_s` | this job's limits (below); default the run's `--memory-gb` (24) and `--timeout` |
 
 Manifests follow the earlier runners' rule, with one refinement. A job with no overrides runs the official file

@@ -1,0 +1,8 @@
+# Blind review of D.py (= Yash Kant 86e9acf2, the judges' winner)
+Classification: (a) hard-codes the target algorithm. Score 2/10.
+- Mechanism: hand-written parser; 40 author-listed readings (10 offsets x x-rev x N-rev) x 2 label orders = 80-way trainable selector per N-field length (selected by KL to how the machine's output matches label re-readings).
+  Eval: one-hot decimal digits; hand-wired schoolbook squaring (136-166), N*2^k doubling chain (168-185), binary long division with borrow-driven select (187-201), T-loop (281-284), hand-placed output digits (285-301).
+  Learned: three randomly initialised digit MLPs (mul/add/sub, 120-128). Training forward returns zero logits (257); cells fit to digit traces the code computes itself from parsed x, N (392-481); labels only fit the selector (498-527).
+- Rule 7 violation (eval forward is the algorithm); rule 8 violation (logits are zeros in training; loss never reads logits); rule 9 violation (target arithmetic on CPU, per-sample Python index lists, .item() at eval); 12/14 violation (solver in loss: exact x^2 mod N 457-475; nested model calls machine._one_sq at 516; data inspection via 80 parse hypotheses scored on labels; every cell target from the code's own arithmetic; docstring says targets derive from the label but _dm_tf_loss never receives labels).
+- For: every digit of every product/sum/difference and comparison at eval comes from learned MLPs via STE; no integer arithmetic touches values inside the T loop; format chosen by trainable selector.
+- Against: author's program with three learned lookup tables; tables fit to CPU integer traces; labels only pick one of 80 author-listed formats.

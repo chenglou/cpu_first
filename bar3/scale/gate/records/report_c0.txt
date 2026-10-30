@@ -1,0 +1,83 @@
+
+c0 test fold A (gate trained on the other): 1184 problems, 101 solved by plain at cost >= 3, 1060 unsolved
+     fitonly: solved-by-plain 101: found 101, geo-mean plain/arm   1.25, faster on 100.0%; slope 0.698 decades/instruction (1.43 instructions per tenfold); plain-unsolved: 0/50 found
+        gate: solved-by-plain 101: found 101, geo-mean plain/arm   2.95, faster on 100.0%; slope 0.622 decades/instruction (1.61 instructions per tenfold); plain-unsolved: 18/1060 found
+  gate_prune: solved-by-plain 101: found 101, geo-mean plain/arm   3.08, faster on 100.0%; slope 0.616 decades/instruction (1.62 instructions per tenfold); plain-unsolved: 19/1060 found
+    noanswer: solved-by-plain 101: found 101, geo-mean plain/arm   3.64, faster on 100.0%; slope 0.623 decades/instruction (1.6 instructions per tenfold); plain-unsolved: 1/50 found
+       nodet: solved-by-plain 101: found 101, geo-mean plain/arm   2.35, faster on 100.0%; slope 0.662 decades/instruction (1.51 instructions per tenfold); plain-unsolved: 1/50 found
+      noprob: solved-by-plain 101: found 101, geo-mean plain/arm   4.44, faster on 100.0%; slope 0.577 decades/instruction (1.73 instructions per tenfold); plain-unsolved: 1/50 found
+       prune: solved-by-plain 101: found 98, geo-mean plain/arm   1.28, faster on 91.1%; slope 0.69 decades/instruction (1.45 instructions per tenfold); plain-unsolved: 0/1060 found
+       plain: slope 0.716 decades/instruction (1.4 per tenfold); by cost: 3: 27 median 2,899, 4: 27 median 26,035, 5: 16 median 202,408, 6: 21 median 1,641,206, 7: 10 median 54,829
+
+c0 test fold B (gate trained on the other): 945 problems, 78 solved by plain at cost >= 3, 851 unsolved
+     fitonly: solved-by-plain 78: found 76, geo-mean plain/arm   2.39, faster on 82.1%; slope 0.739 decades/instruction (1.35 instructions per tenfold); plain-unsolved: 0/50 found
+        gate: solved-by-plain 78: found 78, geo-mean plain/arm   9.59, faster on 97.4%; slope 0.683 decades/instruction (1.47 instructions per tenfold); plain-unsolved: 26/851 found
+  gate_prune: solved-by-plain 78: found 78, geo-mean plain/arm   9.60, faster on 97.4%; slope 0.682 decades/instruction (1.47 instructions per tenfold); plain-unsolved: 28/851 found
+    noanswer: solved-by-plain 78: found 78, geo-mean plain/arm   3.89, faster on 98.7%; slope 0.749 decades/instruction (1.34 instructions per tenfold); plain-unsolved: 1/50 found
+       nodet: solved-by-plain 78: found 78, geo-mean plain/arm   7.81, faster on 94.9%; slope 0.695 decades/instruction (1.44 instructions per tenfold); plain-unsolved: 1/50 found
+      noprob: solved-by-plain 78: found 78, geo-mean plain/arm  10.25, faster on 97.4%; slope 0.643 decades/instruction (1.56 instructions per tenfold); plain-unsolved: 1/50 found
+       prune: solved-by-plain 78: found 78, geo-mean plain/arm   1.23, faster on 100.0%; slope 0.872 decades/instruction (1.15 instructions per tenfold); plain-unsolved: 0/851 found
+       plain: slope 0.869 decades/instruction (1.15 per tenfold); by cost: 3: 18 median 3,534, 4: 32 median 36,045, 5: 18 median 244,754, 6: 8 median 1,643,070, 7: 2 median 2,280,287
+
+c0 matched, fold A: 105 test problems solved by plain (cost >= 2), every arm on each; plain slope 0.765 decades per instruction (1.31 instructions per tenfold)
+     fitonly: geo-mean plain/arm   1.21, faster on 95.2%, missed 0; slope 0.754 (1.33 instructions per tenfold), beta 0.986 [0.974, 0.998]; by cost: 2: 8 x1.05, 3: 27 x1.14, 4: 27 x1.26, 5: 16 x1.35, 6: 21 x1.30, 7: 6 x1.00
+        gate: geo-mean plain/arm   2.65, faster on 100.0%, missed 0; slope 0.685 (1.46 instructions per tenfold), beta 0.896 [0.865, 0.930]; by cost: 2: 8 x1.44, 3: 27 x1.96, 4: 27 x2.61, 5: 16 x3.17, 6: 21 x5.50, 7: 6 x1.21
+  gate_prune: geo-mean plain/arm   2.74, faster on 100.0%, missed 0; slope 0.682 (1.47 instructions per tenfold), beta 0.891 [0.858, 0.928]; by cost: 2: 8 x1.44, 3: 27 x2.01, 4: 27 x2.69, 5: 16 x3.29, 6: 21 x5.88, 7: 6 x1.21
+    noanswer: geo-mean plain/arm   3.35, faster on 100.0%, missed 0; slope 0.659 (1.52 instructions per tenfold), beta 0.861 [0.841, 0.880]; by cost: 2: 8 x1.52, 3: 27 x2.61, 4: 27 x3.03, 5: 16 x4.08, 6: 21 x5.48, 7: 6 x4.76
+       nodet: geo-mean plain/arm   2.20, faster on 100.0%, missed 0; slope 0.708 (1.41 instructions per tenfold), beta 0.925 [0.904, 0.948]; by cost: 2: 8 x1.30, 3: 27 x1.84, 4: 27 x2.15, 5: 16 x2.62, 6: 21 x3.50, 7: 6 x1.35
+      noprob: geo-mean plain/arm   3.83, faster on 100.0%, missed 0; slope 0.649 (1.54 instructions per tenfold), beta 0.848 [0.816, 0.883]; by cost: 2: 8 x1.71, 3: 27 x2.57, 4: 27 x3.51, 5: 16 x5.05, 6: 21 x9.84, 7: 6 x1.81
+       prune: geo-mean plain/arm   1.25, faster on 93.3%, missed 0; slope 0.757 (1.32 instructions per tenfold), beta 0.989 [0.981, 0.999]; by cost: 2: 8 x1.09, 3: 27 x1.23, 4: 27 x1.27, 5: 16 x1.27, 6: 21 x1.41, 7: 6 x1.00
+  beyond the cap: 4 problems the plain search needed more than 5,000,000 states for (costs {7: 4}, median 8,539,278); solved within the cap: fitonly 4, gate 4, gate_prune 4, noanswer 4, nodet 4, noprob 4, prune 1
+
+c0 matched, fold B: 86 test problems solved by plain (cost >= 2), every arm on each; plain slope 0.941 decades per instruction (1.06 instructions per tenfold)
+     fitonly: geo-mean plain/arm   2.29, faster on 83.7%, missed 2; slope 0.860 (1.16 instructions per tenfold), beta 0.914 [0.851, 0.981]; by cost: 2: 8 x1.51, 3: 18 x2.08, 4: 32 x1.91, 5: 18 x3.54, 6: 8 x3.49, 7: 2 x1.92
+        gate: geo-mean plain/arm   8.43, faster on 97.7%, missed 0; slope 0.730 (1.37 instructions per tenfold), beta 0.776 [0.730, 0.823]; by cost: 2: 8 x2.40, 3: 18 x5.68, 4: 32 x7.70, 5: 18 x16.86, 6: 8 x16.39, 7: 2 x26.24
+  gate_prune: geo-mean plain/arm   8.44, faster on 97.7%, missed 0; slope 0.730 (1.37 instructions per tenfold), beta 0.776 [0.728, 0.821]; by cost: 2: 8 x2.40, 3: 18 x5.68, 4: 32 x7.71, 5: 18 x16.88, 6: 8 x16.45, 7: 2 x26.24
+    noanswer: geo-mean plain/arm   3.60, faster on 98.8%, missed 0; slope 0.808 (1.24 instructions per tenfold), beta 0.859 [0.834, 0.886]; by cost: 2: 8 x1.68, 3: 18 x3.30, 4: 32 x2.98, 5: 18 x5.05, 6: 8 x8.11, 7: 2 x6.02
+       nodet: geo-mean plain/arm   6.91, faster on 95.3%, missed 0; slope 0.743 (1.35 instructions per tenfold), beta 0.790 [0.728, 0.860]; by cost: 2: 8 x2.11, 3: 18 x4.12, 4: 32 x7.05, 5: 18 x14.48, 6: 8 x9.77, 7: 2 x20.06
+      noprob: geo-mean plain/arm   8.85, faster on 97.7%, missed 0; slope 0.691 (1.45 instructions per tenfold), beta 0.735 [0.686, 0.785]; by cost: 2: 8 x2.12, 3: 18 x5.48, 4: 32 x7.94, 5: 18 x18.92, 6: 8 x21.87, 7: 2 x33.17
+       prune: geo-mean plain/arm   1.22, faster on 100.0%, missed 0; slope 0.936 (1.07 instructions per tenfold), beta 0.995 [0.989, 1.002]; by cost: 2: 8 x1.10, 3: 18 x1.22, 4: 32 x1.26, 5: 18 x1.23, 6: 8 x1.23, 7: 2 x1.08
+
+c0 matched, fold A+B: 191 test problems solved by plain (cost >= 2), every arm on each; plain slope 0.825 decades per instruction (1.21 instructions per tenfold)
+     fitonly: geo-mean plain/arm   1.61, faster on 90.1%, missed 2; slope 0.798 (1.25 instructions per tenfold), beta 0.968 [0.936, 1.000]; by cost: 2: 16 x1.26, 3: 45 x1.45, 4: 59 x1.58, 5: 34 x2.25, 6: 29 x1.71, 7: 8 x1.18
+        gate: geo-mean plain/arm   4.46, faster on 99.0%, missed 0; slope 0.716 (1.40 instructions per tenfold), beta 0.868 [0.826, 0.912]; by cost: 2: 16 x1.86, 3: 45 x3.00, 4: 59 x4.69, 5: 34 x7.68, 6: 29 x7.43, 7: 8 x2.60
+  gate_prune: geo-mean plain/arm   4.55, faster on 99.0%, missed 0; slope 0.713 (1.40 instructions per tenfold), beta 0.865 [0.824, 0.909]; by cost: 2: 16 x1.86, 3: 45 x3.04, 4: 59 x4.76, 5: 34 x7.82, 6: 29 x7.81, 7: 8 x2.60
+    noanswer: geo-mean plain/arm   3.46, faster on 99.5%, missed 0; slope 0.711 (1.41 instructions per tenfold), beta 0.862 [0.846, 0.879]; by cost: 2: 16 x1.60, 3: 45 x2.87, 4: 59 x3.01, 5: 34 x4.57, 6: 29 x6.10, 7: 8 x5.05
+       nodet: geo-mean plain/arm   3.68, faster on 97.9%, missed 0; slope 0.735 (1.36 instructions per tenfold), beta 0.891 [0.851, 0.931]; by cost: 2: 16 x1.65, 3: 45 x2.54, 4: 59 x4.09, 5: 34 x6.47, 6: 29 x4.64, 7: 8 x2.65
+      noprob: geo-mean plain/arm   5.59, faster on 99.0%, missed 0; slope 0.674 (1.48 instructions per tenfold), beta 0.817 [0.781, 0.855]; by cost: 2: 16 x1.91, 3: 45 x3.48, 4: 59 x5.46, 5: 34 x10.16, 6: 29 x12.27, 7: 8 x3.74
+       prune: geo-mean plain/arm   1.24, faster on 96.3%, missed 0; slope 0.818 (1.22 instructions per tenfold), beta 0.991 [0.985, 0.998]; by cost: 2: 16 x1.10, 3: 45 x1.23, 4: 59 x1.26, 5: 34 x1.25, 6: 29 x1.36, 7: 8 x1.02
+  beyond the cap: 4 problems the plain search needed more than 5,000,000 states for (costs {7: 4}, median 8,539,278); solved within the cap: fitonly 4, gate 4, gate_prune 4, noanswer 4, nodet 4, noprob 4, prune 1
+
+c0 reach at a fixed budget (test problems of both folds solved by plain, by plain cost; share solved within B):
+  B=30,000: fitonly reach 4 [2:16/16 3:45/45 4:43/59 5:5/34 6:1/29 7:3/12]; gate reach 5 [2:16/16 3:45/45 4:59/59 5:17/34 6:2/29 7:3/12]; gate_prune reach 5 [2:16/16 3:45/45 4:59/59 5:18/34 6:2/29 7:3/12]; noanswer reach 4 [2:16/16 3:45/45 4:59/59 5:8/34 6:1/29 7:6/12]; nodet reach 4 [2:16/16 3:45/45 4:59/59 5:16/34 6:2/29 7:3/12]; noprob reach 5 [2:16/16 3:45/45 4:58/59 5:21/34 6:3/29 7:4/12]; plain reach 3 [2:16/16 3:45/45 4:29/59 5:0/34 6:0/29 7:3/12]; prune reach 4 [2:16/16 3:45/45 4:38/59 5:0/34 6:0/29 7:3/12]
+  B=300,000: fitonly reach 5 [2:16/16 3:45/45 4:59/59 5:30/34 6:5/29 7:6/12]; gate reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:17/29 7:8/12]; gate_prune reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:18/29 7:8/12]; noanswer reach 5 [2:16/16 3:45/45 4:59/59 5:33/34 6:14/29 7:7/12]; nodet reach 5 [2:16/16 3:45/45 4:59/59 5:34/34 6:12/29 7:8/12]; noprob reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:21/29 7:11/12]; plain reach 5 [2:16/16 3:45/45 4:59/59 5:19/34 6:2/29 7:6/12]; prune reach 5 [2:16/16 3:45/45 4:59/59 5:32/34 6:2/29 7:6/12]
+  B=3,000,000: fitonly reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:21/29 7:8/12]; gate reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:29/29 7:12/12]; gate_prune reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:29/29 7:12/12]; noanswer reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:29/29 7:12/12]; nodet reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:29/29 7:12/12]; noprob reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:29/29 7:12/12]; plain reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:21/29 7:8/12]; prune reach 7 [2:16/16 3:45/45 4:59/59 5:34/34 6:28/29 7:8/12]
+
+c0 found where the plain search found nothing (the test problems its 1M probe left unsolved; tokens of the found program):
+        gate: 44 found; tokens {5: 1, 7: 17, 8: 18, 9: 6, 10: 2}; e.g. restrict/remainder[INC.A L.X[MOV.A.T MOV.T.X] -> A]/X<1 = DEC.N MOV.U.N DEC.N Z.N[INC.X] DEC.N L.N[MOV.X.U DEC.U] MOV.A.X (10 tokens, 3,354,478 states); recur1/A = Z.X[INC.A INC.A] L.A[MOV.X.N DEC.N] Z.N[CLR.A] Z.X[INC.A] (10 tokens, 2,447,242 states); restrict/remainder[DEC.X L.X[MOV.A.X INC.X] -> X]/X<N = MOV.A.X DEC.X DEC.X DEC.X DEC.X L.A[DEC.X INC.X] MOV.A.X (9 tokens, 3,017,545 states)
+  gate_prune: 47 found; tokens {5: 1, 7: 17, 8: 21, 9: 6, 10: 2}; e.g. restrict/remainder[INC.A L.X[MOV.A.T MOV.T.X] -> A]/X<1 = DEC.N MOV.U.N DEC.N Z.N[INC.X] DEC.N L.N[MOV.X.U DEC.U] MOV.A.X (10 tokens, 3,354,135 states); recur1/A = Z.X[INC.A INC.A] L.A[MOV.X.N DEC.N] Z.N[CLR.A] Z.X[INC.A] (10 tokens, 2,270,250 states); restrict/remainder[DEC.X L.X[MOV.A.X INC.X] -> X]/X<N = MOV.A.X DEC.X DEC.X DEC.X DEC.X L.A[DEC.X INC.X] MOV.A.X (9 tokens, 3,017,517 states)
+    noanswer: 2 found; tokens {4: 1, 7: 1}; e.g. restrict/remainder[INC.A L.X[MOV.A.N MOV.N.X] -> N]/X+X<N = L.X[INC.X] INC.X L.X[DEC.N] L.N[MOV.A.X] (7 tokens, 1,146,197 states); restrict/target/X·X<N = INC.T L.X[MOV.A.U MOV.U.T] (4 tokens, 17,290 states)
+       nodet: 2 found; tokens {5: 1, 7: 1}; e.g. restrict/remainder[INC.A L.X[MOV.A.N MOV.N.X] -> N]/X+X<N = L.X[INC.X] INC.X L.X[DEC.N] L.N[MOV.A.X] (7 tokens, 1,509,627 states); restrict/target/X·X<N = INC.A L.X[MOV.X.U MOV.U.A] MOV.A.X (5 tokens, 23,202 states)
+      noprob: 2 found; tokens {5: 1, 7: 1}; e.g. restrict/remainder[INC.A L.X[MOV.A.N MOV.N.X] -> N]/X+X<N = L.X[INC.X] INC.X L.X[DEC.N] L.N[MOV.A.X] (7 tokens, 471,955 states); restrict/target/X·X<N = INC.A L.X[MOV.X.U MOV.U.A] MOV.A.X (5 tokens, 23,651 states)
+
+c0 targets at 3M states (the found program's price, and the states to it):
+    affine: plain no (3,003,630); gate no (3,000,498); gate_prune no (3,002,871); prune no (3,005,165)
+      cube: plain no (3,003,630); gate no (3,001,096); gate_prune no (3,003,323); prune no (3,001,258)
+       fib: plain no (3,003,630); gate no (3,002,256); gate_prune no (3,002,168); prune no (3,001,400)
+   floorsq: plain no (3,003,630); gate no (3,004,036); gate_prune no (3,001,976); prune no (3,000,561)
+        h1: plain no (3,003,630); gate no (3,001,504); gate_prune no (3,004,403); prune no (3,002,414)
+     lucas: plain no (3,003,630); gate no (3,003,396); gate_prune no (3,003,994); prune no (3,004,732)
+    minus1: plain no (3,003,630); gate no (3,008,385); gate_prune no (3,000,077); prune no (3,003,311)
+      mont: plain no (3,008,173); gate no (3,008,920); gate_prune no (3,006,380); prune no (3,000,694)
+     plus3: plain no (3,003,630); gate no (3,000,723); gate_prune no (3,002,816); prune no (3,003,200)
+      pow2: plain no (3,003,630); gate no (3,012,007); gate_prune no (3,001,090); prune no (3,003,435)
+       rho: plain no (3,003,630); gate no (3,003,035); gate_prune no (3,003,191); prune no (3,003,453)
+       ten: plain no (3,003,630); gate no (3,001,397); gate_prune no (3,002,775); prune no (3,003,702)
+    tenrho: plain no (3,003,630); gate no (3,004,210); gate_prune no (3,007,491); prune no (3,005,129)
+     three: plain no (3,003,630); gate no (3,002,681); gate_prune no (3,006,448); prune no (3,001,646)
+       tri: plain no (3,003,630); gate no (3,007,677); gate_prune no (3,005,317); prune no (3,002,384)
+      trib: plain no (3,003,630); gate no (3,003,487); gate_prune no (3,003,396); prune no (3,000,619)
+      x1sq: plain no (3,003,630); gate no (3,001,561); gate_prune no (3,000,371); prune no (3,004,251)
+       x2x: plain no (3,003,630); gate no (3,001,603); gate_prune no (3,003,894); prune no (3,002,255)
+       x3x: plain no (3,003,630); gate no (3,000,430); gate_prune no (3,004,613); prune no (3,000,638)
+        x4: plain no (3,003,630); gate no (3,001,733); gate_prune no (3,003,244); prune no (3,002,432)

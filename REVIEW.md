@@ -1644,6 +1644,16 @@ product rule, reduced windows, rounds that keep x and a bigger budget.
   least 78%. Its margins are thin: the heaviest task's answer program came at 98% of the budget, and a run that spent it
   all would end about 90 s inside the hour. Still designed: the Horner grammar, the product rule, the reduced windows,
   the search with x kept and its trigger, and the budget, beside the wider file's list (DEEP.md §10). About $125.
+- **A gate that reads the numbers** ([GATE.md](bar3/scale/gate/GATE.md), code and records in
+  [`bar3/scale/gate/`](bar3/scale/gate/); the literature in [theory/GUIDED_SEARCH.md](theory/GUIDED_SEARCH.md)).
+  Pre-registered. A small network trained only on the learner's own solved practice reads each search state against
+  the problem's rows, by comparisons alone, and delays the states it doubts; nothing is dropped. On practice problems
+  of formulas it was not trained on, it finds the same programs with 4.5 times fewer states from scratch and 6.8 times
+  fewer over the library, a small change of slope (β 0.87 and 0.78, both 90% intervals below 1: about 0.2 instructions
+  more per tenfold of states), at about 5 times the wall time per state. In 20 whole runs of the consolidation's arm it
+  found no target itself, but it changed what the learner practised, mostly for the worse: one new formula (the
+  triangular numbers, round 3) and one win a round early, against four wins later and four lost in 5 rounds, because
+  its finds take x mod N's place among the anchored pairs. About $80.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

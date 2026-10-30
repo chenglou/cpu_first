@@ -1078,8 +1078,9 @@ against the entry, the whole stage-3 line is out, and nothing else here matters.
    ReLU network is an if-else program; a tiny law reader checks all three. So search against gradients does not by
    itself decide what is learned. The candidates and what computes them (questions 4 and 5) still do, and a judge may
    read "end-to-end" by its letter. Nor would one network with gates trained by backprop escape that at the deep
-   file's sizes: gates over whole programs need every program listed in advance, and the note's second check finds
-   gradients through gates at every step stalling as programs grow, as Gaunt et al. (2016) found (its §4.4).
+   file's sizes: gates over whole programs need every program listed in advance, and the note's checks find gradients
+   through gates at every step stalling as programs grow, as Gaunt et al. (2016) found, and by 3 to 5 steps over 30
+   instructions, the depth of the searches that built the routines the round calls (its §4.4, §5.3).
 2. **Rule 8:** training returns zero logits, and the damped gradient all but vanishes on the deepest paths. The batch's
    answer rows would fit through the real path, at 200 to 400 s a run, but would teach nothing once the round
    reproduces them; the whole batch does not fit in an H100 (STRICT.md §5).

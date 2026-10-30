@@ -2,9 +2,10 @@
 
 *Written 2026-10-29. Asked: is a search over programs less learned than a neural network? The rules ask for
 "end-to-end learning" (rule 8), and REVIEW.md §5 asks first whether the deep file's climb, a program search inside
-training, counts. This note gives four standard facts, proves the one that compares search with gradients, and runs two
-tiny local checks: [`checks/search_and_gradients.py`](checks/search_and_gradients.py) (about 18 s on a laptop), and
-[`checks/step_gates.py`](checks/step_gates.py) (about 12 minutes), for the follow-up question of whether one network
+training, counts. This note gives four standard facts, proves the one that compares search with gradients, and runs
+three tiny local checks: [`checks/search_and_gradients.py`](checks/search_and_gradients.py) (about 18 s on a laptop),
+then [`checks/step_gates.py`](checks/step_gates.py) (about 12 minutes) and
+[`checks/wide_gates.py`](checks/wide_gates.py) (about 23 minutes), for the follow-up question of whether one network
 with gates trained by backprop can stand in for the search. Every reference in §7 was looked up.*
 
 ## 1. In plain words
@@ -38,7 +39,9 @@ first, gradients split) and when nothing fits (the search says none; gradients s
 memory however long the program, but they don't keep it. A second tiny check trained them by backprop on programs of
 three instructions (§4.4, §5.2). They found a fitting program in 23% of runs at 8 steps (53% at the best settings
 tried), 3% at 12, 1 run in 200 at 16 and none at 24 or 32. The search always finds one, at a cost that triples with
-every step.
+every step. With 30 instructions to choose from at each step, a third check found the falloff starting at 2 steps
+instead of 4 to 6: 80% of runs at 2 steps, 38% at 3, 13% at 4 and 1% at 5 (§5.3). The routines the deep file's round
+calls came from searches 4 and 5 steps deep over 33 to 45 choices a step.
 
 **What this settles, and what it doesn't.** It settles form: whether a choice is made by a search or by gradients, or
 written as a network or as if-else, doesn't by itself change what is learned. It doesn't settle the candidates and what
@@ -154,7 +157,8 @@ K = 32, 64 or 128. The best of 100 tuned settings reached it in 100% up to K = 1
 
 **Checked here** (§5.2): the same falloff on programs of three instructions mod N, given every row of their tables.
 Step gates found a fitting program in every run up to 3 steps, in 23% at 8 (53% at the best settings tried) and in
-3% at 12, then next to none. Failed runs end in blends whose loss has stopped moving.
+3% at 12, then next to none. Failed runs end in blends whose loss has stopped moving. Over 30 instructions (§5.3), the
+falloff starts sooner: 80% of runs at 2 steps, 38% at 3, 13% at 4, 1% at 5.
 
 ## 5. The tiny checks
 
@@ -214,6 +218,41 @@ Step gates found a fitting program in every run up to 3 steps, in 23% at 8 (53% 
 - **Cost.** Step gates have 3L weights. Whole-program gates have 3^L, and the search tries a median half of the 3^L
   programs.
 
+### 5.3 Gates at every step, over 30 instructions
+
+[`checks/wide_gates.py`](checks/wide_gates.py), about 23 minutes on a laptop's CPU. The deep file's searches are short
+but wide, so this asks how step gates do at its lengths with many more choices a step.
+
+**Setup.** §5.2's, with two changes:
+- N is in {5, 11, 17, 23}, so a table has 56 rows.
+- There are 30 instructions, all permutations of the residues: y + c for c = 1 to 10, c·y for c in {2, 3, 4, 6, 7, 8,
+  9, 12, 13, 14}, and y^k for k in {3, 7, 9, 13, 17, 19, 21, 23, 27, 29}.
+
+§5.2's 3 instructions run on the same moduli as a control.
+
+| L | 3 instructions: step gates, runs | 30 instructions: programs | search: tried, median | whole-program gates | step gates: runs | step gates: programs, any of 4 starts |
+|---|---|---|---|---|---|---|
+| 1 | not run | 30 | 17 | 100% | 100% | 100% |
+| 2 | 100% | 900 | 401 | 100% | 80% | 100% |
+| 3 | 100% | 27,000 | 10,814 | 100% | 38% | 76% |
+| 4 | 100% | 810,000 | 381,222 | not run | 13% | 38% |
+| 5 | not run | 2.4 × 10⁷ | 13,095,983 | not run | 1% | 4% |
+| 6 | 91% | 7.3 × 10⁸ | not run | not run | 0% | 0% |
+| 8 | 46% | 6.6 × 10¹¹ | not run | not run | 0% | 0% |
+
+- **Width moves the falloff.** Half the runs failed at about 8 steps over 3 instructions, and between 2 and 3 steps
+  over 30. The control, with 56 rows, did better than §5.2 with 33 (91% of runs against 74% at 6 steps): more rows
+  help, but not enough to matter at 30 instructions.
+- **Stuck, not slow.** As in §5.2, no failed run settled on one instruction at every step. Their loss moved by a
+  median 2.0–2.2 × 10⁻⁴ over the last 1,000 steps, and their programs fit a median 21–50% of rows.
+- **Not the settings.** The same sweep as §5.2, at L = 2, 3 and 5. At L = 2: 98% of runs from near-even starts at
+  every learning rate, 83–87% from spread ones. At L = 3: 30–59% and 21–26%. At L = 5: 0–3% at all eight settings.
+- **Against the deep file's searches.** In its official H1 run
+  ([records/legal_deep_official.json](../integration/legal_deep/records/legal_deep_official.json)), the round is 2
+  calls, found by a search over 446 first choices. The two routines it calls were found by searches of cost 4, over 45
+  first choices, and of cost 5, over 33, with loops among their instructions. At 4 and 5 steps over 30 straight-line
+  instructions, step gates found a fitting program in 13% and 1% of runs.
+
 ## 6. What it means for the entry
 
 **Settled: the form.**
@@ -232,15 +271,16 @@ Step gates found a fitting program in every run up to 3 steps, in 23% at 8 (53% 
 (REVIEW §5, questions 1 and 2). But it keeps the search's guarantee only in one form:
 - Gates over whole programs keep what the search keeps, but only over a list made in advance: 254,100 programs in
   Sahil Verma's file, 3^L programs in §5.2.
-- Gates at each step give the guarantee up from two steps on (§4.4). In §5.2 they held to about 4 steps and fell off
-  after.
-- The deep file's searches are short in calls: its H1 round is 2 calls of routines it found earlier (REVIEW §3's
-  logs). But they run over its 30 instructions and that library, with loops, and on numbers with far too many values
-  for a register that holds a distribution over them (blending digits instead isn't a mixture of numbers). §5.2 tests
-  none of that.
+- Gates at each step give the guarantee up from two steps on (§4.4). Over 3 instructions they held to about 4 steps
+  (§5.2); over 30, to about 2 (§5.3).
+- The deep file's H1 round is 2 calls, a length step gates mostly managed over 30 instructions, though its search had
+  446 first choices. But the routines it calls came from searches of cost 4 and 5 over 33 to 45 first choices (§5.3),
+  where step gates found a fitting program in 13% and 1% of runs, and those searches have loops. And the deep file's
+  numbers have far too many values for a register that holds a distribution over them (blending digits instead isn't
+  a mixture of numbers); the checks test none of that.
 
-So such a network changes the form that rule 8 reads. Whether gates trained by backprop could stand in for the climb's
-searches at its sizes is untested; the evidence here is against it past a few steps.
+So such a network changes the form that rule 8 reads. It could perhaps make the round's last choice, but on this
+evidence not the searches that build what the round calls.
 
 **The questions left to a judge.** Whether a candidate space was built around the answer is REVIEW §5's rule 7
 question; the same file, unchanged, learns all six tasks drawn at random by its md5. Whether reading the labels may

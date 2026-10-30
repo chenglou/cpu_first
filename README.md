@@ -33,7 +33,8 @@ cd cpu_first && python3 tools/verify_records.py   # 50 of 50 records check out
 - [`bar3/`](bar3/): the self-practising learner on a bare counting machine; the entry's law reader comes from it
 - [`tools/`](tools/): the shared Modal runner and `verify_records.py`
 - [`grading/`](grading/): the entry graded against the contest's archive, with five past submissions rerun
-- [`theory/`](theory/): what is already known about computing and learning with large numbers
+- [`theory/`](theory/): what is already known about computing and learning with large numbers, and what a learner's
+  form (search, network or gradients) does and doesn't decide
 - [`history/`](history/): the early experiments, write-ups and records ([history/README.md](history/README.md)); six
   early folders stay at the top level because the code above still loads them: `anchors/`, `general_lessons/`,
   `learned_remainder/`, `library/`, `litmus/` and `wider_menus/`

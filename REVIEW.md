@@ -1072,6 +1072,12 @@ against the entry, the whole stage-3 line is out, and nothing else here matters.
 1. **Rules 8 and 14:** the climb is a program search inside the training forward pass, its result kept in buffers. The
    rules call "parameter-free work" valid and allow iterative mechanisms, though in a note on depth (rule 14 above).
    Is a search whose result carries from step to step "hidden training work"?
+   On form alone, [theory/SEARCH_AND_GRADIENTS.md](theory/SEARCH_AND_GRADIENTS.md) proves that on a fixed list of
+   candidates, gradient training of selection weights keeps exactly the candidates a search's test keeps. It also
+   recalls that every search built from comparisons compiles into a ReLU network with the same answers, and that every
+   ReLU network is an if-else program; a tiny law reader checks all three. So search against gradients does not by
+   itself decide what is learned. The candidates and what computes them (questions 4 and 5) still do, and a judge may
+   read "end-to-end" by its letter.
 2. **Rule 8:** training returns zero logits, and the damped gradient all but vanishes on the deepest paths. The batch's
    answer rows would fit through the real path, at 200 to 400 s a run, but would teach nothing once the round
    reproduces them; the whole batch does not fit in an H100 (STRICT.md §5).

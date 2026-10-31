@@ -336,6 +336,7 @@ Commit times are Pacific. Everything before the first commit is in the snapshot 
 | Oct 27 `80082c0` | ROUNDT's rows moved into buffers, ROUNDT made cheaper and the reader widened: H1 8 of 8 again, 7 of 8 family tasks learned, but neither of two held-out tasks drawn at random | [integration/legal_wider/WIDER.md](integration/legal_wider/WIDER.md) |
 | Oct 27 `a88fc45` | **four steps deep**: H1 8 of 8 again, and byte for byte all 22 other tasks it is run on, among them 12 held out, six of them drawn with the fixed file's md5 as the seed (6 of 6); now the file to judge | [integration/legal_deep/DEEP.md](integration/legal_deep/DEEP.md) |
 | Oct 30 `ea9fb73` | **a gate that reads the numbers**: trained only on the learner's own practice, it cuts bar 3's searches 4.5–6.8 times and bends their slope a little (about 0.2 instructions more per tenfold of states), but in 20 whole runs it changes what the learner practises, mostly for the worse: one new formula and one early win, against four wins late and four lost | [bar3/scale/gate/GATE.md](bar3/scale/gate/GATE.md) |
+| Oct 30 `efff013` | **the gate, with the anchor places kept plain**: the same 20 runs with anchored pairs anchored only on the plain search's finds; seven of the eight late or lost wins come back in their twin's round, and x⁴ comes in round 1 through a problem only the gate solved, but 3·x² stays lost and the triangular numbers don't come | [bar3/scale/gate/GATE.md](bar3/scale/gate/GATE.md) §9 |
 
 ### The lessons that came out of the failures
 
@@ -667,7 +668,11 @@ in the answer.
   back empty, the gate found no target itself (0 of 68), but it changed what the learner practised, mostly for the
   worse: one formula no rule had brought came (the triangular numbers, round 3) and one win a round early, against four
   wins later and four not in 5 rounds. Its new finds take the places that anchored pairs keep for the costliest
-  problems and push out x mod N, which 11 of the 12 wins' programs call. About $80.
+  problems and push out x mod N, which 11 of the 12 wins' programs call. Rerun with those places kept for the plain
+  search's finds (pre-registered again, GATE.md §9), seven of the eight late or lost wins came back in their twin's
+  round, and x⁴, which the arm had never brought, came in round 1 through (x·x) mod N, a problem only the gate had
+  solved. 3·x² stayed lost, and the triangular numbers did not come: that invention had come through the anchor
+  places too. About $103.
 - **Stage 3's instructions, invented** ([BRIDGE.md](bar3/bridge/BRIDGE.md)). Counting at H1's size would take about
   10^16 steps, but one place of a digit machine is tiny: two digits and what the place below passed up. Cut to one
   place, the self-practice law book gives 18 such slices, and 11 compose back into their law when looped over the
@@ -1385,7 +1390,7 @@ two held-out ones among them. A last round, phase D, moved ROUNDT's rows into bu
 again and 7 of 8 family tasks, but neither of two held-out tasks drawn at random. Phase E read four steps deep and kept
 x between calls: H1 8 of 8, and all 22 other tasks it was run on, the six drawn with its own md5 as the seed among them;
 its file is now the file to judge (§4.8). On Oct 30 a gate that reads the numbers to order bar 3's search finished
-too (§4, bar 3). Nothing is running.
+too, and so did its rerun with the anchor places kept for the plain search's finds (§4, bar 3). Nothing is running.
 
 Everything else described here is committed.
 

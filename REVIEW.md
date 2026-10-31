@@ -1653,7 +1653,9 @@ product rule, reduced windows, rounds that keep x and a bigger budget.
   more per tenfold of states), at about 5 times the wall time per state. In 20 whole runs of the consolidation's arm it
   found no target itself, but it changed what the learner practised, mostly for the worse: one new formula (the
   triangular numbers, round 3) and one win a round early, against four wins later and four lost in 5 rounds, because
-  its finds take x mod N's place among the anchored pairs. About $80.
+  its finds take x mod N's place among the anchored pairs. Rerun with those places kept for the plain search's finds
+  (GATE.md §9), seven of the eight came back in their twin's round, and x⁴ came in round 1 through a problem only the
+  gate had solved; 3·x² stayed lost, and the triangular numbers did not come. About $103.
 - **Bar 3's learner invents stage 3's digit instructions** ([BRIDGE.md](bar3/bridge/BRIDGE.md), code and records in
   [`bar3/bridge/`](bar3/bridge/)). A digit instruction is one place of a law: the operands' digits and what the place
   below passed up go in, a digit and what to pass on come out. Cut to one place, the self-practice law book gives 18

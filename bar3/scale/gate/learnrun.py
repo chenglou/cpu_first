@@ -16,6 +16,9 @@ runs from the stores instead of searching again.
 
 With no gates (`gates` empty), a run is the plain twin: the same arm on the same searcher, every worker on the plain
 search (for the formulas whose twins are missing or cut short in consolidate/records).
+
+With `anchor_plain` (GATE.md §9, PREREG_ADDENDUM2.md), the learner is learn_anchor.py (make_learner.py): the same
+arm, except that anchored pairs anchor only on problems the plain search solved, not on the gate's finds.
 """
 
 from __future__ import annotations
@@ -106,12 +109,15 @@ def load_store(path):
     return cache
 
 
-def run_many(runs, gates, out, workers, commit=None, cap=4_000_000, log=print):
+def run_many(runs, gates, out, workers, commit=None, cap=4_000_000, log=print, anchor_plain=False):
     """runs [[name, config, target]], a thread each; gates {"A": {"empty": path, "lib": path}, "B": {...}}: the gates
-    trained on each fold ({}: plain twins)."""
+    trained on each fold ({}: plain twins); anchor_plain: anchors among the plain search's finds only."""
     from bar3.scale.heldout import targets  # noqa: F401  (the held-out targets, in this process too)
     from bar3.scale.heldout.searcher import Searcher
-    from bar3.scale.consolidate import learn_newton as LN
+    if anchor_plain:
+        from bar3.scale.gate import learn_anchor as LN
+    else:
+        from bar3.scale.consolidate import learn_newton as LN
     from bar3.scale.consolidate.configs import CONFIGS
     plain = Searcher(max(2, workers // 2) if gates else workers, "nb", True, store=f"{out}/store_plain.jsonl",
                      commit=commit)
@@ -142,6 +148,8 @@ def run_many(runs, gates, out, workers, commit=None, cap=4_000_000, log=print):
                 gs = GatedSearcher(plain, pool, gates[fold], cap, writer(f"{out}/{name}.gate.jsonl"), cache, clock,
                                    store=gstore, commit=commit)
             cfg = json.loads(json.dumps(CONFIGS[config]))
+            if anchor_plain:
+                cfg["anchor_plain"] = True
             LN.fresh(name, cfg, tname, gs, writer(f"{out}/{name}.jsonl"), log=log)
         except Exception:
             traceback.print_exc()

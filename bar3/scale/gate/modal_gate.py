@@ -141,8 +141,8 @@ def train(corpus: str, labels: list, b: float, groups: list) -> dict:
 
 
 @app.function(cpu=CPU, memory=(MEM, MEM * 3 // 2), timeout=12 * 3600, volumes={"/out": vol}, max_containers=8)
-def learn(label: str, runs: list, gates: dict, workers: int = WORKERS) -> dict:
-    """Whole learner runs (learnrun.py), a thread each, records to v1/learn/<label>/."""
+def learn(label: str, runs: list, gates: dict, workers: int = WORKERS, anchor_plain: bool = False) -> dict:
+    """Whole learner runs (learnrun.py), a thread each, records to v1/learn/<label>/; anchor_plain: GATE.md §9."""
     import sys
     import time
     sys.path.insert(0, "/root")
@@ -151,7 +151,7 @@ def learn(label: str, runs: list, gates: dict, workers: int = WORKERS) -> dict:
     out = f"{V}/learn/{label}"
     os.makedirs(out, exist_ok=True)
     t0 = time.time()
-    learnrun.run_many(runs, gates, out, workers, commit=vol.commit)
+    learnrun.run_many(runs, gates, out, workers, commit=vol.commit, anchor_plain=anchor_plain)
     vol.commit()
     return dict(label=label, runs=[r[0] for r in runs], seconds=round(time.time() - t0))
 
@@ -159,10 +159,10 @@ def learn(label: str, runs: list, gates: dict, workers: int = WORKERS) -> dict:
 @app.local_entrypoint()
 def main(capture_label: str = "", specs: str = "", evaluate_name: str = "", shards: int = 1, workers: int = WORKERS,
          learn_label: str = "", runs: str = "", gates: str = "", train_corpus: str = "", labels: str = "",
-         b: float = 10.0, groups: str = "full,noprob,fitonly,noanswer,nodet"):
+         b: float = 10.0, groups: str = "full,noprob,fitonly,noanswer,nodet", anchor_plain: int = 0):
     """--capture-label L --specs CONFIG:TARGET[@STATE],...   one container, one corpus file;
     --evaluate-name NAME --shards K                          K containers over the task file;
-    --learn-label L --runs NAME:CONFIG:TARGET,... --gates JSON  one container, whole runs."""
+    --learn-label L --runs NAME:CONFIG:TARGET,... --gates JSON  one container, whole runs (--anchor-plain 1: §9)."""
     if capture_label:
         sp = []
         for s in specs.split(","):
@@ -181,5 +181,5 @@ def main(capture_label: str = "", specs: str = "", evaluate_name: str = "", shar
         print("spawned train", train_corpus, call.object_id)
     if learn_label:
         rs = [r.split(":") for r in runs.split(",")]
-        call = learn.spawn(learn_label, rs, json.loads(gates), workers)
-        print("spawned learn", learn_label, call.object_id, [r[0] for r in rs])
+        call = learn.spawn(learn_label, rs, json.loads(gates), workers, bool(anchor_plain))
+        print("spawned learn", learn_label, call.object_id, [r[0] for r in rs], "anchor_plain" if anchor_plain else "")

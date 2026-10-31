@@ -35,33 +35,46 @@
   also costs about 5 times the wall time of a plain one, so on wall time the gate is clearly ahead only on longer
   problems: 5–6 instructions from scratch, 3–4 over the library.
 
-**2. In whole learner runs, the gate changes what the learner invents, both ways, and more often for the worse.**
+**2. In whole learner runs, the gate changes what the learner invents, both ways. Most of its losses came through one
+rule of the learner.**
 - These are 20 runs of the consolidation's arm: its 12 wins, and 8 formulas it never brought. The gate runs as a
   second search wherever a plain search comes back empty, with at most the same states (and at most 4M). At most 5
-  rounds, as registered.
-- One formula that no rule had brought came: the triangular numbers under the main setup (alloc_deep), in round 3. The
-  same arm without the gate, rerun here, had nothing in 5 rounds. The other seven came neither with the gate nor
-  without it.
+  rounds, as registered. The 20 ran twice: as registered (§6), and with one rule of the learner changed (§9).
+- *As registered.* One formula that no rule had brought came: the triangular numbers under the main setup
+  (alloc_deep), in round 3. The same arm without the gate, rerun here, had nothing in 5 rounds. The other seven came
+  neither with the gate nor without it.
 - Of the 12 wins, one came a round early: (x + 1)², with a routine only the gate had solved. Three came in the same
   round: 2x + 1, Fibonacci and x² + 3.
 - Four came later: x² − 1 (round 1 instead of 0), x² + x (2 instead of 0), 2^x (2 instead of 1), and the triangular
   numbers under the setup that won them (alloc_ns; 3 instead of 1).
 - Four did not come in the 5 rounds: x² mod N and x² + 1 (round 0 without the gate), 3·x² and x³ (round 1).
+- *With the anchors kept plain.* The arm practises pairs anchored on its two costliest solved practice problems, and as
+  registered the gate's finds took those places. With those places kept for the plain search's finds, seven of the
+  eight late or lost wins came back in their twin's round. 3·x² still did not come, and (x + 1)² again came a round
+  early.
+- In those runs x⁴ came, in round 1, which this arm had never brought (the held-out study did, with a subgoal). The
+  triangular numbers under alloc_deep did not come.
 
 **3. It changes them through what the learner practises, not by finding the targets.**
-- In no run did the gate's own search find a target (0 of the 68 target searches it ran). Every target came from the
-  plain search, over a library shaped by what the gate had solved.
-- After an empty 1M probe of a practice problem, the gate's search ran 9,311 times over the 20 runs and found a
-  program 356 times (3.8%), mostly at cost 6–7.
-- The arm practises pairs anchored on the two costliest learnable problems (anchored pairs). The gate's new cost-7
-  problems take those places.
+- In no run did the gate's own search find a target (0 of the 68 target searches it ran as registered, 0 of 42 with
+  the anchors kept plain). Every target came from the plain search, over a library shaped by what the gate had solved.
+- After an empty 1M probe of a practice problem, the gate's search ran 9,311 times over the 20 registered runs and
+  found a program 356 times (3.8%), mostly at cost 6–7 (437 of 6,404 with the anchors kept plain).
+- The arm practises pairs anchored on the two costliest learnable problems (anchored pairs). As registered, the gate's
+  new cost-7 problems took those places.
 - Without the gate, 11 of the 12 wins' programs call one cost-6 practice problem as a routine: x mod N
   (`law/mod(X,N)/x+qN`), picked in round 0 in all 11 runs. With the gate it was picked in round 0 in one of them
   (x² + 3), in round 2 in two (x² + x, and the triangular numbers under alloc_ns), and never in the other eight. Four
-  of those eight came anyway, by other programs. The other four are the four wins lost.
+  of those eight came anyway, by other programs. The other four are the four wins lost. With the gate's finds kept out
+  of the anchor places, it was picked in round 0 in all 11 again.
 - The invention went the other way. Two practice problems only the gate had solved, (x·x) mod N and
   N mod (x + 1), gave the learner two routines in round 3: "add x into A" and "reduce A mod N". With them, the target
-  was four tokens long (17 primitive instructions).
+  was four tokens long (17 primitive instructions). It came through the anchor places: with the gate's finds kept out
+  of them, the two were never picked, and the triangular numbers did not come.
+- The gate's finds still change outcomes as partners of plain anchors. x⁴ came through (x·x) mod N, solved only by the
+  gate in round 1, over the mod law picked in round 0. And keeping the anchors plain lost 3·x²: after a gate find
+  changed its round-0 library, the two problems whose pair led its twin's round 1 were solved only by the gate, so
+  that pair could not be scored.
 - CONSOLIDATE.md saw the same interaction with its 10M probes: anchored pairs give the anchor places to whatever newly
   becomes solvable at the top cost.
 
@@ -70,12 +83,14 @@
   about 0.2 instructions per tenfold of states. β is 0.87 from scratch and 0.78 over the library, both with 90%
   intervals below 1. Each further instruction still multiplies the states by about 5 from scratch and 14 over the
   library.
-- **Outcomes: changed, through the picks.** One invention and one early win, against four wins late and four lost in
-  the 5 rounds. The pre-registered prediction ("a constant factor, no outcome changes") is refuted on both counts.
-- **Next:** separate the gate's search from the anchor interaction, then rerun these 20. Two ways: anchor the pairs
-  by measured gain instead of by cost, or keep second-search finds out of the anchor places.
-- **Cost:** about $80 of the study's $1,000 cap. Modal's billing for the app `bar3-gate` gives $78.59 through 10:00 PDT
-  Oct 30, and the last two containers ran until 10:29 (about $1.30 more).
+- **Outcomes: changed, through the picks, and mostly through the anchor places.** As registered: one invention and one
+  early win, against four wins late and four lost in the 5 rounds. With the anchors kept plain: one invention (x⁴)
+  and one early win, against one win lost (3·x²). The pre-registered prediction ("a constant factor, no outcome
+  changes") is refuted on both counts.
+- **Next:** anchor the pairs by measured gain instead of by cost, the other way to separate the gate from the anchor
+  rule. Keeping the anchors plain cost 3·x² its win; a gain rule would not ask which search solved a problem.
+- **Cost:** $102.93 of the study's $1,000 cap, $23.07 of it for the runs with the anchors kept plain (Modal's billing
+  for the app `bar3-gate`).
 <!-- /PLAIN -->
 
 ## Details
@@ -87,6 +102,9 @@
 - [PREREG_ADDENDUM1.md](PREREG_ADDENDUM1.md): frozen 21:17 PDT, read-only, sha256
   97fe057a5ef6aca7a0df0c7f40a4bacdcaf27baeb12f3612ebb3afc7d7171089, while the corpus captures ran, before any gate was
   trained: the whole runs' second search is capped at 4M states (the gated engine keeps every level it expands).
+- [PREREG_ADDENDUM2.md](PREREG_ADDENDUM2.md): frozen 2026-10-30 11:08 PDT, read-only, sha256
+  dd95f0a0fc320ac7099fe0fb39df176d7a07b5b56e474b84d763a9b9de480ec3, after the fifth launch's outcomes and before any
+  run of §9: the 20 whole runs again, with anchored pairs anchored only on the plain search's finds.
 - Deviations:
   - **The matched tables (§4).** Their slope axis and their cap rule were changed after the arms' first results were
     seen. Both corrections count against the gate. On C1 its β moved in three steps:
@@ -456,6 +474,11 @@ record and absent in the other compares unequal, but showed an empty diff. It is
 - *The replays are exact.* A replay's rounds match the first run's, and the plain reruns match the consolidation's own
   records pick for pick and routine for routine in every round both have.
 
+**Two restarts in §9.** `gt2_a`'s container restarted twice, between 12:01 and 12:11 PDT and at 13:05, and each restart
+replayed its runs from the stores and went on; its records come from the third container. Before each restart, the
+targets that had come had come in the rounds of the final records (x² mod N and 2x + 1 in round 0, x³ in round 1).
+`gt2_b` and `gt2_c` ran in one container each. The logs Modal keeps for a stopped app do not say why `gt2_a` restarted.
+
 ### 8. Files and how to rerun
 
 Everything is in `cpu_first/bar3/scale/gate/`; it imports `bar3/`, `bar3/breadth/`, `bar3/scale/` (the engine, the jobs,
@@ -466,7 +489,9 @@ the consolidation learner copy) and `library/`, and changes none of them.
   map's tuning by the toy model, the judgement before search; `toy.py`: the toy model (theory/GUIDED_SEARCH.md §3).
 - `capture.py`: round 0 of the consolidation learner with every search written out (the corpus); `tasks.py`: the arms'
   search jobs; `learnrun.py`: whole runs with the gate as a second search; `report.py`: the arms' tables;
-  `wcompare.py`: the whole runs against their twins (§6).
+  `wcompare.py`: the whole runs against their twins (§6, §9).
+- `make_learner.py`: writes `learn_anchor.py`, the consolidation learner with §9's one change (anchors among the plain
+  search's finds, under `cfg["anchor_plain"]`).
 - `modal_gate.py`: Modal (app and Volume `bar3-gate`): `capture`, `train`, `evaluate`, `learn`.
 - `check.py`: exactness (about 10 s locally).
 - `records/`: the corpus captures (`capture_*.jsonl.gz`), the gates (`models/`), the arms' results, the whole runs.
@@ -548,11 +573,31 @@ B="$(r $D trib),$(r $D floorsq),$(r $D tri),$(r $NS tenrho)"
 for x in a:"$A" b:"$B"; do $M -m modal run --detach bar3/scale/gate/modal_gate.py --learn-label pt1_${x%%:*} --runs "${x#*:}" --gates '{}' --workers 8; done
 ```
 
+§9's runs: write the learner copy, seed each group's stores with the fifth launch's (a search already done replays), and
+launch the same groups with `--anchor-plain 1` (as launched 11:09 PDT Oct 30):
+
+```bash
+python3 -m bar3.scale.gate.make_learner
+```
+
+```bash
+for g in a b c; do for s in store_plain.jsonl store_gate.jsonl; do $M -m modal volume cp bar3-gate v1/learn/gt1s_$g/$s v1/learn/gt2_$g/$s; done; done
+```
+
+```bash
+D=alloc_deep_ct2a2_probe; NS=alloc_ns_ct2a2_probe; r() { echo "${1}_${2}_gt2:${1}:${2}"; }
+G='{"A":{"empty":"/out/v1/models/c0_A_full.json","lib":"/out/v1/models/c1_A_full.json"},"B":{"empty":"/out/v1/models/c0_B_full.json","lib":"/out/v1/models/c1_B_full.json"}}'
+A="$(r $D ten),$(r $D x3x),$(r $D lucas),$(r $D h1),$(r $D cube),$(r $D three),$(r $D affine)"
+B="$(r $D x4),$(r $D trib),$(r $D floorsq),$(r $D fib),$(r $D x1sq),$(r $D rho),$(r $D pow2)"
+C="$(r $NS tenrho),$(r $D tri),$(r $NS tri),$(r $D minus1),$(r $D plus3),$(r $D x2x)"
+for x in a:"$A" b:"$B" c:"$C"; do $M -m modal run --detach bar3/scale/gate/modal_gate.py --learn-label gt2_${x%%:*} --runs "${x#*:}" --gates "$G" --workers 16 --anchor-plain 1; done
+```
+
 Download each run's records to `records/learn/` (its rounds `<run>.jsonl` and its second searches
 `<run>.gate.jsonl`; the stores stay on the Volume):
 
 ```bash
-for l in gt1s_a gt1s_b gt1s_c pt1_a pt1_b; do for f in $($M -m modal volume ls bar3-gate v1/learn/$l | grep -E "_(gt1|pt1)(\.gate)?\.jsonl$"); do $M -m modal volume get --force bar3-gate $f bar3/scale/gate/records/learn/$(basename $f); done; done
+for l in gt1s_a gt1s_b gt1s_c pt1_a pt1_b gt2_a gt2_b gt2_c; do for f in $($M -m modal volume ls bar3-gate v1/learn/$l | grep -E "_(gt1|gt2|pt1)(\.gate)?\.jsonl$"); do $M -m modal volume get --force bar3-gate $f bar3/scale/gate/records/learn/$(basename $f); done; done
 ```
 
 The tables (from the downloaded results and captures):
@@ -567,3 +612,124 @@ law and whether each target's program calls it, and the second searches' totals:
 ```bash
 python3 -m bar3.scale.gate.wcompare bar3/scale/gate/records/learn
 ```
+
+§9 the same way, with the fifth launch's outcome beside each run, and the anchor rule checked in every round:
+
+```bash
+python3 -m bar3.scale.gate.wcompare bar3/scale/gate/records/learn gt2
+```
+
+### 9. The whole runs again, with the anchors kept to the plain search's finds
+
+[PREREG_ADDENDUM2.md](PREREG_ADDENDUM2.md), frozen before the launch (§1). The same 20 runs as §6, with one change in
+the learner: anchored pairs anchor only on the two costliest learnable problems that the plain search solved
+(`learn_anchor.py`, written by `make_learner.py` from the consolidation's learner, with that one line changed). A
+problem only the gate's second search solved stays learnable, so it can still be a pair's other member, a single or a
+pick. Everything else is §6's: the gates, the second search and its cap, at most 5 rounds, the same three groups
+(`gt2_a/b/c`, 3 containers, 11:09 PDT Oct 30). Each container started from copies of its fifth-launch group's stores,
+so round 0 up to the pair looks is the fifth launch's exactly, and every difference comes from the anchor rule. The
+twins and the plain reruns are §6's.
+
+The rule held. In all 58 rounds of the 20 runs, every scored pair holds one of the round's two costliest plain finds,
+with up to 17 learnable gate finds in a round kept out of the anchor places (`wcompare.anchor_check`; on the fifth
+launch's records the same check finds 54 rounds that break it).
+
+| formula | config | kind | plain twin | fifth launch | anchors kept plain | its picks only the gate solved, by round | second searches: found / run |
+|---|---|---|---|---|---|---|---|
+| 2x + 1 | alloc_deep | win | round 0 | round 0 | round 0 | 1 | 18 / 136 |
+| x² + 1 | alloc_deep | win | round 0 | no (5 rounds) | round 0 | 0 | 6 / 219 |
+| x² + x | alloc_deep | win | round 0 | round 2 | round 0 | 0 | 11 / 96 |
+| x² mod N | alloc_deep | win | round 0 | no (5 rounds) | round 0 | 0 | 6 / 148 |
+| x² − 1 | alloc_deep | win | round 0 | round 1 | round 0 | 1 | 9 / 163 |
+| (x + 1)² | alloc_deep | win | round 1 | round 0 | round 0 | 1 | 13 / 149 |
+| 2^x | alloc_deep | win | round 1 | round 2 | round 1 | 2, 2 | 22 / 269; target 0 / 1 |
+| 3·x² | alloc_deep | win | round 1 | no (5 rounds) | no (5 rounds) | 1, 3, 1, 0, 0 | 48 / 359; target 0 / 1 |
+| Fibonacci | alloc_deep | win | round 1 | round 1 | round 1 | 0, 0 | 17 / 252; target 0 / 1 |
+| triangular | alloc_ns | win | round 1 | round 3 | round 1 | 1, 1 | 18 / 230; target 0 / 1 |
+| x² + 3 | alloc_deep | win | round 1 | round 1 | round 1 | 0, 1 | 17 / 303; target 0 / 1 |
+| x³ | alloc_deep | win | round 1 | no (5 rounds) | round 1 | 0, 1 | 12 / 253; target 0 / 1 |
+| 10·x² | alloc_deep | miss | no (4 rounds); rerun no (5 rounds) | no (5 rounds) | no (5 rounds) | 0, 0, 1, 0, 0 | 28 / 509; target 0 / 5 |
+| 10·x² + 1 | alloc_ns | miss | no (3 rounds); rerun no (5 rounds) | no (5 rounds) | no (5 rounds) | 0, 0, 0, 1, 2 | 29 / 602; target 0 / 5 |
+| x⁴ | alloc_deep | miss | no (4 rounds); rerun no (5 rounds) | no (5 rounds) | round 1 | 1, 1 | 14 / 212; target 0 / 1 |
+| Lucas | alloc_deep | held-out | –; rerun no (5 rounds) | no (5 rounds) | no (5 rounds) | 1, 1, 0, 0, 1 | 49 / 707; target 0 / 5 |
+| Tribonacci | alloc_deep | held-out | –; rerun no (5 rounds) | no (5 rounds) | no (5 rounds) | 1, 1, 0, 1, 1 | 33 / 677; target 0 / 5 |
+| floor(x²/N) | alloc_deep | held-out | –; rerun no (5 rounds) | no (5 rounds) | no (5 rounds) | 0, 0, 0, 1, 1 | 21 / 418; target 0 / 5 |
+| triangular | alloc_deep | held-out | –; rerun no (5 rounds) | round 3 | no (5 rounds) | 1, 0, 1, 0, 0 | 27 / 468; target 0 / 5 |
+| x³ + x | alloc_deep | held-out | –; rerun no (5 rounds) | no (5 rounds) | no (5 rounds) | 1, 1, 1, 0, 0 | 40 / 444; target 0 / 5 |
+
+**What came.**
+- *The 12 wins.* Ten came in their twin's round. (x + 1)² came a round early again, in round 0 with the fifth launch's
+  program. 3·x² did not come in 5 rounds.
+- *The fifth launch's eight late or lost wins.* Seven came back in their twin's round: x² mod N, x² − 1, x² + 1 and
+  x² + x in round 0; 2^x, x³ and the triangular numbers under alloc_ns in round 1. Only 3·x² is still missing.
+- *The 8 non-wins.* x⁴ came in round 1. This arm had not brought it: not in the consolidation's 4 rounds, nor in the
+  plain rerun's 5 or the fifth launch's 5. (The held-out study brought it in round 1 with its subgoal, HELDOUT.md.) The
+  triangular numbers under alloc_deep did not come in 5 rounds; the fifth launch had them in round 3. The other six
+  came in none of their 5 rounds.
+- *The programs.* x³, Fibonacci, x² mod N, x² + 1 and x² + x found the twin's program exactly. x² − 1 and 2^x found
+  programs as long as the twin's (14 and 20 primitive instructions) through other routines, and (x + 1)² the fifth
+  launch's (12, as long as the twin's). Three are longer: 2x + 1 (15 against 10), x² + 3 (33 against 23) and the
+  triangular numbers under alloc_ns (12 against 11). x⁴'s is 24.
+
+**Predictions against outcomes** (PREREG_ADDENDUM2.md's table, in its order):
+
+| measure | predicted (confidence) | came | right? |
+|---|---|---|---|
+| x mod N in round 0 | in at least 10 of the 11 runs whose twin picked it (medium) | in all 11 | yes |
+| x² mod N, x² − 1, x² + 1, x² + x | all four in round 0 (medium-high) | all four in round 0 | yes |
+| 3·x², x³, 2^x, triangular (alloc_ns) | all four within 5 rounds, at least two in round 1 (medium-low) | x³, 2^x and the triangular numbers in round 1; 3·x² not in 5 rounds | no: three of the four |
+| 2x + 1, Fibonacci, x² + 3 | their twins' rounds, 0, 1 and 1 (medium-high) | 0, 1 and 1 | yes |
+| (x + 1)² | round 0 (medium) | round 0, with the fifth launch's program | yes |
+| triangular (alloc_deep) | does not come in 5 rounds (medium-low) | not in 5 rounds | yes |
+| the other seven non-wins | none comes in 5 rounds (high) | x⁴ in round 1; the other six none | no |
+| overall | at most two of the eight late or lost wins still late or lost (medium) | one: 3·x² | yes |
+
+**What the refutations say.**
+- *The round-0 account (§6) stands.* x² mod N, x² − 1, x² + 1 and x² + x all came in round 0 again. In each, the twin's
+  best round-0 pair was scored again with the same gain (66–91 bits), and the program ends in
+  `L.N[MOV.X.A T.mod(X,N)@x+qN]`, as the twin's does.
+- *The anchor places were the main route of the losses.* One of the eight late or lost wins is still missing (3·x²);
+  three would have refuted it.
+- *The invention came through the anchor places.* The triangular numbers under alloc_deep did not come. In the fifth
+  launch, round 3's two anchors were the gate's finds (x·x) mod N and N mod (x + 1), both picked, and their routines
+  made the program (§6). Here the gate found (x·x) mod N from round 1 and N mod (x + 1) in round 3, both at cost 6, but
+  they were kept out of the anchor places, and neither was picked in 5 rounds.
+
+**How the outcomes moved.**
+- *The mod law is back in round 0.* It was picked in round 0 in all 11 runs whose twin picked it (the fifth launch
+  picked it there in one of them), and in 17 of the 20 runs.
+- *The gate's finds are still picked, now beside plain anchors.* In round 0, 11 of the 20 runs picked a problem only
+  the gate had solved (all 20 in the fifth launch). x³, Fibonacci, x² + 1 and x² + x had their twin's round-0 picks
+  and library exactly.
+- *x⁴ came through a gate find picked beside the mod law.*
+  - Round 0. The twin's costliest anchor, `law2/min(monus(N,X),X)` (cost 7, found there by the 10M deep probe), is the
+    gate's find here, so the anchors are the mod law and `law2/lt(succ(X),N)`. The best pairs put the gate's find
+    beside each (14.3 bits), and the mod law was picked. In the twin the mod law was an anchor too, but the cost-7
+    anchor's pairs with the add laws scored as high and filled the four picks. It was never picked there in 4 rounds,
+    nor in the plain rerun's 5.
+  - Round 1. Over a library with the mod routine, the plain 1M probe of (x·x) mod N spent 4.45M states without a
+    program. The gate found `L.X[L.X[INC.A]] L.X[MOV.X.A T.mod(X,N)@x+qN]` at price 6, first accepted at 480k states.
+    It gained 39.8 bits with either anchor and was picked. Its routine `T.law6` heads the round's program,
+    `T.law6 T.law7 M1.1` (24 primitive instructions; `M1.1` reduces A mod N with the mod routine).
+  - The held-out study's hardest-first program for x⁴ has the same shape and length (`T.law5 T.law8 M1.1`, 24).
+- *3·x² was lost through the rule itself.*
+  - Round 0 differs from the twin's in two picks. The best pairs put the gate's find `restrict/target/X·X<X+X`
+    (price 11) beside each anchor (44.7 bits), so it and the second anchor, `law2/lt(succ(X),N)`, were picked in place
+    of two of the twin's three constant-3 picks. The mod law was picked in both.
+  - Over that library (8 routines against the twin's 5), round 1's plain 1M probes left (x·x) mod N and
+    `restrict/target/X<3` unsolved (4.3M and 4.1M states). The gate found both at price 6. In the twin both were plain
+    finds, and their pair gained the most that round (77.8 bits, with (x·x) mod N an anchor); its target came in that
+    round.
+  - Here neither can anchor, so that pair was never scored. N mod (x + 1), the twin's other anchor, was not solved at
+    all. From round 1 the target search found programs that fit the target's examples (in rounds 2–4 a single
+    restriction routine, `T.res10`), but none was general, and the target did not come in 5 rounds.
+  - So keeping the gate's finds out of the anchor places has a cost of its own. Where the gate's earlier picks change
+    the library, a problem the twin solved plainly can become a gate find, and lose the anchor place it had.
+
+**The gate found no target itself.** Its second searches ran 6,404 times after a 1M probe and found 437 programs (6.8%,
+351 of them at cost 6–7). They ran 168 times after the 10M deep probe, with one find (`law2/mod(add(X,X),N)` at
+price 8, for 10·x² in round 2, picked), and 42 times after the round's target search, with none. Every target came
+from a plain search.
+
+**Cost.** $23.07 for this rerun (Modal's billing for `bar3-gate` from 18:00 UTC Oct 30 through the hour that began at
+01:00 UTC Oct 31; its last container stopped a minute after it), $102.93 for the study in all.

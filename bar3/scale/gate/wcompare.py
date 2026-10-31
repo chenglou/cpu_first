@@ -1,9 +1,10 @@
-"""The whole runs against their plain twins (GATE.md §6): each gated run (learnrun.py, records `<config>_<target>_gt1`)
-round by round against the consolidation arm's record of the same config and target (consolidate/records, tags ab1/ab2):
-the round the target came (a general program), the picks, the routines added, and what the gate's second searches found
-(`<run>.gate.jsonl`: per round, how many it ran and found, by kind, and whether a gate-found problem was picked).
+"""The whole runs against their plain twins (GATE.md §6, §9): each gated run (learnrun.py, records `<config>_<target>_<tag>`:
+gt1 the fifth launch, gt2 §9's with the anchors kept to the plain search's finds) round by round against the
+consolidation arm's record of the same config and target (consolidate/records, tags ab1/ab2): the round the target came
+(a general program), the picks, the routines added, and what the gate's second searches found (`<run>.gate.jsonl`: per
+round, how many it ran and found, by kind, and whether a gate-found problem was picked).
 
-    cd cpu_first && python3 -m bar3.scale.gate.wcompare bar3/scale/gate/records/learn/gt1
+    cd cpu_first && python3 -m bar3.scale.gate.wcompare bar3/scale/gate/records/learn [gt1|gt2]
 """
 
 from __future__ import annotations
@@ -49,9 +50,9 @@ def gate_log(path):
     return out
 
 
-def main(folder):
-    for path in sorted(glob.glob(os.path.join(folder, "*_gt1.jsonl"))):
-        name = os.path.basename(path)[:-len("_gt1.jsonl")]
+def main(folder, tag="gt1"):
+    for path in sorted(glob.glob(os.path.join(folder, f"*_{tag}.jsonl"))):
+        name = os.path.basename(path)[:-len(f"_{tag}.jsonl")]
         config, target = name.rsplit("_", 1)
         rs = rounds_of(path)
         base = baseline(config, target)
@@ -78,11 +79,14 @@ def main(folder):
         if p_g:
             print(f"   program: {p_g}")
     print()
-    table(folder)
+    table(folder, tag)
     print()
-    mod_law(folder)
+    mod_law(folder, tag)
     print()
-    second_searches(folder)
+    second_searches(folder, tag)
+    if tag != "gt1":
+        print()
+        anchor_check(folder, tag)
 
 
 NAMES = {"h1": "x² mod N", "affine": "2x + 1", "minus1": "x² − 1", "rho": "x² + 1", "x2x": "x² + x", "cube": "x³",
@@ -96,14 +100,14 @@ def said(rounds):
     return f"round {r}" if r is not None else f"no ({len(rounds)} rounds)"
 
 
-def table(folder):
-    """GATE.md §6's table: per run, the round the target came in the twin (consolidate/records), in the plain rerun
-    (`<run>_pt1.jsonl`, learnrun with no gates, where there is one) and with the gate (rounds are numbered from 0); and
-    per round of the gated run, how many of its picks only the gate had solved and what its second searches found
-    (found / run)."""
+def table(folder, tag="gt1"):
+    """GATE.md §6's table (§9's with tag gt2, and the fifth launch's outcome beside it): per run, the round the target
+    came in the twin (consolidate/records), in the plain rerun (`<run>_pt1.jsonl`, learnrun with no gates, where there is
+    one) and with the gate (rounds are numbered from 0); and per round of the gated run, how many of its picks only the
+    gate had solved and what its second searches found (found / run)."""
     rows = []
-    for path in sorted(glob.glob(os.path.join(folder, "*_gt1.jsonl"))):
-        name = os.path.basename(path)[:-len("_gt1.jsonl")]
+    for path in sorted(glob.glob(os.path.join(folder, f"*_{tag}.jsonl"))):
+        name = os.path.basename(path)[:-len(f"_{tag}.jsonl")]
         config, target = name.rsplit("_", 1)
         rs, base = rounds_of(path), baseline(config, target)
         gl = gate_log(path[:-len(".jsonl")] + ".gate.jsonl")
@@ -113,6 +117,9 @@ def table(folder):
         rerun = os.path.join(folder, f"{name}_pt1.jsonl")
         twin += f"; rerun {said(rounds_of(rerun))}" if os.path.exists(rerun) else ""
         gated = said(rs)
+        first = os.path.join(folder, f"{name}_gt1.jsonl")
+        if tag != "gt1":
+            gated = f"{said(rounds_of(first)) if os.path.exists(first) else '–'} | {gated}"
         found = {g["name"] for g in gl if g.get("found") is not None}
         picks = [len(set(r.get("picked", [])) & found) for r in rs]
         tsearch = [g for g in gl if g.get("kind") == "target"]
@@ -121,9 +128,9 @@ def table(folder):
             searched += f"; target {sum(g.get('found') is not None for g in tsearch)} / {len(tsearch)}"
         rows.append((("win", "miss", "held-out").index(kind), r_b if r_b is not None else 9, NAMES.get(target, target),
                      config.replace("_ct2a2_probe", ""), kind, twin, gated, picks, searched))
-    print("| formula | config | kind | plain twin | with the gate | its picks only the gate solved, by round | "
-          "second searches: found / run |")
-    print("|---|---|---|---|---|---|---|")
+    print("| formula | config | kind | plain twin | " + ("fifth launch | anchors kept plain" if tag != "gt1" else
+          "with the gate") + " | its picks only the gate solved, by round | second searches: found / run |")
+    print("|---|---|---|---|---|---|---|" + ("---|" if tag != "gt1" else ""))
     for _, _, f, c, k, t, g, p, s in sorted(rows):
         print(f"| {f} | {c} | {k} | {t} | {g} | {', '.join(map(str, p))} | {s} |")
 
@@ -141,9 +148,10 @@ def calls(program, lib, seen=None):
     return seen
 
 
-def mod_law(folder):
+def mod_law(folder, tag="gt1"):
     """GATE.md §6's account of the mod law (x mod N, `law/mod(X,N)/x+qN`): per run, the rounds that picked it with the
-    gate, in the twin and in the plain rerun, and whether the target's program, where one came, calls it as a routine."""
+    gate, in the twin and in the plain rerun, and whether the target's program, where one came, calls it as a routine
+    (with tag gt2, the fifth launch's rounds are the last column)."""
     def picked(rounds):
         return "–" if rounds is None else ",".join(str(r["round"]) for r in rounds if MOD in r.get("picked", [])) or "never"
 
@@ -151,22 +159,25 @@ def mod_law(folder):
         r = next((r for r in rounds or [] if r.get("general")), None)
         return "–" if r is None else "yes" if MOD_ROUTINE in calls(r["general"]["program"], r.get("lib", {})) else "no"
 
-    print("the mod law: rounds picked (gate | twin | plain rerun); does the target's program call it (gate | twin)")
-    for path in sorted(glob.glob(os.path.join(folder, "*_gt1.jsonl"))):
-        name = os.path.basename(path)[:-len("_gt1.jsonl")]
+    print("the mod law: rounds picked (gate | twin | plain rerun" + (" | fifth launch" if tag != "gt1" else "") +
+          "); does the target's program call it (gate | twin)")
+    for path in sorted(glob.glob(os.path.join(folder, f"*_{tag}.jsonl"))):
+        name = os.path.basename(path)[:-len(f"_{tag}.jsonl")]
         config, target = name.rsplit("_", 1)
         rs, base = rounds_of(path), baseline(config, target)
         rerun = os.path.join(folder, f"{name}_pt1.jsonl")
         rr = rounds_of(rerun) if os.path.exists(rerun) else None
+        first = os.path.join(folder, f"{name}_gt1.jsonl")
+        fifth = f" | {picked(rounds_of(first))}" if tag != "gt1" and os.path.exists(first) else ""
         print(f"  {NAMES.get(target, target)} ({config.replace('_ct2a2_probe', '')}): picked {picked(rs)} | {picked(base)}"
-              f" | {picked(rr)}; called {uses(rs)} | {uses(base)}")
+              f" | {picked(rr)}{fifth}; called {uses(rs)} | {uses(base)}")
 
 
-def second_searches(folder):
+def second_searches(folder, tag="gt1"):
     """GATE.md §6's totals of the gate's second searches over every run, by kind (after a 1M probe, after the 10M deep
     probe, after the round's target search): how many ran, how many found a program, and the found programs' prices."""
     by, cost = collections.defaultdict(lambda: [0, 0]), collections.defaultdict(collections.Counter)
-    for path in sorted(glob.glob(os.path.join(folder, "*_gt1.gate.jsonl"))):
+    for path in sorted(glob.glob(os.path.join(folder, f"*_{tag}.gate.jsonl"))):
         for g in gate_log(path):
             by[g["kind"]][0] += 1
             if g.get("found") is not None:
@@ -177,5 +188,27 @@ def second_searches(folder):
         print(f"  {k}: {f} / {n} ({100 * f / n:.1f}%) {dict(sorted(cost[k].items()))}")
 
 
+def anchor_check(folder, tag="gt2"):
+    """GATE.md §9's check of the anchor rule: in every round of every run, the two costliest learnable problems the plain
+    search solved (not a second search's find of that round's probes, matched by library size), and whether every
+    scored pair holds one of them."""
+    bad = 0
+    for path in sorted(glob.glob(os.path.join(folder, f"*_{tag}.jsonl"))):
+        name = os.path.basename(path)[:-len(f"_{tag}.jsonl")]
+        gl = gate_log(path[:-len(".jsonl")] + ".gate.jsonl")
+        prev, out = 0, []
+        for r in rounds_of(path):
+            st, sub = r["status"], (r.get("subgoal") or {}).get("name")
+            gf = {g["name"] for g in gl if g["lib"] == prev and g.get("found") is not None and g["kind"] != "target"}
+            lrn = [c["name"] for c in r["pool"] if st.get(c["name"], {}).get("status") == "learnable"]
+            top = sorted([n for n in lrn if n not in gf], key=lambda n: (-st[n]["cost"], n != sub))[:2]
+            ok = all({a, b} & set(top) for _, a, b, _ in r.get("pairs", []))
+            bad += not ok
+            out.append(f"r{r['round']} {'ok' if ok else 'NOT'} ({len(gf & set(lrn))} gate finds kept out)")
+            prev = len(r.get("lib", {}))
+        print(f"  {name}: " + "; ".join(out))
+    print(f"anchor rule: {'every scored pair holds a plain anchor' if not bad else str(bad) + ' rounds break it'}")
+
+
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(*sys.argv[1:3])
